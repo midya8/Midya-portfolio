@@ -12,30 +12,32 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, remaining-bad-event counts, and JSON output for pipelines, multi-window burn-rate alerting with custom rules, rule-based alert triage with custom rule files that dedupes repeats, keeps each alert's fire count, ranks the noisiest deduped alerts first (--top-talkers), inhibits lower-severity symptoms under an active critical, and applies bounded, reasoned silences matched on service, severity or summary text (--silences), burn-rate alerting with a --suggest mode that emits the standard three-tier multi-window policy for any SLO window, and SLO definitions (Markdown or JSON), status reports with budget-exhaustion projections and worst-first sorting, and postmortems with automatic response metrics (Markdown or JSON) plus MTTR aggregation (mean/median/p90 per severity, weekly trend view, JSON output) across incidents, and fleet-wide roll-ups across whole incident sets: report summaries, triage ranked by severity, and metrics grouped by service, postmortem action-item follow-through (`metrics --action-items` groups open items per incident with days since resolution and exits 1 when items go stale past `--stale-days`), and burn-rule time-series replay (`burn --replay` re-evaluates every rule's windows at each timestamped bucket and reports each firing interval, for tuning alert policy against a past incident). Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 242 unit tests, CI across Python 3.10-3.13.
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, remaining-bad-event counts, and JSON output for pipelines, multi-window burn-rate alerting with custom rules, rule-based alert triage with custom rule files that dedupes repeats, keeps each alert's fire count, ranks the noisiest deduped alerts first (--top-talkers), inhibits lower-severity symptoms under an active critical, and applies bounded, reasoned silences matched on service, severity or summary text (--silences), burn-rate alerting with a --suggest mode that emits the standard three-tier multi-window policy for any SLO window, and SLO definitions (Markdown or JSON), status reports with budget-exhaustion projections and worst-first sorting, and postmortems with automatic response metrics (Markdown or JSON) plus MTTR aggregation (mean/median/p90 per severity, weekly trend view, JSON output) across incidents, and fleet-wide roll-ups across whole incident sets: report summaries, triage ranked by severity, and metrics grouped by service, postmortem action-item follow-through (`metrics --action-items` groups open items per incident with days since resolution and exits 1 when items go stale past `--stale-days`), and burn-rule time-series replay (`burn --replay` re-evaluates every rule's windows at each timestamped bucket and reports each firing interval, for tuning alert policy against a past incident), and alert ownership routing (`triage --routes` maps services to owning teams with an explicit default owner so routing gaps stay visible, `--by-owner` rolls the board up per team, worst severity first). Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 254 unit tests, CI across Python 3.10-3.13.
 
-- Case study: [projects/sre-toolkit.md](projects/sre-toolkit.md)
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
 ### loglens
 
 Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, per-path and per-client volume/error/latency tables sortable by errors, volume or p95, a 2xx/3xx/4xx/5xx status-class roll-up, before/after comparison around a deploy timestamp, status-code, class and path-prefix filters that scope every statistic, method, user-agent and referer triage behind 5xxs (also surfaced in the incident reports), a listing of the individual requests behind the 5xxs, an hour-of-day (UTC) pattern breakdown, consecutive-bucket spike windows, throughput (mean/peak per bucket) and fixed-bucket latency-distribution reports, a pipeline gate that exits 1 when the 5xx rate breaches a threshold, Apdex user-satisfaction scoring at a chosen threshold T (overall and per-path, worst first) with a --min-apdex gate, a failing-path status pivot (--path-status ranks endpoints by failure count with per-status-code counts), and Markdown incident reports with per-path breakdowns, spike windows, and optional before/after deploy comparisons. Parses nginx/Apache combined and JSON logs with per-line auto-detection, standard library only, CLI plus importable library, 241 unit tests with CI across Python 3.10-3.13.
 
-- Case study: [projects/loglens.md](projects/loglens.md)
 - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 
 ### flowkit
 
 Dependency-free workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, per-attempt timeouts, fail-fast or continue-on-error semantics, parallel execution of independent steps (--jobs), conditional steps (when on environment variables) and subset runs (--only/--skip), end-phase hook steps (trigger: on_failure, on_success or finally) for cleanup/notify work pinned to the run's outcome, dry-run plan mode, and text/JSON run reports with captured output tails (also writable to a JSON report file, with full per-step logs via --output-dir). Layered flow-level and per-step environment variables interpolate into commands ($VAR, ${VAR:-default}), with a --strict-env pre-run check that fails on unset references. Definitions are validated up front (duplicates, dangling dependencies, cycles, malformed interpolation) and executed in deterministic topological order; exit codes make it a scriptable gate (0 ok / 1 step failed / 2 invalid flow file). Standard library only, 123 unit tests, CI across Python 3.10-3.13.
 
-- Case study: [projects/flowkit.md](projects/flowkit.md)
 - Repo: [midya8/flowkit](https://github.com/midya8/flowkit)
+
+### uptimekit
+
+Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP (status, keyword-in-body, latency), TCP connect and TLS certificate-expiry probes, an append-only JSONL history with atomic retention compaction, availability roll-ups with p50/p95 latency percentiles and a per-day trend strip where monitoring gaps stay visible, incident detection with a consecutive-failure flap guard, and a self-contained HTML status-page renderer (inline CSS, no JavaScript, fully escaped). `check` exits 1 on any failure so a cron line doubles as alerting; `report --fail-open` gates CI on open incidents. CLI plus importable library, 68 unit tests running fully offline, CI on Python 3.11.
+
+- Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
 
 ### Kurdistan International Sociological Association website
 
 Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish) built with Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
 
-- Case study: [projects/kurdistansociology-website.md](projects/kurdistansociology-website.md)
 - Repo: [midya8/kurdistansociology-website](https://github.com/midya8/kurdistansociology-website)
 - Live: [kurdistansociology.com](https://kurdistansociology.com)
 
@@ -43,7 +45,6 @@ Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish)
 
 A personal site set against a procedurally generated Three.js galaxy that adapts rendering quality to the device and respects reduced-motion settings. Built with React, TypeScript, and Vite.
 
-- Case study: [projects/midya-ca.md](projects/midya-ca.md)
 - Repo: [midya8/midya.ca](https://github.com/midya8/midya.ca)
 - Live: [midya.ca](https://midya.ca)
 
