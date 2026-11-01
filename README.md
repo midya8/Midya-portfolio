@@ -12,13 +12,13 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math, rule-based alert triage with dedupe, and postmortem generation from structured incident data. CLI plus importable library, 28 unit tests, CI across Python 3.10-3.13.
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting rules, rule-based alert triage with dedupe, Markdown SLO status reports, and postmortem generation from structured incident data. CLI plus importable library, 58 unit tests, CI across Python 3.10-3.13.
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
 ### loglens
 
-Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, unit tested with CI.
+Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, and JSON output for tooling. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, 47 unit tests with CI across Python 3.10-3.13.
 
 - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 
