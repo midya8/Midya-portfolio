@@ -16,6 +16,12 @@ Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
+### loglens
+
+Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, unit tested with CI.
+
+- Repo: [midya8/loglens](https://github.com/midya8/loglens)
+
 ### Kurdistan International Sociological Association website
 
 Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish) built with Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
