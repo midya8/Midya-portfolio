@@ -21,3 +21,6 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 - **loglens** — Access-log analysis for incident work: error rates, failing paths, 5xx sources, latency percentiles, incident timelines, and Markdown incident reports. Parses nginx/Apache combined and JSON logs. 142 unit tests.
   - Case study: [loglens.md](loglens.md)
   - Repo: [midya8/loglens](https://github.com/midya8/loglens)
+- **flowkit** — Workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, timeouts, fail-fast or continue-on-error semantics, parallel execution, conditional steps, end-phase hooks, dry-run plans, and text/JSON run reports. Standard library only, 123 unit tests.
+  - Case study: [flowkit.md](flowkit.md)
+  - Repo: [midya8/flowkit](https://github.com/midya8/flowkit)
