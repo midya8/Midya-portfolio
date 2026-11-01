@@ -12,13 +12,13 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting with custom rules, rule-based alert triage that dedupes repeats while keeping each alert's fire count, and Markdown SLO definitions, status reports with budget-exhaustion projections, and postmortems with automatic response metrics (time to detect, time to resolve). Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 98 unit tests, CI across Python 3.10-3.13.
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting with custom rules, rule-based alert triage that dedupes repeats, keeps each alert's fire count, and inhibits lower-severity symptoms under an active critical, and Markdown SLO definitions, status reports with budget-exhaustion projections, and postmortems with automatic response metrics plus MTTR aggregation across incidents. Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 110 unit tests, CI across Python 3.10-3.13.
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
 ### loglens
 
-Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, per-path volume/error/latency tables, before/after comparison around a deploy timestamp, and Markdown incident reports with per-path breakdowns, spike windows, and optional before/after deploy comparisons. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, 81 unit tests with CI across Python 3.10-3.13.
+Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, per-path volume/error/latency tables, before/after comparison around a deploy timestamp, user-agent triage behind 5xxs, and Markdown incident reports with per-path breakdowns, spike windows, and optional before/after deploy comparisons. Parses nginx/Apache combined and JSON logs with per-line auto-detection, standard library only, CLI plus importable library, 96 unit tests with CI across Python 3.10-3.13.
 
 - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 
