@@ -8,6 +8,10 @@ Toronto-based technologist with 12+ years across technology, financial services,
 - **Workflow automation** — taking manual, multi-step processes and making them reliable and repeatable.
 - **Web platforms** — TypeScript, React, Next.js, and static-first architectures that stay fast and maintainable.
 
+## How I build
+
+The projects below share an approach, written up in [approach.md](approach.md): choose the simplest architecture that meets the requirement, make tools that fit into scripts as well as terminals, validate before executing, and let reports and documents be outputs of the work rather than afterthoughts — all designed around real constraints, from right-to-left layouts to reduced-motion preferences.
+
 ## Selected projects
 
 ### sre-toolkit
@@ -30,7 +34,7 @@ Dependency-free workflow runner: JSON-defined DAGs of shell commands with retrie
 
 ### uptimekit
 
-Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP (status, keyword-in-body, latency), TCP connect and TLS certificate-expiry probes, an append-only JSONL history with atomic retention compaction, latency assertions that turn slow into down, TLS expiry thresholds, availability roll-ups with p50/p95 latency percentiles, a per-day trend strip where monitoring gaps stay visible, and window-over-window comparison, incident detection with a consecutive-failure flap guard and a sustained-outage gate (`--max-open-minutes` pages on real outages, not self-healing blips), a watch mode for hosts without cron, and a self-contained HTML status-page renderer (inline CSS, no JavaScript, fully escaped). `check` exits 1 on any failure so a cron line doubles as alerting; `report --fail-open` gates CI on open incidents. CLI plus importable library, 83 unit tests running fully offline, CI on Python 3.11.
+Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP (status, keyword-in-body, latency), TCP connect and TLS certificate-expiry probes, an append-only JSONL history with atomic retention compaction, availability roll-ups with p50/p95 latency percentiles and a per-day trend strip where monitoring gaps stay visible, incident detection with a consecutive-failure flap guard, and a self-contained HTML status-page renderer (inline CSS, no JavaScript, fully escaped). `check` exits 1 on any failure so a cron line doubles as alerting; `report --fail-open` gates CI on open incidents. CLI plus importable library, 68 unit tests running fully offline, CI on Python 3.11.
 
 - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
 
