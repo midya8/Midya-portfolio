@@ -22,6 +22,38 @@ SRE tooling tends to arrive as a heavy platform: a service to run, dependencies 
 
 146 unit tests, with CI across Python 3.10–3.13.
 
+## Worked example: the first ten minutes of an SLO review
+
+The commands below are the real sre-toolkit CLI, taken from the project's own usage docs. One question leads to the next — budget, burn, triage, report, postmortem, trend — and every step is the same tool, not a new setup:
+
+```bash
+python -m sre_toolkit budget --slo 0.999 --total 10000 --bad 5 --window-days 30
+# how much of the error budget is consumed, the burn rate, and how many
+# bad events the window still affords — exits 1 if the budget is exhausted
+
+python -m sre_toolkit burn examples/burn-samples.json
+# multi-window burn-rate alerting: fires only when burn is elevated on
+# both the long and short window, so blips never page anyone
+
+python -m sre_toolkit triage examples/alerts.json --inhibit
+# deduped alerts sorted by severity, with lower-severity symptoms
+# suppressed while a critical is active on the same service
+
+python -m sre_toolkit report examples/slo-snapshots.json --worst-first
+# a Markdown SLO status report, worst budgets first, with exhaustion
+# projections for any snapshot carrying its window length
+
+python -m sre_toolkit postmortem examples/incident.json
+# a consistent Markdown postmortem, with response metrics computed
+# automatically from the incident timestamps
+
+python -m sre_toolkit metrics examples/incidents.json --json
+# MTTR across incidents — mean, median, and p90 per severity — as JSON
+# for dashboards, answering "are we getting faster?" with numbers
+```
+
+The same math is importable as a library (`from sre_toolkit.error_budget import compute_error_budget, allowed_downtime_minutes`), so an ad-hoc question in the terminal and a scheduled check share one implementation.
+
 ## What it demonstrates
 
 Building reliability tooling that respects its own subject matter: small, dependency-free, and boring in the right ways, so the tools themselves never become the incident. The design favors the operator — one command, a clear answer, and output that slots directly into the incident workflow.
