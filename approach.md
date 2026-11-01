@@ -15,7 +15,7 @@ uses React and Vite for the same end: a static build with nothing to keep
 running behind it.
 
 - [Kurdistan International Sociological Association website](projects/kurdistansociology-website.md)
-- [sre-toolkit](projects/sre-toolkit.md), [loglens](projects/loglens.md), [flowkit](projects/flowkit.md)
+- [sre-toolkit](projects/sre-toolkit.md), [loglens](projects/loglens.md), [flowkit](projects/flowkit.md), [uptimekit](projects/uptimekit.md)
 - [Personal site — midya.ca](projects/midya-ca.md)
 
 ## Make tools that fit scripts as well as terminals
@@ -25,7 +25,9 @@ here is both a command you run by hand and a library you import into
 automation, and every command communicates its result through its exit
 code: sre-toolkit exits 1 when an error budget is exhausted, loglens exits
 1 when a 5xx rate breaches a threshold, and flowkit uses 0 for success, 1
-for a failed step, and 2 for an invalid flow file. A pipeline or scheduled
+for a failed step, and 2 for an invalid flow file. uptimekit's `check`
+exits 1 on any failure, so a cron line doubles as alerting, and
+`report --fail-open` gates CI on open incidents. A pipeline or scheduled
 check can act on the result without parsing human-readable output.
 
 ## Validate before executing
@@ -46,7 +48,9 @@ that can be committed, reviewed, and searched: SLO definitions, status
 reports with budget-exhaustion projections, and postmortems with automatic
 response metrics from sre-toolkit; Markdown incident reports with per-path
 breakdowns and spike windows from loglens; text or JSON run reports with
-captured output tails from flowkit. The report is not a separate chore
+captured output tails from flowkit; and availability roll-ups with p50/p95
+latency percentiles, a per-day trend strip where monitoring gaps stay
+visible, and a self-contained HTML status page from uptimekit. The report is not a separate chore
 after the work — it is what the tool produces.
 
 ## Reduce noise; answer the question first
@@ -57,7 +61,10 @@ stays visible, and inhibits lower-severity symptoms while a critical is
 active, so an incident surfaces as one problem to solve. loglens leads
 with the headline answers — error rate, status distribution, hottest
 failing paths, and the source IPs behind 5xxs — and only then narrows
-into timelines, latency tables, and per-client breakdowns.
+into timelines, latency tables, and per-client breakdowns. uptimekit
+applies the same discipline to paging: a consecutive-failure flap guard
+and a sustained-outage gate mean a self-healing blip does not page, so
+an alert still means something worth acting on.
 
 ## Design around the constraint, not around it
 
