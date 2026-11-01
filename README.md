@@ -12,7 +12,7 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting rules, rule-based alert triage with dedupe, Markdown SLO status reports, and postmortem generation from structured incident data. CLI plus importable library, 58 unit tests, CI across Python 3.10-3.13.
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting with custom rules, rule-based alert triage with service grouping, and Markdown SLO definitions, status reports, and postmortems. Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 76 unit tests, CI across Python 3.10-3.13.
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
