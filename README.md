@@ -12,13 +12,13 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting with custom rules, rule-based alert triage with service grouping, and Markdown SLO definitions, status reports, and postmortems. Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 76 unit tests, CI across Python 3.10-3.13.
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math with exhaustion projection, multi-window burn-rate alerting with custom rules, rule-based alert triage with service grouping, and Markdown SLO definitions, status reports, and postmortems with automatic response metrics (time to detect, time to resolve). Every command doubles as a scriptable health gate through meaningful exit codes. CLI plus importable library, 85 unit tests, CI across Python 3.10-3.13.
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
 
 ### loglens
 
-Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, and JSON output for tooling. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, 47 unit tests with CI across Python 3.10-3.13.
+Dependency-free access-log analysis for incident work: error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs, plus per-bucket incident timelines, p50/p95/p99 latency, time-window filtering, per-path volume/error/latency tables, before/after comparison around a deploy timestamp, and Markdown incident reports with a per-path breakdown. Parses nginx/Apache combined and JSON logs, standard library only, CLI plus importable library, 74 unit tests with CI across Python 3.10-3.13.
 
 - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 
