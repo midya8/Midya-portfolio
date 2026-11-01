@@ -22,6 +22,12 @@ Dependency-free access-log analysis for incident work: error rate, status distri
 
 - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 
+### flowkit
+
+Dependency-free workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, per-attempt timeouts, fail-fast or continue-on-error semantics, dry-run plan mode, and text/JSON run reports. Definitions are validated up front (duplicates, dangling dependencies, cycles) and executed sequentially in deterministic topological order; exit codes make it a scriptable gate (0 ok / 1 step failed / 2 invalid flow file). Standard library only, 30 unit tests, CI across Python 3.10-3.13.
+
+- Repo: [midya8/flowkit](https://github.com/midya8/flowkit)
+
 ### Kurdistan International Sociological Association website
 
 Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish) built with Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
