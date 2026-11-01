@@ -10,6 +10,12 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 ## Selected projects
 
+### sre-toolkit
+
+Dependency-free Python utilities for day-to-day SRE work: error-budget and burn-rate math, rule-based alert triage with dedupe, and postmortem generation from structured incident data. CLI plus importable library, 28 unit tests, CI across Python 3.10-3.13.
+
+- Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
+
 ### Kurdistan International Sociological Association website
 
 Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish) built with Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
