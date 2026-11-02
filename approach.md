@@ -26,8 +26,10 @@ automation, and every command communicates its result through its exit
 code: sre-toolkit exits 1 when an error budget is exhausted, loglens exits
 1 when a 5xx rate breaches a threshold, and flowkit uses 0 for success, 1
 for a failed step, and 2 for an invalid flow file. uptimekit's `check`
-exits 1 on any failure, so a cron line doubles as alerting, and
-`report --fail-open` gates CI on open incidents. A pipeline or scheduled
+exits 1 on any failure, so a cron line doubles as alerting,
+`report --fail-open` gates CI on open incidents, and
+`report --fail-slo` exits 1 on an SLO breach, so a breached error
+budget gates a pipeline the same way an open incident does. A pipeline or scheduled
 check can act on the result without parsing human-readable output.
 
 ## Validate before executing
@@ -50,7 +52,8 @@ response metrics from sre-toolkit; Markdown incident reports with per-path
 breakdowns and spike windows from loglens; text or JSON run reports with
 captured output tails from flowkit; and availability roll-ups with p50/p95
 latency percentiles, a per-day trend strip where monitoring gaps stay
-visible, and a self-contained HTML status page from uptimekit. The report is not a separate chore
+visible, SLO status reports (error budget consumed, met-or-breached
+status), and a self-contained HTML status page from uptimekit. The report is not a separate chore
 after the work — it is what the tool produces.
 
 ## Reduce noise; answer the question first

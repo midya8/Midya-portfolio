@@ -2,6 +2,17 @@
 
 Longer write-ups on selected work. Everything here links back to the public repository (and live site, where there is one) so the code can speak for itself.
 
+## At a glance
+
+| Project | Stack | What it is for | Start here |
+|---|---|---|---|
+| Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
+| Personal site — midya.ca | React, TypeScript, Vite, Three.js | Personal site around a procedurally generated galaxy that adapts to the device and respects reduced-motion settings | [Case study](midya-ca.md) |
+| sre-toolkit | Python, standard library only; CLI plus importable library | Day-to-day SRE work: error budgets, burn-rate alerting, alert triage, SLO definitions, status reports, and postmortems | [Case study](sre-toolkit.md) |
+| loglens | Python, standard library only; CLI plus importable library | Access-log analysis for incident work: error rates, failing paths, 5xx sources, latency, timelines, and Markdown incident reports | [Case study](loglens.md) |
+| flowkit | Python, standard library only; CLI plus importable library | Running JSON-defined DAGs of shell commands with retries, timeouts, parallel steps, conditional steps, and run reports | [Case study](flowkit.md) |
+| uptimekit | Python, standard library only; CLI plus importable library | Synthetic uptime monitoring and availability reporting: probes, JSONL history, SLO measurement, incident gating, and an HTML status page | [Case study](uptimekit.md) |
+
 ## Web platforms
 
 - **Kurdistan International Sociological Association website** — Trilingual site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) in Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
@@ -24,6 +35,6 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 - **flowkit** — Workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, timeouts, fail-fast or continue-on-error semantics, parallel execution, conditional steps, end-phase hooks, dry-run plans, and text/JSON run reports. Standard library only, 123 unit tests.
   - Case study: [flowkit.md](flowkit.md)
   - Repo: [midya8/flowkit](https://github.com/midya8/flowkit)
-- **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, a watch mode for hosts without cron, and a self-contained HTML status page. 83 unit tests running fully offline, CI on Python 3.11.
+- **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 83 unit tests running fully offline, CI on Python 3.11.
   - Case study: [uptimekit.md](uptimekit.md)
   - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
