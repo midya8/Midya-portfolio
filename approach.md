@@ -41,7 +41,10 @@ step, and its `--strict-env` check fails up front on any unset variable
 reference instead of letting a blank value silently change a command. The
 same instinct shows up in loglens, where filters scope every statistic, so
 narrowing to a failing slice never leaves stray numbers computed over the
-full log.
+full log. uptimekit applies the same instinct to monitoring: a latency
+assertion turns a slow endpoint into a failure, and a TLS expiry threshold
+turns a certificate quietly approaching expiry into one, instead of leaving
+both as warnings nobody acts on.
 
 ## Let reports and documents be outputs, not afterthoughts
 
