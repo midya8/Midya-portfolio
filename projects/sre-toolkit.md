@@ -21,6 +21,7 @@ SRE tooling tends to arrive as a heavy platform: a service to run, dependencies 
 - **Alert triage that reduces noise instead of adding to it.** Triage dedupes repeat alerts, keeps each alert's fire count so frequency stays visible, and inhibits lower-severity symptoms while a critical is active — so an incident surfaces as one problem to solve, not a wall of symptoms.
 - **Triage rules from a file, not just the command line.** Triage accepts custom rule files, so the policy that shapes the board is written down and reusable across runs instead of re-typed as flags each time.
 - **Noisiest alerts first.** `triage --top-talkers` ranks the deduped alerts by fire count, so the alerts firing most often — the ones most likely to be a real, repeated problem rather than a one-off — lead the board.
+- **Worst first, so the important thing is always at the top.** Status reports sort worst-first, triage ranks by severity, and `--top-talkers` leads with the noisiest alerts — so the first thing on the board is the thing that needs attention first, and nobody has to scan past healthy services to find the one that is burning.
 - **Bounded, reasoned silences.** `triage --silences` applies silences matched on service, severity, or summary text — so suppressing an alert is a deliberate, scoped decision, not a mute that quietly swallows everything.
 - **Alert ownership routing, so triage ends with an owner.** `triage --routes` maps services to owning teams with an explicit default owner so routing gaps stay visible, and `--by-owner` rolls the board up per team, worst severity first — so the triaged alert list is also an assignment list.
 - **Documents as output, not an afterthought.** SLO definitions, status reports with budget-exhaustion projections and worst-first sorting, and postmortems with automatic response metrics (Markdown or JSON) and MTTR aggregation (mean/median/p90 per severity, JSON output) across incidents are all generated from the same tools that did the analysis, in a format that can be committed, reviewed, and searched.
@@ -31,7 +32,7 @@ SRE tooling tends to arrive as a heavy platform: a service to run, dependencies 
 
 ## Testing and compatibility
 
-146 unit tests, with CI across Python 3.10–3.13.
+254 unit tests, with CI across Python 3.10–3.13.
 
 ## Worked example: the first ten minutes of an SLO review
 

@@ -26,15 +26,15 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an importable library for automation, backed by unit tests and CI.
 
-- **sre-toolkit** — Error-budget and burn-rate math, multi-window burn-rate alerting, rule-based alert triage, and Markdown SLO definitions, status reports, and postmortems. 146 unit tests.
+- **sre-toolkit** — Error-budget and burn-rate math, multi-window burn-rate alerting, rule-based alert triage, and Markdown SLO definitions, status reports, and postmortems. 254 unit tests.
   - Case study: [sre-toolkit.md](sre-toolkit.md)
   - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit)
-- **loglens** — Access-log analysis for incident work: error rates, failing paths, 5xx sources, latency percentiles, incident timelines, and Markdown incident reports. Parses nginx/Apache combined and JSON logs. 142 unit tests.
+- **loglens** — Access-log analysis for incident work: error rates, failing paths, 5xx sources, latency percentiles, incident timelines, and Markdown incident reports. Parses nginx/Apache combined and JSON logs. 241 unit tests.
   - Case study: [loglens.md](loglens.md)
   - Repo: [midya8/loglens](https://github.com/midya8/loglens)
 - **flowkit** — Workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, timeouts, fail-fast or continue-on-error semantics, parallel execution, conditional steps, end-phase hooks, dry-run plans, and text/JSON run reports. Standard library only, 123 unit tests.
   - Case study: [flowkit.md](flowkit.md)
   - Repo: [midya8/flowkit](https://github.com/midya8/flowkit)
-- **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 83 unit tests running fully offline, CI on Python 3.11.
+- **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 98 unit tests running fully offline, CI on Python 3.11.
   - Case study: [uptimekit.md](uptimekit.md)
   - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
