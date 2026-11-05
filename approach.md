@@ -46,6 +46,28 @@ assertion turns a slow endpoint into a failure, and a TLS expiry threshold
 turns a certificate quietly approaching expiry into one, instead of leaving
 both as warnings nobody acts on.
 
+## Test the behaviour you depend on
+
+These tools are meant to be trusted at 3 a.m. — the exit code that gates a
+pipeline, the burn-rate rule that pages, the triage board that ranks the
+noisiest alert first. That trust is pinned down by tests, not by hope:
+sre-toolkit's 254 unit tests cover the budget math (including boundary and
+validation cases), severity classification, dedupe and ordering, silence
+validation and expiry, burn-rate rules, and time-series replay; loglens's
+241 cover parsing (both formats, mixed files, corrupt lines), statistics,
+timeline bucketing and spike windows, filters, before/after comparisons,
+and every CLI flag including the exit-code gates; flowkit's 123 cover flow
+validation, topological ordering, retries, timeouts, skip and fail-fast
+semantics, and end-phase hook execution; and uptimekit's 98 run fully
+offline — probe behaviour verified against loopback HTTP/TCP servers, TLS
+paths against injected certificates, and CLI tests that mock the probe
+engine, so the suite never touches the network it exists to monitor. CI
+runs the same suite on every change — Python 3.10–3.13 for sre-toolkit,
+loglens, and flowkit, and Python 3.11 for uptimekit — so the tests that
+prove a tool on a laptop are the ones that gate it before it lands.
+
+- [sre-toolkit](projects/sre-toolkit.md), [loglens](projects/loglens.md), [flowkit](projects/flowkit.md), [uptimekit](projects/uptimekit.md)
+
 ## Let reports and documents be outputs, not afterthoughts
 
 The analysis tools generate the documents the workflow runs on, in formats
