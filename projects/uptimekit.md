@@ -68,6 +68,7 @@ Latency assertions turn slow into down, and TLS expiry thresholds turn a certifi
 - **A gap is not uptime.** A period with no probe results produces no success records, so the per-day trend strip shows it as a gap rather than crediting the endpoint with uptime it never observed — the report never rewards the checker for time it was not running.
 - **Recovery is a record, not a reset.** An open incident ends when a later probe succeeds — the success lands in the same history as the failures, so the outage's end is as observable as its start, and the duration between the first failure and that success is measured from the record rather than reconstructed from an alert clearing.
 - **Slow degradation shows up before it becomes an outage.** Availability roll-ups report p50/p95 latency percentiles over time, so a rising slow tail is visible in the trend before it crosses a latency assertion and turns into a failure — the report warns while there is still time to act, rather than only recording the outage after the fact.
+- **One definition of down, everywhere.** A probe failure is defined once — a bad status, a missing keyword, a slow response, a refused connection, or a certificate near expiry — and every consumer reads that same record: the `check` exit code, the open-incident report, the SLO status, and the status page. "Down" never means one thing to the checker and another to the report, because they are all reading the same history.
 
 ## Links
 
