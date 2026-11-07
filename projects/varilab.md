@@ -44,9 +44,9 @@ This is inference for supplied target distributions, not fitting parameters or l
 
 ## Why the checks matter
 
-87 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
+118 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
 
-A standalone wheel contains all six runtime modules and produces the same inference, curvature and forest demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
+A standalone wheel contains all seven runtime modules and produces the same inference, curvature, forest and MAP demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
 
 ```sh
 python -m varilab demo
@@ -81,4 +81,21 @@ A direct four-node zero-field J=2 chain has prior means zero. Observing its firs
 python -m varilab forest-demo
 python -m varilab forest examples/coupled.json --evidence '[{"i":0,"spin":1}]'
 PYTHONPATH=. python examples/render_forest.py --check
+```
+
+
+## A compatible joint decision, with exact tie counts
+
+`forest_map` and `map` / `map-demo` add max-sum decoding with exact fractions of compiled binary-float potentials, not original decimal text. They return a compatible optimal assignment and separately recomputed score, exact maximizing count/uniqueness, component scores/counts, singleton constrained global optimum scores/counts/gaps, all directed message scores/counts/source-spin choices and full parent-conditioned traceback. Forbidden clamped states have null score/gap and zero count; no tolerance decides a tie. Validation, cycle rejection and 128-spin topology are shared with sum-product, whose ordinary probability arithmetic is unchanged.
+
+Directly constructed h=(1/4,63/256), J=-2 has two unique ordinary marginal modes +1, with P(+1) about0.506550 and0.502723. Their joint (+1,+1) scores -385/256. The unique joint MAP (+1,-1) scores513/256, exact gap449/128=3.5078125. Both demo gates are asserted: compatible decoding reaches the optimum; independent marginal modes do not. This distinguishes decision questions rather than ranking algorithms. A separate symmetric zero-field J=-2 example has two global optima: all local max-marginals permit either spin, but independent first choices (-1,-1) are incompatible. Stored parent-conditioned traceback chooses (-1,+1), an actual optimum. The deterministic local first-compatible tie rule is not a global lexicographic or relabel-invariant witness rule.
+
+A128-isolated-spin fixture counts exactly2^128 maximizing assignments without enumeration. Recomputed cavities plus serialized dependencies cost O(n+sum degree^2) rational/count operations and output entries; variable integer bit costs matter, and no timing claim is made. Singleton scores/counts include other disconnected components. Scores are not probabilities; no cyclic inference, parameter learning, top-k or causal claim is made. The fourth SVG plots both signed scores on one zero scale and embeds complete rational scores/counts/traceback certificates; only ordinary marginal-probability labels are rounded to12 decimals for portability.
+
+27 added API/CLI tests cover972 independent Fraction enumerations with evidence and every constrained singleton optimum/count, source-side message/count/backpointer oracles, analytic128-node cases, exact subnormal gaps, binary-vs-decimal fractions, compatible traceback, disconnected accounting, deterministic ordering, relabelled scores/counts, input/RNG isolation, validation and strict CLI equality/errors. Four figure tests inspect score geometry, complete certificates, regeneration and rejection of changed payloads. The original three demos/figures remain unchanged. Max-sum and backtracking follow [University of Washington CSE515 max-product lecture (2020)](https://courses.cs.washington.edu/courses/cse515/20wi/maxprod.pdf); code, rational multiplicity accounting, fixtures and independent test references are original.
+
+```sh
+python -m varilab map-demo
+python -m varilab map examples/coupled.json --evidence '[{"i":0,"spin":1}]'
+PYTHONPATH=. python examples/render_map.py --check
 ```
