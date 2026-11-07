@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### HamiltonLab
+
+Hamiltonian Monte Carlo from scratch with leapfrog energy/reversibility audits and full Metropolis rejection histories. Four-chain correlated-Gaussian checks match analytic moments reasonably on the development fixture; a separated mixture exposes the trap: acceptance0.997-1.000, zero mode switches within every chain, yet pooled positive-x share0.5. Classical x R-hat6.944902 flags the disconnected chains. 20 tests, dependency-free Python, offline sample/demo CLI and reproducible SVG. Fixed settings, unequal target-call work, no speed ranking, adaptation, modern ESS or convergence certificate.
+
+- Repo: [midya8/hamiltonlab](https://github.com/midya8/hamiltonlab) · Case study: [projects/hamiltonlab.md](projects/hamiltonlab.md)
+
 ### TransportLab
 
 Log-domain entropic optimal transport with full mass plans, explicit nonconvergence and weighted interpolation atoms. Full pushforward preserves actual endpoint marginals; barycentric means do not. Separate rounded primal/dual audits retain raw failed solves and report signed numerical gaps, marginal residuals and L1 changes. Analytic fixed-iteration plan tangents expose a nonconverged envelope-shortcut error0.007670872, checked against central differences. Zero support, covariance decomposition and exact tiny assignment remain visible. 46 tests, offline solve/assignment/push/audit/sensitivity CLI and SVGs. Not a metric, sampled trajectory, implicit-optimum gradient or certified OT bound.
