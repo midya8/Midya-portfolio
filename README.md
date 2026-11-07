@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### KernelLab
+
+Exact small-data Gaussian-process regression with uncertainty and numerical assumptions exposed.
+
+- RBF conditioning through Cholesky/triangular solves, no dense inverse in production. Separate latent and noisy-observation covariance, log marginal likelihood and fixed-parameter row LOO diagnostics.
+- On a seed-19 synthetic sinusoid/trend fixture (15 train, 101 test), length scale 0.8 gives observation RMSE 0.6242/mean NLL 0.1041; length 5 gives 1.0038/12.1309. Unconditioned prior: 0.7879/1.2321. A visible misspecification counterexample, not an external benchmark or universal ranking.
+- Explicit jitter affects training covariance and LOO effective-observation variance, but is not silently added to future observation noise. Singular noiseless data rejects; caller-specified jitter recovers it.
+- Independent inverse and explicit leave-one-out refit references, strict versioned artifacts, 25 tests, offline CLI demo, regenerated SVG and Python 3.10-3.13 CI. No distribution-free coverage or production-scale claim.
+
+- Repo: [midya8/kernellab](https://github.com/midya8/kernellab) · Case study: [projects/kernellab.md](projects/kernellab.md)
+
 ### BoostLab
 
 Binary gradient boosting from scratch: mean-residual defaults plus optional capped, L2-regularized Newton leaves on residual-SSE trees. The development fixture selects 35 Newton trees/237 nodes, test accuracy 0.9004/logloss 0.3341; its unselected 80-round checkpoint is also shown (0.8984/0.3469). Mean depth-2 control: 0.8906/0.3400; full-budget stumps: 0.6367/0.7366. Different capacity and settings, no causal or external-benchmark claim. Backward-compatible v1/v2 inference, Hessian/leaf arithmetic tests, validation-only prefix selection. Dependency-free Python, 29 tests and offline CI.
