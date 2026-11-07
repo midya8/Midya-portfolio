@@ -46,7 +46,7 @@ This is inference for supplied target distributions, not fitting parameters or l
 
 58 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
 
-A standalone wheel contains all four runtime modules and produces the same demo outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
+A standalone wheel contains all five runtime modules and produces the same inference and curvature demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
 
 ```sh
 python -m varilab demo
