@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### HamiltonLab
 
-Hamiltonian Monte Carlo from scratch with leapfrog energy/reversibility audits and full Metropolis rejection histories. Four-chain correlated-Gaussian checks match analytic moments reasonably on the development fixture; a separated mixture exposes the trap: acceptance0.997-1.000, zero mode switches within every chain, yet pooled positive-x share0.5. Classical x R-hat6.944902 flags the disconnected chains. 20 tests, dependency-free Python, offline sample/demo CLI and reproducible SVG. Fixed settings, unequal target-call work, no speed ranking, adaptation, modern ESS or convergence certificate.
+Hamiltonian Monte Carlo from scratch with leapfrog energy/reversibility audits and full Metropolis rejection histories. Four-chain correlated-Gaussian checks match analytic moments reasonably on the development fixture; a separated mixture exposes the trap: acceptance0.997-1.000, zero mode switches within every chain, yet pooled positive-x share0.5. Classical x R-hat6.944902 flags the disconnected chains. 29 tests, dependency-free Python, offline sample/demo/quadratic CLI and reproducible SVG. Fixed settings, unequal target-call work, no speed ranking, adaptation, modern ESS or convergence certificate. A quadratic phase-space map also exposes four-step resonance: acceptance1 while every chain spans less than2.81e-14. Analytic proposal moments are pre-Metropolis, not accepted-kernel guarantees.
 
 - Repo: [midya8/hamiltonlab](https://github.com/midya8/hamiltonlab) · Case study: [projects/hamiltonlab.md](projects/hamiltonlab.md)
 
