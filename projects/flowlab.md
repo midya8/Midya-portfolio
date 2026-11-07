@@ -1,6 +1,6 @@
 # FlowLab: exact model density is not an exact fit
 
-Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 38 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
+Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 45 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
 
 [Source repository](https://github.com/midya8/flowlab) · [Design contracts](https://github.com/midya8/flowlab/blob/main/DESIGN.md)
 
@@ -45,9 +45,9 @@ Across 512 test points, the maximum forward/inverse reconstruction or opposing-l
 
 ## Audits
 
-38 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
+45 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
 
-CI tests Python3.10-3.13, trains the actual fixture and checks all three reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
+CI tests Python3.10-3.13, trains the actual fixture and checks all four reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
 
 ## Limits
 
@@ -67,6 +67,7 @@ python -m flowlab demo > /tmp/flow-demo.json
 python examples/render_demo.py /tmp/flow-demo.json --check
 python examples/render_score.py /tmp/flow-demo.json --check
 python examples/render_conditional.py /tmp/flow-demo.json --check
+python examples/render_windows.py /tmp/flow-demo.json --check
 ```
 
 The train/score/gradient/sample CLI accepts bounded continuous 2-D data. No external runtime dependency or network access is needed.
@@ -100,3 +101,23 @@ The known generator's full-line conditional means are0.75/-0.6/0.75, each with v
 Grid refinement checks only sensitivity to these grid sizes **inside the same interval**. It cannot measure missing tail mass or guarantee accuracy; two grids can miss the same narrow peak. The returned log slice integral is an approximate integral of joint density over this interval, with density units for the fixed coordinate. It is not an event probability, exact marginal likelihood or tail probability. A continuous exact-coordinate condition has probability zero; the density slice defines the conditional approximation. Narrower intervals change the distribution, not just its displayed crop.
 
 All bounds are validated before model evaluation: fixed axis0/1, fixed value[-100,100], interval endpoints[-100,100] with width>=1e-6, grid2-513, and1-33 requested quantiles in[0,1]. Nonfinite joint scores fail. Default quantiles are.05/.5/.95, with endpoints and duplicate/unsorted requests supported. Uniform and linear-density formulas, normal/affine references, explicit truncation, refinement, log offsets+/-10000, monotone CDF/normalization, no mutation, preflight call budgets and CLI errors are tested.
+
+## Window sensitivity and a grid-agreement counterexample
+
+![Aligned finite-window conditional audit](https://raw.githubusercontent.com/midya8/flowlab/main/assets/window-audit.svg)
+
+`window_audit` and the `windows` CLI evaluate one outer grid, then reuse a contiguous, index-aligned subgrid for an inner window. They return both full interpolated distributions, the inner/outer segment-area ratio, the removed fraction **within the finite outer window**, and inner-minus-outer median shift. No second round of model evaluations and no adaptive choice of bounds. Shared sampled heights make these mass ratios internally consistent for this interpolant; they do not make the interpolant accurate.
+
+Same trained flow, outer[-4,4],513 points; inner indices192..320 give[-1,1],129 points. Each row costs513 model evaluations, **1,539 total**, not513+129 per row:
+
+| Fixed x | Removed interpolated fraction within outer | Inner-minus-outer median | Inner median | Inner variance |
+| ---: | ---: | ---: | ---: | ---: |
+| -1.5 | 0.297166 | -0.191406 | 0.534865 | 0.119903 |
+| 0 | 0.243537 | +0.161078 | -0.471317 | 0.144531 |
+| 1.5 | 0.319448 | -0.226502 | 0.495517 | 0.127310 |
+
+This measures how renormalizing on a narrower window changes the fitted conditional approximation. The removed fractions are **not whole-line tail probabilities**. They exclude everything outside[-4,4] and may miss structure between grid points. The inner curve is not a cropped version of the outer density: it has a new normalizer and new quantiles. Bounds and indices remain user-selected, never optimized to make results look stable.
+
+The demo also supplies a non-neural adversarial integrand, `.0001 + .5*NormalPDF(y; mean=.015625, sd=.0001)` on[0,1]. Both17- and33-point grids miss the same narrow peak and report integral0.0001, while the analytic normal-CDF reference gives0.5001. Both grids' interpolated means are0.5 despite the actual mean being near0.01572. These50 callback evaluations are separate from the1,539 trained-model calls. The constant component is a density floor **in this artificial integrand only**, not a clipping rule for flow inference. This demonstrates why grid agreement cannot certify conditional accuracy; it is not evidence that this trained model has the same missed peak.
+
+Tests verify aligned reuse/counts, constant-density offset invariance, exact full-window identity, nested mass monotonicity, the normal erf reference, zero-call index rejection, CLI limits and the missed-peak counterexample. Original training, density, score and conditional-grid outputs remain unchanged. Fixed finite windows cannot establish calibrated coverage, full-line normalization or safe automatic bounds.
