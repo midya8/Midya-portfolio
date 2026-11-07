@@ -21,7 +21,7 @@ Confidence calibration from scratch in pure Python: ECE/MCE/Brier/NLL metrics, p
 - **Measured calibration repair** - an overfit small-data MLP (train 1.0000, test 0.5563; top bin 0.9735 mean confidence at 0.6602 accuracy) goes from ECE 0.2765 to 0.0651 and test NLL 2.0030 to 1.2060 with one validation-fitted temperature (T = 3.85) - at exactly zero accuracy change, a property of the method asserted bit-for-bit in the gates.
 - **Honest bounds, not just wins** - the test-optimal (oracle) temperature 3.30 would give NLL 1.1984, so the validation fit leaves only 0.0076 on the table; post-scaling bins skew mildly under-confident and MCE stays noisy (0.1216), both reported.
 - **Gradients by hand, verified** - the MLP's backprop is derived in code and finite-difference checked; the suite separates metric unit tests from fixture regression.
-- Dependency-free Python 3.10+, 16 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+- Dependency-free Python 3.10+, 22 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab) · Case study: [projects/calibrlab.md](projects/calibrlab.md)
 
@@ -328,5 +328,4 @@ A personal site set against a procedurally generated Three.js galaxy that adapts
 
 - [midya.ca](https://midya.ca)
 - [LinkedIn](https://www.linkedin.com/in/midyarahmani/)
-
 
