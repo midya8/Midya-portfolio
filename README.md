@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### PlanBench
+
+Validate and simulate agent task plans before they run: plans are DAGs of tool calls, checked for unknown tools, unknown or cyclic dependencies and inputs no dependency produces, then executed in a deterministic parallel simulation where flaky tools fail under a seeded RNG, steps retry within policy and dependents of failures are skipped - with makespan, cost, critical path and parallelism reported and gated in CI.
+
+- **Semantic validation, not just syntax** - duplicate step ids, unknown tools, unknown/self/cyclic dependencies, and `requires` inputs no dependency's tool produces, each as a severity-ranked finding.
+- **Deterministic parallel simulation** - steps start as dependencies succeed; tool failures come from a seeded RNG, so the same plan, registry and seed always produce the same trace, retries and skip cascades included.
+- **Plan-shape metrics and gates** - makespan, total cost with retries, critical path by duration, parallelism; `--require-success`, `--max-makespan`, `--max-cost`, `--max-findings` fail the pipeline when a plan stops meeting policy.
+- Dependency-free Python 3.10+, 29 unit tests, a fully offline demo with a flaky-tool research plan and a rejected broken plan, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/planbench](https://github.com/midya8/planbench) · Case study: [projects/planbench.md](projects/planbench.md)
+
 ### DecodeLab
 
 Decoding strategies for language models, from scratch: greedy decoding with deterministic tie-breaking, seeded temperature/top-k/top-p sampling, and beam search, all over an add-k smoothed n-gram model with an exact next-token distribution, plus generation-quality metrics (distinct-1/2, repetition rate, unigram entropy) with terminal/JSON/Markdown reports and CI gates.
