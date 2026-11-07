@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ShapleyLab
+
+Exact small-feature Shapley attribution from scratch: empirical-background replacement, every coalition available for audit, scalar score callback API and strict JSON CLI.
+
+- For a product prediction of 6, zero background gives [3, 3, 0] but a shifted background gives [2, 3, 0]. Reference choice changes the question, not the model prediction.
+- Jointly sampled missing features preserve their mutual dependence. A diagonal-background counterexample has off-manifold singleton hybrids despite zero attribution/efficiency residual: additivity does not certify explanation validity.
+- Enumerates all coalitions with a preflight call budget; 3 features/2 background rows require 15 calls. Independent factorial-order reference checks dimensions 1-6, plus linearity, symmetry, dummy and feature-permutation tests. No walltime, causality, conditional-SHAP or model-quality claim.
+- Dependency-free Python 3.10+, 22 tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
+
+- Repo: [midya8/shapleylab](https://github.com/midya8/shapleylab) · Case study: [projects/shapleylab.md](projects/shapleylab.md)
+
 ### PolicyLens
 
 Offline contextual-bandit evaluation from scratch: IPS, self-normalized IPS, direct method and doubly robust value estimates with full behavior/target probabilities, reward predictions and support/weight diagnostics.
