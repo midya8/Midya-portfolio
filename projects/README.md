@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| ScratchGPT | Python, NumPy; CLI plus importable package | Transformer and reverse-mode autograd built from scratch, with training, sampling and finite-difference verification | [Case study](scratchgpt.md) |
 | Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
 | Personal site — midya.ca | React, TypeScript, Vite, Three.js | Personal site around a procedurally generated galaxy that adapts to the device and respects reduced-motion settings | [Case study](midya-ca.md) |
 | sre-toolkit | Python, standard library only; CLI plus importable library | Day-to-day SRE work: error budgets, burn-rate alerting, alert triage, SLO definitions, status reports, and postmortems | [Case study](sre-toolkit.md) |
@@ -15,8 +16,11 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 ## AI systems
 
-Local-first tools for evaluating, tracing and reviewing LLM and agent workflows.
+Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus a transformer built from scratch.
 
+- **ScratchGPT** - GPT built and trained from scratch in pure NumPy, with hand-written autograd, a pre-LN causal transformer, Adam training, sampling CLI and finite-difference gradient checks. 11 unit tests.
+  - Case study: [scratchgpt.md](scratchgpt.md)
+  - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
 - **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts and baseline regression gates for LLM and agent outputs. 60 unit tests.
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 - **AgentTrace** - Validation, analysis, baseline/candidate comparison and escaped HTML timelines for AI agent execution traces. 30 unit tests.
