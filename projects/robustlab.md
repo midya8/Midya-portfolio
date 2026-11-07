@@ -41,7 +41,7 @@ Dependency-free Python 3.10+, with CI on Python 3.10-3.13. No network, paid API,
 
 ## Boundaries and attribution
 
-The threat domain is all real coordinates, with no clipping, boxes or preprocessing. The bias is fixed. Coordinates and epsilon are used as supplied, so feature units matter. Strict robustness requires worst signed margin >0; a boundary tie fails conservatively even when the +1 prediction rule gets that label right. A failed strict flag is not necessarily a label-flipping witness.
+The original training and all-real audit threat domain has no clipping, boxes or preprocessing; the separate box API below instead requires explicit bounds. The bias is fixed. Coordinates and epsilon are used as supplied, so feature units matter. Strict robustness requires worst signed margin >0; a boundary tie fails conservatively even when the +1 prediction rule gets that label right. A failed strict flag is not necessarily a label-flipping witness.
 
 The identity is exact in real arithmetic but evaluated in ordinary floats, not interval/outward-rounded arithmetic. No nonlinear or multiclass certificate, adaptive attack suite, distributional generalization, calibrated uncertainty or production security guarantee is claimed. Fixed-step descent can oscillate at norm kinks and carries no convergence claim.
 
@@ -55,7 +55,7 @@ A selected boundary fixture has float worst margin approximately +2.081668171e-1
 
 The exact audit preflights at most 4,096 row-coordinate products before fraction conversion. It rejects L2 explicitly because general directions/margins can be irrational. An exact rational result certifies the stated mathematical linear function and real-valued threat ball, not a separately rounded inference or attack pipeline. Rounding the rational witness can change a near-boundary result.
 
-Seventeen additional arithmetic/API/CLI tests check independent rational vertex/corner minima across 156 model/label/norm configurations, serialized witness feasibility and attained scores, both rounding-disagreement directions, exact binary input semantics, prediction disagreements, zero/tied weights, the executed work-cap boundary and subnormal-squared underflow. Four new figure tests verify six displayed result flags, numeric signs, scope text, metadata, reproduction and rejection of changed records. Total: 56 tests and two reproducible SVGs. The new wheel's exact demo also runs identically outside the source directory.
+Seventeen additional arithmetic/API/CLI tests check independent rational vertex/corner minima across 156 model/label/norm configurations, serialized witness feasibility and attained scores, both rounding-disagreement directions, exact binary input semantics, prediction disagreements, zero/tied weights, the executed work-cap boundary and subnormal-squared underflow. Four new figure tests verify six displayed result flags, numeric signs, scope text, metadata, reproduction and rejection of changed records. That increment brought the suite to 56 tests and two SVGs; the box increment below brings it to 80 tests and three SVGs. The wheel's exact demo also runs identically outside the source directory.
 
 ```sh
 python -m robustlab exact-demo
@@ -64,3 +64,19 @@ PYTHONPATH=. python examples/render_exact.py --check
 ```
 
 Exact float-to-rational conversion follows [Python's Fraction documentation](https://docs.python.org/3/library/fractions.html). All added code, numeric fixtures and diagrams are original.
+
+## Box intersection: an optimal witness, not a clipped candidate
+
+The new `box_audit` API solves L1/L-infinity balls intersected with supplied per-coordinate bounds. It requires clean inputs inside those bounds and returns exact rational primal movement plus a matching dual gain bound. The L1 problem is bounded fractional knapsack; L-infinity separates by coordinate. L2 is explicitly unsupported here. Neither existing training nor the all-real audits change.
+
+A direct dyadic fixture makes the failure mode concrete: weights `(4,1)`, bias `-1/4`, point `(1/16,3/4)`, positive label and unit box. At L1 radius `5/8`, clipping the old all-real attack leaves margin `+1/2`. The actual minimum is `-1/16`, attained by movements `(-1/16,-9/16)`. The positive clipped candidate cannot prove robustness. Exact primal and dual gains both equal `13/16`, with zero gap. Under L-infinity, independent adverse-direction clipping is optimal.
+
+Twenty new tests include a separate full orthant-polytope vertex oracle on 468 configurations, certificate/witness reconstruction, asymmetric/degenerate/nonbinding boxes, zero/tied weights, saturated budget, subnormals, isolation, actual 4,096-product execution and preflight/strict CLI checks. Four new figure tests cover 36 points, six polylines, full metadata and exact reproduction. Total suite: 80 tests and three SVGs. The new fixture was hand-specified without parameter search; it says nothing about prevalence or neural-network security.
+
+```sh
+python -m robustlab box-demo
+python -m robustlab box-audit examples/model.json examples/data.json examples/bounds.json --norm l1 --epsilon 0.3
+PYTHONPATH=. python examples/render_box.py --check
+```
+
+Bounds and inputs mean exact stored binary floats. The cap is 4,096 row-coordinate products, checked before rational conversion; each bounds JSON file uses the existing strict 1 MiB parser. No box-constrained training or separately rounded execution guarantee is claimed. See the [full derivation and dual inequalities](https://github.com/midya8/robustlab/blob/main/DESIGN.md) and [Duke's standard fractional-knapsack formulation](https://courses.cs.duke.edu/spring20/compsci330/lecture15scribe.pdf). All new code, synthetic data, test references and figures are independent implementations.
