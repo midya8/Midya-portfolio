@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| RobustLab | Python, standard library only; strict JSON CLI, reproducible SVG | Exact binary linear norm-ball margins, attainable attacks, audited robust logistic training and an explicit clean/robust trade-off | [Case study](robustlab.md) |
+| RobustLab | Python, standard library only; strict JSON CLI, two reproducible SVGs | Exact binary linear norm-ball margins, attainable attacks, audited robust logistic training and an explicit clean/robust trade-off, plus rational boundary certificates | [Case study](robustlab.md) |
 | CausalLab | Python, standard library only; strict JSON CLI, bounded world traces and five reproducible SVGs | Exact supplied structural causal models with confounding, non-identifiability, shared-noise multi-world joints, response-type dependence and sharp bounds with explicit monotonicity and inspectable DAG separation plus bounded sufficient-backdoor adjustment search | [Case study](causallab.md) |
 | ParticleLab | Python, standard library only; strict JSON CLI and reproducible SVG | Bootstrap particle filtering with log weights, full-ESS support failure, ancestry histories, genealogy/backward smoothing, conditional Gaussian proposals/predictive-weight audits and exact Kalman/RTS/static-square references | [Case study](particlelab.md) |
 | SegmentLab | Python, standard library only; strict JSON CLI and reproducible SVGs | Exact offline partition inference with model-confidence failures, joint-cut dependence, replicate mixtures and constrained Bayes decision audits | [Case study](segmentlab.md) |
