@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### RobustLab
+
+Binary linear adversarial robustness from scratch: exact L1/L2/L-infinity norm-ball margins and attainable perturbation witnesses, with hand-derived robust logistic subgradients. A fixed shifted synthetic holdout exposes the clean/robust trade-off: ordinary training is 100% clean / 20% strict robust at L-infinity radius 0.30; robust training is 80% / 80%. Both robust-gate directions stay visible. Independent rational corner enumeration, finite differences and nonsmooth subgradient inequalities, 35 tests and a reproducible SVG. Dependency-free Python and strict JSON CLI. Supplied linear models and explicit all-real norm balls only; floating-point audits, not neural-network or production security guarantees.
+
+- Repo: [midya8/robustlab](https://github.com/midya8/robustlab) · Case study: [projects/robustlab.md](projects/robustlab.md)
+
 ### CausalLab
 
 Exact finite structural causal models with distinct observation, intervention and shared-noise counterfactual queries. A 100-world confounding fixture reverses a +.26 association into a -.10 supplied-model intervention difference; observationally identical mechanisms still disagree on intervention and counterfactual answers. Log-space rare evidence, bounded noise-world traces and all 64 tiny Boolean mechanism pairs. Named multi-world counterfactual joints expose shared-noise response dependence missed by identical action marginals. Stable/flip mechanisms share all observations and single-action marginals but have different response-type joints. The naive-product failure stays visible. Sharp binary response bounds now return exact rational attaining joint witnesses from point action marginals, with optional explicit monotonicity and undefined zero-support conditional rates. Graphical d-separation adds ancestor/moral-edge certificates, collider-descendant checks and explicit incoming-edge surgery. A bounded backdoor-set search exposes collider bias, forbidden descendants and explicit candidate availability. 138 tests and five reproducible SVGs keep the missing coupling assumptions visible. Dependency-free Python and strict JSON CLI. Mechanisms are supplied assumptions, not causes learned from observational data.
