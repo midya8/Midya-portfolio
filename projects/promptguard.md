@@ -15,12 +15,12 @@ PromptGuard scans local prompt, Markdown, JSON and YAML files without a network 
 - prompt-injection language that asks a model to ignore earlier instructions, reveal hidden prompts, bypass controls or exfiltrate credentials
 - missing or incomplete Markdown prompt metadata frontmatter
 
-Findings include a rule ID, severity, file, line and redacted excerpt. Reports are available in terminal, JSON and standalone escaped HTML formats. Severity and finding-count gates return meaningful exit codes for CI.
+Findings include a rule ID, severity, file, line and redacted excerpt. Reports are available in terminal, JSON, SARIF 2.1.0 and standalone escaped HTML formats. The SARIF report includes stable rule metadata, severity mapping, source locations and redacted snippets so code-scanning tools can ingest findings. Severity and finding-count gates return meaningful exit codes for CI.
 
 ## Verification
 
-- 28 unit tests cover scanner rules, redaction, report escaping, filtering and gate exit codes.
-- `bash examples/demo.sh` runs fully offline against safe and risky fixtures.
+- 31 unit tests cover scanner rules, redaction, report escaping, SARIF generation, filtering and gate exit codes.
+- `bash examples/demo.sh` runs fully offline against safe and risky fixtures and validates the generated SARIF reports.
 - The risky fixture produces 8 findings with maximum severity critical, and the high-severity gate rejects it as expected.
 - CI runs the same suite across Python 3.10-3.13.
 
