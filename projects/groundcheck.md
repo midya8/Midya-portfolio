@@ -8,7 +8,7 @@ RAG pipelines answer with confidence whether or not the answer is grounded in th
 
 ## Approach
 
-GroundCheck turns grounding into deterministic, offline checks against the exact sources an answer claims to use:
+GroundCheck turns grounding into deterministic, offline lexical checks against the exact sources an answer claims to use:
 
 - **Citation validation** - every `[n]` marker must resolve to a provided source; unresolvable citations are high-severity findings, and the report shows how many of the provided sources were actually cited.
 - **Lexical support scoring** - each answer sentence is scored by content-token containment (stopwords removed) against every source document. Support is measured at document granularity because answers draw on whole retrieved passages: a sentence combining facts from several sentences of one passage is supported by that passage. Sentences below the threshold are flagged.
@@ -17,11 +17,11 @@ GroundCheck turns grounding into deterministic, offline checks against the exact
 
 ## Verification
 
-- 40 unit tests cover tokenization, decimal-safe sentence splitting, number extraction and matching, citation parsing, source loading validation, support scoring including cross-sentence combinations, every finding kind, report escaping and the CLI end to end including all three gates.
+- 43 unit tests cover tokenization, decimal-safe sentence splitting, number extraction and matching, citation parsing, source loading validation, support scoring including cross-sentence combinations, every finding kind, report escaping and the CLI end to end including all three gates.
 - `bash examples/demo.sh` runs fully offline: a grounded answer passes every gate while an ungrounded one - a fabricated test count, a citation with no source, invented claims - is rejected, with JSON and Markdown reports asserted for both.
 - CI runs the same suite across Python 3.10-3.13.
 
-GroundCheck measures lexical grounding: token containment, citation resolution and number consistency. These are strong fabrication signals but not semantic entailment - a fully paraphrased true sentence can score low, and a lexically supported sentence can still be subtly wrong.
+GroundCheck measures lexical grounding: token containment, citation resolution and number presence. These are useful fabrication signals but not semantic entailment, and they cannot establish that a claim is actually supported. Documented cases that pass every check: negation ("does not contain 40 tests" scores supported, since containment ignores word order), wrong attribution (a number that belongs to one project assigned to another), and coincidental number matches (a figure appearing anywhere in the sources, even in an unrelated sentence). A fully paraphrased true sentence can also score below the threshold. Treat it as a tripwire for ungrounded output, not proof of correctness.
 
 ## Links
 
