@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
 | GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
@@ -19,12 +20,15 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 ## AI systems
 
-Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus a transformer built from scratch.
+Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus vector search and a transformer built from scratch.
 
+- **VectorLite** - Exact and approximate kNN vector search from scratch: brute-force exact kNN (cosine and L2), seeded random-hyperplane LSH for approximate cosine search, and recall@k measured against the exact baseline with a CI gate. 31 unit tests.
+  - Case study: [vectorlite.md](vectorlite.md)
+  - Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite)
 - **GroundCheck** - Offline lexical grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring, numeric consistency, JSON/Markdown reports and three CI gates. 43 unit tests.
   - Case study: [groundcheck.md](groundcheck.md)
   - Repo: [midya8/groundcheck](https://github.com/midya8/groundcheck)
-- **TokenForge** - Byte-level BPE tokenizers trained from scratch: deterministic merge training, GPT-2-style pre-tokenization, exact round trips, JSON vocab persistence and compression statistics with a CI quality gate. 43 unit tests.
+- **TokenForge** - Byte-level BPE tokenizers trained from scratch: deterministic merge training, GPT-2-style pre-tokenization, exact round trips, JSON vocab persistence and compression statistics with a CI quality gate. 40 unit tests.
   - Case study: [tokenforge.md](tokenforge.md)
   - Repo: [midya8/tokenforge](https://github.com/midya8/tokenforge)
 - **RetrievalBench** - Offline retrieval evaluation for RAG and search pipelines: exact BM25, token-window chunking with parent-document collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, JSON/Markdown reports and CI quality gates. 42 unit tests.
