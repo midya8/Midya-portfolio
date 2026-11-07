@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### HamiltonLab
 
-Hamiltonian Monte Carlo from scratch with full rejection histories, leapfrog energy/reversibility and quadratic resonance audits. High acceptance can hide zero mode switches or almost-identity trajectories; optional state-independent random lengths retain every choice and work count. Rank-normalized split/folded R-hat exposes deterministic scale and half-chain failures missed by classical ratios; undefined components remain null. 47 tests, dependency-free Python, offline sample/demo/quadratic/diagnose CLI and SVG. No speed ranking, adaptive NUTS, ESS/MCSE or convergence certificate. Synthetic chains and analytic truths, not fitted posterior results.
+Hamiltonian Monte Carlo from scratch with full rejection histories, leapfrog energy/reversibility and quadratic resonance audits. High acceptance can hide zero mode switches or almost-identity trajectories; optional state-independent random lengths retain every choice and work count. Rank-normalized split/folded R-hat exposes deterministic scale and half-chain failures missed by classical ratios; undefined components remain null. Analytic harmonic-flow references separate leapfrog error, mass convention and exact-duration resonance, including large jumps that only flip sign. 57 tests, dependency-free Python, offline sample/demo/quadratic/diagnose/harmonic CLI and SVG. No speed ranking, adaptive NUTS, ESS/MCSE or convergence certificate. Synthetic chains and analytic truths, not fitted posterior results.
 
 - Repo: [midya8/hamiltonlab](https://github.com/midya8/hamiltonlab) · Case study: [projects/hamiltonlab.md](projects/hamiltonlab.md)
 
