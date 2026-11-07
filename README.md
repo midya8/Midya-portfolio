@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### FlowLab
 
-Affine-coupling flow from scratch: exact fitted-model density, inverse sampling, analytic score decomposition and bounded conditional-density slices. Conditional CDFs, moments and quantiles expose the entire grid, finite-interval renormalization and actual evaluation budget. Three disclosed banana-fixture slices retain65/257/513-point refinements; missing tails and accuracy guarantees are explicitly unknown. Earlier score counterexample and train-fitted Gaussian controls remain. 38 tests, strict artifacts and offline CLI/SVGs. No exact-conditional, calibrated-coverage, OOD or causal claim.
+Affine-coupling flow from scratch: exact fitted-model density, inverse sampling, analytic input scores and bounded conditional CDF/quantile slices. Aligned window audits reuse one scored grid and expose renormalization effects: narrowing[-4,4] to[-1,1] removes24.35%-31.94% of interpolated mass inside the finite outer window. An analytic narrow-peak counterexample shows two agreeing grids can both be wrong. 45 tests, strict artifacts, offline CLI/SVGs and actual call budgets. No whole-line tail, exact-conditional, calibrated-coverage, OOD or causal claim.
 
 - Alternating invertible 2-D couplings, analytic change of variables, shared tanh conditioners and exact manual gradients. Tiny-model parameter/Jacobian finite differences, both inverse directions and density-normalization sanity checks.
 - Same-initialization flow and a genuinely train-fitted Gaussian baseline; independent test rows, final checkpoint and no setting/seed sweep. Full likelihood and sample summaries distinguish invertibility from fit quality.
