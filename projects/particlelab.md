@@ -1,0 +1,54 @@
+# ParticleLab
+
+[Repository](https://github.com/midya8/particlelab) · [Implementation and model](https://github.com/midya8/particlelab#explicit-model-and-timing)
+
+## Problem
+
+A particle filter can report equal weights and full effective sample size while carrying duplicate descendants of one badly placed initial particle. Weight ESS measures concentration of weights, not whether the state distribution has enough support. A single tidy score can hide lost uncertainty.
+
+## Built
+
+- Scalar bootstrap filter with a linear transition and identity or square observation function, known supplied Gaussian noise and a local seeded RNG.
+- Log-domain likelihood weighting, adaptive systematic resampling, filtered versus carried summaries, and full particles/weights/log weights/parent mappings/root-label histories.
+- Exact scalar linear-Gaussian Kalman reference with an explicit no-transition-at-t0 convention.
+- Strict JSON CLI, 38 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
+
+No roughening, state rejuvenation, smoothing or parameter fitting is hidden in the comparison.
+
+## Results with qualifications
+
+The fixed twelve-point linear example uses 512 particles for all sixteen seeds 0..15. The mean of per-seed mean RMSEs versus the exact Kalman filter is **.0161016904**; the variance RMSE average is **.00794734279**. Seed 0 is plotted without selecting for fit. The example and smoke-check threshold were chosen during development, not held out. These are model-conditional approximation errors, not real-world accuracy or calibration.
+
+A second fixture uses twenty zeros, a=1, process std=0, observation std=.1, initial mean=0/std=3, 32 particles and seed 0. At the end:
+
+| Quantity | Resampling threshold fraction 1 | Resampling disabled | Exact reference |
+|---|---:|---:|---:|
+| Mean | -.2163600684 | -.2163533277 | 0 |
+| Latent variance | 0 | .00000308085 | .000499972224 |
+| Weight ESS | 32 | 1.00002950 | not applicable |
+| Initial labels carried | 1 | 32 | not applicable |
+
+Full ESS after resampling does not recover missing support. Keeping all labels without resampling is not enough either: almost all weight sits on one. With zero process noise neither method can create a missing state value. This is not a causal claim that resampling alone causes the failure, or a verdict about other proposals or particle budgets.
+
+![Filtering, variance, ESS and ancestry](https://github.com/midya8/particlelab/raw/refs/heads/main/assets/particle-audit.svg)
+
+[Reproducible figure source](https://github.com/midya8/particlelab/blob/main/assets/particle-audit.svg). All plotted means/variances, settings, seed errors and domains are retained in numeric SVG metadata; the polygons retain every moment-band vertex. Shading is mean +/- one SD, not calibrated coverage. Both success and failure checks run in the demo.
+
+## Run it locally
+
+```sh
+python -m unittest discover -s tests -v
+python -m particlelab demo > /tmp/particle-demo.json
+python examples/render_demo.py /tmp/particle-demo.json --check
+python -m particlelab filter examples/sequence.json --particles 512 --seed 0
+python -m particlelab filter examples/sequence.json --ess-fraction 0
+python -m particlelab kalman examples/sequence.json
+```
+
+The repository has the complete six-field payload, strict input/resource bounds, CLI options and output semantics. Tests include hand weights/moments/evidence, evidence from full products over static initial samples, revival of log mass after probability underflow, systematic-resampling boundaries/zero bins/offspring, exact Gaussian references, RNG/input isolation, ancestry mappings and all SVG coordinates.
+
+## Limits and attribution
+
+A scalar supplied-parameter model, finite particles and floating point. The square observation branch has hand-checked symmetry/propagation tests, not a nonlinear tracking benchmark. No convergence certificate, high-dimensional proposal, smoothing, learned parameters, robustness, anomaly p-values or coverage guarantee. Evidence estimates are random; logs are not unbiased log-evidence estimates. No private or external dataset, paid API or GPU is used.
+
+Independent implementation inspired by Gordon, Salmond and Smith's 1993 bootstrap-filter paper, Section 3. [Primary paper](https://people.bordeaux.inria.fr/pierre.delmoral/gordon-salmond-smith-1993.pdf). Uses its own fixtures and systematic/adaptive ESS resampling, not the paper's bearings-only experiments, roughening, prior editing or performance claims. No code or paper figures copied. MIT license.
