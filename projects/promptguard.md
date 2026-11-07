@@ -12,7 +12,7 @@ PromptGuard scans local prompt, Markdown, JSON and YAML files without a network 
 
 - OpenAI-style keys, AWS-style keys, private key headers and assigned secrets
 - GitHub personal access tokens, Slack tokens, Google API keys and JSON Web Tokens, redacted per rule in findings and reports
-- baseline suppression that records known findings as SHA-256 fingerprints (no credential material) so CI gates only on new findings
+- baseline suppression that records known findings as SHA-256 fingerprints bound to a digest of the matched value, so a rotated or newly introduced credential is a new finding while the same credential stays suppressed, and the baseline file holds no raw material
 - email addresses, phone numbers and payment-card numbers checked with the Luhn algorithm
 - prompt-injection language that asks a model to ignore earlier instructions, reveal hidden prompts, bypass controls or exfiltrate credentials
 - missing or incomplete Markdown prompt metadata frontmatter
