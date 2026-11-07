@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### QuantLab
+
+Post-training int8 quantization built from scratch in pure Python: symmetric per-tensor and per-channel scales, byte-exact size accounting, reconstruction error metrics, and a perceptron-trained fixture model whose int8 accuracy cost is measured exactly on held-out data - plus a controlled study showing where quantization error actually lives.
+
+- **Measured, not benchmarked** - on the checked-in fixture, per-channel int8 matches fp32 test accuracy exactly (drop 0.0000) at 3.765x smaller weight storage; CI pins `--max-accuracy-drop 0.0` and `--min-ratio 3.5`.
+- **Error located** - boost one matrix row x100 and per-tensor's single scale crushes the rest (small-row SNR 9.25 dB) while per-channel holds 48.39 dB: a measured 39.14 dB gain, gated in CI.
+- **Honest scope** - simulated int8 storage with values proven in range, byte arithmetic for sizes, post-training only; the README says what real models would change.
+- Dependency-free Python 3.10+, 28 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/quantlab](https://github.com/midya8/quantlab) · Case study: [projects/quantlab.md](projects/quantlab.md)
+
 ### RAGLine
 
 Retrieval-augmented answering built from scratch in pure Python: a deterministic templated corpus chunked with stable ids, token-hashed sparse TF-IDF embeddings, top-k cosine retrieval, extractive answers that always cite their source chunk, and a lexical-overlap grounding check scored against each answer's cited chunk - shown in a tested negative control to flag a corrupted citation.
