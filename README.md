@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### SpecLab
+
+Speculative decoding built from scratch in pure Python: a cheap draft model proposes a block of tokens, an exact target model verifies the whole block in one counted pass, and the output is proven token-for-token identical to target-only decoding while the evaluation savings are measured directly.
+
+- **Equivalence proven, not sampled** - every emitted token is a drafted token the target greedily confirms or the target's own greedy choice; the suite verifies exact equality with target-only decoding across four draft/target configurations, three lengths, and gamma 1/2/4/8.
+- **Savings counted exactly** - on the checked-in fixture (order-3 draft, order-4 target, 8 prompts x 60 tokens, gamma=4): mean draft acceptance 0.800, 122 target evaluations against 480 naive - a measured 74.6% saving, gated in CI.
+- **Acceptance measured, including the failure mode** - a deliberately mismatched draft/target pair drops acceptance to 0.03 and is pinned in the suite, so acceptance is demonstrably measured rather than assumed.
+- Dependency-free Python 3.10+, 16 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/speclab](https://github.com/midya8/speclab) · Case study: [projects/speclab.md](projects/speclab.md)
+
 ### StructGate
 
 Grammar-constrained generation built from scratch in pure Python: an incremental JSON validator and a closed-schema validator compute the exact set of legal next tokens for any prefix, generation samples from an exact character-level n-gram distribution masked to that set, and the evaluation measures both what the constraints buy and what they cost.
@@ -262,4 +273,5 @@ A personal site set against a procedurally generated Three.js galaxy that adapts
 
 - [midya.ca](https://midya.ca)
 - [LinkedIn](https://www.linkedin.com/in/midyarahmani/)
+
 
