@@ -16,11 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### GraphLab
 
-Two-layer GCN from scratch, now with exact input gradients for a chosen node/class-logit margin, signed gradient-times-input sums and two-hop receptive-field audits. A hand-set path example sums to margin 0.598556 with zero reported residual, while a dead-ReLU counterexample shows zero local gradient does not mean no large-change effect. Original 96-node transductive development results remain: selected GCN test0.96875, same-parameter MLP0.34375, scrambled GCN0.515625; final checkpoints and centroid control visible. Synthetic edges carry class signal; features/edges visible, test labels withheld. Cycle/triangles expressivity blind spot, 34 tests and offline CLI/SVGs. No causal, probability-attribution, unseen-graph or general ranking claim.
+Two-layer GCN from scratch with exact input-margin gradients and budgeted single-edge deletion sensitivity. Input locality differs from graph normalization: node 3 has zero feature gradient for node 0, yet deleting edge 2-3 changes its margin by +0.016852 after degree renormalization. Full signed contributions, every edge effect, preflight call budgets and zero-gradient/large-change counterexample. Original transductive development results remain: selected GCN0.96875, MLP0.34375, scrambled GCN0.515625; final/centroid controls visible. Synthetic graph carries class signal; no causal, probability-attribution, unseen-graph or general ranking claim. 42 tests, strict artifacts and offline CLI/SVGs.
 
-- All 72 training weights start from scratch. Sparse normalized message passing, exact model/input gradients, independent dense references and permutation/mask audits.
-- Optional validation-only selection includes initialization; selected and final control metrics remain visible. Small-validation success need not transfer to test nodes. Full graph/feature context is explicitly transductive.
-- Fixed-model gradient attribution keeps coordinate signs, checks the bias-free ReLU zero-reference sum identity and exact two-hop locality. A sum identity does not establish causal explanation validity; a zero derivative does not prove robustness.
+- Sparse normalized GCN, exact model/input gradients and permutation/mask audits. Validation-only selection and selected/final checkpoints remain visible.
+- Signed zero-reference margin decomposition has an explicit algebraic sum audit, not a causal validity certificate. Two-hop feature support does not freeze graph degree factors.
+- Full leave-one-edge-out audits recompute normalization and preflight E+1 actual model forwards. No joint-deletion, robustness or walltime guarantee.
 
 - Repo: [midya8/graphlab](https://github.com/midya8/graphlab) · Case study: [projects/graphlab.md](projects/graphlab.md)
 
