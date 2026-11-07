@@ -67,7 +67,7 @@ Reliability after:
 ## Engineering notes
 
 - The MLP's gradients are derived in code and finite-difference verified (max error < 1e-6 in the suite).
-- 16 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
+- 22 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
 - CI runs the suite on Python 3.10-3.13 plus an offline demo asserting both gate sides: the achievable set passes and an impossible ECE reduction (0.9) fails.
 
 Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab)
