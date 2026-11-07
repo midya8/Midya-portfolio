@@ -8,7 +8,7 @@ Six response styles over five interpretable features (helpful, correct, verbose,
 
 ## Reward model
 
-Linear, `r(x) = w . phi(x)`, trained on 800 pairs with the hand-derived gradient of `-log sigmoid(r_w - r_l)`: `dL/dw = -(phi_w - phi_l) * sigmoid(-(r_w - r_l))`. Holdout accuracy 0.7800 on 150 fresh pairs. That number is bounded by design: labels are sigmoid-noisy, so even the Bayes-optimal ranker falls short of 1.0, and the gate is pinned at an achievable 0.75 instead of a flattering perfect score. A control model trained on utility-independent labels sits at 0.4333 - below chance, as a noise-trained model should be.
+Linear, `r(x) = w . phi(x)`, trained on 800 pairs with the hand-derived gradient of `-log sigmoid(r_w - r_l)`: `dL/dw = -(phi_w - phi_l) * sigmoid(-(r_w - r_l))`. Holdout accuracy 0.7800 on 150 fresh pairs. That number is bounded by design: labels are sigmoid-noisy, so even the Bayes-optimal ranker falls short of 1.0, and the gate is pinned at an achievable 0.75 instead of a flattering perfect score. A control model trained on utility-independent labels lands at 0.4333 on this finite fixture - utility-independent labels are expected near chance on average, and 0.4333 is this fixture's outcome.
 
 ## Alignment with exact KL accounting
 
@@ -23,7 +23,7 @@ Both terms finite-difference verified in the suite. On the fixture: expected lea
 
 ## Why the negative control is the load-bearing number
 
-"Policy improved under the learned reward" is easy - any monotone direction in feature space does that. AlignLab's control aligns an identical policy to the noise-trained reward model: true utility moves only 2.0375 to 2.5800, and the `--max-control-gain` gate fails CI if the control ever buys more than 0.2. The gain is demonstrably carried by preference signal, not by the optimization machinery.
+"Policy improved under the learned reward" is easy - any monotone direction in feature space does that. AlignLab's control aligns an identical policy to the noise-trained reward model: true utility moves only 2.0375 to 2.5800, and the `--max-control-gain` gate fails CI if the control ever buys more than 0.2. On this fixture the gain tracks preference signal rather than the optimization machinery; one seeded control is a fixture comparison, not a general proof that signal alone causes improvement.
 
 ## What the beta=0 ablation shows
 
