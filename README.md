@@ -25,6 +25,17 @@ Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, d
 
 - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 
+### AgentTrace
+
+Local-first validation, analysis and HTML reporting for AI agent execution traces: JSONL trace structure checks, run summaries, tool/LLM call counts, latency and cost rollups, graph depth, repeated-step loop detection, quality gates, and a standalone escaped HTML timeline.
+
+- **Agent runs as inspectable data** - parse JSONL traces from local agents, test fixtures, internal tools or hosted-model adapters without sending prompts or outputs anywhere.
+- **Gates that catch agent failure modes** - fail CI on errored steps, p95 latency, cost, step count, or a repeated tool/action signature that indicates a loop.
+- **Reports built for review** - deterministic JSON analysis artifacts and a self-contained HTML report show run summaries and per-step timelines with untrusted trace fields escaped by default.
+- Dependency-free Python 3.10+, 25 unit tests, a fully offline fixed-trace demo, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
+
 ### sre-toolkit
 
 Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-rate alerting, alert triage, and the Markdown documents an incident workflow runs on.
