@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### MoeLab
+
+Mixture-of-experts built from scratch in pure Python: a Switch-style sparse router over linear experts, trained on a regime-switching fixture that no single dense map can fit at any width, with gradients derived by hand and finite-difference verified in the suite.
+
+- **The mixture wins on structure, not size** - 0.0303 vs 0.1853 test MSE against a dense MLP with slightly more parameters (136 vs 145) on the checked-in fixture; the baseline gate fails CI if the baseline ever catches up.
+- **Routing measured, not assumed** - worst-regime routing purity 1.0000 (every regime routes to exactly one expert on the test set), expert usage shares reported, and the soft-vs-sparse gap pinned: soft evaluation costs 0.6291 vs 0.0303 because the objective is sparse and averaging specialized experts hurts.
+- **Honest aux-loss note** - on this symmetric fixture the load-balancing term is not load-bearing (max share 0.25 with and without it, and dropping it fits slightly better at 0.0010); the README says so instead of selling the auxiliary loss.
+- Dependency-free Python 3.10+, 9 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/moelab](https://github.com/midya8/moelab) · Case study: [projects/moelab.md](projects/moelab.md)
+
 ### AlignLab
 
 Preference-based alignment built from scratch in pure Python: a Bradley-Terry reward model trained on pairwise preferences with a hand-derived logistic gradient, then a categorical policy aligned by gradient ascent on expected reward minus an exact KL penalty to a reference policy - with expectations, KL, and both gradient terms in closed form, so nothing hides behind sampling noise.
