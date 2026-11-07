@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| HamiltonLab | Python, standard library only; sample/demo/quadratic CLI and SVG | Fixed-setting HMC, leapfrog energy/reversibility, complete rejection traces and high-acceptance mode-trapping and quadratic-resonance audits | [Case study](hamiltonlab.md) |
+| HamiltonLab | Python, standard library only; sample/demo/quadratic CLI and SVG | Fixed-setting HMC, leapfrog energy/reversibility, complete rejection traces and state-independent random lengths, high-acceptance mode-trapping and quadratic-resonance audits | [Case study](hamiltonlab.md) |
 | TransportLab | Python, standard library only; solve/assignment/push/audit/sensitivity CLI and SVGs | Log-domain entropic transport, full atom pushforward, separate rounded primal/dual audits, fixed-iteration analytic tangents, mean-map covariance gap, marginal audits and exact uniform assignment reference | [Case study](transportlab.md) |
 | FlowLab | Python, standard library only; train/score/gradient/conditional/windows/sample CLI and SVGs | Invertible couplings, input scores, aligned conditional-window mass/CDF audits, missed-peak counterexample and fitted Gaussian controls | [Case study](flowlab.md) |
 | GraphLab | Python, standard library only; train/predict/explain/edges CLI and SVGs | Two-layer GCN, transductive controls, exact input gradients, degree-renormalized edge deletion and preflight model-call audits | [Case study](graphlab.md) |
