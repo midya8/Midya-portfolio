@@ -21,7 +21,7 @@ Embedding-distribution tests from scratch in pure Python: unbiased RBF MMD, one 
 - On the selected 30x4 development fixture, independent same-generator samples give MMD squared -0.004871, p=0.550; adding +2 to each current coordinate gives 0.634539, p=0.002, the 1/500 resolution floor. Not a power/type-I error benchmark.
 - A tiny separated 2-vs-2 example still has exact p=1/3 over six allocations, making finite resolution and non-rejection limits visible.
 - Explicit exchangeability, prespecified bandwidth/preprocessing and repeated-test caveats. No cause, model-performance or continuous-monitoring guarantee; non-rejection is not equivalence.
-- Dependency-free Python 3.10+, 17 tests, JSON CLI/API, exact rank-superuniformity check, cached-kernel verification, offline demo and CI on Python 3.10-3.13. Standard method attributed to Gretton et al. and permutation convention to Phipson/Smyth.
+- Dependency-free Python 3.10+, 25 tests, JSON CLI/API with prespecified bandwidth families and Holm correction, exact rank-superuniformity check, cached-kernel verification, offline demo and CI on Python 3.10-3.13. Standard method attributed to Gretton et al. and permutation convention to Phipson/Smyth.
 
 - Repo: [midya8/driftlens](https://github.com/midya8/driftlens) · Case study: [projects/driftlens.md](projects/driftlens.md)
 
