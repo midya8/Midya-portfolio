@@ -11,7 +11,7 @@ A strong association does not say what replacing a mechanism would do. Even a co
 - Exact finite structural-causal-model enumeration with categorical exogenous noise and topologically ordered deterministic truth tables.
 - Separate observational, post-intervention and factual-evidence counterfactual queries. Shared exogenous assignments are reused across factual/action worlds, not independently redrawn.
 - Strict JSON and CLI, SHA-256 model identity, full query joints, finite rare log masses, explicit impossible support and bounded posterior noise-world traces.
-- 90 tests, independent rational references including all 64 tiny Boolean mechanism pairs, three reproducible audit SVGs and Python 3.10..3.13 CI. Standard-library runtime only.
+- 115 tests, independent rational references including all 64 tiny Boolean mechanism pairs, four reproducible audit SVGs and Python 3.10..3.13 CI. Standard-library runtime only.
 
 The model's graph, functional tables and noise distributions are supplied. This does **not** infer causal structure or effects from an observational dataset.
 
@@ -64,10 +64,28 @@ The stable/flip mechanisms attain the equal-marginal endpoints. Adding monotonic
 
 An independent rational reference enumerates all 165 denominator-eight response joints across 81 marginal pairs and checks exact extrema with/without monotonicity. Every named witness is checked for feasibility and attainment. Tiny exact fractions remain present when float display underflows. This is exact for supplied binary-float values, not decimal text or empirical causal truth. These are feasible-coupling ranges for assumed point action marginals, not confidence intervals or uncertainty propagation for unknown marginals. A third SVG shows all 24 joint-mass segments in six attaining witnesses.
 
+## Graph assumptions, not empirical independence
+
+The graph-only d-separation API uses ancestor restriction, moralization and connectivity rather than world enumeration. It keeps graph hashes, removed incoming arrows, every coparent bridge's origin, ancestor/pruned sets and the full reachable set. A connected result returns a moral-graph witness, not a falsely labeled original-DAG active path. Conversion from an SCM preserves shared exogenous common causes.
+
+| Motif | Condition / surgery | X and Y d-separated? |
+|---|---|---|
+| X -> M -> Y | none / given M | no / yes |
+| X <- U -> Y | none / given U | no / yes |
+| X -> C <- Y, C -> D | none / given C / given D | yes / no / no |
+| X <- U -> Y | remove incoming arrows to X | yes |
+
+The independent reference enumerates paths and checks noncollider blocking / collider-descendant opening directly. Across all 64 four-node DAGs consistent with one fixed order, it agrees on 49,152 singleton/conditioning/surgery combinations and 7,040 disjoint set queries. Other tests validate certificates, all moral-edge origins, latent-noise conversion and the 32-node/128-edge boundaries. A fourth SVG displays all eight fixed queries with topology and surgery styling.
+
+Separation implies conditional independence only for distributions Markov to the supplied DAG. Connection does not imply dependence, as an explicit XOR-noise counterexample also checks. Relevant latent common causes must be included. Interventions here are incoming-edge cuts, not assigned values or conditioning. No empirical independence test, graph discovery or faithfulness assumption is introduced. Reference: [Lauritzen's author-hosted graph chapter](https://web.math.ku.dk/~richard/BSc/Lauritzen.pdf); implementation and figures are independent.
+
 ## Run locally
 
 ```sh
 python -m unittest discover -s tests -v
+python -m causallab dsep examples/collider_graph.json --x X --y Y --given D
+python -m causallab graph-demo > /tmp/graph-demo.json
+python examples/render_graph.py /tmp/graph-demo.json --check
 python -m causallab bounds --p0 .25 --p1 .75 --monotone
 python -m causallab bounds-demo > /tmp/bounds-demo.json
 python examples/render_bounds.py /tmp/bounds-demo.json --check
