@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### EvalForge
+
+Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, deterministic scorers, a stdin/stdout adapter contract, retries, timeouts, bounded parallel execution, persistent run artifacts, baseline regression gates, and self-contained escaped HTML reports.
+
+- **Evaluation as a repeatable gate** - run the same suite against any command-line model or agent adapter, compare a candidate to a saved baseline, and fail on score regressions, adapter errors, or latency policy breaches.
+- **Deterministic checks before model judging** - exact, contains, regex, JSON schema-ish, numeric tolerance, length, and similarity scorers make results reproducible without a network dependency.
+- **Artifacts built for review** - JSON run records preserve prompts, outputs, scores, errors, and timings; HTML reports are standalone and escape untrusted model output by default.
+- Dependency-free Python 3.10+, 60 unit tests, a fully offline six-task demo, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
+
 ### sre-toolkit
 
 Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-rate alerting, alert triage, and the Markdown documents an incident workflow runs on.
