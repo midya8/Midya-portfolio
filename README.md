@@ -18,10 +18,10 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 Offline contextual-bandit evaluation from scratch: IPS, self-normalized IPS, direct method and doubly robust value estimates with full behavior/target probabilities, reward predictions and support/weight diagnostics.
 
-- In a constructed20-row balanced design, target truth0.78 is recovered by IPS/SNIPS/DR despite a wrong constant reward model (direct0.50). This is an arithmetic fixture, not a random-trial accuracy claim.
-- Capping weights at1 raises ESS4.9231to8.4706 but moves IPS to0.185 and DR to0.535. A separate noisy2000-row log uses an oracle reward model yet DR0.7532 differs from truth0.78. No universal-best-estimator claim.
+- In a constructed 20-row balanced design, target truth 0.78 is recovered by IPS/SNIPS/DR despite a wrong constant reward model (direct 0.50). This is an arithmetic fixture, not a random-trial accuracy claim.
+- Capping weights at 1 raises ESS 4.9231 to 8.4706 but moves IPS to 0.185 and DR to 0.535. A separate noisy 2000-row log uses an oracle reward model yet DR 0.7532 differs from truth 0.78. No universal-best-estimator claim.
 - Flags unsupported target actions rather than treating reward-model extrapolation as identified policy value. Explicit propensity/support/context and independent/cross-fitted reward-prediction assumptions; no deployment decision or confidence guarantee.
-- Dependency-free Python3.10+,16 tests, JSON CLI/API and offline CI on Python3.10-3.13. Standard estimators attributed to their sources, no new theory.
+- Dependency-free Python 3.10+, 16 tests, JSON CLI/API and offline CI on Python 3.10-3.13. Standard estimators attributed to their sources, no new theory.
 
 - Repo: [midya8/policylens](https://github.com/midya8/policylens) · Case study: [projects/policylens.md](projects/policylens.md)
 
