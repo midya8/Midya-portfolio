@@ -67,7 +67,7 @@ Reliability after:
 ## Engineering notes
 
 - The MLP's gradients are derived in code and finite-difference verified (max error < 1e-6 in the suite).
-- 37 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
+- 45 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
 - CI runs the suite on Python 3.10-3.13 plus an offline demo asserting both gate sides: the achievable set passes and an impossible ECE reduction (0.9) fails.
 
 Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab)
@@ -87,3 +87,25 @@ from logits without clipping. Regression cases cover wrong-class margin 1000,
 extreme logits and large-temperature softmax; unrepresentable loss fails
 explicitly instead of being silently capped. Published rounded fixture
 metrics are unchanged.
+
+## Paired bootstrap intervals
+
+```bash
+python -m calibrlab calibrate --input examples/logits.json --bootstrap 1000 --seed 13
+```
+
+The Python API accepts the same `bootstrap=1000, seed=13` options. The JSON
+`bootstrap` object includes nominal 95% percentile intervals for accuracy,
+ECE, MCE, Brier and NLL before/after plus paired after-minus-before deltas.
+Each draw resamples identical test indices before and after. T stays fixed
+at its original validation fit. The seeded local RNG does not change global
+random state. Zero draws (the default) omit the object.
+
+These are conditional IID test-row bootstrap intervals, not guaranteed
+coverage or uncertainty from validation fitting/model training. Do not use
+them unchanged for correlated/grouped rows. Tiny samples and binned ECE/MCE
+can produce misleading or degenerate intervals; the two-row example is only
+an interface demonstration. A negative loss/error delta means improvement,
+but an interval is not a claim about a mechanism or future deployment.
+Draws must be integers from 0 to 10000, with at most 2000000 sampled test rows.
+Quantiles use linear interpolation of sorted bootstrap values.
