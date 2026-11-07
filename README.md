@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### AlignLab
+
+Preference-based alignment built from scratch in pure Python: a Bradley-Terry reward model trained on pairwise preferences with a hand-derived logistic gradient, then a categorical policy aligned by gradient ascent on expected reward minus an exact KL penalty to a reference policy - with expectations, KL, and both gradient terms in closed form, so nothing hides behind sampling noise.
+
+- **Utility gained, and proven to come from preference signal** - on the checked-in fixture, aligning to the learned reward raises true latent utility 2.0375 to 4.6154; aligning to a reward model trained on utility-independent labels buys only 2.5800, and that control is gated from above so the claim stays honest.
+- **The KL cost measured, not asserted** - the aligned policy pays KL 1.0216 to the reference (entropy 0.7701); the beta=0 ablation collapses onto the argmax-reward style (entropy 0.0136, KL 1.7781) and is gated from below.
+- **Exact optimization, verified gradients** - the hand-derived reward and policy gradients are finite-difference checked in the suite; reward holdout accuracy 0.7800 against a noise-trained control at 0.4333, with the achievable gate pinned below the preference-noise ceiling rather than at a flattering 1.0.
+- Dependency-free Python 3.10+, 15 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/alignlab](https://github.com/midya8/alignlab) · Case study: [projects/alignlab.md](projects/alignlab.md)
+
 ### LoRALab
 
 Low-rank adaptation built from scratch in pure Python: freeze a trained classifier, learn only a rank-r delta `W' = W + B @ A` with hand-derived gradients through the low-rank factors, and measure what adaptation actually bought - accuracy on the shifted distribution, trainable-parameter share, and retained accuracy on the original one.
