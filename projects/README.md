@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| StructGate | Python, standard library only; CLI plus importable package | Grammar-constrained generation from scratch: exact legal-token masking, measured conformance (40/40 vs 3/40 control), per-step KL cost, CI gates | [Case study](structgate.md) |
 | QuantLab | Python, standard library only; CLI plus importable package | int8 post-training quantization from scratch: measured accuracy/size trade-offs, per-tensor vs per-channel error analysis, CI gates | [Case study](quantlab.md) |
 | RAGLine | Python, standard library only; CLI plus importable package | Retrieval-augmented answering from scratch: cited extractive answers, lexical-overlap grounding checks, recall/MRR/grounding CI gates | [Case study](ragline.md) |
 | KVLens | Python, standard library only; CLI plus importable package | KV-cached incremental decoding from scratch: bitwise-verified against full recompute, measured FLOP savings, CI gates | [Case study](kvlens.md) |
@@ -83,3 +84,4 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 - **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 98 unit tests running fully offline, CI on Python 3.11.
   - Case study: [uptimekit.md](uptimekit.md)
   - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
+
