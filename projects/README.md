@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
 | ScratchGPT | Python, NumPy; CLI plus importable package | Transformer and reverse-mode autograd built from scratch, with training, sampling and finite-difference verification | [Case study](scratchgpt.md) |
 | Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
 | Personal site — midya.ca | React, TypeScript, Vite, Three.js | Personal site around a procedurally generated galaxy that adapts to the device and respects reduced-motion settings | [Case study](midya-ca.md) |
@@ -18,6 +19,9 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus a transformer built from scratch.
 
+- **RetrievalBench** - Offline retrieval evaluation for RAG and search pipelines: exact BM25, token-window chunking with parent-document collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, JSON/Markdown reports and CI quality gates. 42 unit tests.
+  - Case study: [retrievalbench.md](retrievalbench.md)
+  - Repo: [midya8/retrievalbench](https://github.com/midya8/retrievalbench)
 - **ScratchGPT** - GPT built and trained from scratch in pure NumPy, with hand-written autograd, a pre-LN causal transformer, Adam training, sampling CLI and finite-difference gradient checks. 11 unit tests.
   - Case study: [scratchgpt.md](scratchgpt.md)
   - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
