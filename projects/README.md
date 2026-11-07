@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| DiffuseLab | Python, standard library only; train/sample JSON CLI and SVG | Learned 2-D DDPM, exact gradients, reverse-process arithmetic, matched controls and mode-collapse audits | [Case study](diffuselab.md) |
 | ChainLab | Python, standard library only; HMM JSON CLI and SVG | Log-space inference/EM, path versus marginals, prefix-only filtering and multi-step state/symbol forecast audits | [Case study](chainlab.md) |
 | KernelLab | Python, standard library only; fit/predict/suggest CLI and SVGs | Exact GP uncertainty/LOO audits plus deterministic finite-grid expected improvement, known-row exclusion and equal-budget optimization traces | [Case study](kernellab.md) |
 | BoostLab | Python, standard library only; train/predict JSON CLI | Bernoulli boosting with mean or capped regularized Newton leaves, residual-SSE splits, strict v1/v2 artifacts and validation-only selection | [Case study](boostlab.md) |
