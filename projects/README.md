@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| ParticleLab | Python, standard library only; strict JSON CLI and reproducible SVG | Bootstrap particle filtering with log weights, full-ESS support failure, ancestry histories and exact scalar Kalman references | [Case study](particlelab.md) |
+| ParticleLab | Python, standard library only; strict JSON CLI and reproducible SVG | Bootstrap particle filtering with log weights, full-ESS support failure, ancestry histories and exact Kalman/static-square symmetry references | [Case study](particlelab.md) |
 | SegmentLab | Python, standard library only; strict JSON CLI and reproducible SVGs | Exact offline partition inference with model-confidence failures, joint-cut dependence, replicate mixtures and constrained Bayes decision audits | [Case study](segmentlab.md) |
 | HamiltonLab | Python, standard library only; sample/demo/quadratic/diagnose/harmonic/window/window-mixture CLI and SVG | HMC with full rejection traces, random lengths, resonance/mode-trapping audits rank-normalized split/folded R-hat and analytic mass/phase/fixed- and random-duration observable references with reproducible variance SVG | [Case study](hamiltonlab.md) |
 | TransportLab | Python, standard library only; solve/assignment/push/audit/sensitivity CLI and SVGs | Log-domain entropic transport, full atom pushforward, separate rounded primal/dual audits, fixed-iteration analytic tangents, mean-map covariance gap, marginal audits and exact uniform assignment reference | [Case study](transportlab.md) |
