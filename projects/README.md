@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| BoostLab | Python, standard library only; train/predict JSON CLI | First-order Bernoulli residual-tree training, stable loss and validation-only prefix selection | [Case study](boostlab.md) |
+| BoostLab | Python, standard library only; train/predict JSON CLI | Bernoulli boosting with mean or capped regularized Newton leaves, residual-SSE splits, strict v1/v2 artifacts and validation-only selection | [Case study](boostlab.md) |
 | ShapleyLab | Python, standard library only; scalar callback API and JSON CLI | Exact finite-background Shapley coalitions, reference sensitivity and off-manifold counterexample | [Case study](shapleylab.md) |
 | PolicyLens | Python, standard library only; CLI plus importable package | Logged contextual-bandit IPS/SNIPS/DR estimates, support/ESS diagnostics and explicit clipping tradeoffs | [Case study](policylens.md) |
 | DriftLens | Python, standard library only; CLI plus importable package | Embedding distribution comparison with unbiased RBF MMD, cached permutations, exact tiny tests and honest statistical limits | [Case study](driftlens.md) |
