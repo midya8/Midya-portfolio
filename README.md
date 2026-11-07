@@ -43,7 +43,7 @@ Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/A
 - **Prompt files as reviewed production configuration** - scan prompt, Markdown, JSON and YAML files before credentials, personal data or unsafe instruction patterns ship with an AI workflow.
 - **Redaction by default** - reports keep enough location and excerpt context for review without copying full credentials or contact details into output artifacts.
 - **Gates that fit CI** - deterministic rule IDs, severities, JSON/SARIF/JUnit/Markdown artifacts and exit codes let a repository fail on high-severity findings or cap total findings.
-- Dependency-free Python 3.10+, 58 unit tests, a fully offline fixture demo that validates SARIF, JUnit and Markdown output and the baseline suppression flow against safe, risky and runtime-generated token fixtures, and CI across Python 3.10-3.13.
+- Dependency-free Python 3.10+, 68 unit tests, a fully offline fixture demo that validates SARIF, JUnit and Markdown output and the baseline suppression flow against safe, risky and runtime-generated token fixtures, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
 
