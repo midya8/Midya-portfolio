@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### KVLens
+
+KV-cached incremental decoding built from scratch in pure Python: a tiny causal multi-head attention block with seeded weights runs greedy generation down two paths - naive full recompute over the whole prefix, and a production-style KV cache with batched prefill plus one incremental step per new token - and the two paths are verified bitwise-identical while a matmul FLOP counter measures the savings directly.
+
+- **Bitwise equivalence, not approximate** - both paths share the same operations in the same order, so the equivalence sweep reports a max absolute logit difference of exactly 0.0 across model configurations and prefix lengths; greedy generations match token for token in the test suite.
+- **Measured savings** - a FLOP counter in both paths reports the saved fraction (90.8% at 32 generated tokens on the default fixture); `--min-savings` and `--require-identical` gates fail CI when either property regresses.
+- **Honest bounds** - the counter covers matmuls only and the project makes no latency claim; the README states what is counted and why memory bandwidth, not FLOPs, is the real reason caching is fast.
+- Dependency-free Python 3.10+, 28 unit tests, a fully offline demo asserting both gates, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/kvlens](https://github.com/midya8/kvlens) · Case study: [projects/kvlens.md](projects/kvlens.md)
+
 ### AttnLens
 
 Causal multi-head self-attention trained from scratch in pure Python: two residual blocks of Q/K/V projections and masked scaled dot-product attention, hand-derived backpropagation checked against finite differences for every parameter group on the suite's fixture model, and a marker-recall task where the trained model's query position concentrates attention on the recalled key token (~0.9 weight on the checked-in seed) - an observed recall pattern in the family of induction-head behaviors.
