@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### StructGate
+
+Grammar-constrained generation built from scratch in pure Python: an incremental JSON validator and a closed-schema validator compute the exact set of legal next tokens for any prefix, generation samples from an exact character-level n-gram distribution masked to that set, and the evaluation measures both what the constraints buy and what they cost.
+
+- **Conformance, measured** - on the checked-in fixture, grammar-constrained sampling yields valid JSON on 40/40 seeded draws and schema-constrained sampling yields schema-conforming records on 40/40, against an unconstrained control at 3/40 on the same model and seeds. The control is gated from above so it cannot quietly stop exercising the constraint.
+- **The mask's cost in nats** - renormalizing to the legal token set costs -ln(Z) per step, exactly KL(p || p_masked); the report shows it per mode (mean 1.3496 grammar, 0.8209 schema on the fixture) instead of hiding it.
+- **Validators verified against the stdlib** - the JSON state machine matches Python's json module on 32 adversarial cases in the suite, with exact allowed-set queries, snapshot/restore determinism, and a pinned number/whitespace boundary regression.
+- Dependency-free Python 3.10+, 33 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/structgate](https://github.com/midya8/structgate) · Case study: [projects/structgate.md](projects/structgate.md)
+
 ### QuantLab
 
 Post-training int8 quantization built from scratch in pure Python: symmetric per-tensor and per-channel scales, byte-exact size accounting, reconstruction error metrics, and a perceptron-trained fixture model whose int8 accuracy cost is measured exactly on held-out data - plus a controlled study showing where quantization error actually lives.
@@ -251,3 +262,4 @@ A personal site set against a procedurally generated Three.js galaxy that adapts
 
 - [midya.ca](https://midya.ca)
 - [LinkedIn](https://www.linkedin.com/in/midyarahmani/)
+
