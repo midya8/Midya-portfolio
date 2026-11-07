@@ -21,7 +21,7 @@ Local-first tools for evaluating, tracing and reviewing LLM and agent workflows,
 - **ScratchGPT** - GPT built and trained from scratch in pure NumPy, with hand-written autograd, a pre-LN causal transformer, Adam training, sampling CLI and finite-difference gradient checks. 11 unit tests.
   - Case study: [scratchgpt.md](scratchgpt.md)
   - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
-- **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts, HTML/JUnit/Markdown reports and baseline regression gates for LLM and agent outputs. 61 unit tests.
+- **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts, HTML/JUnit reports, Markdown run/regression job summaries and baseline regression gates for LLM and agent outputs. 62 unit tests.
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 - **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines, JUnit XML reports and Markdown job summaries for AI agent execution traces. 31 unit tests.
   - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
