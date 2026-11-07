@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| LoRALab | Python, standard library only; CLI plus importable package | Low-rank adaptation from scratch: frozen base, hand-derived factor gradients, measured accuracy/param-share/retention trade-offs, merge equivalence pinned to float reassociation, CI gates | [Case study](loralab.md) |
 | SpecLab | Python, standard library only; CLI plus importable package | Speculative decoding from scratch: batched verification with counted target evaluations, proven output equivalence, measured acceptance and 74.6% eval savings, CI gates | [Case study](speclab.md) |
 | StructGate | Python, standard library only; CLI plus importable package | Grammar-constrained generation from scratch: exact legal-token masking, measured conformance (40/40 vs 3/40 control), per-step KL cost, CI gates | [Case study](structgate.md) |
 | QuantLab | Python, standard library only; CLI plus importable package | int8 post-training quantization from scratch: measured accuracy/size trade-offs, per-tensor vs per-channel error analysis, CI gates | [Case study](quantlab.md) |
