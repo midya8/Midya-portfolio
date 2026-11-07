@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### VariLab
+
+Mean-field variational inference from scratch with full-state log-space Ising references, sequential coordinate ascent, analytic gradients and independent ELBO/reverse-KL audits. A directly specified two-mode target shows the objective-versus-marginal failure: symmetry-breaking raises ELBO from 1.386294 to 3.005027 and lowers reverse KL from 2.309329 to 0.690596, while maximum mean error worsens from 0 to 0.994902. A zero-change coordinate fixed point is explicitly not an ELBO maximum. Independent control passes, coupled mean-error gate fails; missing correlations stay visible. 34 tests and a reproducible SVG with complete states and histories. Dependency-free Python and strict JSON CLI. Tiny supplied distributions only; complete enumeration uses floating-point arithmetic, not general posterior learning or calibrated uncertainty.
+
+- Repo: [midya8/varilab](https://github.com/midya8/varilab) · Case study: [projects/varilab.md](projects/varilab.md)
+
 ### RobustLab
 
 Binary linear adversarial robustness from scratch: exact L1/L2/L-infinity norm-ball margins and attainable perturbation witnesses, with hand-derived robust logistic subgradients. A fixed shifted synthetic holdout exposes the clean/robust trade-off: ordinary training is 100% clean / 20% strict robust at L-infinity radius 0.30; robust training is 80% / 80%. Both robust-gate directions stay visible. Independent rational corner enumeration, finite differences and nonsmooth subgradient inequalities. Exact rational L1/L-infinity audits expose float boundary-flag disagreements while preserving the actual binary input values. Box-constrained L1/L-infinity audits return equal exact primal/dual bounds and expose a false robustness claim from clipping an L1 attack. 80 tests and three reproducible SVGs. Dependency-free Python and strict JSON CLI. Supplied linear models and explicit norm balls or box intersections only; mathematical audits, not neural-network or production security guarantees.
