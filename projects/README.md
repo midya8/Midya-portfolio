@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| DistillLab | Python, standard library only; CLI plus importable package | Knowledge distillation from scratch: temperature-scaled teacher-student loss with FD-verified gradients, mismatched-target control isolating dark knowledge, CI gates | [Case study](distilllab.md) |
 | MoeLab | Python, standard library only; CLI plus importable package | Mixture-of-experts from scratch: Switch-style sparse routing, FD-verified gradients, measured specialization and load balance vs a same-budget dense baseline, CI gates | [Case study](moelab.md) |
 | AlignLab | Python, standard library only; CLI plus importable package | Preference-based alignment from scratch: Bradley-Terry reward model, exact KL-regularized policy optimization, measured utility gain with a label-noise control, CI gates | [Case study](alignlab.md) |
 | LoRALab | Python, standard library only; CLI plus importable package | Low-rank adaptation from scratch: frozen base, hand-derived factor gradients, measured accuracy/param-share/retention trade-offs, merge equivalence pinned to float reassociation, CI gates | [Case study](loralab.md) |
