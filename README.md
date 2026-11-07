@@ -16,12 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### ChainLab
 
-Discrete sequence-model training and path inference, with the assumptions and failure cases visible.
+Hidden Markov models from scratch: log-space inference, Viterbi paths and multi-sequence Baum-Welch, now with prefix-only filtering and multi-step symbol/state forecasts. An exact example separates x-only filtering P(A)=2/3 from future-informed x/y smoothing P(A)=0. Forecasts are dependent horizon marginals, not a joint path. Prefix predictive log scores match full likelihood to about 5.68e-14 on the seed23 development fixture; that is an implementation audit, not a new quality gain. Existing test NLL per symbol: trained0.775631, iid control0.985993, initialization1.017638, generating reference0.771674. Exhaustive references, impossible-prefix rejection, 34 tests and offline CLI/SVG demo. No calibration or state-recovery claim.
 
-- Log-space forward/backward, full state/adjacent-state marginals, Viterbi path/joint/posterior scores and unsmoothed maximum-likelihood Baum-Welch. Independent sequences reset starts; no transitions cross boundaries.
-- On one seed-23 synthetic persistent-regime fixture (20 train / 12 test sequences, length40), trained test NLL per symbol is0.775631, versus initialization1.017638 and training-only iid control0.985993. Generating-model reference0.771674 is shown, not hidden or labeled a learned competitor.
-- Exact counterexample: posterior modes A/A use a forbidden transition; valid Viterbi path B/A has posterior0.35. Finite log scores survive a rare-symbol probability underflow. Impossible observations reject without epsilon smoothing.
-- Exhaustive path and expected-count checks, explicit zero-occupancy retention, nondecreasing accepted history, strict versioned artifacts, 24 tests, offline demo and regenerated SVG. No state-recovery, causal or external-benchmark claim.
+- Distinct full-sequence posterior, best-path and prefix-filtering objectives. Marginal modes can form a forbidden path; smoothed states can use future observations.
+- Forecast horizon1 transitions before emitting; later horizons do not assimilate guessed observations. Log messages preserve paths whose raw probabilities underflow. Exact future-path and prefix references check both behaviors.
+- Unsmoothed EM preserves sequence boundaries, reports zero occupancy and accepts only nondecreasing likelihood updates. The inspected persistent-regime fixture is not an external benchmark, causal decomposition or general model ranking.
 
 - Repo: [midya8/chainlab](https://github.com/midya8/chainlab) · Case study: [projects/chainlab.md](projects/chainlab.md)
 
