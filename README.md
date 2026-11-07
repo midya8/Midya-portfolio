@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### LoRALab
+
+Low-rank adaptation built from scratch in pure Python: freeze a trained classifier, learn only a rank-r delta `W' = W + B @ A` with hand-derived gradients through the low-rank factors, and measure what adaptation actually bought - accuracy on the shifted distribution, trainable-parameter share, and retained accuracy on the original one.
+
+- **The trade-off measured, all three sides** - on the checked-in fixture (base accuracy on the shifted distribution collapses to 0.44), a rank-2 adapter recovers to 1.0000, matching full fine-tuning while training 67.7% of the parameters; retention on the original distribution is measured too (0.7556 adapter vs 0.9556 full fine-tuning on this fixture) and reported rather than hidden.
+- **Merge equivalence pinned to float reassociation** - the merged model `(W + B @ A) x` reproduces adapter logits `W x + B (A x)` with max abs diff ~1e-14 on the fixture; the test pins the diff below 1e-12 and pins that it is nonzero - exact algebra, approximate arithmetic, claimed as such.
+- **Gates that fail in both directions** - `--min-base-drop` proves the distribution shift still exercises adaptation, `--min-adapted-accuracy` and `--max-rank2-param-share` pin the recovery story, `--max-merge-diff` pins merge fidelity; the suite shows an impossible cap fails.
+- Dependency-free Python 3.10+, 14 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
+
 ### SpecLab
 
 Speculative decoding built from scratch in pure Python: a cheap draft model proposes a block of tokens, a target model verifies it, and a greedy-construction invariant keeps the output identical to target-only decoding - with the implementation verified token-for-token on the tested configurations and verification rounds counted exactly.
