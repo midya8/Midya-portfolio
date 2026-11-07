@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ChainLab
+
+Discrete sequence-model training and path inference, with the assumptions and failure cases visible.
+
+- Log-space forward/backward, full state/adjacent-state marginals, Viterbi path/joint/posterior scores and unsmoothed maximum-likelihood Baum-Welch. Independent sequences reset starts; no transitions cross boundaries.
+- On one seed-23 synthetic persistent-regime fixture (20 train / 12 test sequences, length40), trained test NLL per symbol is0.775631, versus initialization1.017638 and training-only iid control0.985993. Generating-model reference0.771674 is shown, not hidden or labeled a learned competitor.
+- Exact counterexample: posterior modes A/A use a forbidden transition; valid Viterbi path B/A has posterior0.35. Finite log scores survive a rare-symbol probability underflow. Impossible observations reject without epsilon smoothing.
+- Exhaustive path and expected-count checks, explicit zero-occupancy retention, nondecreasing accepted history, strict versioned artifacts, 24 tests, offline demo and regenerated SVG. No state-recovery, causal or external-benchmark claim.
+
+- Repo: [midya8/chainlab](https://github.com/midya8/chainlab) · Case study: [projects/chainlab.md](projects/chainlab.md)
+
 ### KernelLab
 
 Gaussian-process regression and finite-grid expected-improvement suggestions from scratch. Cholesky solves, separate latent/observation covariance, explicit jitter, marginal likelihood and fixed-parameter LOO. Deterministic EI excludes known rows and returns a full candidate audit, without executing evaluations. A nine-evaluation toy optimization comparison reports grid regret 0.000163 (EI), 0.072944 (space filling) and 0.399473 (one seeded random control). Same pool/initialization/budget; development data, no general ranking or continuous optimum claim. The regression misspecification counterexample remains visible. Dependency-free Python, 36 tests, offline CLI and reproducible SVGs.
