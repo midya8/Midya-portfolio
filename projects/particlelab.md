@@ -11,7 +11,7 @@ A particle filter can report equal weights and full effective sample size while 
 - Scalar bootstrap filter with a linear transition and identity or square observation function, known supplied Gaussian noise and a local seeded RNG.
 - Log-domain likelihood weighting, adaptive systematic resampling, filtered versus carried summaries, and full particles/weights/log weights/parent mappings/root-label histories.
 - Exact scalar linear-Gaussian Kalman reference with an explicit no-transition-at-t0 convention.
-- Strict JSON CLI, 38 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
+- Strict JSON CLI, 54 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
 
 No roughening, state rejuvenation, smoothing or parameter fitting is hidden in the comparison.
 
@@ -34,6 +34,10 @@ Full ESS after resampling does not recover missing support. Keeping all labels w
 
 [Reproducible figure source](https://github.com/midya8/particlelab/blob/main/assets/particle-audit.svg). All plotted means/variances, settings, seed errors and domains are retained in numeric SVG metadata; the polygons retain every moment-band vertex. Shading is mean +/- one SD, not calibrated coverage. Both success and failure checks run in the demo.
 
+## Static square symmetry and sign loss
+
+A restricted static square-observation reference has exact mean 0 and sign probability 1/2, but its modes can be near +/-2 with the mean deep in a density valley. A selected eight-particle run loses one sign while carried ESS is 8/8; the no-resampling comparison also has poor effective support. The analytic reference returns symmetry/modes/density ratios, not variance or evidence. [Derivation, assumptions and complete fixed-seed comparison](https://github.com/midya8/particlelab/blob/main/SYMMETRY.md).
+
 ## Run it locally
 
 ```sh
@@ -49,6 +53,6 @@ The repository has the complete six-field payload, strict input/resource bounds,
 
 ## Limits and attribution
 
-A scalar supplied-parameter model, finite particles and floating point. The square observation branch has hand-checked symmetry/propagation tests, not a nonlinear tracking benchmark. No convergence certificate, high-dimensional proposal, smoothing, learned parameters, robustness, anomaly p-values or coverage guarantee. Evidence estimates are random; logs are not unbiased log-evidence estimates. No private or external dataset, paid API or GPU is used.
+A scalar supplied-parameter model, finite particles and floating point. The square branch has an analytic static symmetry/mode reference and a sign-support failure audit, not a dynamic nonlinear tracking benchmark. No convergence certificate, high-dimensional proposal, smoothing, learned parameters, robustness, anomaly p-values or coverage guarantee. Evidence estimates are random; logs are not unbiased log-evidence estimates. No private or external dataset, paid API or GPU is used.
 
 Independent implementation inspired by Gordon, Salmond and Smith's 1993 bootstrap-filter paper, Section 3. [Primary paper](https://people.bordeaux.inria.fr/pierre.delmoral/gordon-salmond-smith-1993.pdf). Uses its own fixtures and systematic/adaptive ESS resampling, not the paper's bearings-only experiments, roughening, prior editing or performance claims. No code or paper figures copied. MIT license.
