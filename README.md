@@ -16,11 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### GroundCheck
 
-Offline grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring against source documents, numeric consistency checks, terminal/JSON/Markdown reports, and CI gates that fail on ungrounded output.
+Offline lexical grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring against source documents, numeric consistency checks, terminal/JSON/Markdown reports, and CI gates that fail on lexically ungrounded output.
 
-- **Grounding as a CI gate** - `--min-support`, `--max-unsupported` and `--max-findings` fail the pipeline when an answer cites nothing real, makes unsupported claims, or invents figures.
+- **Grounding as a CI gate** - `--min-support`, `--max-unsupported` and `--max-findings` fail the pipeline when an answer cites nothing real, makes claims no passage lexically supports, or invents figures.
 - **Passage-aware support scoring** - content-token containment measured against whole source documents, so a sentence combining facts from several sentences of one retrieved passage is correctly supported while claims no passage contains are flagged.
-- **Numbers get no slack** - every figure in the answer must appear in the sources by exact or equal-value match, with decimal-safe sentence splitting so `1.57` is one number, not two fragments.
+- **Numbers get no slack** - every figure in the answer must appear in the sources by exact or equal-value match, with decimal-safe sentence splitting so `1.57` is one number, not two fragments. Known pass-throughs are documented: negation, wrong attribution and coincidental matches all pass.
 - Dependency-free Python 3.10+, 40 unit tests, a fully offline demo that accepts a grounded answer and rejects an ungrounded one, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/groundcheck](https://github.com/midya8/groundcheck) · Case study: [projects/groundcheck.md](projects/groundcheck.md)
