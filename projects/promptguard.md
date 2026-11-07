@@ -12,6 +12,7 @@ PromptGuard scans local prompt, Markdown, JSON and YAML files without a network 
 
 - OpenAI-style keys, AWS-style keys, private key headers and assigned secrets
 - GitHub personal access tokens, Slack tokens, Google API keys and JSON Web Tokens, redacted per rule in findings and reports
+- baseline suppression that records known findings as SHA-256 fingerprints (no credential material) so CI gates only on new findings
 - email addresses, phone numbers and payment-card numbers checked with the Luhn algorithm
 - prompt-injection language that asks a model to ignore earlier instructions, reveal hidden prompts, bypass controls or exfiltrate credentials
 - missing or incomplete Markdown prompt metadata frontmatter
@@ -20,8 +21,8 @@ Findings include a rule ID, severity, file, line and redacted excerpt. Reports a
 
 ## Verification
 
-- 45 unit tests cover scanner rules, token detection and redaction, report escaping, SARIF generation, JUnit XML, Markdown summaries, filtering and gate exit codes.
-- `bash examples/demo.sh` runs fully offline against safe and risky fixtures plus a token fixture generated at runtime, and validates the generated SARIF, JUnit and Markdown reports.
+- 58 unit tests cover scanner rules, token detection and redaction, report escaping, SARIF generation, JUnit XML, Markdown summaries, baseline suppression, filtering and gate exit codes.
+- `bash examples/demo.sh` runs fully offline against safe and risky fixtures plus a token fixture generated at runtime, and validates the generated SARIF, JUnit and Markdown reports and the baseline suppression flow.
 - The risky fixture produces 8 findings with maximum severity critical, and the high-severity gate rejects it as expected.
 - CI runs the same suite across Python 3.10-3.13.
 
