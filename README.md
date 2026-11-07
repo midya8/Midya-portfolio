@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### DecodeLab
+
+Decoding strategies for language models, from scratch: greedy decoding with deterministic tie-breaking, seeded temperature/top-k/top-p sampling, and beam search, all over an add-k smoothed n-gram model with an exact next-token distribution, plus generation-quality metrics (distinct-1/2, repetition rate, unigram entropy) with terminal/JSON/Markdown reports and CI gates.
+
+- **An exact distribution to decode from** - the n-gram model's next-token probabilities come straight from counts, so strategies are compared against ground truth, never an approximation.
+- **Reproducible sampling** - every sampler takes an explicit seed; the same seed and corpus produce the same text, so differences are attributable to the strategy, not luck.
+- **Quality as metrics, not impressions** - distinct-1/distinct-2, repetition rate and entropy per strategy, side by side; `--min-distinct-2` and `--max-repetition` fail CI when a decoding change pushes generation below policy.
+- Dependency-free Python 3.10+, 36 unit tests, a fully offline demo that asserts exact greedy output and seeded reproducibility, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/decodelab](https://github.com/midya8/decodelab) · Case study: [projects/decodelab.md](projects/decodelab.md)
+
 ### VectorLite
 
 Exact and approximate kNN vector search from scratch: brute-force exact kNN (cosine and L2) with deterministic tie-breaking, a seeded random-hyperplane LSH index for approximate cosine search, and recall@k of the approximate index measured against the exact baseline and enforced with a CI gate.
