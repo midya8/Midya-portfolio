@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
 | ScratchGPT | Python, NumPy; CLI plus importable package | Transformer and reverse-mode autograd built from scratch, with training, sampling and finite-difference verification | [Case study](scratchgpt.md) |
@@ -20,6 +21,9 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus a transformer built from scratch.
 
+- **GroundCheck** - Offline grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring, numeric consistency, JSON/Markdown reports and three CI gates. 40 unit tests.
+  - Case study: [groundcheck.md](groundcheck.md)
+  - Repo: [midya8/groundcheck](https://github.com/midya8/groundcheck)
 - **TokenForge** - Byte-level BPE tokenizers trained from scratch: deterministic merge training, GPT-2-style pre-tokenization, exact round trips, JSON vocab persistence and compression statistics with a CI quality gate. 40 unit tests.
   - Case study: [tokenforge.md](tokenforge.md)
   - Repo: [midya8/tokenforge](https://github.com/midya8/tokenforge)
