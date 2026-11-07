@@ -16,11 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### GraphLab
 
-Two-layer graph convolution from scratch: sparse symmetric normalization, handwritten gradients, masked node supervision and validation-only checkpoint selection. On a disclosed 96-node community graph, selected GCN test accuracy is 0.96875; same-parameter feature MLP 0.34375 and scrambled-graph GCN 0.515625, with last checkpoints and a centroid control also shown. All node features/edges are visible, test labels withheld: transductive development data, not unseen-graph generalization. A six-cycle and two triangles give identical constant-feature outputs, exposing an exact blind spot. 23 tests, strict artifacts and offline CLI/SVG; no causal-component or general ranking claim.
+Two-layer GCN from scratch, now with exact input gradients for a chosen node/class-logit margin, signed gradient-times-input sums and two-hop receptive-field audits. A hand-set path example sums to margin 0.598556 with zero reported residual, while a dead-ReLU counterexample shows zero local gradient does not mean no large-change effect. Original 96-node transductive development results remain: selected GCN test0.96875, same-parameter MLP0.34375, scrambled GCN0.515625; final checkpoints and centroid control visible. Synthetic edges carry class signal; features/edges visible, test labels withheld. Cycle/triangles expressivity blind spot, 34 tests and offline CLI/SVGs. No causal, probability-attribution, unseen-graph or general ranking claim.
 
-- All 72 weights train from scratch. Exact gradients in GCN/MLP modes, independent dense/normalization references and node-permutation audits.
-- Sixteen gradient labels, sixteen validation labels and sixty-four test labels. Initialization and every update compete on validation CE; test labels never select a checkpoint. Final and selected control results remain visible.
-- Synthetic edges deliberately encode class communities. Validation-selected MLP performance does not transfer to the test mask. Exact equivariance is separate from graph distinguishability.
+- All 72 training weights start from scratch. Sparse normalized message passing, exact model/input gradients, independent dense references and permutation/mask audits.
+- Optional validation-only selection includes initialization; selected and final control metrics remain visible. Small-validation success need not transfer to test nodes. Full graph/feature context is explicitly transductive.
+- Fixed-model gradient attribution keeps coordinate signs, checks the bias-free ReLU zero-reference sum identity and exact two-hop locality. A sum identity does not establish causal explanation validity; a zero derivative does not prove robustness.
 
 - Repo: [midya8/graphlab](https://github.com/midya8/graphlab) · Case study: [projects/graphlab.md](projects/graphlab.md)
 
