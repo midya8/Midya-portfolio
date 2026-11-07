@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| EmbedKit | Python, standard library only; CLI plus importable package | Word embeddings trained from scratch with SGNS: seeded deterministic training, unigram^0.75 negative sampling, topic-coherence evaluation and CI gates | [Case study](embedkit.md) |
 | PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
 | DecodeLab | Python, standard library only; CLI plus importable package | Decoding strategies from scratch: greedy, temperature/top-k/top-p sampling, beam search, generation-quality metrics and CI gates | [Case study](decodelab.md) |
 | VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
