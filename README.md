@@ -16,12 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### KernelLab
 
-Exact small-data Gaussian-process regression with uncertainty and numerical assumptions exposed.
+Gaussian-process regression and finite-grid expected-improvement suggestions from scratch. Cholesky solves, separate latent/observation covariance, explicit jitter, marginal likelihood and fixed-parameter LOO. Deterministic EI excludes known rows and returns a full candidate audit, without executing evaluations. A nine-evaluation toy optimization comparison reports grid regret 0.000163 (EI), 0.072944 (space filling) and 0.399473 (one seeded random control). Same pool/initialization/budget; development data, no general ranking or continuous optimum claim. The regression misspecification counterexample remains visible. Dependency-free Python, 36 tests, offline CLI and reproducible SVGs.
 
-- RBF conditioning through Cholesky/triangular solves, no dense inverse in production. Separate latent and noisy-observation covariance, log marginal likelihood and fixed-parameter row LOO diagnostics.
-- On a seed-19 synthetic sinusoid/trend fixture (15 train, 101 test), length scale 0.8 gives observation RMSE 0.6242/mean NLL 0.1041; length 5 gives 1.0038/12.1309. Unconditioned prior: 0.7879/1.2321. A visible misspecification counterexample, not an external benchmark or universal ranking.
-- Explicit jitter affects training covariance and LOO effective-observation variance, but is not silently added to future observation noise. Singular noiseless data rejects; caller-specified jitter recovers it.
-- Independent inverse and explicit leave-one-out refit references, strict versioned artifacts, 25 tests, offline CLI demo, regenerated SVG and Python 3.10-3.13 CI. No distribution-free coverage or production-scale claim.
+- The fixed-kernel regression fixture also shows a confidently wrong long-length-scale arm. Model-based pointwise bands are not calibrated coverage guarantees.
+- Exact deterministic-maximization EI, zero-variance positive-part limit, stable Gaussian tails and numerical-integration reference checks. Rejects noisy models and duplicate candidates; all-known pools return no false next suggestion.
+- Same 81-point pool, 3 initial points and 6 more evaluations per optimization policy. Full evaluated-target traces, report-only oracle and adverse/misspecification evidence. No objective execution by the suggest API.
 
 - Repo: [midya8/kernellab](https://github.com/midya8/kernellab) · Case study: [projects/kernellab.md](projects/kernellab.md)
 
