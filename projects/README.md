@@ -23,7 +23,7 @@ Local-first tools for evaluating, tracing and reviewing LLM and agent workflows,
   - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
 - **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts and baseline regression gates for LLM and agent outputs. 60 unit tests.
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
-- **AgentTrace** - Validation, analysis, baseline/candidate comparison and escaped HTML timelines for AI agent execution traces. 30 unit tests.
+- **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines and JUnit XML reports for AI agent execution traces. 30 unit tests.
   - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
 - **PromptGuard** - Secret, PII, prompt-injection and metadata linting for prompt files with redacted JSON/HTML reports and CI gates. 28 unit tests.
   - Case study: [promptguard.md](promptguard.md)
