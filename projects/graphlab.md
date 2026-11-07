@@ -1,6 +1,6 @@
 # GraphLab: audit what the graph contributes
 
-Two-layer graph convolution from scratch: sparse symmetric normalization, handwritten gradients, masked node supervision and validation-only checkpoint selection. On a disclosed 96-node community graph, selected GCN test accuracy is 0.96875; same-parameter feature MLP 0.34375 and scrambled-graph GCN 0.515625, with last checkpoints and a centroid control also shown. All node features/edges are visible, test labels withheld: transductive development data, not unseen-graph generalization. A six-cycle and two triangles give identical constant-feature outputs, exposing an exact blind spot. 23 tests, strict artifacts and offline CLI/SVG; no causal-component or general ranking claim.
+Two-layer GCN from scratch, now with exact input gradients for a chosen node/class-logit margin, signed gradient-times-input sums and two-hop receptive-field audits. A hand-set path example sums to margin 0.598556 with zero reported residual, while a dead-ReLU counterexample shows zero local gradient does not mean no large-change effect. Original 96-node transductive development results remain: selected GCN test0.96875, same-parameter MLP0.34375, scrambled GCN0.515625; final checkpoints and centroid control visible. Synthetic edges carry class signal; features/edges visible, test labels withheld. Cycle/triangles expressivity blind spot, 34 tests and offline CLI/SVGs. No causal, probability-attribution, unseen-graph or general ranking claim.
 
 [Source repository](https://github.com/midya8/graphlab) · [Design contracts](https://github.com/midya8/graphlab/blob/main/DESIGN.md)
 
@@ -44,9 +44,21 @@ The feature MLP's excellent small-validation accuracy does not transfer to this 
 
 ## Exact audits and an exact limitation
 
-23 tests cover every parameter of tiny reference models by finite differences in both modes, sparse-vs-dense forward arithmetic, independent degree normalization, permutation-equivariant predictions and training, mask isolation, stable unclipped cross-entropy, selection vs independent prefix refits, artifacts and CLI.
+34 tests cover every parameter of tiny reference models by finite differences in both modes, sparse-vs-dense forward arithmetic, independent degree normalization, permutation-equivariant predictions and training, mask isolation, stable unclipped cross-entropy, selection vs independent prefix refits, artifacts and CLI.
 
 A six-cycle and two disconnected triangles are different graphs, but with identical constant node features and degree 2, every normalized neighborhood produces the same feature at every layer. This model gives **identical node probabilities** on both. The counterexample is exact for this architecture and fixture; it is not a claim that all graph neural networks fail on those graphs. No graph-level classifier or universal graph-isomorphism test is implemented.
+
+## Fixed-model input gradients
+
+![Input-gradient locality and sum audit](https://raw.githubusercontent.com/midya8/graphlab/main/assets/input-audit.svg)
+
+`margin_attribution` / `explain` differentiates an explicit target node's chosen class-logit margin with respect to **all supplied input coordinates**, holding weights and graph fixed. It returns full signed gradient and gradient-times-input matrices, per-node sums, the margin, sum residual and the two-hop propagation receptive field. This is not a probability derivative or graph-edge attribution.
+
+The hand-set tiny path fixture gives node contributions `[0.181666667, 0.341907943, 0.074981603, 0, 0, 0]`, summing to margin **0.5985562126120147** with reported residual **0.0**. Node 2's first coordinate contributes **-0.0136082763**, so only showing unsigned magnitudes would change the answer. Nodes 3-5 are beyond the two-layer receptive field and have exactly zero gradient; replacing node 5's features leaves the target margin unchanged. This is an arithmetic fixture, not a learned-model quality result.
+
+For this **bias-free, positively homogeneous ReLU model** and the all-zero feature reference, the signed `x * gradient` sum equals the margin, up to floating-point reduction error. The identity is specific to this score/model/reference and is not an independent explanation-validity certificate. The zero reference need not be realistic. ReLU's derivative at exactly zero is defined as zero.
+
+A separate one-node counterexample has margin ReLU(x): at x=-1 the gradient and `x * gradient` are both zero, yet replacing x with +1 changes the margin from 0 to 1. Local derivatives do not measure arbitrary finite interventions, causal importance, robustness or feature interactions. No new attribution method or causal claim is made.
 
 ## Scope and limits
 
@@ -66,6 +78,8 @@ MIT license.
 python -m unittest discover -s tests -v
 python -m graphlab demo > /tmp/graph-demo.json
 python examples/render_demo.py /tmp/graph-demo.json --check
+python -m graphlab attribution-demo > /tmp/input-audit.json
+python examples/render_attribution.py /tmp/input-audit.json --check
 ```
 
 The train/predict CLI accepts bounded user-supplied graphs, with no external dependencies or network calls.
