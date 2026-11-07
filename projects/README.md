@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| SegmentLab | Python, standard library only; infer/demo JSON CLI and SVG | Exact offline Gaussian changepoints, constrained prior evidence, full partition marginals, rolling-statistic work audits and noise-assumption failure audit | [Case study](segmentlab.md) |
+| SegmentLab | Python, standard library only; infer/sample/demo JSON CLI and SVG | Exact offline Gaussian changepoints, constrained prior evidence, full partition marginals, joint backward partition/mean draws, rolling-statistic work audits and noise-assumption failure audit | [Case study](segmentlab.md) |
 | HamiltonLab | Python, standard library only; sample/demo/quadratic/diagnose/harmonic/window/window-mixture CLI and SVG | HMC with full rejection traces, random lengths, resonance/mode-trapping audits rank-normalized split/folded R-hat and analytic mass/phase/fixed- and random-duration observable references with reproducible variance SVG | [Case study](hamiltonlab.md) |
 | TransportLab | Python, standard library only; solve/assignment/push/audit/sensitivity CLI and SVGs | Log-domain entropic transport, full atom pushforward, separate rounded primal/dual audits, fixed-iteration analytic tangents, mean-map covariance gap, marginal audits and exact uniform assignment reference | [Case study](transportlab.md) |
 | FlowLab | Python, standard library only; train/score/gradient/conditional/windows/sample CLI and SVGs | Invertible couplings, input scores, aligned conditional-window mass/CDF audits, missed-peak counterexample and fitted Gaussian controls | [Case study](flowlab.md) |
