@@ -44,9 +44,9 @@ This is inference for supplied target distributions, not fitting parameters or l
 
 ## Why the checks matter
 
-118 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
+152 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
 
-A standalone wheel contains all seven runtime modules and produces the same inference, curvature, forest and MAP demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
+A standalone wheel contains all eight runtime modules and produces the same inference, curvature, forest, MAP and elimination demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
 
 ```sh
 python -m varilab demo
@@ -98,4 +98,22 @@ A 128-isolated-spin fixture counts exactly 2^128 maximizing assignments without 
 python -m varilab map-demo
 python -m varilab map examples/coupled.json --evidence '[{"i":0,"spin":1}]'
 PYTHONPATH=. python examples/render_map.py --check
+```
+
+
+## Cyclic queries without hiding intermediate-factor cost
+
+`elimination_plan` symbolically plans scopes and exact table-work counters before numeric factor allocation. `eliminate` executes accepted plans for supplied Ising graphs including cycles, up to 64 spins and 8 unobserved query indices, with disjoint hard evidence and either an exact supplied nonquery elimination permutation or deterministic min-fill (missing neighbor edges, then degree, then index). It returns the evidence-restricted log partition, normalized conditional joint query table, every produced factor's complete log values, final unnormalized values and matching planned/executed counters. The rightmost sorted query index changes fastest. This is float log-sum-exp, not rational arithmetic or normalized evidence probability.
+
+The directly specified 16-node zero-field star with J=1/2 exposes order dependence on the same partition query. Hub first needs 65,536 bucket assignments and is refused before numeric tables; min-fill peaks at 4 and matches analytic log Z 12.892072. A separate 64-node cycle answers joint query [0,1] at peak 8, with log Z 52.048748 and adjacent moment 0.462117 matching independent transfer-matrix formulas. Both resource gates are asserted. A refused order is not an impossible graph, and min-fill is a heuristic rather than an optimal-treewidth proof or speed benchmark.
+
+Fixed caps are 4,096 peak assignments (including larger initial/final tables), 250,000 scalar factor-entry reads and 65,536 total initial/intermediate/final output entries. The plan exposes every input factor ID, bag, output scope and step counter. Constants from evidence are retained; zero-weight stored edges remain conservatively in symbolic scopes. Rejected plans remain inspectable, but execution returns no partial inference. Counters exclude set/index/transcendental/Python-object costs and are not seconds, FLOPs or memory bytes. Query probabilities may underflow while retaining finite log probabilities. No cyclic MAP, arbitrary factors, learning, causal interpretation or unbounded inference is claimed.
+
+30 added API/CLI tests cover 432 cyclic model/evidence/query/order combinations with independent full-state exponential references, all 24 orders of a dense four-node graph, source-factor values/scope reconstruction, exact counters and budget boundaries, refusal before numeric allocation, dense 64 symbolic refusal, analytic ring/star and old forest partition agreement, full evidence/query and disconnected cases, underflow logs, validation and input/RNG isolation. Four figure tests verify all logarithmic count bars/cap geometry and complete symbolic metadata. Float display labels are rounded to 12 decimals; full numerical traces remain in the demo. All four previous demos/figures are unchanged. Variable elimination and scope accounting follow [Zemel and Urtasun, CSC412 exact inference lecture (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); code, explicit resource contract, fixtures and independent references are original.
+
+```sh
+python -m varilab elimination-demo
+python -m varilab plan examples/coupled.json --query '[1]'
+python -m varilab eliminate examples/coupled.json --query '[1]' --evidence '[{"i":0,"spin":1}]'
+PYTHONPATH=. python examples/render_elimination.py --check
 ```
