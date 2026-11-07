@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### DistillLab
+
+Knowledge distillation built from scratch in pure Python: a teacher trained on abundant data, a 10x smaller student trained on a small split, and the transfer measured against a direct-training baseline, a mismatched-target control, and a T=1 ablation.
+
+- **Dark knowledge isolated, not asserted** - the distilled student gains +0.0656 test accuracy over direct training at identical capacity and budget (0.7469 vs 0.6813; teacher 0.8344), while a control trained on soft targets for permuted inputs lands at exactly chance (0.1250): the gain tracks input-specific teacher signal, not generic label smoothing.
+- **The mechanism is regularization, measured** - the direct student memorizes its 80 training samples (train 1.0000, train-test gap 0.3187); the distilled student does not (train 0.8000, gap 0.0531) and sits closer to the teacher in KL (0.9563 vs 1.0932).
+- **Gradients by hand, verified** - the temperature-scaled combined loss alpha*T^2*CE(softmax(z/T), soft) + (1-a)*CE(softmax(z), y) with its exact logit gradient, finite-difference checked; the T=1 ablation pinned (0.7219 vs 0.7469 at T=4).
+- Dependency-free Python 3.10+, 11 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/distilllab](https://github.com/midya8/distilllab) · Case study: [projects/distilllab.md](projects/distilllab.md)
+
 ### MoeLab
 
 Mixture-of-experts built from scratch in pure Python: a Switch-style sparse router over linear experts, trained on a regime-switching fixture and measured against a same-budget dense MLP baseline, with gradients derived by hand and finite-difference verified in the suite.
