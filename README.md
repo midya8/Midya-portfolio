@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### CausalLab
+
+Exact finite structural causal models with distinct observation, intervention and shared-noise counterfactual queries. A 100-world confounding fixture reverses a +.26 association into a -.10 supplied-model intervention difference; observationally identical mechanisms still disagree on intervention and counterfactual answers. Log-space rare evidence, bounded noise-world traces, all 64 tiny Boolean mechanism pairs, 38 tests and a reproducible SVG. Dependency-free Python and strict JSON CLI. Mechanisms are supplied assumptions, not causes learned from observational data.
+
+- Repo: [midya8/causallab](https://github.com/midya8/causallab) · Case study: [projects/causallab.md](projects/causallab.md)
+
 ### ParticleLab
 
 Bootstrap particle filtering from scratch with complete log-weight, resampling and ancestry histories. A static-support failure ends with full weight ESS but zero particle variance while the exact posterior remains uncertain. Kalman/static-square references, terminal-weighted genealogies and bounded backward-simulation smoothing with a linear RTS reference, a no-resampling comparison, all sixteen development seeds and 114 tests keep the approximation inspectable. Early path collapse stays visible even when current states are distinct; backward draws add path diversity without claiming exact uncertainty. An optional linear observation-conditioned proposal includes all-seed predictive-weight comparisons, including worse variance RMSE on the inherited example. Dependency-free Python, strict JSON CLI and reproducible SVG. Finite scalar models, not convergence or calibrated real-data claims.
