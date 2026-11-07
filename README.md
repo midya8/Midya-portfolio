@@ -38,12 +38,12 @@ Local-first validation, analysis and reporting for AI agent execution traces: JS
 
 ### PromptGuard
 
-Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/AWS-style key checks, assigned-secret and private-key detection, email/phone/Luhn-validated card detection, injection-language rules, prompt metadata frontmatter checks, redacted terminal/JSON/SARIF/escaped HTML reports, and severity or finding-count CI gates.
+Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/AWS-style key checks, assigned-secret and private-key detection, email/phone/Luhn-validated card detection, injection-language rules, prompt metadata frontmatter checks, redacted terminal, JSON, SARIF, JUnit XML and escaped HTML reports, and severity or finding-count CI gates.
 
 - **Prompt files as reviewed production configuration** - scan prompt, Markdown, JSON and YAML files before credentials, personal data or unsafe instruction patterns ship with an AI workflow.
 - **Redaction by default** - reports keep enough location and excerpt context for review without copying full credentials or contact details into output artifacts.
-- **Gates that fit CI** - deterministic rule IDs, severities, JSON output and exit codes let a repository fail on high-severity findings or cap total findings.
-- Dependency-free Python 3.10+, 31 unit tests, a fully offline safe/risky fixture demo that validates SARIF output, and CI across Python 3.10-3.13.
+- **Gates that fit CI** - deterministic rule IDs, severities, JSON/SARIF/JUnit artifacts and exit codes let a repository fail on high-severity findings or cap total findings.
+- Dependency-free Python 3.10+, 34 unit tests, a fully offline safe/risky fixture demo that validates SARIF and JUnit output, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
 
