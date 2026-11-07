@@ -37,7 +37,7 @@ Every input, setting, fixture-selection provenance, conditional direction and ra
 
 ## Same-design replicate mixtures
 
-New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at2 by1.54 nats. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
+New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at 2 by 1.54 nats. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
 
 ## Run it locally
 
