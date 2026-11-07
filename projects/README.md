@@ -13,6 +13,18 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | flowkit | Python, standard library only; CLI plus importable library | Running JSON-defined DAGs of shell commands with retries, timeouts, parallel steps, conditional steps, and run reports | [Case study](flowkit.md) |
 | uptimekit | Python, standard library only; CLI plus importable library | Synthetic uptime monitoring and availability reporting: probes, JSONL history, SLO measurement, incident gating, and an HTML status page | [Case study](uptimekit.md) |
 
+## AI systems
+
+Local-first tools for evaluating, tracing and reviewing LLM and agent workflows.
+
+- **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts and baseline regression gates for LLM and agent outputs. 60 unit tests.
+  - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
+- **AgentTrace** - Validation, analysis, baseline/candidate comparison and escaped HTML timelines for AI agent execution traces. 30 unit tests.
+  - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
+- **PromptGuard** - Secret, PII, prompt-injection and metadata linting for prompt files with redacted JSON/HTML reports and CI gates. 28 unit tests.
+  - Case study: [promptguard.md](promptguard.md)
+  - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
+
 ## Web platforms
 
 - **Kurdistan International Sociological Association website** — Trilingual site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) in Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
