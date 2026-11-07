@@ -1,6 +1,6 @@
 # FlowLab: exact model density is not an exact fit
 
-Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 22 tests, strict artifacts and offline train/score/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
+Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 29 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
 
 [Source repository](https://github.com/midya8/flowlab) · [Design contracts](https://github.com/midya8/flowlab/blob/main/DESIGN.md)
 
@@ -45,9 +45,9 @@ Across 512 test points, the maximum forward/inverse reconstruction or opposing-l
 
 ## Audits
 
-22 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
+29 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
 
-CI tests Python3.10-3.13, trains the actual fixture and checks the reproduced SVG on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
+CI tests Python3.10-3.13, trains the actual fixture and checks both reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
 
 ## Limits
 
@@ -65,6 +65,17 @@ MIT license.
 python -m unittest discover -s tests -v
 python -m flowlab demo > /tmp/flow-demo.json
 python examples/render_demo.py /tmp/flow-demo.json --check
+python examples/render_score.py /tmp/flow-demo.json --check
 ```
 
-The train/score/sample CLI accepts bounded continuous 2-D data. No external runtime dependency or network access is needed.
+The train/score/gradient/sample CLI accepts bounded continuous 2-D data. No external runtime dependency or network access is needed.
+
+## Score vectors: the base term is not enough
+
+![Shared-scale input gradient decomposition](https://raw.githubusercontent.com/midya8/flowlab/main/assets/score-audit.svg)
+
+The new `gradient` CLI and `Flow.input_score` API return fitted log density, the full input score, normal-base pullback and log-Jacobian gradient. For `log p_X=log p_Z(f(x))+L(x)`, the full score is `J_f^T(-f(x))+grad L`. With fixed trained weights on a fixed9x9 grid (x=-2..2,y=-1..3,spacing.5), central differences at epsilon1e-5 give max coordinate error **1.1904095487125232e-9**. Omitting the volume term raises the max coordinate discrepancy to **0.6605454933292365**. Both gates run in the demo; all original training, likelihood and sample outputs are unchanged.
+
+The figure uses the same axes and vector gain across all components, with a disclosed length cap and capped counts; raw vectors and finite-difference values remain in JSON. Tests check both coordinates and both components across1/2/3/8 layers plus independent standard-normal, constant-affine and variable-scale formulas. CLI accepts1-256 rows and rejects nonfinite vectors.
+
+These are implementation audits, not global error bounds, feature importance, causal effects or a comparison of learning mechanisms. A score vector is the local derivative of fitted log density in these coordinate units, not a probability or an out-of-distribution detector. No gradient-ascent trajectories, mode finder or score-based sampler is claimed. Likelihood gradients and true data quality remain different questions.
