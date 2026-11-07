@@ -19,7 +19,7 @@ The project makes these distinctions inspectable: model assumptions, prior norma
 - Exact requested-pair cut inclusion queries that allow other cuts, finite log probabilities and distinct impossible-event/undefined-conditional flags.
 - Full discrete partition entropy, conditioned-prior KL and dependence of the entire cut vector, rather than an independent-cut entropy shortcut.
 - Constrained minimum expected false/missed boundary-loss decisions, with MAP and infeasible-threshold comparisons kept separate.
-- Strict JSON commands,90 tests, independent exhaustive tiny references and two regenerable SVGs with all plotted values retained.
+- Strict JSON commands,104 tests, independent exhaustive tiny references and two regenerable SVGs with all plotted values retained.
 
 ## Selected results, and what they mean
 
@@ -35,6 +35,10 @@ Every input, setting, fixture-selection provenance, conditional direction and ra
 
 [Known-shift and noise-assumption figure](https://github.com/midya8/segmentlab/blob/main/assets/partition-audit.svg) · [Complete-path versus marginal-average figure](https://github.com/midya8/segmentlab/blob/main/assets/joint-draw-audit.svg)
 
+## Same-design replicate mixtures
+
+New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at2 by1.54 nats. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
+
 ## Run it locally
 
 ```sh
@@ -45,6 +49,7 @@ python -m segmentlab sample examples/sequence.json --draws 4 --seed 23
 python -m segmentlab joint examples/sequence.json --pairs '[[1,3],[2,4]]'
 python -m segmentlab information examples/sequence.json
 python -m segmentlab decide examples/sequence.json --false-cut-cost 1 --missed-cut-cost 1
+python -m segmentlab predictive examples/sequence.json --queries '[[2,0.0],[3,1.0]]'
 ```
 
 The repo README has the complete seven-field example payload and reproducible audit commands. Model commands share a strict schema; Python APIs also offer defaults. CLI options and errors are tested. CI uses Python3.10..3.13 and byte-checks both generated figures.
