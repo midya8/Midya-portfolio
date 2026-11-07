@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| GraphLab | Python, standard library only; train/predict/explain CLI and SVGs | Two-layer GCN, transductive controls, exact model/input gradients, two-hop locality and zero-reference score-decomposition audits | [Case study](graphlab.md) |
+| GraphLab | Python, standard library only; train/predict/explain/edges CLI and SVGs | Two-layer GCN, transductive controls, exact input gradients, degree-renormalized edge deletion and preflight model-call audits | [Case study](graphlab.md) |
 | DiffuseLab | Python, standard library only; train/sample/DDIM CLI and SVGs | Learned 2-D DDPM plus selected-grid DDIM, matched arithmetic, predictor-call counts and honest quality tradeoffs | [Case study](diffuselab.md) |
 | ChainLab | Python, standard library only; HMM JSON CLI and SVG | Log-space inference/EM, path versus marginals, prefix-only filtering and multi-step state/symbol forecast audits | [Case study](chainlab.md) |
 | KernelLab | Python, standard library only; fit/predict/suggest CLI and SVGs | Exact GP uncertainty/LOO audits plus deterministic finite-grid expected improvement, known-row exclusion and equal-budget optimization traces | [Case study](kernellab.md) |
