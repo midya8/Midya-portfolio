@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| FlowLab | Python, standard library only; train/score/sample CLI and SVG | Invertible affine couplings, exact model log density, handwritten gradients, Jacobian/roundtrip audits and fitted Gaussian control | [Case study](flowlab.md) |
+| FlowLab | Python, standard library only; train/score/gradient/sample CLI and SVGs | Invertible couplings, exact model density, analytic input-score decomposition, missing-logdet counterexample and fitted Gaussian control | [Case study](flowlab.md) |
 | GraphLab | Python, standard library only; train/predict/explain/edges CLI and SVGs | Two-layer GCN, transductive controls, exact input gradients, degree-renormalized edge deletion and preflight model-call audits | [Case study](graphlab.md) |
 | DiffuseLab | Python, standard library only; train/sample/DDIM CLI and SVGs | Learned 2-D DDPM plus selected-grid DDIM, matched arithmetic, predictor-call counts and honest quality tradeoffs | [Case study](diffuselab.md) |
 | ChainLab | Python, standard library only; HMM JSON CLI and SVG | Log-space inference/EM, path versus marginals, prefix-only filtering and multi-step state/symbol forecast audits | [Case study](chainlab.md) |
