@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### TransportLab
 
-Log-domain entropic optimal transport from scratch, with full plans, both marginal residuals and explicit nonconvergence. Six-point fixture: epsilon0.5 cost0.522178 after576 iterations vs exact uniform-assignment0.45 and independent coupling4.227778. Epsilon0.1 reaches the5000-iteration cap and stays visible, not silently repaired. Positive self-cost shows this is not a metric or debiased Sinkhorn divergence. 16 tests, zero-weight support, exact tiny assignment references, barycentric means and offline CLI/SVG. No learned-correspondence, downstream accuracy or speedup claim.
+Log-domain entropic optimal transport with full mass plans, explicit nonconvergence and weighted interpolation atoms. Full pushforward preserves actual endpoint marginals; barycentric means do not: at epsilon2, target variance trace1.888889 versus mean-map0.861140. Covariance decomposition, zero masses and actual-mass semantics are audited. Original epsilon0.1 iteration-cap failure, exact uniform-assignment reference and positive self-cost remain visible. 24 tests, offline solve/assignment/push CLI and SVGs. Not a metric, sampled trajectory, learned correspondence or optimality certificate.
 
 - Log-sum-exp scaling avoids an entirely underflowed kernel. Full plans and row/column errors expose feasibility separately from cost and entropy.
 - Exhaustive720-permutation uniform assignment reference, independent coupling and a deliberately capped failure. No comparison of unlike regularized objectives as a ranking.
