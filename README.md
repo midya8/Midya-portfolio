@@ -20,8 +20,9 @@ Offline contextual-bandit evaluation from scratch: IPS, self-normalized IPS, dir
 
 - In a constructed 20-row balanced design, target truth 0.78 is recovered by IPS/SNIPS/DR despite a wrong constant reward model (direct 0.50). This is an arithmetic fixture, not a random-trial accuracy claim.
 - Capping weights at 1 raises ESS 4.9231 to 8.4706 but moves IPS to 0.185 and DR to 0.535. A separate noisy 2000-row log uses an oracle reward model yet DR 0.7532 differs from truth 0.78. No universal-best-estimator claim.
+- Optional held-out categorical reward fitting excludes each full fold, reports cell counts and prior-only predictions. On the same noisy log, five-fold DR 0.7509088 is not closer to truth than oracle DR 0.7532475; no estimator ranking. Row-iid splits do not protect clustered/time data.
 - Flags unsupported target actions rather than treating reward-model extrapolation as identified policy value. Explicit propensity/support/context and independent/cross-fitted reward-prediction assumptions; no deployment decision or confidence guarantee.
-- Dependency-free Python 3.10+, 16 tests, JSON CLI/API and offline CI on Python 3.10-3.13. Standard estimators attributed to their sources, no new theory.
+- Dependency-free Python 3.10+, 28 tests, JSON CLI/API and offline CI on Python 3.10-3.13. Standard estimators attributed to their sources, no new theory.
 
 - Repo: [midya8/policylens](https://github.com/midya8/policylens) · Case study: [projects/policylens.md](projects/policylens.md)
 
