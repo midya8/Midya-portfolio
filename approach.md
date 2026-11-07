@@ -1283,6 +1283,33 @@ or a poisoned log line can do is appear in a table.
 
 - [uptimekit](projects/uptimekit.md), [loglens](projects/loglens.md), [flowkit](projects/flowkit.md)
 
+## Keep the words and the code on different schedules
+
+Words and code change at different rates and for different reasons, so
+the two sites keep them apart. On the personal site, the copy lives as
+typed data in `src/data/profile.ts`: a rewritten introduction is a text
+edit in one file — no component opened, no scene code touched, no asset
+regenerated — and because the copy is typed, a mistake is a compile
+error rather than a live typo. The separation runs both ways: the galaxy
+scene can be retuned for a low-end phone without ever risking the words
+on top of it. The association site does the same with its editorial
+content: a news post is a Markdown file per locale, with `title`,
+`date`, `excerpt`, and `author` frontmatter, and the UI strings live in
+per-locale JSON dictionaries, so publishing a conference announcement
+means writing three files and pushing to `main` — no admin panel, no
+database row, no server restarted.
+
+The point is that every change should touch only what it is about. When
+copy is embedded in components, a wording fix becomes a code change,
+reviewed and deployed like one, and a rendering change becomes a risk to
+the words. When the words are data — typed on one site, files on the
+other — a copy edit is a data edit with the same local check as any
+other change, and the code can keep moving on its own schedule. The
+words stay correct while the rendering gets faster, and the rendering
+stays working while the words get rewritten.
+
+- [Personal site — midya.ca](projects/midya-ca.md), [Kurdistan International Sociological Association website](projects/kurdistansociology-website.md)
+
 ## What this adds up to
 
 Practical systems over demonstrations: tools that are available the
