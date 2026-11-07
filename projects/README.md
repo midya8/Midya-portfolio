@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
 | DecodeLab | Python, standard library only; CLI plus importable package | Decoding strategies from scratch: greedy, temperature/top-k/top-p sampling, beam search, generation-quality metrics and CI gates | [Case study](decodelab.md) |
 | VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
 | GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
@@ -21,8 +22,11 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 ## AI systems
 
-Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus vector search, decoding strategies and a transformer built from scratch.
+Local-first tools for evaluating, tracing, reviewing and planning LLM and agent workflows, plus vector search, decoding strategies and a transformer built from scratch.
 
+- **PlanBench** - Validation and deterministic simulation of agent task plans: semantic DAG checks, seeded flaky-tool simulation with retries and skip cascades, makespan/cost/critical-path/parallelism metrics and CI gates. 29 unit tests.
+  - Case study: [planbench.md](planbench.md)
+  - Repo: [midya8/planbench](https://github.com/midya8/planbench)
 - **DecodeLab** - Decoding strategies for language models from scratch: greedy, seeded temperature/top-k/top-p sampling and beam search over an exact n-gram distribution, with distinct-n/repetition/entropy metrics and CI gates. 36 unit tests.
   - Case study: [decodelab.md](decodelab.md)
   - Repo: [midya8/decodelab](https://github.com/midya8/decodelab)
