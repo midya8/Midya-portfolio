@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| SetGuard | Python, standard library only; CLI plus importable package | Split-conformal classification sets, finite-sample rank audits, JSON artifacts, empirical coverage/size and deliberate shift failure | [Case study](setguard.md) |
 | CalibrLab | Python, standard library only; CLI plus importable package | Confidence calibration from scratch: ECE/MCE/Brier/NLL metrics, reliability tables, validation-fitted temperature scaling, CI gates | [Case study](calibrlab.md) |
 | DistillLab | Python, standard library only; CLI plus importable package | Knowledge distillation from scratch: temperature-scaled teacher-student loss with FD-verified gradients, measured against matched control arms, CI gates | [Case study](distilllab.md) |
 | MoeLab | Python, standard library only; CLI plus importable package | Mixture-of-experts from scratch: Switch-style sparse routing, FD-verified gradients, measured specialization and load balance vs a same-budget dense baseline, CI gates | [Case study](moelab.md) |
@@ -90,4 +91,3 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 - **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 98 unit tests running fully offline, CI on Python 3.11.
   - Case study: [uptimekit.md](uptimekit.md)
   - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
-
