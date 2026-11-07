@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### TransportLab
 
-Log-domain entropic optimal transport with full mass plans, explicit nonconvergence and weighted interpolation atoms. Full pushforward preserves actual endpoint marginals; barycentric means do not: at epsilon2, target variance trace1.888889 versus mean-map0.861140. Covariance decomposition, zero masses and actual-mass semantics are audited. Original epsilon0.1 iteration-cap failure, exact uniform-assignment reference and positive self-cost remain visible. 24 tests, offline solve/assignment/push CLI and SVGs. Not a metric, sampled trajectory, learned correspondence or optimality certificate.
+Log-domain entropic optimal transport with full mass plans, explicit nonconvergence and weighted interpolation atoms. Full pushforward preserves actual endpoint marginals; barycentric means do not: at epsilon2, target variance trace1.888889 versus mean-map0.861140. Separate rounded primal/dual audits retain raw failed solves, reveal invalid raw-objective bounds and report signed numerical gaps, marginal residuals and L1 changes. Zero masses, covariance decomposition, exact uniform assignment and positive self-cost remain visible. 36 tests, offline solve/assignment/push/audit CLI and SVGs. Not a metric, sampled trajectory, learned correspondence, unregularized OT bound or interval-certified optimality certificate.
 
 - Log-sum-exp scaling avoids an entirely underflowed kernel. Full plans and row/column errors expose feasibility separately from cost and entropy.
 - Exhaustive720-permutation uniform assignment reference, independent coupling and a deliberately capped failure. No comparison of unlike regularized objectives as a ranking.
