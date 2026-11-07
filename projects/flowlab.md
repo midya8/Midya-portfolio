@@ -1,6 +1,6 @@
 # FlowLab: exact model density is not an exact fit
 
-Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 29 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
+Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 38 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
 
 [Source repository](https://github.com/midya8/flowlab) · [Design contracts](https://github.com/midya8/flowlab/blob/main/DESIGN.md)
 
@@ -45,9 +45,9 @@ Across 512 test points, the maximum forward/inverse reconstruction or opposing-l
 
 ## Audits
 
-29 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
+38 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
 
-CI tests Python3.10-3.13, trains the actual fixture and checks both reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
+CI tests Python3.10-3.13, trains the actual fixture and checks all three reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
 
 ## Limits
 
@@ -66,6 +66,7 @@ python -m unittest discover -s tests -v
 python -m flowlab demo > /tmp/flow-demo.json
 python examples/render_demo.py /tmp/flow-demo.json --check
 python examples/render_score.py /tmp/flow-demo.json --check
+python examples/render_conditional.py /tmp/flow-demo.json --check
 ```
 
 The train/score/gradient/sample CLI accepts bounded continuous 2-D data. No external runtime dependency or network access is needed.
@@ -79,3 +80,23 @@ The new `gradient` CLI and `Flow.input_score` API return fitted log density, the
 The figure uses the same axes and vector gain across all components, with a disclosed length cap and capped counts; raw vectors and finite-difference values remain in JSON. Tests check both coordinates and both components across1/2/3/8 layers plus independent standard-normal, constant-affine and variable-scale formulas. CLI accepts1-256 rows and rejects nonfinite vectors.
 
 These are implementation audits, not global error bounds, feature importance, causal effects or a comparison of learning mechanisms. A score vector is the local derivative of fitted log density in these coordinate units, not a probability or an out-of-distribution detector. No gradient-ascent trajectories, mode finder or score-based sampler is claimed. Likelihood gradients and true data quality remain different questions.
+
+## Conditional slices: a grid is not an exact conditional
+
+![Finite-interval conditional density slices](https://raw.githubusercontent.com/midya8/flowlab/main/assets/conditional-audit.svg)
+
+`conditional_slice(flow, fixed_axis, fixed_value, low, high, grid_size)` and the `conditional` CLI evaluate the joint log density along one free coordinate. Log-max subtraction avoids underflow from a large shared log-density offset. The trapezoid rule normalizes a **piecewise-linear density on the supplied finite interval**; moments integrate that interpolation analytically, CDF integrates each segment, and quantiles invert it by bounded bisection. JSON retains every grid point, original joint log density, normalized density, CDF, requested quantiles, moments and actual model-call count. Both fixed-axis choices work. No unreported adaptive search.
+
+The same trained model, observed x=-1.5/0/1.5, free y interval[-4,5] and grids65/257/513 use **2,505 model evaluations** in total. On the finest grid:
+
+| Fixed x | Flow median | Flow variance | Flow 5%-95% quantiles | Median change257 to513 |
+| ---: | ---: | ---: | --- | ---: |
+| -1.5 | 0.726272 | 0.256504 | [-0.080939,1.582895] | 0.00000649 |
+| 0 | -0.632395 | 0.277220 | [-1.507665,0.223181] | 0.00000070 |
+| 1.5 | 0.722021 | 0.334000 | [-0.117114,1.771246] | 0.00001986 |
+
+The known generator's full-line conditional means are0.75/-0.6/0.75, each with variance0.25. The train-fitted Gaussian's full-line conditional means are0.005363/0.019952/0.034542, with variance0.924248. Reference curves are clearly labeled full-line formulas; the flow curves are interval-renormalized approximations. These descriptive development slices do not establish calibrated coverage or model quality elsewhere. Original training and earlier audit outputs are unchanged.
+
+Grid refinement checks only sensitivity to these grid sizes **inside the same interval**. It cannot measure missing tail mass or guarantee accuracy; two grids can miss the same narrow peak. The returned log slice integral is an approximate integral of joint density over this interval, with density units for the fixed coordinate. It is not an event probability, exact marginal likelihood or tail probability. A continuous exact-coordinate condition has probability zero; the density slice defines the conditional approximation. Narrower intervals change the distribution, not just its displayed crop.
+
+All bounds are validated before model evaluation: fixed axis0/1, fixed value[-100,100], interval endpoints[-100,100] with width>=1e-6, grid2-513, and1-33 requested quantiles in[0,1]. Nonfinite joint scores fail. Default quantiles are.05/.5/.95, with endpoints and duplicate/unsorted requests supported. Uniform and linear-density formulas, normal/affine references, explicit truncation, refinement, log offsets+/-10000, monotone CDF/normalization, no mutation, preflight call budgets and CLI errors are tested.
