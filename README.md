@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### EmbedKit
+
+Word embeddings trained from scratch with pure-Python SGNS (skip-gram with negative sampling): sigmoid-gradient SGD over (center, context) pairs with negatives drawn from the unigram^0.75 distribution, all randomness from one seeded RNG, plus a coherence evaluator that scores how often a word's nearest neighbors stay in its topic cluster - with CI gates.
+
+- **Real SGNS, no dependencies** - weight init, pair shuffling and negative draws all come from one seeded generator, so a corpus and seed reproduce the same vectors bit for bit.
+- **Coherence as a measurable gate** - per-word neighbor purity against labeled topic clusters plus an intra-vs-inter separation margin; `--min-coherence` and `--min-margin` fail CI when training regresses.
+- **Reproducible end to end** - the demo corpus is regenerated deterministically, training pins quality numbers in tests, and terminal/JSON/Markdown reports carry the evaluation.
+- Dependency-free Python 3.10+, 40 unit tests, a fully offline demo that asserts same-topic neighbors and both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/embedkit](https://github.com/midya8/embedkit) · Case study: [projects/embedkit.md](projects/embedkit.md)
+
 ### PlanBench
 
 Validate and simulate agent task plans before they run: plans are DAGs of tool calls, checked for unknown tools, unknown or cyclic dependencies and inputs no dependency produces, then executed in a deterministic parallel simulation where flaky tools fail under a seeded RNG, steps retry within policy and dependents of failures are skipped - with makespan, cost, critical path and parallelism reported and gated in CI.
