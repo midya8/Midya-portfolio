@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| ShapleyLab | Python, standard library only; scalar callback API and JSON CLI | Exact finite-background Shapley coalitions, reference sensitivity and off-manifold counterexample | [Case study](shapleylab.md) |
 | PolicyLens | Python, standard library only; CLI plus importable package | Logged contextual-bandit IPS/SNIPS/DR estimates, support/ESS diagnostics and explicit clipping tradeoffs | [Case study](policylens.md) |
 | DriftLens | Python, standard library only; CLI plus importable package | Embedding distribution comparison with unbiased RBF MMD, cached permutations, exact tiny tests and honest statistical limits | [Case study](driftlens.md) |
 | SetGuard | Python, standard library only; CLI plus importable package | Split-conformal classification sets, finite-sample rank audits, JSON artifacts, empirical coverage/size and deliberate shift failure | [Case study](setguard.md) |
