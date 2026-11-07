@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
 | ScratchGPT | Python, NumPy; CLI plus importable package | Transformer and reverse-mode autograd built from scratch, with training, sampling and finite-difference verification | [Case study](scratchgpt.md) |
 | Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
@@ -19,6 +20,9 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 Local-first tools for evaluating, tracing and reviewing LLM and agent workflows, plus a transformer built from scratch.
 
+- **TokenForge** - Byte-level BPE tokenizers trained from scratch: deterministic merge training, GPT-2-style pre-tokenization, exact round trips, JSON vocab persistence and compression statistics with a CI quality gate. 40 unit tests.
+  - Case study: [tokenforge.md](tokenforge.md)
+  - Repo: [midya8/tokenforge](https://github.com/midya8/tokenforge)
 - **RetrievalBench** - Offline retrieval evaluation for RAG and search pipelines: exact BM25, token-window chunking with parent-document collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, JSON/Markdown reports and CI quality gates. 42 unit tests.
   - Case study: [retrievalbench.md](retrievalbench.md)
   - Repo: [midya8/retrievalbench](https://github.com/midya8/retrievalbench)

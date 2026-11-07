@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### TokenForge
+
+Byte-level BPE tokenizers trained from scratch: deterministic merge training with exact pair counts over GPT-2-style pre-tokenization boundaries, rank-ordered encoding with exact round trips, JSON vocab persistence, and compression statistics with JSON/Markdown reports and a CI quality gate.
+
+- **The tokenizer as an inspectable artifact** - exact pair counting, deterministic tie-breaking and plain-JSON merge storage mean a tokenizer can be diffed, reviewed and rebuilt byte for byte.
+- **Byte-level coverage with boundary discipline** - the 256 byte values are the base vocabulary, so any text encodes and decodes exactly, while merges never cross word, number, symbol or whitespace boundaries.
+- **Compression as a gate** - bytes-per-token and token-frequency statistics in terminal, JSON and Markdown form, with `--min-compression` failing CI when a tokenizer regresses.
+- Dependency-free Python 3.10+, 40 unit tests, a fully offline demo that trains a 300-token vocabulary and asserts round trips and both sides of the gate, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/tokenforge](https://github.com/midya8/tokenforge) · Case study: [projects/tokenforge.md](projects/tokenforge.md)
+
 ### RetrievalBench
 
 Offline retrieval evaluation for RAG and search pipelines: an exact Okapi BM25 index over local JSONL corpora, token-window chunking with overlap and parent-document collapsing, graded qrels, per-query and macro-averaged recall@k/precision@k/MRR/nDCG@k, JSON and Markdown reports, and quality gates that fail CI on retrieval regressions.
