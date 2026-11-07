@@ -36,6 +36,17 @@ Local-first validation, analysis and HTML reporting for AI agent execution trace
 
 - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
 
+### PromptGuard
+
+Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/AWS-style key checks, assigned-secret and private-key detection, email/phone/Luhn-validated card detection, injection-language rules, prompt metadata frontmatter checks, redacted terminal/JSON/escaped HTML reports, and severity or finding-count CI gates.
+
+- **Prompt files as reviewed production configuration** - scan prompt, Markdown, JSON and YAML files before credentials, personal data or unsafe instruction patterns ship with an AI workflow.
+- **Redaction by default** - reports keep enough location and excerpt context for review without copying full credentials or contact details into output artifacts.
+- **Gates that fit CI** - deterministic rule IDs, severities, JSON output and exit codes let a repository fail on high-severity findings or cap total findings.
+- Dependency-free Python 3.10+, 28 unit tests, a fully offline safe/risky fixture demo, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
+
 ### sre-toolkit
 
 Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-rate alerting, alert triage, and the Markdown documents an incident workflow runs on.
