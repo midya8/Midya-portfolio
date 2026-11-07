@@ -44,9 +44,9 @@ This is inference for supplied target distributions, not fitting parameters or l
 
 ## Why the checks matter
 
-58 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
+87 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
 
-A standalone wheel contains all five runtime modules and produces the same inference and curvature demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
+A standalone wheel contains all six runtime modules and produces the same inference, curvature and forest demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
 
 ```sh
 python -m varilab demo
@@ -67,3 +67,18 @@ There is no arbitrary-dimensional exact inference, observation conditioning, par
 The congruence/inertia principle follows [Nick Higham (2022)](https://nhigham.com/2022/12/06/what-is-the-inertia-of-a-matrix/); implementation, exact certificates and boundary fixtures are independent.
 
 For portable regeneration, the curvature figure fixes the captured broken-symmetry binary means to `0.9949015284526289`. It includes the complete rational certificate but omits the separate libm-dependent float gradient diagnostic; that diagnostic remains in the API. No curvature values are rounded for sign decisions.
+
+
+## Evidence-aware inference without a full joint table
+
+`forest(model, evidence=[{'i':0,'spin':1}])` adds exact two-pass log sum-product for acyclic supplied Ising graphs up to 128 spins. Outputs include every conditional singleton marginal, every stored edge's four-state joint/moment/covariance, root/component log partitions, all directed messages and dependency sets, unconditional log partition and evidence probability/log probability. Cycles (including zero-weight cycles) and invalid/duplicate evidence are rejected before messages. Disconnected forests, isolated nodes and complete observations are supported. Clamped impossible states have probability zero and null logs; underflowed possible events retain finite logs. The existing enumeration, mean-field and curvature paths retain their 12-spin caps.
+
+A direct four-node zero-field J=2 chain has prior means zero. Observing its first spin as +1 gives means `(1,0.964028,0.929349,0.895918)`, analytically `tanh(2)^distance`, with evidence probability 0.5. An endpoint >0.8 gate passes with evidence and fails without it: different queries, not a method benchmark. A direct 128-node chain returns 254 directed messages without enumerating its state table. No timing claim is made. Cavity recomputation and serialized dependencies give `O(n+sum degree^2)` work/output, bounded by the 128-spin cap; this implementation does not claim linear complexity. Conditioning is not causal intervention and the graph is not learned.
+
+25 added API/CLI tests include 324 independent enumerated conditioned cases, direct source-side message oracles, analytic chain/star partitions, singleton/edge consistency, schedule readiness, rare evidence, cycles/size/validation and isolation. Four new figure tests verify analytic display geometry and explicit rounded metadata. Full float messages are in the demo; the figure uses the small-chain analytic values rounded to 12 decimals for portable rendering. It does not mislabel float messages as exact rational certificates. Sum-product follows [Zemel and Urtasun, CSC412 exact inference lectures (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); implementation and test references are independent.
+
+```sh
+python -m varilab forest-demo
+python -m varilab forest examples/coupled.json --evidence '[{"i":0,"spin":1}]'
+PYTHONPATH=. python examples/render_forest.py --check
+```
