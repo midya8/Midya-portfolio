@@ -328,4 +328,3 @@ A personal site set against a procedurally generated Three.js galaxy that adapts
 
 - [midya.ca](https://midya.ca)
 - [LinkedIn](https://www.linkedin.com/in/midyarahmani/)
-
