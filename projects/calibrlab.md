@@ -67,7 +67,15 @@ Reliability after:
 ## Engineering notes
 
 - The MLP's gradients are derived in code and finite-difference verified (max error < 1e-6 in the suite).
-- 22 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
+- 29 tests separate three concerns: metric unit tests (perfect calibration scores zero, NLL of uniform is log k, argmax invariance under T), gradient verification, and deterministic fixture regression (run twice, same numbers).
 - CI runs the suite on Python 3.10-3.13 plus an offline demo asserting both gate sides: the achievable set passes and an impossible ECE reduction (0.9) fails.
 
 Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab)
+
+## Beyond the fixture
+
+`python -m calibrlab calibrate --input examples/logits.json` accepts caller-supplied
+validation/test logits and emits a JSON calibration report without training
+the synthetic model. Test labels never fit T; tests verify changing them does
+not change T. Input errors exit 2 with no report. Split independence and common
+class order remain the caller's responsibility.
