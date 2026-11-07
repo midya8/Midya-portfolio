@@ -11,7 +11,7 @@ A strong association does not say what replacing a mechanism would do. Even a co
 - Exact finite structural-causal-model enumeration with categorical exogenous noise and topologically ordered deterministic truth tables.
 - Separate observational, post-intervention and factual-evidence counterfactual queries. Shared exogenous assignments are reused across factual/action worlds, not independently redrawn.
 - Strict JSON and CLI, SHA-256 model identity, full query joints, finite rare log masses, explicit impossible support and bounded posterior noise-world traces.
-- 38 tests, independent rational references including all 64 tiny Boolean mechanism pairs, a reproducible eight-bar SVG and Python 3.10..3.13 CI. Standard-library runtime only.
+- 64 tests, independent rational references including all 64 tiny Boolean mechanism pairs, two reproducible eight-bar SVGs and Python 3.10..3.13 CI. Standard-library runtime only.
 
 The model's graph, functional tables and noise distributions are supplied. This does **not** infer causal structure or effects from an observational dataset.
 
@@ -36,10 +36,28 @@ Yet P(Y=1 given do(X=1)) is 1 in the direct model and .5 in the common-input mod
 
 No seed or budget search is involved. The demos exhaust the complete finite worlds; they illustrate semantics and non-identifiability, not a general automatic effect-identification method.
 
+## Identical action marginals, different cross-world response types
+
+The multi-world API/CLI abducts one factual noise posterior, then evaluates 1..4 named action scenarios jointly on every retained assignment. It does not multiply marginals or draw new independent noise. Combined output and trace caps are checked before evaluation.
+
+Two supplied models use independent equiprobable U,V and X=V. Stable has Y=U; flip has Y=X xor U. Both have a uniform observed (X,Y) joint and P(Y=1 | do(X=x))=.5 under either action, yet the shared-noise response joints differ:
+
+| (Y0,Y1) | Stable | Flip | Naive product |
+|---|---:|---:|---:|
+| (0,0) | .50 | .00 | .25 |
+| (0,1) | .00 | .50 | .25 |
+| (1,0) | .00 | .50 | .25 |
+| (1,1) | .50 | .00 | .25 |
+
+Y0/Y1 mean Y under do(X=0)/do(X=1) on the same noise assignment. Factual X=0,Y=0 gives (0,0) for stable and (0,1) for flip. These joints are structural assumptions not determined by the matching observations or single-action marginals. No monotonicity, empirical benefit or injury claim is made. An independent rational reference checks all 64 tiny Boolean mechanism pairs; tests also verify scenario marginals, repeated-world coupling, traces and actual joint/trace-cap boundaries. A second eight-bar SVG embeds the complete models and traces.
+
 ## Run locally
 
 ```sh
 python -m unittest discover -s tests -v
+python -m causallab multiworld-demo > /tmp/multiworld-demo.json
+python examples/render_multiworld.py /tmp/multiworld-demo.json --check
+python -m causallab joint examples/response_flip.json --scenarios examples/scenarios.json --evidence X=0,Y=0 --trace
 python -m causallab demo > /tmp/causal-demo.json
 python examples/render_demo.py /tmp/causal-demo.json --check
 python -m causallab query examples/confounded.json --query Y --evidence X=1
