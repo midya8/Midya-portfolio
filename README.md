@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### BoostLab
+
+Train a binary interaction classifier from scratch: Bernoulli negative-gradient residuals, deterministic greedy shallow trees, fixed shrinkage, stable logit-space loss and validation-only prefix selection.
+
+- On a seed-7 noisy sign-of-product development fixture (256/128/512 train/validation/test), depth-2 retains 80 trees/556 nodes with test accuracy 0.8906 and logloss 0.3400. No external-performance or causal-depth claim.
+- The depth-1 control also fits all 80 rounds: its last checkpoint reaches accuracy 0.6367/logloss 0.7366. Validation logloss instead selects its zero-tree model (0.4980/0.7060). The trained control is visible, and accuracy/logloss disagreement is explicit; same rounds are not equal capacity.
+- Ordered, versioned JSON artifacts include selected and last-fitted checkpoints; test data never enters fit. Finite-difference gradients, brute-force split reference, adjacent-float boundaries and zero-tree rejection gate. Fixed first-order mean leaves, not Newton/line-search boosting.
+- Dependency-free Python 3.10+, 19 tests, offline train/predict CLI demo and CI. Standard boosting sources attributed; no new method, calibration or production-safety claim.
+
+- Repo: [midya8/boostlab](https://github.com/midya8/boostlab) · Case study: [projects/boostlab.md](projects/boostlab.md)
+
 ### ShapleyLab
 
 Exact small-feature Shapley attribution from scratch: empirical-background replacement, every coalition available for audit, scalar score callback API and strict JSON CLI.
