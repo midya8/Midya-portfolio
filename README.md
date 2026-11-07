@@ -14,6 +14,16 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### FlowLab
+
+Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 22 tests, strict artifacts and offline train/score/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
+
+- Alternating invertible 2-D couplings, analytic change of variables, shared tanh conditioners and exact manual gradients. Tiny-model parameter/Jacobian finite differences, both inverse directions and density-normalization sanity checks.
+- Same-initialization flow and a genuinely train-fitted Gaussian baseline; independent test rows, final checkpoint and no setting/seed sweep. Full likelihood and sample summaries distinguish invertibility from fit quality.
+- Shared-axis figure reports every outside-plot count. Real NVP equations credited, with the image architecture and benchmark claims explicitly out of scope.
+
+- Repo: [midya8/flowlab](https://github.com/midya8/flowlab) · Case study: [projects/flowlab.md](projects/flowlab.md)
+
 ### GraphLab
 
 Two-layer GCN from scratch with exact input-margin gradients and budgeted single-edge deletion sensitivity. Input locality differs from graph normalization: node 3 has zero feature gradient for node 0, yet deleting edge 2-3 changes its margin by +0.016852 after degree renormalization. Full signed contributions, every edge effect, preflight call budgets and zero-gradient/large-change counterexample. Original transductive development results remain: selected GCN0.96875, MLP0.34375, scrambled GCN0.515625; final/centroid controls visible. Synthetic graph carries class signal; no causal, probability-attribution, unseen-graph or general ranking claim. 42 tests, strict artifacts and offline CLI/SVGs.
