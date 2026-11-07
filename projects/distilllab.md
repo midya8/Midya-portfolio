@@ -1,6 +1,6 @@
-# DistillLab: knowledge distillation from scratch, the gain decomposed
+# DistillLab: knowledge distillation from scratch, measured against matched control arms
 
-A small model trained on a teacher's soft outputs often beats the same model trained on hard labels - the classic explanation is "dark knowledge": the teacher's per-sample class-similarity structure. DistillLab implements the whole pipeline in dependency-free Python and, more importantly, decomposes the measured gain with matched control arms instead of repeating the explanation: pseudo-labels isolate the teacher's own predictions, a uniform-smoothing arm rules out input-independent softening, and a permuted-target control rules out input-mismatched teacher signal.
+A small model trained on a teacher's soft outputs often beats the same model trained on hard labels - the classic explanation is "dark knowledge": the teacher's per-sample class-similarity structure. DistillLab implements the whole pipeline in dependency-free Python and, more importantly, measures the gain against matched control arms instead of repeating the explanation: a pseudo-label arm trained on the teacher's argmax, a uniform-smoothing arm, and a permuted-target control.
 
 ## The fixture
 
@@ -36,10 +36,10 @@ Identical seeds, capacity, learning rate, and epoch budget; only the targets dif
 | control (permuted targets) | 0.1250 | - |
 | T=1 ablation | 0.7219 | - |
 
-Teacher: 0.8344. Distillation gain: **+0.0656** over direct at identical budget, decomposed on this fixture:
+Teacher: 0.8344. Distillation gain: **+0.0656** over direct at identical budget, measured against the control arms on this fixture:
 
-- **Teacher-signal component: +0.0281** (pseudo-labels minus direct) - the teacher's own predictions already carry input-specific value.
-- **Dark-knowledge component: +0.0375** (distilled minus pseudo-labels) - the non-target-class distribution content beyond those predictions, which is what the term dark knowledge refers to. The suite pins both components from below as fixture regression.
+- **Pseudo-labels exceed direct by +0.0281** - training on the teacher's own argmax predictions already helps here.
+- **Distillation exceeds pseudo-labels by a further +0.0375** - consistent with the classic dark-knowledge explanation, but soft-vs-argmax also changes target confidence and the optimization problem, so this comparison alone does not isolate why. The suite pins the arm ordering from below as fixture regression.
 - **Not smoothing**: uniform label smoothing scores 0.6781, at or below direct - input-independent softening is not the mechanism.
 - **Not input-mismatched signal**: the permuted-target control sits at exactly chance (1/8 = 0.1250). Reported, not gated: it is a comparison between matched arms, and if it ever moved the README numbers would move with it.
 - **The mechanism is visible in the overfit gap**: direct memorizes (train 1.0000, gap 0.3187); distilled does not (train 0.8000, gap 0.0531).
@@ -52,7 +52,7 @@ Teacher: 0.8344. Distillation gain: **+0.0656** over direct at identical budget,
 python -m distilllab gates --min-teacher-acc 0.80 --min-distill-gain 0.04
 ```
 
-The gates are deterministic regression checks on the primary arms (teacher strength, distillation gain, the two gain components); the control arms are reported as comparisons, not gated. The demo also asserts an impossible gain (0.5) fails.
+The gates are deterministic regression checks on the primary arms (teacher strength, distillation gain, arm ordering); the control arms are reported as comparisons, not gated. The demo also asserts an impossible gain (0.5) fails.
 
 ## Scope
 

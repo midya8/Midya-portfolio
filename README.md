@@ -16,9 +16,9 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### DistillLab
 
-Knowledge distillation built from scratch in pure Python: a teacher trained on abundant data, a 10x smaller student trained on a tenth of the data, and the measured gain decomposed by matched control arms.
+Knowledge distillation built from scratch in pure Python: a teacher trained on abundant data, a 10x smaller student trained on a tenth of the data, and the measured gain compared against matched control arms.
 
-- **The gain decomposes, measured** - +0.0656 test accuracy over direct training at identical capacity and budget (0.7469 vs 0.6813; teacher 0.8344): teacher pseudo-labels alone account for +0.0281, the soft distribution beyond them adds +0.0375 (the dark-knowledge component on this fixture), uniform label smoothing adds nothing, and a permuted-target control sits at exactly chance (0.1250).
+- **Measured against matched controls** - +0.0656 test accuracy over direct training at identical capacity and budget (0.7469 vs 0.6813; teacher 0.8344): pseudo-labels on the teacher's argmax exceed direct by +0.0281 and soft-label distillation exceeds pseudo-labels by +0.0375, uniform label smoothing at eps=0.1 adds nothing, and a permuted-target control sits at exactly chance (0.1250) - measured between-arm differences on this fixture, not causal attribution.
 - **The mechanism is regularization, measured** - the direct student memorizes its 80 training samples (train 1.0000, train-test gap 0.3187); the distilled student does not (train 0.8000, gap 0.0531) and sits closer to the teacher in KL (0.9563 vs 1.0932).
 - **Gradients by hand, verified** - the temperature-scaled combined loss alpha*T^2*CE(softmax(z/T), soft) + (1-a)*CE(softmax(z), y) with its exact logit gradient, finite-difference checked; the T=1 ablation pinned (0.7219 vs 0.7469 at T=4).
 - Dependency-free Python 3.10+, 12 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
