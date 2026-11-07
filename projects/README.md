@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| DriftLens | Python, standard library only; CLI plus importable package | Embedding distribution comparison with unbiased RBF MMD, cached permutations, exact tiny tests and honest statistical limits | [Case study](driftlens.md) |
 | SetGuard | Python, standard library only; CLI plus importable package | Split-conformal classification sets, finite-sample rank audits, JSON artifacts, empirical coverage/size and deliberate shift failure | [Case study](setguard.md) |
 | CalibrLab | Python, standard library only; CLI plus importable package | Confidence calibration from scratch: ECE/MCE/Brier/NLL metrics, reliability tables, validation-fitted temperature scaling, CI gates | [Case study](calibrlab.md) |
 | DistillLab | Python, standard library only; CLI plus importable package | Knowledge distillation from scratch: temperature-scaled teacher-student loss with FD-verified gradients, measured against matched control arms, CI gates | [Case study](distilllab.md) |
