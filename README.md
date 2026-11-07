@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ParticleLab
+
+Bootstrap particle filtering from scratch with complete log-weight, resampling and ancestry histories. A static-support failure ends with full weight ESS but zero particle variance while the exact posterior remains uncertain. Linear-Gaussian Kalman references, a no-resampling comparison, all sixteen development seeds and 38 tests keep the approximation inspectable. Dependency-free Python, strict JSON CLI and reproducible SVG. Finite scalar models, not convergence or calibrated real-data claims.
+
+- Repo: [midya8/particlelab](https://github.com/midya8/particlelab) · Case study: [projects/particlelab.md](projects/particlelab.md)
+
 ### SegmentLab
 
 Exact offline Gaussian changepoint inference that exposes confident outlier cuts, impossible joint events and the gap between MAP and minimum expected boundary loss. Normalized constrained priors, full partition marginals, direct joint draws, same-design replicate mixtures and entropy/KL audits remain inspectable. 104 tests, exhaustive tiny references, dependency-free Python, strict JSON CLI and two reproducible SVGs. Supplied model assumptions, not online event detection or real-data calibration.
