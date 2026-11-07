@@ -12,6 +12,7 @@
 python -m unittest discover -s tests -v
 python -m transportlab demo > /tmp/transport-demo.json
 python examples/render_demo.py /tmp/transport-demo.json --check
+python examples/render_pushforward.py /tmp/transport-demo.json --check
 python -m transportlab solve examples/points.json --epsilon .5
 python -m transportlab assignment examples/points.json
 ```
@@ -59,7 +60,7 @@ Self-transport at epsilon2 costs1.249807 despite identical supports. A separate 
 
 ## Audits and bounds
 
-16 tests check the closed-form symmetric2x2 solution, direct non-log scaling reference, zero-cost independence, zero weights, underflowed kernels, shared cost shifts and simultaneous cost/epsilon scaling, rectangular/permuted marginals, explicit nonconvergence, positive self-cost, exhaustive assignment/endpoints, barycentric means, no mutation, strict bounds and CLI rejection. CI runs Python3.10-3.13 plus the full fixture and reproduced SVG on3.11.
+24 tests check the closed-form symmetric2x2 solution, direct non-log scaling reference, zero-cost independence, zero weights, underflowed kernels, shared cost shifts and simultaneous cost/epsilon scaling, rectangular/permuted marginals, explicit nonconvergence, positive self-cost, exhaustive assignment/endpoints, barycentric means, no mutation, strict bounds and CLI rejection. CI runs Python3.10-3.13 plus the full fixture and both reproduced SVGs on3.11.
 
 Probability sums must be within1e-12 of1, then are explicitly normalized by their supplied sums; original sums and normalized weights are returned.1-64 rows per side, finite nonnegative costs<=1e6, epsilon[1e-4,1e4], iterations1-5000, tolerance[1e-12,1e-3], active_cells*max_iterations<=10,000,000. Point coordinates[-100,100]; two coordinates only. Assignment size1-8. Booleans/nonfinite values fail. Bounds are resource limits, not convergence guarantees. Costs depend on coordinate units and must scale with epsilon to preserve a plan. [DESIGN.md](https://github.com/midya8/transportlab/blob/main/DESIGN.md) gives implementation details and limits.
 
@@ -68,3 +69,25 @@ Probability sums must be within1e-12 of1, then are explicitly normalized by thei
 Independent educational implementation based on **Marco Cuturi (2013), [Sinkhorn Distances: Lightspeed Computation of Optimal Transportation Distances](https://arxiv.org/pdf/1306.0895)**, especially the transport polytope/entropy definitions in Section2 and penalized objective, scaling form and alternating updates in Section4, Eq.2-3/Algorithm1. Here `epsilon=1/lambda`. The log-domain formulation is an algebraic rewrite for numerical stability; no copied code, MNIST result, speedup, constrained-alpha metric theorem or benchmark reproduction is claimed.
 
 MIT license.
+
+## Mass pushforward versus mean-map collapse
+
+![Full weighted interpolation atoms and barycentric means](https://raw.githubusercontent.com/midya8/transportlab/main/assets/pushforward-audit.svg)
+
+`pushforward(plan, source_points, target_points, time)` retains **every pair atom**, even zero-mass cells, at `(1-t)*x_i + t*y_j` with unchanged mass `P_ij`. It also returns one conditional mean per source, actual endpoint marginals, full and mean-map moments, and the within-source covariance. Moments normalize by the plan's actual positive total, not a requested marginal. At t=0 the full atoms reproduce the supplied row masses; at t=1 they reproduce the supplied column masses. Coincident atoms remain separate in JSON and are aggregated only for area-correct plotting.
+
+The `push` CLI solves first and refuses a nonconverged plan, directing callers to `solve` for residual inspection. This refusal does not make an accepted plan exact: the solver's tolerance still applies. The API can audit any finite nonnegative supplied plan of the right shape, with positive total<=1e6, and **does not certify its feasibility** against any requested weights. Time must be finite in[0,1]; source/target point bounds remain unchanged. JSON keeps all atoms, masses, row means, covariance matrices and residuals.
+
+For the same converged epsilon2 development coupling:
+
+| t | Full-atom variance trace | Mean-map variance trace |
+| ---: | ---: | ---: |
+| 0 | 1.888889 | 1.888889 |
+| 0.5 | 1.576437 | 1.319500 |
+| 1 | 1.888889 | 0.861140 |
+
+The endpoint target distribution is preserved by full weighted atoms using actual column sums, but not by the six barycentric means. The mean of the two representations agrees, while their covariance differs by the expected within-source covariance. This is the finite law of total covariance: `Cov(Z)=Cov(E[Z|source])+E[Cov(Z|source)]`. Because only the target is random within each source, this gap scales as t². It is an arithmetic identity, not evidence for optimal matching, latent geometry recovery or causal alignment.
+
+Demo JSON audits both converged epsilon0.5/2 plans at t=0/0.5/1; all36 pair atoms and six conditional mean rows are retained per slice. Maximum covariance-identity residual is1.48e-16 on this run; that is checked-input arithmetic evidence, not a global bound. The spatial figure uses the more diffuse epsilon2 plan to make the distinction visible, with shared axes and circle area proportional to joint mass. No mass threshold, stochastic sampling or sampled path is implied. The original epsilon0.1 failed arm remains in the original solver tables; the push CLI explicitly refuses it rather than silently dropping its status.
+
+Eight new tests check endpoint masses, interpolated means, deterministic zero conditional variance, independent-coupling collapse, the t² covariance gap, mass-scale invariance of normalized moments, zero rows, unchanged inputs, invalid plans/times and CLI convergence rejection. All original solver fixture fields and heatmaps remain unchanged.
