@@ -16,10 +16,10 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### RAGLine
 
-Retrieval-augmented answering built from scratch in pure Python: a deterministic templated corpus chunked with stable ids, token-hashed sparse TF-IDF embeddings, top-k cosine retrieval, extractive answers that always cite their source chunk, and a grounding check that verifies each answer against the chunk it cites - with the check proven to fail on corrupted citations.
+Retrieval-augmented answering built from scratch in pure Python: a deterministic templated corpus chunked with stable ids, token-hashed sparse TF-IDF embeddings, top-k cosine retrieval, extractive answers that always cite their source chunk, and a lexical-overlap grounding check scored against each answer's cited chunk - shown in a tested negative control to flag a corrupted citation.
 
 - **The RAG loop as inspectable steps** - corpus, embed, retrieve, answer, verify, each dependency-free and deterministic from one seed.
-- **Grounding as a gate, not a slogan** - the verifier scores token overlap between answer and cited chunk; `--require-grounded` and `--min-grounded` fail CI when unsupported answers appear, and the test suite proves corrupted citations are flagged.
+- **Grounding as a gate, not a slogan** - the check scores token overlap between answer and cited chunk; `--require-grounded` and `--min-grounded` fail CI when overlap drops, and the suite's negative control shows a corrupted citation is flagged. Lexical scope: tested wrong-citation cases, not arbitrary misinterpretation.
 - **Measured retrieval quality** - fixture evaluation over questions with known topics: recall@3 = 1.00, MRR = 0.94, grounded rate = 1.00, pinned in CI.
 - Dependency-free Python 3.10+, 31 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
 
