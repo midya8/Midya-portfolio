@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| RAGLine | Python, standard library only; CLI plus importable package | Retrieval-augmented answering from scratch: cited extractive answers, verifiable grounding, recall/MRR/grounding CI gates | [Case study](ragline.md) |
+| RAGLine | Python, standard library only; CLI plus importable package | Retrieval-augmented answering from scratch: cited extractive answers, lexical-overlap grounding checks, recall/MRR/grounding CI gates | [Case study](ragline.md) |
 | KVLens | Python, standard library only; CLI plus importable package | KV-cached incremental decoding from scratch: bitwise-verified against full recompute, measured FLOP savings, CI gates | [Case study](kvlens.md) |
 | AttnLens | Python, standard library only; CLI plus importable package | Causal multi-head self-attention trained from scratch: hand-derived finite-difference-checked backprop, measurable recall-attention patterns, CI gates | [Case study](attnlens.md) |
 | EmbedKit | Python, standard library only; CLI plus importable package | Word embeddings trained from scratch with SGNS: seeded deterministic training, unigram^0.75 negative sampling, topic-coherence evaluation and CI gates | [Case study](embedkit.md) |
