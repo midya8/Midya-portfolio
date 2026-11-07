@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| ChainLab | Python, standard library only; infer/viterbi/fit CLI and SVG | Log-space HMM inference, posterior/path distinction, sequence-aware Baum-Welch and exhaustive-reference audits | [Case study](chainlab.md) |
+| ChainLab | Python, standard library only; HMM JSON CLI and SVG | Log-space inference/EM, path versus marginals, prefix-only filtering and multi-step state/symbol forecast audits | [Case study](chainlab.md) |
 | KernelLab | Python, standard library only; fit/predict/suggest CLI and SVGs | Exact GP uncertainty/LOO audits plus deterministic finite-grid expected improvement, known-row exclusion and equal-budget optimization traces | [Case study](kernellab.md) |
 | BoostLab | Python, standard library only; train/predict JSON CLI | Bernoulli boosting with mean or capped regularized Newton leaves, residual-SSE splits, strict v1/v2 artifacts and validation-only selection | [Case study](boostlab.md) |
 | ShapleyLab | Python, standard library only; scalar callback API and JSON CLI | Exact finite-background Shapley coalitions, reference sensitivity and off-manifold counterexample | [Case study](shapleylab.md) |
