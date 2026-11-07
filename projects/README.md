@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| KernelLab | Python, standard library only; fit/predict JSON CLI and SVG | Exact RBF Gaussian-process conditioning, separate latent/observation covariance, explicit jitter, LML and fixed-parameter LOO | [Case study](kernellab.md) |
 | BoostLab | Python, standard library only; train/predict JSON CLI | Bernoulli boosting with mean or capped regularized Newton leaves, residual-SSE splits, strict v1/v2 artifacts and validation-only selection | [Case study](boostlab.md) |
 | ShapleyLab | Python, standard library only; scalar callback API and JSON CLI | Exact finite-background Shapley coalitions, reference sensitivity and off-manifold counterexample | [Case study](shapleylab.md) |
 | PolicyLens | Python, standard library only; CLI plus importable package | Logged contextual-bandit IPS/SNIPS/DR estimates, support/ESS diagnostics and explicit clipping tradeoffs | [Case study](policylens.md) |
