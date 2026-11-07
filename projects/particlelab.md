@@ -11,7 +11,7 @@ A particle filter can report equal weights and full effective sample size while 
 - Scalar bootstrap filter with a linear transition and identity or square observation function, known supplied Gaussian noise and a local seeded RNG.
 - Log-domain likelihood weighting, adaptive systematic resampling, filtered versus carried summaries, and full particles/weights/log weights/parent mappings/root-label histories.
 - Exact scalar linear-Gaussian Kalman reference with an explicit no-transition-at-t0 convention.
-- Strict JSON CLI, 92 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
+- Strict JSON CLI, 114 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
 
 No roughening, state rejuvenation or parameter fitting is hidden in the filtering comparison. Separate retrospective genealogy and exact linear RTS commands are now available.
 
@@ -48,6 +48,10 @@ All sixteen inherited linear seeds 0..15 are retained; mean-of-seed smoothing me
 
 An optional sampler connects retained filtering states outside the parent maps, with separate seeded backward draws and a strict candidate-work cap. On the same fixed fixture, 512 draws reach two initial indices instead of one genealogical path. Their time-0 variance .022290238 is still over twice the exact .009521314. More path diversity is not calibrated uncertainty or recovered state support. Process std below 1e-4 is rejected; the deterministic-transition density is not fabricated. [Algorithm, comparison figure, numerical guards and limits](https://github.com/midya8/particlelab/blob/main/BACKWARD.md).
 
+## Condition the proposal, keep the approximation honest
+
+An optional linear observation-conditioned Gaussian proposal exposes per-particle proposal moments and predictive importance weights, with exact initial predictive evidence and deterministic q=0 moves. Across all sixteen fixed seeds at N=32 on the inherited sequence, mean RMSE is similar (.082871/.081548 bootstrap/conditional), but conditional variance RMSE is worse (.037895 versus .035944). A more informative observation fixture has smaller conditional errors, not a general or causal ranking. Seed labels do not ensure paired identical random streams. [Derivation, all-seed figure, complete metrics and limits](https://github.com/midya8/particlelab/blob/main/PROPOSAL.md).
+
 ## Run it locally
 
 ```sh
@@ -57,6 +61,7 @@ python examples/render_demo.py /tmp/particle-demo.json --check
 python -m particlelab filter examples/sequence.json --particles 512 --seed 0
 python -m particlelab filter examples/sequence.json --ess-fraction 0
 python -m particlelab kalman examples/sequence.json
+python -m particlelab filter examples/sequence.json --particles 32 --proposal conditional
 python -m particlelab smooth examples/sequence.json --particles 512 --seed 0
 python -m particlelab rts examples/sequence.json
 python -m particlelab backward examples/sequence.json --particles 32 --draws 512
