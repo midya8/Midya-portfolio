@@ -11,7 +11,7 @@ A strong association does not say what replacing a mechanism would do. Even a co
 - Exact finite structural-causal-model enumeration with categorical exogenous noise and topologically ordered deterministic truth tables.
 - Separate observational, post-intervention and factual-evidence counterfactual queries. Shared exogenous assignments are reused across factual/action worlds, not independently redrawn.
 - Strict JSON and CLI, SHA-256 model identity, full query joints, finite rare log masses, explicit impossible support and bounded posterior noise-world traces.
-- 115 tests, independent rational references including all 64 tiny Boolean mechanism pairs, four reproducible audit SVGs and Python 3.10..3.13 CI. Standard-library runtime only.
+- 138 tests, independent rational references including all 64 tiny Boolean mechanism pairs, five reproducible audit SVGs and Python 3.10..3.13 CI. Standard-library runtime only.
 
 The model's graph, functional tables and noise distributions are supplied. This does **not** infer causal structure or effects from an observational dataset.
 
@@ -79,10 +79,23 @@ The independent reference enumerates paths and checks noncollider blocking / col
 
 Separation implies conditional independence only for distributions Markov to the supplied DAG. Connection does not imply dependence, as an explicit XOR-noise counterexample also checks. Relevant latent common causes must be included. Interventions here are incoming-edge cuts, not assigned values or conditioning. No empirical independence test, graph discovery or faithfulness assumption is introduced. Reference: [Lauritzen's author-hosted graph chapter](https://web.math.ku.dk/~richard/BSc/Lauritzen.pdf); implementation and figures are independent.
 
+## More controls do not always make a valid adjustment
+
+The backdoor checker excludes original treatment descendants, then checks separation after removing treatment **outgoing** arrows. This is Pearl's sufficient backdoor criterion, not the incoming-edge removal used for do(X). A full result retains both conditions and all separation provenance. Bounded search checks every subset of 0..10 explicitly available candidates and returns all passing sets plus inclusion-minimal sets and the minimum cardinality separately.
+
+In the fixed `A -> X`, `A -> C <- B`, `B -> Y`, `X -> Y` graph, empty adjustment passes. Adding C alone opens a collider and fails; adding A or B alongside C blocks the new path. Search therefore does not prune by assuming valid supersets. Other fixtures require confounder Z, reject a descendant mediator and leave a hidden common cause in the graph even when it is unavailable as an adjustment candidate.
+
+An independent reference checks original-DAG paths beginning with an arrow into treatment. It agrees on 3,072 adjustment sets across 768 searches on 64 fixed-order four-node DAGs. Tests execute all 1,024 subsets at the candidate cap, distinguish incomparable inclusion-minimal sets of different sizes, and verify a positive-support adjustment calculation on the existing synthetic SCM fixture: .60/.50 matches direct interventions. The fifth SVG shows all eight collider-fixture subsets and complete audit metadata.
+
+Available variables are declared by the caller, not verified data columns. A passing set licenses the standard adjustment functional only under the causal graph and observed support/positivity assumptions. This produces no probability estimate. No passing backdoor set does not prove non-identifiability; this is not complete general adjustment, frontdoor or do-calculus search. References: [Pearl's criterion discussion](https://bayes.cs.ucla.edu/BOOK-09/ch11-3-1.pdf) and [Poole/Mackworth's AI lecture](https://www.cs.ubc.ca/~poole/aibook/3e/slides/ch11/lect_11_3_h.pdf). Implementation, fixtures and figures are independent.
+
 ## Run locally
 
 ```sh
 python -m unittest discover -s tests -v
+python -m causallab backdoor-sets examples/backdoor_graph.json --treatment X --outcome Y --available Z
+python -m causallab backdoor-demo > /tmp/backdoor-demo.json
+python examples/render_backdoor.py /tmp/backdoor-demo.json --check
 python -m causallab dsep examples/collider_graph.json --x X --y Y --given D
 python -m causallab graph-demo > /tmp/graph-demo.json
 python examples/render_graph.py /tmp/graph-demo.json --check
