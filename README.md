@@ -16,12 +16,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### BoostLab
 
-Train a binary interaction classifier from scratch: Bernoulli negative-gradient residuals, deterministic greedy shallow trees, fixed shrinkage, stable logit-space loss and validation-only prefix selection.
+Binary gradient boosting from scratch: mean-residual defaults plus optional capped, L2-regularized Newton leaves on residual-SSE trees. The development fixture selects 35 Newton trees/237 nodes, test accuracy 0.9004/logloss 0.3341; its unselected 80-round checkpoint is also shown (0.8984/0.3469). Mean depth-2 control: 0.8906/0.3400; full-budget stumps: 0.6367/0.7366. Different capacity and settings, no causal or external-benchmark claim. Backward-compatible v1/v2 inference, Hessian/leaf arithmetic tests, validation-only prefix selection. Dependency-free Python, 29 tests and offline CI.
 
-- On a seed-7 noisy sign-of-product development fixture (256/128/512 train/validation/test), depth-2 retains 80 trees/556 nodes with test accuracy 0.8906 and logloss 0.3400. No external-performance or causal-depth claim.
-- The depth-1 control also fits all 80 rounds: its last checkpoint reaches accuracy 0.6367/logloss 0.7366. Validation logloss instead selects its zero-tree model (0.4980/0.7060). The trained control is visible, and accuracy/logloss disagreement is explicit; same rounds are not equal capacity.
-- Ordered, versioned JSON artifacts include selected and last-fitted checkpoints; test data never enters fit. Finite-difference gradients, brute-force split reference, adjacent-float boundaries and zero-tree rejection gate. Fixed first-order mean leaves, not Newton/line-search boosting.
-- Dependency-free Python 3.10+, 19 tests, offline train/predict CLI demo and CI. Standard boosting sources attributed; no new method, calibration or production-safety claim.
+- Seed-7 noisy sign-of-product fixture, 256/128/512 train/validation/test rows. Newton depth-2 uses L2=1, leaf cap 3; validation selects 35 trees, not the last 80-round checkpoint. All fitted controls remain visible in the case study.
+- Mean depth-2 and depth-1 controls retain the original settings and results. Validation selects the depth-1 zero-tree prefix (0.4980/0.7060). Same round budgets are not equal capacity.
+- Newton refines only leaves, using residual-SSE splits rather than Hessian gains. History records cap and zero-denominator diagnostics. V1 mean artifacts still predict unchanged; new Newton artifacts use v2.
+- Dependency-free Python 3.10+, 29 tests, offline CLI demo and CI. Standard boosting sources credited. No line search, new-method, calibration or production-performance claim.
 
 - Repo: [midya8/boostlab](https://github.com/midya8/boostlab) · Case study: [projects/boostlab.md](projects/boostlab.md)
 
