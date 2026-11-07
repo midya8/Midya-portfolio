@@ -22,7 +22,8 @@ Exact small-feature Shapley attribution from scratch: empirical-background repla
 - Jointly sampled missing features preserve their mutual dependence. A diagonal-background counterexample has off-manifold singleton hybrids despite zero attribution/efficiency residual: additivity does not certify explanation validity.
 - Enumerates all coalitions with a preflight call budget; 3 features/2 background rows require 15 calls. Independent factorial-order reference checks dimensions 1-6, plus linearity, symmetry, dummy and feature-permutation tests. No walltime, causality, conditional-SHAP or model-quality claim.
 - Optional atomic groups move correlated blocks together. Three-way product gives grouped [1/2, 1/2], not post-hoc [2/3, 1/3]; grouped games answer a different question. Up to 64 raw features/12 groups, no within-group credit split or cross-group dependence guarantee.
-- Dependency-free Python 3.10+, 34 tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
+- Optional seeded permutation mode handles up to 64 individual features with cached coalitions and descriptive MC standard errors. A two-permutation product gives [0.5, 0.5, 0] despite exact [1/3, 1/3, 1/3], showing zero observed MC error is not an accuracy bound. No confidence guarantee or sampled groups.
+- Dependency-free Python 3.10+, 43 tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
 
 - Repo: [midya8/shapleylab](https://github.com/midya8/shapleylab) · Case study: [projects/shapleylab.md](projects/shapleylab.md)
 
