@@ -14,6 +14,17 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### RAGLine
+
+Retrieval-augmented answering built from scratch in pure Python: a deterministic templated corpus chunked with stable ids, token-hashed sparse TF-IDF embeddings, top-k cosine retrieval, extractive answers that always cite their source chunk, and a grounding check that verifies each answer against the chunk it cites - with the check proven to fail on corrupted citations.
+
+- **The RAG loop as inspectable steps** - corpus, embed, retrieve, answer, verify, each dependency-free and deterministic from one seed.
+- **Grounding as a gate, not a slogan** - the verifier scores token overlap between answer and cited chunk; `--require-grounded` and `--min-grounded` fail CI when unsupported answers appear, and the test suite proves corrupted citations are flagged.
+- **Measured retrieval quality** - fixture evaluation over questions with known topics: recall@3 = 1.00, MRR = 0.94, grounded rate = 1.00, pinned in CI.
+- Dependency-free Python 3.10+, 31 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+
+- Repo: [midya8/ragline](https://github.com/midya8/ragline) · Case study: [projects/ragline.md](projects/ragline.md)
+
 ### KVLens
 
 KV-cached incremental decoding built from scratch in pure Python: a tiny causal multi-head attention block with seeded weights runs greedy generation down two paths - naive full recompute over the whole prefix, and a production-style KV cache with batched prefill plus one incremental step per new token - and the two paths are verified bitwise-identical while a matmul FLOP counter measures the savings directly.
