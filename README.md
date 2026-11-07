@@ -16,11 +16,11 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### DiffuseLab
 
-Learned 2-D diffusion from scratch: explicit DDPM reverse arithmetic, a 482-parameter tanh noise predictor and handwritten backpropagation. On one eight-mode development fixture, 60.55% of learned samples fall within 0.4 of a center, versus 7.42% for a Gaussian prior and 0% for the same untrained reverse chain. All 8 neighborhoods are covered but frequencies remain uneven; the untrained chain expands badly. Exact-gradient and posterior-algebra tests, collapse counterexample, strict artifacts, 22 tests and offline CLI/SVG. Educational 2-D model, not image generation, calibrated density or a general benchmark.
+Learned 2-D diffusion from scratch, now with selected-grid DDIM sampling and exact denoiser-call audits. The same 482-parameter model uses 8/16/64 DDIM steps without retraining. Eight steps saves 87.5% of predictor calls but has worse symmetric reference distance here (0.210661 vs DDPM 0.037103), despite a slightly higher near-center fraction. All 8 neighborhoods reached, uneven frequencies and outliers retained. Full-grid eta=1 matches DDPM arithmetic with matched draws. 33 tests, strict artifacts and offline train/sample/DDIM CLI. Development fixture only, no walltime speedup, image-generation or general ranking claim.
 
-- Fixed posterior reverse variance, no last-step noise, fresh-draw noise-MSE comparison and same seeded reverse-noise streams for trained/untrained controls.
-- Symmetric reference distance and nearby-mode coverage expose collapsed generators that look perfect on nearest-center distance alone. Full raw sample JSON and shared-axis figure with outside-plot counts.
-- Source equations credited to Ho, Jain and Abbeel (2020). No paid APIs, external data, pretrained weights, checkpoint search or hidden projection.
+- Explicit DDPM forward/reverse Gaussian arithmetic, handwritten MLP gradients and Adam, fresh-draw noise-MSE audit and same-initialization control.
+- DDIM eta [0,1], unique selected grids, clean endpoint and counted predictor invocations. Exact epsilon/path references and full-schedule DDPM equivalence checks. No retraining or claimed quality equivalence.
+- Per-mode coverage, symmetric reference distance, collapsed-generator counterexample and shared-axis plots with outside counts. Source equations credited to Ho et al. and Song et al.
 
 - Repo: [midya8/diffuselab](https://github.com/midya8/diffuselab) · Case study: [projects/diffuselab.md](projects/diffuselab.md)
 
