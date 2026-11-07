@@ -25,7 +25,7 @@ Local-first tools for evaluating, tracing and reviewing LLM and agent workflows,
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 - **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines, JUnit XML reports, Markdown job summaries and SARIF 2.1.0 output for AI agent execution traces. 33 unit tests.
   - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
-- **PromptGuard** - Secret, PII, prompt-injection and metadata linting for prompt files with redacted JSON/SARIF/JUnit XML/HTML reports and CI gates. 34 unit tests.
+- **PromptGuard** - Secret, PII, prompt-injection and metadata linting for prompt files with redacted JSON/SARIF/JUnit XML/Markdown/HTML reports and CI gates. 38 unit tests.
   - Case study: [promptguard.md](promptguard.md)
   - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
 
