@@ -16,12 +16,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### EvalForge
 
-Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, deterministic scorers, a stdin/stdout adapter contract, retries, timeouts, bounded parallel execution, persistent run artifacts, baseline regression gates, and self-contained escaped HTML, JUnit XML and Markdown run/comparison job-summary reports.
+Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, deterministic scorers, a stdin/stdout adapter contract, retries, timeouts, bounded parallel execution, persistent run artifacts, baseline regression gates, and self-contained escaped HTML, JUnit XML, Markdown and SARIF run/comparison reports.
 
 - **Evaluation as a repeatable gate** - run the same suite against any command-line model or agent adapter, compare a candidate to a saved baseline, and fail on score regressions, adapter errors, or latency policy breaches.
 - **Deterministic checks before model judging** - exact, contains, regex, JSON schema-ish, numeric tolerance, length, and similarity scorers make results reproducible without a network dependency.
-- **Artifacts built for review** - JSON run records preserve prompts, outputs, scores, errors, and timings; JUnit XML reports expose results to CI test viewers; Markdown run and regression-comparison summaries fit native CI job-summary surfaces; HTML reports are standalone and escape untrusted model output by default.
-- Dependency-free Python 3.10+, 62 unit tests, a fully offline six-task demo that validates JUnit and Markdown run/regression output, and CI across Python 3.10-3.13.
+- **Artifacts built for review** - JSON run records preserve prompts, outputs, scores, errors, and timings; JUnit XML reports expose results to CI test viewers; Markdown run and regression-comparison summaries fit native CI job-summary surfaces; SARIF 2.1.0 output feeds failed tasks, adapter errors and regressions to code-scanning tools; HTML reports are standalone and escape untrusted model output by default.
+- Dependency-free Python 3.10+, 68 unit tests, a fully offline six-task demo that validates JUnit, Markdown and SARIF run/regression output, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 
