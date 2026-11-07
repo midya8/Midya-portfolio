@@ -64,6 +64,9 @@ Synthetic uptime monitoring and availability reporting in pure Python, no depend
 
 Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish) built with Next.js, TypeScript, and Tailwind, exported as static HTML and hosted on Cloudflare.
 
+- **Three languages, one route tree** — English, Sorani Kurdish (right-to-left), and Kurmanji Kurdish under a single `[locale]` route tree, with `lang` and `dir` set per locale from one i18n config, so direction is handled at the layout level rather than patched onto translated strings.
+- **Publishing is a file, not a form** — news posts are Markdown files per locale with frontmatter, UI text lives in per-locale JSON dictionaries, and pushing to `main` redeploys the static export from Cloudflare — no CMS, no server, no database.
+
 - Repo: [midya8/kurdistansociology-website](https://github.com/midya8/kurdistansociology-website)
 - Live: [kurdistansociology.com](https://kurdistansociology.com)
 - Case study: [projects/kurdistansociology-website.md](projects/kurdistansociology-website.md)
@@ -71,6 +74,9 @@ Trilingual website (English, Sorani Kurdish right-to-left, and Kurmanji Kurdish)
 ### Personal site — midya.ca
 
 A personal site set against a procedurally generated Three.js galaxy that adapts rendering quality to the device and respects reduced-motion settings. Built with React, TypeScript, and Vite.
+
+- **A galaxy that fits the device** — the procedural WebGL scene picks a low, mid, or high quality profile from viewport size, device memory, CPU cores, and pixel ratio, setting particle budgets, bloom strength, and a 40/55/60 fps frame cap.
+- **Respectful by default** — `prefers-reduced-motion` gets a single static frame, rendering pauses while the tab is hidden, and a CSS gradient takes over if WebGL is unavailable; geometries, materials, the post-processing composer, and the WebGL context are all disposed on unmount.
 
 - Repo: [midya8/midya.ca](https://github.com/midya8/midya.ca)
 - Live: [midya.ca](https://midya.ca)
