@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### ParticleLab
 
-Bootstrap particle filtering from scratch with complete log-weight, resampling and ancestry histories. A static-support failure ends with full weight ESS but zero particle variance while the exact posterior remains uncertain. Kalman and static-square symmetry/mode references, a no-resampling comparison, all sixteen development seeds and 54 tests keep the approximation inspectable. Dependency-free Python, strict JSON CLI and reproducible SVG. Finite scalar models, not convergence or calibrated real-data claims.
+Bootstrap particle filtering from scratch with complete log-weight, resampling and ancestry histories. A static-support failure ends with full weight ESS but zero particle variance while the exact posterior remains uncertain. Kalman/static-square references, terminal-weighted genealogy smoothing with a linear RTS reference, a no-resampling comparison, all sixteen development seeds and 74 tests keep the approximation inspectable. Early path collapse stays visible even when current states are distinct. Dependency-free Python, strict JSON CLI and reproducible SVG. Finite scalar models, not convergence or calibrated real-data claims.
 
 - Repo: [midya8/particlelab](https://github.com/midya8/particlelab) · Case study: [projects/particlelab.md](projects/particlelab.md)
 
