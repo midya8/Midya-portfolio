@@ -11,7 +11,7 @@ A particle filter can report equal weights and full effective sample size while 
 - Scalar bootstrap filter with a linear transition and identity or square observation function, known supplied Gaussian noise and a local seeded RNG.
 - Log-domain likelihood weighting, adaptive systematic resampling, filtered versus carried summaries, and full particles/weights/log weights/parent mappings/root-label histories.
 - Exact scalar linear-Gaussian Kalman reference with an explicit no-transition-at-t0 convention.
-- Strict JSON CLI, 74 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
+- Strict JSON CLI, 92 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
 
 No roughening, state rejuvenation or parameter fitting is hidden in the filtering comparison. Separate retrospective genealogy and exact linear RTS commands are now available.
 
@@ -44,6 +44,10 @@ A separate terminal-weighted genealogy smoother traces the retained parent maps,
 
 All sixteen inherited linear seeds 0..15 are retained; mean-of-seed smoothing mean/variance RMSEs versus RTS are .0299202464/.0137440904. These are development approximation errors, not a smoothing-versus-filtering ranking, independent posterior paths or calibrated coverage. [Index/weight derivation, figure, complete fixed results and limits](https://github.com/midya8/particlelab/blob/main/SMOOTHING.md).
 
+## Backward simulation still depends on finite support
+
+An optional sampler connects retained filtering states outside the parent maps, with separate seeded backward draws and a strict candidate-work cap. On the same fixed fixture, 512 draws reach two initial indices instead of one genealogical path. Their time-0 variance .022290238 is still over twice the exact .009521314. More path diversity is not calibrated uncertainty or recovered state support. Process std below 1e-4 is rejected; the deterministic-transition density is not fabricated. [Algorithm, comparison figure, numerical guards and limits](https://github.com/midya8/particlelab/blob/main/BACKWARD.md).
+
 ## Run it locally
 
 ```sh
@@ -55,12 +59,13 @@ python -m particlelab filter examples/sequence.json --ess-fraction 0
 python -m particlelab kalman examples/sequence.json
 python -m particlelab smooth examples/sequence.json --particles 512 --seed 0
 python -m particlelab rts examples/sequence.json
+python -m particlelab backward examples/sequence.json --particles 32 --draws 512
 ```
 
 The repository has the complete six-field payload, strict input/resource bounds, CLI options and output semantics. Tests include hand weights/moments/evidence, evidence from full products over static initial samples, revival of log mass after probability underflow, systematic-resampling boundaries/zero bins/offspring, exact Gaussian references, RNG/input isolation, ancestry mappings and all SVG coordinates.
 
 ## Limits and attribution
 
-A scalar supplied-parameter model, finite particles and floating point. The square branch has an analytic static symmetry/mode reference and a sign-support failure audit, not a dynamic nonlinear tracking benchmark. No convergence certificate, high-dimensional proposal, backward-simulation smoothing, learned parameters, robustness, anomaly p-values or coverage guarantee. Evidence estimates are random; logs are not unbiased log-evidence estimates. No private or external dataset, paid API or GPU is used.
+A scalar supplied-parameter model, finite particles and floating point. The square branch has an analytic static symmetry/mode reference and a sign-support failure audit, not a dynamic nonlinear tracking benchmark. No convergence certificate, high-dimensional proposal, learned parameters, robustness, anomaly p-values or coverage guarantee. Evidence estimates are random; logs are not unbiased log-evidence estimates. No private or external dataset, paid API or GPU is used.
 
-Independent implementation inspired by Gordon, Salmond and Smith's 1993 bootstrap-filter paper, Section 3. [Primary paper](https://people.bordeaux.inria.fr/pierre.delmoral/gordon-salmond-smith-1993.pdf). Uses its own fixtures and systematic/adaptive ESS resampling, not the paper's bearings-only experiments, roughening, prior editing or performance claims. No code or paper figures copied. Standard retained-history SIR smoothing and scalar RTS are independently implemented with [Särkkä and Svensson (2023), sections 12.2/15.1](https://users.aalto.fi/~ssarkka/pub/bfs_book_2023_online.pdf) as a technical reference. No source text/code/figures copied. MIT license.
+Independent implementation inspired by Gordon, Salmond and Smith's 1993 bootstrap-filter paper, Section 3. [Primary paper](https://people.bordeaux.inria.fr/pierre.delmoral/gordon-salmond-smith-1993.pdf). Uses its own fixtures and systematic/adaptive ESS resampling, not the paper's bearings-only experiments, roughening, prior editing or performance claims. No code or paper figures copied. Standard retained-history SIR smoothing and scalar RTS are independently implemented with [Särkkä and Svensson (2023), sections 12.2/15.1/15.2](https://users.aalto.fi/~ssarkka/pub/bfs_book_2023_online.pdf) as a technical reference. No source text/code/figures copied. MIT license.
