@@ -4,7 +4,7 @@ A mixture-of-experts layer routes each input to one (or a few) specialized sub-m
 
 ## The fixture
 
-Four input regimes on well-separated cluster centers, each with its own linear input-target map: the sign and scale of the relationship flips per regime. A single shared map cannot fit the data at any width, so the fixture separates architectures by structure rather than size. The baseline is a one-hidden-layer tanh MLP with slightly *more* parameters than the mixture (145 vs 136), trained with its own hand-derived backprop.
+Four input regimes on well-separated cluster centers, each with its own linear input-target map: the sign and scale of the relationship flips per regime. A single *linear* map cannot represent the data by construction; whether a nonlinear dense model catches up is an empirical question, which the measured baseline answers for this configuration. The baseline is a one-hidden-layer tanh MLP with slightly *more* parameters than the mixture (145 vs 136), trained with its own hand-derived backprop.
 
 ## Sparse training, gradients by hand
 
@@ -31,15 +31,15 @@ Every gradient is finite-difference verified in the test suite, task and aux ter
 
 ## The aux-loss finding nobody puts in the README
 
-Load-balancing auxiliary losses exist to stop expert collapse. On this symmetric fixture, collapse never happens: max expert share is 0.25 with the aux term and 0.25 without, and dropping the term fits slightly *better* (0.0010 vs 0.0303). MoeLab reports that instead of selling the term - the fixture is the wrong place to justify it, and imbalanced real traffic is the right one.
+Load-balancing auxiliary losses exist to stop expert collapse. On this symmetric fixture, collapse never happens: max expert share is 0.25 with the aux term and 0.25 without, and dropping the term fits slightly *better* (0.0010 vs 0.0303). MoeLab reports that instead of selling the term - the fixture is the wrong place to justify it; the standard motivation, imbalanced expert traffic in production serving, is untested here because the fixture is symmetric by construction.
 
 ## Gates
 
 ```bash
-python -m moelab gates --max-mse 0.06 --min-mlp-mse 0.15 --min-purity 0.95 --max-expert-share 0.26
+python -m moelab gates --max-mse 0.06 --min-purity 0.95 --max-expert-share 0.26
 ```
 
-`--min-mlp-mse` is the honest-comparison gate: it fails CI if the dense baseline ever catches up, so the headline comparison cannot quietly stop separating the architectures. The demo asserts an impossible purity bar fails.
+The gates are deterministic regression checks on the mixture itself - fit, routing purity, usage shares - and the demo asserts an impossible purity bar fails. The baseline comparison is reported as measured numbers, not gated: if a stronger baseline ever closes the gap, the honest outcome is to update the numbers, not to fail the baseline.
 
 ## Scope
 
