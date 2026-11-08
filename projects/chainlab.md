@@ -2,7 +2,7 @@
 
 [Public repository](https://github.com/midya8/chainlab)
 
-Dependency-free Python, 34 tests, infer/viterbi/fit JSON CLI, reproducible SVG and Python3.10-3.13 CI. Standard HMM theory, no new method.
+Dependency-free Python, 41 Python tests and four Node/actual-Chrome tests, infer/viterbi/fit JSON CLI, reproducible SVG and Python3.10-3.13 CI. Standard HMM theory, no new method.
 
 
 ## Three distinct questions
@@ -167,3 +167,9 @@ accelerator, neural component, persistent streaming-state or calibrated forecast
 - https://sites.stat.washington.edu/mmp/courses/stat534/spring19/Handouts/h4-hmm.pdf
 
 Standard HMM/EM theory. Independent implementation, no new algorithm claim.
+
+## Live prefix-evidence inspector (v0.2)
+
+Live v0.2 [prefix-evidence inspector](https://midya8.github.io/chainlab/) keeps all three original models and both exact counterexamples fixed. Edit a bounded observation window and compare each own-prefix filtered row, full-window smoothed row, supported Viterbi path and prefix-only future marginals. Original 40-symbol reports and scores remain unchanged; the first three displays show only the first 12 symbols. Independent scaled browser versus native log inference checks cover 114 symbol edits and 40 prefix boundaries, plus 62 exhaustive high-precision controls. Underflowed browser mass refuses instead of inventing a posterior. 41 Python tests, four Node/actual-Chrome tests and installed eight-module/nine-command reproduction. No new training, state accuracy, calibration or causal claim. [Conditioning and numerical limits](https://github.com/midya8/chainlab/blob/main/EVIDENCE.md).
+
+The displayed suffix is evidence for smoothing and Viterbi, but not the selected prefix forecast. Horizon h makes h transitions from the last filtered state. Marginals must not be multiplied into an independent joint future path. Native log inference can resolve tiny supported paths that scaled probability arithmetic loses. All 22 retained archive files regenerate with exact structure/nonfloats and 1e-11 absolute / 1e-12 relative float checks, without changing original inference tolerances. Invalid input clears stale rows and exports. Mobile heatmaps become labeled state rows; full predictive score tables scroll locally.
