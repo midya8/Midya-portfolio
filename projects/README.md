@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| ScoreLab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Score-gradient covariance audits, value-baseline failure, optimal time/state control variates and independent derivative references | [Case study](scorelab.md) |
 | BanditLab | Python, standard library only; exact rational JSON CLI and two reproducible SVGs | Bayes-adaptive planning, randomized-policy occupancy flows, exact policy-loss decomposition and prior regret bounds | [Case study](banditlab.md) |
 | BeliefLab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Two-state POMDP envelopes, optimized open-loop comparisons, forward path-occupancy audits, fixed-policy regret and discounted infinite-value brackets | [Case study](belieflab.md) |
 | BellmanLab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Exact discounted nominal/rectangular robust planning, nested controller/adversary policy iteration, full Q/tie/witness histories, residual certificates and independent inner/outer cap controls | [Case study](bellmanlab.md) |
