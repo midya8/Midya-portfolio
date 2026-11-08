@@ -111,3 +111,7 @@ no accuracy promise.
 Data and derived figure/metrics: Cortez et al. (2009), UCI Wine Quality,
 DOI 10.24432/C56S3T, CC BY 4.0. Code is MIT. CART, weakest-link pruning and least
 squares are established methods, not claimed inventions. No endorsement implied.
+
+The complete frozen ensemble is bundled as deterministic `bagging-model.json.gz`
+(gzip of the full JSON, zero timestamp). CLI model loading accepts `.json.gz`
+as well as plain JSON. This changes storage only, not trees, draws or predictions.
