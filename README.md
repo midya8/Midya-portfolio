@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### PartsLab
+
+Nonnegative parts learning on the original UCI digits: six manual NumPy factorization fits, fixed-basis NNLS with per-row numerical KKT stopping, and actual editable-input browser decompositions. All 3,823 training images fit without labels; training-only restart selection preserves the 1,797-row official holdout. Rank-matched signed PCA and SVD beat NMF on test MSE at every fixed rank and stay visible. All six joint fits exhaust their stationarity budget, rather than being mislabeled converged. Zero-locking, scale/permutation and duplicate-basis controls expose why additive parts are not unique semantic explanations. 21 Python and four Node/real-Chrome tests include independent active-set oracles, finite-difference gradients, full test-loader-prohibited refits, 120 native/browser decompositions and 2,048 contribution pixels. Seven-module/five-CLI installed wheel; CC BY 4.0 data, MIT code. [Equations, protocol and limits](https://github.com/midya8/partslab/blob/main/METHOD.md). [Open the live parts inspector](https://midya8.github.io/partslab/).
+
+- Repo: [midya8/partslab](https://github.com/midya8/partslab)
+- Case study: [projects/partslab.md](projects/partslab.md)
+
 ### ClusterLab
 
 Real-data unsupervised clustering with manual k-means++/Lloyd updates, forty complete restart witnesses and fitting-only PCA/whitening controls. All 3,823 original UCI training digits fit without labels; the 1,797-row official holdout is audited with permutation-invariant scores and all-row silhouettes. The live browser recomputes membership for editable digits, displays mixed-label centroids and exposes all restart descents. Raw uniform initialization slightly beats careful seeding on test ARI despite slightly worse fitting inertia; no general seeding advantage or cross-geometry inertia ranking is claimed. 48 Python tests plus thirteen Node/real-Chrome tests cover independent pair/entropy/distance references, a rational local-minimum counterexample, full refit with test-loader prohibition, frozen-hash evaluation, all 80 public model/example cases and keyboard/copy/download/mobile controls. Ten-module/six-CLI installed wheel. [Open the live clustering inspector](https://midya8.github.io/clusterlab/). CC BY 4.0 data, MIT code; arbitrary groups, not digit predictions or calibrated confidence.
