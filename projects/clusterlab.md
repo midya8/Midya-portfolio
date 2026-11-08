@@ -12,6 +12,14 @@ Manual NumPy Lloyd assignment/mean updates, D² k-means++ initialization, unifor
 
 The browser projects edited 8x8 inputs and computes distances to all ten learned centers locally, with keyboard controls, a centroid atlas, held-out composition, all restart curves and JSON copy/download. The first twenty original test rows are included by index, not success. Cluster IDs are groups, not digit labels; distances are not probabilities. No API, uploads, analytics or remote inference.
 
+## v0.2: every restart, not only the winner
+
+The v0.2 restart inspector exposes all forty saved models, 180 distinct within-arm restart comparisons and forty self-pairs. A manual integer Hungarian solver supplies optimal center permutations and primal/dual witnesses, independently checked against subset-DP optima for all 220 matrices. Browser BigInt checks those exact saved rounded-cost certificates; 800 native/scalar-JavaScript inference pairs and all 400 directed pair controls are tested. Same-data initialization sensitivity is not sampling stability or useful-class discovery; matching centers need not align the actual assignment for an input. Original fits and holdout scores remain unchanged. [Restart matching method](https://github.com/midya8/clusterlab/blob/main/STABILITY.md).
+
+The independent assignment audit solves 220 rounded-cost matching problems with unbounded integers. All optima agree with a separate column-subset dynamic program; tiny signed/huge-integer instances are also checked exhaustively. The browser transposes costs and inverts permutations for reversed views without changing the original witness. An accessible matrix, aligned centroid pairs, actual inference on arbitrary pixel edits and exact JSON copy/download make the differences inspectable. In raw k-means++, seeds 106 and 107 disagree most on fitting partitions (ARI .556972), while seed 107 remains the original lowest-inertia choice. Geometric matching can visibly disagree with pointwise assignments.
+
+This adds no new fits, test-score tuning, sampling-stability estimate or correct-k claim. Equal-weight center matching ignores populations. Exactness covers saved binary64 cost matrices, not ideal real-number distances or the global k-means optimum. The two browser tests cover the original 80 pairs/640 pixels plus the new all-40-model view, 800 numerical reference pairs, 400 directed controls and 1,280 two-atlas pixels.
+
 ## What the holdout says
 
 | Fixed arm | Adjusted Rand | Arithmetic NMI | Silhouette (own geometry) |
@@ -25,9 +33,9 @@ Careful seeding has slightly lower raw fitting inertia (9682.7571 vs 9683.1241),
 
 ## Evidence, not a screenshot alone
 
-28 Python tests and six Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
+38 Python tests and ten Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
 
-The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all eight modules and exercises all four CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
+The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all nine modules and exercises all five CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
 
 ## A deliberate failure case
 
