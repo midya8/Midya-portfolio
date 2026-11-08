@@ -46,7 +46,7 @@ python -m unittest discover -s tests -v
 node --test tests/*.cjs
 ```
 
-Nine modules and seven commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
+Ten modules and eight commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
 
 ## v0.2: condition on a hypothetical label event
 
@@ -61,3 +61,11 @@ These are hypothetical label constraints on the same fitted model, not new groun
 ## Scope
 
 This models p(labels | observations), not p(observations). Both neighboring observations are available, so it is not streaming inference. Model posteriors are not calibrated real-world confidence. No semantic language task, external validation, population significance, causal isolation, deployment readiness or universal ranking is claimed. Standard CRF, forward/backward and Viterbi theory is cited in the method, including explicit notation differences. Original code, tests, fixture and prose are MIT; cited papers are not redistributed.
+
+## v0.3: joint posterior path sampling
+
+The event inspector now samples complete paths by a backward conditional recursion, with a paired independent-node control using the same supplied uniforms. Exact pair probabilities and total variation stay separate from descriptive frequencies of 64 seeded draws. Each reverse step retains its probabilities, log probabilities, uniform, CDF, chosen bin and numerical flags. The witness separates model path log probability, ideal kernel-product log probability and the finite-precision numeric kernel.
+
+The combined suites pass 37 Python and 16 Node/real-Chrome tests. New checks include 428 exhaustive Fraction path-product witnesses, sixty independent BigInt fixtures, 2,304 Python/JavaScript full traces and 384 browser queries, for 5,031 UI states/queries overall. Ten modules and eight commands work from the installed wheel.
+
+Fixed fitted scores and original metrics are unchanged. This is an established sampling method, not a new algorithm, retraining, parameter uncertainty or accuracy improvement. The portable xorshift32 mid-bin stream is deterministic, not cryptographic or certified independent entropy. Underflow and collapsed CDF bins remain visible; PRNG lattice frequencies need not equal continuous-uniform probabilities.
