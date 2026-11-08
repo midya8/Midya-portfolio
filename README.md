@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### TreeLab
+
+From-scratch CART regression and weakest-link pruning on real UCI white-wine data. Exact feature copies stay together across 2,921 fitting, 1,008 validation and 969 test rows. The complete 290-state pruning path goes from 425 leaves to the root; validation selects 19 leaves without test targets. The stronger same-fit least-squares control stays visible: test RMSE 0.73422 versus selected-tree 0.77595 and grown-tree 0.88255. 40 tests include 40 independent split references, exact Fraction subtree oracles for 12 small trees, test-target mutation, full refit and strict JSON. Five-module/five-CLI installed-wheel reproduction, every test prediction and a data-checked audit SVG. Established greedy CART, not globally optimal tree learning, causal importance, wine-safety advice or an all-input certificate.
+
+- Repo: [midya8/treelab](https://github.com/midya8/treelab)
+- Case study: [projects/treelab.md](projects/treelab.md)
+
 ### DigitLab
 
 A [live model inspector](https://midya8.github.io/digitlab/) now adds baseline-relative class-logit Integrated Gradients for the unchanged UCI digit models. Choose the class and zero or fit-only mean reference, inspect all 64 signed contributions and their logit-sum residual, and keep the attack label separate. An algebraic tanh specialization is checked against independent 128-node quadrature on 40 reference vectors; all 7,188 official model/reference/row cases are finite. 78 Python tests and six Node/real-Chrome tests include 106 attribution reference vectors plus the existing 52 inference/gradient cases. Four reproducible audit figures, ten-module/ten-CLI wheel checks, and mobile/keyboard/touch controls. Established attribution, not a new method, causal importance, explanation quality or a certificate. The stronger same-fit 1NN clean result, exact linear box/radius proofs and original data/models remain visible.
