@@ -33,7 +33,7 @@ These are fixed-score distributions on the same restricted support, not equally 
 
 ## Independent checks and reproduction
 
-22 Python and seven Node/real-Chrome tests include sixty exhaustive rational/integer path-potential controls in Python Fraction and independent JavaScript BigInt enumeration; all 39 finite differences; independent expected-feature enumeration; boundary, gauge, long-score and tie controls; all six fresh fits; test-label poisoning with unchanged fits/selection; full state audit and mutation rejection. Scalar JavaScript checks 12,753 gradient entries, all six model test metrics and 32 complete selected-model sequence witnesses. Real Chrome exercises 327 optimizer states plus 984 model/sequence/focus states, edited inputs, exact normalization cases and 320/390/1280 layouts.
+The original v0.1 suite of 22 Python and seven Node/real-Chrome tests includes sixty exhaustive rational/integer path-potential controls in Python Fraction and independent JavaScript BigInt enumeration; all 39 finite differences; independent expected-feature enumeration; boundary, gauge, long-score and tie controls; all six fresh fits; test-label poisoning with unchanged fits/selection; full state audit and mutation rejection. Scalar JavaScript checks 12,753 gradient entries, all six model test metrics and 32 complete selected-model sequence witnesses. Real Chrome exercises 327 optimizer states plus 984 model/sequence/focus states, edited inputs, exact normalization cases and 320/390/1280 layouts.
 
 ```sh
 python -m taglab demo
@@ -46,7 +46,17 @@ python -m unittest discover -s tests -v
 node --test tests/*.cjs
 ```
 
-Eight modules and six commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
+Nine modules and seven commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
+
+## v0.2: condition on a hypothetical label event
+
+The [label-event inspector](https://midya8.github.io/taglab/evidence.html) takes an allowed label subset at each position. Fixed fitted scores define both the original distribution and the restricted partition. Its ratio gives event probability; a new forward/backward pass gives conditional node and pair probabilities, entropy and best path. All 39 log-event derivatives are conditional expected features minus unrestricted expected features. The independent control fixes 15 sequence coordinates; their displayed derivatives are ambient-chain coordinates, not trainable control weights.
+
+An empty allowed set is exactly impossible: no conditional distribution or gradient is invented. A possible rare event can instead have finite log probability while its floating-point probability underflows to zero. JSON uses null for exact forbidden log entries, with no fake finite sentinel or NaNs. Conditioning can increase entropy; it is not automatically confidence improvement.
+
+31 Python and 12 Node/real-Chrome tests now cover the combined project. The extension adds 60 independent Fraction/BigInt path controls, all 39 finite differences, 3,336 Python/JavaScript event witnesses and 3,336 additional real-browser cases, for 4,647 browser states overall. Tests include unrestricted and single-path events, event additivity/nesting, a -2000 log-probability underflow case, 256 positions with large finite scores, factorized-control invariance, invalid-input clearing, actual download and clipboard behavior. The installed wheel reproduces the new condition command outside the checkout.
+
+These are hypothetical label constraints on the same fitted model, not new ground truth, retraining, partial-label learning, general regular-language constraints, forbidden transitions, a causal intervention or evidence of better prediction. Original fitted metrics and budget warnings remain unchanged.
 
 ## Scope
 
