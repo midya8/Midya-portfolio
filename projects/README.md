@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| Correlab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Joint-play obedience with coarse, pairwise, swap and conditional certificates, product-marginals controls and finite-history regret identities | [Case study](correlab.md) |
 | GameLab | Python, standard library only; exact rational JSON CLI and two reproducible SVGs | Complete optimal faces, minimax and perturbation witnesses, plus shared-table interval worst-gap support certificates, attainable value extrema and robust-security controls | [Case study](gamelab.md) |
 | BetLab | Python, standard library only; exact rational JSON CLI and three reproducible SVGs | Sequential betting, finite-null/optional-stopping audits, budgeted start schedules and certified confidence-sequence inversion with exact coverage controls | [Case study](betlab.md) |
 | PrivacyLab | Python, standard library only; exact rational API, JSON CLI and three reproducible SVGs | Hockey-stick events, adaptive transcripts, clipped mass, full finite-table factor frontiers and inverse budgets with interval/minimality witnesses | [Case study](privacylab.md) |
