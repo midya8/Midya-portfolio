@@ -191,3 +191,27 @@ The standard formula and masking distinction are documented at:
 
 Independent educational implementation. No new explanation theorem, conditional
 SHAP, TreeSHAP, causal identification or efficiency advantage is claimed.
+
+
+### Live replacement and permutation ledger (v0.2)
+
+[Live inspector](https://midya8.github.io/shapleylab/) exposes every background
+replacement row, coalition value, weighted predecessor term and complete small
+player ordering. Native audits log actual calls to the original exact engine;
+cached paths add no score evaluations. The independent browser recomputes seven
+fixed public synthetic games under bounded target edits, not a user callback.
+Atomic grouped credits remain distinct from post-summed individual credits.
+
+49 Python tests plus four Node/actual-Chrome tests check 95 coordinate edits,
+128 Fraction games, 64 independent BigInt product games, all 44 original
+coalitions, 18 players and 30 orderings. Installed 11-module/four-command
+reproduction retains original exact/grouped/sampled modes and all prior demo
+reports. Signed zero-centered bars, hybrid provenance, invalid-state clearing
+and JSON witnesses are checked at 320/390/1280 widths.
+
+The original diagonal-reference squared-difference game still assigns zero
+credits through unrealistic singleton hybrids. The P=2 sample still assigns
+zero estimated error to a wrong dummy-looking credit. Efficiency alone validates
+neither. No new model, training, causal attribution, representative-background,
+confidence or explanation-quality claim.
+[Derivation, six sources and limits](https://github.com/midya8/shapleylab/blob/main/LEDGER.md).
