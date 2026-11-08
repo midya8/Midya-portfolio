@@ -1,6 +1,6 @@
 # DenoiseLab: learned reconstruction with strong observed-pixel controls
 
-Real masked-digit reconstruction with manual NumPy backprop, 14,544 learned parameters and independent scalar JavaScript inference. A local browser inspector recomputes the neural denoiser, observed-pixel PCA ridge solve, exact fitting-example neighbor and pixel mean when arbitrary pixels are erased. Validation-only selection preserves the official UCI holdout; all four fixed corruption cases and every per-image score remain visible. Nearest neighbor and PCA beat the neural net at 16 missing pixels; the network is lower at 32, with no universal ranking inferred. 27 Python tests plus four Node/real-Chrome tests cover 200 independent gradient probes, complete refit with test-loader prohibition, full evaluation reproduction, all 40 public inference examples and responsive keyboard/copy/download controls. Seven-module/four-CLI installed wheel. CC BY 4.0 data, MIT code; no uncertainty, causal, semantic-preservation or production-restoration claim.
+DenoiseLab now includes fixed-mask observed-input response: manual 64×64 neural Jacobians and observed-only PCA ridge derivatives, with shared-scale signed heatmaps, actual finite edits versus local tangents, clipping-boundary nulls and explicit nearest-neighbor switches rather than a fabricated smooth gradient. Hidden targets are erased; original models, holdout scores and stronger winning controls remain unchanged. 35 Python/eight Node tests include independent finite differences, augmented least squares, 120 full cross-language responses, 480 browser views and 8,192 heatmap pixel checks. Eight-module/five-command installed reproduction. [Try the response inspector](https://midya8.github.io/denoiselab/response.html). Licensed UCI data, MIT code; local response is not causal importance, uncertainty or a stability certificate.
 
 [Open the live reconstruction inspector](https://midya8.github.io/denoiselab/).
 
@@ -108,3 +108,9 @@ establish semantic preservation, calibrated uncertainty, image generation,
 clinical restoration or behavior on naturally missing observations. This is a
 standalone reconstruction experiment, not DigitLab's classifier/attack study
 or LatentLab's synthetic variational density model.
+
+## Fixed-mask response (v0.2)
+
+The original manual-gradient training and strong observed-pixel controls are retained. Input response is separately derived from fixed parameters: full chain-rule matrices through three tanh layers and sigmoid, and an observed-only linear-system derivative for PCA. Actual edited reconstructions remain separate from local tangent predictions. Saturated PCA rows have zero local response; nonconstant clipping-boundary rows are null rather than an invented derivative. Nearest-neighbor response retains old/new retrieved indices and a frozen-original-neighbor image, with a scalar switch control.
+
+Complete unbounded tangents and residuals can be copied or downloaded; only the rendered image clamps them. Missingness flags remain discrete. No hidden accuracy score or refit is performed. [Equations, independent checks and source ledger](https://github.com/midya8/denoiselab/blob/main/RESPONSE.md).
