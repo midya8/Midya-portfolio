@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| SparseLab | Python, standard library only; LASSO fits, exact rational controls, strict JSON CLI and reproducible SVG | Primal/dual/KKT optimality witnesses, regularization paths, coefficient ambiguity under duplicate features and honest sweep-limit reporting | [Case study](sparselab.md) |
 | InfluenceLab | Python, standard library only; convex fits, strict JSON CLI and two reproducible SVGs | Local weight derivatives, actual finite deletion, group paths with implicit solves and quadrature/endpoint witnesses, normalization and damping controls | [Case study](influencelab.md) |
 | FisherLab | Python, standard library only; exact rational CLI and two reproducible SVGs | Singular Fisher/nullspace/PSD witnesses, coordinate/finite-step limits and shared-context projection, local reward tradeoffs, reweighting and conditional-versus-joint normalization audits | [Case study](fisherlab.md) |
 | LatentLab | Python, standard library only; trained Gaussian VAE, log-space evidence CLI and two reproducible SVGs | Pathwise gradients, reconstruction/generation controls, expected-versus-realized importance bounds, exact Gaussian evidence and high-ESS rare-atom failure audits | [Case study](latentlab.md) |
