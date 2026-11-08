@@ -4,6 +4,16 @@ Real UCI digit training in NumPy with manual gradients and a frozen official-tes
 
 ![Frozen official-test audit and selected digit adaptations](https://raw.githubusercontent.com/midya8/digitlab/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
 
+## v0.3: exact radius infima and boundary attainment
+
+Real UCI digit training in NumPy with a stronger same-fit 1NN baseline and frozen official-test models. Exact linear audits retain all 64,692 box margins. v0.3 solves all 1,797 clipped adversarial-radius infima: 99 clean errors, 796 positive attained thresholds and 902 positive unattained infima. Lowest-index ties determine whether the boundary itself is an error; all 7,188 old box decisions agree. 59 tests include 201 gradient probes, two independent 144-case vertex references, 160 Fraction row references, 100 official-boundary checks and three full-report figures. Nine-module/eight-CLI wheel reproduction. Original datasets, models and old reports preserved, with CC BY 4.0 data attribution. Exact real affine proofs, not all floating executions, nonlinear MLP verification, imperceptibility or adaptive 1NN ranking.
+
+![Exact radius and boundary-attainment evidence](https://raw.githubusercontent.com/midya8/digitlab/5c2fcdad50ec3c1fbefb69a94537607013c0601b/assets/radius-audit.svg)
+
+The event solver follows exact affine-margin slopes until pixels clip, solves each first zero algebraically and combines all competitors with tie-aware attainment. The first attained example is row 6 (true 6, competitor 4); the first unattained example is row 0 (true 0, competitor 9). Their zero-margin boundary predictions are evaluated exactly and are not asserted to agree with floating evaluation on a mathematical tie. An error witness for an unattained threshold lies strictly beyond it, not at it. These first-category examples are diagnostic, not a representative sample.
+
+[Full threshold proof, controls and sources](https://github.com/midya8/digitlab/blob/main/RADIUS.md).
+
 ## v0.2: exact real affine-box correctness
 
 Real UCI digit training in NumPy with manual gradients, a stronger same-fit 1NN clean baseline and a frozen official-test audit. v0.2 adds exact real affine-box correctness for the fixed linear model: 1,698 / 1,495 / 1,028 / 23 of 1,797 test rows at radii 0 / 1/20 / 1/10 / 1/5. Attained witnesses expose 14 and 10 saved PGD survivors at the latter two radii. All 64,692 margins and 7,188 witness decisions are retained. 45 tests include 201 gradient probes, 144 all-vertex certificates, 160 independent Fraction row references, two full-report figures and six-mode/eight-module wheel parity. Original source data, models and finite-attack report are preserved. CC BY 4.0 data attribution. Certificates concern the real affine function of loaded binary64 coefficients, not all floating executions or the nonlinear MLP; no imperceptibility or adaptive 1NN ranking claim.
