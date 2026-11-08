@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### MixtureLab
+
+Manual Gaussian-mixture EM on licensed UCI chemistry: log-space responsibilities, actual covariance-eigenvalue-constrained M-steps and a complete likelihood/Q/KL identity at every update. A frozen label-free 106/36/36 split keeps all 24 fits; training-only restart choice and validation-only model choice preserve the test stage. The live inspector recomputes all 13 features through separate scalar JavaScript Cholesky inference, with training-only PCA marginal views. A full-covariance five-component fit improves training density but loses to one fitted Gaussian on test; collapse, duplicate components and extreme-input posterior concentration expose the limits. 26 Python and four Node/real-Chrome tests, 1,424 native/browser density evaluations, 100 numerical precision-space KKT checks and 40 analytic 2D clipping references. Eight-module/five-command installed wheel reproduces all 24 fits. Increment tolerance is not global optimality; component posteriors are not cultivar probabilities or calibrated certainty. CC BY 4.0 data, MIT code. [Equations and protocol](https://github.com/midya8/mixturelab/blob/main/METHOD.md). [Open the live density inspector](https://midya8.github.io/mixturelab/).
+
+- Repo: [midya8/mixturelab](https://github.com/midya8/mixturelab)
+- Case study: [projects/mixturelab.md](projects/mixturelab.md)
+
 ### PartsLab
 
 Nonnegative parts learning on the original UCI digits: six manual NumPy factorization fits, fixed-basis NNLS with per-row numerical KKT stopping, and actual editable-input browser decompositions. All 3,823 training images fit without labels; training-only restart selection preserves the 1,797-row official holdout. Rank-matched signed PCA and SVD beat NMF on test MSE at every fixed rank and stay visible. All six joint fits exhaust their stationarity budget, rather than being mislabeled converged. Zero-locking, scale/permutation and duplicate-basis controls expose why additive parts are not unique semantic explanations. 30 Python and eight Node/real-Chrome tests include independent active-set oracles, finite-difference gradients, full test-loader-prohibited refits, 120 native/browser decompositions and 2,048 contribution pixels. Eight-module/seven-CLI installed wheel; CC BY 4.0 data, MIT code. [Equations, protocol and limits](https://github.com/midya8/partslab/blob/main/METHOD.md). [Open the live parts inspector](https://midya8.github.io/partslab/).
