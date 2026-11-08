@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### MarginLab
+
+Manual linear/RBF soft-margin SVM learning on licensed public UCI data: bounded dual-pair updates, complete pair replay, numerical KKT/gap/feasibility witnesses and independent exact-rational active-face oracles. The editable browser recomputes all 30-feature scores and signed algebraic terms, with an honest two-feature decision slice. Twenty Python and five Node/real-Chrome tests cover 60 tiny exact optima, 4,552 score comparisons, eight fresh fits and real keyboard/copy/download/mobile behavior. Validation chooses 112/115 test correct versus full-30D 1NN 111/115; two unselected RBF fits get 113/115. Seven-module/five-command installed wheel reproduces all fits and audits. Educational historical data, not clinical validation, calibrated certainty or causal importance.
+
+[Source](https://github.com/midya8/marginlab) · [Live inspector](https://midya8.github.io/marginlab/) · [Case study](projects/marginlab.md)
+
 ### MixtureLab
 
 Manual Gaussian-mixture EM on licensed UCI chemistry: constrained covariance M-steps, complete likelihood/Q/KL update witnesses and a frozen label-free holdout protocol across all 24 fits. The independent scalar-JavaScript inspectors now expose all 13 input gradients, full Hessians, posterior Jacobians, original-unit transforms and bounded sufficient-ascent traces. A zero-gradient control is a strict minimum, and three real traces exhaust their budget rather than claiming modes. All original fits, split and scores remain unchanged. 36 Python and eight Node/real-Chrome tests cover 1,424 density evaluations, 40 full geometry witnesses, 312 finite-difference probes and 50 directional second differences. Ten-module/seven-command installed wheel reproduces all fits and audits. Local derivatives are not causal importance; a norm stop is not a mode certificate; component posteriors are not cultivar probabilities or calibrated certainty. CC BY 4.0 data, MIT code. [Original experiment](https://github.com/midya8/mixturelab/blob/main/METHOD.md). [Open the live density inspector](https://midya8.github.io/mixturelab/) or [gradient, curvature and ascent inspector](https://midya8.github.io/mixturelab/geometry.html).
