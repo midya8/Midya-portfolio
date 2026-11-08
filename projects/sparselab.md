@@ -44,3 +44,32 @@ python examples/render_figure.py --check
 Small dense fits only: <=128 rows, <=12 columns; exact oracle <=32 rows, <=5 columns. Positive lambda, bounded finite inputs and a minimum nonzero-column norm. Output retains full history and can be larger than input. Floating-point dual/KKT checks are not outward-rounded mathematical certificates and do not give coefficient error bounds in rank-deficient problems. The exact oracle is exponential, not a large-scale solver.
 
 Standard coordinate descent/soft thresholding and warm paths follow [Friedman, Hastie and Tibshirani](https://pmc.ncbi.nlm.nih.gov/articles/PMC2929880/); standard KKT and dual geometry are covered by [Ryan Tibshirani's coordinate descent notes](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/coord-desc.pdf). Original implementation and developed mathematical controls, no new algorithm claim. No external dataset, paid API, speed superiority, cross-validation, held-out prediction result, causal feature importance or statistical/post-selection inference. MIT license.
+
+## Exact Gap Safe screening extension
+
+[Derivation and six controls](https://github.com/midya8/sparselab/blob/main/SCREENING.md) · [Full exact screening report](https://github.com/midya8/sparselab/blob/main/examples/screen-demo.json)
+
+The original float solver and controls remain unchanged. `screen(X,y,coefficients,penalty)` now audits an arbitrary supplied iterate using exact rational arithmetic over the stored binary64 inputs. It constructs an exactly feasible residual-scaled dual vector, exact primal-dual gap G and sphere radius squared `2G/N`. For feature j, a positive exact margin `lambda-|X_j^T u|` and strict inequality `||X_j||^2*R_squared < margin^2` prove coefficient j zero in every optimizer. No rounded square root, tolerance decision or coordinate dropping is used.
+
+![Exact Gap Safe certificates and limits](https://raw.githubusercontent.com/midya8/sparselab/main/assets/safe-screening.svg)
+
+| Control | Exact gap | Exact outcome |
+|---|---:|---|
+| Loose zero iterate, lambda=1/4 | 14357/8192 | No feature certified |
+| Near iterate with current beta_2=1/32 | 5/1024 | Feature 2 certified zero in every optimum; ball term 5/512 < squared margin 25/1024, slack 15/1024 |
+| Exact interior zero, lambda=1/4 | 0 | Feature 2 certified |
+| Exact boundary zero, lambda=1/8 | 0 | Feature 2 is zero, but radius=margin=0 fails the strict test |
+| Duplicate-column optimum | 0 | Neither interchangeable copy is screened; either can carry a nonzero optimum coefficient |
+| Loose iterate with a zero column | 73/32 | Zero column certified despite its nonzero current coefficient |
+
+A separate equality control has ball term=squared margin=1/4 and must remain uncertified. These cases distinguish a sufficient screening certificate from current sparsity or a complete support detector. `not_certified` never means active, useful or causally relevant. Fractions describe the exact stored binary64 values, not ideal decimal values or unknown pre-rounding data.
+
+The extension adds 14 behavior checks and 3 SVG checks, for 45 tests total. Every rational equation and exact ball is reconstructed independently; 24 additional seeded designs compare certified zeros with independent active/sign-oracle witnesses and check exact dual-optimum containment. Strict equality, boundary zeros, duplicates, general 128-row/12-column size, permutations, signs, scaling, row replication/N normalization, nonmutation/RNG and strict JSON CLI errors are checked. The new SVG checks 27 exact cells/coordinates, two squared-bound bars, full lossless report metadata and hidden-dual tampering. The six-module v0.2 wheel reproduces all four complete CLI JSON outputs outside checkout; both SVGs regenerate byte-exactly.
+
+```bash
+python -m sparselab screen-demo
+python -m sparselab screen examples/screen-input.json
+python examples/render_screening.py --check
+```
+
+Standard Gap Safe rules are due to Fercoq, Gramfort and Salmon, [Mind the duality gap: safer rules for the Lasso](https://proceedings.mlr.press/v37/fercoq15.html). This extension implements a strict rational sphere audit with explicit mean-loss normalization, not a new screening theorem, causal selector, statistical guarantee, complete zero detector or solver speedup. It does not upgrade the retained floating solver's numerical witnesses to interval certificates.
