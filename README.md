@@ -344,6 +344,8 @@ Offline contextual-bandit evaluation from scratch: IPS, self-normalized IPS, dir
 - Flags unsupported target actions rather than treating reward-model extrapolation as identified policy value. Explicit propensity/support/context and independent/cross-fitted reward-prediction assumptions; no deployment decision or confidence guarantee.
 - Dependency-free Python 3.10+, 28 tests, JSON CLI/API and offline CI on Python 3.10-3.13. Standard estimators attributed to their sources, no new theory.
 
+- v0.2 [live row ledger](https://midya8.github.io/policylens/): independent browser evaluator, all signed row contributions/cap removals, five support controls, target/reward edits and fixed-prediction deletion reports. 36 Python + four Node/Chrome tests, 95 edits, 160 Fraction and 80 integer-grid controls; original four reports unchanged. Cap paths and ESS are descriptive, not confidence, tuning or deployment advice.
+
 - Repo: [midya8/policylens](https://github.com/midya8/policylens) · Case study: [projects/policylens.md](projects/policylens.md)
 
 ### DriftLens
