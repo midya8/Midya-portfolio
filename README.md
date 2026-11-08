@@ -366,9 +366,11 @@ Split-conformal classification sets from scratch: a fixed classifier's probabili
 - On the five-class development fixture, alpha=0.1 gives empirical coverage 0.9235 at mean set size 3.017 versus argmax accuracy 0.4960 with one label. An intentionally adversarial label-shift arm drops coverage to 0.0760 at the same set size, showing why exchangeability matters, not a real-world drift rate.
 - Corrected finite-sample rank, inclusive ties, all-label boundary and empty sets are explicit. An exact leave-one-out rank audit covers 19/21 positions; tests exhaust 243 tied-score sequences at five alpha values.
 - Marginal coverage is a standard theorem under exchangeability and a predictor fixed independently of calibration. It is not coverage for every class, input, fixed split or shifted deployment.
-- Dependency-free Python 3.10+, 31 tests, CLI/API fit/predict/evaluate, per-class and size diagnostics, offline demo and Python 3.10-3.13 CI. Optional classwise thresholds with explicit rare/absent-class inclusion. Standard method attributed to Angelopoulos and Bates.
+- Dependency-free Python 3.10+, 41 Python tests plus four Node/Chrome tests, CLI/API fit/predict/evaluate, per-class and size diagnostics, offline demo and Python 3.10-3.13 CI. Optional classwise thresholds with explicit rare/absent-class inclusion. Standard method attributed to Angelopoulos and Bates.
 
 - Repo: [midya8/setguard](https://github.com/midya8/setguard) · Case study: [projects/setguard.md](projects/setguard.md)
+
+- v0.2 [live rank ledger](https://midya8.github.io/setguard/): five synthetic controls expose every threshold tie, pooled/classwise label decision and held-position rank check, with a 19-point alpha path and native-compatible JSON. Independent Python/BigInt-browser arithmetic; 95 witnesses, 41 Python/four Chrome tests and installed six-command wheel reproduction. Original three empirical arms unchanged. Rank counts are not an exchangeability test or fixed-candidate guarantee.
 
 ### CalibrLab
 
