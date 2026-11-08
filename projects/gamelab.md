@@ -32,3 +32,20 @@ The payoff-change audit retains both complete solutions, entry differences, ever
 Only 1..4 actions per side; exact bounded inputs; no runtime dependency or network call. Developed numerical fixtures are not held-out tournaments or evidence of real-agent strength. No general-sum, hidden-information, extensive-form, correlated-equilibrium, learned-opponent, payoff-estimation, scalable-solver or new-algorithm claim. Exact elimination can grow expensive with large rational components.
 
 The project implements established minimax, LP duality and polytope geometry. Six consulted sources, the full proof, schemas, orientation differences and uncertainty boundaries are recorded in the source repository's DESIGN.md. The README links the complete developed JSON audit and the reproducible figure generator.
+
+
+## Shared-table interval support extension
+
+![Shared-table interval audit](https://raw.githubusercontent.com/midya8/gamelab/refs/heads/main/assets/interval-audit.svg)
+
+A fixed policy pair faces one unknown payoff table, not two independently selected adverse tables. `interval_audit` computes the exact worst joint deviation gap over a supplied full Cartesian entrywise interval box. For every pure reply pair, it constructs the signed coefficient of every entry before maximizing, retains endpoint choices and contributions, and returns an attaining matrix with a direct best-reply audit. It also reports each player's separately maximized unilateral gain and the conservatism of their sum.
+
+In the developed shared-entry control, only A[0,0] varies in [0,2], all other entries are one and both policies choose action zero. Row worst deviation requires entry zero; column worst requires entry two. The exact shared worst gap is one, while their incompatible separate maxima sum to two. The game value stays one throughout, and the separate robust-security pair is an equilibrium for every allowed table.
+
+For a full 2x2 unit box with uniform fixed policies, shared worst gap is 1/2 versus separate worst-regret sum one. For a one-action game with sole payoff [-50,50], value-range width is 100 but every policy pair's gap is zero. Payoff uncertainty is not the same as incentive to deviate.
+
+Complete endpoint game solves certify the attainable game-value extrema v(L) and v(U). The lower-game row policy and upper-game column policy separately optimize worst security and guarantee pair gap at most v(U)-v(L); a signed audit can be tighter. This construction does not claim to minimize worst joint gap over policies. Individual unilateral deviations are not confused with individual security exploitability as the game value varies.
+
+53 tests include all 16 zero/one-width boxes on a nonconstant 2x2 base, each at nine fixed policy pairs, against independent exhaustive endpoint enumeration; every candidate support contribution/attainment; corner game values and robust security; shared-entry and singleton cancellation; affine, zero-width, rectangular and 4x4 controls; strict schemas and no mutation. Three added SVG tests bind all 29 numbers, complete metadata, hidden-coefficient tampering and exact regeneration. The original 37 tests and four original full CLI outputs remain unchanged; the six-module wheel matches all six full outputs outside checkout.
+
+The box is deterministic supplied data, not a statistical confidence region or an independence assumption. No coupled-budget/ellipsoid uncertainty, sampling coverage, payoff estimation, empirical strength or new theorem is claimed. The implementation applies established box support functions; the source INTERVALS.md gives proofs, complete schema and Li-Ding-Floudas, Gorissen-den Hertog and Bertsimas-den Hertog-Pauphilet attribution.
