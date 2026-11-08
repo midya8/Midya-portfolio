@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### PrivacyLab
+
+Exact finite-channel differential privacy with rational hockey-stick profiles and attaining-event witnesses. Independent randomized-response releases have pure factors 3 and 9; a shared-coin control has marginal factors 3 and 1 but jointly reveals the secret with delta 1. Secret-independent stochastic postprocessing, explicit adjacency/support limits, strict JSON CLI, a reproducible SVG and 29 tests. Supplied-table certificates, not trained-model privacy, secure sampling or a production accountant.
+
+- Repo: [midya8/privacylab](https://github.com/midya8/privacylab)
+- Case study: [projects/privacylab.md](projects/privacylab.md)
+
 ### SparseLab
 
 LASSO optimization audits with primal/dual/KKT witnesses, duplicate-coefficient ambiguity and exact Gap Safe zero certificates. The affine-branch extension solves rational Gram equations and every sign/inactive KKT half-line: its developed control has five exact intervals, a feature leaving at lambda = 1 and re-entering negative at 1/3. Boundary zeros are allowed; singular branches return explicit noncertificates. Strict offline JSON CLI, three reproducible SVGs, seven-module wheel parity and 62 tests. A supplied-branch verifier, not a general LARS solver, complete support recovery, causal feature selector or speedup claim.
