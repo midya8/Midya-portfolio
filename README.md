@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### DigitLab
+
+Real UCI digit training in NumPy with manual gradients and a frozen official-test audit. On 1,797 test digits, exact 1NN gets 1,760 correct, the tanh MLP 1,734 and linear softmax 1,698, all using the same 3,062 fitting examples. At normalized L-infinity radius 0.1, MLP correct counts fall to 898 under FGSM and 768 under a 20-step/three-start PGD candidate pool, versus 1,708 under one seeded random-sign control. 30 tests include 201 independent gradient probes, full refit without test-loader access, strict JSON inference and saved-report reproduction. The official train/test files retain original hashes and CC BY 4.0 attribution. Continuous input attacks, not imperceptibility, certified robustness or an adaptive 1NN ranking.
+
+- Repo: [midya8/digitlab](https://github.com/midya8/digitlab)
+- Case study: [projects/digitlab.md](projects/digitlab.md)
+
 ### ScanLab
 
 Exact state-space scans with failure controls, not a speed benchmark.
