@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### InfluenceLab
+
+Convex logistic influence functions with safeguarded Newton fits, full Hessian/Cholesky and convergence witnesses, and independently checked sample-weight derivatives. Actual finite-deletion refits show query-loss change +0.305655 versus the local prediction +0.203204 on one developed row. Separate retained-mean normalization and damped-inverse controls expose changed objectives and approximation limits. Strict JSON CLI, installed-wheel parity, a reproducible SVG and 26 tests. Small supplied-model sensitivity, not causal attribution, a deep-model benchmark or an unlearning guarantee.
+
+- Repo: [midya8/influencelab](https://github.com/midya8/influencelab)
+- Case study: [projects/influencelab.md](projects/influencelab.md)
+
 ### FisherLab
 
 Exact-rational natural-policy-gradient geometry, with singular Fisher solves, full RREF/nullspace witnesses and positive pairwise PSD certificates. Four full-tangent charts agree exactly; diagonal/identity-damped approximations and nonlinear finite steps expose the limits. The shared-context extension has positive aggregate reward derivative 1/64 but context 1 derivative -1/8, with exact projection 7/16=1/64+27/64. Independent context parameters reach both targets; uniform reweighting changes the objective, and naive joint logits can move supposedly fixed context mass. Strict offline JSON CLI, two reproducible SVGs and 45 tests. Local supplied-model audits, not an MDP trainer or optimizer-superiority benchmark.
