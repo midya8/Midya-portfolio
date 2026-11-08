@@ -14,6 +14,10 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ForestLab
+
+Manual binary CART forests with exact integer Gini split ordering, complete bootstrap-count witnesses and an editable inspector that separates full-forest votes from OOB votes. Exact-copy grouping prevents identical licensed UCI feature vectors from crossing partitions. All eight forests, four single trees and seven controls stay visible: the validation-selected forest makes 3/270 test errors, versus a stronger selected 5NN control at 0/270 and a single tree at 8/270. Twenty Python and five Node/real-Chrome tests cover 60 rational split oracles, 10,784 forest comparisons, 8,088 control scores, 6,464 OOB membership records and 992 actual browser paths. Seven-module/six-command installed reproduction. Historical numeric classification, not banknote authentication; vote fractions are not calibrated probabilities and OOB is not independent specimen validation. [Live forest and OOB inspector](https://midya8.github.io/forestlab/). [Method and limits](https://github.com/midya8/forestlab/blob/main/METHOD.md). [Case study](projects/forestlab.md).
+
 ### RatingLab
 
 Observed-only rating factorization with manual NumPy alternating ridge solves, per-block decrease accounting, normal-equation residuals and full gradients. All eleven fits remain inspectable. A separately validation-selected bias-only control slightly beats the selected factors on test RMSE (.656176 versus .656457); all eight factor fits exhaust their stationarity budget. Thirty Python and nine Node/real-Chrome tests include 60 independent exact rational ridge references, eleven fresh refits, test-label poisoning and 12,771 scalar/native predictions. The browser recomputes arbitrary indexed pairs and shared factor rotations, exposing why coordinate products are not causal preferences. Eight-module installed wheel with the original six commands and two conditional-response module commands. CC BY 4.0 historical UCI ratings, MIT code. Missing pairs are not negatives, and observed-rating RMSE is not top-N relevance, missing-pair accuracy or calibrated certainty.
