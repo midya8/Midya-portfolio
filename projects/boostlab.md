@@ -2,7 +2,7 @@
 
 [Public repository](https://github.com/midya8/boostlab)
 
-Dependency-free Python train/predict CLI and API, 29 tests, offline demo and Python 3.10-3.13 CI. Standard gradient boosting, no new theory.
+Dependency-free Python train/predict CLI and API, 36 Python tests and five Node/actual-Chrome tests, offline demo and Python 3.10-3.13 CI. Standard gradient boosting, no new theory.
 
 
 ## Model and objective
@@ -106,3 +106,14 @@ categorical encoding, weights, stochastic sampling, multiclass or histograms.
 Standard gradient boosting and Bernoulli residuals. Mean-residual leaves remain the default. Optional Bernoulli Newton ratios
 follow the guide with explicit L2 and a cap. Residual-SSE splits and fixed rate
 remain explicit simplifications, not the full source algorithms.
+
+
+## v0.2: fitted is not selected
+
+[Live training-path inspector](https://midya8.github.io/boostlab/) · [Path derivation and reproduction](https://github.com/midya8/boostlab/blob/main/PATH.md)
+
+All three original arms retain all 80 fitted trees, even when validation selects zero, 80 or 35. The page separates an inspected prefix from original selection, shows selected/last logits for the same input, and retains all 243 train/validation/report-only-test metric states on a common zero-based loss axis. Editing either coordinate clears the historical fixture label. Every tree route, included/omitted term and complete model can be inspected and exported. No fitting, selection, model API or uploads run on the page.
+
+The native path and independent browser implementation agree on 4,860 original sample/prefix states and 1,458 edited states, with 78 full route witnesses. Independent Fraction sums and recursive scalar metric calculations check all 243 metric states. Actual Chrome checks every original state, 180 UI configurations, physical keyboard input, invalid/stale witness refusal, clipboard failures/success and JSON Blobs. 320/390/1280 layouts and expanded mobile routes/JSON are tested and visually inspected. The installed wheel imports all seven modules, executes all five main commands and reproduces all three original fits, histories and witnesses outside checkout. Original 29 tests remain within 36 Python tests; five Node/Chrome tests add independent inference and UI coverage.
+
+The unchanged fitting implementation updates logits incrementally; archived prefix metrics use existing `initial + rate*math.fsum(leaves)` inference. Browser compensation agrees within checked numerical tolerances, not bitwise or exact-real guarantees. Near-zero threshold labels can depend on rounding. Algebraic tree terms are neither feature attribution nor causal explanations. Sigmoid is not calibrated confidence. Same round budget is not equal capacity, Newton also changes regularization/capping, and the development fixture was inspected. No external benchmark, new performance result or general estimator ranking follows.
