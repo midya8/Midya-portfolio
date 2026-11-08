@@ -16,16 +16,18 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### ScanLab
 
-Exact rational state-space mechanics: work-efficient affine prefix scans,
-fixed LTI convolution, floating cancellation controls and input-gated reverse
-gradients. v0.2 adds shifted-decay reverse scans, JVP/VJP transposition and
-squared-loss Hessian-vector products with all five scan DAGs. The transpose
-identity is -817/120 on both sides; a wrong-index control has gap -259/36.
-Independent bivariate polynomials check 432 gradient/HVP coordinates across
-36 models, with 24 full directional checks, 24 Hessian symmetry checks and
-51 path-product adjoint models. 46 tests, two reproducible full-witness SVGs,
-four-command/eight-module wheel parity and five CI jobs. Serial Python,
-not a general AD engine, new scan algorithm, trained Mamba/S4 or GPU benchmark.
+Exact state-space scans with failure controls, not a speed benchmark.
+v0.3 adds coupled full-matrix transitions, noncommuting order witnesses,
+transposed reverse adjoints and every matrix/write/initial-state JVP/VJP.
+The transpose identity is -440563/15120; a missing-transpose control gives gap
+7831/2520. Reversing only matrix-product order changes the final state, while
+both mistakes are invisible on diagonal restrictions. Six two-state steps use
+108 multiplications/80 additions versus sequential 24/24, despite unit-pair
+span 4 versus 6. 63 tests include 96 homogeneous-product shapes, 672 independent
+polynomial VJP coordinates, 51 instrumented arithmetic cases and all preserved
+diagonal/HVP/gated controls. Three full-witness SVGs, six-command/nine-module
+wheel parity and five CI jobs. Serial Python, not a general AD engine,
+dense HVP, trained Mamba/S4, new algorithm or GPU-throughput claim.
 
 - Repo: [midya8/scanlab](https://github.com/midya8/scanlab)
 - Case study: [projects/scanlab.md](projects/scanlab.md)
