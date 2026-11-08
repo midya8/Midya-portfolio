@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### BellmanLab
+
+Exact rational finite-MDP planning with policy evaluation, greedy improvement, synchronous value iteration and full certificates. A supplied one-state model has Bellman residual 1/100 but actual value error 1: gating the raw residual against a 1/10 value tolerance passes the wrong test. The contraction-based bound rejects it, then passes after 230 sweeps. A separate delayed-return control improves exact start value from 1 to 9/5. 34 tests include 972 independently evaluated deterministic policies, optimal-policy envelopes, every returned value-error bound and SVG geometry. Strict rational JSON, tie/cap semantics, full histories and an isolated-wheel demo. Complete supplied discounted models only, not learned transitions, online RL, statistical confidence or a greedy-policy-loss guarantee.
+
+- Repo: [midya8/bellmanlab](https://github.com/midya8/bellmanlab) · Case study: [projects/bellmanlab.md](projects/bellmanlab.md)
+
 ### VariLab
 
 Mean-field inference and exact graph inference from scratch, with inspectable certificates rather than optimizer success claims. A supplied two-mode Ising target improves ELBO from 1.386294 to 3.005027 while maximum mean error worsens from 0 to 0.994902. Exact-rational Hessian congruence and signed witnesses distinguish saddles, singular boundaries and adjacent binary-float inputs without a tolerance. Evidence-aware forest sum-product and rational MAP add full message traces, exact tie counts and compatible joint decisions. Bounded cyclic elimination adds symbolic resource preflight, conditional query tables and rational MAP traceback: a 63-spin odd ring has exact score 61 and 126 optima; independent locally optimal spins can still form a wrong joint answer. A refused star order is contrasted with an accepted order on the same graph. 183 tests and six reproducible SVGs cover independent exhaustive oracles, full intermediate factors, score/count certificates and both passing and failing gates. Dependency-free Python, strict JSON CLI and an isolated-wheel demo. Supplied models only; float sum-product is separate from binary-rational scores. No learned posterior, calibrated uncertainty, causal, optimal-treewidth or runtime claim.
