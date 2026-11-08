@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### FisherLab
 
-Exact-rational natural-policy-gradient geometry, with singular Fisher solves, full RREF/nullspace witnesses and a weighted-pair PSD certificate. Four full-tangent charts agree exactly in probability space; diagonal approximations and coordinate damping do not. A restricted chart exposes the reachable-space projection, while a nonlinear coordinate control keeps identical initial tangents but changes the finite Euler logit by 19/216. Strict offline JSON CLI, reproducible audit SVG and 28 tests. Standard natural-gradient ideas, not an MDP trainer or optimizer-superiority benchmark.
+Exact-rational natural-policy-gradient geometry, with singular Fisher solves, full RREF/nullspace witnesses and positive pairwise PSD certificates. Four full-tangent charts agree exactly; diagonal/identity-damped approximations and nonlinear finite steps expose the limits. The shared-context extension has positive aggregate reward derivative 1/64 but context 1 derivative -1/8, with exact projection 7/16=1/64+27/64. Independent context parameters reach both targets; uniform reweighting changes the objective, and naive joint logits can move supposedly fixed context mass. Strict offline JSON CLI, two reproducible SVGs and 45 tests. Local supplied-model audits, not an MDP trainer or optimizer-superiority benchmark.
 
 - Repo: [midya8/fisherlab](https://github.com/midya8/fisherlab)
 - Case study: [projects/fisherlab.md](projects/fisherlab.md)
