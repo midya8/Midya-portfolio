@@ -1,6 +1,8 @@
 # RatingLab
 
-Observed-only rating factorization with manual NumPy alternating ridge solves, per-block decrease accounting, normal-equation residuals and full gradients. All eleven fits remain inspectable. A separately validation-selected bias-only control slightly beats the selected factors on test RMSE (.656176 versus .656457); all eight factor fits exhaust their stationarity budget. Twenty-three Python and five Node/real-Chrome tests include 60 independent exact rational ridge references, eleven fresh refits, test-label poisoning and 12,771 scalar/native predictions. The browser recomputes arbitrary indexed pairs and shared factor rotations, exposing why coordinate products are not causal preferences. Seven-module/six-command installed wheel. CC BY 4.0 historical UCI ratings, MIT code. Missing pairs are not negatives, and observed-rating RMSE is not top-N relevance, missing-pair accuracy or calibrated certainty.
+Observed-only rating factorization with manual NumPy alternating ridge solves, per-block decrease accounting, normal-equation residuals and full gradients. All eleven fits remain inspectable. A separately validation-selected bias-only control slightly beats the selected factors on test RMSE (.656176 versus .656457); all eight factor fits exhaust their stationarity budget. Thirty Python and nine Node/real-Chrome tests include 60 independent exact rational ridge references, eleven fresh refits, test-label poisoning and 12,771 scalar/native predictions. The browser recomputes arbitrary indexed pairs and shared factor rotations, exposing why coordinate products are not causal preferences. Eight-module installed wheel with the original six commands and two conditional-response module commands. CC BY 4.0 historical UCI ratings, MIT code. Missing pairs are not negatives, and observed-rating RMSE is not top-N relevance, missing-pair accuracy or calibrated certainty.
+
+The v0.2 conditional-response extension separates saved scores, a freshly re-solved unmodified ridge block and its finite rating edit or row deletion. It exposes leverage, the positive deletion denominator, query derivatives and all-opposite-index response curves. Sixty additional exact rational design systems, 2,784 direct deleted-block refits and 576 native/scalar-JavaScript witnesses check the formulas. Original factors and scores are unchanged. The mean and opposite factors remain frozen and retain information from the row: this is not full-model leave-one-out validation, causal influence, data unlearning or an uncertainty bound. [Conditional edit/deletion inspector](https://midya8.github.io/ratinglab/influence.html). [Derivation and limits](https://github.com/midya8/ratinglab/blob/main/INFLUENCE.md).
 
 ## Why this project exists
 
@@ -26,3 +28,10 @@ The installed wheel reproduces all seven package modules, six commands, eleven f
 - [Live inspector](https://midya8.github.io/ratinglab/)
 - [Objective, equations, protocol and limits](https://github.com/midya8/ratinglab/blob/main/METHOD.md)
 - [Original UCI dataset](https://archive.ics.uci.edu/dataset/232/restaurant+consumer+data)
+
+
+## Finite response with an explicit frozen boundary
+
+The two conditional normal systems remain positive definite with λ > 0, including deletion of a block's sole observation. A target edit has exactly linear finite response within this quadratic problem. Sherman-Morrison gives a deletion update scaled by the original conditional residual and 1 − h. A bound 1 − h ≥ λ/(λ + ‖a‖²) follows from the deleted system's ridge floor. Numerical real-data readouts are not rational or interval certificates.
+
+The saved user block may no longer be its conditional minimizer after the final item pass. That movement is reported separately before any edit. The inspector's three displayed scores prevent a changed conditioning baseline from being mislabeled as an observation's effect. A deleted-row residual is algebra, not a valid full-model cross-validation estimate: original opposite factors and training mean still encode the row. No original model, metric, split, source row or original figure is modified.
