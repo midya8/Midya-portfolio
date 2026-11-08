@@ -46,7 +46,7 @@ python -m unittest discover -s tests -v
 node --test tests/*.cjs
 ```
 
-Ten modules and eight commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
+Eleven modules and nine commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
 
 ## v0.2: condition on a hypothetical label event
 
@@ -69,3 +69,13 @@ The event inspector now samples complete paths by a backward conditional recursi
 The combined suites pass 37 Python and 16 Node/real-Chrome tests. New checks include 428 exhaustive Fraction path-product witnesses, sixty independent BigInt fixtures, 2,304 Python/JavaScript full traces and 384 browser queries, for 5,031 UI states/queries overall. Ten modules and eight commands work from the installed wheel.
 
 Fixed fitted scores and original metrics are unchanged. This is an established sampling method, not a new algorithm, retraining, parameter uncertainty or accuracy improvement. The portable xorshift32 mid-bin stream is deterministic, not cryptographic or certified independent entropy. Underflow and collapsed CDF bins remain visible; PRNG lattice frequencies need not equal continuous-uniform probabilities.
+
+## v0.4: a count is not an expectation
+
+The [count inspector](https://midya8.github.io/taglab/counts.html) conditions on exactly r occurrences of a chosen label. Unlike Cartesian position subsets, this is a nonlocal event: locations must agree on the total. An augmented (count, label) forward/suffix recursion exposes the full original count distribution and reconstructs conditional node/pair probabilities, entropy, a complete best path and all 39 event derivatives. Counts refer to positions, not runs or segments.
+
+An independent fair two-position control conditioned on exactly one A permits only AB and BA, each with mass 1/2. Node marginals remain halves, but independent draws from them leave the event half the time. The inspector separately computes this independent-node Poisson-binomial count law. Conditioning can create dependence without transition scores, and a correct expected count does not guarantee a valid complete path.
+
+Totals are now 43 Python and 20 Node/Chrome tests. Each of independent Fraction and BigInt path enumerators tests 600 events across sixty fixtures, all labels and counts. New checks include all 39 finite-difference event derivatives, 864 cross-language numerical witnesses and 864 browser queries. The inspectors total 5,895 UI states/queries. Eleven installed modules and nine commands reproduce six fresh fits, 327 audits and four exact archive exports.
+
+This is established state augmentation, not a new algorithm, training, causal intervention or accuracy gain. The quadratic count-state computation has a 64-position limit. Numerical near-ties may yield different Python/JavaScript path representatives; constraints and attained scores are checked separately from identity. Probability underflow is distinguished from finite log probability. Original fitted scores, held-out metrics and exhausted budgets are unchanged.
