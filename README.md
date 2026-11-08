@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### Correlab
+
+Exact-rational joint-play obedience audits for small general-sum multi-agent games. Coarse fixed-action, pairwise internal, full-swap and conditional gains retain all terms and attaining deviations. The attributed CCE-not-CE control has coarse epsilon 0 but swap 11/30 and conditional 11/10; developed controls expose lost correlation, rare signals and swap aggregation. Finite realized-history certificates, reproducible SVG, six-module wheel parity and 33 tests. Supplied laws only, not an equilibrium solver, learner, convergence/statistical guarantee, real-agent benchmark or safety certification.
+
+- Repo: [midya8/correlab](https://github.com/midya8/correlab)
+- Case study: [projects/correlab.md](projects/correlab.md)
+
 ### GameLab
 
 Exact-rational zero-sum game audits with complete optimal faces, minimax witnesses and deterministic perturbation certificates. The interval extension computes fixed-policy worst joint gap using one shared payoff table: its developed control gives gap 1, not the incompatible separate worst-regret sum 2. Signed support witnesses, attainable value extrema and separate robust-security policies stay visible. Strict offline JSON CLI, two reproducible SVGs, six-module wheel parity and 53 tests. Small supplied boxes, not statistical coverage, coupled uncertainty, worst-gap policy optimization, real-agent strength or a scalable/new solver.
