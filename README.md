@@ -16,9 +16,9 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### MarginLab
 
-Manual linear/RBF soft-margin SVM learning on licensed public UCI data: bounded dual-pair updates, complete pair replay, numerical KKT/gap/feasibility witnesses and independent exact-rational active-face oracles. The editable browser recomputes all 30-feature scores and signed algebraic terms, with an honest two-feature decision slice. Twenty Python and five Node/real-Chrome tests cover 60 tiny exact optima, 4,552 score comparisons, eight fresh fits and real keyboard/copy/download/mobile behavior. Validation chooses 112/115 test correct versus full-30D 1NN 111/115; two unselected RBF fits get 113/115. Seven-module/five-command installed wheel reproduces all fits and audits. Educational historical data, not clinical validation, calibrated certainty or causal importance.
+Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable 30-feature scores. Version 0.2 repairs the saved binary64 dual equality before proving exact rational weak-duality bounds for all four represented linear training problems. Independent Fraction and BigInt readers recompute every constraint and objective; source matching is separate from proof validity. Twenty-nine Python and nine Node/real-Chrome tests cover 120 tiny exact optima, 4,552 inference comparisons, four full proofs, keyboard/copy/download/mobile behavior and eight fresh fits. Nine-module/seven-command installed wheel. Original models, holdout scores and split are unchanged. Educational historical UCI data, not clinical validation, calibrated certainty, generalization bounds or source authentication.
 
-[Source](https://github.com/midya8/marginlab) · [Live inspector](https://midya8.github.io/marginlab/) · [Case study](projects/marginlab.md)
+[Source](https://github.com/midya8/marginlab) · [Live inspector](https://midya8.github.io/marginlab/) · [Exact linear proofs](https://midya8.github.io/marginlab/certificate.html) · [Case study](projects/marginlab.md)
 
 ### MixtureLab
 
