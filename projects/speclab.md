@@ -4,7 +4,7 @@ Speculative decoding built from scratch in pure Python: output verified identica
 
 ## v0.2: exact stochastic probability laws
 
-![Exact finite sampling audit](https://raw.githubusercontent.com/midya8/speclab/refs/heads/main/assets/stochastic-audit.svg)
+![Exact finite sampling audit](https://raw.githubusercontent.com/midya8/speclab/main/assets/stochastic-audit.svg)
 
 A new independent finite-table engine samples draft tokens, accepts with
 `min(1,p/q)`, and replaces the first rejected token with the normalized positive
