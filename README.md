@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### SparseLab
+
+LASSO coordinate descent with full primal/dual/KKT witnesses and an independent exact-rational active/sign oracle. Duplicate features produce different sparse supports under forward/reverse sweeps but identical predictions and objective 5/8; their dense midpoint is equally optimal. Orthogonal path controls match closed forms, and a one-sweep correlated fit exposes gap 0.330882 before converging at 18 sweeps to exact optimum 19/68. Strict offline JSON CLI, reproducible report SVG, five-module wheel parity and 28 tests. Small supplied-model optimization audits, not causal feature selection, statistical inference or interval-certified floating arithmetic.
+
+- Repo: [midya8/sparselab](https://github.com/midya8/sparselab)
+- Case study: [projects/sparselab.md](projects/sparselab.md)
+
 ### InfluenceLab
 
 Convex logistic influence functions with converged Newton fits and full Hessian/solve witnesses. The deletion-path extension refits continuously along selected weight changes, then checks integrated local derivatives against actual endpoint loss. Deleting all seven developed rows reverses the frozen first-order sign (-0.004253 vs +0.079105); group deletion is not a sum of separate refits. Simpson16 residuals stay visible, including +0.000744 on that all-row path. Strict JSON CLI, two reproducible SVGs, five-module wheel parity and 43 tests. Small numerical reference, not causal attribution, certified quadrature or machine unlearning.
