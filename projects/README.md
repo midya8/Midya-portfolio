@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| BeliefLab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Two-hidden-state finite-horizon POMDP policy envelopes, rational all-belief pruning, observation-contingent trees and explicit value-of-information controls | [Case study](belieflab.md) |
 | BellmanLab | Python, standard library only; exact rational JSON CLI and reproducible SVG | Exact discounted nominal/rectangular robust planning, nested controller/adversary policy iteration, full Q/tie/witness histories, residual certificates and independent inner/outer cap controls | [Case study](bellmanlab.md) |
 | VariLab | Python, standard library only; strict JSON CLI, reproducible SVG | Mean-field coordinate ascent with complete tiny-model references, independent ELBO/KL audits, exact-rational curvature certificates, evidence-aware forest sum-product, exact rational joint MAP/count/traceback, bounded cyclic sum-product and rational MAP/count/traceback with symbolic budget preflight and explicit inference counterexamples | [Case study](varilab.md) |
 | RobustLab | Python, standard library only; strict JSON CLI, three reproducible SVGs | Exact binary linear norm-ball margins, attainable attacks, audited robust logistic training and an explicit clean/robust trade-off, plus rational boundary and box-intersection certificates | [Case study](robustlab.md) |
