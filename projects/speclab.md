@@ -2,6 +2,35 @@
 
 Speculative decoding built from scratch in pure Python: output verified identical to target-only decoding on the tested configurations, with verification rounds counted exactly.
 
+## v0.3: exact oracle lookahead planning
+
+![Exact oracle policy and baseline costs](https://raw.githubusercontent.com/midya8/speclab/main/assets/lookahead-policy.svg)
+
+The planner chooses a block length from each emitted prefix **before drafting**,
+using fully known finite target/draft tables. It retains every Bellman action's
+immediate/future costs, transitions and nonnegative slack, then separately
+composes complete policy sequence/count laws. No-draft action 0 and every fixed
+gamma 1..3 are full-strength baselines. Ties select the smallest action.
+
+On the switching four-token fixture, optimal assigned cost is `23/10` versus
+best fixed `47/20`, an exact gain of `1/20` hypothetical units. Charging target
+positions instead of verification rounds selects no drafting everywhere. The
+full target law remains AAAA/BBBB with mass 1/2 each; only empty, BB and BBB are
+reached as policy round starts. Unreachable prefix values remain inspectable,
+not charged as executed work. Planning and policy-lookup overhead are unpriced.
+
+47 tests include all 12 tiny prefix policies on 25 model pairs under three
+objectives, 72 prefix-dependent full joint-law comparisons, and 36
+size/horizon/gamma-limit cases. The 115-cell SVG embeds the complete report;
+CI checks seven modes from a 12-module installed wheel outside checkout and
+preserves the original greedy and v0.2 stochastic demos.
+
+[State/action contract, Bellman proof and related work](https://github.com/midya8/speclab/blob/main/LOOKAHEAD.md).
+This oracle is not an online confidence/entropy stopping rule, a trained
+acceptance head, a measured latency predictor or a new adaptive-decoding
+algorithm. The comparison is descriptive under declared costs, not a real-model
+throughput result or causal component isolation.
+
 ## v0.2: exact stochastic probability laws
 
 ![Exact finite sampling audit](https://raw.githubusercontent.com/midya8/speclab/main/assets/stochastic-audit.svg)
