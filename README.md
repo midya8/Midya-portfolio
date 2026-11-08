@@ -400,14 +400,13 @@ Knowledge distillation built from scratch in pure Python: a teacher trained on a
 
 ### MoeLab
 
-Mixture-of-experts built from scratch in pure Python: a Switch-style sparse router over linear experts, trained on a regime-switching fixture and measured against a same-budget dense MLP baseline, with gradients derived by hand and finite-difference verified in the suite.
+Mixture-of-experts from scratch, now with an [interactive route-boundary inspector](https://midya8.github.io/moelab/). Independent Python Fraction and browser BigInt arithmetic find exact affine cells and point ties, with retained-probability outputs, one-sided limits, jumps, zero-jump transitions, triple-tie point values and fixed-branch derivatives. Actual rounded inference remains separate from mathematical geometry.
 
-- **The mixture wins on structure, not size** - 0.0303 vs 0.1853 test MSE against a dense MLP with slightly more parameters (136 vs 145) on the checked-in fixture - a measured trained-baseline comparison, with CI regression gates on the mixture's own fit rather than on the baseline staying weak.
-- **Routing measured, not assumed** - worst-regime routing purity 1.0000 (every regime routes to exactly one expert on the test set), expert usage shares reported, and the soft-vs-sparse gap pinned: soft evaluation costs 0.6291 vs 0.0303 because the objective is sparse and averaging specialized experts hurts.
-- **Honest aux-loss note** - on this symmetric fixture the load-balancing term is not load-bearing (max share 0.25 with and without it, and dropping it fits slightly better at 0.0010); the README says so instead of selling the auxiliary loss.
-- Dependency-free Python 3.10+, 9 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+- Original aux/no-aux training, initialization, dense baseline and all 340 data rows retained. Measured aux MSE 0.0303 vs dense 0.1853 (136 vs 145 parameters), purity 1.0000 and equal usage shares are descriptive fixture results, not causal/generalization claims. Soft MSE remains 0.6291. No-aux MSE is 0.0014970307791088836 (0.0015), correcting stale 0.0010 prose without retraining changes.
+- Three balance conventions are reported separately. Uniform ties give penalty one yet send every row to expert 0. Eight arithmetic controls and strict JSON exports expose limits instead of treating a low penalty as a traffic guarantee.
+- 39 Python tests and five substantive Node/actual-Chrome tests, 32 full witnesses, 80 integer geometries, 160 independent Decimal controls and installed-wheel reproduction. Full retraining uses documented 1e-11 runtime/libm tolerance; frozen rational geometry is checked exactly. No transformer, token capacity, measured serving speed or robustness certificate.
 
-- Repo: [midya8/moelab](https://github.com/midya8/moelab) · Case study: [projects/moelab.md](projects/moelab.md)
+[Source](https://github.com/midya8/moelab) · [Case study](projects/moelab.md)
 
 ### AlignLab
 
