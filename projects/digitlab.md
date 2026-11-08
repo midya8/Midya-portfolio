@@ -4,6 +4,29 @@ Real UCI digit training in NumPy with manual gradients and a frozen official-tes
 
 ![Frozen official-test audit and selected digit adaptations](https://raw.githubusercontent.com/midya8/digitlab/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
 
+## v0.4: inspect the trained models, with no prediction server
+
+A [live model inspector](https://midya8.github.io/digitlab/) runs manual JavaScript inference and input gradients for the unchanged, from-scratch UCI digit models. Paint with mouse/touch/keyboard, inspect all ten scores and compute clipped FGSM without an upload or prediction service. Editing clears the attack label. 64 Python tests and four Node/real-Chrome tests include 52 independent NumPy reference cases and mobile/keyboard/touch checks. The stronger same-fit 1NN clean result stays visible. Separate exact linear box/radius proofs retain all 1,797 official rows and boundary-attainment distinctions; they do not certify this floating demo or the nonlinear MLP. Original data/models/reports and CC BY 4.0 attribution are preserved.
+
+[Open the live demo](https://midya8.github.io/digitlab/), or clone the repository
+and open `docs/index.html` with no runtime install. Ten first-per-label official
+examples are explicitly not representative. The page makes no accuracy promise
+for edited drawings. Softmax scores are not calibrated confidence. FGSM keeps
+its result separate from the original grid, requires an explicit loss label
+after an edit, and does not certify human-label preservation or imperceptibility.
+The exact rational proofs below are not executed by the page.
+
+Model/sample exports remain byte-exact. Floating NumPy reference regeneration
+uses explicit finite absolute tolerances, with roundoff acceptance and material
+corruption/nonfinite/discrete-change rejection controls. CI installs stable
+Chrome for Testing explicitly instead of assuming a runner's preinstalled
+browser works. A real browser checks 320/390/1280px layout, keyboard painting,
+touch dragging, both models, attack bounds, clear and restore.
+
+Ordinary static-host requests contact GitHub Pages, which logs IP addresses for
+security; prediction/input data is not uploaded. Use the local files to avoid
+host contact. [Browser protocol and privacy](https://github.com/midya8/digitlab/blob/main/WEB.md).
+
 ## v0.3: exact radius infima and boundary attainment
 
 Real UCI digit training in NumPy with a stronger same-fit 1NN baseline and frozen official-test models. Exact linear audits retain all 64,692 box margins. v0.3 solves all 1,797 clipped adversarial-radius infima: 99 clean errors, 796 positive attained thresholds and 902 positive unattained infima. Lowest-index ties determine whether the boundary itself is an error; all 7,188 old box decisions agree. 59 tests include 201 gradient probes, two independent 144-case vertex references, 160 Fraction row references, 100 official-boundary checks and three full-report figures. Nine-module/eight-CLI wheel reproduction. Original datasets, models and old reports preserved, with CC BY 4.0 data attribution. Exact real affine proofs, not all floating executions, nonlinear MLP verification, imperceptibility or adaptive 1NN ranking.
