@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### GameLab
 
-Exact-rational zero-sum score-table audits with complete active-basis traces, primal/dual minimax witnesses and full optimal strategy faces. A duplicate-action control has a continuum of equilibria, and a 10^-12 entry change flips a unique optimal action without changing game value. Exact best replies, sum exploitability and deterministic perturbation bounds. Strict offline JSON CLI, reproducible SVG, five-module wheel parity and 37 tests. Small supplied tables, not general-sum games, learned-agent strength, empirical uncertainty or a scalable/new solver.
+Exact-rational zero-sum game audits with complete optimal faces, minimax witnesses and deterministic perturbation certificates. The interval extension computes fixed-policy worst joint gap using one shared payoff table: its developed control gives gap 1, not the incompatible separate worst-regret sum 2. Signed support witnesses, attainable value extrema and separate robust-security policies stay visible. Strict offline JSON CLI, two reproducible SVGs, six-module wheel parity and 53 tests. Small supplied boxes, not statistical coverage, coupled uncertainty, worst-gap policy optimization, real-agent strength or a scalable/new solver.
 
 - Repo: [midya8/gamelab](https://github.com/midya8/gamelab)
 - Case study: [projects/gamelab.md](projects/gamelab.md)
