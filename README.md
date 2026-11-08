@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### BetLab
+
+Exact-rational sequential evidence for bounded paired model scores. Fixed-mixture and past-only betting retain every wealth update, threshold crossing and anytime p-value bound. A complete eight-round fair-null audit gives crossing probabilities 5/64 and 9/128 at alpha 1/4, while an explicitly invalid free-refill control crosses with probability 201/256 and exposes negative conditional slack. Strict offline JSON CLI, reproducible SVG, five-module installed-wheel parity and 34 tests. One prespecified conditional-mean test per reported process, not model-selection correction, effect estimation or a production monitoring guarantee.
+
+- Repo: [midya8/betlab](https://github.com/midya8/betlab)
+- Case study: [projects/betlab.md](projects/betlab.md)
+
 ### PrivacyLab
 
 Exact finite-channel differential privacy with rational hockey-stick events, adaptive transcript laws and clipped-mass certificates. The factor-frontier extension computes every affine piece of the worst-neighbor profile, including a developed switch at 5/4 absent from the likelihood-ratio grid. Exact inverse delta budgets retain minimality witnesses or singular-support obstructions, and distinguish huge finite factors from impossible targets. Three reproducible SVGs, strict offline JSON CLI, seven-module wheel parity and 63 tests. Small supplied-law certificates, not trained-model privacy, secure sampling or a production accountant.
