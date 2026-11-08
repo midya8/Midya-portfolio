@@ -25,7 +25,7 @@ Careful seeding has slightly lower raw fitting inertia (9682.7571 vs 9683.1241),
 
 ## Evidence, not a screenshot alone
 
-28 Python tests and four Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
+28 Python tests and six Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
 
 The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all eight modules and exercises all four CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
 
