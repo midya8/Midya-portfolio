@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| BetLab | Python, standard library only; exact rational JSON CLI and two reproducible SVGs | Sequential score betting, finite-null optional-stopping audits and prespecified start allocations with full future-reserve/ruin accounting | [Case study](betlab.md) |
+| BetLab | Python, standard library only; exact rational JSON CLI and three reproducible SVGs | Sequential betting, finite-null/optional-stopping audits, budgeted start schedules and certified confidence-sequence inversion with exact coverage controls | [Case study](betlab.md) |
 | PrivacyLab | Python, standard library only; exact rational API, JSON CLI and three reproducible SVGs | Hockey-stick events, adaptive transcripts, clipped mass, full finite-table factor frontiers and inverse budgets with interval/minimality witnesses | [Case study](privacylab.md) |
 | SparseLab | Python, standard library only; LASSO fits, exact rational CLI and three reproducible SVGs | Primal/dual/KKT, coefficient ambiguity, Gap Safe certificates and affine regularization branches with exact drop/re-entry knots and singular/boundary controls | [Case study](sparselab.md) |
 | InfluenceLab | Python, standard library only; convex fits, strict JSON CLI and two reproducible SVGs | Local weight derivatives, actual finite deletion, group paths with implicit solves and quadrature/endpoint witnesses, normalization and damping controls | [Case study](influencelab.md) |
