@@ -20,6 +20,12 @@ The independent assignment audit solves 220 rounded-cost matching problems with 
 
 This adds no new fits, test-score tuning, sampling-stability estimate or correct-k claim. Equal-weight center matching ignores populations. Exactness covers saved binary64 cost matrices, not ideal real-number distances or the global k-means optimum. The two browser tests cover the original 80 pairs/640 pixels plus the new all-40-model view, 800 numerical reference pairs, 400 directed controls and 1,280 two-atlas pixels.
 
+## v0.3: uniqueness needs its own proof
+
+The v0.3 ambiguity audit adds 2,200 exact selected-edge exclusion witnesses, best-distinct permutations and optimal-matching counts. Independent full-cost dynamic programs check all 220 gaps and counts; browser BigInt verifies all 4,000 oriented exclusions. The matching is unique in every saved real matrix, while tied and unused-tight-edge controls expose why an optimum alone proves neither uniqueness nor a large margin. A strict sufficient cost-entry perturbation bound is not a sharp radius, pixel robustness or statistical uncertainty. All original fits, scores and earlier matching witnesses remain unchanged. [Uniqueness and gap proof](https://github.com/midya8/clusterlab/blob/main/AMBIGUITY.md).
+
+The live inspector now shows exact optimal-permutation counts, the cheapest distinct permutation, every selected-edge exclusion and a smallest-gap control. All ten exclusion certificates together cover every possible replacement, without adding their overlapping solution counts. The strict entrywise-cost radius is conservative and geometry-specific, not a bound on digit pixels.
+
 ## What the holdout says
 
 | Fixed arm | Adjusted Rand | Arithmetic NMI | Silhouette (own geometry) |
@@ -33,9 +39,9 @@ Careful seeding has slightly lower raw fitting inertia (9682.7571 vs 9683.1241),
 
 ## Evidence, not a screenshot alone
 
-38 Python tests and ten Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
+48 Python tests and thirteen Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
 
-The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all nine modules and exercises all five CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
+The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all ten modules and exercises all six CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
 
 ## A deliberate failure case
 
