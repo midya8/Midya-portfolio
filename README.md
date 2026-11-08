@@ -16,8 +16,9 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### DigitLab
 
-Real UCI digit training in NumPy with a stronger same-fit 1NN baseline and frozen official-test models. Exact linear audits retain all 64,692 box margins. v0.3 solves all 1,797 clipped adversarial-radius infima: 99 clean errors, 796 positive attained thresholds and 902 positive unattained infima. Lowest-index ties determine whether the boundary itself is an error; all 7,188 old box decisions agree. 59 tests include 201 gradient probes, two independent 144-case vertex references, 160 Fraction row references, 100 official-boundary checks and three full-report figures. Nine-module/eight-CLI wheel reproduction. Original datasets, models and old reports preserved, with CC BY 4.0 data attribution. Exact real affine proofs, not all floating executions, nonlinear MLP verification, imperceptibility or adaptive 1NN ranking.
+A [live model inspector](https://midya8.github.io/digitlab/) runs manual JavaScript inference and input gradients for the unchanged, from-scratch UCI digit models. Paint with mouse/touch/keyboard, inspect all ten scores and compute clipped FGSM without an upload or prediction service. Editing clears the attack label. 64 Python tests and four Node/real-Chrome tests include 52 independent NumPy reference cases and mobile/keyboard/touch checks. The stronger same-fit 1NN clean result stays visible. Separate exact linear box/radius proofs retain all 1,797 official rows and boundary-attainment distinctions; they do not certify this floating demo or the nonlinear MLP. Original data/models/reports and CC BY 4.0 attribution are preserved.
 
+- Live demo: [model inspector](https://midya8.github.io/digitlab/)
 - Repo: [midya8/digitlab](https://github.com/midya8/digitlab)
 - Case study: [projects/digitlab.md](projects/digitlab.md)
 
