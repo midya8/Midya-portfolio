@@ -4,7 +4,7 @@ Exact stationary policy sensitivities, independently checked against directed sp
 
 - Repository: [midya8/ergodlab](https://github.com/midya8/ergodlab)
 - Runtime: Python 3.10+, standard library only
-- Verification: 26 tests; reproducible SVG; exact four-module wheel demo outside checkout
+- Verification: 39 tests; reproducible SVG; exact six-module wheel demos outside checkout
 
 ![Exact stationary reward audit](https://github.com/midya8/ergodlab/raw/main/assets/stationary-audit.svg)
 
@@ -32,9 +32,21 @@ For every positive state/action/next-state edge, the report returns the centered
 
 ## Independent checks
 
-26 tests cover 25 analytic two-state transition settings, 16 exact policy-weight gradient settings, nine multi-state/two-coordinate determinant and finite-difference references, and explicit path enumerations through four steps for all three fixtures. Additional checks cover the alternating chain through length 32, period-three chains, IID action rewards, zero-asymptotic-variance telescoping edge rewards, feature/reward/state/action transformations, five-state complete-graph tree counts, reducible refusal, strict CLI/schema/file bounds, input/output/RNG isolation and every SVG point/limit geometry.
+39 tests cover 25 analytic two-state transition settings, 16 exact policy-weight gradient settings, nine multi-state/two-coordinate determinant and finite-difference references, and explicit path enumerations through four steps for all three fixtures. Additional checks cover the alternating chain through length 32, period-three chains, IID action rewards, zero-asymptotic-variance telescoping edge rewards, feature/reward/state/action transformations, five-state complete-graph tree counts, reducible refusal, strict CLI/schema/file bounds, input/output/RNG isolation and every SVG point/limit geometry.
 
 Input is a versioned JSON model with 1..5 states, 1..4 actions and 1..3 shared coordinates. Rational probabilities/rewards are bounded, transition rows sum exactly to one, and duplicate keys/booleans/floats/malformed shapes are rejected. The independent tree reference checks at most 1,280 parent assignments. The wheel and SVG need no external runtime dependency.
+
+## Discounted proxy versus true objective
+
+The optional `audit_discounted` API and `discount` CLI compute exact centered resolvents, their parameter derivatives and every residual. The report distinguishes a stationary average-reward gradient proxy from the true gradient of `(1-beta) E_start[sum beta^t R_t]`, with the starting state fixed. Discounted occupancy, proxy bias and the antisymmetric derivative matrix are returned. The latter is curl, not a full Jacobian.
+
+![Discounted proxy curl audit](https://github.com/midya8/ergodlab/raw/main/assets/discount-audit.svg)
+
+A separate two-coordinate fixture has controlled switch probabilities `1/2,1/4`, derivatives `1/8,1/16`, and average-reward gradient `[1/18,-1/18]`. At beta `1/2`, the proxy is `[1/21,-1/21]`, while the true fixed-start objective is `2/7` with gradient `[5/98,-1/98]`. The proxy's exact curl entry is `-1/147`, ruling out a local scalar potential. Zero curl alone is not a sufficient global-potential test.
+
+At beta `1`, the audit solves the centered Poisson limit instead of inverting the singular discounted matrix. It recovers the true average-reward gradient and zero curl, including periodic chains. Beta input is at most eight distinct rational pairs through denominator 10,000. No monotone-bias or sampled-estimator claim is made.
+
+Ten new tests check an exact 16-weight/four-beta proxy/curl grid, independent Cramer/determinant finite differences across three models, all seven starting-state choices and four betas, true fixed-start gradients, near-one/zero/one/periodic/IID cases, transformations, all residuals and strict CLI/isolation. Three new figure tests check every exact table cell and its position, full metadata and tamper rejection. The six-module v0.2 wheel reproduces the complete discount demo outside checkout; both original audit/demo outputs remain unchanged. [The derivation and source distinction](https://github.com/midya8/ergodlab/blob/main/DISCOUNT.md) explain the canceled symmetric second derivatives and fixed-start objective.
 
 ## Attribution and boundaries
 
