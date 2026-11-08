@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ScoreLab
+
+Exact score-function policy-gradient distributions with complete trajectory witnesses, rational covariance matrices and independently checked expected-return derivatives. A one-step Bernoulli counterexample keeps the correct mean gradient 4/25 while an exact value baseline increases variance from 4/625 to 36/625; the variance-optimal scalar baseline gives zero. A separate 64-path, two-state shared-parameter audit compares full-return, reward-to-go, value and optimal time/state baselines. Complete control-variate Gram matrices, identifiability and excess-variance certificates make the optimization scope explicit. 22 tests include 256 analytic Bernoulli policies, 48 independently differentiated coordinates across 24 model/horizon settings, Cartesian covariance references, strict CLI/preflight checks and a reproducible SVG. Four-module wheel verified outside the source tree. Exact finite-model calculations at a rational softmax anchor, not training trials, empirical performance or a universal baseline ranking.
+
+- Repo: [midya8/scorelab](https://github.com/midya8/scorelab) · Case study: [projects/scorelab.md](projects/scorelab.md)
+
 ### BanditLab
 
 Exact finite-budget Beta-Bernoulli planning with complete posterior-state graphs, action values/ties, a fully updating greedy control and exact clairvoyant prior bound. A prescribed three-pull example chooses the lower-mean arm first: optimal expected reward 187/108 versus greedy 46/27, gain 1/36. At two pulls both first arms tie and gain is zero. New forward audits support named or exact randomized state policies, conserve probability at every pull and expose all reward/occupancy flows. Summed occupancy-weighted optimal Bellman gaps equal policy loss: greedy loses 1/36 at its first decision; fixed loses 7/108 across three decisions. Optimal/greedy visit 14 of 35 possible states, fixed visits 10. 34 tests include 2,048 two-arm and 1,728 three-arm policy-tree references, 144 independent named-policy history audits, randomized joint-history checks, independent Bernstein/Beta integrals and two reproducible SVGs. Six-module wheel verified outside the source tree. Exact supplied-prior expectations, not empirical trials, causal attribution or frequentist guarantees.
