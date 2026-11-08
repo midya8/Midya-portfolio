@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### BeliefLab
+
+Exact rational finite-horizon POMDP planning for two hidden states. Alpha-vector policy trees and rational upper-hull pruning preserve the value over every belief, with explicit intervals, child witnesses, root-action ties and Bayesian observation branches. A directly specified sensor costs 1/10 now but enables two-step value 7/10; both exploit-first alternatives have value 0 over the same horizon. Probe is optimal on [13/40,27/40]. 29 tests compare 81 model settings against 2,187 full depth-two policy trees across exact crossing cells, plus a separate 2,187-tree depth-three check and independent belief recursion. Candidate budgets are checked before backup; zero-probability observations return no fabricated posterior. Dependency-free Python, strict JSON CLI, reproducible SVG and an isolated four-module wheel. Supplied two-state finite models only, not learned sensing, infinite-horizon convergence, every tied policy tree or real-world safety.
+
+- Repo: [midya8/belieflab](https://github.com/midya8/belieflab) · Case study: [projects/belieflab.md](projects/belieflab.md)
+
 ### BellmanLab
 
 Exact rational discounted planning with residual certificates, rectangular robust control and nested controller/adversary policy iteration. A residual of 1/100 hides value error 1; a nominal winner loses 6/5 under supplied ambiguity; global uncertainty (-2/3) differs from row-wise closure (-2). Exact inner nature solves expose every policy, scenario Q-value and tie. Controller improvement waits for inner stability: independent cap examples distinguish an upper bound, an exact nonoptimal policy value and a jointly stable optimum. 70 tests audit independent 972 nominal and 3,888 controller/adversary policy references, every nested witness, monotonicity, both cap paths and three SVGs. Strict rational JSON, full histories and an isolated eight-module wheel. Supplied models only, not learned confidence, online RL, unique-policy, policy-loss or real-world safety guarantees.
