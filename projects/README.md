@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| InfluenceLab | Python, standard library only; convex logistic fits, strict JSON CLI and reproducible SVG | Sample-weight derivatives, full Hessian/solve/convergence witnesses, actual finite deletion, normalization and damping audits | [Case study](influencelab.md) |
 | FisherLab | Python, standard library only; exact rational CLI and two reproducible SVGs | Singular Fisher/nullspace/PSD witnesses, coordinate/finite-step limits and shared-context projection, local reward tradeoffs, reweighting and conditional-versus-joint normalization audits | [Case study](fisherlab.md) |
 | LatentLab | Python, standard library only; trained Gaussian VAE, log-space evidence CLI and two reproducible SVGs | Pathwise gradients, reconstruction/generation controls, expected-versus-realized importance bounds, exact Gaussian evidence and high-ESS rare-atom failure audits | [Case study](latentlab.md) |
 | ErgodLab | Python, standard library only; exact rational JSON CLI and two reproducible SVGs | Stationary/tree sensitivities, Poisson reward variance, discounted resolvents, fixed-start objectives and exact nonconservative gradient-proxy curl audits | [Case study](ergodlab.md) |
