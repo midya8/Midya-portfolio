@@ -1,6 +1,40 @@
-# TreeLab: pruning makes a smaller model, not the strongest model
+# TreeLab: inspectable pruning and group-excluded bootstrap averaging
 
-From-scratch CART regression and weakest-link pruning on real UCI white-wine data. Exact feature copies stay together across 2,921 fitting, 1,008 validation and 969 test rows. The complete 290-state pruning path goes from 425 leaves to the root; validation selects 19 leaves without test targets. The stronger same-fit least-squares control stays visible: test RMSE 0.73422 versus selected-tree 0.77595 and grown-tree 0.88255. 40 tests include 40 independent split references, exact Fraction subtree oracles for 12 small trees, test-target mutation, full refit and strict JSON. Five-module/five-CLI installed-wheel reproduction, every test prediction and a data-checked audit SVG. Established greedy CART, not globally optimal tree learning, causal importance, wine-safety advice or an all-input certificate.
+From-scratch CART, weakest-link pruning and exact-feature-group bootstrap bagging on real UCI white-wine data. All 32 trees, group draws and member predictions are saved. OOB excludes the entire copy group, reports vote counts and leaves unsupported rows null; a duplicate witness shows why row absence is insufficient. A fixed [1,4,16,32] validation grid selects 32 trees: test RMSE 0.70521 versus same-fit least squares 0.73422 and selected CART 0.77595. Historical test reused, not a new blind benchmark. 57 tests include full refits, independent member traversals, exact subtree oracles, test-target mutation and ten-CLI installed-wheel checks. Both reproducible audit figures and original pruning artifacts remain. Established bagging, not a random forest, calibrated uncertainty or causal isolation.
+
+## v0.2: group-bootstrap bagging
+
+![Fixed prefix selection, OOB coverage and preserved same-fit controls](https://github.com/midya8/treelab/raw/refs/heads/main/assets/bagging-audit.svg)
+
+Draw 2,376 fitting-feature groups 2,376 times with replacement for each tree,
+then expand every drawn group with multiplicity. Grown members keep minimum
+leaf size 5 and depth limit 20, with all feature columns available. Seed
+20261108 and the prefix grid [1,4,16,32] are fixed before the run. Validation MSE
+alone selects 32 trees, with no validation refit. Bootstrap expanded row counts
+vary from 2,856 to 2,951. Leaf size counts multiplicity, not unique source rows.
+
+OOB excludes a row's entire exact-feature group. Zero votes mean null. Prefixes
+1/4/16/32 have 1,832/482/1/0 unsupported rows. Each prefix's OOB MSE is on its
+own supported subset with a row-dependent number of trees; it is not a
+fixed-set error curve or calibrated uncertainty interval. A four-row duplicate
+witness demonstrates why row absence alone does not exclude an in-bag copy.
+This witness does not estimate real-data leakage magnitude.
+
+The 32-tree ensemble has test RMSE 0.705212 and MAE 0.545678 across 969 rows,
+versus same-fit least squares 0.734217/0.573791 and selected CART
+0.775952/0.607582. These are descriptive results on the reused historical test,
+not a fresh blind benchmark, statistical significance or causal isolation.
+Exact feature groups do not recover producer/batch identity.
+
+The complete ensemble JSON, all group draws and fitting/validation/test member
+outputs, per-row OOB votes and test predictions are saved. 57 tests and a
+six-module/ten-CLI installed-wheel check cover full reproduction, independent
+traversal, group multiplicity, missing support, corruption guards and test-target
+mutation. The original v0.1 data/models/report and audit figure are unchanged.
+
+[Bagging implementation, assumptions and sources](https://github.com/midya8/treelab/blob/main/BAGGING.md)
+
+## Original v0.1 pruning audit, preserved
 
 ![Real-data controls, the full pruning path and one complete prediction route](https://github.com/midya8/treelab/raw/e9a7aed4d140d15233324045089f58d8152bf943/assets/tree-audit.svg)
 
@@ -70,7 +104,7 @@ subtrees of one grown tree, not every possible partition. Alpha is score-squared
 per leaf because SSE is divided by the root fitting count. Binary64 arithmetic,
 finite oracles and exact floating tie rules are not exact all-input certificates.
 A route explains this model's computation, not feature causality or deletion
-effects. No missing/categorical data, sample weights, ensembles or production
+effects. The original single-tree v0.1 has no missing/categorical data, sample weights, ensembles or production
 service is implemented. Out-of-range predictions are piecewise constant, with
 no accuracy promise.
 
