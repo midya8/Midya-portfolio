@@ -12,7 +12,7 @@ PrivacyLab audits supplied finite probability tables against explicit neighborin
 
 Individually private-looking releases need not compose when their randomness is shared incorrectly. In the developed bit-secret control, Z is zero with probability 3/4 and the releases are A=secret XOR Z and B=Z. A alone has pure privacy factor 3 and B alone factor 1, but A XOR B recovers the secret exactly. The joint distributions have disjoint supports and delta 1 for every finite factor. Conditioning on A=0 makes B deterministically 0 versus 1, exposing the missing conditional-mechanism premise. This is a counterexample to reasoning from marginals, not to a DP composition theorem.
 
-| Developed channel | Minimal pure factor | delta at factor 1 | delta at factor 3 | delta at factor9 |
+| Developed channel | Minimal pure factor | delta at factor 1 | delta at factor 3 | delta at factor 9 |
 | --- | --- | --- | --- | --- |
 | Randomized response, truthful probability 3/4 | 3 | 1/2 | 0 | 0 |
 | Two independent releases | 9 | 1/2 | 3/8 | 0 |
