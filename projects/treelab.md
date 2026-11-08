@@ -1,6 +1,40 @@
-# TreeLab: inspectable learners and constrained counterfactual geometry
+# TreeLab: inspectable learners and bounded ensemble counterfactual search
 
-A [live constrained counterfactual explorer](https://midya8.github.io/treelab/counterfactual.html) exposes multi-feature closest-leaf search for a frozen CART, alongside the [live one-axis response explorer](https://midya8.github.io/treelab/). Positive weighted L1, immutable inputs and fitting-only bounds give a closest feasible binary64 witness, every target-leaf candidate and exact rational costs. Strict thresholds use representable successors; infeasible requests remain visible across all 36 fixed cases. 87 Python tests and four Node/real-Chrome tests include an independent exhaustive grid oracle, false rounded ties, subnormal costs, full witness checks and responsive browser controls. Eight-module/sixteen-CLI installed-wheel checks retain all original data, models, historical controls and three audits. Established model counterfactual geometry, not causal recourse, plausible chemistry, ensemble optimality or new accuracy.
+Budgeted whole-ensemble counterfactual search with exact weighted-L1 objective bounds, verified common-input witnesses and explicit optimal/infeasible/unfinished states. A best-first queue intersects all 32 trees, propagates forced branches and uses known one-axis witnesses as checked warm starts. The fixed 36-case audit preserves unfinished all-feature searches at 4,096 expansions instead of calling them optimal or infeasible; alcohol-only cases can finish. 101 Python tests plus five Node/real-Chrome tests include independent tiny-forest exhaustive grids, budget-gap checks, member inference and responsive inspector controls. Nine-module/nineteen-CLI wheel reproduction; original models, reports and three figures unchanged. Established constrained model search, not causal recourse, plausible chemistry, scalable optimization or new accuracy. The [single-tree explorer](https://midya8.github.io/treelab/counterfactual.html) and [one-axis explorer](https://midya8.github.io/treelab/) remain live.
+
+## v0.6: whole-ensemble search with a visible objective gap
+
+A search state carries one common feature box and a current node in each of the
+32 unchanged trees. Forced branches propagate through all members. Projection
+onto a box gives an exact-rational weighted-L1 lower bound; descendant output
+ranges prune impossible target bands. Best-first expansion and verified full-
+ensemble witnesses give lower/upper bounds and an honest stopping status.
+
+Completed frontier proofs establish optimality or infeasibility under the
+supplied constraints. Budget exhaustion is neither. Optional seeds are checked
+against bounds, immutable features and native full-ensemble inference; the real
+demo uses already-known one-axis target witnesses so easy incumbents remain.
+
+All 36 fixed requests cross rows 1, 8, 11, bands [6,7]/[7,8], all-feature versus
+alcohol-only policies, and 0/128/4096 expansion budgets. At row 1, target [6,7],
+alcohol-only finishes with output 6.05953621031746 and cost 0.36290323. The global
+all-feature search at 4096 expansions remains unfinished with objective bounds
+[0.01838427, 0.36290323]. Alcohol-only target [7,8] is proved infeasible, while
+the all-feature search retains a coarse expensive corner witness and a large
+gap. No failure outcome is dropped. All original models/reports stay unchanged.
+
+The browser page at `docs/forest.html` displays every proof state, exact rational
+bounds, full input and all 32 member outputs/leaf IDs, budget comparisons and
+source hashes. 101 Python tests and five Node/real-Chrome tests cover independent
+exhaustive-grid references, every budget bound, native prediction re-scoring,
+subnormal midpoint/cost controls, strict requests and mobile copy/download.
+Nine modules and nineteen CLI modes are exercised from an installed wheel.
+
+[Search method, proof scope and sources](https://github.com/midya8/treelab/blob/main/FOREST_SEARCH.md)
+
+Exact objective bounds apply to stored binary64 costs and single-input NumPy
+ensemble predictions, not exact training arithmetic, causal actionability,
+plausible chemistry, calibrated uncertainty or a scalable forest solver.
 
 ## v0.5: constrained multi-feature model counterfactuals
 
