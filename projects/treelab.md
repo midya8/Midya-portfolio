@@ -1,6 +1,6 @@
 # TreeLab: inspectable learners and bounded ensemble counterfactual search
 
-Budgeted whole-ensemble counterfactual search with exact weighted-L1 objective bounds, verified common-input witnesses and explicit optimal/infeasible/unfinished states. A best-first queue intersects all 32 trees, propagates forced branches and uses known one-axis witnesses as checked warm starts. The fixed 36-case audit preserves unfinished all-feature searches at 4,096 expansions instead of calling them optimal or infeasible; alcohol-only cases can finish. 101 Python tests plus five Node/real-Chrome tests include independent tiny-forest exhaustive grids, budget-gap checks, member inference and responsive inspector controls. Nine-module/nineteen-CLI wheel reproduction; original models, reports and three figures unchanged. Established constrained model search, not causal recourse, plausible chemistry, scalable optimization or new accuracy. The [single-tree explorer](https://midya8.github.io/treelab/counterfactual.html) and [one-axis explorer](https://midya8.github.io/treelab/) remain live.
+Budgeted whole-ensemble counterfactual search with exact weighted-L1 objective bounds, verified common-input witnesses and explicit optimal/infeasible/unfinished states. A best-first queue intersects all 32 trees, propagates forced branches and uses known one-axis witnesses as checked warm starts. The fixed 36-case audit preserves unfinished all-feature searches at 4,096 expansions instead of calling them optimal or infeasible; alcohol-only cases can finish. 101 Python tests plus five Node/real-Chrome tests include independent tiny-forest exhaustive grids, budget-gap checks, member inference and responsive inspector controls. Nine-module/nineteen-CLI wheel reproduction; original models, reports and three figures unchanged. Established constrained model search, not causal recourse, plausible chemistry, scalable optimization or new accuracy. The [ensemble search inspector](https://midya8.github.io/treelab/forest.html), [single-tree explorer](https://midya8.github.io/treelab/counterfactual.html) and [one-axis explorer](https://midya8.github.io/treelab/) remain live.
 
 ## v0.6: whole-ensemble search with a visible objective gap
 
@@ -23,7 +23,7 @@ all-feature search at 4096 expansions remains unfinished with objective bounds
 the all-feature search retains a coarse expensive corner witness and a large
 gap. No failure outcome is dropped. All original models/reports stay unchanged.
 
-The browser page at `docs/forest.html` displays every proof state, exact rational
+The [live ensemble inspector](https://midya8.github.io/treelab/forest.html) at `docs/forest.html` displays every proof state, exact rational
 bounds, full input and all 32 member outputs/leaf IDs, budget comparisons and
 source hashes. 101 Python tests and five Node/real-Chrome tests cover independent
 exhaustive-grid references, every budget bound, native prediction re-scoring,
