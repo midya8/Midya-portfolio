@@ -312,15 +312,15 @@ Low-rank adaptation built from scratch in pure Python: freeze a trained classifi
 
 ### SpecLab
 
-Exact speculative decoding in two separately scoped paths: the original greedy
-n-gram invariant and a new finite stochastic sampler with residual correction,
-complete probability witnesses and exact sequence/count laws.
+Speculative decoding from scratch: greedy n-gram verification, exact stochastic
+residual correction, and a finite **oracle lookahead planner** that includes
+no speculation as a genuine action.
 
-- **Probability law, not same-seed identity** - corrected TV is zero; a wrong target-fallback control has TV `141/1024` on the four-token prefix-dependent fixture.
-- **Rounds versus work** - that fixture averages `75/32` verification rounds, `179/32` target positions and `13/4` draft calls. Hypothetical parallel-round and score-work costs are distinct; no hardware speed claim.
-- **Independent verification** - 34 tests include 2,187 prefix-table pairs, 225 one-step pairs, 36 configurations, and every RNG ticket of the procedural sampler across 25 binary model pairs. Exact sequence and cost laws agree.
-- **Preserved original path** - the greedy n-gram fixture still has 122 vs 480 modeled rounds and 510 vs 480 actual scoring calls. New finite tables have vocabulary 1..3, horizon 1..4, gamma 1..3; no EOS or real-LLM benchmark.
-- Dependency-free Python 3.10+, five-job CI, complete saved witnesses, data-bound SVG and all five command modes checked from an installed ten-module wheel outside checkout.
+- **Choose lengths without weakening baselines** - exact Bellman values for every prefix/action, transitions and slacks, plus all fixed lengths including target-only. The switching fixture costs `23/10` assigned units versus best fixed `47/20`; score-position prices choose no drafting everywhere.
+- **Full probability and count laws** - policy output law remains exactly the target law. Planning/lookup overhead and target-table access are not free in reality; they are explicitly outside this tiny oracle model, with no GPU or measured-latency claim.
+- **Independent verification** - 47 tests include all 12 tiny policies on 25 pairs under three objectives, 72 prefix-dependent joint-law checks, 36 planner configurations, and the preserved stochastic checks over 2,187 prefix-table pairs and every procedural RNG ticket for 25 binary pairs.
+- **Preserved original controls** - wrong target fallback has TV `141/1024`; original greedy fixture still uses 122 vs 480 modeled rounds and 510 vs 480 actual scoring calls. Supplied stochastic tables only, vocabulary 1..3, horizon 1..4, no EOS/real LLM benchmark.
+- Dependency-free Python 3.10+, full saved Bellman/probability witnesses, 115-cell and 96-cell test-bound figures, five-job CI and seven-mode installed 12-module wheel parity. Prior adaptive-lookahead work is attributed; no novelty claim.
 
 - Repo: [midya8/speclab](https://github.com/midya8/speclab) · Case study: [projects/speclab.md](projects/speclab.md)
 
