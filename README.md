@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### DenoiseLab
+
+Real masked-digit reconstruction with manual NumPy backprop, 14,544 learned parameters and independent scalar JavaScript inference. A local browser inspector recomputes the neural denoiser, observed-pixel PCA ridge solve, exact fitting-example neighbor and pixel mean when arbitrary pixels are erased. Validation-only selection preserves the official UCI holdout; all four fixed corruption cases and every per-image score remain visible. Nearest neighbor and PCA beat the neural net at 16 missing pixels; the network is lower at 32, with no universal ranking inferred. 27 Python tests plus four Node/real-Chrome tests cover 200 independent gradient probes, complete refit with test-loader prohibition, full evaluation reproduction, all 40 public inference examples and responsive keyboard/copy/download controls. Seven-module/four-CLI installed wheel. CC BY 4.0 data, MIT code; no uncertainty, causal, semantic-preservation or production-restoration claim.
+
+- Repo: [midya8/denoiselab](https://github.com/midya8/denoiselab)
+- Case study: [projects/denoiselab.md](projects/denoiselab.md)
+
 ### TreeLab
 
 Budgeted whole-ensemble counterfactual search with exact weighted-L1 objective bounds, verified common-input witnesses and explicit optimal/infeasible/unfinished states. A best-first queue intersects all 32 trees, propagates forced branches and uses known one-axis witnesses as checked warm starts. The fixed 36-case audit preserves unfinished all-feature searches at 4,096 expansions instead of calling them optimal or infeasible; alcohol-only cases can finish. 101 Python tests plus five Node/real-Chrome tests include independent tiny-forest exhaustive grids, budget-gap checks, member inference and responsive inspector controls. Nine-module/nineteen-CLI wheel reproduction; original models, reports and three figures unchanged. Established constrained model search, not causal recourse, plausible chemistry, scalable optimization or new accuracy. The [ensemble search inspector](https://midya8.github.io/treelab/forest.html), [single-tree explorer](https://midya8.github.io/treelab/counterfactual.html) and [one-axis explorer](https://midya8.github.io/treelab/) remain live.
