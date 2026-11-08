@@ -16,17 +16,16 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### ScanLab
 
-Causal state-space mechanics from scratch: exact rational affine recurrence,
-work-efficient prefix scans with every composition/DAG witness, fixed LTI
-convolution with nonzero initial state, and hand-derived input-gated reverse
-gradients. On 16 tokens, dependency span drops 16 to 7 while multiplications
-increase 32 to 136: serial Python, not a speed benchmark. Floating cancellation
-ends at 1 sequentially, 0 by scan and 2 exactly. Input-dependent gates break
-fixed linear convolution. 30 tests cover 264 exact length/width cases, 729
-composition cases, 120 LTI controls, 123 derivative probes and 64 streaming
-partitions. A 114-cell full-witness SVG and five-job CI include seven-module
-installed-wheel parity. Not Mamba/S4, a trained sequence benchmark, exact
-sigmoid arithmetic or GPU throughput.
+Exact rational state-space mechanics: work-efficient affine prefix scans,
+fixed LTI convolution, floating cancellation controls and input-gated reverse
+gradients. v0.2 adds shifted-decay reverse scans, JVP/VJP transposition and
+squared-loss Hessian-vector products with all five scan DAGs. The transpose
+identity is -817/120 on both sides; a wrong-index control has gap -259/36.
+Independent bivariate polynomials check 432 gradient/HVP coordinates across
+36 models, with 24 full directional checks, 24 Hessian symmetry checks and
+51 path-product adjoint models. 46 tests, two reproducible full-witness SVGs,
+four-command/eight-module wheel parity and five CI jobs. Serial Python,
+not a general AD engine, new scan algorithm, trained Mamba/S4 or GPU benchmark.
 
 - Repo: [midya8/scanlab](https://github.com/midya8/scanlab)
 - Case study: [projects/scanlab.md](projects/scanlab.md)
