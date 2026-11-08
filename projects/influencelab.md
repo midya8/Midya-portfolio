@@ -4,7 +4,7 @@
 
 ![Influence and actual deletion audit](https://raw.githubusercontent.com/midya8/influencelab/main/assets/influence-audit.svg)
 
-Convex logistic influence functions with safeguarded Newton fits, full Hessian/Cholesky and convergence witnesses, and independently checked sample-weight derivatives. Actual finite-deletion refits show query-loss change +0.305655 versus the local prediction +0.203204 on one developed row. Separate retained-mean normalization and damped-inverse controls expose changed objectives and approximation limits. Strict JSON CLI, installed-wheel parity, a reproducible SVG and 26 tests. Small supplied-model sensitivity, not causal attribution, a deep-model benchmark or an unlearning guarantee.
+Convex logistic influence functions with converged Newton fits and full Hessian/solve witnesses. The deletion-path extension refits continuously along selected weight changes, then checks integrated local derivatives against actual endpoint loss. Deleting all seven developed rows reverses the frozen first-order sign (-0.004253 vs +0.079105); group deletion is not a sum of separate refits. Simpson16 residuals stay visible, including +0.000744 on that all-row path. Strict JSON CLI, two reproducible SVGs, five-module wheel parity and 43 tests. Small numerical reference, not causal attribution, certified quadrature or machine unlearning.
 
 ## Why this exists
 
@@ -29,9 +29,27 @@ Fixed-N deletion equals retained-mean deletion with ridge multiplied by `N/(N-1)
 
 ## Independent checks
 
-26 tests cover scalar fit against a separate monotone bisection optimizer; primitive and full-objective finite differences; every parameter weight derivative against perturbed converged refits on the fixture and three seeded systems up to six parameters; independent 2D inverse and adjoint solves; curvature sum-of-squares; strong-convexity error diagnostics; actual deletion and normalization equivalence; local quadratic remainder behavior; orthogonal-coordinate/permutation/label-complement checks; duplicate/zero features; explicit nonconvergence and safeguarded backtracking; strict JSON and stable extreme logits.
+The original 26 tests cover scalar fit against a separate monotone bisection optimizer; primitive and full-objective finite differences; every parameter weight derivative against perturbed converged refits on the fixture and three seeded systems up to six parameters; independent 2D inverse and adjoint solves; curvature sum-of-squares; strong-convexity error diagnostics; actual deletion and normalization equivalence; local quadratic remainder behavior; orthogonal-coordinate/permutation/label-complement checks; duplicate/zero features; explicit nonconvergence and safeguarded backtracking; strict JSON and stable extreme logits.
 
 Three of those tests inspect every chart cell/position and the complete compressed JSON metadata, including hidden refit-Hessian tampering. The four-module wheel reproduces both demo and caller JSON outside checkout. CI covers Python 3.10-3.13 and the reproducible SVG.
+
+## Finite-deletion path extension
+
+![Refitted finite deletion paths](https://raw.githubusercontent.com/midya8/influencelab/main/assets/deletion-paths.svg)
+
+`trace_deletion` continuously lowers selected weights from 1 to 0 while holding original N and ridge fixed. At each of 17 grid nodes it refits from zero, solves the current implicit parameter derivative and evaluates the query-loss derivative. Coarse Simpson/trapezoid levels reuse the fine-grid fits. [Derivation and input contract](https://github.com/midya8/influencelab/blob/main/PATHS.md) and [complete path reports](https://github.com/midya8/influencelab/blob/main/examples/path-demo.json) keep all 51 fits across the three groups, full Hessians/Cholesky/history, every derivative and every solve residual.
+
+| Selected rows | First-order loss delta | Actual endpoint delta | Simpson16 delta | Integral minus endpoint |
+|---|---:|---:|---:|---:|
+| 5 | +0.203204 | +0.305655 | +0.305655349 | +1.381e-7 |
+| 5,6 | -0.149822 | -0.357507 | -0.357502140 | +4.825e-6 |
+| All seven | -0.004253 | +0.079105 | +0.079849431 | +7.442e-4 |
+
+The all-row endpoint has theta zero and query loss log(2), reversing the base prediction's sign. Its sharp derivative tail leaves a visible Simpson16 gap around 0.000744. A small successive quadrature difference is not an error certificate, and monotone error reduction is not promised for arbitrary inputs. These are numerical refits and quadrature, not exact arithmetic.
+
+Rows 5 and 6 have a joint endpoint change -0.357507, while their separate finite-deletion changes sum to -0.142898. At the base point, the group derivative *is* the sum of individual derivatives. Finite group nonadditivity is not a causal interaction claim.
+
+14 new behavior tests check quadrature against independent polynomial integrals, interior parameter/query derivatives against perturbed refits, all-node equations and convergence, local sum identities, direct grouped endpoints, sign reversal/nonadditivity, grid fit reuse, symmetry and strict API/CLI. Three SVG tests check summary/convergence cells, all 51 polyline points, full metadata and hidden interior-Hessian tampering. All 43 tests pass; the five-module wheel reproduces all four complete JSON reports outside checkout and both SVGs regenerate byte-exactly. The original demo and figure are unchanged. This uses repeated retraining as a small reference, not a scalable deletion or unlearning method.
 
 ## Limits and credit
 
