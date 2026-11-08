@@ -6,6 +6,33 @@ Dependency-free Python CLI/API for standard IPS, SNIPS, DM and DR estimators.
 28 tests and Python 3.10-3.13 CI; offline demo asserts exact arithmetic and
 a failing clipped truth-equality gate. No new statistical method.
 
+## v0.2: live row-contribution ledger
+
+[Open the live ledger](https://midya8.github.io/policylens/) · [Equations and limits](https://github.com/midya8/policylens/blob/main/LEDGER.md)
+
+Five fixed synthetic cases expose every observed propensity, raw/used weight,
+direct prediction, signed residual, IPS/DM/DR additive term, normalized SNIPS
+term, unsupported target action and signed cap removal. The independent browser
+evaluator checks bounded target-mixture and single-row reward edits against
+native Python witnesses. Raw and selected reports always share the edited log.
+
+The signed shared-axis cap path keeps negative DR visible; its samples and all
+in-range positive observed raw-weight breakpoints have an exact table. Connecting samples
+is a visual approximation for SNIPS, not an optimized cap recommendation. The
+entered cap may lie between or outside plotted samples. Delete-one-row reports
+hold policy and predictions fixed: they do not retrain or estimate uncertainty.
+Unsupported actions remain flagged, and zero observed target mass leaves SNIPS
+undefined rather than silently substituting a value. ESS is descriptive, not a
+confidence certificate or proof that clipping improves an estimate.
+
+36 Python and four Node/actual-Chrome tests include 160 independent Fraction
+cases, 80 independent integer-grid browser-oracle cases, 95 native/browser edit
+witnesses and 589 audited rows plus 589 deletion reports. Installed-wheel checks
+import seven modules and run all five commands outside checkout. The original
+balanced, clipped, 2000-row oracle and cross-fitted reports, source data and
+estimator implementations are unchanged. Standard estimators, no new method,
+causal-identification, confidence-bound or deployment-safety claim.
+
 ## Input and authority boundary
 
 This is local point-estimate arithmetic, not an online policy engine. No
