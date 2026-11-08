@@ -4,6 +4,28 @@ Real UCI digit training in NumPy with manual gradients and a frozen official-tes
 
 ![Frozen official-test audit and selected digit adaptations](https://raw.githubusercontent.com/midya8/digitlab/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
 
+## v0.5: the reference changes the attribution question
+
+A [live model inspector](https://midya8.github.io/digitlab/) now adds baseline-relative class-logit Integrated Gradients for the unchanged UCI digit models. Choose the class and zero or fit-only mean reference, inspect all 64 signed contributions and their logit-sum residual, and keep the attack label separate. An algebraic tanh specialization is checked against independent 128-node quadrature on 40 reference vectors; all 7,188 official model/reference/row cases are finite. 78 Python tests and six Node/real-Chrome tests include 106 attribution reference vectors plus the existing 52 inference/gradient cases. Four reproducible audit figures, ten-module/ten-CLI wheel checks, and mobile/keyboard/touch controls. Established attribution, not a new method, causal importance, explanation quality or a certificate. The stronger same-fit 1NN clean result, exact linear box/radius proofs and original data/models remain visible.
+
+![Finite attribution checks and baseline-relative signed digit maps](https://github.com/midya8/digitlab/raw/24112893ca7560c364e79c328464dd5c5b68e7c6/assets/attribution-audit.svg)
+
+Both references are explicit: all-zero block counts and the frozen mean of only
+3,062 fitting rows, never the validation or official test rows. The explained
+quantity is a selected class logit, not a softmax probability. The page displays
+the input and reference logits, their difference, contribution sum and floating
+residual, with all 64 signed coordinates available as text. Neither reference
+is presumed neutral, realistic or causally meaningful.
+
+Independent Gauss-Legendre path integration checks individual coordinates on
+40 fixed reference vectors, rather than checking completeness alone. The saved
+maximum coordinate difference is 3.56e-15, and the maximum sum residual across
+7,188 official cases is 1.07e-14. These are finite numerical checks, not exact
+proofs, explanation-quality metrics or evidence of model trustworthiness.
+Changing the baseline changes both the path and the question. The added
+ATTRIBUTION.md documents the derivation, established sources, controls and
+limits; the fourth SVG includes the complete saved report as metadata.
+
 ## v0.4: inspect the trained models, with no prediction server
 
 A [live model inspector](https://midya8.github.io/digitlab/) runs manual JavaScript inference and input gradients for the unchanged, from-scratch UCI digit models. Paint with mouse/touch/keyboard, inspect all ten scores and compute clipped FGSM without an upload or prediction service. Editing clears the attack label. 64 Python tests and four Node/real-Chrome tests include 52 independent NumPy reference cases and mobile/keyboard/touch checks. The stronger same-fit 1NN clean result stays visible. Separate exact linear box/radius proofs retain all 1,797 official rows and boundary-attainment distinctions; they do not certify this floating demo or the nonlinear MLP. Original data/models/reports and CC BY 4.0 attribution are preserved.
