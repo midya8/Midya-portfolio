@@ -2,10 +2,14 @@
 
 [Public repository](https://github.com/midya8/kernellab)
 
-Dependency-free Python, 36 tests, fit/predict JSON CLI, reproducible SVG and Python 3.10-3.13 CI. Standard GP theory, no new method.
+Dependency-free Python, 43 Python tests, four Node/Chrome tests, fit/predict/response JSON CLI, reproducible SVG and Python 3.10-3.13 CI. Standard GP theory, no new method.
 
 ![Two fixed GP length scales](https://github.com/midya8/kernellab/raw/refs/heads/main/assets/posterior.svg)
 
+
+## Live fixed-kernel target response
+
+Live v0.2 [target-response inspector](https://midya8.github.io/kernellab/) keeps both original GP models fixed. Edit one observed target and inspect all 15 signed response weights: the conditional mean moves, while latent/observation variances stay unchanged. Independent browser LDL versus native Cholesky checks cover 202 query witnesses and 3,030 direct edited-target predictions, plus high-precision tiny controls and shared-axis endpoint checks. Original misspecification results and optimization traces are unchanged. Signed weights are not causal attribution or calibrated confidence; refitting invalidates the fixed-kernel contrast. 43 Python tests, four Node/actual-Chrome tests and installed eight-module/seven-command reproduction. [Derivation and numerical limits](https://github.com/midya8/kernellab/blob/main/RESPONSE.md).
 
 ## Exact conditioning, explicit assumptions
 
