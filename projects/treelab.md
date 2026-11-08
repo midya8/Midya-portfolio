@@ -1,6 +1,35 @@
 # TreeLab: inspectable learners and exact one-feature response geometry
 
-From-scratch CART, pruning and group-bootstrap bagging now expose exact one-feature response partitions. Hold the other inputs fixed, retain every reachable leaf boundary and member output, and return attainable min/max outputs with concrete binary64 witness inputs. A fixed first-three-row demo saves 66 slices and 1,028 segments; 70 tests check direct boundary traversal, adjacent floats, full leaf-box intersections and an opposite-stump control where separate member maxima are unattainable together. Seven-module/thirteen-CLI wheel checks, three reproducible audits and all original data/models/metrics remain. Established ICE-style model analysis, not causal effects, plausible-wine guarantees, uncertainty intervals or joint-feature robustness. Historical bagging RMSE 0.70521 versus same-fit OLS 0.73422 remains a reused-test descriptive result.
+A [live response explorer](https://midya8.github.io/treelab/) exposes exact one-feature slices for from-scratch CART and group-bootstrap trees. Choose any of 66 frozen slices, inspect all 1,028 segment witnesses and member leaf outputs, and copy or download a complete input attaining a minimum or maximum. Responsive curves, keyboard controls and explicit copy-denial fallback are tested in real Chrome at 320/390/1280px. 72 Python tests plus three Node/Chrome tests include all UI slice/segment displays and unchanged numerical oracles; seven-module/thirteen-CLI wheel checks and three audits remain. No API, refit, new inference or data uploads. Established model-response analysis, not causality, uncertainty, plausible-wine guarantees or joint-feature robustness.
+
+## v0.4: a live, frozen response explorer
+
+[Open the live explorer](https://midya8.github.io/treelab/). The page bundles the
+complete source report and its SHA-256, without recomputing or rounding its
+intervals, witnesses or member outputs. No API calls, accounts, analytics,
+remote inference or uploads. It starts with row 1 / 32-tree ensemble / alcohol.
+
+Choose row, model and feature; inspect the full responsive step curve, exact
+interval inclusion, every member output/leaf ID and attainable min/max with
+complete input witnesses. The slider supports keyboard arrows; Previous/Next
+and a full interval list offer alternatives. Copy and local JSON download
+retain source row, model, feature, domain and interpretation warning. Denied
+clipboard access produces an explicit fallback rather than a false success.
+
+72 Python tests and three Node/real-Chrome tests include every one of the
+66 UI slice selections and 1,028 segment witnesses/member displays, extrema,
+keyboard movement, copy success/denial, download names and expanded disclosures
+at 320/390/1280px. Chart labels reflow for phones instead of shrinking desktop
+text. The live site passes the same real-Chrome checks and byte-for-byte
+comparison of all five code/data/style files. CI also keeps Python 3.10-3.13
+and installed-wheel seven-module/thirteen-CLI reproduction.
+
+All prior data/models/reports and three audit figures are unchanged. This is
+an interactive view of stored model-response geometry, not new inference,
+a new accuracy result, causality, calibrated uncertainty, realistic-wine
+guarantees or joint-feature robustness.
+
+[Explorer mechanics and verification](https://github.com/midya8/treelab/blob/main/EXPLORER.md)
 
 ## v0.3: exact one-feature response partitions
 
