@@ -1,6 +1,44 @@
-# TreeLab: inspectable pruning and group-excluded bootstrap averaging
+# TreeLab: inspectable learners and exact one-feature response geometry
 
-From-scratch CART, weakest-link pruning and exact-feature-group bootstrap bagging on real UCI white-wine data. All 32 trees, group draws and member predictions are saved. OOB excludes the entire copy group, reports vote counts and leaves unsupported rows null; a duplicate witness shows why row absence is insufficient. A fixed [1,4,16,32] validation grid selects 32 trees: test RMSE 0.70521 versus same-fit least squares 0.73422 and selected CART 0.77595. Historical test reused, not a new blind benchmark. 57 tests include full refits, independent member traversals, exact subtree oracles, test-target mutation and ten-CLI installed-wheel checks. Both reproducible audit figures and original pruning artifacts remain. Established bagging, not a random forest, calibrated uncertainty or causal isolation.
+From-scratch CART, pruning and group-bootstrap bagging now expose exact one-feature response partitions. Hold the other inputs fixed, retain every reachable leaf boundary and member output, and return attainable min/max outputs with concrete binary64 witness inputs. A fixed first-three-row demo saves 66 slices and 1,028 segments; 70 tests check direct boundary traversal, adjacent floats, full leaf-box intersections and an opposite-stump control where separate member maxima are unattainable together. Seven-module/thirteen-CLI wheel checks, three reproducible audits and all original data/models/metrics remain. Established ICE-style model analysis, not causal effects, plausible-wine guarantees, uncertainty intervals or joint-feature robustness. Historical bagging RMSE 0.70521 versus same-fit OLS 0.73422 remains a reused-test descriptive result.
+
+## v0.3: exact one-feature response partitions
+
+![Full alcohol response slices and all-feature attainable outputs](https://github.com/midya8/treelab/raw/refs/heads/main/assets/sweep-audit.svg)
+
+The first three historical test rows, original CSV indices 1, 8 and 11, all
+eleven features and both frozen models give 66 slices and 1,028 leaf segments.
+Domains use fitting-only min/max. No fitting or new held-out accuracy claim.
+Rows 1 and 8 are exact copies and retain identical curves, rather than being
+filtered for a more varied-looking demonstration.
+
+At non-axis splits, follow only the branch compatible with the fixed row. At
+axis splits, intersect the leaf's interval. Combine all members' boundaries,
+average outputs on each common segment, and return attainable extrema with
+complete input witnesses. Left routing is <=; upper endpoints are inclusive.
+The first lower endpoint is inclusive, later ones are exclusive. Open lower
+witnesses use math.nextafter, never an arbitrary epsilon. Singleton thresholds
+and adjacent representable values remain correct.
+
+For the first test row, the complete alcohol slice has 3 selected-CART leaf
+segments and 50 ensemble segments. Model outputs range from 5.31579 to 6.36283
+for CART and 5.09926 to 6.54844 for bagging. These are model responses on a
+one-axis domain, not uncertainty intervals, causal improvements, possible-wine
+guarantees or multifeature robustness bounds. Correlated inputs may make
+synthetic feature combinations implausible.
+
+An opposite-stump control shows why member extrema are insufficient: each
+member can separately reach 10, but their mean is always 5. The implementation
+uses common-axis leaf intersections, not the sum of separate extrema.
+
+70 tests include direct checks of all real-data segment boundaries, member
+leaf IDs and predictions, independent multidimensional leaf-box intersections,
+random small trees/ensembles, zero-width domains, repeated axes, nextafter
+boundaries, strict JSON/CLI and a no-refit complete report rerun. The installed
+wheel exercises seven modules and all thirteen CLI modes. The audit SVG retains
+its complete displayed curves/table data and regeneration checks.
+
+[Response method, finite-domain semantics and sources](https://github.com/midya8/treelab/blob/main/SWEEPS.md)
 
 ## v0.2: group-bootstrap bagging
 
