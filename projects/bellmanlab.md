@@ -1,16 +1,16 @@
 # BellmanLab
 
-[Repository](https://github.com/midya 8/bellmanlab)
+[Repository](https://github.com/midya8/bellmanlab)
 
 Exact rational planning for small fully specified discounted MDPs. The model is supplied, not learned from samples. Dependency-free Python 3.10+, strict JSON CLI, a reproducible SVG and an isolated-wheel demo.
 
-![Bellman residual versus certified and actual value error](https://raw.githubusercontent.com/midya 8/bellmanlab/main/assets/bellman-audit.svg)
+![Bellman residual versus certified and actual value error](https://raw.githubusercontent.com/midya8/bellmanlab/main/assets/bellman-audit.svg)
 
 ## A stopping rule that checks the right quantity
 
 A directly specified one-state self-loop pays 1/100 each step at discount 99/100. Its exact value is one. From value zero, the Bellman residual is 1/100, but the actual value error and certified upper bound are both one. Testing the raw residual against a value-error tolerance 1/10 passes the wrong gate. The contraction certificate divides the residual by 1-discount, so the correct gate fails. Synchronous exact value iteration first meets the certified tolerance after 230 sweeps. The full initial-plus 230-audit history is returned; the demo asserts initially passing raw residual, failing certified error and finally passing certified error.
 
-The SVG puts all three quantities on one linear scale with a shared zero and a visible tolerance line. Its metadata contains exact initial/final certificates, six declared checkpoints 0,1,10,100,229,230 and the full separate policy-iteration trace. Full histories remain in the CLI/API; no rational stopping decision is rounded.
+The SVG puts all three quantities on one linear scale with a shared zero and a visible tolerance line. Its metadata contains exact initial/final certificates, six declared checkpoints 0, 1, 10, 100, 229, 230 and the full separate policy-iteration trace. Full histories remain in the CLI/API; no rational stopping decision is rounded.
 
 ## Evaluation is different from optimality
 
@@ -22,9 +22,9 @@ Policy iteration retains an old action on an exact greedy tie and changes only f
 
 ## Independent checks and resource contract
 
-34 tests include 243 two-state stochastic models with all four deterministic policies independently evaluated by two-by-two Cramer formulas:972 exact policy evaluations. Policy iteration matches the per-state optimal envelope across policies. Each value-iteration checkpoint's actual error is compared with its certified bound. Tests also reconstruct every synchronous backup and full Q/tie table; check near-one-discount geometric-series values and a16-state delayed chain; cover zero discount, negative rewards, tiny exact advantages, old-action tie retention, monotone policy values, caps, final-audit read counters, pivoting, strict schema/rational/transition validation, denominator limits, isolation and every CLI command. Four SVG tests verify complete declared metadata, every bar/tolerance coordinate, regeneration and changed-history rejection. A four-module wheel reproduces the demo outside the source directory.
+34 tests include 243 two-state stochastic models with all four deterministic policies independently evaluated by two-by-two Cramer formulas: 972 exact policy evaluations. Policy iteration matches the per-state optimal envelope across policies. Each value-iteration checkpoint's actual error is compared with its certified bound. Tests also reconstruct every synchronous backup and full Q/tie table; check near-one-discount geometric-series values and a16-state delayed chain; cover zero discount, negative rewards, tiny exact advantages, old-action tie retention, monotone policy values, caps, final-audit read counters, pivoting, strict schema/rational/transition validation, denominator limits, isolation and every CLI command. Four SVG tests verify complete declared metadata, every bar/tolerance coordinate, regeneration and changed-history rejection. A four-module wheel reproduces the demo outside the source directory.
 
-Inputs use explicit integers or rational pairs, not floats or decimal strings. Transition rows sum exactly to one. Scope is 16 states, eight actions per state,64 actions and 512 stored transition entries total; rewards have magnitude<=100. Input components and the model/initial-value denominator LCM have stated 1,000,000 caps. Value iteration permits 256 sweeps and policy iteration 64 evaluations. Stored zero-probability entries remain counted. Planned/executed transition-entry reads include every full Bellman audit, even the final residual check; counts exclude rational bit complexity, validation, serialization and object overhead. No wall-time, FLOP or RAM-byte guarantee follows.
+Inputs use explicit integers or rational pairs, not floats or decimal strings. Transition rows sum exactly to one. Scope is 16 states, eight actions per state, 64 actions and 512 stored transition entries total; rewards have magnitude <=100. Input components and the model/initial-value denominator LCM have stated 1,000,000 caps. Value iteration permits 256 sweeps and policy iteration 64 evaluations. Stored zero-probability entries remain counted. Planned/executed transition-entry reads include every full Bellman audit, even the final residual check; counts exclude rational bit complexity, validation, serialization and object overhead. No wall-time, FLOP or RAM-byte guarantee follows.
 
 ```sh
 python -m bellmanlab demo
