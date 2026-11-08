@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### InfluenceLab
 
-Convex logistic influence functions with safeguarded Newton fits, full Hessian/Cholesky and convergence witnesses, and independently checked sample-weight derivatives. Actual finite-deletion refits show query-loss change +0.305655 versus the local prediction +0.203204 on one developed row. Separate retained-mean normalization and damped-inverse controls expose changed objectives and approximation limits. Strict JSON CLI, installed-wheel parity, a reproducible SVG and 26 tests. Small supplied-model sensitivity, not causal attribution, a deep-model benchmark or an unlearning guarantee.
+Convex logistic influence functions with converged Newton fits and full Hessian/solve witnesses. The deletion-path extension refits continuously along selected weight changes, then checks integrated local derivatives against actual endpoint loss. Deleting all seven developed rows reverses the frozen first-order sign (-0.004253 vs +0.079105); group deletion is not a sum of separate refits. Simpson16 residuals stay visible, including +0.000744 on that all-row path. Strict JSON CLI, two reproducible SVGs, five-module wheel parity and 43 tests. Small numerical reference, not causal attribution, certified quadrature or machine unlearning.
 
 - Repo: [midya8/influencelab](https://github.com/midya8/influencelab)
 - Case study: [projects/influencelab.md](projects/influencelab.md)
