@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### FisherLab
+
+Exact-rational natural-policy-gradient geometry, with singular Fisher solves, full RREF/nullspace witnesses and a weighted-pair PSD certificate. Four full-tangent charts agree exactly in probability space; diagonal approximations and coordinate damping do not. A restricted chart exposes the reachable-space projection, while a nonlinear coordinate control keeps identical initial tangents but changes the finite Euler logit by 19/216. Strict offline JSON CLI, reproducible audit SVG and 28 tests. Standard natural-gradient ideas, not an MDP trainer or optimizer-superiority benchmark.
+
+- Repo: [midya8/fisherlab](https://github.com/midya8/fisherlab)
+- Case study: [projects/fisherlab.md](projects/fisherlab.md)
+
 ### LatentLab
 
 A Gaussian VAE from scalar Python, with all 150 pathwise gradients checked independently. The importance extension separates random log-evidence estimates, expected IWAE bounds and same-sample Jensen comparisons. An exact linear-Gaussian posterior recovers its known evidence; a full-support rare-atom control has ESS 64 yet underestimates evidence by factor 999,000 on an event with probability 93.80%. Neural noise prefixes are visibly nonmonotone. The original trained fixture still shows lower no-KL reconstruction error but worse prior samples; even beta 1 leaves 51.56% outside the mode neighborhoods. 43 tests cover independent derivatives/quadrature, exact rational rare-event expectations, extreme log weights, strict checkpoints and two reproducible SVGs. Five-module wheel reproduces both demos outside checkout. Evidence auditing, not IWAE training, an ESS accuracy certificate, exact nonlinear likelihood, image generation or distribution recovery.
