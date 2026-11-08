@@ -4,6 +4,16 @@ Real UCI digit training in NumPy with manual gradients and a frozen official-tes
 
 ![Frozen official-test audit and selected digit adaptations](https://raw.githubusercontent.com/midya8/digitlab/a5f2da5e9e6732ace852f7af39bb73bf6afbd66c/assets/digit-audit.svg)
 
+## v0.2: exact real affine-box correctness
+
+Real UCI digit training in NumPy with manual gradients, a stronger same-fit 1NN clean baseline and a frozen official-test audit. v0.2 adds exact real affine-box correctness for the fixed linear model: 1,698 / 1,495 / 1,028 / 23 of 1,797 test rows at radii 0 / 1/20 / 1/10 / 1/5. Attained witnesses expose 14 and 10 saved PGD survivors at the latter two radii. All 64,692 margins and 7,188 witness decisions are retained. 45 tests include 201 gradient probes, 144 all-vertex certificates, 160 independent Fraction row references, two full-report figures and six-mode/eight-module wheel parity. Original source data, models and finite-attack report are preserved. CC BY 4.0 data attribution. Certificates concern the real affine function of loaded binary64 coefficients, not all floating executions or the nonlinear MLP; no imperceptibility or adaptive 1NN ranking claim.
+
+![Exact affine-box proof and missed-PGD witnesses](https://raw.githubusercontent.com/midya8/digitlab/562e23c333c85051959b32f6e5ba8cd3926679f0/assets/box-audit.svg)
+
+The method minimizes each true-label-versus-competitor affine margin at its valid coordinate endpoints. Every competitor is tested, with strict positivity only when a lower class index would win a tie. A clipping control separates minimum 1 on the valid [0,3/10] domain from the invalid un-clipped result -1; a zero-margin tie control is correct for label 0 but fails for label 1. All clean and 7,188 selected witness predictions agree with NumPy, a finite check rather than an all-domain floating error bound. No training, original evaluation choices or original report changed.
+
+[Full proof, exact coefficients, tie/clipping controls and sources](https://github.com/midya8/digitlab/blob/main/BOX.md).
+
 ## Protocol and implementation
 
 
