@@ -304,14 +304,17 @@ Gaussian-process regression and finite-grid expected-improvement suggestions fro
 
 ### BoostLab
 
-Binary gradient boosting from scratch: mean-residual defaults plus optional capped, L2-regularized Newton leaves on residual-SSE trees. The development fixture selects 35 Newton trees/237 nodes, test accuracy 0.9004/logloss 0.3341; its unselected 80-round checkpoint is also shown (0.8984/0.3469). Mean depth-2 control: 0.8906/0.3400; full-budget stumps: 0.6367/0.7366. Different capacity and settings, no causal or external-benchmark claim. Backward-compatible v1/v2 inference, Hessian/leaf arithmetic tests, validation-only prefix selection. Dependency-free Python, 29 tests and offline CI.
+Binary gradient boosting from scratch: mean-residual defaults plus optional capped, L2-regularized Newton leaves on residual-SSE trees. The development fixture selects 35 Newton trees/237 nodes, test accuracy 0.9004/logloss 0.3341; its unselected 80-round checkpoint is also shown (0.8984/0.3469). Mean depth-2 control: 0.8906/0.3400; full-budget stumps: 0.6367/0.7366. Different capacity and settings, no causal or external-benchmark claim. Backward-compatible v1/v2 inference, Hessian/leaf arithmetic tests, validation-only prefix selection. Dependency-free Python, 36 Python tests and five Node/Chrome tests and offline CI.
 
 - Seed-7 noisy sign-of-product fixture, 256/128/512 train/validation/test rows. Newton depth-2 uses L2=1, leaf cap 3; validation selects 35 trees, not the last 80-round checkpoint. All fitted controls remain visible in the case study.
 - Mean depth-2 and depth-1 controls retain the original settings and results. Validation selects the depth-1 zero-tree prefix (0.4980/0.7060). Same round budgets are not equal capacity.
 - Newton refines only leaves, using residual-SSE splits rather than Hessian gains. History records cap and zero-denominator diagnostics. V1 mean artifacts still predict unchanged; new Newton artifacts use v2.
-- Dependency-free Python 3.10+, 29 tests, offline CLI demo and CI. Standard boosting sources credited. No line search, new-method, calibration or production-performance claim.
+- Dependency-free Python 3.10+, 36 Python tests and five Node/Chrome tests, offline CLI demo and CI. Standard boosting sources credited. No line search, new-method, calibration or production-performance claim.
 
 - Repo: [midya8/boostlab](https://github.com/midya8/boostlab) · Case study: [projects/boostlab.md](projects/boostlab.md)
+
+
+Live v0.2 inspector retains all 80 fitted trees and 81 prefixes for each original arm, including the selected zero-tree stump. Editable inputs expose complete additive-logit/tree-route witnesses, original selected-versus-last checkpoints and shared zero-based loss curves. No new tuning, attribution, calibration or performance claim. All original development-fixture metrics and limits above are unchanged. Independent native/browser checks cover 4,860 original and 1,458 edited prefix states, 78 complete paths and all 243 metric states. 36 Python tests, five Node/actual-Chrome tests, installed seven-module/five-command reproduction. [Try the training path](https://midya8.github.io/boostlab/) · [Derivation and numerical limits](https://github.com/midya8/boostlab/blob/main/PATH.md).
 
 ### ShapleyLab
 
