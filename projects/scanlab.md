@@ -3,6 +3,37 @@
 Exact affine prefix scans and input-gated state-space derivatives, with
 algorithmic span kept separate from real arithmetic work and floating behavior.
 
+## v0.2: exact derivatives and curvature
+
+![Exact reverse scan, transposition and Hessian-vector certificate](https://raw.githubusercontent.com/midya8/scanlab/f30336e029fc595a9c2b6b2b60de44c85c48bc18/assets/adjoint-audit.svg)
+
+The exact supplied-pair path now records forward/tangent/reverse/loss-reverse/
+HVP-reverse scan DAGs, every parameter VJP and every state JVP. The exact
+transposition identity is `-817/120 = -817/120`. A wrong reverse-index control
+uses the current rather than next decay and gives `139/360`, with gap `-259/36`.
+The control can be invisible on special inputs; independent checks matter.
+
+Hand-written forward-over-reverse rules compute squared-loss gradient and HVP
+without dense matrices. Fixture loss is `2473/288`; first directional derivative
+`83689/17280`; second `20591177/414720`. Independent bivariate polynomial
+expansion checks 432 parameter coordinates across 36 models, including each
+VJP, gradient and HVP coordinate. Another 24 directional models, 24 Hessian
+symmetry checks and 51 independent future-decay product models verify the
+rules without sharing their scan or derivative recurrence.
+
+46 tests pass, including the original 30. A new 68-cell figure embeds all five
+complete DAGs; the original 114-cell figure and saved outputs are preserved.
+Five CI jobs include Python 3.10-3.13 and all four CLI commands from an installed
+eight-module wheel outside checkout. Exact rational inputs, no finite-difference
+tolerance in this extension. Scan counters exclude coefficient construction,
+gradient products and loss reductions, and are not end-to-end derivative latency.
+No general AD engine, symbolic compiler, new algorithm, global convexity or
+trained-model/hardware claim. Six sources are attributed in the new derivation.
+
+[Exact equations, independent tests and attribution](https://github.com/midya8/scanlab/blob/main/ADJOINT.md)
+
+## Preserved v0.1 mechanics
+
 ![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/scanlab/42355326cba179c5af1e8225192162918eac532c/assets/scan-audit.svg)
 
 ## Mechanism
@@ -29,7 +60,7 @@ gate control gives final f(2x)-2f(x) about 0.20243342, so one fixed linear
 convolution cannot represent that model on all inputs. Neither failing control
 is turned into a tolerance-based success.
 
-30 tests include 729 scalar composition cases, 264 length/width cases against
+The original 30 tests include 729 scalar composition cases, 264 length/width cases against
 an independent product expansion, 120 fixed LTI models, 123 independent gradient
 probes, all 64 streaming partitions, full DAG/count checks and strict invalid
 inputs. The 16 displayed gradient probes have maximum central-difference error
