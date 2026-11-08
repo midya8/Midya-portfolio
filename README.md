@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### SparseLab
 
-LASSO coordinate descent with full primal/dual/KKT witnesses and an independent exact-rational active/sign oracle. Duplicate features produce different sparse supports under forward/reverse sweeps but identical predictions and objective 5/8; their dense midpoint is equally optimal. Orthogonal path controls match closed forms, and a one-sweep correlated fit exposes gap 0.330882 before converging at 18 sweeps to exact optimum 19/68. Strict offline JSON CLI, reproducible report SVG, five-module wheel parity and 28 tests. Small supplied-model optimization audits, not causal feature selection, statistical inference or interval-certified floating arithmetic.
+LASSO coordinate descent with full primal/dual/KKT witnesses and exact-rational active/sign controls. Duplicate features give different sparse supports but identical predictions and objective 5/8. The Gap Safe extension certifies some zero coefficients in every optimum using exact stored-input dual gaps and square-root-free strict tests: a currently nonzero coefficient 1/32 is safely eliminated, but an exact zero on the dual boundary remains uncertified. Strict offline JSON CLI, two reproducible SVGs, six-module wheel parity and 45 tests. Supplied-model optimization audits, not causal feature selection, statistical inference, complete support recovery or a solver speedup.
 
 - Repo: [midya8/sparselab](https://github.com/midya8/sparselab)
 - Case study: [projects/sparselab.md](projects/sparselab.md)
