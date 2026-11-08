@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### BetLab
 
-Exact-rational sequential evidence for bounded paired model scores. Fixed-mixture and past-only betting retain every wealth update, threshold crossing and anytime p-value bound. A complete eight-round fair-null audit gives crossing probabilities 5/64 and 9/128 at alpha 1/4, while an explicitly invalid free-refill control crosses with probability 201/256 and exposes negative conditional slack. Strict offline JSON CLI, reproducible SVG, five-module installed-wheel parity and 34 tests. One prespecified conditional-mean test per reported process, not model-selection correction, effect estimation or a production monitoring guarantee.
+Exact-rational sequential evidence for bounded paired model scores, with fixed and past-only betting plus full conditional/stopped-wealth null-tree audits. The start-allocation extension splits one unit over prespecified times, retains future reserve and never revives ruined capital. Its fair eight-round control crosses with probability 5/32 at alpha 1/4, while the explicitly invalid free-refill comparator crosses with probability 201/256. A developed late-signal trace exposes reserve, crossing and later ruin. Two reproducible SVGs, strict offline JSON CLI, six-module wheel parity and 51 tests. One prespecified test per statistic, not post-hoc start selection, change-time estimation or model-selection correction.
 
 - Repo: [midya8/betlab](https://github.com/midya8/betlab)
 - Case study: [projects/betlab.md](projects/betlab.md)
