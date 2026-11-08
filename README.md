@@ -16,7 +16,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### PrivacyLab
 
-Exact finite-channel differential privacy with rational hockey-stick profiles and attaining events. The adaptive extension unfolds full history-conditioned transcript laws and retains directional clipped-mass witnesses. Its fair-branch control has actual/clipped delta 1/2 versus uniform/additive bounds 1; a shared-coin control exposes a reachable conditional failure. Null histories are audited without false mass charges. Strict offline JSON CLI, two reproducible SVGs, six-module wheel parity and 46 tests. Supplied finite-law certificates, not trained-model privacy, secure sampling, a privacy filter or production accountant.
+Exact finite-channel differential privacy with rational hockey-stick events, adaptive transcript laws and clipped-mass certificates. The factor-frontier extension computes every affine piece of the worst-neighbor profile, including a developed switch at 5/4 absent from the likelihood-ratio grid. Exact inverse delta budgets retain minimality witnesses or singular-support obstructions, and distinguish huge finite factors from impossible targets. Three reproducible SVGs, strict offline JSON CLI, seven-module wheel parity and 63 tests. Small supplied-law certificates, not trained-model privacy, secure sampling or a production accountant.
 
 - Repo: [midya8/privacylab](https://github.com/midya8/privacylab)
 - Case study: [projects/privacylab.md](projects/privacylab.md)
