@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### RatingLab
+
+Observed-only rating factorization with manual NumPy alternating ridge solves, per-block decrease accounting, normal-equation residuals and full gradients. All eleven fits remain inspectable. A separately validation-selected bias-only control slightly beats the selected factors on test RMSE (.656176 versus .656457); all eight factor fits exhaust their stationarity budget. Twenty-three Python and five Node/real-Chrome tests include 60 independent exact rational ridge references, eleven fresh refits, test-label poisoning and 12,771 scalar/native predictions. The browser recomputes arbitrary indexed pairs and shared factor rotations, exposing why coordinate products are not causal preferences. Seven-module/six-command installed wheel. CC BY 4.0 historical UCI ratings, MIT code. Missing pairs are not negatives, and observed-rating RMSE is not top-N relevance, missing-pair accuracy or calibrated certainty.
+
+[Source](https://github.com/midya8/ratinglab) · [Live inspector](https://midya8.github.io/ratinglab/) · [Case study](projects/ratinglab.md)
+
 ### MarginLab
 
 Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable 30-feature scores. Version 0.2 repairs the saved binary64 dual equality before proving exact rational weak-duality bounds for all four represented linear training problems. Independent Fraction and BigInt readers recompute every constraint and objective; source matching is separate from proof validity. Twenty-nine Python and nine Node/real-Chrome tests cover 120 tiny exact optima, 4,552 inference comparisons, four full proofs, keyboard/copy/download/mobile behavior and eight fresh fits. Nine-module/seven-command installed wheel. Original models, holdout scores and split are unchanged. Educational historical UCI data, not clinical validation, calibrated certainty, generalization bounds or source authentication.
