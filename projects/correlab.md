@@ -4,6 +4,39 @@
 
 ![Exact joint-play obedience controls](https://raw.githubusercontent.com/midya8/correlab/refs/heads/main/assets/obedience-audit.svg)
 
+## v0.2: what does the player observe?
+
+![Exact private override-signal controls](https://raw.githubusercontent.com/midya8/correlab/refs/heads/main/assets/private-signals.svg)
+
+A trusted executor retains the hidden baseline action. The player sees only a
+supplied private signal and may pass or override, with the opponent left at its
+baseline action. This is an explicit unilateral decision model, not CE of a
+changed game. Every signal/action retains exact joint-cell contributions,
+conditional gains, zero-mass nulls, all optimal choices and an attaining policy.
+Identity signals recover full-swap gain; identical-row channels recover clipped
+coarse gain. A supplied post-garbling retains both audits and a lifted optimal
+coarse policy with exact nonnegative per-signal slacks summing to information loss.
+
+All deterministic own-action partitions through four actions are audited
+independently for each player, with every strict refinement relation. The
+Bell counts are 1, 2, 5, 15. A developed cyclic control gives row gains
+`0, 4/3, 5/3, 1, 2` for partitions `000, 001, 010, 011, 012`, showing that three
+two-signal partitions can differ. The attributed Roth control yields
+`0, 11/120, 11/60, 11/30` as C's reveal probability rises `0, 1/4, 1/2, 1`.
+
+The v0.2 suite has 49 tests, including independent enumeration for 8,505
+channel audits, 28 larger/rectangular four-signal controls up to 625 policies
+per player, and 243 supplied post-garbling lift certificates. Three new SVG
+tests bind 25 numeric cells, complete report metadata and hidden lift-term
+tampering. All seven complete CLI outputs match an installed seven-module
+wheel outside checkout. The original three CLI outputs and old SVG are unchanged.
+Six additional source notes distinguish single-agent value from strategic welfare.
+
+[Private-signal model, proofs and sources](https://github.com/midya8/correlab/blob/main/SIGNALS.md)
+
+No simultaneous override outcome, global stochastic-channel optimization,
+universal Blackwell-order search, privacy, learning or agent safety claim.
+
 ## The evaluation problem
 
 Multi-agent evaluation can ask different questions before and after a player receives private advice. A joint play distribution may leave no profitable fixed-action deviation, yet still tell a player to take an action they would rather replace after seeing their recommendation. A single regret number can hide that distinction, the probability of the signal, or the effect of removing correlation.
@@ -29,7 +62,7 @@ Realized joint actions produce exact prefix count laws. Independent sums of actu
 
 The developed six-round history finishes with an empirical CCE while the final action pair has coarse epsilon 11/10. This is a finite arithmetic identity and counterexample, not an implemented learner, no-regret guarantee, last-iterate theorem, concentration bound or evidence of agent strength.
 
-## Verification and limits
+## Original v0.1 verification and limits
 
 33 tests cover all 81 ternary 2x2 row tables against all 35 quarter-grid joint laws, with a separately varied column table: 2,835 game/law cases checked by exhaustive action-map enumeration. Another 28 rectangular/larger controls enumerate up to 256 maps per player. All 256 length-four 2x2 histories are checked at three prefixes. Tests include player-specific affine transforms, transpose/player exchange, ties, zero signals, product Nash, negative raw coarse gains, replication, order, capacity, strict parsing and no input/RNG mutation.
 
