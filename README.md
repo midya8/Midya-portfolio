@@ -312,12 +312,15 @@ Low-rank adaptation built from scratch in pure Python: freeze a trained classifi
 
 ### SpecLab
 
-Speculative decoding built from scratch in pure Python: a cheap draft model proposes a block of tokens, a target model verifies it, and a greedy-construction invariant keeps the output identical to target-only decoding - with the implementation verified token-for-token on the tested configurations and verification rounds counted exactly.
+Exact speculative decoding in two separately scoped paths: the original greedy
+n-gram invariant and a new finite stochastic sampler with residual correction,
+complete probability witnesses and exact sequence/count laws.
 
-- **Equivalence: algorithm invariant plus finite verification** - the ideal greedy construction emits only target-confirmed or target-chosen tokens; the checked-in implementation is verified against that invariant across four draft/target configurations, three lengths, and gamma 1/2/4/8.
-- **Verification rounds counted, honestly labeled** - on the checked-in fixture (order-3 draft, order-4 target, 8 prompts x 60 tokens, gamma=4): mean draft acceptance 0.800, 122 modeled verification rounds against 480 naive (74.6% fewer) - a modeled batched-pass count, reported alongside the implementation's actual sequential scoring work (510 vs 480 calls).
-- **Acceptance measured, including the failure mode** - a deliberately mismatched draft/target pair drops acceptance to 0.03 and is pinned in the suite, so acceptance is demonstrably measured rather than assumed.
-- Dependency-free Python 3.10+, 14 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+- **Probability law, not same-seed identity** - corrected TV is zero; a wrong target-fallback control has TV `141/1024` on the four-token prefix-dependent fixture.
+- **Rounds versus work** - that fixture averages `75/32` verification rounds, `179/32` target positions and `13/4` draft calls. Hypothetical parallel-round and score-work costs are distinct; no hardware speed claim.
+- **Independent verification** - 34 tests include 2,187 prefix-table pairs, 225 one-step pairs, 36 configurations, and every RNG ticket of the procedural sampler across 25 binary model pairs. Exact sequence and cost laws agree.
+- **Preserved original path** - the greedy n-gram fixture still has 122 vs 480 modeled rounds and 510 vs 480 actual scoring calls. New finite tables have vocabulary 1..3, horizon 1..4, gamma 1..3; no EOS or real-LLM benchmark.
+- Dependency-free Python 3.10+, five-job CI, complete saved witnesses, data-bound SVG and all five command modes checked from an installed ten-module wheel outside checkout.
 
 - Repo: [midya8/speclab](https://github.com/midya8/speclab) · Case study: [projects/speclab.md](projects/speclab.md)
 
