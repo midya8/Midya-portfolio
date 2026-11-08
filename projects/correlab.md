@@ -24,9 +24,9 @@ Bell counts are 1, 2, 5, 15. A developed cyclic control gives row gains
 two-signal partitions can differ. The attributed Roth control yields
 `0, 11/120, 11/60, 11/30` as C's reveal probability rises `0, 1/4, 1/2, 1`.
 
-The v0.2 suite has 49 tests, including independent enumeration for 8,505
+The v0.2 suite has 50 tests, including independent enumeration for 8,505
 channel audits, 28 larger/rectangular four-signal controls up to 625 policies
-per player, and 243 supplied post-garbling lift certificates. Three new SVG
+per player, 243 supplied post-garbling lift certificates, and all 16 signal-alphabet size pairs checked by direct lift simulation. Three new SVG
 tests bind 25 numeric cells, complete report metadata and hidden lift-term
 tampering. All seven complete CLI outputs match an installed seven-module
 wheel outside checkout. The original three CLI outputs and old SVG are unchanged.
