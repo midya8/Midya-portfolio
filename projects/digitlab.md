@@ -11,7 +11,7 @@ Real UCI digit training in NumPy with manual gradients and a frozen official-tes
 This is UCI Optical Recognition of Handwritten Digits, **not MNIST**. Each input
 is 64 block counts in 0..16, normalized by the fixed metadata scale 16. The
 original 3,823-row training file and separate 1,797-row test file are bundled
-with SHA-256 checks and [CC BY 4.0 attribution](digitlab/data/LICENSE.md).
+with SHA-256 checks and [CC BY 4.0 attribution](https://github.com/midya8/digitlab/blob/main/digitlab/data/LICENSE.md).
 UCI reports 30 training writers and a different 13 test writers. Numeric files
 have no individual writer IDs, so that assertion is source-reported, not
 independently verified here.
@@ -44,7 +44,7 @@ exact ties. It has no tuned `k`, feature scaling fit or hidden all-training-data
 advantage. It stores the same fitting examples used by both trained models.
 These are descriptive results on one historical benchmark and fixed protocol,
 not superiority or SOTA claims. Test confusion matrices and every prediction
-are included in the [complete report](digitlab/artifacts/report.json).
+are included in the [complete report](https://github.com/midya8/digitlab/blob/main/digitlab/artifacts/report.json).
 
 ## Better clean accuracy does not certify input robustness
 
