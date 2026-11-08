@@ -40,7 +40,9 @@ The v0.3 joint-batch inspector changes or removes multiple original training row
 
 ### MarginLab
 
-Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable 30-feature scores. Version 0.2 repairs the saved binary64 dual equality before proving exact rational weak-duality bounds for all four represented linear training problems. Independent Fraction and BigInt readers recompute every constraint and objective; source matching is separate from proof validity. Twenty-nine Python and nine Node/real-Chrome tests cover 120 tiny exact optima, 4,552 inference comparisons, four full proofs, keyboard/copy/download/mobile behavior and eight fresh fits. Nine-module/seven-command installed wheel. Original models, holdout scores and split are unchanged. Educational historical UCI data, not clinical validation, calibrated certainty, generalization bounds or source authentication.
+Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable30-feature scores. Version0.3 adds exact finite original-unit input boxes: attained affine score bounds, both corners, tie-aware labels, all30interval edits and independent Fraction/BigInt readers with separate source consistency.36Python/15Node-real-Chrome tests include120exhaustive corner cases,256direct exact dual endpoint sums,128full cross-language responses,4,552original inference checks and eight fresh fits. Installed reproduction covers11modules and9maincommands plus the box exporter. Original fits, holdout scores, split and exact training-objective proofs are unchanged. Synthetic boxes are not clinical tolerances or plausible interventions; exact affine arithmetic is not a floating-inference safety, RBF, generalization or authenticity guarantee.
+
+[Exact input-box inspector](https://midya8.github.io/marginlab/box.html) · [Box derivation and limits](https://github.com/midya8/marginlab/blob/main/BOX.md)
 
 [Source](https://github.com/midya8/marginlab) · [Live inspector](https://midya8.github.io/marginlab/) · [Exact linear proofs](https://midya8.github.io/marginlab/certificate.html) · [Case study](projects/marginlab.md)
 
