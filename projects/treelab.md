@@ -1,6 +1,38 @@
-# TreeLab: inspectable learners and exact one-feature response geometry
+# TreeLab: inspectable learners and constrained counterfactual geometry
 
-A [live response explorer](https://midya8.github.io/treelab/) exposes exact one-feature slices for from-scratch CART and group-bootstrap trees. Choose any of 66 frozen slices, inspect all 1,028 segment witnesses and member leaf outputs, and copy or download a complete input attaining a minimum or maximum. Responsive curves, keyboard controls and explicit copy-denial fallback are tested in real Chrome at 320/390/1280px. 72 Python tests plus three Node/Chrome tests include all UI slice/segment displays and unchanged numerical oracles; seven-module/thirteen-CLI wheel checks and three audits remain. No API, refit, new inference or data uploads. Established model-response analysis, not causality, uncertainty, plausible-wine guarantees or joint-feature robustness.
+Constrained multi-feature counterfactual search for a frozen CART, alongside the [live one-axis response explorer](https://midya8.github.io/treelab/). Positive weighted L1, immutable inputs and fitting-only bounds give a closest feasible binary64 witness, every target-leaf candidate and exact rational costs. Strict thresholds use representable successors; infeasible requests remain visible across all 36 fixed cases. 86 Python tests and four Node/real-Chrome tests include an independent exhaustive grid oracle, false rounded ties, subnormal costs, full witness checks and responsive browser controls. Eight-module/sixteen-CLI installed-wheel checks retain all original data, models, historical controls and three audits. Established model counterfactual geometry, not causal recourse, plausible chemistry, ensemble optimality or new accuracy.
+
+## v0.5: constrained multi-feature model counterfactuals
+
+Find the closest input reaching a closed output band in the unchanged selected
+CART, subject to closed feature bounds, immutable indices and positive weighted
+L1 costs. Enumerate every target-output leaf, intersect its path with constraints
+and clamp the source into each feasible binary64 box. Strict right branches use
+nextafter, never an arbitrary epsilon. Exact rational costs prevent false rounded
+ties and underflow; exact ties break by leaf ID. Every candidate is re-routed.
+
+The fixed demo retains 36 requests: original test rows 1, 8, 11; target bands
+[6,7], [7,8], [9,9]; all features, alcohol only, fixed alcohol, all fixed.
+Fitting-only min/max and reciprocal-range weights. No new fitting or scoring.
+For row 1, reaching [7,8] changes fixed acidity, volatile acidity and alcohol,
+with output 7.647058823529412 and cost about 0.27508758. Alcohol alone cannot
+reach that band under the same bounds. [9,9] has no target-output leaf.
+These are facts about one predictor, not instructions for improving wine.
+
+The browser page at `docs/counterfactual.html` displays every frozen request,
+feature delta, feasible candidate, full input/box/path and exact cost; copy and
+local download include the complete request. Report and model SHA-256 provenance.
+86 Python tests and four Node/real-Chrome tests, eight modules and sixteen CLI
+modes. Independent Cartesian-grid optimum checks, exact/false ties, subnormal
+costs, immutable/directional bounds, all real witnesses and mobile controls.
+
+[Counterfactual method, CLI, proof scope and attribution](https://github.com/midya8/treelab/blob/main/COUNTERFACTUALS.md)
+
+This is a global weighted-L1 optimum over finite binary64 inputs for one stored
+CART under independent box constraints. It is not causal recourse, plausible
+chemistry, a feasible path, a bagging-ensemble optimum, calibrated uncertainty
+or a guarantee for outcomes in reality. All previous models/reports/figures
+remain unchanged; the one-axis explorer remains available below.
 
 ## v0.4: a live, frozen response explorer
 
