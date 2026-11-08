@@ -109,3 +109,36 @@ an interface demonstration. A negative loss/error delta means improvement,
 but an interval is not a claim about a mechanism or future deployment.
 Draws must be integers from 0 to 10000, with at most 2000000 sampled test rows.
 Quantiles use linear interpolation of sorted bootstrap values.
+
+## v0.2: inspect every score and confidence bin
+
+[Live score ledger](https://midya8.github.io/calibrlab/) · [Equations/schema/limits](https://github.com/midya8/calibrlab/blob/main/LEDGER.md)
+
+A native API/CLI and independent browser evaluator expose stable row logit NLL,
+class Brier terms, every signed bin gap/ECE contribution, before-to-selected bin
+migration and all fixed-temperature row deletions. Choose2..20bins or T0.1..20;
+the validation fit remains the original191-point NLL grid, never a test fit.
+A19-point descriptive path is separate from the optimizer. Full input/report
+JSON can be copied/downloaded; input stays in the page.
+
+Five public synthetic controls retain all240validation/480test logits and the
+unchanged original report, the adverse caller example, uniform ties,
+within-bin cancellation and singleton underflow. The latter controls are
+shared-value arithmetic examples, not independent evaluation samples.
+
+56Python tests (original45exact) and four Node/actual-Chrome tests verify95full
+native/browser witnesses,9,367row/deletion records,55,328class Brier terms,
+160independent70-digit Decimal games and80integer/uniform controls. Actual UI
+checks visit all493positions/50bins. Installed wheel reproduction rebuilds
+original full training/logits/report and all95witnesses outside checkout,
+imports7modules and runs5commands.
+
+Standard temperature scaling/proper losses, not a new calibration theorem.
+ECE/MCE depend on bins, finite counts and only top-class probabilities; lower
+NLL/Brier does not isolate calibration. Fixed-temperature deletion is not a
+validation refit, causal effect or uncertainty interval. Positive scaling
+preserves real-arithmetic argmax; binary64 rounding/underflow limits are
+explicit. Original trainer/data/models/metrics/grid/bootstrap and original
+results above are unchanged. The original rounded-NLL subtraction gives
+.0076 oracle gap; unchanged full precision.007543134492483228 rounds to.0075
+in the new ledger. No stronger deployment guarantee.
