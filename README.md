@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### GameLab
+
+Exact-rational zero-sum score-table audits with complete active-basis traces, primal/dual minimax witnesses and full optimal strategy faces. A duplicate-action control has a continuum of equilibria, and a 10^-12 entry change flips a unique optimal action without changing game value. Exact best replies, sum exploitability and deterministic perturbation bounds. Strict offline JSON CLI, reproducible SVG, five-module wheel parity and 37 tests. Small supplied tables, not general-sum games, learned-agent strength, empirical uncertainty or a scalable/new solver.
+
+- Repo: [midya8/gamelab](https://github.com/midya8/gamelab)
+- Case study: [projects/gamelab.md](projects/gamelab.md)
+
 ### BetLab
 
 Exact-rational sequential evidence for bounded paired model scores, with fixed/past-only betting, full null-tree audits and prespecified start allocations with future reserve. The confidence extension inverts a separate conservative fixed-bet mean family, certifies rational crossing/noncrossing brackets and retains earlier bounds after reversal. Its 256-path coverage control excludes the true mean with probability 2187/16384 at alpha 1/4. Three reproducible SVGs, strict offline JSON CLI, seven-module wheel parity and 67 tests. Supplied-law/fixture audits, not drifting-mean estimation, optimized betting, causal effects or model-selection correction.
