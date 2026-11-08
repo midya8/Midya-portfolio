@@ -332,6 +332,7 @@ Exact small-feature Shapley attribution from scratch: empirical-background repla
 - Dependency-free Python 3.10+, 43 tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
 
 - Repo: [midya8/shapleylab](https://github.com/midya8/shapleylab) · Case study: [projects/shapleylab.md](projects/shapleylab.md)
+- v0.2 [live coalition ledger](https://midya8.github.io/shapleylab/): actual native callback rows, weighted predecessor terms, cached full ordering paths and independent point-edit browser. 49 Python + four Node/Chrome tests; 95 edit witnesses, 128 Fraction and 64 BigInt controls. Original exact/grouped/sample reports unchanged. Finite replacement allocations, not causal importance or explanation quality.
 
 ### PolicyLens
 
