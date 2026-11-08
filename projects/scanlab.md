@@ -3,7 +3,7 @@
 Exact affine prefix scans and input-gated state-space derivatives, with
 algorithmic span kept separate from real arithmetic work and floating behavior.
 
-![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/scanlab/main/assets/scan-audit.svg)
+![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/scanlab/42355326cba179c5af1e8225192162918eac532c/assets/scan-audit.svg)
 
 ## Mechanism
 
