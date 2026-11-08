@@ -6,7 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
-| PrivacyLab | Python, standard library only; exact rational finite-channel API/JSON CLI and reproducible SVG | Hockey-stick privacy profiles, attaining events, independent composition, secret-independent postprocessing and shared-randomness joint-release failures | [Case study](privacylab.md) |
+| PrivacyLab | Python, standard library only; exact rational finite-channel/transcript API, JSON CLI and two reproducible SVGs | Hockey-stick events, conditional adaptive laws, clipped-mass certificates, null-history and shared-coin failure controls | [Case study](privacylab.md) |
 | SparseLab | Python, standard library only; LASSO fits, exact rational CLI and three reproducible SVGs | Primal/dual/KKT, coefficient ambiguity, Gap Safe certificates and affine regularization branches with exact drop/re-entry knots and singular/boundary controls | [Case study](sparselab.md) |
 | InfluenceLab | Python, standard library only; convex fits, strict JSON CLI and two reproducible SVGs | Local weight derivatives, actual finite deletion, group paths with implicit solves and quadrature/endpoint witnesses, normalization and damping controls | [Case study](influencelab.md) |
 | FisherLab | Python, standard library only; exact rational CLI and two reproducible SVGs | Singular Fisher/nullspace/PSD witnesses, coordinate/finite-step limits and shared-context projection, local reward tradeoffs, reweighting and conditional-versus-joint normalization audits | [Case study](fisherlab.md) |
