@@ -14,6 +14,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### BanditLab
+
+Exact finite-budget Beta-Bernoulli bandit planning with complete posterior-state graphs, action values/ties and a fully updating greedy control. A prescribed three-pull problem chooses the lower-mean arm first: adaptive expected reward 187/108 versus greedy 46/27, gain 1/36. At two pulls both first arms tie and the gain is zero. Exact polynomial integration gives the separate latent-rate clairvoyant upper bound 2 and Bayes regret 29/108. 19 tests include 2,048 two-arm and 1,728 three-arm complete policy-tree references, all-state edge audits, independent Bernstein/Beta integrals, strict CLI/preflight checks and a reproducible SVG. Four-module wheel verified outside the source tree. Exact supplied-prior expectations, not empirical trials, fixed-environment frequentist guarantees or a universal greedy ranking.
+
+- Repo: [midya8/banditlab](https://github.com/midya8/banditlab) · Case study: [projects/banditlab.md](projects/banditlab.md)
+
 ### BeliefLab
 
 Exact rational finite-horizon POMDP planning for two hidden states, with policy-tree witnesses and all-belief envelopes. An optimized open-loop baseline checks every fixed action sequence over the same model and horizon: the supplied sensing fixture gives contingent value 7/10 versus zero at the uniform belief, with exact feedback-gap area 49/400. A forward execution audit traces every history/state mass, conditional belief and discounted reward contribution, including impossible branches without fabricated posteriors. Fixed-tree regret certificates expose every zero-regret interval: a probe tree optimal at the uniform prior loses 13/10 at either certain-state prior. Discounted all-belief Bellman-residual brackets connect finite envelopes to infinite optimal value without pretending the finite tree runs forever: raw residual 1/100 can hide value error 1. A perfect-probe fixture brackets infinite value 9/10 by [113/150,9/10]. 86 tests cover exact residual cells, independent infinite-value references and 81 model settings, complete depth-two trees, fixed sequences, exact crossing cells, full joint path occupancies and independent belief recursion. Strict JSON CLI, preflight caps, four reproducible SVGs and an isolated ten-module wheel. Supplied-model calculations only, not learned information value, empirical calibration, causal sensor performance or real-world safety.
