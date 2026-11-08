@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ErgodLab
+
+Exact rational stationary policy gradients and temporal reward variance. A two-state example has true average-reward gradient 1/18 while freezing stationary occupancy gives zero. Directed spanning-tree derivatives independently match normalized stationary linear systems and the Poisson-bias gradient. Sticky and alternating chains share one-step reward variance 1/4 but have asymptotic reward-sum variances 7/4 and 0; period-two blocks are audited without a mixing claim. Full edge martingale contributions, exact finite-block moments and 26 tests include independent path enumeration, determinant/finite-difference references, 25 analytic switch settings, 16 exact policy-weight gradients and reproducible SVG geometry. Offline Python; supplied irreducible finite models only, not gradient-estimator variance, training or a CLT.
+
+- Repo: [midya8/ergodlab](https://github.com/midya8/ergodlab)
+- Case study: [projects/ergodlab.md](projects/ergodlab.md)
+
 ### ScoreLab
 
 Exact policy-gradient distributions, complete trajectory witnesses and rational covariance certificates. Matrix-valued time/state score controls solve singular normal equations and minimize the full covariance within a fixed linear-control class. A three-action example has exact gradient [-1/9,1/3]: the best scalar baseline leaves trace variance 53/612, while a full matrix gives zero on every action. A separate 64-path sequential model has only a small change, 1.462519 to 1.460918, with singular score ranks [1,0,1,1,1,1]. Original scalar audits retain the value-baseline counterexample, increasing variance 4/625 to 36/625. 36 tests include 256 analytic Bernoulli policies, independent derivatives and Cartesian covariance references, matrix-control checks across 15 additional settings, all principal minors of gap certificates, nonunique coefficients with unique supported corrections, coordinate-transform congruence and two reproducible SVGs. Six-module wheel verified outside the checkout. Exact supplied finite models, not training results, a fitted critic or universal zero variance.
