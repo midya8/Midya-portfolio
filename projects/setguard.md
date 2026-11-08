@@ -1,6 +1,6 @@
 # SetGuard: classifier prediction sets with an explicit coverage boundary
 
-[Public repository](https://github.com/midya8/setguard)
+[Public repository](https://github.com/midya8/setguard) · [Live rank ledger](https://midya8.github.io/setguard/)
 
 A dependency-free Python CLI/API for calibration labels plus classifier
 probabilities, versioned JSON artifacts and unlabeled prediction sets. This
@@ -100,3 +100,14 @@ and is not evidence that classwise mode always improves coverage or size.
 Reference: [Class-Conditional Conformal Prediction with Many Classes](https://www.stat.berkeley.edu/~ryantibs/papers/classconf.pdf),
 description of standard/classwise and Mondrian methods. This repository uses
 the standard classwise construction, not that paper's clustered method.
+
+
+## v0.2: every inclusion has a witness
+
+A native score/rank/inclusion ledger and independent no-API browser now make the existing method inspectable. Five fixed public synthetic cases show pooled/classwise thresholds, every equality tie, absent-label infinity boundaries, each unlabeled candidate's inclusion/exclusion reason, 19 sampled alpha points and each held-position rank check. No candidate labels are fitted. The original three empirical arms, probabilities, calibration data and scores remain unchanged.
+
+The browser's native-compatible JSON retains exact input, rank/threshold artifacts and decisions. Python uses Fraction decimal ranks; JavaScript independently uses BigInt rationals. Scores are still binary64 numbers. The point path is descriptive, not alpha optimization; the deletion ledger is deterministic rank arithmetic, not uncertainty or an exchangeability test.
+
+41 Python and four Node/actual-Chrome tests check 95 case/alpha witnesses, 160 independent Fraction games, 80 integer-grid games, 4,199 pooled positions, 8,341 pooled/classwise deletion records and 2,736 candidate-label decisions. UI switching checks all 20 candidate rows and 22 groups. An installed wheel reproduces the original demo and 95 witnesses outside the checkout, imports six modules and executes six CLI commands. Desktop/mobile pixels are inspected, with keyboard controls and JSON exports tested.
+
+[Rank ledger equations and numerical limits](https://github.com/midya8/setguard/blob/main/LEDGER.md) · [Merged implementation PR](https://github.com/midya8/setguard/pull/1)
