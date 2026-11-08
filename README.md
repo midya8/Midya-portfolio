@@ -14,6 +14,23 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ScanLab
+
+Causal state-space mechanics from scratch: exact rational affine recurrence,
+work-efficient prefix scans with every composition/DAG witness, fixed LTI
+convolution with nonzero initial state, and hand-derived input-gated reverse
+gradients. On 16 tokens, dependency span drops 16 to 7 while multiplications
+increase 32 to 136: serial Python, not a speed benchmark. Floating cancellation
+ends at 1 sequentially, 0 by scan and 2 exactly. Input-dependent gates break
+fixed linear convolution. 30 tests cover 264 exact length/width cases, 729
+composition cases, 120 LTI controls, 123 derivative probes and 64 streaming
+partitions. A 114-cell full-witness SVG and five-job CI include seven-module
+installed-wheel parity. Not Mamba/S4, a trained sequence benchmark, exact
+sigmoid arithmetic or GPU throughput.
+
+- Repo: [midya8/scanlab](https://github.com/midya8/scanlab)
+- Case study: [projects/scanlab.md](projects/scanlab.md)
+
 ### Correlab
 
 Exact-rational general-sum joint-play obedience, finite-history and private override-signal certificates. Coarse, pairwise, full-swap and conditional gains retain every term and attaining deviation. v0.2 adds explicit hidden-baseline pass/override channels, supplied post-garbling lifts with exact slack identities, and all action partitions through size four. Developed controls give gains 4/3, 5/3, 1 for three two-signal partitions; attributed Roth reveal controls bridge 0 to 11/30. Two reproducible SVGs, seven-module/seven-CLI wheel parity and 50 tests. Supplied finite models only, not an equilibrium solver, learned information design, universal channel-order test, privacy or safety guarantee.
