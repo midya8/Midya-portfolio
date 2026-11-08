@@ -78,3 +78,38 @@ python examples/render_adaptive.py --check
 [Full adaptive proof and contract](https://github.com/midya8/privacylab/blob/main/ADAPTIVE.md) · [Complete adaptive report](https://github.com/midya8/privacylab/blob/main/examples/adaptive-demo.json)
 
 Limits are six rounds, eight outcomes per round, 64 transcripts, 128 conditional nodes and 512-bit constructed probability/flow components. The supplied kernels must really be the intended conditional laws; the code cannot verify an external sampler, randomness or real-data adjacency. Long canonical output fractions may require API Fraction values to resubmit under the 160-character input-string cap. The CLI has a separate 100000-byte input cap. This is established DP composition/subdistribution reasoning, not a new theorem, privacy filter, odometer, unbounded interaction, adaptive-parameter accountant, advanced/optimal composition implementation or training guarantee. Sources: [Dwork and Roth, section 3.5](https://homepage.divms.uiowa.edu/~sriram/5980/spring17/privacybook.pdf) and [fully adaptive composition context](https://arxiv.org/html/2203.05481v3); no filters or odometers from that paper are implemented.
+
+## Exact factor-frontier extension
+
+Version 0.3 computes the complete worst-directed-neighbor delta profile for every finite multiplicative factor t>=1, for supplied tables of up to four secrets and eight outputs. It adds inverse target-delta queries with exact minimum-factor witnesses or explicit singular-support obstructions. The original larger-domain point audit and adaptive-tree certificates keep their own limits.
+
+![Exact worst-neighbor envelope and inverse delta budgets](https://raw.githubusercontent.com/midya8/privacylab/main/assets/factor-frontier.svg)
+
+A local hockey-stick profile is affine between its likelihood-ratio knots. A worst-neighbor envelope can change maximizer between those knots, so simply connecting values on the ratio grid is insufficient. The code enumerates every line intersection within each ratio cell and then certifies each complete global interval against every overlapping local piece using finite endpoint slacks or an infinite-tail slope check. Local/global coefficients, active events, knot events/ties, singular plateau, omitted edges and whole-interval dominance witnesses stay in the report.
+
+The developed three-secret/four-output control has rows `[1/16,5/16,1/8,1/2]`, `[5/16,3/8,1/16,1/4]`, `[1/8,5/16,3/16,3/8]` and edges 0-1,1-2. Its profile is `5/8-5t/16` from 1 to 5/4, `5/16-t/16` from 5/4 to 5, and zero after 5. The maximizing direction switches from 0->1 to 1->0 at **5/4, absent from the individual ratio grid** `{1,6/5,3/2,2,5/2,3,5}`. Both directions tie there at delta 15/64.
+
+| Developed inverse query | Exact minimum factor | Certificate |
+|---|---:|---|
+| Envelope delta 1/4 | 6/5 | Positive left-slope root |
+| Envelope delta 15/64 | 5/4 | Root at cross-pair switch |
+| Envelope delta 0 | 5 | Start of zero plateau |
+| Singular plateau 1/2, target delta 1/4 | Unattainable | An event has P mass 1/2 and Q mass 0 |
+| Full-support large-factor control, delta 0 | 500000000000000000000000000000 | Finite, outside original point-audit numeric domain |
+
+A feasible inverse result retains the complete actual point audit and either t=1 as the domain floor or the exact positive-left-slope root. Smaller factors fail, using that interval and global monotonicity. A target below the maximum singular mass is impossible at every finite factor. A large finite required factor is reported exactly, not clipped or called impossible. Factors are t=exp(epsilon), never epsilon itself.
+
+### Verification of the frontier
+
+63 tests retain the earlier 46 and add fourteen frontier behavior plus three SVG tests. Thirty-two seeded three-secret/four-output channels use exhaustive all-16-event references at endpoints and several interior/tail factors, with inverse checks at four targets. Every interval-domination overlap is reconstructed; continuity, convex slopes, tail plateau, non-ratio crossing, singular/equality/domain-floor targets, tiny probabilities, huge finite factors, all-zero-support terms, permutations, omitted edges and strict errors are checked. Full four-secret/eight-output/six-edge capacity includes dense rational input. Tests check all ten new query cells and coordinates, all global and directed-curve vertices, complete report metadata, hidden dominance-witness tampering and byte-exact regeneration. The seven-module wheel matches all six complete CLI outputs outside checkout. All three figures and older demo artifacts stay reproducible; CI covers Python 3.10-3.13 and packaging.
+
+```sh
+python -m privacylab frontier-demo
+python -m privacylab frontier examples/frontier-input.json
+python -m unittest discover -s tests -v
+python examples/render_frontier.py --check
+```
+
+[Full frontier proof and contract](https://github.com/midya8/privacylab/blob/main/FRONTIER.md) · [Complete frontier report](https://github.com/midya8/privacylab/blob/main/examples/frontier-demo.json)
+
+This is exact small supplied-table analysis, not a production accountant, sampler/model guarantee, private training, advanced/optimal composition across unspecified mechanisms, PLD convolution or an adaptive privacy filter. The 512-bit input probability and 160-character input-string rules remain, while exact internal coefficients/intersections are not rounded back into those input caps. CLI input stays limited to 100000 bytes. Long canonical probabilities can be resubmitted as API Fraction values. Sources: [Dwork and Roth](https://homepage.divms.uiowa.edu/~sriram/5980/spring17/privacybook.pdf), [modern accounting notes](https://arxiv.org/pdf/2210.00597) and [Google Research's piecewise-linear accounting overview](https://research.google/blog/differential-privacy-accounting-by-connecting-the-dots/). Established mathematics is credited; no new privacy theorem or Connect-the-Dots implementation is claimed.
