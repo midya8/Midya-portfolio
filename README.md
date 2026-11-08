@@ -14,6 +14,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### ClusterLab
+
+Real-data unsupervised clustering with manual k-means++/Lloyd updates, forty complete restart witnesses and fitting-only PCA/whitening controls. All 3,823 original UCI training digits fit without labels; the 1,797-row official holdout is audited with permutation-invariant scores and all-row silhouettes. The live browser recomputes membership for editable digits, displays mixed-label centroids and exposes all restart descents. Raw uniform initialization slightly beats careful seeding on test ARI despite slightly worse fitting inertia; no general seeding advantage or cross-geometry inertia ranking is claimed. 28 Python tests plus four Node/real-Chrome tests cover independent pair/entropy/distance references, a rational local-minimum counterexample, full refit with test-loader prohibition, frozen-hash evaluation, all 80 public model/example cases and keyboard/copy/download/mobile controls. Eight-module/four-CLI installed wheel. [Open the live clustering inspector](https://midya8.github.io/clusterlab/). CC BY 4.0 data, MIT code; arbitrary groups, not digit predictions or calibrated confidence.
+
+- Repo: [midya8/clusterlab](https://github.com/midya8/clusterlab)
+- Case study: [projects/clusterlab.md](projects/clusterlab.md)
+
 ### DenoiseLab
 
 Real masked-digit reconstruction with manual NumPy backprop, 14,544 learned parameters and independent scalar JavaScript inference. A local browser inspector recomputes the neural denoiser, observed-pixel PCA ridge solve, exact fitting-example neighbor and pixel mean when arbitrary pixels are erased. Validation-only selection preserves the official UCI holdout; all four fixed corruption cases and every per-image score remain visible. Nearest neighbor and PCA beat the neural net at 16 missing pixels; the network is lower at 32, with no universal ranking inferred. 27 Python tests plus four Node/real-Chrome tests cover 200 independent gradient probes, complete refit with test-loader prohibition, full evaluation reproduction, all 40 public inference examples and responsive keyboard/copy/download controls. Seven-module/four-CLI installed wheel. [Open the live reconstruction inspector](https://midya8.github.io/denoiselab/). CC BY 4.0 data, MIT code; no uncertainty, causal, semantic-preservation or production-restoration claim.
