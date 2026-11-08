@@ -1,6 +1,6 @@
 # TreeLab: inspectable learners and constrained counterfactual geometry
 
-Constrained multi-feature counterfactual search for a frozen CART, alongside the [live one-axis response explorer](https://midya8.github.io/treelab/). Positive weighted L1, immutable inputs and fitting-only bounds give a closest feasible binary64 witness, every target-leaf candidate and exact rational costs. Strict thresholds use representable successors; infeasible requests remain visible across all 36 fixed cases. 86 Python tests and four Node/real-Chrome tests include an independent exhaustive grid oracle, false rounded ties, subnormal costs, full witness checks and responsive browser controls. Eight-module/sixteen-CLI installed-wheel checks retain all original data, models, historical controls and three audits. Established model counterfactual geometry, not causal recourse, plausible chemistry, ensemble optimality or new accuracy.
+Constrained multi-feature counterfactual search for a frozen CART, alongside the [live one-axis response explorer](https://midya8.github.io/treelab/). Positive weighted L1, immutable inputs and fitting-only bounds give a closest feasible binary64 witness, every target-leaf candidate and exact rational costs. Strict thresholds use representable successors; infeasible requests remain visible across all 36 fixed cases. 87 Python tests and four Node/real-Chrome tests include an independent exhaustive grid oracle, false rounded ties, subnormal costs, full witness checks and responsive browser controls. Eight-module/sixteen-CLI installed-wheel checks retain all original data, models, historical controls and three audits. Established model counterfactual geometry, not causal recourse, plausible chemistry, ensemble optimality or new accuracy.
 
 ## v0.5: constrained multi-feature model counterfactuals
 
@@ -22,7 +22,7 @@ These are facts about one predictor, not instructions for improving wine.
 The browser page at `docs/counterfactual.html` displays every frozen request,
 feature delta, feasible candidate, full input/box/path and exact cost; copy and
 local download include the complete request. Report and model SHA-256 provenance.
-86 Python tests and four Node/real-Chrome tests, eight modules and sixteen CLI
+87 Python tests and four Node/real-Chrome tests, eight modules and sixteen CLI
 modes. Independent Cartesian-grid optimum checks, exact/false ties, subnormal
 costs, immutable/directional bounds, all real witnesses and mobile controls.
 
