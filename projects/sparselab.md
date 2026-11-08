@@ -73,3 +73,26 @@ python examples/render_screening.py --check
 ```
 
 Standard Gap Safe rules are due to Fercoq, Gramfort and Salmon, [Mind the duality gap: safer rules for the Lasso](https://proceedings.mlr.press/v37/fercoq15.html). This extension implements a strict rational sphere audit with explicit mean-loss normalization, not a new screening theorem, causal selector, statistical guarantee, complete zero detector or solver speedup. It does not upgrade the retained floating solver's numerical witnesses to interval certificates.
+
+
+## Exact affine regularization branch extension
+
+[Exact branch derivation and API](https://github.com/midya8/sparselab/blob/main/BRANCHES.md) · [complete report](https://github.com/midya8/sparselab/blob/main/examples/branch-demo.json)
+
+A feature can leave the nonzero support as regularization falls, then return with the opposite sign. This extension verifies that behavior with exact affine KKT branches, not a dense grid of approximate fits. The caller supplies one weak sign pattern. Rational Gram solves give beta(lambda), and the complete selected-sign/inactive-correlation inequalities give its maximal closed nonnegative-lambda interval. Reports keep every half-line and tie, all affine coefficients/correlations, and exact endpoint/interior dual vectors with primal=dual. The entire interval claim comes from affine inequalities, not endpoint sampling alone.
+
+![Five exact branches and a feature drop/re-entry](https://raw.githubusercontent.com/midya8/sparselab/main/assets/regularization-branches.svg)
+
+The developed centered four-row fixture has columns a and 2a+b, response 2a-b, Gram [[1,2],[2,5]] and cross [2,3]. Its five supplied branches cover [3,infinity),[4/3,3],[1,4/3],[1/3,1],[0,1/3]. Feature1 enters positive at 3, feature 0 enters at 4/3, feature 1 leaves at 1 and re-enters negative at 1/3. Adjacent knots agree exactly in coefficients, predictions, objectives and dual vectors; the zero-penalty endpoint is [4,-1]. The positive-definite Gram makes this fixture's coefficient path unique, not a general uniqueness claim.
+
+Selected signs are weak: boundary zeros are allowed and are not a recovered support. An infeasible pattern returns a noncertificate with its conflicting bounds; a zero-lambda singleton is a valid point without a strict-sign interior. Selecting both duplicate columns instead returns singular_active_gram, not a fabricated ridge solution or proof of infeasibility. Selecting either duplicate separately yields different coefficients and identical predictions. These controls keep algebra failure, empty intervals and nonunique models distinct.
+
+62 tests retain 45 previous checks and add 14 branch behavior checks plus 3 SVG checks. Twelve seeded five-row/three-feature designs exercise all 27 sign patterns, reconstruct accepted endpoint/interior equations and compare dyadic in-interval points with the per-lambda enumeration oracle. Analytic closed forms, exact all-bound ties and just-outside violations, continuity/drop/re-entry, singular/empty/singleton/zero/unbounded cases, transformations/N normalization, binary64 semantics,128x12 capacity, no mutation/RNG and strict CLI errors are covered. Figure checks cover 20 cells/coordinates, both entire path geometries/all 10vertices, five knots, full exact report metadata and hidden singular-Gram tampering. Seven-module wheel parity reproduces all 6 complete CLI outputs outside checkout; all 3 SVGs regenerate byte-exactly. All earlier solver/oracle/demos/screening reports remain unchanged.
+
+```bash
+python -m sparselab branch-demo
+python -m sparselab branch examples/branch-input.json
+python examples/render_branches.py --check
+```
+
+Standard piecewise-linear LASSO methods: Efron, Hastie, Johnstone and Tibshirani's [Least Angle Regression](https://export.arxiv.org/pdf/math/0406456v2.pdf) and Rosset/Zhu's [discussion section 2](https://export.arxiv.org/pdf/math/0406470v1.pdf). This is one supplied-branch verifier, not a general LARS implementation, full-path guarantee, new theorem, causal selector or speed benchmark. Exact certificates apply to stored binary64-input rationals, not unknown pre-rounding data. The branch API shares a linear-solve helper with the per-lambda oracle, so equation reconstruction and analytic fixtures provide separate checks; it is not an independent linear-algebra comparison.
