@@ -254,3 +254,11 @@ Vary one assertion deletion cost over every integer from 0 to 1,000,000. The cer
 [Live inspector](https://midya8.github.io/dfalab/) | [Source and contract](https://github.com/midya8/dfalab/blob/main/CONTRACT.md) | [Case study](dfalab.md)
 
 Ask membership questions, repair an observation table, then break a wrong conjecture with a shortest counterexample. Classic Angluin L* is replayed with every experiment, closure/consistency witness and complete reachable-product equivalence check. The final DFA has access words and pair-separating suffixes proving minimality. Independent Python/JavaScript reports and a separate certificate checker are tested against exhaustive tiny teachers and a pair-marking oracle. Exact equivalence relies on the supplied finite synthetic teacher, not random tests of a real service; no new algorithm or query-efficiency claim.
+
+### DFALab: bounded conformance, not an unrestricted test-pass claim
+
+[Live W-method inspector](https://midya8.github.io/dfalab/conformance.html) | [Construction, assumptions and sources](https://github.com/midya8/dfalab/blob/main/CONFORMANCE.md) | [Source](https://github.com/midya8/dfalab)
+
+The classic DFA W-method now has a complete experiment inspector: every state-cover word, middle word, distinguishing suffix, canonical factor and acceptance path. It separates four claims: finite suite agreement, the supplied candidate's reachable-state bound, a bounded equivalence certificate and a separate exact graph audit. A faulty extra-state candidate passes when its bound is understated; increasing the bound exposes the fault. Tests do not infer a hidden service's state count.
+
+An independent verifier reconstructs all factor combinations and checks every output and witness without calling the generator. Six added native tests include 52,488 exhaustive reference/candidate cases; 131 full native/browser-engine reports are cross-checked. Actual Chrome audits 3,444 test selections and 141 probes across eleven controls and three widths. Four Python versions, seven Node/Chrome checks and installed two-family reproduction preserve the original L* learning page and schema. These are synthetic fixture checks, not production-protocol benchmarks or a new theorem. The method is credited to Vasilevskii and Chow; the precise DFA theorem and reset/state-bound assumptions are documented.
