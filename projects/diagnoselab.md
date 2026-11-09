@@ -26,3 +26,13 @@ Four Node/actual-Chrome tests compare all 18 retained reports on 74,292 exact sc
 Six Boolean variables, at most eight hard and eight removable clauses. All subsets and assignments are enumerated. This is established DPLL and MUS/MCS theory with attributed sources, not a novel/scalable SAT or MaxSAT algorithm. No external solver code or dataset copied. Synthetic clauses are supplied assumptions, not verified facts. Costs are supplied removal preferences, not failure probabilities. Restored consistency is not causal or physical diagnosis and establishes no real-world action is safe. Search traces are tested computational witnesses, not DRAT/LRAT exports or machine-checked proofs. Native/browser JSON parser differences are documented in the method. No paid service, model or API.
 
 Original implementation, independent checks and synthetic controls: Midya Rahmani.
+
+
+#### Diagnoselab repair-policy consequences
+
+[Live query inspector](https://midya8.github.io/diagnoselab/consequences.html) · [Method/sources](https://github.com/midya8/diagnoselab/blob/main/CONSEQUENCES.md)
+
+Distinguishes every/some repair from every/some surviving model, with all tied minimum-cost/cardinality policies, complete countermodels and negated-query DPLL traces. Shared-clause intersection is a separate baseline with strict counterexamples. No-repair families are inapplicable, not vacuous certainty. 26 new exact reports (16,165 scalar leaves), 67 repairs, 78 policy records and 151 full DPLL nodes including intersection baselines; 24 Python/eight Node-Chrome tests preserve all originals. Installed-wheel reproduction and mobile/table/export checks. Finite propositional reasoning, not a database/DL engine or probability claim.
+
+
+Query inspection adds a distinct reasoning task after consistency restoration. Every-repair entailment can differ from both possible-in-every-repair and intersection-baseline entailment. Original two- and three-way controls expose these gaps. Every repaired formula retains full truth-table query witnesses and the full deterministic search tree of the formula conjoined with query negation. Empty and tautological queries, duplicated literals, hard inconsistency and tied policy families have explicit controls. Chrome checks 78 policy records, 67 repairs, 70 selectable per-repair search nodes, 462 literal rows, complete policy JSON (including intersection search trees), all tables/export/stale/invalid clearing at 320/390/1280. Native independent replay covers all 151 nodes. Four additional inspected sources are attributed in the linked method, with exact limits. No claim of formal certification, real fault diagnosis, scalable solver or novelty.
