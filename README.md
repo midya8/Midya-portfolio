@@ -456,14 +456,8 @@ no speculation as a genuine action.
 
 ### StructGate
 
-Grammar-constrained generation built from scratch in pure Python: an incremental JSON validator and a closed-schema validator compute the exact set of legal next tokens for any prefix, generation samples from an exact character-level n-gram distribution masked to that set, and the evaluation measures both what the constraints buy and what they cost.
+Full-model constrained decoding with support-aware KL and exact finite-language conditioning. The independent browser evaluates every original n-gram count, all 120 historical paths/3,729 emitted characters and all 46 character probabilities at every step. Fifty-four Python tests retain all 32 originals; three Node/actual-Chrome tests compare 1,251 full prefix reports, 289 source contexts and 741,236 numeric entries. Fraction/BigInt controls expose local-versus-global distortion, stranded probability and undefined zero events. Original 3/40, 40/40, 40/40 fixture and gates retained. Prefix legality is not finite-budget completion; the historical fixed record is not JSON Schema. No LLM-quality, causal mask-cost or arbitrary-JSON conditioning claim. [Live mask and conditioning inspector](https://midya8.github.io/structgate/) · [Equations, support and limits](https://github.com/midya8/structgate/blob/main/CONDITIONING.md). Case study: [projects/structgate.md](projects/structgate.md).
 
-- **Conformance, measured** - on the checked-in fixture, grammar-constrained sampling yields valid JSON on 40/40 seeded draws and schema-constrained sampling yields schema-conforming records on 40/40, against an unconstrained control at 3/40 on the same model and seeds. The control is gated from above so it cannot quietly stop exercising the constraint.
-- **The mask's cost in nats** - renormalizing to the legal token set costs -ln(Z) per step, exactly KL(p || p_masked); the report shows it per mode (mean 1.3496 grammar, 0.8209 schema on the fixture) instead of hiding it.
-- **Validators verified against the stdlib** - the JSON state machine matches Python's json module on 32 adversarial cases in the suite, with exact allowed-set queries, snapshot/restore determinism, and a pinned number/whitespace boundary regression.
-- Dependency-free Python 3.10+, 33 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
-
-- Repo: [midya8/structgate](https://github.com/midya8/structgate) · Case study: [projects/structgate.md](projects/structgate.md)
 
 ### QuantLab
 
