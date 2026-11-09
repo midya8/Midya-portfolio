@@ -515,14 +515,15 @@ Validate and simulate agent task plans before they run: plans are DAGs of tool c
 
 ### DecodeLab
 
-Decoding strategies for language models, from scratch: greedy decoding with deterministic tie-breaking, seeded temperature/top-k/top-p sampling, and beam search, all over an add-k smoothed n-gram model with an exact next-token distribution, plus generation-quality metrics (distinct-1/2, repetition rate, unigram entropy) with terminal/JSON/Markdown reports and CI gates.
+Inspectable sampling and search from scratch, with every finite future accounted for. Stable temperature scaling, normalized top-k/top-p and retained-mass witnesses fix the earlier unnormalized nucleus cutoff and direct-power underflow. Short n-gram contexts now match training's start padding.
 
-- **An exact distribution to decode from** - the n-gram model's next-token probabilities come straight from counts, so strategies are compared against ground truth, never an approximation.
-- **Reproducible sampling** - every sampler takes an explicit seed; the same seed and corpus produce the same text, so differences are attributable to the strategy, not luck.
-- **Quality as metrics, not impressions** - distinct-1/distinct-2, repetition rate and entropy per strategy, side by side; `--min-distinct-2` and `--max-repetition` fail CI when a decoding change pushes generation below policy.
-- Dependency-free Python 3.10+, 36 unit tests, a fully offline demo that asserts exact greedy output and seeded reproducibility, and CI across Python 3.10-3.13.
+- Complete bounded trees separate EOS termination from cap censoring, filtered sampling mass from original-model log scores, and conditioned prompts from generated text.
+- Full beam expansion/pruning witnesses and exhaustive same-objective oracles show a lost better future at width 1 and a width 2-worse-than-width 1/3 counterexample under the documented shared finished/live beam. Higher likelihood is not a writing-quality verdict.
+- Editable independent scalar-JavaScript inspector: change all transition weights and decoding controls, paginate every outcome, follow candidate steps and export the complete current audit. Stale results disappear on edit.
+- 54 Python tests, including all 36 original tests unchanged; 90-digit Decimal sampling and rational Cartesian/forward-DP references; 32 retained audits, 120 stage cases, 7,927 independent numerical checks. ActualChrome covers 96 distribution views, 231 outcome rows, 956 candidate rows, export/invalidation and 320/390/1280 layouts. Installed wheel outside checkout and Python 3.10-3.13 CI.
+- Original n-gram CLI, corpus/demo and diversity reports remain. Synthetic finite arithmetic/search audits, not a neural model, language-quality benchmark or new decoding algorithm. Explicit float/cutoff, exponential-tree and beam-semantics limits, with six prior sources.
 
-- Repo: [midya8/decodelab](https://github.com/midya8/decodelab) · Case study: [projects/decodelab.md](projects/decodelab.md)
+- [Live inspector](https://midya8.github.io/decodelab/) · Repo: [midya8/decodelab](https://github.com/midya8/decodelab) · Case study: [projects/decodelab.md](projects/decodelab.md)
 
 ### VectorLite
 
