@@ -463,13 +463,11 @@ Grammar-constrained generation built from scratch in pure Python: an incremental
 
 ### QuantLab
 
-Post-training int8 quantization built from scratch in pure Python: symmetric per-tensor and per-channel scales, byte-exact size accounting, reconstruction error metrics, and a perceptron-trained fixture model whose int8 accuracy cost is measured exactly on held-out data - plus a controlled study showing where quantization error actually lives.
+Real QLB1 int8 files, IEEE32/64 scales and an independent editable browser inspector: every coefficient, signed logit-error contribution and exact fixed-input margin. Original 60-example fixture and magnitude controls preserved; 39 Python tests and four Node/actual-Chrome tests compare 52 full reports. Actual row files are 232/244 B, not the original 204 B analytic payload. No integer-kernel or speed claim.
 
-- **Measured, not benchmarked** - on the checked-in fixture, per-channel int8 matches fp32 test accuracy exactly (drop 0.0000) at 3.765x smaller weight storage; CI pins `--max-accuracy-drop 0.0` and `--min-ratio 3.5`.
-- **Error located** - boost one matrix row x100 and per-tensor's single scale crushes the rest (small-row SNR 9.25 dB) while per-channel holds 48.39 dB: a measured 39.14 dB gain, gated in CI.
-- **Honest scope** - simulated int8 storage with values proven in range, byte arithmetic for sizes, post-training only; the README says what real models would change.
-- Dependency-free Python 3.10+, 28 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+Original source and all four storage choices retain 59/60 synthetic test accuracy. Original small-row SNR difference remains +39.14 dB. Fraction/BigInt rational witnesses concern the fixed represented-real map, not floating accumulation or unseen performance.
 
+- Live inspector: [QuantLab](https://midya8.github.io/quantlab/)
 - Repo: [midya8/quantlab](https://github.com/midya8/quantlab) · Case study: [projects/quantlab.md](projects/quantlab.md)
 
 ### RAGLine
