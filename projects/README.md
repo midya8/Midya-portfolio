@@ -366,3 +366,6 @@ Nine exact abstract-argumentation families, every defense witness, complete labe
 ### ArgumentLab attack switches
 
 [Live cube](https://midya8.github.io/argumentlab/switches.html) · [Method](https://github.com/midya8/argumentlab/blob/main/SWITCHES.md)
+
+
+[More projects](CONTINUED.md)
