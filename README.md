@@ -21,6 +21,12 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Selected projects
 
+### CutLab
+
+Exact binary submodular energy graph cuts with signed rational offsets, every pair/terminal reduction, shortest augmenting paths including reverse routing, every-cut residual dual slack and the full SCC/closure optimum family. A strict single-flip control stops at energy 2 while the certified joint optimum is 0; a unary-only control has gap 2. Independent Python/BigInt agree on 24 reports / 24,624 exact leaves. 21 Python tests on 3.10-3.13, complete rendered records, SVG checks and installed reproduction. Supplied synthetic costs, at most six variables; classical methods, no learned model, image benchmark, speed or new-algorithm claim.
+
+[Source](https://github.com/midya8/cutlab) · [Live inspector](https://midya8.github.io/cutlab/) · [Case study](projects/cutlab.md)
+
 ### FactorLab
 
 Exact rational finite factor elimination with every joined product, reduction/tie, fill edge and small-order census. A mixed sum/max control returns an upper bound of 11 versus true marginal-MAP mass 10, while joint MAP weight 6 projects to the wrong decision. A five-variable star gives the same partition at 62 versus 18 joined entries, width 4 versus 1. Independent Python/BigInt agree on 24 reports / 23,114 exact leaves; 24 Python tests on 3.10-3.13, dense partial-product oracles, full-record Chrome checks and installed reproduction. Supplied synthetic potentials, not learned quality, a scalable solver or a timing benchmark.
