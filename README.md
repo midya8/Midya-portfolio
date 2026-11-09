@@ -505,13 +505,9 @@ Causal multi-head self-attention trained from scratch in pure Python: two residu
 
 ### EmbedKit
 
-Word embeddings trained from scratch with pure-Python SGNS (skip-gram with negative sampling): sigmoid-gradient SGD over (center, context) pairs with negatives drawn from the unigram^0.75 distribution, all randomness from one seeded RNG, plus a coherence evaluator that scores how often a word's nearest neighbors stay in its topic cluster - with CI gates.
+Independent editable SGNS objective and gradient inspector: every sampled event, 1,593 coordinate finite differences, real sequential replay versus a frozen simultaneous step, and visible clamp/order effects. Twelve original pairs capture 72 actual calls; seven labeled controls expose repetition, conflicting labels, saturation and overshoot. Full 300-sentence corpus and all 32 trained vectors retained; browser recomputes all 992 cosine neighbors. 53 Python tests and four Node/actual-Chrome tests compare 19 complete reports. Original 40 tests, trainer and gates remain unchanged.
 
-- **Real SGNS, no dependencies** - weight init, pair shuffling and negative draws all come from one seeded generator, so a corpus and seed reproduce the same vectors bit for bit.
-- **Coherence as a measurable gate** - per-word neighbor purity against labeled topic clusters plus an intra-vs-inter separation margin; `--min-coherence` and `--min-margin` fail CI when training regresses.
-- **Reproducible end to end** - the demo corpus is regenerated deterministically, training pins quality numbers in tests, and terminal/JSON/Markdown reports carry the evaluation.
-- Dependency-free Python 3.10+, 40 unit tests, a fully offline demo that asserts same-topic neighbors and both gate sides, and CI across Python 3.10-3.13.
-
+- Live inspector: [EmbedKit](https://midya8.github.io/embedkit/)
 - Repo: [midya8/embedkit](https://github.com/midya8/embedkit) · Case study: [projects/embedkit.md](projects/embedkit.md)
 
 ### PlanBench
