@@ -12,7 +12,7 @@ Tiny constraint-based AI assignment, with every supported variable/value backed 
 
 **Distinct is a global promise.** Inspect exact all-different propagation for tiny constraint-based AI assignment problems. Every retained variable/value has a complete injective assignment. Every pruned edge has a forced-residual Hall obstruction. Compare against full synchronous pairwise arc consistency, not a weakened one-pass baseline.
 
-[Interactive inspector](https://midya8.github.io/halllab/) · [Exact method, boundaries and six-source ledger](METHOD.md)
+[Interactive inspector](https://midya8.github.io/halllab/) · [Exact method, boundaries and six-source ledger](https://github.com/midya8/halllab/blob/main/METHOD.md)
 
 ```json
 {"values":3,"domains":[[0,1],[0,1],[0,1,2]]}
@@ -49,7 +49,7 @@ assert verify(report)  # exhaustive independent oracle, no matching calls
 - Original synthetic controls for hidden Hall bottlenecks, noninterval domains, surplus values, reassignment, symmetric supports, empty domain/scope, cascade and full 48-edge scope.
 - Strict bounded JSON CLI, atomic output and exact report verification. Edits/invalid input clear stale browser reports.
 
-12 native tests, including 8,777 exhaustive domain graphs and 120 seeded larger inputs; 682 full Python/JS report comparisons; Chrome replays every edge/subset/round at three widths. Fresh installed reproduction and CI span Python 3.10-3.13. [METHOD.md](METHOD.md) gives actual counts, semantics and source attribution.
+12 native tests, including 8,777 exhaustive domain graphs and 120 seeded larger inputs; 682 full Python/JS report comparisons; Chrome replays every edge/subset/round at three widths. Fresh installed reproduction and CI span Python 3.10-3.13. [METHOD.md](https://github.com/midya8/halllab/blob/main/METHOD.md) gives actual counts, semantics and source attribution.
 
 ## Limits before interpretation
 
