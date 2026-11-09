@@ -336,3 +336,14 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 Vary binary unary costs with a rational parameter and retain the complete optimum family on every closed region, open cell and breakpoint, including point-only optima and persistent ties. Every assignment keeps its affine line and every line comparison keeps its exact inequality. Independent graph-cut audits check all boundary and cell witnesses.
 
 18 synthetic controls retain 214 assignment lines, 6,084 inequalities and 92 full flow/cut witnesses. Mixed-sign slopes include a label that leaves and returns: no nested-label or scalable parametric-maxflow guarantee is claimed. The inspector enumerates all 2^n assignments for at most six variables. Original flow/cut functionality and tests remain.
+
+
+### Diagnoselab: all conflicts, all minimal repairs
+
+[Exact logical consistency inspector](https://midya8.github.io/diagnoselab/) · [Source](https://github.com/midya8/diagnoselab)
+
+Full relative MUS/MCS families, bidirectional minimal hitting-set intersections, per-member minimality/unique-hit witnesses and exact rational removal costs. Every soft subset retains its DPLL/unit trace and independent full truth-table models. The smallest repair need not be cheapest; an inconsistent fixed background has no soft repair.
+
+18 original synthetic controls retain 827 subsets, 1,301 search nodes, 20 cores and 52 repairs. 17 Python tests on 3.10-3.13, four Node/Chrome tests, 74,292 exact cross-language scalar checks and installed-wheel reproduction. Exhaustive six-variable/eight-soft-clause bound, established SAT theory, no scalable solver, real fault diagnosis or certified proof claim. No model/API.
+
+Case study: [diagnoselab.md](diagnoselab.md)
