@@ -576,10 +576,14 @@ Local-first validation, analysis and reporting for AI agent execution traces: JS
 - **Agent runs as inspectable data** - parse JSONL traces from local agents, test fixtures, internal tools or hosted-model adapters without sending prompts or outputs anywhere.
 - **Gates that catch agent failure modes** - fail CI on errored steps, p95 latency, cost, step count, a repeated tool/action signature that indicates a loop, or regressions against a saved baseline trace.
 - **Reports built for review** - deterministic JSON analysis artifacts, JUnit XML for CI test viewers, Markdown job summaries, SARIF 2.1.0 for code-scanning tools, and a self-contained HTML report show run summaries and per-step timelines with untrusted trace fields escaped by default.
-- Dependency-free Python 3.10+, 33 unit tests, a fully offline fixed-trace baseline/candidate demo that validates JUnit, Markdown and SARIF output, and CI across Python 3.10-3.13.
+- Dependency-free Python 3.10+, 57 unit tests (original 33 retained), a fully offline fixed-trace baseline/candidate demo that validates JUnit, Markdown and SARIF output, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
 - Case study: [projects/agenttrace.md](projects/agenttrace.md)
+
+Full-record graph/timing inspector: every endpoint, interval segment, parent path/relation, normalized record and p95 term. Independent Python/JavaScript recomputation and current JSON export. 57 Python tests retain all original 33 tests; 24 synthetic controls, 11,110 interval checks and an isolated installed-wheel reproduction. Parent links are not causal dependencies; recorded coverage/overlap is not CPU, idle, waste or utilization. No model/API call.
+
+- [Live graph/timing inspector](https://midya8.github.io/agenttrace/)
 
 ### PromptGuard
 
