@@ -427,14 +427,14 @@ Finite-policy Gibbs optimum and KL-budget inspector attached to a dependency-fre
 
 ### LoRALab
 
-Low-rank adaptation built from scratch in pure Python: freeze a trained classifier, learn only a rank-r delta `W' = W + B @ A` with hand-derived gradients through the low-rank factors, and measure what adaptation actually bought - accuracy on the shifted distribution, trainable-parameter share, and retained accuracy on the original one.
+Same model, different factor-SGD step. A dependency-free Python implementation and independent browser inspector expose equivalent low-rank factor coordinates, full gradients and the finite-step second-order identity. Scalar learning-rate compensation is an attributed coordinate identity, not a new optimizer.
 
-- **The trade-off measured, all three sides** - on the checked-in fixture (base accuracy on the shifted distribution collapses to 0.44), a rank-2 adapter recovers to 1.0000, matching full fine-tuning while training 67.7% of the parameters; retention on the original distribution is measured too (0.7556 adapter vs 0.9556 full fine-tuning on this fixture) and reported rather than hidden.
-- **Merge equivalence pinned to float reassociation** - the merged model `(W + B @ A) x` reproduces adapter logits `W x + B (A x)` with max abs diff ~1e-14 on the fixture; the test pins the diff below 1e-12 and pins that it is nonzero - exact algebra, approximate arithmetic, claimed as such.
-- **Gates that fail in both directions** - `--min-base-drop` proves the distribution shift still exercises adaptation, `--min-adapted-accuracy` and `--max-rank2-param-share` pin the recovery story, `--max-merge-diff` pins merge fidelity; the suite shows an impossible cap fails.
-- Dependency-free Python 3.10+, 14 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+- All 124 original epoch boundaries across widths 1/2/4/8 remain available, with full matrix-gauge input, 31-scale sweeps, per-example outputs and complete report/input/archive exports. No best-state selection or retraining from the controls.
+- The unchanged width-2 result reaches B accuracy 1.0000 with 67.7% of full fine-tuning's parameters, but retains less A accuracy: 0.7556 versus 0.9556. Widths 4/8 cost more parameters than full fine-tuning; three output rows cap update-matrix rank at three.
+- 31 Python tests, four Node/actual-Chrome tests, 54 complete native/browser witnesses with 591,615 numeric values, independent finite-difference/80-digit checks and isolated installed-wheel reproduction. All 14 original tests and gates remain intact.
+- Synthetic finite classifier only. Orthogonal changes preserve ordinary SGD in real arithmetic; general scaling/shear need not. Binary64 residuals are diagnostics, not certificates or generalization evidence.
 
-- Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
+- [Interactive inspector](https://midya8.github.io/loralab/) · Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
 
 ### SpecLab
 
