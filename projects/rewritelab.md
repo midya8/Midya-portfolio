@@ -20,3 +20,47 @@ Verified release: 25 exact public source files; 11 Python tests on 3.10-3.13; th
 ## Why it belongs in an AI portfolio
 
 Algebraic rewrites and cost-guided extraction are part of AI compiler and tensor-graph optimization. This lab isolates one inspectable question without pretending to run a tensor compiler: can a cheap equivalent expression fit the grammar but remain unreachable because its rewrite bridge is too large? The source notes distinguish this explicit finite graph from equality-saturation systems such as egg/TENSAT and from TASO, Herbie and Alive2.
+
+
+## RewriteLab budget barriers: when fitting is not reaching
+
+[Live budget-barrier atlas](https://midya8.github.io/rewritelab/barriers.html) · [Source](https://github.com/midya8/rewritelab) · [Exact filtration contract](https://github.com/midya8/rewritelab/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/2)
+
+The atlas retains every 3/5/7-node closure through the chosen cap and every
+polynomial-equivalent candidate. It separates the first budget that fits both
+source and target from the first budget that admits a rewrite proof. Each
+blocked lower level has a complete closure obstruction, and each first-reachable
+level has a shortest proof within that level. Source-too-large and
+target-too-large are not mislabeled as blocked.
+
+For `x*(1+1) -> x+x`, first fitting is 5, first reachable is 7, extra budget is
+2 and shortest distance is 3. Thirteen of its 213 cap-7 semantic candidates
+need a larger bridge. The weighted constant product is still a counter-control:
+five of six candidates remain unreached through seven nodes. Leaf `x` first
+has allowed budget 3, but its zero-step path has actual peak 1. Null means
+not reached through the cap, not impossible at every larger budget.
+
+Independent verification first checks every nested full closure with separate
+generic rule templates and exact 25-point degree-bounded signatures, then
+independently enumerates candidates and budget labels. It imports no atlas
+generator, forward search or coefficient maps; the syntax/size/cost contract
+and base independent verifier are shared. A test-only heap directly minimizes
+peak-node labels through the independent template graph for all semantic
+candidates of six sources.
+
+Fresh public feature/main reproduction: 35 files source-exact; 20 tests on
+Python 3.10-3.13; six Node/actual-Chrome tests; installed eight controls per
+family through module and console outside the checkout, with forgeries rejected.
+36 complete Python/JS atlases compare 13,016 candidate rows and 13,745 nested
+proof rows. Chrome checks 25 atlases and every 3,844 candidate selection, all
+five level states, three widths, export, cap changes and invalidation. Base
+72 full cross-language reports and all base browser checks remain intact.
+Feature/PR/main CI and Pages pass; nine deployed assets match main and 57
+feature/main/live screenshots match without masks.
+
+This is the least allowed budget in a fixed small grammar, not a new minimax
+algorithm, e-graph, learned policy, tensor compiler or runtime benchmark. A
+shortest proof at that budget need not be globally shortest across larger
+budgets, and its peak need not equal the allowed budget. Reachable and semantic
+optima each fall or stay fixed as the budget grows; their difference need not.
+No result above the cap or IEEE floating-point equivalence is claimed.
