@@ -527,14 +527,13 @@ Inspectable sampling and search from scratch, with every finite future accounted
 
 ### VectorLite
 
-Exact and approximate kNN vector search from scratch: brute-force exact kNN (cosine and L2) with deterministic tie-breaking, a seeded random-hyperplane LSH index for approximate cosine search, and recall@k of the approximate index measured against the exact baseline and enforced with a CI gate.
+A finite random-hyperplane geometry and retrieval audit: inspect every dot product, signature bit, candidate, canonical exact neighbor and threshold. Independent scalar JavaScript replays editable actual planes; no invented 2D projection for higher-dimensional data. Stable cosine avoids extreme-magnitude square overflow/underflow. Full-precision recall gates and explicit self-inclusive, leave-one-id-out and external-supplied protocols retain the original 12-vector recall@3 of 1.0; a same-two-vector id-exclusion control gives 1 versus 0.
 
-- **Recall is measured, not assumed** - `benchmark` self-queries every vector through both indexes and reports mean recall@k of LSH against the exact baseline; `--min-recall` fails the pipeline when fewer bits, a new seed or a lower sharing threshold drops recall below policy.
-- **Deterministic LSH** - bit signatures from seeded Gaussian hyperplanes; the same seed and data rebuild the identical index bit for bit, and candidates are rescored exactly before ranking.
-- **An exact baseline that is always right** - brute-force scan with score-then-id tie-breaking, O(n) per query by design: it exists to be correct, not fast.
-- Dependency-free Python 3.10+, 31 unit tests, a fully offline demo that asserts mean recall@3 of 0.9 or better plus both sides of the gate, and CI across Python 3.10-3.13.
+- Complete marginal binomial admission reference, expected candidate count and expected canonical recall over iid-isotropic rebuilds, not a conditional guarantee for these fixed planes; zero-vector angular theory stays undefined.
+- Fifty Python tests include all 31 original tests unchanged. Independent Decimal/rational/sign-pattern/geometry controls, 35 audits, 20,784 JavaScript numerical checks, 643 threshold rows and actual Chrome inspection of 5,856 projection rows. Installed-wheel CLI reproduction outside checkout.
+- Linear all-signature scan, not sublinear lookup. Rescored fractions are not latency; synthetic vectors are not learned embeddings or relevance quality. No new algorithm, speed, confidence-interval or model-quality claim.
 
-- Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite) · Case study: [projects/vectorlite.md](projects/vectorlite.md)
+- Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite) · [Live inspector](https://midya8.github.io/vectorlite/) · Case study: [projects/vectorlite.md](projects/vectorlite.md)
 
 ### GroundCheck
 
