@@ -361,3 +361,8 @@ Distinguishes every/some repair from every/some surviving model, with all tied m
 [Source](https://github.com/midya8/argumentlab) · [Live](https://midya8.github.io/argumentlab/) · [Case study](argumentlab.md)
 
 Nine exact abstract-argumentation families, every defense witness, complete labellings and grounded steps. Independent Python/JS full-report checks over531 small directed graphs. Eight arguments maximum, established semantics, explicit classical empty-family vacuity. No real-world truth or scalable-solver claim.
+
+
+### ArgumentLab attack switches
+
+[Live cube](https://midya8.github.io/argumentlab/switches.html) · [Method](https://github.com/midya8/argumentlab/blob/main/SWITCHES.md)
