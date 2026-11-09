@@ -274,10 +274,9 @@ An independent native verifier reconstructs the complete machine domain and ever
 
 ### SynthLab: counterexample-guided bit-vector program synthesis
 
-**Interim feature branch.** Implementation and local verification are complete; PR CI is blocked by GitHub's Actions/Checks outage. Not merged or deployed. The live inspector is not yet verified.
 
 **Fits the examples. Fails the function.** A learner chooses the cheapest grammar expression fitting known examples; an exact finite verifier returns the first wrong input. Inspect every iteration, eliminated candidate, complete truth table and evaluation tree. Full-domain semantic signatures safely deduplicate programs without using the target; a separate verifier enumerates every raw ordered grammar tree to check bounded completeness and canonical minimum cost.
 
 Ten synthetic controls separate example agreement, exact finite correctness and minimum AST-node cost inside the explicit grammar. Eight native tests run on Python3.10-3.13, including512 Boolean target/grammar pairs and2764 raw trees at each of three widths; four Node/actual-Chrome tests audit30 reports,90 iterations,903 candidate signatures and3420 expression probes. Installed module+console reproduction runs outside the checkout. Classical CEGIS/enumeration credited. No novel algorithm, unbounded synthesis, cvc5 integration or production-code benchmark claim.
 
-[Tested feature source](https://github.com/midya8/synthlab/tree/cegis-frontier) · [Pending pull request](https://github.com/midya8/synthlab/pull/1) · [Grammar, proof boundary and sources](https://github.com/midya8/synthlab/blob/cegis-frontier/CONTRACT.md)
+[Live inspector](https://midya8.github.io/synthlab/) · [Source](https://github.com/midya8/synthlab) · [Grammar, proof boundary and sources](https://github.com/midya8/synthlab/blob/main/CONTRACT.md)
