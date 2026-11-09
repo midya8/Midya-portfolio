@@ -750,3 +750,12 @@ An exact bounded abstract-argumentation workbench. Compare all nine extension fa
 Original strict controls distinguish preferred from maximum cardinality, preferred intersection from grounded, a nonadmissible preferred intersection, and stage from semi-stable. Independent Python bitsets and JavaScript sets agree on all531 directed frameworks through three arguments/344,023 scalar leaves and19 retained full reports/152,884 leaves. Separate set/ternary oracles cover120 native and100 JavaScript seeded larger cases.19 native tests run on four Python versions; five Node/actual-Chrome tests check every retained UI record and graph state, export/invalid clearing and all19 controls at320/390/1280. Installed wheel reproduces19 full reports outside the checkout.
 
 Eight arguments; exhaustive subsets; all ties retained. Established semantics, not a novel/scalable solver, probability model, benchmark win, real-world truth or debate winner. Six inspected sources and exact parser differences documented; no external solver code/data/examples copied or affiliation with existing ArguLab/ARGTEACH.
+
+
+### ArgumentLab attack switches
+
+[Live switch-cube inspector](https://midya8.github.io/argumentlab/switches.html) · [Source and method](https://github.com/midya8/argumentlab/blob/main/SWITCHES.md)
+
+Enumerates every configuration of up to six supplied attack switches. Preserves all nearest ties, all inclusion-minimal matches, exact extension gains/losses and complete selected-framework defense witnesses. Original controls distinguish minimum cardinality from inclusion minimality and retain nonmonotone and nullable outcomes.
+
+Verified on 21 controls, 209 configurations, 5,205 subset classifications and 423 switch transitions. Independent Python and JavaScript engines, installed CLIs, browser exports and responsive inspection. These are bounded hypothetical edits, not causal effects, persuasion advice or a scalable solver.
