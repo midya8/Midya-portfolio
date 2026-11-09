@@ -21,7 +21,7 @@ Findings include a rule ID, severity, file, line and redacted excerpt. Reports a
 
 ## Verification
 
-- 58 unit tests cover scanner rules, token detection and redaction, report escaping, SARIF generation, JUnit XML, Markdown summaries, baseline suppression, filtering and gate exit codes.
+- 68 unit tests cover scanner rules, token detection and redaction, report escaping, SARIF generation, JUnit XML, Markdown summaries, baseline suppression, filtering and gate exit codes.
 - `bash examples/demo.sh` runs fully offline against safe and risky fixtures plus a token fixture generated at runtime, and validates the generated SARIF, JUnit and Markdown reports and the baseline suppression flow.
 - The risky fixture produces 8 findings with maximum severity critical, and the high-severity gate rejects it as expected.
 - CI runs the same suite across Python 3.10-3.13.

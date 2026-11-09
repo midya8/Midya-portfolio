@@ -2,7 +2,7 @@
 
 [Public repository](https://github.com/midya8/shapleylab)
 
-Dependency-free Python scalar callback API/JSON CLI, 43 tests, offline demo and Python 3.10-3.13 CI. Standard formula, no new theory.
+Dependency-free Python scalar callback API/JSON CLI, 49 Python tests plus four Node/actual-Chrome tests, offline demo and Python 3.10-3.13 CI. Standard formula, no new theory.
 
 
 ## Boundary

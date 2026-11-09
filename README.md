@@ -12,6 +12,13 @@ Toronto-based technologist with 12+ years across technology, financial services,
 
 The projects below share an approach, written up in [approach.md](approach.md): choose the simplest architecture that meets the requirement, make tools that fit into scripts as well as terminals, validate before executing, and let reports and documents be outputs of the work rather than afterthoughts — all designed around real constraints, from right-to-left layouts to reduced-motion preferences.
 
+## Contents
+
+- **AI systems:** [TagLab](#taglab) · [SpectralLab](#spectrallab) · [ForestLab](#forestlab) · [RatingLab](#ratinglab) · [MarginLab](#marginlab) · [MixtureLab](#mixturelab) · [PartsLab](#partslab) · [ClusterLab](#clusterlab) · [DenoiseLab](#denoiselab) · [TreeLab](#treelab) · [DigitLab](#digitlab) · [ScanLab](#scanlab) · [Correlab](#correlab) · [GameLab](#gamelab) · [BetLab](#betlab) · [PrivacyLab](#privacylab) · [SparseLab](#sparselab) · [InfluenceLab](#influencelab) · [FisherLab](#fisherlab) · [LatentLab](#latentlab) · [ErgodLab](#ergodlab) · [ScoreLab](#scorelab) · [BanditLab](#banditlab) · [BeliefLab](#belieflab) · [BellmanLab](#bellmanlab) · [VariLab](#varilab) · [RobustLab](#robustlab) · [CausalLab](#causallab) · [ParticleLab](#particlelab) · [SegmentLab](#segmentlab) · [HamiltonLab](#hamiltonlab) · [TransportLab](#transportlab) · [FlowLab](#flowlab) · [GraphLab](#graphlab) · [DiffuseLab](#diffuselab) · [ChainLab](#chainlab) · [KernelLab](#kernellab) · [BoostLab](#boostlab) · [ShapleyLab](#shapleylab) · [PolicyLens](#policylens) · [DriftLens](#driftlens) · [SetGuard](#setguard) · [CalibrLab](#calibrlab) · [DistillLab](#distilllab) · [MoeLab](#moelab) · [AlignLab](#alignlab) · [LoRALab](#loralab) · [SpecLab](#speclab) · [StructGate](#structgate) · [QuantLab](#quantlab) · [RAGLine](#ragline) · [KVLens](#kvlens) · [AttnLens](#attnlens) · [EmbedKit](#embedkit) · [PlanBench](#planbench) · [DecodeLab](#decodelab) · [VectorLite](#vectorlite) · [GroundCheck](#groundcheck) · [TokenForge](#tokenforge) · [RetrievalBench](#retrievalbench) · [EvalForge](#evalforge) · [AgentTrace](#agenttrace) · [PromptGuard](#promptguard) · [ScratchGPT](#scratchgpt)
+- **Python utilities:** [sre-toolkit](#sre-toolkit) · [loglens](#loglens) · [flowkit](#flowkit) · [uptimekit](#uptimekit)
+- **Web platforms:** [Kurdistan International Sociological Association website](#kurdistan-international-sociological-association-website) · [Personal site — midya.ca](#personal-site--midyaca)
+- [Find me](#find-me)
+
 ## Selected projects
 
 ### TagLab
@@ -40,7 +47,7 @@ The v0.3 joint-batch inspector changes or removes multiple original training row
 
 ### MarginLab
 
-Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable30-feature scores. Version0.3 adds exact finite original-unit input boxes: attained affine score bounds, both corners, tie-aware labels, all30interval edits and independent Fraction/BigInt readers with separate source consistency.36Python/15Node-real-Chrome tests include120exhaustive corner cases,256direct exact dual endpoint sums,128full cross-language responses,4,552original inference checks and eight fresh fits. Installed reproduction covers11modules and9maincommands plus the box exporter. Original fits, holdout scores, split and exact training-objective proofs are unchanged. Synthetic boxes are not clinical tolerances or plausible interventions; exact affine arithmetic is not a floating-inference safety, RBF, generalization or authenticity guarantee.
+Manual linear/RBF soft-margin SVM learning with replayable pair updates and editable 30-feature scores. Version 0.3 adds exact finite original-unit input boxes: attained affine score bounds, both corners, tie-aware labels, all 30 interval edits and independent Fraction/BigInt readers with separate source consistency. 36 Python/15 Node-real-Chrome tests include 120 exhaustive corner cases, 256 direct exact dual endpoint sums, 128 full cross-language responses, 4,552 original inference checks and eight fresh fits. Installed reproduction covers 11 modules and 9 main commands plus the box exporter. Original fits, holdout scores, split and exact training-objective proofs are unchanged. Synthetic boxes are not clinical tolerances or plausible interventions; exact affine arithmetic is not a floating-inference safety, RBF, generalization or authenticity guarantee.
 
 [Exact input-box inspector](https://midya8.github.io/marginlab/box.html) · [Box derivation and limits](https://github.com/midya8/marginlab/blob/main/BOX.md)
 
@@ -329,7 +336,7 @@ Exact small-feature Shapley attribution from scratch: empirical-background repla
 - Enumerates all coalitions with a preflight call budget; 3 features/2 background rows require 15 calls. Independent factorial-order reference checks dimensions 1-6, plus linearity, symmetry, dummy and feature-permutation tests. No walltime, causality, conditional-SHAP or model-quality claim.
 - Optional atomic groups move correlated blocks together. Three-way product gives grouped [1/2, 1/2], not post-hoc [2/3, 1/3]; grouped games answer a different question. Up to 64 raw features/12 groups, no within-group credit split or cross-group dependence guarantee.
 - Optional seeded permutation mode handles up to 64 individual features with cached coalitions and descriptive MC standard errors. A two-permutation product gives [0.5, 0.5, 0] despite exact [1/3, 1/3, 1/3], showing zero observed MC error is not an accuracy bound. No confidence guarantee or sampled groups.
-- Dependency-free Python 3.10+, 43 tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
+- Dependency-free Python 3.10+, 49 Python and four Node/actual-Chrome tests, offline demo and CI. Standard Shapley/SHAP formula and masking sources attributed; no new algorithm claim.
 
 - Repo: [midya8/shapleylab](https://github.com/midya8/shapleylab) · Case study: [projects/shapleylab.md](projects/shapleylab.md)
 - v0.2 [live coalition ledger](https://midya8.github.io/shapleylab/): actual native callback rows, weighted predecessor terms, cached full ordering paths and independent point-edit browser. 49 Python + four Node/Chrome tests; 95 edit witnesses, 128 Fraction and 64 BigInt controls. Original exact/grouped/sample reports unchanged. Finite replacement allocations, not causal importance or explanation quality.
@@ -367,10 +374,9 @@ Split-conformal classification sets from scratch: a fixed classifier's probabili
 - Corrected finite-sample rank, inclusive ties, all-label boundary and empty sets are explicit. An exact leave-one-out rank audit covers 19/21 positions; tests exhaust 243 tied-score sequences at five alpha values.
 - Marginal coverage is a standard theorem under exchangeability and a predictor fixed independently of calibration. It is not coverage for every class, input, fixed split or shifted deployment.
 - Dependency-free Python 3.10+, 41 Python tests plus four Node/Chrome tests, CLI/API fit/predict/evaluate, per-class and size diagnostics, offline demo and Python 3.10-3.13 CI. Optional classwise thresholds with explicit rare/absent-class inclusion. Standard method attributed to Angelopoulos and Bates.
+- v0.2 [live rank ledger](https://midya8.github.io/setguard/): five synthetic controls expose every threshold tie, pooled/classwise label decision and held-position rank check, with a 19-point alpha path and native-compatible JSON. Independent Python/BigInt-browser arithmetic; 95 witnesses, 41 Python/four Chrome tests and installed six-command wheel reproduction. Original three empirical arms unchanged. Rank counts are not an exchangeability test or fixed-candidate guarantee.
 
 - Repo: [midya8/setguard](https://github.com/midya8/setguard) · Case study: [projects/setguard.md](projects/setguard.md)
-
-- v0.2 [live rank ledger](https://midya8.github.io/setguard/): five synthetic controls expose every threshold tie, pooled/classwise label decision and held-position rank check, with a 19-point alpha path and native-compatible JSON. Independent Python/BigInt-browser arithmetic; 95 witnesses, 41 Python/four Chrome tests and installed six-command wheel reproduction. Original three empirical arms unchanged. Rank counts are not an exchangeability test or fixed-candidate guarantee.
 
 ### CalibrLab
 
@@ -382,8 +388,7 @@ Confidence calibration from scratch in pure Python, with a JSON CLI/API for call
 - Dependency-free Python 3.10+, 56 Python tests plus four Node/Chrome tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab) · Case study: [projects/calibrlab.md](projects/calibrlab.md)
-
-- v0.2 [live score ledger](https://midya8.github.io/calibrlab/): independent native/browser arithmetic, all row logit NLL/class Brier terms, signed bin gaps/ECE terms, migration and fixed-temperature deletion; five public controls,19sampled temperatures and complete input/report JSON.95witnesses,160Decimal/80integer games and installed original-training/wheel reproduction. Original adverse caller and all results retained. Binned ECE is not classwise calibration, proper losses are not calibration-only and deletion is not refitting/uncertainty. Full-precision oracle gap rounds to.0075; prior.0076 subtracts rounded NLLs.
+- v0.2 [live score ledger](https://midya8.github.io/calibrlab/): independent native/browser arithmetic, all row logit NLL/class Brier terms, signed bin gaps/ECE terms, migration and fixed-temperature deletion; five public controls, 19 sampled temperatures and complete input/report JSON. 95 witnesses, 160 Decimal/80 integer games and installed original-training/wheel reproduction. Original adverse caller and all results retained. Binned ECE is not classwise calibration, proper losses are not calibration-only and deletion is not refitting/uncertainty. Full-precision oracle gap rounds to .0075; prior .0076 subtracts rounded NLLs.
 
 ### DistillLab
 
@@ -587,6 +592,7 @@ Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, d
 - Dependency-free Python 3.10+, 68 unit tests, a fully offline six-task demo that validates JUnit, Markdown and SARIF run/regression output, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
+- Case study: [projects/evalforge.md](projects/evalforge.md)
 
 ### AgentTrace
 
@@ -598,6 +604,7 @@ Local-first validation, analysis and reporting for AI agent execution traces: JS
 - Dependency-free Python 3.10+, 33 unit tests, a fully offline fixed-trace baseline/candidate demo that validates JUnit, Markdown and SARIF output, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
+- Case study: [projects/agenttrace.md](projects/agenttrace.md)
 
 ### PromptGuard
 
@@ -609,6 +616,7 @@ Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/A
 - Dependency-free Python 3.10+, 68 unit tests, a fully offline fixture demo that validates SARIF, JUnit and Markdown output and the baseline suppression flow against safe, risky and runtime-generated token fixtures, and CI across Python 3.10-3.13.
 
 - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
+- Case study: [projects/promptguard.md](projects/promptguard.md)
 
 ### ScratchGPT
 

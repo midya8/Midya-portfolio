@@ -6,7 +6,7 @@ A dependency-free Python CLI/API for calibration labels plus classifier
 probabilities, versioned JSON artifacts and unlabeled prediction sets. This
 is a standard split-conformal method, not a new algorithm.
 
-31 tests and offline CI on Python 3.10-3.13 cover rank corrections, ties,
+41 Python and four Node/actual-Chrome tests and offline CI on Python 3.10-3.13 cover rank corrections, ties,
 empty/all-label sets, schema/artifact failures, class order and the demo.
 
 ## Separation of concerns
