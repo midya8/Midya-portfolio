@@ -302,3 +302,15 @@ Seven additional native tests bring the project to 22 on Python 3.10-3.13; five 
 [Adaptive inspector](https://midya8.github.io/synthlab/adaptive.html) · [Exact adaptive contract and sources](https://github.com/midya8/synthlab/blob/main/ADAPTIVE.md) · [Reviewed implementation](https://github.com/midya8/synthlab/pull/3)
 
 At most ten functions after separately counted initial observations, exact noiseless labels and unit query cost. Future answers are simulated from supplied tables, not a live oracle. Classical decision-tree dynamic programming and generalized binary search credited. No expected-cost, PAC or novel-algorithm claim.
+
+## WarpLab: inspectable differentiable alignment
+
+Soft-DTW without the black box: scalar Python and browser JavaScript expose every Gibbs cell occupancy and joint edge flow, sequence/temperature gradients, and cost Hessian-vector products. A separate exhaustive path oracle checks every report field against all legal alignments.
+
+- Stable log-space messages and directional expectation messages, no autodiff dependency. Cost curvature is checked against negative path-incidence covariance and finite differences.
+- Eight synthetic controls include negative self-scores, a single legal path, low-temperature underflow and a 7 by 7 grid where all 8,989 paths tie. Hard ties compare exact rational sums of binary64 local costs, not a fuzzy tolerance.
+- Strict JSON certificates, atomic CLI output and fresh installed module/console reproduction. Python 3.10-3.13 CI; 168 complete cross-language reports; real Chrome checks at 320/390/1280 pixels, including cell/edge inspection, complete paths, accessible row/column controls, export and error clearing.
+
+[Live alignment inspector](https://midya8.github.io/warplab/) · [Source and reproduction](https://github.com/midya8/warplab) · [Mathematical contract](https://github.com/midya8/warplab/blob/main/CONTRACT.md) · [Reviewed implementation](https://github.com/midya8/warplab/pull/1)
+
+Raw soft-DTW is not a metric and can be negative. Occupancy sums to expected path length, not one; it is not a transport coupling. Hessian products are in independent cost coordinates. Lengths are bounded to 1..7; synthetic controls are not accuracy or speed benchmarks. Established soft-DTW and differentiable-DP mathematics credited to Cuturi/Blondel and Blondel/Mensch/Vert. No novel-algorithm or ground-cost-independent divergence theorem claim.
