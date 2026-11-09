@@ -47,7 +47,7 @@ Length includes both endpoints. Positive penalty favors shorter paths, negative 
 
 ## Mathematical boundaries
 
-Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperature 0.05..8 and signed cost directions -4..4. The largest grid has 8,989 paths. Larger requests fail rather than silently truncating. The dynamic messages are O(nm), while path enumeration is exponential and deliberately bounded.
+Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperature 0.05..8 and signed cost directions -4..4. The largest grid has 8,989 paths. Larger requests fail rather than silently truncating. The base inspector's dynamic messages are O(nm). With K legal lengths, length-resolved prefix/suffix messages take O(nmK), and all conditional occupancy/edge convolutions take O(nmK²). Path enumeration is exponential and deliberately bounded.
 
 Raw soft-DTW can be negative and is not a metric. Cell occupancies sum to expected path length, not one, and are not a normalized transport coupling. Edge values are joint traversal probabilities, not conditional transitions. The Hessian product is with respect to independent cost entries, not sequence coordinates. Binary64 rounding and probability underflow remain numerical limitations.
 
