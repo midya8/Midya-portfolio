@@ -1,25 +1,102 @@
 # KVLens
 
-KV-cached incremental decoding built from scratch in pure Python, verified token-for-token against full recompute with measured FLOP savings.
+[Live attention and cache inspector](https://midya8.github.io/kvlens/) ·
+[Source and reproduction](https://github.com/midya8/kvlens) ·
+[Equations, state contract and sources](https://github.com/midya8/kvlens/blob/main/CACHE.md)
 
-## Problem
+A cache is state, not a shortcut in the answer. This offline project implements
+one untrained causal multi-head attention block and checks its actual logits,
+every retained key/value, absolute position and counted operation against four
+independently executed paths.
 
-Every production LLM serving stack relies on KV caching: recompute attention over the whole prefix for each generated token and decoding is quadratic in sequence length; cache each position's keys and values once and each step is linear. Most projects assert this; few show the two paths side by side, prove they produce the same distribution, and measure the savings instead of quoting big-O. KVLens does all three with no dependencies.
+## The comparison needed a stronger baseline
 
-## Approach
+The original full-recompute path calculates every old query's attention, although
+this single-block model only uses the last row. A new final-query-only no-cache
+path drops that unnecessary work. Optimized prefill uses the same shortcut;
+the two original positive-budget paths and all 28 original tests stay intact.
 
-- **One attention block, two decode paths** - a tiny causal multi-head attention block (Q/K/V projections, masked scaled dot-product attention, output head) with seeded weights. The full path recomputes Q/K/V and attention over the entire prefix per new token; the cached path runs a batched prefill that computes each prompt position's K/V once, then one incremental step per generated token attending over the cache.
-- **Bitwise equivalence by construction** - both paths run the same operations in the same order, so their final-position logits are bitwise identical. The equivalence sweep confirms a max absolute logit difference of exactly 0.0 across two model configurations and five prefix lengths, and the test suite checks greedy generations token for token across further configs.
-- **Measured savings, not assumed** - a matmul FLOP counter inside both paths reports the counted cost of each run: 36.9% saved at 2 generated tokens growing to 90.8% at 32 on the default fixture. At 1 generated token the paths cost the same - prefill is the full forward - and the curve test pins that shape.
+For vocabulary 16, width 8, two heads, seed 1, prompt [0,1,2,3] and eight predictions:
 
-## Verification
+| path | counted operations |
+|---|---:|
+| historical full | 34,944 |
+| final-query no-cache | 21,376 |
+| historical cache | 9,408 |
+| optimized cache | 8,832 |
 
-- 28 unit tests cover model shapes and seeded determinism, cache growth, bitwise logit equality, greedy equivalence across configurations, cost ordering (cached never exceeds full), the savings-curve shape, and every CLI command including both sides of each gate.
-- `bash examples/demo.sh` runs fully offline: generates 32 tokens down both paths with `--require-identical --min-savings 0.85`, runs the equivalence sweep, and prints the savings curve.
-- CI runs the same suite plus both gates across Python 3.10-3.13.
+Historical-cache versus historical-full saves 73.08%; optimized-cache versus the
+stronger no-cache baseline saves 58.68%. These are named comparisons with
+different prefill policies, not an isolated effect or measured speedup. The old
+32-token historical fixture remains 500,224 versus 45,888 (90.8% to one decimal),
+with the same original CI gate. One prediction offers no reuse within either
+matched pair; zero predictions perform no work and have no savings percentage.
 
-Bounds worth stating: weights are seeded, not trained, so generated sequences are not meaningful language - the project verifies decoding machinery, not model quality. The counter covers matmul FLOPs only and the project makes no latency claim: the real reason KV caching is fast is memory bandwidth, which a pure-Python model cannot measure. One attention block, greedy decoding only, no cross-sequence batching or cache eviction.
+## Make every value inspectable
 
-## Links
+The separate scalar JavaScript engine computes seven complete seeded model
+weight inputs locally. Edit the prompt and prediction budget; follow every
+prediction, head and position through Q/K/V, scaled score terms, softmax weights,
+weighted values, output projections and all vocabulary-logit contributions.
+Complete cache states before/after each step and seven-component operation ledgers
+are visible. All model weight matrices are available, with full audit and full
+model JSON downloads. Static input specifications and pinned costs/tokens are
+not a replacement for inference; the browser computes all intermediate tensors.
 
-- Repository: [midya8/kvlens](https://github.com/midya8/kvlens)
+The final emitted token is not fed back because the requested generation has
+ended. For G>0 predictions from L prompt tokens, L+G-1 positions are processed.
+Retained K/V state has 2 × positions × width elements; multiplying by eight gives
+an ideal packed binary64 payload, not actual Python/browser memory or traffic.
+
+## Fix the state bug, then test the lifecycle
+
+Prefill on occupied state previously appended new rows while restarting positions
+at zero. It now fails before mutations or counter changes. Owner/shape/token
+checks reject incompatible state; deep forks keep parent and sibling rows
+independent. Weights must stay fixed. Same-object weight changes are not
+fingerprint-detected; mutable state guards are not a security boundary.
+
+A strict bounded JSON audit CLI rejects duplicate/unknown fields, nonfinite
+numbers, invalid IDs/types, excessive depth and oversized input, with exit 2,
+stderr and no partial output. Browser edits clear stale tables and disable
+exports until a valid recomputation. Unsupported browser models are rejected,
+not silently replaced with other weights.
+
+## Verification and reproduction
+
+- 55 Python tests on 3.10-3.13, retaining all 28 unchanged originals, hand-computable
+  attention, per-component counter reconciliation, 36 randomized configurations,
+  zero/one-prediction controls, forks, occupied-prefill atomicity and strict errors.
+- Three Node/actual-Chrome tests compare 32 complete native reports, 97 predictions
+  and 66,940 full-report numeric entries. Chrome checks every displayed cell across
+  227 head-step views and 1,279 attention-position rows, every weight table, two
+  complete JSON exports, invalid clearing, keyboard and 320/390/1280 layouts.
+- Isolated installed-wheel reproduction verifies five module origins, all 32
+  reports, original complete curve/equivalence, lifecycle/fork checks, audit and
+  all four original CLI modes outside checkout. Full model/spec regeneration
+  uses normalized tolerance 1e-12 and restores checked-in bytes.
+
+```bash
+python -m unittest discover -s tests -v
+node --test tests/*.cjs
+python scripts/verify_regeneration.py
+bash examples/verify_wheel.sh
+python -m kvlens.audit --input examples/audit.json
+```
+
+## Limits and attribution
+
+This is standard attention/cache reuse, not a new algorithm, trained language
+model, production cache or GPU benchmark. Original native paths agree bitwise
+on checked inputs; cross-runtime native/browser parity uses normalized tolerance
+1e-11 and actual greedy-decision checks, not a universal bitwise proof.
+
+Counts charge two operations per dot-product term, including accumulation, but
+exclude embeddings, positional functions, score scaling, softmax, bias adds,
+validation and report copying. They do not measure latency, bandwidth, throughput
+or hardware instructions. The final-query shortcut applies to this single block;
+it does not skip representations that deeper layers need for their own K/V.
+No cache eviction, batching or paged storage is claimed. Sources include the
+original attention paper, Hugging Face cache docs, NVIDIA's inference guide,
+independent cache/roofline explanations and Brown teaching notes, with specific
+attribution and distinctions in the linked contract.
