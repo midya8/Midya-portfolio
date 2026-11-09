@@ -69,7 +69,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | RetrievalBench | Python, standard library only; independent JavaScript inspector | Complete BM25 term/unit/metric witnesses, explicit parent budgets, retained original controls and CLI gates | [Case study](retrievalbench.md) |
 | EvalForge | Python + independent JavaScript | Complete paired/all-cohort gate witnesses, exhaustive sign flips and exact McNemar, editable inspector, original offline evaluation/report harness | [Case study](evalforge.md) |
 | AgentTrace | Python, standard library only; CLI | Validation, analysis and reporting for AI agent execution traces: loop detection, latency and cost rollups, quality gates, baseline comparison | [Case study](agenttrace.md) |
-| PromptGuard | Python, standard library only; CLI | Local-first prompt, secret and prompt-injection linting for AI systems: redacted reports, severity and finding-count CI gates, value-bound baseline suppression | [Case study](promptguard.md) |
+| PromptGuard | Dependency-free Python; independent JS/WebCrypto | Full-stage filtering/suppression/gate witnesses, redaction and incomplete-scan fixes; 87 tests, 27 reports, 13,320 policy controls | [Case study](promptguard.md) |
 | ScratchGPT | Python, NumPy; CLI and offline JavaScript replay | Hand-written GPT/autograd with validated exact continuation, complete Adam/RNG state, all 13 restart boundaries, omission controls and independent optimizer/forward witnesses | [Case study](scratchgpt.md) |
 | Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
 | Personal site — midya.ca | React, TypeScript, Vite, Three.js | Personal site around a procedurally generated galaxy that adapts to the device and respects reduced-motion settings | [Case study](midya-ca.md) |
@@ -293,7 +293,7 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
   - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
   - [Live graph/timing inspector](https://midya8.github.io/agenttrace/): Full-record graph/timing inspector: every endpoint, interval segment, parent path/relation, normalized record and p95 term. Independent Python/JavaScript recomputation and current JSON export. 57 Python tests retain all original 33 tests; 24 synthetic controls, 11,110 interval checks and an isolated installed-wheel reproduction. Parent links are not causal dependencies; recorded coverage/overlap is not CPU, idle, waste or utilization. No model/API call.
 
-- **PromptGuard** - Secret, token, PII, prompt-injection and metadata linting for prompt files with redacted JSON/SARIF/JUnit XML/Markdown/HTML reports, CI gates and value-bound baseline suppression. 68 unit tests.
+- **PromptGuard** - Local prompt linting with full-stage baseline/gate evidence, independent browser recomputation and complete JSON export; redaction and incomplete-scan fixes. 87 Python tests retain 68 originals, 27 complete reports and 13,320 policy controls. No security-effectiveness claim.
   - Case study: [promptguard.md](promptguard.md)
   - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
 
