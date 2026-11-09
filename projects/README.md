@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| SubmodLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite submodular selection, assumption failures, all greedy gains and optimum ties, and proof-derived cardinality certificates | [Case study](submodlab.md) · [Live inspector](https://midya8.github.io/submodlab/) |
 | DPPLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite DPP laws, inclusion witnesses, Schur conditioning and fixed-size contrasts with explicit impossible-event handling | [Case study](dpplab.md) · [Live inspector](https://midya8.github.io/dpplab/) |
 | CTCLab | Python standard library; independent scalar JavaScript; Decimal and exhaustive path/state references | CTC target likelihood, latent alignments and logit gradients with every finite-path witness, explicit repeated-label/blank/impossible controls and a greedy-path versus transcript-mass counterexample | [Case study](ctclab.md) · [Live inspector](https://midya8.github.io/ctclab/) |
 | PPOlab | Python with NumPy; manual PPO/GAE, independent scalar-JavaScript policy and physics | Corrected timeout/reset credit assignment with full contribution matrices and clip-gradient audits; tight one-step checks are explicitly separate from divergent free-running paths | [Case study](ppolab.md) · [Live inspector](https://midya8.github.io/ppolab/) |
