@@ -25,3 +25,12 @@ Install the dependency-free Python package, run both console/module CLIs, regene
 ## Research boundary
 
 Dung1995 provides the core defense/extension definitions; Baroni/Caminada/Giacomin2011 and Toni2016 clarify extension/labelling distinctions; Charwat et al.2015 provides the range-based stage/semi-stable context; Rudolph2024 makes classical empty-stable-family query conventions explicit; Dauphin/Schulz2014 documents existing graphical/labelling educational work. Precise inspected sections and source URLs are in the method. This implementation and synthetic controls are original, while the theory and prior tools are explicitly attributed.
+
+
+### ArgumentLab attack switches
+
+[Live switch-cube inspector](https://midya8.github.io/argumentlab/switches.html) · [Source and method](https://github.com/midya8/argumentlab/blob/main/SWITCHES.md)
+
+Enumerates every configuration of up to six supplied attack switches. Preserves all nearest ties, all inclusion-minimal matches, exact extension gains/losses and complete selected-framework defense witnesses. Original controls distinguish minimum cardinality from inclusion minimality and retain nonmonotone and nullable outcomes.
+
+Verified on 21 controls, 209 configurations, 5,205 subset classifications and 423 switch transitions. Independent Python and JavaScript engines, installed CLIs, browser exports and responsive inspection. These are bounded hypothetical edits, not causal effects, persuasion advice or a scalable solver.
