@@ -554,14 +554,11 @@ Byte-level BPE tokenizers trained from scratch: deterministic merge training wit
 
 ### RetrievalBench
 
-Offline retrieval evaluation for RAG and search pipelines: an exact Okapi BM25 index over local JSONL corpora, token-window chunking with overlap and parent-document collapsing, graded qrels, per-query and macro-averaged recall@k/precision@k/MRR/nDCG@k, JSON and Markdown reports, and quality gates that fail CI on retrieval regressions.
+Complete BM25 arithmetic, explicit chunk parents, both parent budgets and per-rank metric gains with independent browser recomputation. 68 Python tests retain all 42 originals; 35 full reports, three Node/Chrome tests and installed-wheel reproduction. Synthetic arithmetic controls, not search-quality evidence.
 
-- **Retrieval quality as a reproducible gate** - rank golden queries against graded qrels and fail CI when a chunking, indexing or document change drops recall@k, precision@k, MRR or nDCG@k below policy.
-- **Exact and deterministic by design** - no pruning and no ANN approximation, so scores and rankings are stable and diffable; chunk hits collapse back to their parent document so qrels stay at document granularity.
-- **Reports built for review** - per-query breakdowns with the weakest queries surfaced, JSON artifacts for tooling, and Markdown reports that fit native CI job-summary surfaces.
-- Dependency-free Python 3.10+, 42 unit tests, a fully offline demo that asserts metrics, chunked evaluation and both sides of the quality gates, and CI across Python 3.10-3.13.
+Every term contribution, full unit/parent text, collapse decision, grade/discount and ideal denominator stays visible. The default CLI still takes k units then collapses; the alternative scans to k distinct parents on the same ranking. Whole/chunk indexing changes corpus statistics. Original corpus/demo/results stay visible; no Lucene equivalence or general quality claim.
 
-- Repo: [midya8/retrievalbench](https://github.com/midya8/retrievalbench) · Case study: [projects/retrievalbench.md](projects/retrievalbench.md)
+- [Live inspector](https://midya8.github.io/retrievalbench/) · Repo: [midya8/retrievalbench](https://github.com/midya8/retrievalbench) · Case study: [projects/retrievalbench.md](projects/retrievalbench.md)
 
 ### EvalForge
 
