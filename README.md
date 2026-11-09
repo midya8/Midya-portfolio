@@ -410,14 +410,15 @@ Mixture-of-experts from scratch, now with an [interactive route-boundary inspect
 
 ### AlignLab
 
-Preference-based alignment built from scratch in pure Python: a Bradley-Terry reward model trained on pairwise preferences with a hand-derived logistic gradient, then a categorical policy aligned by gradient ascent on expected reward minus an exact KL penalty to a reference policy - with expectations, KL, and both gradient terms in closed form, so nothing hides behind sampling noise.
+Finite-policy Gibbs optimum and KL-budget inspector attached to a dependency-free Bradley-Terry preference experiment. Independent native/browser implementations separate optimization error from reward quality: the original noise-control policy is essentially reward-optimal and still loses synthetic utility.
 
-- **Utility gained, with a fixture-level control** - on the checked-in fixture, aligning to the learned reward raises true latent utility 2.0375 to 4.6154, while aligning to a reward model trained on utility-independent labels buys only 2.5800 (gated from above). One seeded control is a fixture comparison, not a general proof that signal alone causes improvement.
-- **The KL cost measured, not asserted** - the aligned policy pays KL 1.0216 to the reference (entropy 0.7701); the beta=0 ablation collapses onto the argmax-reward style (entropy 0.0136, KL 1.7781) and is gated from below.
-- **Exact optimization, verified gradients** - the hand-derived reward and policy gradients are finite-difference checked in the suite; reward holdout accuracy 0.7800 against a noise-trained control at 0.4333, with the achievable gate pinned below the preference-noise ceiling rather than at a flattering 1.0.
-- Dependency-free Python 3.10+, 15 unit tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
+- Retains all original data, reward fits, original three trajectories and 15 original tests. Two additional stiff-KL controls keep their large-step failure visible; all 1,005 states remain available.
+- Shows the standard objective-gap identity, reference-weighted tied maxima, finite-support restrictions and a bracketed KL frontier. Tiny budgets and unresolved near ties are explicit, not false optimum claims. Utilities are evaluation-only.
+- Corrects stale published numbers without changing training: utility 2.0375 to 4.5704247, noise control 1.8548647, KL 1.0750099. The full old/current table remains in the source.
+- 47 Python tests across 3.10-3.13, four substantive Node/actual-Chrome tests, 35 full report witnesses, independent Decimal controls and complete installed-wheel reconstruction. Finite synthetic arithmetic, not a new alignment method, causal result or safety/generalization certificate.
 
-- Repo: [midya8/alignlab](https://github.com/midya8/alignlab) · Case study: [projects/alignlab.md](projects/alignlab.md)
+- Repo: [midya8/alignlab](https://github.com/midya8/alignlab) · [Live inspector](https://midya8.github.io/alignlab/) · Case study: [projects/alignlab.md](projects/alignlab.md)
+
 
 ### LoRALab
 
