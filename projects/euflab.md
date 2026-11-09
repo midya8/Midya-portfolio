@@ -1,10 +1,8 @@
 # EUFLab
 
-# EUFLab
-
 **Same output. Not the same input.** Proof-producing ground equality, congruence-derived contradictions and total finite countermodels.
 
-[Live inspector](https://midya8.github.io/euflab/) · [Exact contract and six-source ledger](METHOD.md)
+[Live inspector](https://midya8.github.io/euflab/) · [Exact contract and six-source ledger](https://github.com/midya8/euflab/blob/main/METHOD.md)
 
 - Native union-find and proof-forest paths; independent relational closure/certificate/model replay.
 - Separate JavaScript relation engine. Every ordered equal pair has a proof DAG. Every non-entailed equality in a consistent input has a separating finite interpretation.
@@ -16,6 +14,8 @@
 Python 3.10+:
 
 ```sh
+git clone https://github.com/midya8/euflab.git
+cd euflab
 python -m euflab docs/example.json --output report.json
 python -m euflab report.json --verify
 python -m unittest discover -s tests -v
@@ -36,7 +36,7 @@ This asserts f(a)=f(b). It does not imply a=b. The displayed total model assigns
 
 Nine native tests include partition-enumeration references, 27 exhaustive constant conjunctions, 64 four-term assertion subsets plus all added disequality probes, 80 seeded DAGs, proof tampering and atomic CLI rejection. Two Node tests compare 156 semantic reports and native-check every browser proof DAG. Chrome tests all 251 ordered queries and every displayed proof/model row at 320/390/1280. Wheel reproduction runs 12 controls through both entry points outside checkout.
 
-At most eight terms, arity at most two, eight equalities and eight disequalities. One uninterpreted sort; ground conjunctions only. Proofs are valid explanations, not shortest proofs or minimal cores. A separating model does not prove a universal inequality. Inconsistent inputs have no countermodel and entail everything classically, even if a pair is absent from positive closure. Classical congruence closure, not new theory, a scalable solver or a real-code verifier. See [METHOD.md](METHOD.md).
+At most eight terms, arity at most two, eight equalities and eight disequalities. One uninterpreted sort; ground conjunctions only. Proofs are valid explanations, not shortest proofs or minimal cores. A separating model does not prove a universal inequality. Inconsistent inputs have no countermodel and entail everything classically, even if a pair is absent from positive closure. Classical congruence closure, not new theory, a scalable solver or a real-code verifier. See [METHOD.md](https://github.com/midya8/euflab/blob/main/METHOD.md).
 
 
 ## EUFLab: ground equality with evidence
