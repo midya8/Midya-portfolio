@@ -354,3 +354,10 @@ Case study: [diagnoselab.md](diagnoselab.md)
 [Live query inspector](https://midya8.github.io/diagnoselab/consequences.html) · [Method/sources](https://github.com/midya8/diagnoselab/blob/main/CONSEQUENCES.md)
 
 Distinguishes every/some repair from every/some surviving model, with all tied minimum-cost/cardinality policies, complete countermodels and negated-query DPLL traces. Shared-clause intersection is a separate baseline with strict counterexamples. No-repair families are inapplicable, not vacuous certainty. 26 new exact reports (16,165 scalar leaves), 67 repairs, 78 policy records and 151 full DPLL nodes including intersection baselines; 24 Python/eight Node-Chrome tests preserve all originals. Installed-wheel reproduction and mobile/table/export checks. Finite propositional reasoning, not a database/DL engine or probability claim.
+
+
+## ArgumentLab: defense, not a vote
+
+[Source](https://github.com/midya8/argumentlab) · [Live](https://midya8.github.io/argumentlab/) · [Case study](argumentlab.md)
+
+Nine exact abstract-argumentation families, every defense witness, complete labellings and grounded steps. Independent Python/JS full-report checks over531 small directed graphs. Eight arguments maximum, established semantics, explicit classical empty-family vacuity. No real-world truth or scalable-solver claim.
