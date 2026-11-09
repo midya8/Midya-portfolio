@@ -1238,3 +1238,53 @@ maximum grammar, not a continuous parameter-region analysis, learned policy,
 e-graph, tensor engine, new algorithm or compiler-speed benchmark. The exact
 rational identities are not IEEE floating-point transformation licenses.
 Browser evidence is independently checked only after Python accepts its JSON.
+## RewriteLab continuous regions: beyond a sampled cost grid
+
+[Live explorer](https://midya8.github.io/rewritelab/regions.html) · [Source](https://github.com/midya8/rewritelab) · [Exact region contract](https://github.com/midya8/rewritelab/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/4)
+
+A finite cost grid cannot prove that an expression never wins elsewhere.
+This extension computes complete optimum regions over every strictly positive
+addition, multiplication and leaf-cost ratio. Normalizing their sum to one
+turns the parameter space into a triangle. Each group's exact halfplanes yield
+reduced rational vertices, with full expression memberships and reachable
+subsets retained. Semantic and reachable optima have separate regions.
+
+Closed geometry is not a positive-cost verdict. Empty, point, segment and area
+regions retain their dimensions. A boundary-only winner is not obtainable at
+strictly positive costs; an interior tie point or segment can be a real winner
+despite zero area. Shared edges and vertices belong to every tied group. Area
+is not a probability. The zero-cost boundary closes the diagram, not the
+optimizer's request domain.
+
+The generator uses exact rational polygon clipping. A separate checker instead
+constructs feasible supporting-line intersections, counts canonical syntax
+symbols and validates the complete nested unit-cost closure. It reconstructs
+every group, vertex, dimension and positive-feasibility flag without importing
+the generator, clipping or recursive count traversal. Shared syntax and base
+independent closure checking are disclosed. JavaScript uses BigInt rational
+arithmetic; float coordinates are only a display layer over exact vertex text.
+
+Fresh public feature and main source match all 54 files and tracked paths.
+Thirty-five Python tests pass on each of 3.10-3.13, alongside eight Node engine
+and four actual-Chrome tests. Seventeen Python/JavaScript region reports agree
+on 93 groups and 215 vertices. Independent tests cover all 36 three-node
+sources, 500 random vector sets, exact degenerate/interior/boundary cases,
+all eight controls at all 512 old grid points, 64 outside-grid positive points,
+and forged geometry, types, closure and membership. Installed module and console
+reproduce eight controls each in all four families outside the checkout and
+reject forgeries.
+
+Chrome checks 25 region reports, all 4,096 point selections and 34,570 expression
+selections across eight controls and three widths, complete rational vertex
+text, both diagrams per group, export, invalid recovery, stale clearing and
+outside-grid prices. All previous inspector, barrier and weight-box checks are
+retained. Feature/PR/main CI and Pages pass. All 16 deployed assets match main;
+all 111 feature/main/live screenshots match exactly without masks.
+
+The continuous cost domain does not enlarge the expression grammar: fixed
+3/5/7-node budgets, rational identities and complete ordered trees still apply.
+Costs count tree occurrences, not shared subexpressions or hardware latency.
+No new algorithm, e-graph, learned costs, tensor engine, compiler-speed benchmark
+or IEEE floating-point transformation license is claimed. Enumeration remains
+exponential. Browser evidence is independently checked only after the Python
+region checker accepts its complete JSON.
