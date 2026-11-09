@@ -16,3 +16,14 @@ Finite exact teaching/audit tool: at most six attributes and eight objects. Not 
 Run `python -m unittest discover -s tests -v`, `npm test` and `bash tools/wheel_smoke.sh` from the source checkout. The wheel check runs outside the checkout, verifies all retained reports and installed module origins, and checks the console and module CLI. Python 3.10 through 3.13 are checked in CI. The browser checks every retained query, witness and report, JSON export, invalid-input clearing and 320/390/1280 layouts.
 
 The method documents formulas, set conventions, input limits, implementation differences and prior sources. Zero-object and zero-attribute contexts explicitly extend the ordinary set formulas beyond texts that assume nonempty universes.
+
+
+### ConceptLab incomplete-context completions
+
+[Live completion inspector](https://midya8.github.io/conceptlab/partial.html) | [Semantics and sources](https://github.com/midya8/conceptlab/blob/main/PARTIAL.md)
+
+Unknown is not false. Enumerate every compatible binary completion of a three-valued table. Inspect certain, contingent and impossible implications, all object counterexamples, exact defined row-confidence bounds and endpoint ties, with zero-support completions kept separate. Intersect goals in one shared completion and retain every inclusion-minimal impossible goal set with deletion witnesses.
+
+Original controls expose two traps: both extreme fill-ins can pass while an intermediate world refutes an implication, and separately possible goals can be jointly impossible. Overlapping-premise tautologies, empty universes, duplicate objects and all 64 worlds of six unknowns remain explicit. Twelve controls cover 86 completions, 438 implication queries, 4,634 query/completion witness rows and 63 goal subsets.
+
+Independent Python and JavaScript engines, 17 native tests on four Python versions, six Node/Chrome tests and 26 installed-wheel reports preserve the complete-context workbench. Every retained UI record, export and invalid-input clearing is checked; all controls are layout-tested at 320/390/1280. Limits: four attributes, four objects, six unknown cells. Completion counts are not probabilities; confidence bounds describe supplied rows, not unseen data. No imputation, causal claim, graded possibility model, incomplete-context basis or new algorithm is claimed.
