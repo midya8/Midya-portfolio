@@ -63,7 +63,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | EmbedKit | Python + independent browser | Sampled SGNS objective/gradient audit, real sequential replay, 72 captured events, full original corpus/vectors and 992 browser neighbors | [Case study](embedkit.md) |
 | PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
 | DecodeLab | Dependency-free Python; independent scalar JavaScript | Stable nucleus sampling, complete finite continuation trees, EOS/cap mass and beam-pruning/oracle counterexamples | [Case study](decodelab.md) |
-| VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
+| VectorLite | Dependency-free Python; independent scalar-JavaScript geometry and recall inspector | Stable cosine, complete signature/candidate witnesses, threshold/binomial references and explicit self/excluded/external protocols | [Case study](vectorlite.md) · [Live inspector](https://midya8.github.io/vectorlite/) |
 | GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
@@ -267,9 +267,11 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
   - Case study: [decodelab.md](decodelab.md)
   - Repo: [midya8/decodelab](https://github.com/midya8/decodelab)
 
-- **VectorLite** - Exact and approximate kNN vector search from scratch: brute-force exact kNN (cosine and L2), seeded random-hyperplane LSH for approximate cosine search, and recall@k measured against the exact baseline with a CI gate. 31 unit tests.
+- **VectorLite** - Finite random-hyperplane geometry and retrieval audit: every projection, signature, candidate and threshold, stable cosine and full-precision gates. Explicit self/excluded/external protocols retain original 1.0 self-inclusive recall@3; a two-item self-exclusion control gives 1 versus 0. 50 Python tests retain all 31 originals, 35 audits/20,784 independent JS numeric checks/5,856 Chrome projection rows. Linear signature scan, not sublinear or speed/embedding-quality evidence; marginal iid-plane theory is not conditional on fixed planes.
+  - [Live inspector](https://midya8.github.io/vectorlite/) · [Numerical/probability contract](https://github.com/midya8/vectorlite/blob/main/METHOD.md)
   - Case study: [vectorlite.md](vectorlite.md)
   - Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite)
+
 - **GroundCheck** - Offline lexical grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring, numeric consistency, JSON/Markdown reports and three CI gates. 43 unit tests.
   - Case study: [groundcheck.md](groundcheck.md)
   - Repo: [midya8/groundcheck](https://github.com/midya8/groundcheck)
