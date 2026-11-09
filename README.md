@@ -739,3 +739,14 @@ Full relative MUS/MCS families, bidirectional minimal hitting-set intersections,
 [Live query inspector](https://midya8.github.io/diagnoselab/consequences.html) · [Method/sources](https://github.com/midya8/diagnoselab/blob/main/CONSEQUENCES.md)
 
 Distinguishes every/some repair from every/some surviving model, with all tied minimum-cost/cardinality policies, complete countermodels and negated-query DPLL traces. Shared-clause intersection is a separate baseline with strict counterexamples. No-repair families are inapplicable, not vacuous certainty. 26 new exact reports (16,165 scalar leaves), 67 repairs, 78 policy records and 151 full DPLL nodes including intersection baselines; 24 Python/eight Node-Chrome tests preserve all originals. Installed-wheel reproduction and mobile/table/export checks. Finite propositional reasoning, not a database/DL engine or probability claim.
+
+
+## ArgumentLab: defense, not a vote
+
+[Source](https://github.com/midya8/argumentlab) · [Live inspector](https://midya8.github.io/argumentlab/) · [Method and six sources](https://github.com/midya8/argumentlab/blob/main/METHOD.md) · [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/argumentlab.md)
+
+An exact bounded abstract-argumentation workbench. Compare all nine extension families, inspect every subset's attackers/defenders and unanswered attacks, all inclusion/range witnesses, complete three-valued labellings and the entire grounded fixed-point chain. Directed graph keeps opposite attacks and self loops visible. Acceptance retains witnesses and counterexamples, with a prominent classical skeptical-vacuity warning when no stable extension exists.
+
+Original strict controls distinguish preferred from maximum cardinality, preferred intersection from grounded, a nonadmissible preferred intersection, and stage from semi-stable. Independent Python bitsets and JavaScript sets agree on all531 directed frameworks through three arguments/344,023 scalar leaves and19 retained full reports/152,884 leaves. Separate set/ternary oracles cover120 native and100 JavaScript seeded larger cases.19 native tests run on four Python versions; five Node/actual-Chrome tests check every retained UI record and graph state, export/invalid clearing and all19 controls at320/390/1280. Installed wheel reproduces19 full reports outside the checkout.
+
+Eight arguments; exhaustive subsets; all ties retained. Established semantics, not a novel/scalable solver, probability model, benchmark win, real-world truth or debate winner. Six inspected sources and exact parser differences documented; no external solver code/data/examples copied or affiliation with existing ArguLab/ARGTEACH.
