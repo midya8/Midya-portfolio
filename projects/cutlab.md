@@ -37,3 +37,12 @@ This is established binary submodular inference and maxflow/mincut, not a new al
 Theory is attributed to Kolmogorov-Zabih, flow/cut lecture notes and the established Picard-Queyranne cut-family background. The method distinguishes a historical scan from readable theorem support and identifies the Springer erratum as an erratum. No external dataset, figure or implementation is copied.
 
 [Back to projects](README.md)
+
+
+## Exact affine unary response paths
+
+[Open the exact response-path inspector](https://midya8.github.io/cutlab/path.html) · [Source and method](https://github.com/midya8/cutlab/blob/main/PATH.md)
+
+Vary binary unary costs with a rational parameter and retain the complete optimum family on every closed region, open cell and breakpoint, including point-only optima and persistent ties. Every assignment keeps its affine line and every line comparison keeps its exact inequality. Independent graph-cut audits check all boundary and cell witnesses.
+
+18 synthetic controls retain 214 assignment lines, 6,084 inequalities and 92 full flow/cut witnesses. Mixed-sign slopes include a label that leaves and returns: no nested-label or scalable parametric-maxflow guarantee is claimed. The inspector enumerates all 2^n assignments for at most six variables. Original flow/cut functionality and tests remain.
