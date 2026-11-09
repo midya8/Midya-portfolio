@@ -67,7 +67,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | GroundCheck | Dependency-free Python; independent scalar JavaScript | Complete token/citation/numeric provenance, exact decimal matching and explicit source-scope controls | [Case study](groundcheck.md) · [Live inspector](https://midya8.github.io/groundcheck/) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; independent JavaScript inspector | Complete BM25 term/unit/metric witnesses, explicit parent budgets, retained original controls and CLI gates | [Case study](retrievalbench.md) |
-| EvalForge | Python, standard library only; CLI | Local-first evaluation for LLM and agent outputs: versioned task suites, deterministic scorers, baseline regression gates, HTML/JUnit/Markdown/SARIF reports | [Case study](evalforge.md) |
+| EvalForge | Python + independent JavaScript | Complete paired/all-cohort gate witnesses, exhaustive sign flips and exact McNemar, editable inspector, original offline evaluation/report harness | [Case study](evalforge.md) |
 | AgentTrace | Python, standard library only; CLI | Validation, analysis and reporting for AI agent execution traces: loop detection, latency and cost rollups, quality gates, baseline comparison | [Case study](agenttrace.md) |
 | PromptGuard | Python, standard library only; CLI | Local-first prompt, secret and prompt-injection linting for AI systems: redacted reports, severity and finding-count CI gates, value-bound baseline suppression | [Case study](promptguard.md) |
 | ScratchGPT | Python, NumPy; CLI and offline JavaScript replay | Hand-written GPT/autograd with validated exact continuation, complete Adam/RNG state, all 13 restart boundaries, omission controls and independent optimizer/forward witnesses | [Case study](scratchgpt.md) |
@@ -285,7 +285,7 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
   - Case study: [scratchgpt.md](scratchgpt.md)
   - Demo: [optimizer replay](https://midya8.github.io/scratchgpt/)
   - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
-- **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts, HTML/JUnit reports, Markdown run/regression job summaries, SARIF 2.1.0 output and baseline regression gates for LLM and agent outputs. 68 unit tests.
+- **EvalForge** - [Editable paired inspector](https://midya8.github.io/evalforge/) with complete gate/raw-record witnesses, paired versus all-task means, all sign assignments and exact McNemar counts. Original command-adapter/scorer/report harness and all 68 tests retained; 92 Python tests, 24 independent full reports, actual Chrome and isolated installed-wheel checks. Supplied arithmetic evidence, not model-quality claims.
   - Case study: [evalforge.md](evalforge.md)
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 - **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines, JUnit XML reports, Markdown job summaries and SARIF 2.1.0 output for AI agent execution traces. 33 unit tests.
