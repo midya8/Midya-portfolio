@@ -288,9 +288,11 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
 - **EvalForge** - [Editable paired inspector](https://midya8.github.io/evalforge/) with complete gate/raw-record witnesses, paired versus all-task means, all sign assignments and exact McNemar counts. Original command-adapter/scorer/report harness and all 68 tests retained; 92 Python tests, 24 independent full reports, actual Chrome and isolated installed-wheel checks. Supplied arithmetic evidence, not model-quality claims.
   - Case study: [evalforge.md](evalforge.md)
   - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
-- **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines, JUnit XML reports, Markdown job summaries and SARIF 2.1.0 output for AI agent execution traces. 33 unit tests.
+- **AgentTrace** - Validation, analysis, baseline/candidate comparison, escaped HTML timelines, JUnit XML reports, Markdown job summaries and SARIF 2.1.0 output for AI agent execution traces. 57 unit tests (original 33 retained).
   - Case study: [agenttrace.md](agenttrace.md)
   - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
+  - [Live graph/timing inspector](https://midya8.github.io/agenttrace/): Full-record graph/timing inspector: every endpoint, interval segment, parent path/relation, normalized record and p95 term. Independent Python/JavaScript recomputation and current JSON export. 57 Python tests retain all original 33 tests; 24 synthetic controls, 11,110 interval checks and an isolated installed-wheel reproduction. Parent links are not causal dependencies; recorded coverage/overlap is not CPU, idle, waste or utilization. No model/API call.
+
 - **PromptGuard** - Secret, token, PII, prompt-injection and metadata linting for prompt files with redacted JSON/SARIF/JUnit XML/Markdown/HTML reports, CI gates and value-bound baseline suppression. 68 unit tests.
   - Case study: [promptguard.md](promptguard.md)
   - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
