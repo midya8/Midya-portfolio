@@ -247,3 +247,10 @@ Native and browser engines agree on 358 complete reports. Independent labeled-do
 [Live sensitivity inspector](https://midya8.github.io/euflab/sensitivity.html) | [Source and certificate contract](https://github.com/midya8/euflab/blob/main/SENSITIVITY.md)
 
 Vary one assertion deletion cost over every integer from 0 to 1,000,000. The certificate gives exact keep/delete intervals, breakpoint ties and every optimum mask, including zero-cost nonminimal repairs. An independent native verifier rebuilds all affine plan-cost lines; the browser inspector audits replacement costs, regret and total models without treating omitted assertions as negated. Hard protections and blocked policies remain explicit. This is bounded exhaustive analysis, not an industrial-scale solver or simultaneous multi-cost robustness guarantee.
+
+
+### DFALab: active learning with exact counterexamples
+
+[Live inspector](https://midya8.github.io/dfalab/) | [Source and contract](https://github.com/midya8/dfalab/blob/main/CONTRACT.md) | [Case study](dfalab.md)
+
+Ask membership questions, repair an observation table, then break a wrong conjecture with a shortest counterexample. Classic Angluin L* is replayed with every experiment, closure/consistency witness and complete reachable-product equivalence check. The final DFA has access words and pair-separating suffixes proving minimality. Independent Python/JavaScript reports and a separate certificate checker are tested against exhaustive tiny teachers and a pair-marking oracle. Exact equivalence relies on the supplied finite synthetic teacher, not random tests of a real service; no new algorithm or query-efficiency claim.
