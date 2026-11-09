@@ -70,7 +70,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | EvalForge | Python, standard library only; CLI | Local-first evaluation for LLM and agent outputs: versioned task suites, deterministic scorers, baseline regression gates, HTML/JUnit/Markdown/SARIF reports | [Case study](evalforge.md) |
 | AgentTrace | Python, standard library only; CLI | Validation, analysis and reporting for AI agent execution traces: loop detection, latency and cost rollups, quality gates, baseline comparison | [Case study](agenttrace.md) |
 | PromptGuard | Python, standard library only; CLI | Local-first prompt, secret and prompt-injection linting for AI systems: redacted reports, severity and finding-count CI gates, value-bound baseline suppression | [Case study](promptguard.md) |
-| ScratchGPT | Python, NumPy; CLI plus importable package | Transformer and reverse-mode autograd built from scratch, with training, sampling and finite-difference verification | [Case study](scratchgpt.md) |
+| ScratchGPT | Python, NumPy; CLI and offline JavaScript replay | Hand-written GPT/autograd with validated exact continuation, complete Adam/RNG state, all 13 restart boundaries, omission controls and independent optimizer/forward witnesses | [Case study](scratchgpt.md) |
 | Kurdistan International Sociological Association website | Next.js, TypeScript, Tailwind; static export on Cloudflare | Trilingual editorial site (English, Sorani Kurdish right-to-left, Kurmanji Kurdish) | [Case study](kurdistansociology-website.md) |
 | Personal site — midya.ca | React, TypeScript, Vite, Three.js | Personal site around a procedurally generated galaxy that adapts to the device and respects reduced-motion settings | [Case study](midya-ca.md) |
 | sre-toolkit | Python, standard library only; CLI plus importable library | Day-to-day SRE work: error budgets, burn-rate alerting, alert triage, SLO definitions, status reports, and postmortems | [Case study](sre-toolkit.md) |
@@ -277,8 +277,9 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
 - **RetrievalBench** - Offline retrieval evaluation for RAG and search pipelines: exact BM25, token-window chunking with parent-document collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, JSON/Markdown reports and CI quality gates. 42 unit tests.
   - Case study: [retrievalbench.md](retrievalbench.md)
   - Repo: [midya8/retrievalbench](https://github.com/midya8/retrievalbench)
-- **ScratchGPT** - GPT built and trained from scratch in pure NumPy, with hand-written autograd, a pre-LN causal transformer, Adam training, sampling CLI and finite-difference gradient checks. 11 unit tests.
+- **ScratchGPT** - NumPy GPT/autograd with validated step-boundary continuation, both RNG states and Adam memory, 13 exact-resume boundaries, controlled omission failures and independent scalar optimizer/forward replay. 70 Python tests retain 11 originals; three Node/Chrome tests and installed-wheel reproduction. Original Shakespeare checkpoint preserved; exactness is same-environment, browser does not train.
   - Case study: [scratchgpt.md](scratchgpt.md)
+  - Demo: [optimizer replay](https://midya8.github.io/scratchgpt/)
   - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt)
 - **EvalForge** - Versioned JSONL task suites, deterministic scorers, adapter execution, persistent run artifacts, HTML/JUnit reports, Markdown run/regression job summaries, SARIF 2.1.0 output and baseline regression gates for LLM and agent outputs. 68 unit tests.
   - Case study: [evalforge.md](evalforge.md)
