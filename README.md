@@ -1070,3 +1070,13 @@ Soft-DTW without the black box: scalar Python and browser JavaScript expose ever
 [Live alignment inspector](https://midya8.github.io/warplab/) · [Source and reproduction](https://github.com/midya8/warplab) · [Mathematical contract](https://github.com/midya8/warplab/blob/main/CONTRACT.md) · [Reviewed implementation](https://github.com/midya8/warplab/pull/1)
 
 Raw soft-DTW is not a metric and can be negative. Occupancy sums to expected path length, not one; it is not a transport coupling. Hessian products are in independent cost coordinates. Lengths are bounded to 1..7; synthetic controls are not accuracy or speed benchmarks. Established soft-DTW and differentiable-DP mathematics credited to Cuturi/Blondel and Blondel/Mensch/Vert. No novel-algorithm or ground-cost-independent divergence theorem claim.
+
+### Path-length atlas
+
+[Live length atlas](https://midya8.github.io/warplab/lengths.html) · [Length contract](https://github.com/midya8/warplab/blob/main/LENGTHS.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/2)
+
+Separate every legal visited-cell count before mixing paths. Length-resolved log messages expose exact path counts, conditional occupancies and joint edge flows, hard minima/ties, and conditional coordinate/temperature gradients. An explicit per-visited-cell penalty changes the mixture, not the conditional laws. Inspect the entropy decomposition, expected-length gradient and negative length-variance curvature.
+
+The extension adds 98 independently verified complete cross-language atlases. Merged main passes 27 Python tests on each Python 3.10-3.13 and nine Node/Chrome tests, plus installed module/console reproduction for eight base and eight length controls. Live Chrome checks 81 length selections, 1,740 row/column cell inspections, 72 penalty changes and 96 complete reports at 320/390/1280 pixels. All ten deployed assets are source-exact; all 48 screenshots across both inspectors match verified main pixel for pixel.
+
+Length includes both endpoints. Positive penalty favors shorter paths, negative penalty rewards longer paths: this is a changed objective, not an accuracy improvement. The independent oracle groups complete paths and checks the penalized law directly; it does not trust the length-message generator. Synthetic grids remain bounded to 1..7 samples, with at most 8,989 paths. No new-algorithm or benchmark claim.
