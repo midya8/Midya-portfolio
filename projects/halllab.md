@@ -54,3 +54,12 @@ assert verify(report)  # exhaustive independent oracle, no matching calls
 ## Limits before interpretation
 
 At most six variables/eight values; one all-different relation, not a complete constraint solver. Classic matching/Hall theory, not a new AI algorithm. Native repeated DFS matching queries plus bitmask counting versus independent exhaustive native checker and JavaScript assignment recursion. No Régin SCC, Hopcroft-Karp, Choco or NetworkX implementation/integration. No scalability benchmark, learned model, real assignment deployment or whole-CSP guarantee. A full match for one constraint does not ensure a shared solution for several constraints. MIT license.
+
+
+### HallLab: local support is not a shared solution
+
+[Overlapping-scope inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract and sources](https://github.com/midya8/halllab/blob/main/OVERLAPS.md) · [Source](https://github.com/midya8/halllab)
+
+Repeat full local all-different propagation to a synchronous fixed point, then compare it with exact common-assignment support across overlapping scopes. A two-color triangle keeps every local value but has no joint assignment. A satisfiable triangle keeps local values that never occur in a common solution. Inspect each round, original-variable mappings, scope-only witnesses, full common witnesses and exhaustive rejection bins.
+
+Separate native API/module CLI, independent report checker and JavaScript engine. Eight new native tests and three new Node/Chrome tests preserve the original test sources. Full cross-engine checks cover 621 overlap reports; nine browser controls run at 320/390/1280 widths. Installed-wheel checks run outside the checkout. Tiny exact reference: six variables, eight values, six scopes, at most 262144 full tuples. Classic consistency theory, not a scalable CP solver or a new algorithm.
