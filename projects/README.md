@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| CutLab | Python standard library; independent BigInt JavaScript; exact rational costs | Binary energy reduction, full flow/cut dual witnesses, residual SCC/closure optimum families and honest local-search failure controls | [Case study](cutlab.md) · [Live inspector](https://midya8.github.io/cutlab/) |
 | FactorLab | Python standard library; independent BigInt JavaScript; exact rational factor tables | Full join/reduction witnesses, fill graphs, all small orders and mixed sum/max marginal-MAP failure controls | [Case study](factorlab.md) · [Live inspector](https://midya8.github.io/factorlab/) |
 | SubmodLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite submodular selection, assumption failures, all greedy gains and optimum ties, proof-derived cardinality certificates, exact multilinear derivatives and deterministic swap-rounding histories | [Case study](submodlab.md) · [Live inspector](https://midya8.github.io/submodlab/) |
 | DPPLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite DPP laws, inclusion witnesses, Schur conditioning and fixed-size contrasts with explicit impossible-event handling | [Case study](dpplab.md) · [Live inspector](https://midya8.github.io/dpplab/) |
