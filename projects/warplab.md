@@ -30,9 +30,20 @@ WarpLab is a bounded instrument for established soft-DTW mathematics. Local squa
 
 ## Reproduction evidence
 
-The merged implementation passed 15 Python tests on each of Python 3.10, 3.11, 3.12 and 3.13, plus five Node/Chrome tests. Tests compare 168 complete Python/JavaScript reports and verify both through independent exhaustive paths. Direct path-indicator sums reconstruct every occupancy and edge flow. Finite differences check sequence, temperature and cost-direction derivatives. Conservation, soft-min bounds, transpose/scaling, forged reports, input errors and atomic output are covered.
+The base implementation passed 15 Python tests on each of Python 3.10, 3.11, 3.12 and 3.13, plus five Node/Chrome tests. Tests compare 168 complete Python/JavaScript reports and verify both through independent exhaustive paths. Direct path-indicator sums reconstruct every occupancy and edge flow. Finite differences check sequence, temperature and cost-direction derivatives. Conservation, soft-min bounds, transpose/scaling, forged reports, input errors and atomic output are covered.
 
-The installed wheel runs both module and console commands outside the checkout for all eight controls. Chrome at 320, 390 and 1280 pixels checks 24 complete reports, 396 cell selections, 576 complete-path selections and 72 layer changes, including hard-path selection, row/column controls, download and stale/error clearing. All five deployed assets are byte-identical to verified main; all 24 deployed control screenshots match main pixel for pixel.
+The installed wheel runs both module and console commands outside the checkout for all eight controls. Chrome at 320, 390 and 1280 pixels checks 24 complete reports, 396 cell selections, 576 complete-path selections and 72 layer changes, including hard-path selection, row/column controls, download and stale/error clearing. At base release, all five deployed assets were byte-identical to verified main and all 24 deployed control screenshots matched main pixel for pixel. The extension below rechecks both inspectors together.
+
+
+### Path-length atlas
+
+[Live length atlas](https://midya8.github.io/warplab/lengths.html) · [Length contract](https://github.com/midya8/warplab/blob/main/LENGTHS.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/2)
+
+Separate every legal visited-cell count before mixing paths. Length-resolved log messages expose exact path counts, conditional occupancies and joint edge flows, hard minima/ties, and conditional coordinate/temperature gradients. An explicit per-visited-cell penalty changes the mixture, not the conditional laws. Inspect the entropy decomposition, expected-length gradient and negative length-variance curvature.
+
+The extension adds 98 independently verified complete cross-language atlases. Merged main passes 27 Python tests on each Python 3.10-3.13 and nine Node/Chrome tests, plus installed module/console reproduction for eight base and eight length controls. Live Chrome checks 81 length selections, 1,740 row/column cell inspections, 72 penalty changes and 96 complete reports at 320/390/1280 pixels. All ten deployed assets are source-exact; all 48 screenshots across both inspectors match verified main pixel for pixel.
+
+Length includes both endpoints. Positive penalty favors shorter paths, negative penalty rewards longer paths: this is a changed objective, not an accuracy improvement. The independent oracle groups complete paths and checks the penalized law directly; it does not trust the length-message generator. Synthetic grids remain bounded to 1..7 samples, with at most 8,989 paths. No new-algorithm or benchmark claim.
 
 ## Mathematical boundaries
 
