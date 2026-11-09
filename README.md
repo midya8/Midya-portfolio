@@ -732,3 +732,10 @@ Full relative MUS/MCS families, bidirectional minimal hitting-set intersections,
 18 original synthetic controls retain 827 subsets, 1,301 search nodes, 20 cores and 52 repairs. 17 Python tests on 3.10-3.13, four Node/Chrome tests, 74,292 exact cross-language scalar checks and installed-wheel reproduction. Exhaustive six-variable/eight-soft-clause bound, established SAT theory, no scalable solver, real fault diagnosis or certified proof claim. No model/API.
 
 [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/diagnoselab.md)
+
+
+#### Diagnoselab repair-policy consequences
+
+[Live query inspector](https://midya8.github.io/diagnoselab/consequences.html) · [Method/sources](https://github.com/midya8/diagnoselab/blob/main/CONSEQUENCES.md)
+
+Distinguishes every/some repair from every/some surviving model, with all tied minimum-cost/cardinality policies, complete countermodels and negated-query DPLL traces. Shared-clause intersection is a separate baseline with strict counterexamples. No-repair families are inapplicable, not vacuous certainty. 26 new exact reports (16,165 scalar leaves), 67 repairs, 78 policy records and 151 full DPLL nodes including intersection baselines; 24 Python/eight Node-Chrome tests preserve all originals. Installed-wheel reproduction and mobile/table/export checks. Finite propositional reasoning, not a database/DL engine or probability claim.
