@@ -59,7 +59,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | RAGLine | Python, standard library only; CLI plus importable package | Retrieval-augmented answering from scratch: cited extractive answers, lexical-overlap grounding checks, recall/MRR/grounding CI gates | [Case study](ragline.md) |
 | KVLens | Python, standard library only; CLI plus importable package | KV-cached incremental decoding from scratch: bitwise-verified against full recompute, measured FLOP savings, CI gates | [Case study](kvlens.md) |
 | AttnLens | Python, standard library only; CLI plus importable package | Causal multi-head self-attention trained from scratch: hand-derived finite-difference-checked backprop, measurable recall-attention patterns, CI gates | [Case study](attnlens.md) |
-| EmbedKit | Python, standard library only; CLI plus importable package | Word embeddings trained from scratch with SGNS: seeded deterministic training, unigram^0.75 negative sampling, topic-coherence evaluation and CI gates | [Case study](embedkit.md) |
+| EmbedKit | Python + independent browser | Sampled SGNS objective/gradient audit, real sequential replay, 72 captured events, full original corpus/vectors and 992 browser neighbors | [Case study](embedkit.md) |
 | PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
 | DecodeLab | Python, standard library only; CLI plus importable package | Decoding strategies from scratch: greedy, temperature/top-k/top-p sampling, beam search, generation-quality metrics and CI gates | [Case study](decodelab.md) |
 | VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
@@ -247,7 +247,8 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
 - **AttnLens** - Causal multi-head self-attention trained from scratch in pure Python: two residual blocks of Q/K/V projections and masked scaled dot-product attention, hand-derived backpropagation checked against finite differences for every parameter group. 46 unit tests.
   - Case study: [attnlens.md](attnlens.md)
   - Repo: [midya8/attnlens](https://github.com/midya8/attnlens)
-- **EmbedKit** - Word embeddings trained from scratch with pure-Python SGNS: sigmoid-gradient SGD over (center, context) pairs with negatives drawn from the unigram^0.75 distribution, plus a coherence evaluator that scores how often a word's nearest neighbors stay in its topic cluster. 40 unit tests.
+- **EmbedKit** - Independent editable SGNS objective and gradient inspector: every sampled event, 1,593 coordinate finite differences, real sequential replay versus a frozen simultaneous step, and visible clamp/order effects. Twelve original pairs capture 72 actual calls; seven labeled controls expose repetition, conflicting labels, saturation and overshoot. Full 300-sentence corpus and all 32 trained vectors retained; browser recomputes all 992 cosine neighbors. 53 Python tests and four Node/actual-Chrome tests compare 19 complete reports. Original 40 tests, trainer and gates remain unchanged.
+  - Live inspector: [EmbedKit](https://midya8.github.io/embedkit/)
   - Case study: [embedkit.md](embedkit.md)
   - Repo: [midya8/embedkit](https://github.com/midya8/embedkit)
 - **PlanBench** - Validation and deterministic simulation of agent task plans: semantic DAG checks, seeded flaky-tool simulation with retries and skip cascades, makespan/cost/critical-path/parallelism metrics and CI gates. 29 unit tests.
