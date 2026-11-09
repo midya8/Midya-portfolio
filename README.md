@@ -606,14 +606,15 @@ Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/A
 
 ### ScratchGPT
 
-A GPT built and trained from scratch in pure NumPy: a ~400-line reverse-mode autograd engine with hand-written backward rules, a pre-LN transformer, Adam training, resumable checkpoints, and a temperature/top-k sampling CLI.
+A NumPy GPT with hand-written autograd and a real Shakespeare checkpoint, now with a validated exact-continuation contract. Both complete PCG64 states, Adam memory/clock, data identity, options and runtime metadata survive restart; terminal previews do not consume evaluation randomness.
 
-- **Backprop without an ML framework** - hand-written broadcasting-aware backward rules for core tensor ops, reductions, softmax/cross-entropy, layer norm and gather, verified against central finite differences.
-- **A model, not just a diagram** - a 419,328-parameter, 2-layer/4-head character GPT with causal multi-head self-attention, GPT-2-style residual initialization, gradient clipping, warmup and periodic evaluation.
-- **Reproducible from a fresh clone** - TinyShakespeare data, loss records, a trained checkpoint and sample output ship with the repository; editable install runs the training and sampling CLIs, and a causal-leak test proves position t cannot attend to t+1.
-- 11 unit tests, a documented 3,000-step CPU training run reaching 1.83 nats/char validation loss in the shipped config, and CI on Python 3.12.
+- All 13 stop boundaries reach identical complete final state in the same environment. RNG-reset and missing-moment controls change weights at all 11 interior boundaries; evaluation-only reset changes future validation history, not weights.
+- Independent scalar Adam checks 38,016 p/m/v values and independent transformer inference checks 2,592 logits. Actual Chrome inspects all 101,376 coordinate-table cells, 468 coordinate views, 72 inference views, editable contexts and two exports.
+- 70 Python tests retain all 11 original tests; three Node/Chrome tests, four Python versions and isolated installed-wheel reproduction. Original model/autograd/optimizer/data, historical checkpoint, loss records and sample preserved.
 
-- Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt) · Case study: [projects/scratchgpt.md](projects/scratchgpt.md)
+The replay is a separate 1,056-parameter synthetic model. The browser recomputes arithmetic and forward inference, not gradients/training. No cross-machine determinism, text-quality, speed or novelty claim.
+
+- Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt) · [Live replay](https://midya8.github.io/scratchgpt/) · Case study: [projects/scratchgpt.md](projects/scratchgpt.md)
 
 ### sre-toolkit
 
