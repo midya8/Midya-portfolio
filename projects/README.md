@@ -6,6 +6,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 
 | Project | Stack | What it is for | Start here |
 |---|---|---|---|
+| FactorLab | Python standard library; independent BigInt JavaScript; exact rational factor tables | Full join/reduction witnesses, fill graphs, all small orders and mixed sum/max marginal-MAP failure controls | [Case study](factorlab.md) · [Live inspector](https://midya8.github.io/factorlab/) |
 | SubmodLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite submodular selection, assumption failures, all greedy gains and optimum ties, proof-derived cardinality certificates, exact multilinear derivatives and deterministic swap-rounding histories | [Case study](submodlab.md) · [Live inspector](https://midya8.github.io/submodlab/) |
 | DPPLab | Python standard library; independent BigInt JavaScript; exact rational enumeration | Complete finite DPP laws, inclusion witnesses, Schur conditioning and fixed-size contrasts with explicit impossible-event handling | [Case study](dpplab.md) · [Live inspector](https://midya8.github.io/dpplab/) |
 | CTCLab | Python standard library; independent scalar JavaScript; Decimal and exhaustive path/state references | CTC target likelihood, latent alignments and logit gradients with every finite-path witness, explicit repeated-label/blank/impossible controls and a greedy-path versus transcript-mass counterexample | [Case study](ctclab.md) · [Live inspector](https://midya8.github.io/ctclab/) |
