@@ -327,3 +327,12 @@ Dependency-free, standard-library-only tools: a CLI for day-to-day use plus an i
 - **uptimekit** — Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database: HTTP, TCP connect, and TLS certificate-expiry probes, an append-only JSONL history, availability roll-ups with latency percentiles, incident detection with a consecutive-failure flap guard and a sustained-outage gate, SLO measurement (error budget consumed, met-or-breached status, --fail-slo exits 1 on a breach), a watch mode for hosts without cron, and a self-contained HTML status page. 98 unit tests running fully offline, CI on Python 3.11.
   - Case study: [uptimekit.md](uptimekit.md)
   - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit)
+
+
+### CutLab response-path extension
+
+[Open the exact response-path inspector](https://midya8.github.io/cutlab/path.html) · [Source and method](https://github.com/midya8/cutlab/blob/main/PATH.md)
+
+Vary binary unary costs with a rational parameter and retain the complete optimum family on every closed region, open cell and breakpoint, including point-only optima and persistent ties. Every assignment keeps its affine line and every line comparison keeps its exact inequality. Independent graph-cut audits check all boundary and cell witnesses.
+
+18 synthetic controls retain 214 assignment lines, 6,084 inequalities and 92 full flow/cut witnesses. Mixed-sign slopes include a label that leaves and returns: no nested-label or scalable parametric-maxflow guarantee is claimed. The inspector enumerates all 2^n assignments for at most six variables. Original flow/cut functionality and tests remain.
