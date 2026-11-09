@@ -1046,3 +1046,15 @@ The two-bit XOR control has 132 distinct rival functions and 65,536 input subset
 [Teaching inspector](https://midya8.github.io/synthlab/teaching.html) · [Teaching contract and sources](https://github.com/midya8/synthlab/blob/main/TEACHING.md) · [Reviewed implementation](https://github.com/midya8/synthlab/pull/2)
 
 Finite target-specific identification, not class-wide teaching dimension or PAC learning. Classical teaching-set/minimum-cover ideas credited to Goldman and Kearns; word-valued labels use explicit equality. No new teaching algorithm claim.
+
+#### Exact adaptive query policies
+
+**Let the answer choose the next question.** The adaptive inspector solves the smallest worst-case number of further input queries needed to identify any function still fitting the initial observations. It audits every nonempty version space, every query's label partition, all tied minimax rows, a canonical policy and every possible target path. A separate verifier checks the complete recurrence and the underlying raw-tree synthesis certificate.
+
+A full seeded two-bit grammar leaves ten functions after two known observations. Two further adaptive queries suffice, while every fixed passive separating set needs three rows. Immediate split balance is not the same objective: across all balanced tie resolutions, policies need two or three further queries. Neither an easier hand-selected class nor an unlucky chosen baseline tie is used.
+
+Seven additional native tests bring the project to 22 on Python 3.10-3.13; five additional Node/Chrome checks bring it to 12. The adaptive tests compare 541 complete native/JavaScript reports with independent verification. Actual Chrome audits 15 adaptive reports, 1,583 version-space selections, 111 query partitions, 306 answer branches, 84 target traces and 105 passive mask selections. Installed module+console reproduction includes all three certificate families outside the checkout.
+
+[Adaptive inspector](https://midya8.github.io/synthlab/adaptive.html) · [Exact adaptive contract and sources](https://github.com/midya8/synthlab/blob/main/ADAPTIVE.md) · [Reviewed implementation](https://github.com/midya8/synthlab/pull/3)
+
+At most ten functions after separately counted initial observations, exact noiseless labels and unit query cost. Future answers are simulated from supplied tables, not a live oracle. Classical decision-tree dynamic programming and generalized binary search credited. No expected-cost, PAC or novel-algorithm claim.
