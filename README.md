@@ -904,3 +904,12 @@ A reachable bad component now becomes an exact action-labelled prefix once and n
 Tiny constraint-based AI assignment, with every supported variable/value backed by a complete injective assignment and every rejected edge explained by a forced-residual Hall obstruction. A full synchronous pairwise-AC baseline makes the global bottleneck visible. Exact matching/counting, independent exhaustive native checker, separate JavaScript assignment engine, editable graphs, all tight/deficient subsets and every propagation round.
 
 12 native tests include 8,777 exhaustive domain graphs; 682 complete cross-engine reports; actual Chrome checks every control edge/subset/round at 320/390/1280. Fresh installed CLI replay. Original synthetic controls, no learned model or paid API. At most six variables/eight values, one constraint: not an optimized Régin SCC propagator, scalability benchmark or whole-CSP solver.
+
+
+### HallLab: local support is not a shared solution
+
+[Overlapping-scope inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract and sources](https://github.com/midya8/halllab/blob/main/OVERLAPS.md) · [Source](https://github.com/midya8/halllab)
+
+Repeat full local all-different propagation to a synchronous fixed point, then compare it with exact common-assignment support across overlapping scopes. A two-color triangle keeps every local value but has no joint assignment. A satisfiable triangle keeps local values that never occur in a common solution. Inspect each round, original-variable mappings, scope-only witnesses, full common witnesses and exhaustive rejection bins.
+
+Separate native API/module CLI, independent report checker and JavaScript engine. Eight new native tests and three new Node/Chrome tests preserve the original test sources. Full cross-engine checks cover 621 overlap reports; nine browser controls run at 320/390/1280 widths. Installed-wheel checks run outside the checkout. Tiny exact reference: six variables, eight values, six scopes, at most 262144 full tuples. Classic consistency theory, not a scalable CP solver or a new algorithm.
