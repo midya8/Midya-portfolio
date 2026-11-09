@@ -41,3 +41,9 @@ At most six selectable items, 64 subsets and eight represented facility rows. Ex
 Native JSON rejects duplicate keys and bounds input to 32KiB. Browser JSON.parse retains the last duplicate key and bounds input to 32,768 characters. These parser differences are explicit.
 
 Established theory is credited to Nemhauser, Wolsey and Fisher; definitions and proof are cross-checked against Krause and Golovin's survey, Submodlib objective documentation and the Isabelle Archive of Formal Proofs. METHOD.md records exact links and documentation shorthand conflicts. This implementation is not formally verified. Implementation, independent checks and original synthetic controls by Midya Rahmani; no external code, figures, datasets or weights copied.
+
+## Exact expectation and deterministic cardinality rounding
+
+The separate rounding inspector now exposes the exact multilinear extension, every excluded-item gradient and excluded-pair Hessian context, independent-product count probabilities and both endpoints of every deterministic cardinality swap. A two-item half-probability control has expected count 1 yet exceeds budget 1 with probability 1/4; its duplicate-coverage expectation 3/4 rounds to a singleton worth 1. Nonmonotone submodular controls are accepted, while synergy and wrong total probability mass refuse rounding. The extension adds nine Python tests (33 total), 21 reports matching 10,682 exact native/BigInt leaves, independent product/derivative/path oracles, full-record Chrome checks and installed reproduction. This is bounded deterministic rounding, not continuous optimization, randomized marginal preservation, a general matroid method or a learned-quality claim.
+
+[Live rounding inspector](https://midya8.github.io/submodlab/rounding.html) · [Rounding method and sources](https://github.com/midya8/submodlab/blob/main/ROUNDING.md)
