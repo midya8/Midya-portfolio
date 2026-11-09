@@ -74,3 +74,92 @@ Live Chrome checks 47 robust-component selections over 28 reference reports at 3
 The base contract is unchanged. Robust fraction is interval length divided by domain length, not accuracy or probability under a data distribution. A singleton has zero length and still exists. The `reference` field affects the displayed point check but not the all-reference atlas. SVG rounding is display-only; Python must accept a downloaded browser report before it is independently checked.
 
 This is relative-domain erosion by a closed interval, not full-line erosion with an invented outside class. Heijmans' *Mathematical Morphology: an Algebraic Approach*, §1.2, supplies the established structuring-element containment definition. Pegden's *Sets resilient to erosion* instead defines radius erosion through open balls and distance ≥ radius; that convention is explicitly distinguished rather than silently substituted. The full definition, finite-exhaustion argument and reproduction commands are in REFERENCE.md, with primary-source URLs in SOURCES.md. No new algorithm, model training/import, high-dimensional certificate, benchmark or sampled-grid proof claim.
+
+## Radius-profile extension
+
+[All-radius demo](https://midya8.github.io/hingelab/radius.html) · [Exact contract and finite-partition argument](https://github.com/midya8/hingelab/blob/main/RADIUS.md) · [Merged PR #3](https://github.com/midya8/hingelab/pull/3)
+
+### Length is not existence
+
+The reference atlas answers one radius. This extension returns the complete
+piecewise-linear robust interval length on radius [0,32], per class and in total.
+It also returns exact open/closed radius intervals where any robust reference
+still exists, and solves for the first radius whose total length is at most a
+requested domain-length fraction. Targets outside the horizon are not invented.
+A constant class may never meet a fraction below one.
+
+For margin x on [-2,2], length is max(4-2r,0). At radius 2 it has reached zero,
+but the class-1 robust singleton {2} still exists. Class 0 has already vanished:
+its existence radii are [0,2), while class 1 has [0,2]. An isolated class-1 tie
+exists only at radius zero and always has zero interval length. The nested-tent
+class survives through radius 1/2, with its singleton retained at equality.
+
+### Two constructions, one exact report
+
+The generator assigns each class component its width and domain-edge-aware
+erosion speed (zero, one or two), sums max(width-speed*r,0), and merges equal
+neighboring affine formulas. Extinction equality retains both original endpoint
+flags. The inverse length query is solved on those exact rational pieces.
+
+The independent checker imports no forward profile, reference generator, union
+or erosion routines. It enumerates activation masks and boundary/root class
+atoms, then partitions radius at all differences and half-differences between
+boundary/root points. These include every collision of original and shifted
+critical-reference boundaries. In every open radius cell it measures robust
+length through exact opposite-class closed-ball intersection at two interior
+trisection radii, reconstructs the affine formula and checks midpoint and both
+endpoints. Existence at radius points and open cells is reconstructed separately.
+The finite-ordering argument covers every radius atom; this is not a sampled
+grid claim. Parsing, direct evaluation and the independent base mask enumerator
+are shared and stated explicitly. Full JSON comparison includes keys and types.
+
+Browser reports use normalized BigInt fractions. Only SVG coordinates and tick
+labels are rounded. The demo includes a breakpoint-detail plot and an entire
+[0,32] horizon plot, exact affine-piece table, class-specific existence sets,
+inverse target status, stale/error clearing and JSON export. A downloaded report
+is independently checked only after Python accepts it.
+
+### Checked release
+
+Merged main `4b1ceacf5ffeeb25ed8052c48053a926e91dd047`, feature
+`ddd4a2a30e491805dee2afa92bb08c3d554190b6`. All 44 tracked files matched
+native, fresh feature and fresh main checkouts. Normal merge retained history.
+
+- 26 Python tests on each of 3.10, 3.11, 3.12 and 3.13, including 40 new seeded
+  profile networks, inverse targets, strict/closed extinction, isolated ties,
+  constant classes, forged fields/types and generator-disabled verification.
+  The original 160 reference and 200 base seeded-network checks remain.
+- Ten Node/Chrome tests. 104 new complete cross-language profile reports
+  (40 control/target pairs plus 64 seeded networks) agree exactly and pass the
+  separate Python oracle. Existing 200 reference and 144 base reports remain.
+- Fresh installed-wheel module and console reproduction outside every checkout
+  covers eight base, eight reference and eight radius controls. Forged reports
+  are rejected.
+- Live Chrome checks 28 radius reports across 320/390/1280px and four conditional
+  states, including zero target, isolated tie, unattained target and target one.
+  Export, malformed/bounded input and stale clearing pass. The retained reference
+  suite checks 47 component selections/28 reports; the base checks 24 reports.
+- All 13 deployed assets match main source. All 80 native/feature, feature/main
+  and main/deployed screenshots match pixel for pixel, without masks. Final
+  phone/desktop result regions and conditional-state pixels were inspected.
+- Exact-head green [feature CI](https://github.com/midya8/hingelab/actions/runs/42706896700),
+  [PR CI](https://github.com/midya8/hingelab/actions/runs/42707087858),
+  [main CI](https://github.com/midya8/hingelab/actions/runs/42707352296) and
+  [Pages](https://github.com/midya8/hingelab/actions/runs/42707350814).
+
+### Limits and attribution
+
+Same bounded rational scalar-network contract. Horizon [0,32]; target fraction
+in [0,1]. Saved reference and radius fields are validated but do not affect this
+all-radius calculation. Length fraction is not accuracy or data probability;
+zero length is not absence. At most 64 masks under the contract. The independent
+critical-radius checker uses O(P^4) intersection checks for P mask-derived
+boundary/root points, plus mask enumeration, network evaluation and sorting;
+rational bit cost is not constant. No large-model performance claim.
+
+Uses established piecewise-affine line restrictions and morphological erosion,
+not a new algorithm, a theorem implementation from the cited papers, trained or
+imported model, high-dimensional certificate or benchmark. The six original
+neural-network primary sources and Heijmans/Pegden morphology sources remain in
+[SOURCES.md](https://github.com/midya8/hingelab/blob/main/SOURCES.md); closed-ball
+relative-domain clipping differs explicitly from Pegden's open-ball convention.
