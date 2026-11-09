@@ -562,12 +562,9 @@ Every term contribution, full unit/parent text, collapse decision, grade/discoun
 
 ### EvalForge
 
-Local-first evaluation for LLM and agent outputs: versioned JSONL task suites, deterministic scorers, a stdin/stdout adapter contract, retries, timeouts, bounded parallel execution, persistent run artifacts, baseline regression gates, and self-contained escaped HTML, JUnit XML, Markdown and SARIF run/comparison reports.
+Local-first LLM/agent evaluation plus an [editable paired comparison inspector](https://midya8.github.io/evalforge/). Recomputed all-task versus matched-task means reveal cohort reversal; every per-task gate decision and full normalized result record stays visible. Exhaustive paired sign flips and exact McNemar expose all assignments/counts without changing the original regression gate. Independent scalar JavaScript, responsive fixed-axis chart and current JSON export.
 
-- **Evaluation as a repeatable gate** - run the same suite against any command-line model or agent adapter, compare a candidate to a saved baseline, and fail on score regressions, adapter errors, or latency policy breaches.
-- **Deterministic checks before model judging** - exact, contains, regex, JSON schema-ish, numeric tolerance, length, and similarity scorers make results reproducible without a network dependency.
-- **Artifacts built for review** - JSON run records preserve prompts, outputs, scores, errors, and timings; JUnit XML reports expose results to CI test viewers; Markdown run and regression-comparison summaries fit native CI job-summary surfaces; SARIF 2.1.0 output feeds failed tasks, adapter errors and regressions to code-scanning tools; HTML reports are standalone and escape untrusted model output by default.
-- Dependency-free Python 3.10+, 68 unit tests, a fully offline six-task demo that validates JUnit, Markdown and SARIF run/regression output, and CI across Python 3.10-3.13.
+Original offline command-adapter/scorer/HTML/JUnit/Markdown/SARIF harness, all 68 tests and the six-task mock are retained. 92 Python tests across 3.10-3.13; 24 full reports (11,808 numeric and 2,691 other scalar leaves); actual Chrome pair/record/assignment/binomial/dot/export checks; isolated installed wheel with nine module origins. This is supplied evidence arithmetic, not rescoring or proof of model quality. Equal ids do not establish matching task definitions or independent samples. Persistent failures can pass a comparison; a comparison PASS is not a passing suite.
 
 - Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
 - Case study: [projects/evalforge.md](projects/evalforge.md)
