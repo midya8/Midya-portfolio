@@ -1110,3 +1110,30 @@ Compute the entire robust-reference set, not one sampled point. Exact class-comp
 A separate activation-mask/critical-atom checker exhausts every boundary/root and radius-shifted transition, without the reference generator or its erosion/union routines. Merged main passes 20 tests on each Python 3.10-3.13 and seven Node/Chrome tests. Evidence includes 160 new seeded networks with point agreement/radius monotonicity, 200 new complete exact Python/BigInt reference reports, 144 preserved base reports, generator-disabled and forged-type checks, and an additional 972-case tiny-network/domain/radius sweep. Fresh installed module/console reproduction covers eight base plus eight reference controls. Live Chrome checks 47 robust-component selections over 28 reference reports, plus 24 base reports, at 320/390/1280. All nine deployed assets match main, and all 52 main/deployed screenshots match pixel for pixel, including singleton, empty, above-threshold and zero-radius states.
 
 The original bounded rational one-dimensional contract and class-1 ties are unchanged. The closed ball is intersected with the declared domain. Established piecewise-affine analysis and set erosion, not a new algorithm, trained/imported model, high-dimensional certificate, sampled-grid proof or benchmark. Browser evidence becomes independently checked only after Python accepts its download.
+
+## HingeLab: every radius, exact
+
+[Live all-radius profile](https://midya8.github.io/hingelab/radius.html) · [Source](https://github.com/midya8/hingelab) · [Radius-profile case study](projects/hingelab.md#radius-profile-extension)
+
+Exact piecewise-linear robust interval length for every radius in [0,32],
+class-wise and total existence sets with strict/closed extinction endpoints,
+and the first radius at most a requested length fraction. Zero length is not
+empty: margin x on [-2,2] retains a robust singleton at radius 2. A separate
+mask/atom checker reconstructs the complete profile from candidate collision
+radii and opposite-class closed-ball intersection, without importing the
+profile/reference generator or erosion/union code. Full exact JSON export.
+
+44 source files verified on merged main `4b1ceacf5ffeeb25ed8052c48053a926e91dd047`.
+26 Python tests on each of 3.10-3.13; ten Node/Chrome tests; 104 new complete
+cross-language profile reports plus 200 reference and 144 base reports; fresh
+installed reproduction for eight controls in each report family. Live Chrome
+checks 28 radius, 28 reference and 24 base reports. All 13 deployed assets are
+source-exact; all 80 native/feature/main/deployed screenshots match without
+masks and final phone/desktop/conditional pixels were inspected. Feature, PR,
+main CI and Pages all green. [Merged PR](https://github.com/midya8/hingelab/pull/3).
+
+Deliberately bounded scalar rational ReLU networks, closed balls clipped to the
+declared domain and class-1 ties. Established set erosion, not a new algorithm,
+training/import, high-dimensional certificate, accuracy/probability estimate,
+benchmark or scaling claim. Browser evidence requires independent Python
+acceptance. [Exact contract and finite-partition proof](https://github.com/midya8/hingelab/blob/main/RADIUS.md).
