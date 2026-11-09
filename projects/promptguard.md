@@ -1,33 +1,42 @@
 # PromptGuard
 
-Local-first prompt, secret and prompt-injection linting for AI systems.
+Local-first prompt linting with a complete filter, baseline and CI-gate witness.
+
+[Interactive inspector](https://midya8.github.io/promptguard/) | [Source and reproduction](https://github.com/midya8/promptguard)
 
 ## Problem
 
-Prompt files are production configuration. They often contain model instructions, tool policy, examples and user data, but they rarely receive the same automated review as application code. A leaked API key or a prompt that asks a model to ignore controls can be easy to miss in review and expensive to discover later.
+A passing security gate can hide findings before the gate even runs. Severity filters remove rows; baselines suppress known identities; incomplete filesystem scans can look like empty results. Reviewers need to see why each finding disappeared, not only a final count.
 
-## Approach
+## Implementation
 
-PromptGuard scans local prompt, Markdown, JSON and YAML files without a network dependency. It reports deterministic findings for:
+PromptGuard retains its dependency-free local scanner for prompt, Markdown, JSON and YAML files: recognizable secret/token patterns, private-key headers, assigned values, contact details and Luhn-validated cards, injection-language patterns and metadata frontmatter. Existing terminal, JSON, SARIF 2.1.0, JUnit XML, Markdown and escaped standalone HTML reports remain available.
 
-- OpenAI-style keys, AWS-style keys, private key headers and assigned secrets
-- GitHub personal access tokens, Slack tokens, Google API keys and JSON Web Tokens, redacted per rule in findings and reports
-- baseline suppression that records known findings as SHA-256 fingerprints bound to a digest of the matched value, so a rotated or newly introduced credential is a new finding while the same credential stays suppressed, and the baseline file holds no raw material
-- email addresses, phone numbers and payment-card numbers checked with the Luhn algorithm
-- prompt-injection language that asks a model to ignore earlier instructions, reveal hidden prompts, bypass controls or exfiltrate credentials
-- missing or incomplete Markdown prompt metadata frontmatter
+New native corrections redact full lines before truncation and redact metadata excerpts, enumerate all recognized sensitive matches per line, count successfully read files and refuse a successful gate on scan errors. Incomplete scans cannot write a new baseline. Strict baseline loading rejects malformed SHA-256 identities, duplicate JSON keys and invalid encoding.
 
-Findings include a rule ID, severity, file, line and redacted excerpt. Reports are available in terminal, JSON, SARIF 2.1.0, JUnit XML, Markdown and standalone escaped HTML formats. The SARIF report includes stable rule metadata, severity mapping, source locations and redacted snippets so code-scanning tools can ingest findings. Severity and finding-count gates return meaningful exit codes for CI.
+`scan --audit` retains every current row, fingerprint, filter eligibility, baseline match, disposition, used/unused identities, reported payload and gate decision. `audit --spec --json` recomputes bounded synthetic findings. The browser independently recomputes all stages using JavaScript and WebCrypto, exposes every current/prior row and full selected record, draws the stage path, and exports complete current JSON. Invalid or edited input clears stale output, including asynchronous digest races.
+
+## Identity and privacy limits
+
+Baseline identity still excludes line and severity and normalizes slashes/whitespace, which can alias distinct paths. Duplicate current identities count separately; duplicate prior identities collapse. Metadata now binds its original first line privately when redaction changes it, so rotated material changes identity. Old metadata baseline entries can therefore surface again for review. This migration is documented, not silently presented as unchanged behavior.
+
+Only reported findings reach severity/count gates. The count gate fails strictly above its cap. Scan errors dominate with exit 2, gate failure returns 1, otherwise 0. No configured gate means findings alone do not fail the scan. A passing policy does not prove prompt safety or detector completeness.
+
+A digest is not anonymity. Low-entropy values can be guessed; paths and errors can expose private context. Keep real baselines and witnesses private. Public controls accept abstract synthetic findings only, not raw prompts or secrets. This extension adds no new detection patterns and makes no injection-defense effectiveness claim or security certification claim.
 
 ## Verification
 
-- 68 unit tests cover scanner rules, token detection and redaction, report escaping, SARIF generation, JUnit XML, Markdown summaries, baseline suppression, filtering and gate exit codes.
-- `bash examples/demo.sh` runs fully offline against safe and risky fixtures plus a token fixture generated at runtime, and validates the generated SARIF, JUnit and Markdown reports and the baseline suppression flow.
-- The risky fixture produces 8 findings with maximum severity critical, and the high-severity gate rejects it as expected.
-- CI runs the same suite across Python 3.10-3.13.
+- 87 Python tests on 3.10-3.13 retain all original 68 tests, fixtures and offline demo unchanged.
+- 13,320 exhaustive small policy controls derive expected row indices and exit precedence separately.
+- 27 complete native/independent-JavaScript reports compare 735 numeric and 1,443 other leaves.
+- Actual Chrome checks 50 current rows, 17 prior rows, 16 baseline identities across cases, 50 full records and 181 exact-position stage circles, all table/card/gate/payload fields, export, stale invalidation and asynchronous races. Containment is checked at 320, 390 and 1280 pixels.
+- Isolated installed wheel outside the checkout verifies eight module origins, all 27 reports, all CLI formats, baseline suppression and incomplete scans.
+- Original risky-fixture analysis and HTML remain byte-exact and visible; original source/test/demo hashes are archived. The historical risky fixture still produces eight findings. Existing dummy credentials remain documented; this extension adds reserved-domain contacts, abstract fixture tags and mocked noncredential patterns only.
 
-All credential-shaped values are fake fixtures: the committed files contain no credential-shaped literals, and the demo builds its token fixture at runtime. Deterministic linting provides a useful review signal; it does not claim to catch every prompt-injection technique.
+## Prior work
 
-## Links
+SHA-256 identities, deterministic filters, baselines and gates are established methods. OWASP/CWE guidance supports careful handling of sensitive logs and output; SARIF examples distinguish suppression and execution status; GitHub documents bounded pattern coverage. No external scanner code or secret corpus copied. This witness does not implement SARIF suppression interoperability.
 
-- Repository: [midya8/promptguard](https://github.com/midya8/promptguard)
+- [Evidence definitions and sources](https://github.com/midya8/promptguard/blob/main/EVIDENCE.md)
+- [Repository](https://github.com/midya8/promptguard)
+- [Interactive inspector](https://midya8.github.io/promptguard/)
