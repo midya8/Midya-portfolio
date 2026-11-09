@@ -1137,3 +1137,12 @@ declared domain and class-1 ties. Established set erosion, not a new algorithm,
 training/import, high-dimensional certificate, accuracy/probability estimate,
 benchmark or scaling claim. Browser evidence requires independent Python
 acceptance. [Exact contract and finite-partition proof](https://github.com/midya8/hingelab/blob/main/RADIUS.md).
+
+
+## RewriteLab: a shortcut can need a larger detour
+
+[Live inspector](https://midya8.github.io/rewritelab/) · [Source](https://github.com/midya8/rewritelab) · [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/rewritelab.md)
+
+Complete bounded arithmetic-rewrite closures, shortest proofs and a separate exhaustive polynomial-semantic optimum. Five nodes block a real simplification; seven unlock its three-rewrite bridge. A weighted control still exposes a cost-7 semantic gap at the seven-node limit. Every reachable proof and semantic candidate is inspectable, with editable occurrence costs and independently checkable JSON evidence.
+
+25 exact source files, 11 Python tests across four versions, three Node/Chrome tests, 72 complete cross-language reports, installed-wheel reproduction and full deployed behavior checks. Separate grammar/rule enumeration and exact degree-bounded interpolation check the evidence. Explicit finite graph, not an e-graph, tensor compiler, floating-point proof or runtime-speedup claim. [Contract](https://github.com/midya8/rewritelab/blob/main/CONTRACT.md) · [Sources](https://github.com/midya8/rewritelab/blob/main/SOURCES.md).
