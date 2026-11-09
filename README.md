@@ -490,13 +490,9 @@ Original positive-budget outputs, full curve and CI gates stay intact. The final
 
 ### AttnLens
 
-Causal multi-head self-attention trained from scratch in pure Python: two residual blocks of Q/K/V projections and masked scaled dot-product attention, hand-derived backpropagation checked against finite differences for every parameter group on the suite's fixture model, and a marker-recall task where the trained model's query position concentrates attention on the recalled key token (~0.9 weight on the checked-in seed) - an observed recall pattern in the family of induction-head behaviors.
+A real manually differentiated attention trainer with a fixed-weight intervention workbench. Independent JavaScript recomputes all downstream tensors after head-output ablations, exposes all 16 head subsets on the original 128-example held-out split, and tests matched key/filler changes. Complete trained and same-seed initialization checkpoints, all source weights and full audit exports. Repairs a clipped-loss/nonzero-gradient mismatch with stable log-sum-exp. 59 Python tests retain all 46 originals; three Node/actual-Chrome tests compare 352 full tensor reports and 22 audits, with 704 displayed head-row views. One seed and synthetic task, zero-ablation distribution shift and nonadditivity visible; no attention-as-explanation or discovered-circuit claim.
 
-- **Real training, no autograd** - gradients for embeddings, per-head Q/K/V, output projections and both layers through the residuals, all derived by hand and finite-difference verified on the fixture configuration in the test suite.
-- **Attention you can measure** - the recall task is one a single layer cannot solve cleanly in principle (the key's content does not say it followed a marker); after training, per-head entropy, previous-token mass and recall-attention stats plus text heatmaps show the query position attending to the key. An observation on this task and seed, not a claim about larger models.
-- **Deterministic and gated** - one seeded RNG for init and per-epoch sample generation; `--max-final-loss`, `--min-accuracy` and `--min-recall-attention` fail CI when training regresses; without gradient clipping, training was observed to diverge in the tested configurations.
-- Dependency-free Python 3.10+, 46 unit tests, a fully offline demo that verifies the recall pattern, and CI across Python 3.10-3.13.
-
+- Live workbench: [AttnLens](https://midya8.github.io/attnlens/)
 - Repo: [midya8/attnlens](https://github.com/midya8/attnlens) · Case study: [projects/attnlens.md](projects/attnlens.md)
 
 ### EmbedKit
