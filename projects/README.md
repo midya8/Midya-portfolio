@@ -55,7 +55,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | LoRALab | Python standard library + independent browser evaluator | Equivalent factors, different SGD steps: full finite-step identity, matrix gauges, all 124 original epoch boundaries and full exports; adverse retention preserved; 31 Python + 4 Node/Chrome tests | [Case study](loralab.md) · [Live inspector](https://midya8.github.io/loralab/) |
 | SpecLab | Python, standard library only; CLI plus importable package | Speculative decoding from scratch: batched verification with counted target evaluations, proven output equivalence, measured acceptance and 74.6% eval savings, CI gates | [Case study](speclab.md) |
 | StructGate | Python, standard library only; CLI plus importable package | Grammar-constrained generation from scratch: exact legal-token masking, measured conformance (40/40 vs 3/40 control), per-step KL cost, CI gates | [Case study](structgate.md) |
-| QuantLab | Python, standard library only; CLI plus importable package | int8 post-training quantization from scratch: measured accuracy/size trade-offs, per-tensor vs per-channel error analysis, CI gates | [Case study](quantlab.md) |
+| QuantLab | Python + independent JavaScript; offline browser and CLI | Real int8 files, IEEE scale precision, signed logit errors and exact fixed-input margins | [Case study](quantlab.md) |
 | RAGLine | Python, standard library only; CLI plus importable package | Retrieval-augmented answering from scratch: cited extractive answers, lexical-overlap grounding checks, recall/MRR/grounding CI gates | [Case study](ragline.md) |
 | KVLens | Python, standard library only; CLI plus importable package | KV-cached incremental decoding from scratch: bitwise-verified against full recompute, measured FLOP savings, CI gates | [Case study](kvlens.md) |
 | AttnLens | Python, standard library only; CLI plus importable package | Causal multi-head self-attention trained from scratch: hand-derived finite-difference-checked backprop, measurable recall-attention patterns, CI gates | [Case study](attnlens.md) |
@@ -234,7 +234,8 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
 - **StructGate** - Grammar-constrained generation built from scratch in pure Python: an incremental JSON validator and a closed-schema validator compute the exact set of legal next tokens for any prefix. 33 unit tests.
   - Case study: [structgate.md](structgate.md)
   - Repo: [midya8/structgate](https://github.com/midya8/structgate)
-- **QuantLab** - Post-training int8 quantization built from scratch in pure Python: symmetric per-tensor and per-channel scales, byte-exact size accounting, reconstruction error metrics, and a perceptron-trained fixture model whose int8 accuracy cost is measured exactly. 28 unit tests.
+- **QuantLab** - Real QLB1 int8 files, IEEE32/64 scales and an independent editable browser inspector: every coefficient, signed logit-error contribution and exact fixed-input margin. Original 60-example fixture and magnitude controls preserved; 39 Python tests and four Node/actual-Chrome tests compare 52 full reports. Actual row files are 232/244 B, not the original 204 B analytic payload. No integer-kernel or speed claim.
+  - Live inspector: [QuantLab](https://midya8.github.io/quantlab/)
   - Case study: [quantlab.md](quantlab.md)
   - Repo: [midya8/quantlab](https://github.com/midya8/quantlab)
 - **RAGLine** - Retrieval-augmented answering built from scratch in pure Python: a deterministic templated corpus chunked with stable ids, token-hashed sparse TF-IDF embeddings, top-k cosine retrieval, and extractive answers that always cite their source chunk. 31 unit tests.
