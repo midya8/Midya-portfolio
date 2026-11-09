@@ -13,3 +13,9 @@ Seven original controls distinguish recurrence from one-time reachability, envir
 The generator uses bitmasks/Tarjan/BFS; the browser uses sets and graph-search closure; the native checker uses sets/Floyd closure plus exact deterministic eventual-lasso replay for every joint positional-policy pair. The algorithms share validation, not generator calls. Testing is not proof. Supplied graphs can omit real behavior or mislabel goals.
 
 See the method for exact synchronous fixed-point semantics, rank reset rules, policy ordering, finite total game assumptions, strict atomic CLI limits, tests and attribution to primary papers, academic notes and official tool documentation.
+
+### BuchiLab: repeat the actual failure
+
+[Action-level lasso inspector](https://midya8.github.io/buchilab/lassos.html) | [Exact witness contract](https://github.com/midya8/buchilab/blob/main/LASSOS.md)
+
+A reachable bad component now becomes an exact action-labelled prefix once and nonempty non-goal cycle forever, for every failing fixed controller policy/root. Empty prefixes, self-loops, multiedge cycles, unreachable bad components and duplicate-target action choices are explicit. BFS generation is independently checked with bounded simple walks and the joint-policy lasso oracle. Original v1 reports and original tests stay intact: 16 native tests across four Python versions and five Node/actual-Chrome tests, including 314 complete witness-report comparisons and every record in ten controls at 320/390/1280. Installed wheels replay both report families outside checkout. Input-order anchor, shortest prefix/cycle individually, not globally shortest lasso. These are per-policy counterexamples, not one environment strategy defeating every controller policy or a real-agent guarantee.
