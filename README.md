@@ -27,6 +27,10 @@ Exact rational finite subset selection with every greedy marginal, optimum tie, 
 
 [Source](https://github.com/midya8/submodlab) · [Live inspector](https://midya8.github.io/submodlab/) · [Case study](projects/submodlab.md)
 
+The separate rounding inspector now exposes the exact multilinear extension, every excluded-item gradient and excluded-pair Hessian context, independent-product count probabilities and both endpoints of every deterministic cardinality swap. A two-item half-probability control has expected count 1 yet exceeds budget 1 with probability 1/4; its duplicate-coverage expectation 3/4 rounds to a singleton worth 1. Nonmonotone submodular controls are accepted, while synergy and wrong total probability mass refuse rounding. The extension adds nine Python tests (33 total), 21 reports matching 10,682 exact native/BigInt leaves, independent product/derivative/path oracles, full-record Chrome checks and installed reproduction. This is bounded deterministic rounding, not continuous optimization, randomized marginal preservation, a general matroid method or a learned-quality claim.
+
+[Live rounding inspector](https://midya8.github.io/submodlab/rounding.html) · [Rounding method](https://github.com/midya8/submodlab/blob/main/ROUNDING.md)
+
 ### DPPLab
 
 Exact-rational finite DPP subset laws with every determinant, inclusion-kernel witness, Schur include/exclude conditioning and fixed-total-size contrast. Dependency-free Python and independent BigInt JavaScript agree on 24 complete reports / 4,050 exact leaves; 24 Python tests on 3.10-3.13 and actual-Chrome full-record/geometry checks. Duplicate-item controls separate zero co-occurrence from equal-marginal independence. Established bounded L-ensembles, not learned relevance, a scalable sampler or a downstream quality result.
