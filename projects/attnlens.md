@@ -1,26 +1,41 @@
 # AttnLens
 
-Causal multi-head self-attention trained from scratch in pure Python, with gradient verification and attention-pattern analysis.
+Train attention from scratch, then test what changes when its heads are switched off.
+
+[Live intervention workbench](https://midya8.github.io/attnlens/) · [Source](https://github.com/midya8/attnlens) · [Exact intervention contract](https://github.com/midya8/attnlens/blob/main/INTERVENTIONS.md)
 
 ## Problem
 
-Attention weights get quoted constantly as if they were explanations, but few projects train attention themselves or check what a head actually learned. The cleanest measurable case is recall: "the token that followed this marker earlier". One layer cannot solve it cleanly - the key token's own content does not say it followed a marker - but two layers can, which makes success and failure both visible in the weights. This is the shape of what larger-model literature calls an induction head; here the evidence is direct measurement on a small task, not circuit-level analysis of a large model.
+A sharp attention map does not tell you how much the model's prediction depends on that head. AttnLens starts with a real, dependency-free two-layer trainer with manually derived gradients, then adds fixed-weight output interventions and an independent JavaScript computation of the same model. It also repairs a real numerical bug: a probability-clipped loss disagreed with its nonzero gradient on extreme targets.
 
-## Approach
+## Implementation
 
-- **The mechanism, no dependencies** - token embeddings plus fixed sinusoidal positions, two residual blocks of causal multi-head self-attention (Q/K/V projections, scaled dot-product scores, masked softmax), an output projection and cross-entropy loss at the final position.
-- **Hand-derived backpropagation** - gradients for embeddings, per-head Q/K/V, both output projections and the residual chain are derived manually; the test suite checks every parameter group against finite differences (to ~1e-11) on the suite's fixture model (two layers, dim 4, two heads).
-- **A task with structure to find** - each sequence hides one key after a marker at a varying position and asks for it at the end. One seeded RNG drives initialization and the fresh training samples generated each epoch, so a config and seed reproduce the run bit for bit.
-- **Analysis, not vibes** - per-head mean entropy, previous-token mass, and recall attention (the query position's weight on the key token), with text heatmaps and terminal/JSON/Markdown reports. `--max-final-loss`, `--min-accuracy` and `--min-recall-attention` turn training quality into CI gates. Optimization uses global-norm gradient clipping: without it, training was observed to diverge in the tested configurations.
+- Token embeddings and sinusoidal positions feed two residual, two-head causal attention blocks and an output head. No autograd, pretrained model, MLP, normalization, dropout or API.
+- Complete trained and same-seed initialization checkpoints are exported. The browser computes full inference from those weights, not prerecorded intermediate answers.
+- Each intervention zeroes a selected head's result slice before the shared output projection, at every sequence position. Later layers recompute all Q/K/V, attention and residuals. The original same-layer attention pattern is still visible even when its result is muted.
+- All 16 subsets of four heads are exposed, including unchanged and all-heads-off residual controls. The full 128-example original held-out split is evaluated for every subset and checkpoint, not a selected set of favorable heads.
+- Eleven declared inputs include eight fixed-seed samples and three edge structures. The UI accepts valid edited sequences. All ten recalled-key changes, including the original as a no-op, and one change at each filler position test input sensitivity at fixed weights.
+- The inspector shows full baseline/intervention logits, probabilities, every Q/K/V and attention row, head result slices, output projection, residuals and all source weights. Full model and audit JSON downloads are independently reproducible through a native CLI.
+
+## Measured results and limits
+
+The fixed seed-7 checkpoint (dim 8, 2 heads, 2 layers, 100 epochs × 64 samples, SGD 0.1) gets 128/128 original held-out examples correct at mean loss 0.000482558 nats. Muting all heads leaves embeddings, positions and the output head: 19/128 correct, loss 2.900797842. Every intermediate subset result is retained, including non-monotone effects.
+
+These are descriptive results for one checkpoint, synthetic task and exact zero-vector replacement. Attention maps are not automatically explanations. Zero ablation can produce out-of-distribution activations and head effects need not add. Neither a one-layer performance gap, a classic induction circuit, seed robustness, production language modeling nor a training improvement is established.
+
+## Numerical contract repair
+
+The old loss used `-log(max(p_target, 1e-12))` while gradients remained `softmax - one_hot`. When the floor was active, reported loss was constant but the gradient nonzero. Stable log-sum-exp now gives the actual loss, including 2000 nats for logits `[1000, -1000]` with target 1, and agrees with extreme-logit finite differences. Original forward weights, optimizer, data, trainer configuration, 46 tests and demo/gates remain unchanged. Exported training traces are regenerated, not silently reused.
 
 ## Verification
 
-- 46 unit tests cover softmax stability, positional encodings, causal masking, attention row normalization, residual structure, finite-difference gradient checks for every parameter group on the fixture model, SGD loss decrease, gradient clipping behavior, dataset structure and determinism, head statistics, report formats, the CLI including both gate sides, and pinned trained quality (>= 95% accuracy, >= 0.7 recall attention at 100 seeded epochs on the checked-in configuration).
-- `bash examples/demo.sh` runs fully offline: trains, verifies that the top head's query row concentrates on the key token (0.80-0.91 weight on the checked-in seed), asserts report contents, and confirms an impossible gate fails.
-- CI runs the same suite across Python 3.10-3.13.
+- 59 Python tests pass on Python 3.10-3.13, retaining all 46 original tests. Added tests check no-op full forward equivalence, exact muted slices, all-off residual identity, downstream recomputation, causality, nonmutation, model validation, exhaustive subsets, matched edits, CLI exports and extreme numerical gradients.
+- Complete weights, 100 training losses, original held-out examples, 32 aggregate subset results and fixture pins regenerate at normalized tolerance 1e-12 on all four Python versions without rewriting source data.
+- Three Node/actual-Chrome tests compare 352 complete tensor reports, 22 full audits and 4096 held-out predictions. Node makes 590,268 native numeric comparisons. Chrome checks every displayed tensor and weight cell over 704 layer/head/row views, two full downloads, keyboard controls, stale-result clearing and 320/390/1280 layouts.
+- A clean installed-wheel check outside the source tree confirms five installed module origins, checkpoint roundtrips, every fixture's exact original-forward equivalence, all subsets, audit CLI and both original CLI modes. Current public source is reproduced exactly.
 
-Bounds worth stating: a two-layer model on a synthetic recall task demonstrates the mechanism, manual backpropagation and pattern analysis - not language modeling at scale. The task is designed so one layer struggles and two suffice; that gap is the demonstration. The measured recall attention shows what these heads learned on this task and configuration; it is an observation consistent with induction-head behavior, not proof of the same circuit, and not an explanation method for larger models.
+Native/browser comparisons use normalized tolerance 1e-10. No cross-runtime bitwise, measured speed, GPU or memory claim.
 
-## Links
+## Prior work
 
-- Repository: [midya8/attnlens](https://github.com/midya8/attnlens)
+Architecture, head interventions and induction-head ideas are prior work, not a new method. Six primary/official sources, including both sides of the attention-explanation debate, are linked in the [methods and attribution](https://github.com/midya8/attnlens/blob/main/INTERVENTIONS.md). This project is an educational implementation with a numerical repair, independent inference and a tested inspection surface.
