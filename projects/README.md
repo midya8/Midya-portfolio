@@ -64,7 +64,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
 | DecodeLab | Dependency-free Python; independent scalar JavaScript | Stable nucleus sampling, complete finite continuation trees, EOS/cap mass and beam-pruning/oracle counterexamples | [Case study](decodelab.md) |
 | VectorLite | Dependency-free Python; independent scalar-JavaScript geometry and recall inspector | Stable cosine, complete signature/candidate witnesses, threshold/binomial references and explicit self/excluded/external protocols | [Case study](vectorlite.md) · [Live inspector](https://midya8.github.io/vectorlite/) |
-| GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
+| GroundCheck | Dependency-free Python; independent scalar JavaScript | Complete token/citation/numeric provenance, exact decimal matching and explicit source-scope controls | [Case study](groundcheck.md) · [Live inspector](https://midya8.github.io/groundcheck/) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
 | RetrievalBench | Python, standard library only; CLI plus importable package | Offline retrieval evaluation: exact BM25, chunked indexing with parent collapsing, graded qrels, recall@k/precision@k/MRR/nDCG@k, and CI quality gates | [Case study](retrievalbench.md) |
 | EvalForge | Python, standard library only; CLI | Local-first evaluation for LLM and agent outputs: versioned task suites, deterministic scorers, baseline regression gates, HTML/JUnit/Markdown/SARIF reports | [Case study](evalforge.md) |
@@ -272,7 +272,7 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
   - Case study: [vectorlite.md](vectorlite.md)
   - Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite)
 
-- **GroundCheck** - Offline lexical grounding checks for answers against their sources: citation validation, per-sentence lexical support scoring, numeric consistency, JSON/Markdown reports and three CI gates. 43 unit tests.
+- **GroundCheck** - Complete lexical/citation/numeric provenance with independent scalar-JavaScript recomputation, editable source policies and full input offsets. 66 Python tests retain 43 originals; 50 synthetic controls expose semantic false positives. Four Node/Chrome checks and isolated-wheel reproduction. Lexical support is not entailment; audit parity is bounded ASCII. [Live inspector](https://midya8.github.io/groundcheck/)
   - Case study: [groundcheck.md](groundcheck.md)
   - Repo: [midya8/groundcheck](https://github.com/midya8/groundcheck)
 - **TokenForge** - Byte-level BPE tokenizers trained from scratch: deterministic merge training, GPT-2-style pre-tokenization, exact round trips, JSON vocab persistence and compression statistics with a CI quality gate. 40 unit tests.
