@@ -1,8 +1,15 @@
-# AgentTrace — case study
+# AgentTrace - case study
 
-Local-first validation, analysis, and HTML, JUnit XML, Markdown and SARIF reporting for AI agent execution traces: read JSONL traces, check their structure, summarize every run, detect repeated tool/action loops, track failures, latency, tokens and cost, enforce CI-friendly gates, and render a standalone HTML timeline. Standard library only, CLI, 33 unit tests with CI across Python 3.10–3.13.
+Local-first validation, analysis, and HTML, JUnit XML, Markdown and SARIF reporting for AI agent execution traces: read JSONL traces, check their structure, summarize every run, detect repeated tool/action loops, track failures, latency, tokens and cost, enforce CI-friendly gates, and render a standalone HTML timeline. Standard library only, CLI, 57 unit tests (all original 33 retained) with CI across Python 3.10-3.13.
 
 - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
+
+## Graph and timing evidence
+
+Full-record graph/timing inspector: every endpoint, interval segment, parent path/relation, normalized record and p95 term. Independent Python/JavaScript recomputation and current JSON export. 57 Python tests retain all original 33 tests; 24 synthetic controls, 11,110 interval checks and an isolated installed-wheel reproduction. Parent links are not causal dependencies; recorded coverage/overlap is not CPU, idle, waste or utilization. No model/API call.
+
+- [Live inspector](https://midya8.github.io/agenttrace/)
+- [Definitions and controls](https://github.com/midya8/agenttrace/blob/main/EVIDENCE.md)
 
 ## The constraint that shaped the build
 
@@ -10,7 +17,7 @@ Agent frameworks are good at showing a friendly final answer and bad at preservi
 
 ## Decisions
 
-- **One JSONL event per step.** Every event carries `run_id`, `step`, `kind` and `name` — kinds `llm`, `tool`, `action`, `observation`, `error`; statuses `ok`, `failed`, `cancelled`, `timeout` — with optional `duration_ms`, `tokens_input`, `tokens_output`, `cost_usd`, `input`/`output` payloads, and a `parent` link to an earlier step in the same run. A format agents and test harnesses can append to and Unix tools can inspect.
+- **One JSONL event per step.** Every event carries `run_id`, `step`, `kind` and `name` — kinds `llm`, `tool`, `action`, `observation`, `error`; statuses `ok`, `failed`, `cancelled`, `timeout` — with optional `duration_ms`, `tokens_input`, `tokens_output`, `cost_usd`, `input`/`output` payloads, and a `parent` link to a step in the same run (forward references allowed once resolved). A format agents and test harnesses can append to and Unix tools can inspect.
 - **Validation first.** Malformed events, duplicate step IDs, unknown parents, negative numbers, unknown event types, and bad timestamps are reported before analysis is trusted — a corrupt trace never produces confident-looking numbers.
 - **Loops are a signature, not a count.** Repeated signatures are detected from event kind, name, and normalized input payload, so retries with changed arguments do not count as the same loop — the gate fires on an agent stuck repeating itself, not on an agent retrying with different inputs.
 - **Latency and cost are explicit.** Summaries carry p95 step latency, run depth, token totals, and cost alongside error counts — so "slow" and "expensive" are numbers in the same report as "failed", not impressions from watching a run.
@@ -21,7 +28,7 @@ Agent frameworks are good at showing a friendly final answer and bad at preservi
 
 ## Testing and compatibility
 
-33 unit tests, with CI across Python 3.10–3.13. The suite runs fully offline.
+57 unit tests (all original 33 retained), with CI across Python 3.10-3.13. The suite runs fully offline.
 
 ## Worked example: catching a looping agent
 
