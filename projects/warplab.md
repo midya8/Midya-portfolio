@@ -45,6 +45,17 @@ The extension adds 98 independently verified complete cross-language atlases. Me
 
 Length includes both endpoints. Positive penalty favors shorter paths, negative penalty rewards longer paths: this is a changed objective, not an accuracy improvement. The independent oracle groups complete paths and checks the penalized law directly; it does not trust the length-message generator. Synthetic grids remain bounded to 1..7 samples, with at most 8,989 paths. No new-algorithm or benchmark claim.
 
+
+## Inverse expected-length response
+
+[Live inverse inspector](https://midya8.github.io/warplab/inverse.html) · [Inverse contract](https://github.com/midya8/warplab/blob/main/INVERSE.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/3)
+
+Choose a target expected visited-cell count and inspect whether penalty -4..4 can reach it. The full numerical bisection witness exposes every bracket, response, centered length variance and probability law. Finite-range failures, single-length unidentifiability and numerical flattening stay distinct. A narrow-bracket control deliberately misses the mean-residual tolerance, making the difference between stopping rules visible.
+
+A separate complete-path oracle directly evaluates every witness penalty and checks the trace, status and selected response without calling the solver or length dynamic program. Merged main passes 37 Python tests on each Python 3.10-3.13 and 12 Node/Chrome tests. Tests include 36 complete cross-language inverse reports, derivative finite differences, random interior targets, generator-disabled verification and forged witnesses. Fresh installed module/console reproduction covers eight base, eight length and nine inverse controls. Live inverse Chrome checks 438 witness selections over 27 complete reports at 320/390/1280; all 15 deployed assets are source-exact, and all 75 screenshots across the three inspectors match verified main pixel for pixel.
+
+This is bounded numerical evidence, not interval arithmetic or a unique-parameter certificate. A width stop does not promise a 1e-9 mean residual; unreachable targets show a diagnostic response, not a solution. Binary64 rounding can disagree at adversarial branch boundaries, in which case verification fails. No learned model, benchmark or new-algorithm claim.
+
 ## Mathematical boundaries
 
 Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperature 0.05..8 and signed cost directions -4..4. The largest grid has 8,989 paths. Larger requests fail rather than silently truncating. The base inspector's dynamic messages are O(nm). With K=n+m-1, length-resolved prefix/suffix messages take O(nmK), and all conditional occupancy/edge convolutions take O(nmK²). Path enumeration is exponential and deliberately bounded.
