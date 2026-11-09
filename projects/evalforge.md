@@ -1,75 +1,40 @@
-# EvalForge — case study
+# EvalForge - case study
 
-Local-first evaluation for LLM and agent outputs: run a versioned set of prompts through any model or agent adapter, score every response with deterministic checks, keep a durable JSON run record, render self-contained HTML, JUnit XML, Markdown and SARIF reports, and compare candidate runs against a baseline so regressions fail before they ship. Standard library only, CLI, 68 unit tests with CI across Python 3.10–3.13.
+Local-first LLM/agent evaluation with complete paired comparison evidence.
 
-- Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
+- [Source](https://github.com/midya8/evalforge)
+- [Editable paired inspector](https://midya8.github.io/evalforge/)
+- [Evidence contract and prior work](https://github.com/midya8/evalforge/blob/main/EVIDENCE.md)
+- [Original README](https://github.com/midya8/evalforge/blob/main/docs/original-readme.md)
 
-## The constraint that shaped the build
+## The average changed. Did the tasks?
 
-AI features fail in ways ordinary unit tests miss: a prompt edit improves one answer and silently regresses three others, a model swap changes output shape, a latency spike only shows up in a long tail. The goal was a harness that makes those changes reviewable — prompts and acceptance criteria in versioned files, checks that are deterministic and inspectable rather than another opaque model judging the output, and a regression gate CI can enforce — without requiring an API key or a hosted service to run.
+A whole-run mean can fall while every matched task improves: the candidate may add hard tasks and omit easy ones. Original comparison also silently collapsed duplicate ids and trusted stored summaries. EvalForge now validates result rows, rejects duplicate ids and recomputes all-task and matched-task summaries separately. Equal ids remain supplied evidence, not proof that task definitions or scorers match.
 
-## Decisions
+The original per-task binary64 gate is preserved: a score drop beyond tolerance, a lost pass or a missing baseline task fails. Added tasks do not fail it. Every matched task now retains its complete normalized baseline/candidate record, delta, margin, pass-loss/score-drop flags and classification; native result-level metadata is retained too. Persistent failed/error tasks may pass a comparison if they do not regress. A comparison PASS is not an absolute evaluation-quality verdict.
 
-- **The adapter is just a command.** The task prompt goes to the adapter on stdin and the answer comes back on stdout, with `EVALFORGE_TASK_ID` and `EVALFORGE_PROMPT` in the environment — so the harness does not care whether the text came from a local model, an internal agent binary, or a paid API command configured separately. A non-zero exit is preserved as a run error, not silently dropped.
-- **Tasks are versioned files.** Suites are JSONL with stable IDs, prompts, expected values, tags, and metadata — so a prompt edit is a diff, a suite is reviewable in a pull request, and baseline comparisons match on the stable ID.
-- **Deterministic scorers before model judging.** Exact, contains, regex, JSON equality or subset, token-F1 similarity, numeric tolerance, and word/character length bounds — checks that produce the same result for the same output, so CI stays stable and review discussions stay concrete. When `checks` is omitted, a sensible default is derived from `expected`: JSON values use JSON equality, numbers use numeric matching, strings use normalized exact matching.
-- **Invalid tasks fail before anything runs.** Unsupported check types, malformed regexes, and invalid JSONL are reported with the task ID or line number before any adapter command runs — a broken suite never spends model calls finding out it is broken.
-- **Raw evidence first.** JSON run records keep per-task scores, check details, raw output, latency, attempts, adapter command, timestamp, and tag roll-ups — a report never hides the response behind a single number.
-- **The comparison is the gate.** `compare` matches candidate to baseline by task ID, reports regressions before improvements, treats missing candidate tasks as failures, and exits 1 when a task drops more than `--max-drop`, a passing task starts failing, or a baseline task is missing — with `--format json` for automation, `--markdown` for a CI job-summary comparison, and `--sarif` for a SARIF 2.1.0 comparison that maps regressions to errors and missing candidate tasks to warnings.
-- **Gates, not just reports.** `--fail-under` sets a minimum mean score, `--max-drop` caps per-task regression, tag filtering scopes a run, and retries, timeouts, and bounded parallel execution (`--workers`) keep a run within its budget — exit codes 0/1/2 make the whole thing scriptable.
-- **The report is safe to share, and fits CI.** One HTML file with inline CSS, escaped model output, summary cards, tag roll-ups, and per-task details — no JavaScript, no external assets, no trackers — so a report can be opened anywhere without a server. The same run also emits JUnit XML for ordinary CI test viewers, Markdown for native CI job summaries, and SARIF 2.1.0 so failed tasks, adapter errors and regressions feed code-scanning tools — the results reach the surfaces that already review code, instead of living in a file only a human opens.
-- **Useful without an API key.** The included demo runs six tasks against a deterministic local adapter and passes 6/6 offline; the mock adapter is a stand-in that proves the evaluation loop, not a model pretending to measure model quality.
+## Read every witness
 
-## Testing and compatibility
+An independent JavaScript engine recomputes edited result lists. The fixed 0..1 dumbbell chart adapts to narrow screens; baseline rings and candidate dots remain distinct when equal. All paired rows, missing/added records, raw output/error/check/tag/latency/attempt evidence, pass cells and null assignments remain inspectable. Editing hides stale results and disables export until recomputed. Export is the complete current report, not a reference fixture. Model output is displayed as text.
 
-68 unit tests, with CI across Python 3.10–3.13. The suite runs fully offline.
+Two bounded arithmetic controls expose the entire calculation:
 
-## Worked example: gating a prompt change
+- Paired sign flips enumerate every assignment of nonzero .001-score differences, each signed contribution and sum, with inclusive absolute two-sided tails. Zero differences are factored out, not silently dropped from coverage.
+- Exact McNemar exposes the four paired pass-status cells and every binomial count, with the doubled lower tail capped at one. It tests binary pass marginals, not score means.
 
-The commands below are the real EvalForge CLI, taken from the project's own usage docs. Validate the suite, run the offline demo, run a real agent as a candidate, then compare it against the baseline:
+No pairs is undefined; all ties give p=1, not equivalence. Independent/exchangeable pairs, task selection, changed scorers, dependence and repeated benchmark searches limit interpretation. No significance threshold, multiplicity correction or automatic inference gate is added. These are established methods made inspectable, not a new statistical method or evidence of model superiority.
 
-```bash
-python3 -m evalforge validate examples/tasks.jsonl
-# the suite is checked before any adapter runs — a bad task
-# definition fails here, not halfway through a run
+## The original harness is still there
 
-python3 -m evalforge run \
-  --tasks examples/tasks.jsonl \
-  --cmd "python3 examples/mock_model.py" \
-  --out .evalforge-demo/run.json \
-  --report .evalforge-demo/report.html \
-  --junit .evalforge-demo/results.xml \
-  --markdown .evalforge-demo/summary.md \
-  --sarif .evalforge-demo/analysis.sarif \
-  --fail-under 1.0
-# 6/6 passed · mean score 1.000 · errors 0 — the six-task demo,
-# fully offline against the deterministic local adapter; the same
-# run writes the HTML report, a JUnit report for CI test viewers,
-# a Markdown summary for CI job summaries, and a SARIF 2.1.0 log
-# for code-scanning tools
+Standard-library Python executes stdin/stdout command adapters with retries, timeout and bounded workers. Deterministic exact/contains/regex/JSON/subset/token-F1/numeric/length checks write durable JSON plus HTML/JUnit/Markdown/SARIF reports. Task structural validation runs first; check-specific validation occurs during scoring. The command is trusted local code, not a sandbox. Invalid run gate/runtime options now fail before execution.
 
-python3 -m evalforge run \
-  --tasks tasks/production-agent.jsonl \
-  --cmd "python3 adapters/my_agent.py --model candidate" \
-  --out runs/candidate.json \
-  --report reports/candidate.html \
-  --timeout 45 --retries 1 --workers 2
-# the same runner against a real agent: a candidate build,
-# bounded in time, retries, and parallelism
+All 68 original tests, task data, mock adapter and demo are byte-preserved and fingerprinted. The original README, actual original six-task mock run and HTML report remain visible; the current renderer reproduces that HTML byte-for-byte. Controlled replacement outputs are clearly labelled, not misrepresented as new adapter/model runs. The mock is synthetic, not an AI benchmark.
 
-python3 -m evalforge compare runs/baseline.json runs/candidate.json --max-drop 0.05 \
-  --markdown reports/comparison.md --sarif reports/comparison.sarif
-# regressions reported before improvements; exit 1 if any task
-# drops more than 0.05, a passing task starts failing, or a
-# baseline task is missing from the candidate — with a Markdown
-# comparison for the CI job summary and a SARIF comparison that
-# maps regressions to errors and missing tasks to warnings
-```
+## Verification
 
-## What it demonstrates
+- 92 Python tests on 3.10-3.13, including all 780 short integer difference vectors against separate brute-force signs, small pass tables, 200 seeded original-gate references, malformed rows, duplicate ids, stale summaries and metadata retention.
+- 24 complete retained reports independently compared at all 11,808 numeric and 2,691 other scalar leaves.
+- Actual Chrome verifies 53 paired rows, 564 sign assignments, 118 displayed full records, 47 binomial rows, all chart dots/pass cells, export/invalidation and 320/390/1280 containment.
+- Fresh public source plus an isolated installed wheel outside the checkout checks nine module origins, all retained reports and audit/mock-adapter/compare CLI with HTML/JUnit/Markdown/SARIF outputs.
 
-Evaluation as a repeatable gate rather than a one-off notebook: versioned suites, deterministic checks, raw evidence kept with every score, and a baseline comparison that fails the build on regression — all without a network call or an API key. And the limit is stated, not hidden: a passing suite is a regression gate, not proof the system is safe or correct outside the tasks in the suite.
-
-## Links
-
-- Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
+The inspector is bounded to 12 rows per side/eight matched pairs and a .001 score/drop grid; native comparison is not. Retained timings are one local execution, not a latency benchmark. Same-environment regeneration is not cross-platform determinism. No API key, paid API or hosted model call is used.
