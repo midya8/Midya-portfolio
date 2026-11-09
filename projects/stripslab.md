@@ -27,3 +27,10 @@ Eight native tests pass on Python 3.10, 3.11, 3.12 and 3.13. Three Node/Chrome t
 ## Scope and prior work
 
 Established STRIPS and heuristic-planning theory, with original bounded implementations and synthetic tasks. No PDDL parsing or grounding, negative preconditions, conditional effects, non-unit costs, concurrency, probabilistic outcomes, partial observability, safety guarantee, scalable-planner or benchmark-win claim. Seven inspected sources, including Bonet/Geffner, Haslum/Geffner, planning textbooks/course notes and planner documentation, are attributed in METHOD.md with source coverage and implementation differences. No planner code or published benchmark is copied.
+
+
+### STRIPSLab search witnesses: an actual suboptimal h-add plan
+
+[Inspect four complete search runs](https://midya8.github.io/stripslab/search.html) · [Search policy and reproducible evidence](https://github.com/midya8/stripslab/blob/main/SEARCH.md)
+
+The new A*/best-first inspector exposes every selected frontier, strict cost improvement, applicable action decision and returned plan. A controlled task returns cost 3 with h-add versus exact cost 2 under the disclosed tie and goal-pop policy. Zero, h-max and exact h-plus return cost 2. Includes admissibility/consistency diagnostics, unsolvable exhaustion, strict CLI certificates, an independently implemented browser engine, and a separate synthetic reopening test. Full-state precomputation is explicit: this is a bounded audit, not a planner speedup or new algorithm claim.
