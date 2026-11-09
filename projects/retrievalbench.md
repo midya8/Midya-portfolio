@@ -1,29 +1,28 @@
 # RetrievalBench
 
-Offline retrieval evaluation for RAG and search pipelines.
+A cutoff is a policy. Offline BM25 retrieval evaluation with complete arithmetic and an independent browser inspector.
 
-## Problem
+[Open the inspector](https://midya8.github.io/retrievalbench/) · [Source and CLI](https://github.com/midya8/retrievalbench) · [Evidence contract](https://github.com/midya8/retrievalbench/blob/main/EVIDENCE.md)
 
-Retrieval quality decides what a RAG pipeline can answer, but retrieval changes are rarely measured. Adjusting chunk sizes, overlap or index parameters, or editing source documents, silently shifts which passages a pipeline surfaces. Without golden queries and relevance judgments, a regression ships unnoticed and answers get worse for reasons nobody can see.
+## What the inspector exposes
 
-## Approach
+Every retrieval unit retains full text, explicit parent identity, token windows and complete query-term tf/qtf/df/IDF, length normalization, saturation and score contributions. The complete ranking includes zero-score ties and every admitted/discarded duplicate. Metric rows expose grades, exponential gains, discounts, cumulative DCG and the full ideal denominator, including judged ids absent from the corpus.
 
-RetrievalBench builds an exact Okapi BM25 index over a local JSONL corpus, ranks golden queries, and scores the rankings against graded qrels. It is dependency-free and runs fully offline, so retrieval quality becomes a reproducible CI gate instead of a vibes check.
+Taking k units before collapsing duplicate parents can return fewer than k documents. Scanning to k distinct parents is a different budget. Both use the same fixed ranking here. Whole-document versus chunk indexing changes corpus statistics too, so it is not an isolated effect of shorter text. Neither comparison proves search quality.
 
-- Exact BM25 with no pruning and no ANN approximation, so scores and rankings are fully deterministic and diffable between runs
-- Token-window chunking with configurable overlap; chunk hits collapse back to their parent document so qrels stay at document granularity while the index works at passage granularity
-- Per-query and macro-averaged recall@k, precision@k, MRR and nDCG@k from graded qrels, with the weakest queries surfaced for review
-- Quality gates (`--min-recall`, `--min-precision`, `--min-mrr`, `--min-ndcg`) that fail CI when a retrieval change drops quality
-- JSON reports for tooling and Markdown reports that fit native CI job-summary surfaces, plus an ad-hoc `search` command for spot-checking the index
+Editable corpus/query/judgments, units, budget, cutoff, BM25 parameters and chunk overlap are recomputed by independent scalar JavaScript. Stale results hide until recomputed; JSON export contains the actual current report. Everything runs locally without a model or paid API.
 
-## Verification
+## Corrections with the original protocol retained
 
-- 42 unit tests cover tokenization, BM25 scoring edge cases (ties, empty documents, unknown terms, length normalization), JSONL loading validation, chunking windows and overlap, every metric, report escaping and the CLI including gates and chunked evaluation.
-- `bash examples/demo.sh` runs fully offline against a small AI/ML corpus and asserts the aggregate metrics, the Markdown report, chunked-evaluation parent collapsing, and both sides of the quality gates.
-- CI runs the same suite across Python 3.10-3.13.
+Parent identity is no longer guessed by splitting a '#c' delimiter. Duplicate ids, qrel pairs and metric rankings are rejected. Nonfinite/Boolean parameters and invalid gates fail clearly; large finite BM25 parameters and high-grade nDCG avoid intermediate overflow. The default CLI still takes k units before parent collapse. Original whole/chunked JSON outputs, 12-document/six-query corpus, all 42 tests and demo are retained unchanged.
 
-BM25 is a lexical baseline: it measures term-matching retrieval, not embedding quality. Graded qrels for the example corpus are illustrative judgments, not a research benchmark.
+## Verified
 
-## Links
+- 68 Python tests on Python 3.10-3.13, including 200 Decimal BM25 comparisons and exhaustive small-ranking metric controls.
+- 35 complete reports, independently compared across 27,694 numeric and 12,052 other scalar leaves.
+- Actual Chrome checks all 268 units, 1,384 contribution rows and 89 selected-policy metric rows, both budgets, all full source text, ideal denominators, invalidation/export and 320/390/1280 containment.
+- Isolated installed wheel verifies eight module origins, all reports, audit CLI and original gated CLI outside the checkout.
 
-- Repository: [midya8/retrievalbench](https://github.com/midya8/retrievalbench)
+## Limits and prior work
+
+BM25, chunking and ranked metrics are prior work, not a new algorithm. The original illustrative perfect recall is not a research result. The inspector is bounded ASCII/binary64 arithmetic, not arbitrary precision or a semantic oracle. No Lucene/trec_eval score-equivalence claim. Judgment incompleteness and lexical mismatch remain. Full definitions, sources, bounds and preserved evidence are in the [evidence contract](https://github.com/midya8/retrievalbench/blob/main/EVIDENCE.md).
