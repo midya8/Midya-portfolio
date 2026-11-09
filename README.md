@@ -481,13 +481,11 @@ Retrieval-augmented answering built from scratch in pure Python: a deterministic
 
 ### KVLens
 
-KV-cached incremental decoding built from scratch in pure Python: a tiny causal multi-head attention block with seeded weights runs greedy generation down two paths - naive full recompute over the whole prefix, and a production-style KV cache with batched prefill plus one incremental step per new token - and the two paths are verified bitwise-identical while a matmul FLOP counter measures the savings directly.
+Independent full-tensor attention/cache inspector with final-query-only no-cache and optimized-prefill controls, atomic occupied-prefill rejection and independent cache forks. Named default eight-prediction savings: 58.68% against the stronger baseline versus 73.08% for the intact historical pair. Complete Q/K/V, score/value/output/logit contributions, before/after state and full JSON/model exports. 55 Python tests retain all 28 originals; three Node/actual-Chrome tests compare 32 complete reports, 97 predictions and 66,940 numeric entries, with every displayed cell and weight table checked. Counted arithmetic and ideal packed K/V payload, not latency or actual memory.
 
-- **Bitwise equivalence, not approximate** - both paths share the same operations in the same order, so the equivalence sweep reports a max absolute logit difference of exactly 0.0 across model configurations and prefix lengths; greedy generations match token for token in the test suite.
-- **Measured savings** - a FLOP counter in both paths reports the saved fraction (90.8% at 32 generated tokens on the default fixture); `--min-savings` and `--require-identical` gates fail CI when either property regresses.
-- **Honest bounds** - the counter covers matmuls only and the project makes no latency claim; the README states what is counted and why memory bandwidth, not FLOPs, is the real reason caching is fast.
-- Dependency-free Python 3.10+, 28 unit tests, a fully offline demo asserting both gates, and CI across Python 3.10-3.13.
+Original positive-budget outputs, full curve and CI gates stay intact. The final emitted token remains uncached; zero predictions do no forward work. Mutable weights must stay fixed and guards are not a security boundary. Native/browser agreement is tolerance-tested, not a universal bitwise claim.
 
+- Live inspector: [KVLens](https://midya8.github.io/kvlens/)
 - Repo: [midya8/kvlens](https://github.com/midya8/kvlens) · Case study: [projects/kvlens.md](projects/kvlens.md)
 
 ### AttnLens
