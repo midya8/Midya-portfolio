@@ -1,28 +1,30 @@
 # GroundCheck
 
-Offline grounding checks for answers against their sources.
+A citation is not evidence. GroundCheck exposes the lexical machinery behind that distinction in a complete, editable provenance inspector.
 
-## Problem
+## What is implemented
 
-RAG pipelines answer with confidence whether or not the answer is grounded in the retrieved documents. Fabricated figures, citations that point at nothing and claims no source supports all read identically in a chat transcript. Reviewing every answer by hand does not scale, and "the model said so" is not verification.
+The original offline CLI remains available: citation validation, best-document content-token containment, number presence, JSON/Markdown reports and CI gates. A new bounded ASCII audit retains every raw sentence unit, content-token occurrence, citation resolution, source-score fraction and equal-valued numeric occurrence with exact input offsets. Every source text is shown in full, including sources outside the current policy.
 
-## Approach
+The inspector independently recomputes the full report in scalar JavaScript. Switch between all provided sources and only citations in the same raw unit, edit the answer/sources/threshold, inspect all documents and export the current JSON. Neither policy unions documents. A resolved citation can point to the wrong passage; negation and wrong attribution can pass both policies.
 
-GroundCheck turns grounding into deterministic, offline lexical checks against the exact sources an answer claims to use:
+## Correctness work
 
-- **Citation validation** - every `[n]` marker must resolve to a provided source; unresolvable citations are high-severity findings, and the report shows how many of the provided sources were actually cited.
-- **Lexical support scoring** - each answer sentence is scored by content-token containment (stopwords removed) against every source document. Support is measured at document granularity because answers draw on whole retrieved passages: a sentence combining facts from several sentences of one passage is supported by that passage. Sentences below the threshold are flagged.
-- **Numeric consistency** - every number in the answer must appear in the sources, by exact or equal-value match. Invented figures are the most common grounding failure and the easiest to catch mechanically. Decimal handling keeps `1.57` one number rather than two sentence fragments.
-- **Reports and gates** - terminal summaries, JSON artifacts for tooling, Markdown reports with per-sentence support tables, and three CI gates: `--min-support` (mean sentence support), `--max-unsupported` (unsupported sentence count) and `--max-findings` (total findings).
+- Exact decimal-string equality replaces float conversion, which collapsed adjacent large integers and distinct 310-digit finite numbers.
+- Numbers before terminal periods are recognized without treating dotted versions as numeric evidence.
+- Scores retain full precision before thresholds and gates. A displayed 0.6667 is not allowed to pass a 0.66668 gate when its actual value is 2/3.
+- Explicit bounds, invalid-input handling, stale-result hiding and safe text rendering keep the browser computation inspectable.
 
 ## Verification
 
-- 43 unit tests cover tokenization, decimal-safe sentence splitting, number extraction and matching, citation parsing, source loading validation, support scoring including cross-sentence combinations, every finding kind, report escaping and the CLI end to end including all three gates.
-- `bash examples/demo.sh` runs fully offline: a grounded answer passes every gate while an ungrounded one - a fabricated test count, a citation with no source, invented claims - is rejected, with JSON and Markdown reports asserted for both.
-- CI runs the same suite across Python 3.10-3.13.
+66 Python tests retain all 43 originals unchanged. The 50 retained reports cover 25 controls in both scopes: wrong/missing/post-period citations, semantic false positives, split-document claims, exact decimal collisions, zero-content inputs and tie rules. Exact Fraction comparisons and exhaustive small token subsets check the arithmetic. Python 3.10-3.13 runs regenerate the same artifacts. Four Node/actual-Chrome tests check full-report parity, every displayed source score, edits/export and 320/390/1280 containment. An isolated installed wheel verifies eight module origins and both audit/original CLI paths outside the checkout.
 
-GroundCheck measures lexical grounding: token containment, citation resolution and number presence. These are useful fabrication signals but not semantic entailment, and they cannot establish that a claim is actually supported. Documented cases that pass every check: negation ("does not contain 40 tests" scores supported, since containment ignores word order), wrong attribution (a number that belongs to one project assigned to another), and coincidental number matches (a figure appearing anywhere in the sources, even in an unrelated sentence). A fully paraphrased true sentence can also score below the threshold. Treat it as a tripwire for ungrounded output, not proof of correctness.
+## Limits
+
+Lexical support is not semantic entailment, factuality or source authentication. These are synthetic controls, not a RAG-quality benchmark. Audit offsets/parity use an explicit bounded ASCII profile; the original CLI keeps its Unicode behavior. Citation attachment is an explicit same-raw-unit convention, not a general citation parser. Numeric comma grouping is not validated and exponent notation is not recognized as one number. Empty/stopword-only inputs can have vacuous support, not evidence.
 
 ## Links
 
-- Repository: [midya8/groundcheck](https://github.com/midya8/groundcheck)
+- [Repository](https://github.com/midya8/groundcheck)
+- [Live provenance inspector](https://midya8.github.io/groundcheck/)
+- [Evidence contract, prior work and limits](https://github.com/midya8/groundcheck/blob/main/EVIDENCE.md)
