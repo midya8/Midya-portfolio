@@ -64,3 +64,51 @@ shortest proof at that budget need not be globally shortest across larger
 budgets, and its peak need not equal the allowed budget. Reachable and semantic
 optima each fall or stay fixed as the budget grows; their difference need not.
 No result above the cap or IEEE floating-point equivalence is claimed.
+
+
+## RewriteLab cost atlas: one graph, every cost tradeoff
+
+[Live cost-weight atlas](https://midya8.github.io/rewritelab/weights.html) · [Source](https://github.com/midya8/rewritelab) · [Exact weight-box contract](https://github.com/midya8/rewritelab/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/3)
+
+A fixed rewrite graph can have different cheapest answers under different
+operator costs. This atlas keeps all 512 positive integral (+, multiplication,
+leaf) weight triples in 1..8. Every semantic expression is retained in an exact
+operation-count group, together with its complete reachable subset. Every
+outcome retains exact optimum ties and the cost gap. The accessible 8×8 slice
+changes leaf cost without running another search; all optimum ties and group
+members remain selectable.
+
+For constant four, product vector (2 additions, 1 multiplication, 4 leaves)
+competes with addition-only vector (3, 0, 4). They tie exactly when addition
+and multiplication costs agree. There are 224 positive-gap triples, 288 with
+zero gap and 64 ties. Each semantic group wins at 288 triples because ties
+credit both, so win counts are not a probability partition. By contrast, the
+five-node bridge source is strictly dominated by blocked `x+x` and has a gap
+at all 512 triples. No crossover is invented for a dominated pair.
+
+The independent checker validates a full unit-cost closure, counts canonical
+syntax symbols separately from the generator's recursive tree traversal, and
+rebuilds every group, reachable subset, weight outcome, tie, gap, dominator
+and win count. Shared syntax and base independent closure checking are named
+explicitly. All 512 ordinary optimize reports, including full expanded
+expression ties, are cross-checked for both the constant crossover and the
+blocked bridge. Strict positive-weight dominance is kept separate from zero
+wins inside this finite box; absence of a box win is not a global impossibility.
+
+Fresh public feature and main clones match all 45 source files and tracked
+paths. There are 27 Python tests across 3.10-3.13 and nine Node/actual-Chrome
+tests. Seventeen complete Python/JS weight reports compare 8,704 outcomes and
+93 groups. Chrome checks 25 weight reports, all 4,096 outcome selections and
+34,570 expression selections across eight controls and three widths, plus
+current-weight export, invalid-selection recovery and stale clearing. Fresh
+installed module and console reproduce eight controls each for all three
+families outside the checkout and reject forgeries. Base and budget-barrier
+checks remain intact. Feature/PR/main CI and Pages pass; all 13 live assets
+match main and all 83 feature/main/live screenshots match without masks.
+
+Costs count tree-node occurrences, not shared subexpressions or hardware
+latency. This is an exhaustive integral weight box over a fixed seven-node
+maximum grammar, not a continuous parameter-region analysis, learned policy,
+e-graph, tensor engine, new algorithm or compiler-speed benchmark. The exact
+rational identities are not IEEE floating-point transformation licenses.
+Browser evidence is independently checked only after Python accepts its JSON.
