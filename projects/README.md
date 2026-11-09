@@ -62,7 +62,7 @@ Longer write-ups on selected work. Everything here links back to the public repo
 | AttnLens | Python + independent browser | Trained-checkpoint head interventions, all 16 subsets, full held-out evaluation, matched input edits and stable loss/gradient repair | [Case study](attnlens.md) · [Live workbench](https://midya8.github.io/attnlens/) |
 | EmbedKit | Python + independent browser | Sampled SGNS objective/gradient audit, real sequential replay, 72 captured events, full original corpus/vectors and 992 browser neighbors | [Case study](embedkit.md) |
 | PlanBench | Python, standard library only; CLI plus importable package | Validation and deterministic simulation of agent task plans: DAG checks, flaky-tool retries, makespan/cost/critical path, CI gates | [Case study](planbench.md) |
-| DecodeLab | Python, standard library only; CLI plus importable package | Decoding strategies from scratch: greedy, temperature/top-k/top-p sampling, beam search, generation-quality metrics and CI gates | [Case study](decodelab.md) |
+| DecodeLab | Dependency-free Python; independent scalar JavaScript | Stable nucleus sampling, complete finite continuation trees, EOS/cap mass and beam-pruning/oracle counterexamples | [Case study](decodelab.md) |
 | VectorLite | Python, standard library only; CLI plus importable package | Exact and approximate (LSH) kNN vector search with recall@k measured against the exact baseline and a CI gate | [Case study](vectorlite.md) |
 | GroundCheck | Python, standard library only; CLI plus importable package | Offline grounding checks: citation validation, lexical sentence support, numeric consistency, and CI gates | [Case study](groundcheck.md) |
 | TokenForge | Python, standard library only; CLI plus importable package | Byte-level BPE tokenizers trained from scratch: deterministic merges, exact round trips, compression stats and a CI gate | [Case study](tokenforge.md) |
@@ -262,9 +262,11 @@ Local-first tools for evaluating, tracing, reviewing and planning LLM and agent 
 - **PlanBench** - Validation and deterministic simulation of agent task plans: semantic DAG checks, seeded flaky-tool simulation with retries and skip cascades, makespan/cost/critical-path/parallelism metrics and CI gates. 29 unit tests.
   - Case study: [planbench.md](planbench.md)
   - Repo: [midya8/planbench](https://github.com/midya8/planbench)
-- **DecodeLab** - Decoding strategies for language models from scratch: greedy, seeded temperature/top-k/top-p sampling and beam search over an exact n-gram distribution, with distinct-n/repetition/entropy metrics and CI gates. 36 unit tests.
+- **DecodeLab** - Stable temperature -> normalized top-k -> normalized top-p with all probability/mass witnesses; bounded complete continuation trees distinguish EOS from cap and filtered sampling probability from original-model score. Full beam candidates/pruning and exhaustive oracles expose a missed better future and a width 2-worse-than-width 1/3 counterexample under stated shared finished/live semantics. Editable independent scalar-JavaScript inspector, every outcome with pagination and full current JSON export. 54 Python tests (all 36 original unchanged), 90-digit Decimal and rational Cartesian/forward-DP references,32 complete audits, 120 staged cases, 7,927 independent numerical comparisons,actual Chrome inspection of96 distribution views/231 outcome rows/956 candidates,installed-wheel reproduction and Python 3.10-3.13 CI. Original n-gram CLI/corpus/demo remain; synthetic arithmetic/search audits, not a text-quality or new-algorithm claim.
+  - [Interactive inspector](https://midya8.github.io/decodelab/)
   - Case study: [decodelab.md](decodelab.md)
   - Repo: [midya8/decodelab](https://github.com/midya8/decodelab)
+
 - **VectorLite** - Exact and approximate kNN vector search from scratch: brute-force exact kNN (cosine and L2), seeded random-hyperplane LSH for approximate cosine search, and recall@k measured against the exact baseline with a CI gate. 31 unit tests.
   - Case study: [vectorlite.md](vectorlite.md)
   - Repo: [midya8/vectorlite](https://github.com/midya8/vectorlite)
