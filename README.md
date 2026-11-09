@@ -587,12 +587,11 @@ Full-record graph/timing inspector: every endpoint, interval segment, parent pat
 
 ### PromptGuard
 
-Local-first prompt, secret and prompt-injection linting for AI systems: OpenAI/AWS-style key, GitHub/Slack/Google token and JWT checks, assigned-secret and private-key detection, email/phone/Luhn-validated card detection, injection-language rules, prompt metadata frontmatter checks, redacted terminal, JSON, SARIF, JUnit XML, Markdown and escaped HTML reports, severity or finding-count CI gates, and fingerprint-based baseline suppression so CI only gates on new findings.
+Local-first prompt linting with a full-stage baseline and CI-gate witness. Native fixes redact before truncation, retain all recognized sensitive matches per line and fail incomplete scans. An [independent policy inspector](https://midya8.github.io/promptguard/) recomputes every abstract finding through filter, suppression and gate stages with complete JSON export.
 
-- **Prompt files as reviewed production configuration** - scan prompt, Markdown, JSON and YAML files before credentials, personal data or unsafe instruction patterns ship with an AI workflow.
-- **Redaction by default** - reports keep enough location and excerpt context for review without copying full credentials or contact details into output artifacts.
-- **Gates that fit CI** - deterministic rule IDs, severities, JSON/SARIF/JUnit/Markdown artifacts and exit codes let a repository fail on high-severity findings or cap total findings.
-- Dependency-free Python 3.10+, 68 unit tests, a fully offline fixture demo that validates SARIF, JUnit and Markdown output and the baseline suppression flow against safe, risky and runtime-generated token fixtures, and CI across Python 3.10-3.13.
+- 87 Python tests on 3.10-3.13 preserve all original 68 tests, fixtures and offline demo; 13,320 exhaustive small policy controls.
+- 27 complete independent reports, actual Chrome checks of 50 current rows, 17 prior rows and 181 stage circles, plus isolated installed-wheel reproduction across eight module origins.
+- Existing scanner/report formats remain. Fingerprint aliases and metadata-identity migration are explicit; real baselines and witnesses must stay private. No new detection patterns or security-effectiveness claim.
 
 - Repo: [midya8/promptguard](https://github.com/midya8/promptguard)
 - Case study: [projects/promptguard.md](projects/promptguard.md)
