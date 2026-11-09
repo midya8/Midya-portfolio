@@ -1,27 +1,44 @@
 # StructGate
 
-Grammar-constrained generation built from scratch in pure Python, with conformance and constraint cost both measured.
-
-## Problem
-
-Structured output is usually asserted, not verified: "the model returns JSON" until it does not. StructGate builds the constraint machinery itself - an incremental validator that knows exactly which tokens are legal next - and measures both sides of the trade: what masking guarantees (conformance rate) and what it costs (distribution distortion).
-
-## Approach
-
-- **Exact legal-token sets** - a stack-based JSON state machine answers `allowed()` for any prefix: objects, arrays, strings with escapes, the full number grammar, literals, whitespace. It matches Python's json module on 32 adversarial cases in the suite, and snapshots/restores state for exact queries.
-- **Closed-schema layer** - required keys in a fixed order, typed slots (string/number/bool), no additional keys; the same masking loop then produces records that parse and conform, with key order and types enforced during generation.
-- **Exact distribution to mask** - an order-3 character n-gram with add-k smoothing; probabilities come straight from counts, so the mask's effect is measured against ground truth, never an approximation.
-- **The cost in nats** - masking renormalizes the distribution to the legal set; -ln(Z) per step is exactly KL(p || p_masked), reported per mode.
-
-## Verification
-
-- 33 unit tests cover validator-against-stdlib agreement, exact allowed sets per grammar position, snapshot determinism, schema key-order/type/extra-key rejection, a pinned number/whitespace boundary regression, pinned fixture numbers, and both sides of every CLI gate.
-- Fixture results (40 seeded draws per mode): grammar-constrained valid JSON 40/40, schema-constrained conforming 40/40, unconstrained control 3/40; mean mask cost 1.3496 nats/step (grammar), 0.8209 (schema).
-- `bash examples/demo.sh` runs fully offline and asserts both gate sides; CI runs the suite across Python 3.10-3.13.
-- The unconstrained control is gated from above (`--max-unconstrained-rate`) so a fixture change cannot silently stale the comparison.
-
-Bounds worth stating: the char-level n-gram is a toy model by design - it exists to be exact, not fluent, and nothing here claims language-model quality. The schema layer covers flat closed records with three slot types; nested schemas, unions and optional fields are future work. KL cost is measured against this model's own unconstrained distribution.
-
-## Links
+An offline decoding lab that makes the difference between a legal prefix and a conditional sequence distribution inspectable.
 
 - Repository: [midya8/structgate](https://github.com/midya8/structgate)
+- Live: [Full-model mask and conditioning inspector](https://midya8.github.io/structgate/)
+- Method: [CONDITIONING.md](https://github.com/midya8/structgate/blob/main/CONDITIONING.md)
+- Reviewed implementation: [Support-aware masking and exact finite-language conditioning](https://github.com/midya8/structgate/pull/2)
+
+## The corrected claim
+
+For source next-character distribution p, legal mass Z and masked renormalization q, -log Z is KL(q || p), not KL(p || q). The reverse is infinite whenever the mask excludes positive source mass. Empty masks do not define a distribution. The inspector retains all excluded probabilities, both directions and explicit infinite/undefined status. Both validators now return an empty mask after failure.
+
+Per-step conditional KL is separate from a sampled path log-ratio or an expected sequence KL. Means from different masking modes visit different prefixes, so their ordering is descriptive, not a causal effect of a smaller legal set.
+
+## Full original model and complete paths
+
+The browser runs the original order-3 smoothed character n-gram from all 287 context count rows and its 46-character vocabulary, trained on all 200 original synthetic records. It independently recognizes prefixes with a recursive parser rather than the Python streaming state machine. There is no inference service or prerecorded output substituted for model calculation.
+
+All 40 seeds in each of none/grammar/schema remain, including failures: 120 full paths and 3,729 actual emitted characters. Recorded Python random uniforms are replay inputs; every next-character distribution, mask, choice, state and KL term is recomputed. Every decision and all 46 probability rows are selectable. Three JSON exports return the full prefix report, every trace step and the entire rational experiment.
+
+The one-character budget control exhibits a legal incomplete prefix. EOF acceptance is separate from the historical streaming stop state: a root number can be complete JSON at EOF without the machine having consumed its closing boundary.
+
+## Exact conditioning, with the failure cases
+
+The separate supplied finite-language experiment computes h(prefix), the source probability that a future suffix completes an accepted word. Local masking uses p/Z; exact conditioning uses p(next) h(next)/h(prefix). Python Fraction and independent JavaScript BigInt return all prefixes, transitions and accepted words. Every conditioned path also has the direct P(word)/P(event) check.
+
+Six labeled constructed controls cover future acceptance distortion, an unrestricted identity, a locally stranded source-zero branch, a zero-probability event, a three-symbol language and a one-token case. Local dead-end mass stays in a failure sink; full total variation includes it. A source-zero conditioning event is explicitly undefined, not an all-zero probability distribution.
+
+This is exact rational computation for 1-4 ASCII alphanumeric symbols and up to 128 supplied equal-length words of length 1-8 under a first-order Markov source. It is not arbitrary-CFG or JSON conditioning, ASAp, or an efficient LLM sampler.
+
+## Evidence and preserved controls
+
+- 54 Python tests on 3.10-3.13 retain all 32 original tests byte-for-byte, plus exact direct-enumeration references for 24 random small languages, KL/support, EOF and error-path checks.
+- Three Node/actual-Chrome tests compare 1,251 full prefix reports, all 289 source-context cases, all 120 historical paths, six exact controls and 741,236 numeric entries.
+- Chrome recomputes and renders all 171,534 historical step-table rows; checks three actual JSON downloads, invalidation, keyboard and 320/390/1280 layouts.
+- Isolated installed reproduction outside checkout checks nine module origins, every path/control, all three audit CLIs, original evaluation CLI and unchanged gates.
+- The full original fixture remains none 3/40, grammar 40/40 and schema 40/40, with mean per-step mask cost 1.3496 grammar and 0.8209 schema. The negative control is not weakened. Source model, corpus, CLI and original demo remain unchanged.
+
+## Limits and attribution
+
+The source is a small character model that generates structured nonsense, not a useful-scale LLM. Prefix legality is not completion within a finite budget, semantic truth or safe downstream use. The historical flat fixed-order record is not JSON Schema: unicode escapes and fractional-exponent numbers remain visible unsupported cases rather than silently changing the old fixture. General JSON syntax can also represent numbers outside binary64 range.
+
+[CONDITIONING.md](https://github.com/midya8/structgate/blob/main/CONDITIONING.md) attributes Grammar-Aligned Decoding, Local and Global Decoding, RFC 8259, ECMA-404, Wolfram MathWorld and Pierre C Bellec's Doob-transform exposition. Standard methods, not a new algorithm. Exact finite controls do not reproduce the papers' LLM results or imply output-quality gains.
