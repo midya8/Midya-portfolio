@@ -1,27 +1,44 @@
 # QuantLab
 
-Post-training int8 quantization built from scratch in pure Python, with measured accuracy and size trade-offs.
+Weight-only int8 quantization from scratch, with real packed files and an independent editable browser inspector.
 
 ## Problem
 
-Every edge-deployment story ends at "then we quantize to int8", but the trade-off is usually asserted from vendor benchmarks rather than measured. QuantLab builds symmetric int8 quantization itself - per-tensor and per-channel - and measures the two things that matter: what the smaller storage costs in task accuracy on a model trained inside the repo, and where the reconstruction error actually concentrates.
+An analytic byte count is not a file, and a small coefficient error does not guarantee an unchanged decision. QuantLab follows the complete path: source weight, integer code, stored IEEE scale, reconstructed weight, signed logit-error contribution and fixed-input decision margin.
 
-## Approach
+## Implementation
 
-- **Real quantization, no libraries** - symmetric int8 (scale = absmax/127, zero maps to zero), per-tensor or per-channel scales, dequantization, and byte-exact size accounting: params x 4 vs params + 4 per scale.
-- **A trained fixture model** - a perceptron-trained linear classifier over hashed features on a deterministic synthetic dataset (one seed reproduces the run bit for bit), small enough that the int8 accuracy cost is measured exactly on held-out data.
-- **Error located, not just averaged** - a controlled study boosts one matrix row x100 and shows per-tensor's single scale crushing every other row (small-row SNR 9.25 dB) while per-channel holds 48.39 dB: a measured 39.14 dB gain, the case per-channel exists for.
-- **Gates, both sides** - `--max-accuracy-drop`, `--min-ratio` and `--min-snr-gain` fail CI when trade-offs regress; the demo proves an impossible gate fails.
+- QLB1 is a bounded educational binary format: 24-byte versioned little-endian header, IEEE binary32/64 scales, row-major signed int8 codes and CRC32. Independent Python and JavaScript parsers reject malformed lengths, counts, dimensions, reserved codes, nonfinite scales and corrupt checksums. CRC32 detects accidental corruption, not authenticity.
+- The browser independently quantizes and dequantizes editable matrices, exposes every coefficient and logit, imports real QLB1 files and exports the binary, input, full report and complete original fixture archive. Invalid edited input clears results and disables exports until valid input is applied.
+- Python Fraction and browser BigInt dyadics independently compute exact logits for the represented-real maps and pairwise sufficient margin bounds, including the first-index tie rule. Full rational witnesses are available. Runtime binary64 predictions are reported separately.
+- The original quantizer, model, analysis, all 27 original tests, 120 training examples, 60 test examples, eight-row magnitude study and CLI gates remain unchanged. Constructed prediction-flip and tie-collapse examples are labeled controls, not trained-model results.
+
+## Measured results
+
+The original source model and all four storage choices retain 59/60 accuracy on the checked-in synthetic test fixture. No test examples are filtered out. The original magnitude study still reports small-row SNR 9.25 dB with one tensor scale versus 48.39 dB with row scales, a 39.14 dB difference.
+
+| Original 192 weights | Actual QLB1 file | Compared with 768 conceptual raw fp32 bytes |
+|---|---:|---:|
+| Row scales, binary32 | 232 B | 3.3103x |
+| Row scales, binary64 | 244 B | 3.1475x |
+| Tensor scale, binary32 | 224 B | 3.4286x |
+| Tensor scale, binary64 | 228 B | 3.3684x |
+
+The earlier 204 B row-scale figure is analytic payload accounting, not a serialized file. The original Python weights and inference are binary64; fp32 is only a conceptual byte comparator.
 
 ## Verification
 
-- 28 unit tests cover quantization range and round-trip error, zero handling, scale counts, size accounting, dataset and training determinism, fixture accuracy parity between fp32 and int8, both sides of the magnitude study, and every CLI gate.
-- Fixture results: fp32 test accuracy 0.9833, per-channel int8 0.9833 (measured drop 0.0000), storage 768 B to 204 B (3.765x); magnitude study: +39.14 dB small-row SNR for per-channel.
-- `bash examples/demo.sh` runs fully offline: both commands with their gates plus a negative control.
-- CI runs the same suite across Python 3.10-3.13.
+- 39 Python tests on 3.10-3.13, including the 27 unchanged original tests. The earlier documentation's count of 28 was incorrect.
+- Four Node/actual-Chrome tests compare 52 full independent reports, 59,004 numeric values, every packed byte and every exact rational string. They cover all 60 test selectors, every fixture/mode/precision combination, malformed input, binary import/export, keyboard operation and 320/390/1280-pixel layouts.
+- Isolated installed-wheel reproduction outside the checkout imports seven modules, retrains the complete original fixture, verifies all 52 reports and runs six CLI commands. The original offline demo and both sides of its gates remain.
+- Public source is checked against the tested files; main CI and Pages deployment are checked independently.
 
-Bounds worth stating: int8 storage is simulated with Python ints proven in range, and size accounting is byte arithmetic rather than a serialized format. Post-training quantization only - no quantization-aware training, int4, or activation quantization. The fixture model is tiny so the measurement is exact; real models show non-zero drops and nothing here claims otherwise.
+## Scope
+
+Exact bounds apply to fixed represented-real linear maps, not floating-point accumulation, uncertain inputs, unseen accuracy or deployment. The synthetic classifier uses hashed count features and perceptron updates, not an LLM. The browser performs dequantized scalar inference, not integer matmul. No speedup, RAM reduction, complete checkpoint, authentication or ONNX/GGUF compatibility is claimed. Symmetric absmax quantization, ties-to-even rounding and triangle-inequality error bounds are standard methods, with sources and the full byte contract in FORMAT.md.
 
 ## Links
 
 - Repository: [midya8/quantlab](https://github.com/midya8/quantlab)
+- Reviewed implementation: [PR #2](https://github.com/midya8/quantlab/pull/2)
+- Live inspector: [QuantLab](https://midya8.github.io/quantlab/)
