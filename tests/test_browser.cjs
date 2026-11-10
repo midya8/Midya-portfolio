@@ -5,7 +5,7 @@ test('actual Chrome catalog, source links, filtering, history, no-JS and mobile 
  const root=path.join(__dirname,'../docs'),server=http.createServer((req,res)=>{try{const u=new URL(req.url,'http://localhost');const p=path.join(root,u.pathname==='/'?'index.html':u.pathname);res.setHeader('Content-Type',({'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json'})[path.extname(p)]||'text/plain');res.end(fs.readFileSync(p));}catch{res.statusCode=404;res.end('missing');}});await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const profile=fs.mkdtempSync(path.join(os.tmpdir(),'catalog-chrome-'));let browser,ws,stderr='';
  try{
- browser=spawn(process.env.CHROME_BIN||'google-chrome',['--headless','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe']});browser.stderr.on('data',d=>stderr=(stderr+d).slice(-5000));
+ browser=spawn(process.env.CHROME_BIN||'google-chrome',['--headless','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe'],detached:true});browser.stderr.on('data',d=>stderr=(stderr+d).slice(-5000));
  let startup;browser.on('error',e=>startup=e);
  for(let i=0;i<1200&&!startup&&browser.exitCode===null&&!fs.existsSync(path.join(profile,'DevToolsActivePort'));i++)await delay(25);
  assert.ok(fs.existsSync(path.join(profile,'DevToolsActivePort')),String(startup||stderr));const port=fs.readFileSync(path.join(profile,'DevToolsActivePort'),'utf8').split('\n')[0];let tab,last;
@@ -31,5 +31,5 @@ test('actual Chrome catalog, source links, filtering, history, no-JS and mobile 
  await js('history.pushState(null,"","?q=fairness");dispatchEvent(new PopStateEvent("popstate"))');assert.ok((await visible()).includes('branchlab'));assert.equal(await js('document.getElementById("query").value'),'fairness');
  await call('Emulation.setScriptExecutionDisabled',{value:true});await call('Page.navigate',{url});for(let i=0;i<500;i++){if(await js('document.readyState==="complete"'))break;await delay(20);}assert.equal((await visible()).length,data.projects.length);assert.equal(await js('document.getElementById("search-form").hidden'),true);await shot('no-js');
  console.log(JSON.stringify({projects:data.projects.length,queryWidthChecks:checks,sourceLinks:data.projects.length,widths:[320,390,1280],noJS:true,trustedInput:true,trustedClear:true,history:true}));
- }finally{server.close();if(ws)ws.close();if(browser&&browser.exitCode===null){browser.kill();await new Promise(r=>{browser.once('exit',r);setTimeout(r,3000);});}fs.rmSync(profile,{recursive:true,force:true,maxRetries:8,retryDelay:100});}
+ }finally{server.close();if(ws)ws.close();if(browser){try{process.kill(-browser.pid,'SIGTERM');}catch(e){if(e.code!=='ESRCH')throw e;}if(browser.exitCode===null)await new Promise(r=>{browser.once('exit',r);setTimeout(r,3000);});}await fs.promises.rm(profile,{recursive:true,force:true,maxRetries:20,retryDelay:100});}
 });
