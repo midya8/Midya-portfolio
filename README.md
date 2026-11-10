@@ -1633,3 +1633,13 @@ Every dependency subset is tested. The default needs a key plus a diagonal rule;
 This is bounded classical database theory with full single-head rules and relational keys, not existential chasing, arbitrary EGDs, SQL NULL, bag-preserving optimization or global query minimization. The original provenance and unconstrained-containment labs remain available. The deployed demo and exact source were verified after the normal merge and hosted checks.
 
 [Live chase workbench](https://midya8.github.io/provlab/chase.html) · [Source](https://github.com/midya8/provlab) · [Method and checks](https://github.com/midya8/provlab/blob/main/CHASE.md) · [Pull request3](https://github.com/midya8/provlab/pull/3)
+
+## ArgumentLab0.4: everyone includes it. Who defends it?
+
+A skeptical intersection is not automatically a defensible shared position. The ideal/eager inspector retains every original attacker, including those outside the intersection, and removes undefended members simultaneously until a fixed point. An original eight-argument control exposes a two-round cascade: {a3,a4,a7} becomes {a3,a7}, then {a7}. One-pass pruning and deleting outside attackers both give the wrong answer.
+
+Native bitsets, an independent complete-ternary-labelling/set checker and JavaScript sets agree on645 full reports: all531 directed graphs on0..3 arguments,100 seeded4..8 graphs and14 original controls. Actual PyArg2.0.2 matches1,290 ideal/eager families. The release has53 Python tests,18 Node tests, isolated installed-wheel replay,377 rejected primitive-leaf mutations and20 selected forged CLI rejections with atomic output preservation. Live Chrome checks42 reports,84 core views,117 trace states,4,266 candidate selections and14 trusted completed downloads independently replayed at1280/390/320 widths. All61 full unmasked live/local/feature/main screenshots match exactly;21 deployed assets and the root alias equal main.
+
+Explore parent positions, original-graph defense responses, every simultaneous pruning round, every candidate subset and each argument's removal reason. Established finite ideal/eager semantics for0..8 supplied arguments, not truth scoring, persuasion, a scalable solver or arbitrary infinite-framework eager uniqueness. Exact-feature/PR/main CI and Pages passed; earlier core, attack-switch and SCC workflows remain intact.
+
+[Live inspector](https://midya8.github.io/argumentlab/ideal.html) · [Source](https://github.com/midya8/argumentlab) · [Method and inspected foundations](https://github.com/midya8/argumentlab/blob/main/IDEAL.md) · [Merged PR4](https://github.com/midya8/argumentlab/pull/4)
