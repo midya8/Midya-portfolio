@@ -1,8 +1,8 @@
 # ChannelLab: same accuracy, different information
 
-Exact finite binary experiment comparison. A constructive state-independent garbling, or a strict two-action decision witness proving why it cannot exist. Dependency-free Python 3.10+ and a separate BigInt browser inspector. Original implementation of classical Blackwell comparison, not a new theorem or learned sensor benchmark.
+Exact finite binary experiment comparison. A constructive state-independent garbling, or a strict two-action decision witness proving why it cannot exist. Version 0.2 adds an exact all-prior decision atlas. Dependency-free Python 3.10+ and a separate BigInt browser inspector. Original implementation of classical Blackwell comparison, not a new theorem or learned sensor benchmark.
 
-[Live inspector](https://midya8.github.io/channellab/) · [Source](https://github.com/midya8/channellab) · [Reviewed change](https://github.com/midya8/channellab/pull/1)
+[Live inspector](https://midya8.github.io/channellab/) · [Source](https://github.com/midya8/channellab) · [Reviewed change](https://github.com/midya8/channellab/pull/2)
 
 ## One task ties. The information order does not.
 
@@ -29,19 +29,30 @@ Payoff pairs list state 0 then state 1. The decision maker chooses after seeing 
 python -m channellab demo
 python -m channellab run examples/incomparable.json > report.json
 python -m channellab verify report.json
+python -m channellab atlas examples/incomparable.json > atlas.json
+python -m channellab verify-atlas atlas.json
 python -m pip install .
 channellab demo
 python -m unittest discover -s tests -v
-node --test --test-concurrency=1 tests/test_engine.cjs tests/test_browser.cjs
+node --test --test-concurrency=1 tests/test_engine.cjs tests/test_atlas.cjs tests/test_browser.cjs
 python tools/check_installed.py
 # Optional external numerical reference:
 python tools/check_highs.py
+python tools/check_atlas_highs.py
 # Serve docs/ using any static server to open the browser inspector.
 ```
 
 The local browser accepts the complete exact model, switches between both directions, exposes every signal/posterior, every call-function knot, stochastic kernel, reconstructed state law, prior-weighted coupling and every deterministic task policy. A failed direction exposes its own two-action counterexample with all signal action values and ties. Zero-mass signals have null posteriors, not invented beliefs. Downloads contain the full exact report for separate native replay. Editing clears old output and disables download; failed input leaves no stale result. All computation stays local, no backend, network model or paid API.
 
 The default is one of 13 developed controls. Relabelled and split signals can be equivalent even with different output alphabets. A perfect signal can be more informative without helping a task whose best action ignores the state. A tiny full-support prior changes posterior positions and task values, not Blackwell order. A disclosed large-fraction control requires integer outputs beyond JavaScript's safe range.
+
+## Every prior. Every policy change.
+
+Hold the two channels and payoff table fixed, then vary p=P(state 1) over the complete closed interval [0,1]. Every deterministic signal-to-action policy has an exact affine value and a closed optimality range, including singleton endpoints. The atlas retains all tied policies, the no-signal value, each information-value line, and every additional A-B ranking root even when no policy changes. No posterior is invented at a zero-mass endpoint.
+
+For the default classification task, the exact knots are 0, 1/3, 1/2, 2/3 and 1. A wins on (0,1/2), B on (1/2,1), while the supplied uniform prior ties. The 1/3 and 2/3 knots are policy changes, not ranking changes. This is the full prior domain for one fixed task, not a survey of all decision problems or a sequential POMDP solver.
+
+The generator intersects complete-policy half-spaces. A separate checker uses per-signal action crossings, Cartesian products of ties and per-signal inequalities for every policy range. Importing the checker does not load the generator. Python and BigInt agree on complete exact atlas JSON. The browser exposes curve, knot, interval and every-policy tables plus a separate atlas download; the original information-order report stays unchanged. SVG coordinates approximate display only; exact fractions remain in tables and reports.
 
 ## The finite proof objects
 
@@ -51,24 +62,27 @@ For two states and any full-support prior, A dominates B exactly when its poster
 - A failed direction supplies a knot t with C_B(t)>C_A(t), and payoffs (0,0) versus (-t,1-t). The returned strict value gap is a separating decision problem, not a failed numerical search.
 - A separate verifier imports validation only, not the generator or its elimination/basis solver. It replays every field and checks feasible kernel equations or the strict witness. Valid alternative feasible kernels are accepted if their derived fields match. This is computational evidence, not a proof-assistant certificate.
 
-The chart connects exact knots using floating-point pixel coordinates only. Inference, tables and report serialization use exact fractions. [METHOD.md](https://github.com/midya8/channellab/blob/main/METHOD.md) gives the derivation, complete schema, independent-check contract, development-search provenance and seven inspected sources.
+The chart connects exact knots using floating-point pixel coordinates only. Inference, tables and report serialization use exact fractions. [METHOD.md](https://github.com/midya8/channellab/blob/main/METHOD.md) gives the derivation, complete schema, independent-check contract, development-search provenance and attributed primary notes and supporting sources for both report formats.
 
 ## Checks actually executed
 
-- 15 Python tests, including 372 separately altered non-input primitive leaves rejected in the default report, unknown fields/type confusion, signal/state relabelling, full-support prior changes, null signals, strict CLI errors and a valid alternative feasible kernel.
+- 30 Python tests, including 297 separately altered non-input atlas leaves rejected, all ties, endpoint-only policy ranges, a 1/1,000,001 policy boundary, ranking roots without policy changes, checker import independence, and 372 separately altered non-input primitive leaves rejected in the default report, unknown fields/type confusion, signal/state relabelling, full-support prior changes, null signals, strict CLI errors and a valid alternative feasible kernel.
 - 710 complete Python/checker/BigInt report comparisons: 13 controls, all 625 ordered pairs of denominator-four binary-output channels, and 72 seeded rectangular pairs over all nine 1..3 by 1..3 signal-count combinations. Reports include 6,994 task policies, 627 feasible directional kernels and 793 strict directional counterexamples. This is a declared small finite grid, not a universal empirical benchmark.
 - Actual SciPy 1.15.3 HiGHS executes 1,420 directional feasibility solves. Its 627 feasible cases match the exact relation. Worst equality residual below 2.8e-16, against a 1e-8 tolerance. SciPy is optional reference evidence, never a production dependency.
-- A fresh installed wheel outside the checkout checks six module origins in site-packages, all 13 controls through console/module entrypoints, 26 direct and 52 CLI forgery rejections.
-- Actual Chrome checks 39 control/width reports at 1280, 390 and 320 pixels, 78 directions, 165 posterior rows, 162 hinge rows, 366 task-policy rows, 99 kernel rows and 147 witness-signal rows. Thirteen trusted completed downloads are byte-exact and accepted by the native verifier. All visible signal, task, kernel/coupling/moment and separating-witness tables are checked. Stale/invalid clearing, touch-target heights, horizontal table scroll and viewport containment are tested. Publication/deployed pixel completion is a separate gate, not inferred from these local tests.
+- A fresh installed 0.2.0 wheel outside the checkout checks eight module origins in site-packages, all 13 reports and 13 atlases through console/module entrypoints. Each report type rejects 26 direct and 52 CLI forgeries.
+- Atlas parity covers 710 complete cases: 8,486 policies, 3,401 knots and 2,691 open intervals. Independent SciPy 1.15.3 HiGHS diagnostics rebuild policy values from input and execute 16,972 LPs to minimize/maximize policy-optimal prior ranges. All 6,251 nonempty ranges agree, worst tested endpoint difference 0 against 1e-8 tolerance. Floating diagnostics are corroboration, not the production checker or a universal proof.
+- Actual Chrome checks 39 control/width reports at 1280, 390 and 320 pixels, 78 directions, 165 posterior rows, 162 hinge rows, 366 task-policy rows, 99 kernel rows and 147 witness-signal rows. Six Node/actual-Chrome tests pass. Atlas tables add 444 policy rows, 180 knot rows and 141 interval rows. Thirteen original-report and thirteen atlas trusted completed downloads are byte-exact and accepted by their native verifiers. All visible signal, task, kernel/coupling/moment and separating-witness tables are checked. Stale/invalid clearing, touch-target heights, horizontal table scroll and viewport containment are tested. Publication/deployed pixel completion is a separate gate, not inferred from these local tests.
 
 ## Scope without shortcuts
 
-Exactly two states. One to three signals per channel, one to three actions. One full-support prior. Exact non-boolean integer/pair input, raw components<=1,000,000; normalized denominator LCM<=1,000,000; payoff magnitude<=100. Strict JSON input 64 KiB, report verification 8 MiB. Enumeration bounds do not bound all arithmetic bit complexity, output size, wall time or memory. Full details in METHOD.
+Exactly two states. One to three signals per channel, one to three actions. The supplied comparison uses a full-support prior; the atlas includes both certain-state endpoints. Exact non-boolean integer/pair input, raw components<=1,000,000; normalized denominator LCM<=1,000,000; payoff magnitude<=100. Strict JSON input 64 KiB, report verification 8 MiB. Enumeration bounds do not bound all arithmetic bit complexity, output size, wall time or memory. Full details in METHOD.
 
 No channel learning, sequential design, real sensor validation, privacy guarantee, finance, safety promise, multi-state scalar-order shortcut, scalability claim or new Blackwell algorithm. Shared mathematical assumptions remain shared failure modes in cross-language/reference agreement. Exact arithmetic does not make the supplied model true. MIT.
 
 ## Verified publication
 
-Two supplied states, one to three signals/actions and a full-support prior. Classical Blackwell theory, 13 developed teaching controls, not learned sensor quality, a held-out benchmark, privacy, finance, real-world safety or a new theorem. Fifteen Python tests, four Node/actual-Chrome tests and isolated installed-wheel reproduction pass. All five deployed assets are exact; all 27 complete deployed captures match inspected local pixels. Feature, PR, merged-main and Pages checks are green.
+Version 0.2.0: 30 Python tests, six Node/actual-Chrome tests and isolated installed-wheel reproduction pass. All five deployed assets match merged source; all 53 complete and atlas-focused deployed captures match inspected local pixels. Feature, PR, merged-main and Pages checks are green. These are developed finite controls, not held-out evaluation, learned sensor quality, privacy, finance or real-world safety evidence.
 
-Merged source: `42d5f651efb69ebe781159780d1eb40fa1d0fb16`.
+Merged source: `4c660b80918189f230d3d5e0cb54330443199dcf`.
+
+[Feature checks](https://github.com/midya8/channellab/actions/runs/42866315368/job/130005478192?pr=2) · [PR checks](https://github.com/midya8/channellab/actions/runs/42866417081/job/130005838105?pr=2) · [Main checks](https://github.com/midya8/channellab/actions/runs/42866756640) · [Pages](https://github.com/midya8/channellab/actions/runs/42866753813)
