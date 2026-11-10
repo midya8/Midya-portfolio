@@ -566,7 +566,7 @@ Enumerate every whole conditional-row subset, not one convenient explanation.
 Eight developed controls cover 865 subset graphs with actual improving paths,
 inconsistency cycles and compatible strict-ranking witnesses. The default
 256-subset control has two minimal conflicts and six irreducible withdrawals:
-four remove one row, two remove two. A separate control has two-row and four-row
+three remove one row, three remove two. A separate control has two-row and four-row
 minimal path supports. Minimal does not mean minimum; neither means the right
 human preference to abandon.
 
