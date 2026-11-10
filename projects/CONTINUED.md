@@ -1013,3 +1013,16 @@ In one original six-row, three-view development control at alpha 1/5, the uncorr
 Fresh public main reproduces all 58 Python tests, four Node tests and isolated installed-wheel commands, preserving all 45 prior Python tests and the original floating RBF modes. Checks include 50 rational orbits/1,410 allocations, 729 matrices against independent principal-minor PSD acceptance, and 753 single-leaf evidence mutations. Ninety-five complete native/JavaScript reports match exactly across 3,289 allocations, 12,600 scores and 179,225 global-tail memberships. Actual deployed Chrome covers eleven controls at 320/390/1280, all 372 allocation views and 51 matrix views, eleven trusted completed native-verified downloads, stale-state clearing, malformed requests and the ten-row/six-kernel/252-allocation boundary. All 20 feature/PR checks, ten main checks and three Pages jobs passed; all five deployed assets and the root match public source, and all 42 deployed browser states match tested unmasked pixels.
 
 This implements established finite randomization/minimum-p ideas, not a new test, automatic bandwidth optimizer or MMDAgg. One global decision requires a justified uniform allowed-allocation null and label-independent supplied family. Finite PSD proves geometry, not exchangeability. No strong component-wise, causal, equivalence, power or always-valid monitoring claim; replay is consistency checking, not authentication. Tiny bounded exact orbits only: 4-10 pooled rows, 1-6 supplied kernels. No paid API, private data or model download.
+
+
+## CTCLab 0.2 - what the beam forgot
+
+[Repository](https://github.com/midya8/ctclab) · [Exact prefix inspector](https://midya8.github.io/ctclab/prefix.html) · [Method and limits](https://github.com/midya8/ctclab/blob/main/PREFIX.md)
+
+Exact supplied rational CTC frame laws make prefix pruning inspectable: every positive blank/nonblank transition, surviving prefix, first-cut loss and final transcript. A separate path-enumeration checker reconstructs the entire evidence report, and an independent browser BigInt engine agrees on 155 complete reports. The original floating-point target atlas remains intact.
+
+Twelve original development controls include a selected five-frame counterexample: width 3 chooses the true MAP transcript with full mass 47403/226100; width 4 chooses a lower-mass transcript, 11691/56525, despite retaining more total path mass. Strict permanent path pruning does not restore discarded contributions. The sufficient bound L > R + D certifies a unique MAP only under the supplied independent-frame law; a false bound makes no failure claim.
+
+Reproduction checks: 34 Python tests, 6 Node tests, 120 seeded path cases, 384 exhaustive binary-law cases, 270 altered report leaves, actual Chrome tables at 320/390/1280 pixels and 12 native-verified downloads. An isolated installed wheel checks both prefix CLI entrypoints across all 12 controls and refuses 24 forged reports. The original mode is reproduced too.
+
+These are synthetic controls selected during development, not held-out speech evaluation. At most 4,096 complete paths. No trained recognizer, new CTC algorithm, calibrated confidence, production-scale, quality or speed claim. Exact arithmetic removes rounding error, not search approximation. No paid API, private data or model download.
