@@ -865,3 +865,14 @@ Inspect fourteen controls, partial join bindings, every derivation, all witness 
 Classical provenance semirings and tuple-independent base-event semantics, not new theory, arbitrary SQL, scalable database inference, calibrated probabilities, causal effects or a guarantee about an AI agent. Feature/PR/main CI, Pages deployment, exact deployed assets and live behavior/pixels were verified before this showcase was added.
 
 [Live workbench](https://midya8.github.io/provlab/) · [Source](https://github.com/midya8/provlab) · [Method & sources](https://github.com/midya8/provlab/blob/main/METHOD.md) · [Implementation PR](https://github.com/midya8/provlab/pull/1)
+
+
+## ProvLab0.2: same answers on every database
+
+ProvLab now compares safe positive conjunctive queries over every finite database under set semantics. A head-preserving reverse homomorphism proves containment; a failed direction produces a concrete frozen canonical database and a missing output tuple. Inspect every variable-map candidate, its atom images and ordered head constraints, both canonical evaluations, and every safe atom-subset minimum. Constants stay fixed, Boolean heads and ternary relations are explicit, and repeated atom occurrences remain visible.
+
+Set-equivalent is not bag-equivalent. The default repeated-fact rewrite preserves the answer set but changes a multiplicity2 probe from4 to2 and natural provenance from f0^2 to f0. The extension has a separate native generator and active-domain replay checker, strict JSON editing, readable desktop/mobile evidence, and genuinely downloadable reports. Thirty-two Python tests include235 single-field corruption rejections and80 direct finite-instance checks;112 cross-language comparisons cover17,403 candidate maps and1,662 subset rows. Actual SQLite DISTINCT/ALL/token joins ran1,344 queries, and SymPy checked362 polynomials built from those token rows. These are finite reference checks, not a scalability benchmark or proof of the classical theorem.
+
+The exact public source, clean installed-wheel reproduction, four hosted Python versions, Chrome controls and trusted report downloads, deployed assets/behavior/pixels, and both bidirectional set decisions were checked before this note was finalized. The lab implements classical Chandra-Merlin query-containment/core theory, with primary and academic sources credited. It is bounded single-CQ syntax, not new theory, a bag-equivalence decision procedure, arbitrary SQL optimization, a language model, or a verified-AI-agent guarantee. The earlier data-provenance lab remains available.
+
+[Live containment lab](https://midya8.github.io/provlab/containment.html) · [Source](https://github.com/midya8/provlab) · [Method and reproduction](https://github.com/midya8/provlab/blob/main/CONTAINMENT.md) · [Pull request2](https://github.com/midya8/provlab/pull/2)
