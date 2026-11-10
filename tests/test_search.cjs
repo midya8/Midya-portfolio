@@ -8,6 +8,7 @@ test('literal conjunctive matching agrees with independent per-field oracle',()=
   const expected=data.projects.filter(p=>{const text=[p.id,p.title,p.excerpt,...p.headings,...(p.terms||[])].join(' ').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase();return words.every(w=>text.indexOf(w)!==-1);}).map(p=>p.id);
   assert.deepEqual(search.select(data.projects,query).map(p=>p.id),expected,query);
  }
+ for(const q of['unsupported frontier','whole path lottery'])assert.ok(search.select(data.projects,q).some(p=>p.id==='paretolab'));
  for(const q of['bundle menus','seller coalition'])assert.ok(search.select(data.projects,q).some(p=>p.id==='auctionlab'));
  assert.ok(search.select(data.projects,'ctc').some(p=>p.id==='ctclab'));
  assert.ok(search.select(data.projects,'fairness').some(p=>p.id==='branchlab'));
