@@ -6,7 +6,42 @@ CredalLab is a small, exact inspector for finite probability knowledge bases. Gi
 
 It is an original implementation of classical finite probabilistic satisfiability and linear optimization, not a new inference theorem, learned probability model, credal network, calibration benchmark or production safety system.
 
-## The default counterexample
+## Version 0.2: survives every duel, never wins the menu
+
+[Decision inspector](https://midya8.github.io/credallab/decisions.html) · [Decision semantics and sources](https://github.com/midya8/credallab/blob/main/DECISIONS.md) · [Reviewed change](https://github.com/midya8/credallab/pull/2)
+
+The exact menu `(3,0), (0,3), (1,1)` separates five classical criteria. The third action can defend against each pure rival at a different belief, yet no one common belief makes it best. It remains strict pairwise maximal and interval-undominated, and is the unique pure-action maximin choice. Its best shared-belief margin is exactly `-1/2` at belief `(1/2,1/2)`. A fixed 50/50 mixture of its rivals has utility `3/2` in both worlds and excludes it by `1/2` everywhere.
+
+A separate interior-only tie control changes the third action to `(3/2,3/2)`: it is E-admissible only at the half/half belief, not at an original credal vertex. The implementation solves the menu-intersection margin LP with a free-below margin variable, rather than checking only the original probability vertices.
+
+The inspector reports E-admissible, strict pairwise maximal, interval-undominated, pure-action maximin and maximax sets. Select every action's common belief, expected utilities, exclusion-mixture weights and world payoffs; replay every range, ordered-pair, margin and projected-mixture primal/dual certificate. A standalone native checker validates supplied evidence without loading the solver or generator, and accepts alternative attaining witnesses. Editing clears old output and disables stale downloads.
+
+The convention is explicit: **no pointwise-admissibility prefilter**, strictly positive robust advantage for dominance, all ties retained including zero-mass boundaries. Some older presentations apply a pointwise prefilter; the project follows the strict-only definitions in [Nakharutai, Troffaes and Caiado (2019)](https://arxiv.org/html/1906.12215). Randomized rivals are exclusion certificates, not all mixed optimal actions, a mixed maximin solver or advice to randomize. No criterion is selected for the user.
+
+| Additional decision evidence | Developed scope |
+|---|---|
+| Native | 15 added tests, 31 total with original probability tests |
+| Exact parity | 96 complete Python/BigInt decision reports, 75 feasible menus, 56 excluded actions |
+| Report forgery rejection | 824 primitive decision modifications across three controls |
+| Independent floating reference | 1,420 input-built HiGHS LPs, largest absolute error `2.220446049250313e-16`, tolerance `1e-8` |
+| Installed decision wheel | 10 module origins outside source, 16 controls, both entry points, 32 CLI forgeries rejected |
+| Actual Chrome | 48 responsive views, 129 action selections, 855 certificate selections, 2,784 independent inequality rows, 1,884 variable rows, 16 downloaded reports natively checked |
+
+The original 120-report probability checks, 505 primitive mutations, 690 reference LPs and original browser/installed checks still pass. All six combined Node/Chrome tests pass. These are finite development controls, not held-out experiments or formal verification. Parsing and mathematical construction are shared by the generator and native checker; independent input-built LPs and visible-row reconstruction reduce but do not remove that common failure surface.
+
+Decision inputs are limited to six worlds/actions and six assessments with separate 20,000 candidate-basis limits. Utilities use bounded exact signed rationals on one common state-independent scale. CLI model input is capped at 64 KiB and certificate reports at 8 MiB; untrusted API reports need caller size limits. No learned utility, conditional decision, sequential policy, scalable algorithm or real-world validation is claimed. See the decision document for the full derivation, source-convention differences and failure surfaces.
+
+```sh
+credallab decisions examples/decisions/maximal_never_best.json > decisions.json
+credallab verify-decisions decisions.json
+python tools/check_decisions_installed.py
+python tools/check_decisions_highs.py
+node --test --test-concurrency=1 tests/test_decisions.cjs tests/test_decision_browser.cjs
+```
+
+Version 0.2 publication verified: [PR #2](https://github.com/midya8/credallab/pull/2) merged after all 12 feature/PR checks. [Merged-main CI](https://github.com/midya8/credallab/actions/runs/42878413289) and [Pages](https://github.com/midya8/credallab/actions/runs/42878411009) passed. All 76 public files match checked source at `3a51c42958a1bddafdf2e42f236fe927f5b2772d`; all ten deployed assets match that source. Both complete deployed Chrome workflows pass: 44 decision captures and 35 updated probability captures match inspected local pixels. Downloaded reports are independently replayed natively. These deployment checks establish this published version, not the truth of supplied utilities or beliefs.
+
+## The default probability counterexample
 
 Consider three binary variables A, B, C and the events A≠B, A≠C and B≠C. Every binary assignment satisfies either zero or two of these events, never all three. Group assignments with the same event memberships into four worlds:
 
