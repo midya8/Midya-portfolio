@@ -26,7 +26,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### CredalLab
 
-Exact finite probability compatibility and primal-dual evidence. [Case study](projects/credallab.md).
+Exact probability constraints, shared-belief decisions and exclusion proofs. [Case study](projects/credallab.md).
 
 ### ChannelLab: same accuracy, different information
 
