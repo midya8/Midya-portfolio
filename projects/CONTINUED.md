@@ -743,3 +743,16 @@ disjunction, choice rules, aggregates, optimization, well-founded semantics or
 clingo text compatibility. Established finite enumeration and semantic methods,
 not a new algorithm or a scalable solver. Synthetic programs, not real agents'
 beliefs. Model counts are not probabilities.
+
+## StableLab: safe replacement, not matching answers
+
+Equal stable models today does not make a rule module safe to swap. StableLab 0.2.0 now checks every SE pair and produces an actual rule context when two finite modules differ, including controls with equal classical **and** stable families but unequal SE sets.
+
+[Live safe-replacement inspector](https://midya8.github.io/stablelab/equivalence.html) · [Source](https://github.com/midya8/stablelab) · [Contract and reproduction](https://github.com/midya8/stablelab/blob/main/EQUIVALENCE.md) · [Merged PR #2](https://github.com/midya8/stablelab/pull/2)
+
+- Complete `X ⊆ Y` atlas: up to five atoms, 243 pairs, 24 normal rules per side. Every original/reduct obligation is visible; every difference supplies a concrete facts/cycle context with both augmented stable families and full candidate evidence.
+- Independent three-valued Python reconstruction and proper-subset context model checks, not another call to the generator. Shared strict parsers and the base evidence verifier are disclosed. Eleven controls include an actual two-edge positive cycle gadget, safe transitive-edge removal, redundant rules, contextual inconsistency and empty vocabulary.
+- Reproduced from final feature and main: 16 Python tests on 3.10–3.13; eight Node/Chrome tests; installed 0.2.0 wheel, both CLI entry points, all 11 comparison controls and forged-verdict rejection. Optional clingo 5.8.3 agrees on 5,184 base and 3,514 augmented families across 2,592 comparisons.
+- Actual deployed Chrome checks 33 comparison reports at desktop/390/320 widths, all 993 displayed pairs and 9,012 rule obligations, 24 context displays and 11 downloaded reports independently verified in Python. Final feature/main and main/live each match on 65 unmasked screenshots across the base and comparison inspectors. All 11 deployed assets plus root match final main exactly. Feature/PR/main CI and Pages are green.
+
+The strong-equivalence claim is restricted to finite normal-rule contexts over the same declared vocabulary. No arbitrary ASP syntax, fresh-atom context UI, update-semantics preservation, scalable-solver or new-theory claim. Published SE-model foundations and the cycle specialization are credited in [SOURCES.md](https://github.com/midya8/stablelab/blob/main/SOURCES.md). The original eight-atom reduct inspector remains available.
