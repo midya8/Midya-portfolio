@@ -215,3 +215,16 @@ zero estimated error to a wrong dummy-looking credit. Efficiency alone validates
 neither. No new model, training, causal attribution, representative-background,
 confidence or explanation-quality claim.
 [Derivation, six sources and limits](https://github.com/midya8/shapleylab/blob/main/LEDGER.md).
+
+
+## ShapleyLab 0.3: Together changes the share
+
+The same three-way product can assign `[1/3, 1/3, 1/3]` to individual features, `[1/2, 1/2]` to two atomic groups, and `[1/4, 1/4, 1/2]` to Owen members when `a,b` must arrive together. One score and background, different allowed orders. Equal splitting and post-summing ordinary credits are not the same rule.
+
+The two-level Owen mode keeps every background-replacement evaluation, member coefficient, quotient-group marginal and complete admissible ordering. Its native checker imports no generator and independently replays the declared synthetic score and full allocation report. The independent browser computes permutation-count weights, lets you edit the supplied model and partition, and downloads evidence that the native CLI can verify.
+
+[Live editable inspector](https://midya8.github.io/shapleylab/owen.html) · [Source and installed reproduction](https://github.com/midya8/shapleylab) · [Method, sources and boundaries](https://github.com/midya8/shapleylab/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapleylab/pull/2)
+
+72 Python tests include 556 signed game/partition cases checked across 50,362 independent Fraction orderings, 14,668 unanimity-support/partition cases and separate primitive-mutation checks. 132 complete native/JavaScript reports agree, plus 206 broad-magnitude, half-even, subnormal and cancellation reports independently native-verify. An original BigInt binary64-unit summation helper fixes a pre-release double-rounding failure without widening tolerance. Actual Chrome checks all 12 original controls at 320/390/1280, 12 trusted completed native-verified downloads, and raw/sigmoid six-feature/32-background requests with 2017 evaluations and 720 paths each. Fresh installed-wheel checks preserve all 95 prior edit archives and original modes. All 24 feature/PR checks, 12 main checks and three Pages jobs passed. All ten deployed assets and the original root match public source; all 45 deployed browser states match the tested unmasked pixels.
+
+Established coalitional-value theory, original supplied synthetic controls, no new allocation theorem or measured explanation-quality result. Standalone supplied tables support up to eight features; full declared-score/browser reports up to six features and 32 background rows. Computed float leaves compare at disclosed absolute/relative `1e-12`; integer metadata remain exact. Replay is not authentication or a global error bound. A supplied partition does not validate a background or prevent off-reference within-block hybrids. No arbitrary nested hierarchy, conditional/causal effect, learned grouping, paid API or private data.
