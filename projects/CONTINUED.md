@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## ParetoLab: the compromise a weighted sum misses
+
+Exact finite biobjective DAG planning retains all paths and nondominated tradeoffs. The developed choices `(0,12)`, `(7,7)`, `(12,0)` leave the middle path Pareto but unsupported: it requires both`t >= 7/12`and`t <= 5/12`. A hard second-cost ceiling7 selects it. A separately labeled whole-path lottery yields expected `(5,7)` with7/12 probability of exceeding that realized ceiling. No expected-feasibility safety claim.
+
+20 Python tests include729 exhaustive ordered three-path profiles.52 full native/browser reports,579 rejected primitive forgeries per engine,556 input-built HiGHS graph-MILP/probability-LP solves and clean installed reproduction pass. Actual Chrome checks48 responsive views,220 path selections and24 native downloads independently replayed by Python. Exact weight cells, endpoint dominated ties, epsilon thresholds and Pareto-label pruning remain inspectable. Classical attributed theory, developed synthetic controls, no learned preference, scale or new-algorithm claim.
+
+Feature/PR, merged-main and Pages checks passed. All31 public files and five deployed assets match checked source. Deployed Chrome passes;39/40 unmasked captures are pixel-identical, with only18 border-antialias pixels differing by at most2/255 in the remaining hero. Actual desktop/phone layouts inspected.
+
+[Live inspector](https://midya8.github.io/paretolab/) · [Source](https://github.com/midya8/paretolab) · [Case study](paretolab.md)
+
 ## AuctionLab: truthful alone, not protected together
 
 Exact finite VCG allocation separates individual truthful reporting from seller-coalition stability. A developed 10/6/6 bundle-versus-singletons profile yields welfare **12**, revenue **8**, winner payments **4** each and a cooperative-core deficit **2**. Inspect every efficient tie, optimum-without-bidder witness, report-independent bundle-price menu, seller-inclusive coalition and supplied unilateral-report optimum. The phenomenon is classical and attributed, not a new counterexample.
