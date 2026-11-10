@@ -26,7 +26,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ### ChannelLab: same accuracy, different information
 
-Exact binary Blackwell garbling or strict decision witnesses. Independent checker, BigInt and 1,420 HiGHS checks. Supplied two-state teaching models, not learned sensors or safety claims.
+Exact binary Blackwell comparison and a full-prior task atlas: every affine policy, tie and ranking crossing. Python/BigInt checks, 16,972 range LPs. Supplied models, not learned sensors or safety claims.
 
 [Live](https://midya8.github.io/channellab/) · [Case study](projects/channellab.md)
 
