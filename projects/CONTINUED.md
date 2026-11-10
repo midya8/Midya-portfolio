@@ -971,3 +971,19 @@ Actual Chrome checks 39 control-width reports at 1280/390/320, all 843 candidate
 Bounds: 1..6 states, 0..3 labels and 18 unique edges, at most 203 partitions. This is exact bounded educational model checking, not a scalable verification engine, learned model, benchmark, formal proof or agent safety/liveness guarantee. A report certifies only the supplied finite model, not its correspondence to a program. Shared theory/schema/canonicalization remain common assumptions.
 
 [Live inspector](https://midya8.github.io/bisimlab/divergence.html) · [Source](https://github.com/midya8/bisimlab) · [Exact contract and inspected foundations](https://github.com/midya8/bisimlab/blob/main/DIVERGENCE.md) · [Pull request](https://github.com/midya8/bisimlab/pull/4)
+
+
+## ShieldLab0.3: again is a different promise
+
+An acknowledgement can arrive once without ever arriving again. The separate **safe recurrence inspector** checks that a supplied finite game stays safe forever and visits a target infinitely often, against every environment choice. Targets are live, not terminal: their outgoing moves still count. The old safety and first-goal inspectors retain their meanings.
+
+[Inspect safe recurrence](https://midya8.github.io/shieldlab/recurrence.html) | [Source](https://github.com/midya8/shieldlab) | [Exact method and inspected sources](https://github.com/midya8/shieldlab/blob/main/RECURRENCE.md)
+
+- Every nested greatest/least fixed-point round and successor obligation, including unchanged rounds and outer restarts.
+- Both players' complete positional-policy atlases, every root outcome, all winning policy IDs and canonical labeled unsafe or nonempty-cycle failure witnesses.
+- Complete branching strategy/counterstrategy graphs retain every opponent move and stop only at unsafe, never at a target. One favorable path or target-containing SCC is not a recurrence guarantee.
+- Independent native full-report replay by unique strategy-pair simulation, a third matrix-cycle oracle and independent JavaScript. Strict atomic native CLI, isolated installed reproduction and trusted downloadable JSON.
+
+Reproduced from the exact public source: **39 Python tests**, all **74,088 three-state graph/owner/safety-target configurations**, **498 complete native/JavaScript/checker reports** and **163 individually rejected primitive-leaf mutations**. Actual Chrome at 1280/390/320 checks 36 complete control reports, every nested obligation and both policy atlases; all 12 trusted completed downloads are independently accepted by the native checker. Fresh installed checks retain all old safety/first-goal controls and entrypoints. Exact tested counts and assumptions are in the contract.
+
+Established finite safety-and-Buchi theory, with original supplied controls, not a new algorithm or a measured agent result. Bounds: six states, three moves per state and at most 729 positional assignments per player. No fairness, probabilities, partial observation, scalable solver, formal proof or real-agent safety/liveness guarantee. No private data, paid API or hosted inference.
