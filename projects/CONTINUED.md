@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## FireLab: balance is not an execution
+
+Exact finite Petri-net planning separates token balance, executing a supplied firing multiset and arbitrary goal reachability. The developed catalyst control balances correctly and cannot start, yet its goal is reachable by borrowing a token, acting and returning it. Removing the helpers makes that balanced goal truly unreachable. Every ordinary marking, blocked guard, shortest tie/count, deadlock and partial-multiset prefix/suffix remains inspectable.
+
+18 native tests include 4,704 exhaustive tiny cases and 350 seeded requests. A separate all-pairs / explicit-word checker reconstructs complete evidence. Python/JavaScript agree on 114 reports; 197 primitive forgeries are rejected per engine. Actual PM4Py 2.7.23 checks 164 input-built nets, 771 states and 1,541 transition results plus complete reachable graphs, goal distances and 2,834 accepted count words. Isolated installed-wheel reproduction passes. Actual Chrome checks 56 responsive views, 268 states, 496 subcount rows and 14 independently replayed downloads.
+
+Feature/PR, merged-main and Pages checks passed. All 32 public files and five deployed assets match checked source. Deployed Chrome passes; 31/32 unmasked captures are pixel-identical. The remaining phone state-table capture differs only in 165 pixels within one header label (maximum channel difference 56/255); both actual images were inspected with no content/layout difference. Established Petri-net theory, original bounded controls, no new algorithm, unrestricted marking-equation solver, benchmark or real-agent guarantee.
+
+[Live inspector](https://midya8.github.io/firelab/) · [Source](https://github.com/midya8/firelab) · [Case study](firelab.md)
+
 ## ParetoLab: the compromise a weighted sum misses
 
 Exact finite biobjective DAG planning retains all paths and nondominated tradeoffs. The developed choices `(0,12)`, `(7,7)`, `(12,0)` leave the middle path Pareto but unsupported: it requires both`t >= 7/12`and`t <= 5/12`. A hard second-cost ceiling7 selects it. A separately labeled whole-path lottery yields expected `(5,7)` with7/12 probability of exceeding that realized ceiling. No expected-feasibility safety claim.
