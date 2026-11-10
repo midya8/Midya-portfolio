@@ -20,3 +20,13 @@ Set-equivalent is not bag-equivalent. The default repeated-fact rewrite preserve
 The exact public source, clean installed-wheel reproduction, four hosted Python versions, Chrome controls and trusted report downloads, deployed assets/behavior/pixels, and both bidirectional set decisions were checked before this note was finalized. The lab implements classical Chandra-Merlin query-containment/core theory, with primary and academic sources credited. It is bounded single-CQ syntax, not new theory, a bag-equivalence decision procedure, arbitrary SQL optimization, a language model, or a verified-AI-agent guarantee. The earlier data-provenance lab remains available.
 
 [Live containment lab](https://midya8.github.io/provlab/containment.html) · [Source](https://github.com/midya8/provlab) · [Method and reproduction](https://github.com/midya8/provlab/blob/main/CONTAINMENT.md) · [Pull request2](https://github.com/midya8/provlab/pull/2)
+
+## ProvLab0.3: the assumptions change the answer
+
+A finite full-rule/key chase makes constraint-aware query rewrites inspectable. Full rules add facts; keys merge query symbols in both the database and the ordered output tuple. The workbench shows both containment directions, every chase step, terminal dependency checks, source derivations and legal saturated counterexamples. A clash between distinct literals is labeled as target-query unsatisfiability and vacuous containment, not a successful nonempty rewrite.
+
+Every dependency subset is tested. The default needs a key plus a diagonal rule; neither alone suffices, and a symmetry rule is irrelevant. Another control separates a one-rule minimum support from a two-rule inclusion-minimal support. Validation includes44 Python tests,114 complete native/JavaScript reports, an independent ground replay,344 primitive evidence mutations rejected, actual SQLite dependency/query checks and installed-wheel reproduction. Actual Chrome checks14 controls at1280/390/320px, both directions,171 trace states,141 subset selections and14 trusted certificate downloads replayed by Python.
+
+This is bounded classical database theory with full single-head rules and relational keys, not existential chasing, arbitrary EGDs, SQL NULL, bag-preserving optimization or global query minimization. The original provenance and unconstrained-containment labs remain available. The deployed demo and exact source were verified after the normal merge and hosted checks.
+
+[Live chase workbench](https://midya8.github.io/provlab/chase.html) · [Source](https://github.com/midya8/provlab) · [Method and checks](https://github.com/midya8/provlab/blob/main/CHASE.md) · [Pull request3](https://github.com/midya8/provlab/pull/3)
