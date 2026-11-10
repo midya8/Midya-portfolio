@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## AuctionLab: truthful alone, not protected together
+
+Exact finite VCG allocation separates individual truthful reporting from seller-coalition stability. A developed 10/6/6 bundle-versus-singletons profile yields welfare **12**, revenue **8**, winner payments **4** each and a cooperative-core deficit **2**. Inspect every efficient tie, optimum-without-bidder witness, report-independent bundle-price menu, seller-inclusive coalition and supplied unilateral-report optimum. The phenomenon is classical and attributed, not a new counterexample.
+
+24 Python tests,52 complete cross-language reports and 1,204 primitive tamper rejections per engine. An additional 196-profile small-type exhaustion checks 5,488 reports and 12,348 reported-optimal outcomes. Independent input-built HiGHS passes 1,024 integer solves with zero objective error at 1e-8; clean-wheel reproduction passes. Actual Chrome checks 48 responsive views,1,581 allocation selections and 32 native input/certificate downloads. Python evidence replay is independently implemented; browser census replay shares evidence construction and is labeled. Developed synthetic controls, not held out; no actual auction, payment, collusion-proofness or scalable-market claim.
+
+Feature/PR, merged-main and Pages checks passed. All 47 public files and five deployed assets match checked source; all 30 deployed captures match inspected local pixels.
+
+[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab) · [Case study](auctionlab.md)
+
 ## MatchLab: stable is not cost-optimal
 
 Exact finite two-sided matching separates an unconstrained assignment cost of **3**, cheapest stable cost of **13** and both proposer-optimal stable extremes. The unique cheapest stable assignment is neither extreme. Inspect every blocking pair, both full proposal traces, all attainable stable partners, stable-lattice operations/covers and cost/blocker-cap frontier. A separate original control has an incomparable diamond lattice. Costs are supplied separately from ordinal preferences; no implied fairness, real allocation advice or new algorithm.

@@ -16,12 +16,22 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Contents
 
-- **AI systems:** [MatchLab](#matchlab-stable-is-not-cost-optimal) · [OrderLab](#orderlab-no-improving-swap-still-not-the-best-order) · [ChannelLab](#channellab-same-accuracy-different-information) · [RiskLab](#risklab-the-plan-you-would-change) · [ArgumentLab](#argumentlab-defense-not-a-vote) · [Diagnoselab](#diagnoselab-all-conflicts-all-minimal-repairs) · [CutLab](#cutlab) · [FactorLab](#factorlab) · [SubmodLab](#submodlab) · [DPPLab](#dpplab) · [CTCLab](#ctclab) · [PPOlab](#ppolab) · [TagLab](#taglab) · [SpectralLab](#spectrallab) · [ForestLab](#forestlab) · [RatingLab](#ratinglab) · [MarginLab](#marginlab) · [MixtureLab](#mixturelab) · [PartsLab](#partslab) · [ClusterLab](#clusterlab) · [DenoiseLab](#denoiselab) · [TreeLab](#treelab) · [DigitLab](#digitlab) · [ScanLab](#scanlab) · [Correlab](#correlab) · [GameLab](#gamelab) · [BetLab](#betlab) · [PrivacyLab](#privacylab) · [SparseLab](#sparselab) · [InfluenceLab](#influencelab) · [FisherLab](#fisherlab) · [LatentLab](#latentlab) · [ErgodLab](#ergodlab) · [ScoreLab](#scorelab) · [BanditLab](#banditlab) · [BeliefLab](#belieflab) · [BellmanLab](#bellmanlab) · [VariLab](#varilab) · [RobustLab](#robustlab) · [CausalLab](#causallab) · [ParticleLab](#particlelab) · [SegmentLab](#segmentlab) · [HamiltonLab](#hamiltonlab) · [TransportLab](#transportlab) · [FlowLab](#flowlab) · [GraphLab](#graphlab) · [DiffuseLab](#diffuselab) · [ChainLab](#chainlab) · [KernelLab](#kernellab) · [BoostLab](#boostlab) · [ShapleyLab](#shapleylab) · [PolicyLens](#policylens) · [DriftLens](#driftlens) · [SetGuard](#setguard) · [CalibrLab](#calibrlab) · [DistillLab](#distilllab) · [MoeLab](#moelab) · [AlignLab](#alignlab) · [LoRALab](#loralab) · [SpecLab](#speclab) · [StructGate](#structgate) · [QuantLab](#quantlab) · [RAGLine](#ragline) · [KVLens](#kvlens) · [AttnLens](#attnlens) · [EmbedKit](#embedkit) · [PlanBench](#planbench) · [DecodeLab](#decodelab) · [VectorLite](#vectorlite) · [GroundCheck](#groundcheck) · [TokenForge](#tokenforge) · [RetrievalBench](#retrievalbench) · [EvalForge](#evalforge) · [AgentTrace](#agenttrace) · [PromptGuard](#promptguard) · [ScratchGPT](#scratchgpt) · [ConceptLab](#conceptlab-exact-concepts-and-implication-witnesses) · [STRIPSLab](#stripslab-exact-planning-and-relaxation-witnesses) · [UnifyLab](#unifylab-a-binding-is-not-a-solution) · [HornLab](#hornlab-a-circle-is-not-a-proof) · [BisimLab](#bisimlab-same-traces-different-choices) · [ShieldLab](#shieldlab-a-safe-next-step-can-still-lose) · [BuchiLab](#buchilab-a-winning-state-is-not-a-winning-policy) · [HallLab](#halllab-distinct-is-a-global-promise) · [STNLab](#stnlab---temporal-bounds-with-attainable-schedules) · [EUFLab](#euflab-ground-equality-with-evidence) · [DFALab](#dfalab-active-learning-with-exact-counterexamples) · [SynthLab](#synthlab-counterexample-guided-bit-vector-program-synthesis) · [WarpLab](#warplab-inspectable-differentiable-alignment) · [HingeLab](#hingelab-a-boundary-is-not-always-an-adversary) · [RewriteLab](#rewritelab-a-shortcut-can-need-a-larger-detour) · [RewriteLab budget barriers](#rewritelab-budget-barriers-when-fitting-is-not-reaching) · [RewriteLab cost atlas](#rewritelab-cost-atlas-one-graph-every-cost-tradeoff) · [RewriteLab continuous regions](#rewritelab-continuous-regions-beyond-a-sampled-cost-grid) · [CPNetLab](#cpnetlab-a-ranking-is-not-an-entailed-preference) · [CPNetLab row subsets](#cpnetlab-row-subsets-minimal-is-not-minimum) · [EpistemLab](#epistemlab-true-when-said-false-after-heard) · [EpistemLab disclosures](#epistemlab-disclosures-a-restriction-is-not-an-announcement) · [StableLab](#stablelab-support-is-not-grounding)
+- **AI systems:** [AuctionLab](#auctionlab-truthful-alone-not-protected-together) · [MatchLab](#matchlab-stable-is-not-cost-optimal) · [OrderLab](#orderlab-no-improving-swap-still-not-the-best-order) · [ChannelLab](#channellab-same-accuracy-different-information) · [RiskLab](#risklab-the-plan-you-would-change) · [ArgumentLab](#argumentlab-defense-not-a-vote) · [Diagnoselab](#diagnoselab-all-conflicts-all-minimal-repairs) · [CutLab](#cutlab) · [FactorLab](#factorlab) · [SubmodLab](#submodlab) · [DPPLab](#dpplab) · [CTCLab](#ctclab) · [PPOlab](#ppolab) · [TagLab](#taglab) · [SpectralLab](#spectrallab) · [ForestLab](#forestlab) · [RatingLab](#ratinglab) · [MarginLab](#marginlab) · [MixtureLab](#mixturelab) · [PartsLab](#partslab) · [ClusterLab](#clusterlab) · [DenoiseLab](#denoiselab) · [TreeLab](#treelab) · [DigitLab](#digitlab) · [ScanLab](#scanlab) · [Correlab](#correlab) · [GameLab](#gamelab) · [BetLab](#betlab) · [PrivacyLab](#privacylab) · [SparseLab](#sparselab) · [InfluenceLab](#influencelab) · [FisherLab](#fisherlab) · [LatentLab](#latentlab) · [ErgodLab](#ergodlab) · [ScoreLab](#scorelab) · [BanditLab](#banditlab) · [BeliefLab](#belieflab) · [BellmanLab](#bellmanlab) · [VariLab](#varilab) · [RobustLab](#robustlab) · [CausalLab](#causallab) · [ParticleLab](#particlelab) · [SegmentLab](#segmentlab) · [HamiltonLab](#hamiltonlab) · [TransportLab](#transportlab) · [FlowLab](#flowlab) · [GraphLab](#graphlab) · [DiffuseLab](#diffuselab) · [ChainLab](#chainlab) · [KernelLab](#kernellab) · [BoostLab](#boostlab) · [ShapleyLab](#shapleylab) · [PolicyLens](#policylens) · [DriftLens](#driftlens) · [SetGuard](#setguard) · [CalibrLab](#calibrlab) · [DistillLab](#distilllab) · [MoeLab](#moelab) · [AlignLab](#alignlab) · [LoRALab](#loralab) · [SpecLab](#speclab) · [StructGate](#structgate) · [QuantLab](#quantlab) · [RAGLine](#ragline) · [KVLens](#kvlens) · [AttnLens](#attnlens) · [EmbedKit](#embedkit) · [PlanBench](#planbench) · [DecodeLab](#decodelab) · [VectorLite](#vectorlite) · [GroundCheck](#groundcheck) · [TokenForge](#tokenforge) · [RetrievalBench](#retrievalbench) · [EvalForge](#evalforge) · [AgentTrace](#agenttrace) · [PromptGuard](#promptguard) · [ScratchGPT](#scratchgpt) · [ConceptLab](#conceptlab-exact-concepts-and-implication-witnesses) · [STRIPSLab](#stripslab-exact-planning-and-relaxation-witnesses) · [UnifyLab](#unifylab-a-binding-is-not-a-solution) · [HornLab](#hornlab-a-circle-is-not-a-proof) · [BisimLab](#bisimlab-same-traces-different-choices) · [ShieldLab](#shieldlab-a-safe-next-step-can-still-lose) · [BuchiLab](#buchilab-a-winning-state-is-not-a-winning-policy) · [HallLab](#halllab-distinct-is-a-global-promise) · [STNLab](#stnlab---temporal-bounds-with-attainable-schedules) · [EUFLab](#euflab-ground-equality-with-evidence) · [DFALab](#dfalab-active-learning-with-exact-counterexamples) · [SynthLab](#synthlab-counterexample-guided-bit-vector-program-synthesis) · [WarpLab](#warplab-inspectable-differentiable-alignment) · [HingeLab](#hingelab-a-boundary-is-not-always-an-adversary) · [RewriteLab](#rewritelab-a-shortcut-can-need-a-larger-detour) · [RewriteLab budget barriers](#rewritelab-budget-barriers-when-fitting-is-not-reaching) · [RewriteLab cost atlas](#rewritelab-cost-atlas-one-graph-every-cost-tradeoff) · [RewriteLab continuous regions](#rewritelab-continuous-regions-beyond-a-sampled-cost-grid) · [CPNetLab](#cpnetlab-a-ranking-is-not-an-entailed-preference) · [CPNetLab row subsets](#cpnetlab-row-subsets-minimal-is-not-minimum) · [EpistemLab](#epistemlab-true-when-said-false-after-heard) · [EpistemLab disclosures](#epistemlab-disclosures-a-restriction-is-not-an-announcement) · [StableLab](#stablelab-support-is-not-grounding)
 - **Python utilities:** [sre-toolkit](#sre-toolkit) · [loglens](#loglens) · [flowkit](#flowkit) · [uptimekit](#uptimekit)
 - **Web platforms:** [Kurdistan International Sociological Association website](#kurdistan-international-sociological-association-website) · [Personal site — midya.ca](#personal-site--midyaca)
 - [Find me](#find-me)
 
 ## Selected projects
+
+### AuctionLab: truthful alone, not protected together
+
+Exact finite VCG allocation separates individual truthful reporting from seller-coalition stability. A developed 10/6/6 bundle-versus-singletons profile yields welfare **12**, revenue **8**, winner payments **4** each and a cooperative-core deficit **2**. Inspect every efficient tie, optimum-without-bidder witness, report-independent bundle-price menu, seller-inclusive coalition and supplied unilateral-report optimum. The phenomenon is classical and attributed, not a new counterexample.
+
+24 Python tests,52 complete cross-language reports and 1,204 primitive tamper rejections per engine. An additional 196-profile small-type exhaustion checks 5,488 reports and 12,348 reported-optimal outcomes. Independent input-built HiGHS passes 1,024 integer solves with zero objective error at 1e-8; clean-wheel reproduction passes. Actual Chrome checks 48 responsive views,1,581 allocation selections and 32 native input/certificate downloads. Python evidence replay is independently implemented; browser census replay shares evidence construction and is labeled. Developed synthetic controls, not held out; no actual auction, payment, collusion-proofness or scalable-market claim.
+
+Feature/PR, merged-main and Pages checks passed. All 47 public files and five deployed assets match checked source; all 30 deployed captures match inspected local pixels.
+
+[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab) · [Case study](projects/auctionlab.md)
 
 ### MatchLab: stable is not cost-optimal
 
@@ -1817,7 +1827,17 @@ All 42 Python and eleven Node tests retain both previous workflows. Native rank-
 
 
 
+
+
+
+
 The open transfer interval has fixed positive support; each endpoint is a separate chain. Zero-success conditioning is undefined, terminal visits/outgoing edges are excluded, and restricted visits do not assert finite lifetime in closed nonterminal classes. The plot joins sampled points; the displayed rational formula defines the full interval. These are supplied one-to-six-state chains and established finite Markov, Doob-transform and rank-one inverse methods, not learned behavior, causal intervention, new probability theory, general parameter synthesis, a scalable solver or a guarantee about real AI agents.
+
+
+
+
+
+
 
 
 
@@ -1827,7 +1847,19 @@ The open transfer interval has fixed positive support; each endpoint is a separa
 
 
 
+
+
+
+
 Two separately achievable budgets can still be impossible together. The new exact inspector keeps both expected costs visible and enumerates the full feasible occupancy vertices, not only their two-dimensional projection. One original three-action control needs a mixture of three deterministic policies: weights 5/12, 1/3 and 1/4 attain reward 3/2 under ceilings 1/3 and 1/4, while the best feasible deterministic policy earns zero. A different control has separately attainable ceilings but a checked joint infeasibility gap of 1/6. Visit rates reweight an initial policy mixture into local action probabilities; a feasible reward/cost projection alone is not a full policy witness.
+
+
+
+
+
+
+
+
 
 
 
@@ -1843,6 +1875,14 @@ The dependency-free Python generator returns every deterministic policy, every f
 
 
 
+
+
+
+
+
+
+
+
 Reproduction retains the original and one-budget workflows: 103 Python tests, eight Node tests, 958 rejected non-input primitive-leaf mutations and isolated installed-wheel checks of both new CLI entrypoints. Actual deployed Chrome checks 36 control reports, 108 policy selections, 117 vertex selections, three extra dense reports and twelve trusted completed downloads replayed by the native checker at 1280/390/320 pixels. All ten deployed assets match merged source; 42 full unmasked captures match the inspected local rendering. Feature, pull-request, merged-main and Pages checks are green.
 
 
@@ -1851,7 +1891,23 @@ Reproduction retains the original and one-budget workflows: 103 Python tests, ei
 
 
 
+
+
+
+
+
+
+
+
 This is exact classical occupancy-measure planning for a supplied discounted MDP, limited to one-to-four states, eight total actions and exactly two expected-cost ceilings. Budgets are expectations under the supplied initial distribution, not trajectory caps or real-world safety guarantees. It is not learned, scalable, combined with the separate robust planner, or a new algorithm. Shared mathematical assumptions mean cross-checks are evidence rather than formal proof.
+
+
+
+
+
+
+
+
 
 
 
