@@ -1057,3 +1057,12 @@ Exact finite scenario-tree decisions under static and nested CVaR. Inspect every
 Supplied teaching trees with at most 15 nodes, eight leaves and four decisions. Classical risk-sensitive planning, not a learned agent, held-out benchmark, financial advice, new CVaR algorithm or real-world safety guarantee. Exact arithmetic does not validate the supplied model.
 
 [Live inspector](https://midya8.github.io/risklab/) · [Source](https://github.com/midya8/risklab) · [Case study](risklab.md)
+
+
+## ChannelLab: same accuracy, different information
+
+Exact finite binary experiment comparison with a constructive state-independent garbling or a strict two-action decision witness. Two supplied experiments both classify at 3/4 yet are incomparable: separate exact tasks give opposite advantages of 1/12. Inspect every posterior, complete call-function knot, stochastic kernel, reconstructed state law and full deterministic task policy. A separate checker and lossless BigInt engine agree on 710 complete reports; 1,420 executed SciPy HiGHS feasibility solves corroborate both directions.
+
+Two supplied states, one to three signals/actions and a full-support prior. Classical Blackwell theory, 13 developed teaching controls, not learned sensor quality, a held-out benchmark, privacy, finance, real-world safety or a new theorem. Fifteen Python tests, four Node/actual-Chrome tests and isolated installed-wheel reproduction pass. All five deployed assets are exact; all 27 complete deployed captures match inspected local pixels. Feature, PR, merged-main and Pages checks are green.
+
+[Live inspector](https://midya8.github.io/channellab/) · [Source](https://github.com/midya8/channellab) · [Case study](channellab.md)
