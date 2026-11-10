@@ -34,3 +34,13 @@ Dung1995 provides the core defense/extension definitions; Baroni/Caminada/Giacom
 Enumerates every configuration of up to six supplied attack switches. Preserves all nearest ties, all inclusion-minimal matches, exact extension gains/losses and complete selected-framework defense witnesses. Original controls distinguish minimum cardinality from inclusion minimality and retain nonmonotone and nullable outcomes.
 
 Verified on 21 controls, 209 configurations, 5,205 subset classifications and 423 switch transitions. Independent Python and JavaScript engines, installed CLIs, browser exports and responsive inspection. These are bounded hypothetical edits, not causal effects, persuasion advice or a scalable solver.
+
+## ArgumentLab: a cycle can split after a choice
+
+[Live SCC inspector](https://midya8.github.io/argumentlab/scc.html) · [Source and exact method](https://github.com/midya8/argumentlab/blob/main/SCC.md) · [Verified PR3](https://github.com/midya8/argumentlab/pull/3)
+
+Version0.3 makes established SCC-recursive CF2/stage2 semantics inspectable, beside the original defense and attack-switch inspectors. Every reached induced graph retains every candidate, external component-defeat edge, restricted child and recursive membership obligation. The child drill preserves selected arguments; SCCs are recomputed after deletion. The default cascade splits one component into several and then deletes again. A six-cycle separates maximal conflict-free sets from maximal ranges; global stage and stage2 are kept distinct.
+
+Independent set/reachability reconstruction checks every evidence record and a second published fixed-point characterization. The original hash-pinned ASPARTIX encodings under clingo5.8.3 agree on725 frameworks and1,450 extension families. Python/JavaScript full reports agree on725 frameworks,3,052 induced subproblems,16,375 candidates and38,184 obligations. All39 Python functions pass on3.10-3.13,15 Node/Chrome tests pass, and the installed wheel checks19 defense,21 switch and14 SCC controls outside the checkout, seven module origins and14 rejected forged reports.
+
+Fresh public feature/main source is exact; feature/PR/main CI and Pages are green. All15 deployed assets plus root match main. Actual deployed Chrome checks42 SCC reports at320/390/1280,171 subproblems,1,056 candidate selections,1,128 obligations and14 real independently verified downloads. All52 SCC screenshots match feature/main/live without masks. Old defense/switch behavior and navigation remain checked. Six arguments, exhaustive enumeration, supplied attacks as assumptions. No new theorem, scalable solver, human persuasion result or universal ranking of semantics. Published foundations and external code are credited.
