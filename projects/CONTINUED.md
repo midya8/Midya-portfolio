@@ -1066,3 +1066,12 @@ Exact finite binary experiment comparison with a constructive state-independent 
 Version 0.2.0: 30 Python tests, six Node/actual-Chrome tests and isolated installed-wheel reproduction pass. All five deployed assets match merged source; all 53 complete and atlas-focused deployed captures match inspected local pixels. Feature, PR, merged-main and Pages checks are green. These are developed finite controls, not held-out evaluation, learned sensor quality, privacy, finance or real-world safety evidence.
 
 [Live inspector](https://midya8.github.io/channellab/) · [Source](https://github.com/midya8/channellab) · [Case study](channellab.md)
+
+
+## CredalLab: do these probabilities share a world?
+
+[Source](https://github.com/midya8/credallab) · [Case study](credallab.md)
+
+Exact finite-world probability compatibility and attainable event/positive-mass conditional bounds. The incompatible triangle requires common relaxation 1/3; matching half-probability marginals leave intersection 0..1/2, not an independence answer. A separate native checker replays primal/dual equations and accepts alternate witnesses. Python/BigInt agree on 120 developed reports; 690 independent HiGHS LPs, 505 certificate mutations, installed-wheel reproduction and 48 actual-Chrome control-width views accompany 16 original controls.
+
+At most six explicit worlds and six assessments, further bounded by 20,000 phase-I candidate bases. Classical probability/LP methods, not learned beliefs, null-event conditional coherence, a held-out benchmark or scalable inference. Feature/PR, merged-main and Pages checks passed. Five deployed assets and all 35 deployed captures match checked source/local pixels. [Live inspector](https://midya8.github.io/credallab/).

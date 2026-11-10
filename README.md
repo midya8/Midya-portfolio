@@ -24,11 +24,13 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 ## Selected projects
 
 
+### CredalLab
+
+Exact finite probability compatibility and primal-dual evidence. [Case study](projects/credallab.md).
+
 ### ChannelLab: same accuracy, different information
 
-Exact binary Blackwell comparison and a full-prior task atlas: every affine policy, tie and ranking crossing. Python/BigInt checks, 16,972 range LPs. Supplied models, not learned sensors or safety claims.
-
-[Live](https://midya8.github.io/channellab/) · [Case study](projects/channellab.md)
+Exact Blackwell comparison and prior atlas. [Live](https://midya8.github.io/channellab/) · [Case study](projects/channellab.md).
 
 ### RiskLab: the plan you would change
 
