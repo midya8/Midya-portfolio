@@ -1,5 +1,21 @@
 # Midya Rahmani
 
+## FireLab: balance is not an execution
+
+
+
+A balanced firing multiset can still have no legal first step. This exact finite Petri-net inspector separates token balance, supplied-count execution and arbitrary goal reachability. The catalyst control reaches its goal only by borrowing a token, acting and returning it. Inspect every marking, guard, shortest tie and partial-multiset prefix/suffix.
+
+
+
+18 native tests include 4,704 exhaustive cases and independent full-report replay. Actual PM4Py 2.7.23 checks 164 input-built nets. Python/JavaScript parity, isolated installed reproduction and 56 deployed Chrome views with 14 independently replayed downloads pass. Feature/PR, main and Pages are green; all 32 source files and five live assets match. Established theory and original bounded controls, not a new algorithm or a real-agent guarantee.
+
+
+
+[Live inspector](https://midya8.github.io/firelab/) · [Source](https://github.com/midya8/firelab) · [Full evidence and pixel caveat](projects/firelab.md)
+
+
+
 [Browse the searchable project index](https://midya8.github.io/Midya-portfolio/) | [Catalog build contract](https://github.com/midya8/Midya-portfolio/blob/main/CATALOG.md)
 
 Toronto-based technologist with 12+ years across technology, financial services, and telecommunications. Lately building with large language models, agentic systems, and workflow automation.
