@@ -1048,3 +1048,12 @@ Reproduction retains the original and one-budget workflows: 103 Python tests, ei
 This is exact classical occupancy-measure planning for a supplied discounted MDP, limited to one-to-four states, eight total actions and exactly two expected-cost ceilings. Budgets are expectations under the supplied initial distribution, not trajectory caps or real-world safety guarantees. It is not learned, scalable, combined with the separate robust planner, or a new algorithm. Shared mathematical assumptions mean cross-checks are evidence rather than formal proof.
 
 [Two-budget inspector](https://midya8.github.io/bellmanlab/coupled.html) · [Source](https://github.com/midya8/bellmanlab) · [Derivation, limits and source ledger](https://github.com/midya8/bellmanlab/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/bellmanlab/pull/2)
+
+
+## RiskLab: the plan you would change
+
+Exact finite scenario-tree decisions under static and nested CVaR. Inspect every full deterministic policy, terminal probability, split boundary atom, threshold/envelope certificate and continuation regret. A disclosed development control chooses static policy p3 at 7/3 versus nested p2 at 22/9; a separate control shows that a root-optimal nested policy can still have a worse reached continuation. Separate path/vertex verification, a lossless BigInt inspector and 9,896 executed HiGHS LP comparisons accompany 821 complete cross-engine reports / 1,121 policies, 16 Python tests, four Node tests and isolated wheel reproduction.
+
+Supplied teaching trees with at most 15 nodes, eight leaves and four decisions. Classical risk-sensitive planning, not a learned agent, held-out benchmark, financial advice, new CVaR algorithm or real-world safety guarantee. Exact arithmetic does not validate the supplied model.
+
+[Live inspector](https://midya8.github.io/risklab/) · [Source](https://github.com/midya8/risklab) · [Case study](risklab.md)
