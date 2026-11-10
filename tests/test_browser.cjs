@@ -1,0 +1,35 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),http=require('node:http'),{spawn}=require('node:child_process');
+const delay=ms=>new Promise(r=>setTimeout(r,ms));
+test('actual Chrome catalog, source links, filtering, history, no-JS and mobile containment',{timeout:180000},async()=>{
+ const root=path.join(__dirname,'../docs'),server=http.createServer((req,res)=>{try{const u=new URL(req.url,'http://localhost');const p=path.join(root,u.pathname==='/'?'index.html':u.pathname);res.setHeader('Content-Type',({'.html':'text/html','.js':'application/javascript','.css':'text/css','.json':'application/json'})[path.extname(p)]||'text/plain');res.end(fs.readFileSync(p));}catch{res.statusCode=404;res.end('missing');}});await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ const profile=fs.mkdtempSync(path.join(os.tmpdir(),'catalog-chrome-'));let browser,ws,stderr='';
+ try{
+ browser=spawn(process.env.CHROME_BIN||'google-chrome',['--headless','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--remote-debugging-port=0','--user-data-dir='+profile,'about:blank'],{stdio:['ignore','ignore','pipe']});browser.stderr.on('data',d=>stderr=(stderr+d).slice(-5000));
+ let startup;browser.on('error',e=>startup=e);
+ for(let i=0;i<1200&&!startup&&browser.exitCode===null&&!fs.existsSync(path.join(profile,'DevToolsActivePort'));i++)await delay(25);
+ assert.ok(fs.existsSync(path.join(profile,'DevToolsActivePort')),String(startup||stderr));const port=fs.readFileSync(path.join(profile,'DevToolsActivePort'),'utf8').split('\n')[0];let tab,last;
+ for(let i=0;i<1200&&browser.exitCode===null&&!tab;i++){try{const tabs=await(await fetch('http://127.0.0.1:'+port+'/json/list')).json();tab=tabs.find(t=>t.type==='page');}catch(e){last=e;}if(!tab)await delay(25);}assert.ok(tab,String(last||stderr));
+ ws=new WebSocket(tab.webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j;});let seq=0;const pending=new Map();ws.onmessage=e=>{const m=JSON.parse(e.data);if(pending.has(m.id)){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(Error(JSON.stringify(m.error))):p.resolve(m.result);}};
+ const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
+ const js=async expression=>{const r=await call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value;};
+ const url=process.env.CATALOG_URL||'http://127.0.0.1:'+server.address().port+'/';await call('Page.enable');await call('Page.navigate',{url});
+ for(let i=0;i<500;i++){if(await js('Boolean(globalThis.PORTFOLIO_CATALOG&&!document.getElementById("search-form").hidden)'))break;await delay(20);}assert.ok(await js('Boolean(globalThis.PORTFOLIO_CATALOG)'));
+ const data={projects:Array.from({length:JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/catalog.json'),'utf8')).shards.length},(_,i)=>JSON.parse(fs.readFileSync(path.join(root,'catalog-'+i+'.json'),'utf8'))).flat()};const visible=()=>js('[...document.querySelectorAll(".project")].filter(x=>!x.hidden).map(x=>x.dataset.id)');
+ assert.deepEqual(await visible(),data.projects.map(p=>p.id));assert.deepEqual(await js('[...document.querySelectorAll(".source")].map(x=>x.href)'),data.projects.map(p=>p.source_url));
+ const set=q=>js(`document.getElementById('query').value=${JSON.stringify(q)};document.getElementById('query').dispatchEvent(new Event('input',{bubbles:true}))`);
+ const screens=process.env.CATALOG_SCREEN_DIR;if(screens)fs.mkdirSync(screens,{recursive:true});
+ const shot=async name=>{if(!screens)return;await js('document.activeElement.blur();window.scrollTo(0,0)');const m=await call('Page.getLayoutMetrics');const r=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip:{x:0,y:0,width:m.cssContentSize.width,height:m.cssContentSize.height,scale:1}});fs.writeFileSync(path.join(screens,name+'.png'),Buffer.from(r.data,'base64'));};
+ let checks=0;for(const width of [320,390,1280]){
+  await call('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<700});await set('');assert.ok(await js('document.documentElement.scrollWidth<=innerWidth'));await shot('all-'+width);
+  for(const q of ['CTC','fairness','exact rational','retrieval','[a-z]','<script>','not-a-real-project']){await set(q);const expected=data.projects.filter(p=>[p.id,p.title,p.excerpt,...p.headings,...(p.terms||[])].join(' ').toLowerCase().includes(q.toLowerCase())||(q==='exact rational'&&['exact','rational'].every(w=>[p.id,p.title,p.excerpt,...p.headings,...(p.terms||[])].join(' ').toLowerCase().includes(w)))).map(p=>p.id);assert.deepEqual(await visible(),expected,q);assert.equal(await js('new URL(location.href).searchParams.get("q")'),q);assert.ok(await js('document.documentElement.scrollWidth<=innerWidth'));checks++;if(['CTC','fairness','not-a-real-project'].includes(q))await shot(q+'-'+width);}
+  assert.ok(await js('[...document.querySelectorAll("input,button,.source")].filter(x=>x.getClientRects().length).every(x=>x.getBoundingClientRect().height>=44)'));
+ }
+ // Trusted keyboard input, then trusted click on Clear.
+ await call('Page.bringToFront');await js('document.getElementById("query").focus();document.getElementById("query").select()');await call('Input.insertText',{text:'CTC'});assert.ok((await visible()).includes('ctclab'));
+ const rect=await js('(()=>{const x=document.getElementById("clear");x.scrollIntoView({block:"center"});const r=x.getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2}})()');await call('Input.dispatchMouseEvent',{type:'mouseMoved',...rect});await call('Input.dispatchMouseEvent',{type:'mousePressed',button:'left',clickCount:1,...rect});await call('Input.dispatchMouseEvent',{type:'mouseReleased',button:'left',clickCount:1,...rect});assert.equal((await visible()).length,data.projects.length);assert.equal(await js('new URL(location.href).searchParams.has("q")'),false);
+ await js('history.pushState(null,"","?q=fairness");dispatchEvent(new PopStateEvent("popstate"))');assert.ok((await visible()).includes('branchlab'));assert.equal(await js('document.getElementById("query").value'),'fairness');
+ await call('Emulation.setScriptExecutionDisabled',{value:true});await call('Page.navigate',{url});for(let i=0;i<500;i++){if(await js('document.readyState==="complete"'))break;await delay(20);}assert.equal((await visible()).length,data.projects.length);assert.equal(await js('document.getElementById("search-form").hidden'),true);await shot('no-js');
+ console.log(JSON.stringify({projects:data.projects.length,queryWidthChecks:checks,sourceLinks:data.projects.length,widths:[320,390,1280],noJS:true,trustedInput:true,trustedClear:true,history:true}));
+ }finally{server.close();if(ws)ws.close();if(browser&&browser.exitCode===null){browser.kill();await new Promise(r=>{browser.once('exit',r);setTimeout(r,3000);});}fs.rmSync(profile,{recursive:true,force:true,maxRetries:8,retryDelay:100});}
+});
