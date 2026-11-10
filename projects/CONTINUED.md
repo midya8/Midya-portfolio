@@ -2,6 +2,12 @@
 
 [Full project index](README.md)
 
+## MatchLab: stable is not cost-optimal
+
+Exact finite two-sided matching separates an unconstrained assignment cost of **3**, cheapest stable cost of **13** and both proposer-optimal stable extremes. The unique cheapest stable assignment is neither extreme. Inspect every blocking pair, both full proposal traces, all attainable stable partners, stable-lattice operations/covers and cost/blocker-cap frontier. A separate original control has an incomparable diamond lattice. Costs are supplied separately from ordinal preferences; no implied fairness, real allocation advice or new algorithm.
+
+20 Python tests, 76 complete cross-engine reports, 1,372 primitive forgery rejections, 152 independent input-built HiGHS integer solves and installed-wheel reproduction pass. Deployed Chrome checks 48 responsive views, 1,149 selected assignments, 453 proposal states, 243 lattice selections, 450 cap selections and 16 natively replayed downloads. Feature/PR, main and Pages checks passed; all 44 source files, five deployed assets and 31 captures match checked evidence. [Live inspector](https://midya8.github.io/matchlab/) · [Case study](matchlab.md).
+
 ## OrderLab: no improving swap, still not the best order
 
 [Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Case study](orderlab.md)
