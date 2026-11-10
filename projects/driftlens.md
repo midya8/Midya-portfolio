@@ -194,3 +194,16 @@ allocations on small fixtures against direct scoring, including near-constant
 kernels, exact p-values, group swapping and tied-zero results. The fixed1e-12
 conservative near-tie rule remains. No bitwise equivalence for arbitrary
 floating inputs or universally faster performance is claimed.
+
+
+## DriftLens 0.2: choosing is part of the test
+
+[Live exact-orbit inspector](https://midya8.github.io/driftlens/) · [Source](https://github.com/midya8/driftlens) · [Method, nine sources and limits](https://github.com/midya8/driftlens/blob/main/ORBIT.md) · [Merged implementation](https://github.com/midya8/driftlens/pull/1)
+
+A dependency-free rational supplied-Gram mode makes kernel-family selection visible: enumerate every allowed label allocation, compute every diagonal-excluding MMD² and tied upper-tail rank, then recalibrate the smallest rank over that same shared orbit. Prespecified blocks preserve their observed reference counts; frozen labels stay frozen. Exact singular PSD certificates, complete global tails, separate Holm comparisons and editable local JSON remain inspectable and downloadable. The independent native checker uses binary masks, direct ordered-pair scores and certificate reconstruction rather than trusting generator output; the separate browser engine uses BigInt rational arithmetic.
+
+In one original six-row, three-view development control at alpha 1/5, the uncorrected smallest raw p rejects 8/20 allowed allocations, the global test 4/20 and Holm-any 0/20. These are complete finite-orbit counts, not measured real-world false-positive rates or a power benchmark. The control was searched and selected in development.
+
+Fresh public main reproduces all 58 Python tests, four Node tests and isolated installed-wheel commands, preserving all 45 prior Python tests and the original floating RBF modes. Checks include 50 rational orbits/1,410 allocations, 729 matrices against independent principal-minor PSD acceptance, and 753 single-leaf evidence mutations. Ninety-five complete native/JavaScript reports match exactly across 3,289 allocations, 12,600 scores and 179,225 global-tail memberships. Actual deployed Chrome covers eleven controls at 320/390/1280, all 372 allocation views and 51 matrix views, eleven trusted completed native-verified downloads, stale-state clearing, malformed requests and the ten-row/six-kernel/252-allocation boundary. All 20 feature/PR checks, ten main checks and three Pages jobs passed; all five deployed assets and the root match public source, and all 42 deployed browser states match tested unmasked pixels.
+
+This implements established finite randomization/minimum-p ideas, not a new test, automatic bandwidth optimizer or MMDAgg. One global decision requires a justified uniform allowed-allocation null and label-independent supplied family. Finite PSD proves geometry, not exchangeability. No strong component-wise, causal, equivalence, power or always-valid monitoring claim; replay is consistency checking, not authentication. Tiny bounded exact orbits only: 4-10 pooled rows, 1-6 supplied kernels. No paid API, private data or model download.
