@@ -30,3 +30,16 @@ At most six frames, four classes and 1,024 paths. This deliberately exponential 
 ## Attribution
 
 Established CTC by Graves et al.; independent implementation, synthetic controls and checks by Midya Rahmani. No external code, model weights, audio, dataset or diagrams copied. Primary paper, official framework contracts, educational and community sources are linked with convention differences in METHOD.md.
+
+
+## CTCLab 0.2 - what the beam forgot
+
+[Repository](https://github.com/midya8/ctclab) · [Exact prefix inspector](https://midya8.github.io/ctclab/prefix.html) · [Method and limits](https://github.com/midya8/ctclab/blob/main/PREFIX.md)
+
+Exact supplied rational CTC frame laws make prefix pruning inspectable: every positive blank/nonblank transition, surviving prefix, first-cut loss and final transcript. A separate path-enumeration checker reconstructs the entire evidence report, and an independent browser BigInt engine agrees on 155 complete reports. The original floating-point target atlas remains intact.
+
+Twelve original development controls include a selected five-frame counterexample: width 3 chooses the true MAP transcript with full mass 47403/226100; width 4 chooses a lower-mass transcript, 11691/56525, despite retaining more total path mass. Strict permanent path pruning does not restore discarded contributions. The sufficient bound L > R + D certifies a unique MAP only under the supplied independent-frame law; a false bound makes no failure claim.
+
+Reproduction checks: 34 Python tests, 6 Node tests, 120 seeded path cases, 384 exhaustive binary-law cases, 270 altered report leaves, actual Chrome tables at 320/390/1280 pixels and 12 native-verified downloads. An isolated installed wheel checks both prefix CLI entrypoints across all 12 controls and refuses 24 forged reports. The original mode is reproduced too.
+
+These are synthetic controls selected during development, not held-out speech evaluation. At most 4,096 complete paths. No trained recognizer, new CTC algorithm, calibrated confidence, production-scale, quality or speed claim. Exact arithmetic removes rounding error, not search approximation. No paid API, private data or model download.
