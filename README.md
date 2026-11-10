@@ -1,5 +1,7 @@
 # Midya Rahmani
 
+[Browse the searchable project index](https://midya8.github.io/Midya-portfolio/) | [Catalog build contract](https://github.com/midya8/Midya-portfolio/blob/main/CATALOG.md)
+
 Toronto-based technologist with 12+ years across technology, financial services, and telecommunications. Lately building with large language models, agentic systems, and workflow automation.
 
 ## What I build
