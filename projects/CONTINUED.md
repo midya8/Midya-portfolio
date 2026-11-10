@@ -2,6 +2,15 @@
 
 [Full project index](README.md)
 
+## OrderLab: no improving swap, still not the best order
+
+[Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Case study](orderlab.md)
+
+Exact finite weighted Kemeny rank aggregation separates a pairwise lower bound of 7, a global optimum of 8 and a strict adjacent-local endpoint of 10. Every tied optimum, ballot inversion, pair cost, neighbor delta, majority cycle and subset transition is visible and independently replayable. The all-tie six-candidate control keeps all 720 optima. Classical theory is credited; no learned reliability, input ties, real election advice or new theorem.
+
+18 Python tests, 76 full cross-engine reports, 1,100 primitive forgery rejections, 65 independent input-built HiGHS integer solves and clean installed-wheel checks pass. Actual Chrome checks 48 responsive control views, 5,091 selected orders, 846 subsets and sixteen exact downloads with native replay. Feature/PR, merged-main and Pages gates passed. All 46 public files, five deployed assets and 35 deployed captures match checked evidence. Bounded original teaching profiles, not held-out evaluation or a scalability benchmark.
+
+
 
 ## ConceptLab: exact concepts and implication witnesses
 
