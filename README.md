@@ -1,5 +1,27 @@
 # Midya Rahmani
 
+## QuantLab0.3: when activation rounding changes the winner
+
+
+
+QuantLab now traces activation × weight integer dot products, not only packed weights. A fixed user-declared activation range produces signed 8-bit codes; every integer product and partial accumulator stays visible. Exact rational witnesses separate weight error from activation error. The constructed default has zero weight error, yet activation rounding changes a strict row-1 winner into a zero-code tie won by row 0.
+
+
+
+47 Python tests retain all 39 earlier tests. Independent floor/remainder rounding checks 240 seeded reports and all 519 signed half-unit controls. Python Fraction and independent browser BigInt dyadics agree on 72 complete reports with 6,848 products and all exact error strings. Actual NumPy2.2.6 int32 matmul and cumsum check every accumulator and prefix. Seven Node/actual-Chrome tests cover 168 row selections, 20 responsive views, two trusted downloads replayed natively and stale-result rejection. A fresh isolated eight-module package reproduces original training, all 52 old reports and all 72 new reports, with both new CLI entrypoints. Original QLB1 bytes and 59/60 weight-only synthetic results remain unchanged.
+
+
+
+Source PR3 passed all 16 latest feature/PR jobs and merged with previous history intact. All 53 merged files and ten deployed assets match the tested public source. Merged-main eight-job CI and Pages passed. The complete deployed browser workflow passes; all 20 unmasked local/deployed captures are pixel-identical. Desktop and phone controls, values and tables were inspected. Integer products and prefixes are exact under the checked shape bound of 2,064,512. Final output rescaling uses binary64, not integer-only end-to-end inference. Fixed activation range is supplied, not calibrated. Exact fractions describe represented-real maps, not runtime summation or unseen accuracy. Error decomposition is order-dependent arithmetic, not causal attribution. No hardware speed, RAM, learned improvement, new algorithm or ONNX/TFLite compatibility claim. Established quantization literature is credited.
+
+
+
+[Live integer audit](https://midya8.github.io/quantlab/integer.html) · [Source](https://github.com/midya8/quantlab) · [Full evidence](projects/quantlab.md)
+
+
+
+Earlier QuantLab summaries below describe the retained weight-only release; the activation-audit counts and scope above supersede them. Original experiments remain unchanged.
+
 ## GraphLab: one edge at a time can miss the change
 
 
