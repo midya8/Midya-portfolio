@@ -316,7 +316,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Contents
 
-- **AI systems:** [ParetoLab](#paretolab-the-compromise-a-weighted-sum-misses) · [AuctionLab](#auctionlab-truthful-alone-not-protected-together) · [MatchLab](#matchlab-stable-is-not-cost-optimal) · [OrderLab](#orderlab-no-improving-swap-still-not-the-best-order) · [ChannelLab](#channellab-same-accuracy-different-information) · [RiskLab](#risklab-the-plan-you-would-change) · [ArgumentLab](#argumentlab-defense-not-a-vote) · [Diagnoselab](#diagnoselab-all-conflicts-all-minimal-repairs) · [CutLab](#cutlab) · [FactorLab](#factorlab) · [SubmodLab](#submodlab) · [DPPLab](#dpplab) · [CTCLab](#ctclab) · [PPOlab](#ppolab) · [TagLab](#taglab) · [SpectralLab](#spectrallab) · [ForestLab](#forestlab) · [RatingLab](#ratinglab) · [MarginLab](#marginlab) · [MixtureLab](#mixturelab) · [PartsLab](#partslab) · [ClusterLab](#clusterlab) · [DenoiseLab](#denoiselab) · [TreeLab](#treelab) · [DigitLab](#digitlab) · [ScanLab](#scanlab) · [Correlab](#correlab) · [GameLab](#gamelab) · [BetLab](#betlab) · [PrivacyLab](#privacylab) · [SparseLab](#sparselab) · [InfluenceLab](#influencelab) · [FisherLab](#fisherlab) · [LatentLab](#latentlab) · [ErgodLab](#ergodlab) · [ScoreLab](#scorelab) · [BanditLab](#banditlab) · [BeliefLab](#belieflab) · [BellmanLab](#bellmanlab) · [VariLab](#varilab) · [RobustLab](#robustlab) · [CausalLab](#causallab) · [ParticleLab](#particlelab) · [SegmentLab](#segmentlab) · [HamiltonLab](#hamiltonlab) · [TransportLab](#transportlab) · [FlowLab](#flowlab) · [GraphLab](#graphlab) · [DiffuseLab](#diffuselab) · [ChainLab](#chainlab) · [KernelLab](#kernellab) · [BoostLab](#boostlab) · [ShapleyLab](#shapleylab) · [PolicyLens](#policylens) · [DriftLens](#driftlens) · [SetGuard](#setguard) · [CalibrLab](#calibrlab) · [DistillLab](#distilllab) · [MoeLab](#moelab) · [AlignLab](#alignlab) · [LoRALab](#loralab) · [SpecLab](#speclab) · [StructGate](#structgate) · [QuantLab](#quantlab) · [RAGLine](#ragline) · [KVLens](#kvlens) · [AttnLens](#attnlens) · [EmbedKit](#embedkit) · [PlanBench](#planbench) · [DecodeLab](#decodelab) · [VectorLite](#vectorlite) · [GroundCheck](#groundcheck) · [TokenForge](#tokenforge) · [RetrievalBench](#retrievalbench) · [EvalForge](#evalforge) · [AgentTrace](#agenttrace) · [PromptGuard](#promptguard) · [ScratchGPT](#scratchgpt) · [ConceptLab](#conceptlab-exact-concepts-and-implication-witnesses) · [STRIPSLab](#stripslab-exact-planning-and-relaxation-witnesses) · [UnifyLab](#unifylab-a-binding-is-not-a-solution) · [HornLab](#hornlab-a-circle-is-not-a-proof) · [BisimLab](#bisimlab-same-traces-different-choices) · [ShieldLab](#shieldlab-a-safe-next-step-can-still-lose) · [BuchiLab](#buchilab-a-winning-state-is-not-a-winning-policy) · [HallLab](#halllab-distinct-is-a-global-promise) · [STNLab](#stnlab---temporal-bounds-with-attainable-schedules) · [EUFLab](#euflab-ground-equality-with-evidence) · [DFALab](#dfalab-active-learning-with-exact-counterexamples) · [SynthLab](#synthlab-counterexample-guided-bit-vector-program-synthesis) · [WarpLab](#warplab-inspectable-differentiable-alignment) · [HingeLab](#hingelab-a-boundary-is-not-always-an-adversary) · [RewriteLab](#rewritelab-a-shortcut-can-need-a-larger-detour) · [RewriteLab budget barriers](#rewritelab-budget-barriers-when-fitting-is-not-reaching) · [RewriteLab cost atlas](#rewritelab-cost-atlas-one-graph-every-cost-tradeoff) · [RewriteLab continuous regions](#rewritelab-continuous-regions-beyond-a-sampled-cost-grid) · [CPNetLab](#cpnetlab-a-ranking-is-not-an-entailed-preference) · [CPNetLab row subsets](#cpnetlab-row-subsets-minimal-is-not-minimum) · [EpistemLab](#epistemlab-true-when-said-false-after-heard) · [EpistemLab disclosures](#epistemlab-disclosures-a-restriction-is-not-an-announcement) · [StableLab](#stablelab-support-is-not-grounding)
+- **AI systems:** [ParetoLab](#paretolab-the-compromise-a-weighted-sum-misses) · [AuctionLab](#auctionlab-truthful-alone-not-protected-together) · [MatchLab](#matchlab-stable-is-not-cost-optimal) · [OrderLab](#orderlab-no-improving-swap-still-not-the-best-order) · [CredalLab](#credallab) · [ChannelLab](#channellab-same-accuracy-different-information) · [RiskLab](#risklab-the-plan-you-would-change) · [ArgumentLab](#argumentlab-defense-not-a-vote) · [Diagnoselab](#diagnoselab-all-conflicts-all-minimal-repairs) · [CutLab](#cutlab) · [FactorLab](#factorlab) · [SubmodLab](#submodlab) · [DPPLab](#dpplab) · [CTCLab](#ctclab) · [PPOlab](#ppolab) · [TagLab](#taglab) · [SpectralLab](#spectrallab) · [ForestLab](#forestlab) · [RatingLab](#ratinglab) · [MarginLab](#marginlab) · [MixtureLab](#mixturelab) · [PartsLab](#partslab) · [ClusterLab](#clusterlab) · [DenoiseLab](#denoiselab) · [TreeLab](#treelab) · [DigitLab](#digitlab) · [ScanLab](#scanlab) · [Correlab](#correlab) · [GameLab](#gamelab) · [BetLab](#betlab) · [PrivacyLab](#privacylab) · [SparseLab](#sparselab) · [InfluenceLab](#influencelab) · [FisherLab](#fisherlab) · [LatentLab](#latentlab) · [ErgodLab](#ergodlab) · [ScoreLab](#scorelab) · [BanditLab](#banditlab) · [BeliefLab](#belieflab) · [BellmanLab](#bellmanlab) · [VariLab](#varilab) · [RobustLab](#robustlab) · [CausalLab](#causallab) · [ParticleLab](#particlelab) · [SegmentLab](#segmentlab) · [HamiltonLab](#hamiltonlab) · [TransportLab](#transportlab) · [FlowLab](#flowlab) · [GraphLab](#graphlab) · [DiffuseLab](#diffuselab) · [ChainLab](#chainlab) · [KernelLab](#kernellab) · [BoostLab](#boostlab) · [ShapleyLab](#shapleylab) · [PolicyLens](#policylens) · [DriftLens](#driftlens) · [SetGuard](#setguard) · [CalibrLab](#calibrlab) · [DistillLab](#distilllab) · [MoeLab](#moelab) · [AlignLab](#alignlab) · [LoRALab](#loralab) · [SpecLab](#speclab) · [StructGate](#structgate) · [QuantLab](#quantlab) · [RAGLine](#ragline) · [KVLens](#kvlens) · [AttnLens](#attnlens) · [EmbedKit](#embedkit) · [PlanBench](#planbench) · [DecodeLab](#decodelab) · [VectorLite](#vectorlite) · [GroundCheck](#groundcheck) · [TokenForge](#tokenforge) · [RetrievalBench](#retrievalbench) · [EvalForge](#evalforge) · [AgentTrace](#agenttrace) · [PromptGuard](#promptguard) · [ScratchGPT](#scratchgpt) · [VisionLab](#visionlab) · [ConceptLab](#conceptlab-exact-concepts-and-implication-witnesses) · [STRIPSLab](#stripslab-exact-planning-and-relaxation-witnesses) · [UnifyLab](#unifylab-a-binding-is-not-a-solution) · [HornLab](#hornlab-a-circle-is-not-a-proof) · [BisimLab](#bisimlab-same-traces-different-choices) · [ShieldLab](#shieldlab-a-safe-next-step-can-still-lose) · [AbsorbLab](#absorblab-success-changes-the-path) · [BranchLab](#branchlab-always-possible-is-not-inevitable) · [ProvLab](#provlab-one-fact-is-not-two-chances) · [BuchiLab](#buchilab-a-winning-state-is-not-a-winning-policy) · [HallLab](#halllab-distinct-is-a-global-promise) · [STNLab](#stnlab---temporal-bounds-with-attainable-schedules) · [EUFLab](#euflab-ground-equality-with-evidence) · [DFALab](#dfalab-active-learning-with-exact-counterexamples) · [SynthLab](#synthlab-counterexample-guided-bit-vector-program-synthesis) · [WarpLab](#warplab-inspectable-differentiable-alignment) · [HingeLab](#hingelab-a-boundary-is-not-always-an-adversary) · [RewriteLab](#rewritelab-a-shortcut-can-need-a-larger-detour) · [RewriteLab budget barriers](#rewritelab-budget-barriers-when-fitting-is-not-reaching) · [RewriteLab cost atlas](#rewritelab-cost-atlas-one-graph-every-cost-tradeoff) · [RewriteLab continuous regions](#rewritelab-continuous-regions-beyond-a-sampled-cost-grid) · [CPNetLab](#cpnetlab-a-ranking-is-not-an-entailed-preference) · [CPNetLab row subsets](#cpnetlab-row-subsets-minimal-is-not-minimum) · [EpistemLab](#epistemlab-true-when-said-false-after-heard) · [EpistemLab disclosures](#epistemlab-disclosures-a-restriction-is-not-an-announcement) · [StableLab](#stablelab-support-is-not-grounding)
 - **Python utilities:** [sre-toolkit](#sre-toolkit) · [loglens](#loglens) · [flowkit](#flowkit) · [uptimekit](#uptimekit)
 - **Web platforms:** [Kurdistan International Sociological Association website](#kurdistan-international-sociological-association-website) · [Personal site — midya.ca](#personal-site--midyaca)
 - [Find me](#find-me)
@@ -406,10 +406,6 @@ Exact-rational finite DPP subset laws with every determinant, inclusion-kernel w
 Offline CTC target marginalization with log-space forward/backward, full state/symbol posteriors and logit gradients, plus every exhaustive path and collapsed transcript. The editable independent JavaScript inspector shows why a greedy best path can lose to summed transcript mass: two uniform blank/A frames assign 0.25 to empty output and 0.75 to A. Twenty retained reports, 25 Python tests across 3.10-3.13, Decimal/state enumeration, 300 finite-difference checks and real-Chrome full-record/diagram audits. Established CTC on tiny synthetic logits, not a trained recognizer, speech/OCR benchmark or novel algorithm; numerical rank buckets and impossible-target conventions are explicit. [Live alignment inspector](https://midya8.github.io/ctclab/) · [Method and limits](https://github.com/midya8/ctclab/blob/main/METHOD.md). [Case study](projects/ctclab.md).
 
 ### PPOlab
-
-Clipping is not a policy box. An exact-rational categorical optimizer exposes every optimal policy, supporting-line bounds, independent piecewise-cell replay, all vertices and attainable TV extrema. A centered control has clipped optimum 9/25 versus hard-box optimum 1/5, and a positive optimal family with unbounded old-to-new KL. 64 Python/seven Node tests, 351 exhaustive reports, 135 real UI states and installed replay. Single-state full expectations only, not new training or runtime claims. [Exact policy-face inspector](https://midya8.github.io/ppolab/clip.html).
-
-Earlier boundary audit, preserved:
 
 From-scratch NumPy PPO with a corrected internal-timeout collector, separate bootstrap/trace masks, full GAE credit matrices and sign-dependent clip-gradient audits. Independent scalar JavaScript evaluates all 4,675 checkpoint parameters and real CartPole physics. Fifty Python tests retain all 18 original tests; four Node/actual-Chrome tests compare 26 full reports/12,408 numbers and all 14,871 original one-step observations. New free-running paths can diverge: the reference run differs on 377 actions despite matching all 30 return lengths. Original checkpoint/results retained; no training-improvement, speed, trajectory-equivalence, KL-bound or universal-solve claim. [Live boundary and policy inspector](https://midya8.github.io/ppolab/) · [Equations, bug and limits](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md). [Case study](projects/ppolab.md).
 
@@ -732,6 +728,7 @@ Exact small-feature Shapley attribution from scratch: empirical-background repla
 
 - Repo: [midya8/shapleylab](https://github.com/midya8/shapleylab) · Case study: [projects/shapleylab.md](projects/shapleylab.md)
 - v0.2 [live coalition ledger](https://midya8.github.io/shapleylab/): actual native callback rows, weighted predecessor terms, cached full ordering paths and independent point-edit browser. 49 Python + four Node/Chrome tests; 95 edit witnesses, 128 Fraction and 64 BigInt controls. Original exact/grouped/sample reports unchanged. Finite replacement allocations, not causal importance or explanation quality.
+- v0.3 [live Owen inspector](https://midya8.github.io/shapleylab/owen.html): the same three-way product assigns [1/3, 1/3, 1/3] individually, [1/2, 1/2] to two atomic groups, and [1/4, 1/4, 1/2] when a, b must arrive together — one score and background, different allowed orders. 72 Python tests; 556 signed game/partition cases across 50,362 independent Fraction orderings, 14,668 unanimity-support/partition cases, 132 complete native/JavaScript reports agreeing. Equal splitting and post-summing ordinary credits are not the same rule. [Method, sources and boundaries](https://github.com/midya8/shapleylab/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapleylab/pull/2).
 
 ### PolicyLens
 
@@ -799,10 +796,6 @@ Knowledge distillation built from scratch in pure Python: a teacher trained on a
 
 ### MoeLab
 
-The batch decides: an exact-rational capacity allocator retains every optimal dispatch, capacity-state witness, assignment count and eligibility bottleneck. Four full-strength greedy controls expose confidence-priority `51/100` versus global `49/50` gate mass; another tie has attained scalar-update MSE **0 to 25** within the same routing optimum. Independent exhaustive native replay and a separate BigInt engine check all leaves. 53 Python/nine Node tests, 14 controls, 98 real UI dispatches and both installed-wheel gates. Seven tokens/four experts, supplied gates, no new training, quality or speed claim. [Exact capacity inspector](https://midya8.github.io/moelab/capacity.html).
-
-Earlier routing-seam audit, preserved:
-
 Mixture-of-experts from scratch, now with an [interactive route-boundary inspector](https://midya8.github.io/moelab/). Independent Python Fraction and browser BigInt arithmetic find exact affine cells and point ties, with retained-probability outputs, one-sided limits, jumps, zero-jump transitions, triple-tie point values and fixed-branch derivatives. Actual rounded inference remains separate from mathematical geometry.
 
 - Original aux/no-aux training, initialization, dense baseline and all 340 data rows retained. Measured aux MSE 0.0303 vs dense 0.1853 (136 vs 145 parameters), purity 1.0000 and equal usage shares are descriptive fixture results, not causal/generalization claims. Soft MSE remains 0.6291. No-aux MSE is 0.0014970307791088836 (0.0015), correcting stale 0.0010 prose without retraining changes.
@@ -839,10 +832,6 @@ Same model, different factor-SGD step. A dependency-free Python implementation a
 - [Interactive inspector](https://midya8.github.io/loralab/) · Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
 
 ### SpecLab
-
-The v0.4 extension adds **exact within-proposal stopping**: keep-and-verify preserves the target law while a deliberately wrong censor-and-forget control gives full-sequence TV `1/8`. Complete stopped proposal trees and joint sequence/count laws, independent full-path verification and an editable BigInt inspector expose the selection bias. 61 Python + 4 Node/Chrome tests retain all earlier engines; all fixed caps and target-only remain visible. No production-library accusation or speedup claim. [Live stopping lab](https://midya8.github.io/speclab/).
-
-The v0.3 record below is retained for context.
 
 Speculative decoding from scratch: greedy n-gram verification, exact stochastic
 residual correction, and a finite **oracle lookahead planner** that includes
@@ -1015,6 +1004,18 @@ The replay is a separate 1,056-parameter synthetic model. The browser recomputes
 
 
 New [activation rematerialization workbench](https://midya8.github.io/scratchgpt/remat.html): actual original NumPy blocks are recomputed during backward, with upstream VJPs and every input/parameter contribution checked against eager execution. Independent browser scalar autograd runs the full tiny GPT and both backward paths. 111 Python/eight Node tests retain every prior test; 18 native witnesses cover 15,184 parameter positions, 61,888 cross-runtime numeric fields and actual Chrome 106,288 table cells/1,206 coordinate views. All 419,328 historical trained-checkpoint gradients are checked for both groupings without retraining. Explicit logical-graph counts only, not RSS/peak memory/speed; deterministic dropout=0 and first-order only. Original trainer/continuation behavior intact. [Execution contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md).
+
+### VisionLab
+
+A convolutional neural network, its trainer, three attribution methods and two adversarial attacks, all in pure NumPy with hand-written backpropagation - no PyTorch, no autograd. Every layer's backward pass is finite-difference checked; the data is procedural and synthetic (six shapes), so the numbers are about the machinery, not natural images.
+
+- **The plausible map is not the faithful one** - deletion AUC on 147 correctly classified images (lower is better): occlusion 0.280, SmoothGrad 0.345, plain saliency 0.373, Grad-CAM 0.588, random ranking 0.691. Grad-CAM's maps are visually the most plausible but only 12x12 resolution, so they rank individual pixels worst; occlusion wins partly because the metric itself removes pixels. 12 epochs on 4,000 training images reach 97.3% on 1,000 test images (95% Wilson CI 96.1-98.1%), 38,566 parameters.
+- **The head decides the failure mode** - the dense head loses 62 points between 0 and 4 px of diagonal shift (0.984 to 0.366); a width-16 global-average-pool + BatchNorm head loses 5 (0.978 to 0.928) with 38% fewer parameters (23,910) and clean accuracy within seed noise - but at contrast 0.5 it keeps only 0.656 against the dense model's 0.902. Adversarial training (FGSM 0.05, 1:1) roughly doubles robustness at and below budget (FGSM 0.05: 0.327 to 0.723; PGD 0.05: 0.186 to 0.652) at unchanged clean accuracy, and does not transfer: noise/shift robustness is flat and contrast-0.5 accuracy drops 0.910 to 0.865.
+- **Augmentation fixes the family it trains on** - photometric augmentation (multiply by c ~ U(1-p, 1)) lifts x0.5 contrast accuracy from 0.656 to 0.958 at p=0.5 and x0.3 to 0.917 at p=0.7, for 1-2 points of clean accuracy - but on the unseen about-mean contrast it is worse than baseline (0.403 to 0.170; chance 0.167): the network learned "dim means shrink", not contrast invariance.
+- **An attack is not a certificate** - interval bound propagation proves 56.1% of test images safe at eps = 0.03 for the IBP-trained model (clean 0.839, median certified radius 0.0363), while the FGSM-trained model keeps 86% under PGD at the same eps yet certifies 0.037 at 0.01 and 0.000 at 0.03. PGD accuracy is an upper bound on robust accuracy; certified accuracy is a lower bound - the gap is the point.
+- 66 Python tests (62 test functions; two parametrized over three cases each - the upstream README's "64 tests" is stale by the two photometric tests); pure NumPy, fully offline. Only the certify numbers are proofs, and only for L-inf perturbations on synthetic images.
+
+- Repo: [midya8/ai-lab](https://github.com/midya8/ai-lab) · Case study: [projects/visionlab.md](projects/visionlab.md)
 
 ### sre-toolkit
 
@@ -1261,6 +1262,9 @@ An exact tiny safety-game inspector for hand-written agent protocols. Every sync
 
 Eight native tests include all 21,952 three-state graph/ownership/safety combinations and 150 seeded larger arenas. Three Node/actual-Chrome tests compare 643 complete reports and all six controls at 320/390/1280. Installed wheels replay both CLI entry points outside checkout. Finite total perfect-information model only: no runtime shield, LLM guarantee, liveness, timing, probability, new algorithm or formal proof. Dead ends are rejected; safe waiting need not mean progress.
 
+- v0.2 [live first-goal inspector](https://midya8.github.io/shieldlab/reachavoid.html): safe waiting is not arrival — a finite reach-before-unsafe inspector with the exact minimum worst-case first-goal bound and a complete ranked strategy or target-avoiding counterstrategy; a winning successor can still stall, while a slower fixed policy can still win. 24 Python tests on 3.10–3.13, preserving all 8 original tests; 324 two-state and 32,928 three-state strategy-pair cases, 457 complete native/JavaScript reports, 1,329 policies and 6,291 root outcomes. [Contract and eight-source ledger](https://github.com/midya8/shieldlab/blob/main/REACHAVOID.md) · [Reviewed change](https://github.com/midya8/shieldlab/pull/2).
+- v0.3 [live recurrence inspector](https://midya8.github.io/shieldlab/recurrence.html): again is a different promise — a separate safe-recurrence inspector checks that a supplied finite game stays safe forever and visits a target infinitely often against every environment choice, with targets live, not terminal. 39 Python tests; all 74,088 three-state graph/owner/safety-target configurations, 498 complete native/JavaScript/checker reports and 163 individually rejected primitive-leaf mutations. Bounds: six states, three moves per state, at most 729 positional assignments per player. [Exact method and inspected sources](https://github.com/midya8/shieldlab/blob/main/RECURRENCE.md).
+
 ### BuchiLab: a winning state is not a winning policy
 
 [Interactive inspector](https://midya8.github.io/buchilab/) | [Source](https://github.com/midya8/buchilab) | [Method and seven-source ledger](https://github.com/midya8/buchilab/blob/main/METHOD.md)
@@ -1298,6 +1302,14 @@ Separate native API/module CLI, independent report checker and JavaScript engine
 All inclusion-minimal conflicting all-different scope sets and all inclusion-minimal scope-removal repairs, with complete single-deletion witnesses, common kept-network assignments and contained conflicts for every restoration. The default diamond has a size-one and four size-two minimal removals: minimal is not minimum. Inspect every active subset and the hitting-set intersections that explain why a repair must break every conflict. Domains stay fixed; an empty-domain background has no scope-removal repair.
 
 Independent native histogram generation, per-subset product verification and recursive JavaScript search. 28 native tests, nine Node/actual-Chrome tests; 621 cross-engine reports and 4413 active subsets. Installed wheel reproduces all three report families outside checkout. Prior implementations/tests retained. All browser controls/proofs checked at 320/390/1280. Tiny exact relations, not a scalable MUS/MCS solver, weighted optimizer or a new duality theorem.
+
+### HallLab: a spare value is not a cycle
+
+[Live alternating inspector](https://midya8.github.io/halllab/alternating.html) · [Source](https://github.com/midya8/halllab) · [Exact contract and eight-source ledger](https://github.com/midya8/halllab/blob/main/ALTERNATING.md) · [Pull request](https://github.com/midya8/halllab/pull/4)
+
+One variable and two values produce three singleton alternating SCCs, but both domain edges have support. HallLab’s fourth inspector follows a free value through an even alternating path, flips its edges, and shows the resulting full assignment. Compare cycle support, tight Hall pruning, isolated values, empty scope and impossible partial matchings. Every original edge has a directed arc and either an explicit full matching or a forced-residual Hall obstruction. Dummy-node SCCs expose the equivalent characterization without hiding where the spare value starts.
+
+The native generator uses augmenting matching, Tarjan SCCs and free-root reachability; a separate checker uses exhaustive partial tuples and Floyd closure, while the browser independently uses assignment recursion and BFS classes. All 5,058 tiny domain graphs, 120 seeded bound-wide cases, 821 complete cross-language reports and 136 primitive forgeries are checked. Actual pinned Choco 4.10.18 AC_REGIN propagation agrees over 821 cases, with real FC/NEQS/AC calibration. Thirty-six Python tests and 12 Node/Chrome tests preserve all previous tests; a fresh installed wheel checks both new entrypoints and atomic failure behavior. The deployed inspector replays all 12 controls at 1280/390/320, every edge certificate, reach layer, SCC and flip step, with trusted completed JSON downloads and narrow-screen rightmost-scroll checks. This is classical bounded all-different theory on at most six variables and eight values, not a new algorithm, production incremental solver, learned model, scale benchmark or whole-CSP guarantee.
 
 
 ## STNLab - temporal bounds with attainable schedules
@@ -2151,203 +2163,23 @@ Reproduction checks: 34 Python tests, 6 Node tests, 120 seeded path cases, 384 e
 These are synthetic controls selected during development, not held-out speech evaluation. At most 4,096 complete paths. No trained recognizer, new CTC algorithm, calibrated confidence, production-scale, quality or speed claim. Exact arithmetic removes rounding error, not search approximation. No paid API, private data or model download.
 
 
-
-
-
 ## AbsorbLab 0.3: the last exit changes everything
-
-
 
 Move probability mass between two destinations of one nonterminal row and inspect an entire exact rational response, not only a sensitivity estimate. The default original control keeps success at one as its last exit becomes arbitrarily unlikely, then drops to zero when that exit disappears. The inspector separates the interior limit from each endpoint's actual support and direct solve. A retry control has success `(1/4+t)/(1/2+t)`, with first derivative one and second derivative minus four at zero. Success-conditioned traffic includes visits, every directed edge count and timing, showing where successful paths go. [Live row-response inspector](https://midya8.github.io/absorblab/response.html), [source and reproduction](https://github.com/midya8/absorblab), [derivation and seven-source ledger](https://github.com/midya8/absorblab/blob/main/RESPONSE.md), [reviewed change](https://github.com/midya8/absorblab/pull/3).
 
-
-
-
-
-
-
 All 42 Python and eleven Node tests retain both previous workflows. Native rank-one generation, independent Cramer/cofactor replay and BigInt recomputation agree on 146 full reports, 1,909 samples, 464 state curves and 61,255 conditional edge cells; 774 separately changed certificate leaves are rejected. Actual Chrome checks 1,293 root/sample views at 1280/390/320 pixels, twelve trusted completed downloads with native replay and twelve extra dense six-state views with long fractions and terminal roots. Fresh installed wheels check fourteen module origins, both response entrypoints and 24 direct plus 24 CLI forgeries with atomic preservation. The invoked SymPy 1.14.0 reference checks 928 symbolic success/failure curves and 10,290 derivative pairs, with support verified separately. Exact public source, feature/PR/main CI, Pages, deployed assets, behavior and desktop/phone layouts were verified.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 The open transfer interval has fixed positive support; each endpoint is a separate chain. Zero-success conditioning is undefined, terminal visits/outgoing edges are excluded, and restricted visits do not assert finite lifetime in closed nonterminal classes. The plot joins sampled points; the displayed rational formula defines the full interval. These are supplied one-to-six-state chains and established finite Markov, Doob-transform and rank-one inverse methods, not learned behavior, causal intervention, new probability theory, general parameter synthesis, a scalable solver or a guarantee about real AI agents.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## BellmanLab 0.5: two budgets, one policy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Two separately achievable budgets can still be impossible together. The new exact inspector keeps both expected costs visible and enumerates the full feasible occupancy vertices, not only their two-dimensional projection. One original three-action control needs a mixture of three deterministic policies: weights 5/12, 1/3 and 1/4 attain reward 3/2 under ceilings 1/3 and 1/4, while the best feasible deterministic policy earns zero. A different control has separately attainable ceilings but a checked joint infeasibility gap of 1/6. Visit rates reweight an initial policy mixture into local action probabilities; a feasible reward/cost projection alone is not a full policy witness.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 The dependency-free Python generator returns every deterministic policy, every feasible full vertex, all optimal vertices, an exact full-occupancy mixture and a re-solved stationary policy. A separate checker uses Cramer/determinant solves and one-, two- and three-policy simplex intersections rather than generator helpers. Bellman action inequalities, two nonnegative multipliers and complementary slackness certify feasible optima; a weighted minimum-cost bound certifies joint impossibility. Valid alternative multiplier witnesses are accepted. An independent BigInt browser engine agrees on 822 complete reports, including a dense four-state case beyond JavaScript's safe integer range. Actual SciPy 1.15.3 HiGHS checks all 822 problems: 692 feasible and 130 infeasible, with worst reward error below 4.5e-10.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Reproduction retains the original and one-budget workflows: 103 Python tests, eight Node tests, 958 rejected non-input primitive-leaf mutations and isolated installed-wheel checks of both new CLI entrypoints. Actual deployed Chrome checks 36 control reports, 108 policy selections, 117 vertex selections, three extra dense reports and twelve trusted completed downloads replayed by the native checker at 1280/390/320 pixels. All ten deployed assets match merged source; 42 full unmasked captures match the inspected local rendering. Feature, pull-request, merged-main and Pages checks are green.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 This is exact classical occupancy-measure planning for a supplied discounted MDP, limited to one-to-four states, eight total actions and exactly two expected-cost ceilings. Budgets are expectations under the supplied initial distribution, not trajectory caps or real-world safety guarantees. It is not learned, scalable, combined with the separate robust planner, or a new algorithm. Shared mathematical assumptions mean cross-checks are evidence rather than formal proof.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [Two-budget inspector](https://midya8.github.io/bellmanlab/coupled.html) · [Source](https://github.com/midya8/bellmanlab) · [Derivation, limits and source ledger](https://github.com/midya8/bellmanlab/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/bellmanlab/pull/2)
