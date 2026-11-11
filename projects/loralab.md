@@ -1,8 +1,20 @@
-# LoRALab: same model, different factor-SGD step
+# LoRALab: width is not predictive rank
 
 [Interactive inspector](https://midya8.github.io/loralab/) · [Source and reproduction](https://github.com/midya8/loralab)
 
-LoRALab implements low-rank adaptation in dependency-free Python, then exposes a less obvious distinction: equivalent factor coordinates can represent the same model but take different ordinary SGD steps. The browser and Python evaluators are independent. This is an arithmetic diagnostic on a synthetic classifier, not a new optimizer or an LLM benchmark.
+LoRALab separates factor width, matrix rank, all-input softmax-equivalent rank and finite-probe agreement with exact rational factors, nonzero minors and independent verification. The original factor-coordinate SGD inspector and all 124 archived states remain intact. This is a linear-classifier audit, not a new algorithm, rounded-runtime certificate or LLM benchmark.
+
+## Exact predictive rank, with witnesses
+
+A separate exact-rational inspector distinguishes supplied width, matrix rank, the least rank of an all-input softmax-equivalent update, and finite-probe rank. For a fixed linear output map and bias, the all-input minimum is the rank of its class-row differences. Constructive factors prove the upper bound; a nonzero minor proves the matching lower bound. An independent native Bareiss verifier never calls the rank producer, and browser BigInt decodes the original binary64 factors as exact represented ratios.
+
+All 124 original states remain attached. At every nonzero epoch, widths 4/8 have exact product rank 3 and class-difference rank 2; widths 1/2 retain ranks1/2. Fewer algebraic scalar slots do not prove lower rational storage, runtime memory, inference speed or retained accuracy. Original training still used 524/1048 parameters at widths 4/8.
+
+Finite-probe minimum rank is rank(D X^T), with an attaining extension, an explicit unseen-coordinate counterexample when it differs globally, and a nonzero probe-nullspace direction whenever probes fail to span feature space. Even a canonical extension that happens to equal D cannot make non-spanning probes complete.
+
+The current suite has39 Python tests (all31 earlier tests unchanged) and7 substantive Node/Chrome tests. New checks include729 ternary 3x2 matrices at all 3 references against independent Leibniz minors,11 exact controls, all 124 complete native/browser report hashes, altered factor/minor leaves, every real UI archive selector,36 layouts, 1,322 selectable exact factor cells, trusted edit invalidation,3 downloads and native verification replay. Both the earlier and new installed-wheel gates reproduce outside the source checkout. Exact arithmetic certifies a real probability function only; rounded probabilities, argmax, loss, future factor training and hidden layers are outside scope. Exact rank is not tolerance-based numerical rank.
+
+[Exact inspector](https://midya8.github.io/loralab/rank.html) · [Proof, schema and reproduction](https://github.com/midya8/loralab/blob/main/PREDICTIVE_RANK.md). Standard softmax equivalence and rank facts are attributed to [Yang et al.](https://arxiv.org/abs/1711.03953), [LoRA](https://arxiv.org/abs/2106.09685) and [Nick Higham](https://nhigham.com/2021/02/23/matrix-rank-relations/), not presented as a new algorithm.
 
 ## Change coordinates, not the experiment
 

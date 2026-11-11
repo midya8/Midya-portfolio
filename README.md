@@ -817,6 +817,10 @@ Finite-policy Gibbs optimum and KL-budget inspector attached to a dependency-fre
 
 ### LoRALab
 
+Width is not predictive rank. A separate exact-rational inspector proves minimum all-input softmax-equivalent rank with constructive factors and nonzero minors, and distinguishes finite-probe agreement with explicit blind-direction counterexamples. All 124 original states remain intact; nonzero widths 4/8 have exact product rank 3 but quotient rank 2. 39 Python/seven Node tests, complete native/browser report hashes, independent verifier and installed replay. No rounded-runtime, saved-byte or training claim. [Exact rank inspector](https://midya8.github.io/loralab/rank.html).
+
+Earlier coordinate inspector, preserved:
+
 Same model, different factor-SGD step. A dependency-free Python implementation and independent browser inspector expose equivalent low-rank factor coordinates, full gradients and the finite-step second-order identity. Scalar learning-rate compensation is an attributed coordinate identity, not a new optimizer.
 
 - All 124 original epoch boundaries across widths 1/2/4/8 remain available, with full matrix-gauge input, 31-scale sweeps, per-example outputs and complete report/input/archive exports. No best-state selection or retraining from the controls.
