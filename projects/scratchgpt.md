@@ -1,72 +1,56 @@
 # ScratchGPT
 
-A NumPy GPT with exact continuation and actual activation rematerialization: original-block upstream VJPs, full-gradient controls and an independent full-backward browser engine.
+A small NumPy GPT with three inspectable execution paths: exact training continuation, block recomputation during backward and cached inference that rebuilds when the learned-position window moves.
 
-[Live optimizer replay](https://midya8.github.io/scratchgpt/) · [Source](https://github.com/midya8/scratchgpt) · [Continuation contract](https://github.com/midya8/scratchgpt/blob/master/CONTINUATION.md)
+[Cache workbench](https://midya8.github.io/scratchgpt/cache.html) · [Source](https://github.com/midya8/scratchgpt) · [Continuation replay](https://midya8.github.io/scratchgpt/) · [Rematerialization](https://midya8.github.io/scratchgpt/remat.html)
 
-## Problem
+## What changed
 
-A training checkpoint is not just a bag of weights. The previous trainer saved parameters, Adam moments and the update clock but re-created both random generators on restart. It also did not bind saved state to the text or numerical options. A restart could silently change the next batch and future training trajectory.
+The original repository includes a reverse-mode autograd engine, pre-LN causal transformer and a 419,328-parameter character model trained on TinyShakespeare. The later work keeps that checkpoint, loss log, sample, default GPT forward, trainer and sampler intact. Each execution change is tested against the original code rather than treated as correct because its output looks plausible.
 
-## Implementation
+### A restart must preserve the next update
 
-The original reverse-mode autograd engine and pre-LN character transformer remain intact: learned token/position embeddings, causal multi-head attention, GELU MLPs, residual paths and a language-model head. The historical 419,328-parameter, two-layer/four-head Shakespeare checkpoint, text, loss records and sample are preserved, not retrained or used for a new speed claim.
+A training checkpoint now saves named float32 parameters, Adam m/v buffers and clock, both PCG64 train/evaluation states, text identity, vocabulary, dimensions, numerical options, scheduled history and runtime metadata. The bounded no-pickle loader rejects inconsistent, malformed or incompatible state before returning a training object. Atomic save replacement preserves the previous checkpoint when serialization or replacement fails; it is not a guarantee against every power or filesystem failure.
 
-The v0.2 continuation checkpoint saves:
+A separate 1,056-parameter synthetic run retains all 12 updates and all 13 stop boundaries. Complete continuation reaches the same final state at every boundary in the same environment. Resetting train/evaluation RNG or dropping Adam moments changes weights at all 11 interior boundaries. Resetting only evaluation RNG changes future validation history, not training weights. Stops at zero and 12 remain controls.
 
-- Complete named float32 parameters, Adam m/v buffers, update clock, beta values, epsilon and LR.
-- Both full PCG64 train/evaluation states, including cached uint32 information.
-- Text SHA-256, character count, sorted vocabulary and split identity; dimensions, seed, batch, base LR, warmup, clipping and evaluation settings.
-- Scheduled history, last loss and a runtime fingerprint.
+The browser independently recomputes Adam arithmetic and transformer forwards from the recorded weights. It does not train on that page. The reference checks cover 38,016 optimizer values and 2,592 logits. A separate-process installed CLI checks uninterrupted versus 4+8 updates.
 
-The no-pickle loader checks the complete artifact before returning a new training object. It refuses legacy resume, changed data/options/environment, unknown fields, invalid RNG state, mismatched clocks/history/shapes/dtypes, nonfinite values, negative second moments, duplicate ZIP members and excessive archive size. Atomic continuation saves use a same-directory temporary file, flush/fsync and replacement; serialization/replace failures leave the previous checkpoint intact. Terminal validation uses a cloned RNG and does not alter future scheduled history.
+[Continuation contract](https://github.com/midya8/scratchgpt/blob/master/CONTINUATION.md)
 
-## A complete small-run witness
+### Activation rematerialization: rebuild the derivative
 
-The offline replay is a **separate 1,056-parameter synthetic model**, not the shipped Shakespeare fit. It retains all 12 updates, every gradient/parameter/moment coordinate, before/after batches and logits, and all 13 stop boundaries. Each fit is continued to update 12.
+The optional rematerialization path groups original transformer blocks, keeps their boundaries and discards the forward interior graph. Backward rebuilds those blocks with the actual upstream vector-Jacobian product (VJP), then adds input and parameter contributions to the outer graph. It does not replace the original `Tensor.backward` or turn itself on in the trainer.
 
-| Arm | Controlled omission | Result |
-| --- | --- | --- |
-| Exact continuation | None | 13/13 complete final states identical within the same environment |
-| Legacy RNG reset | Train and evaluation RNG state | Final weights differ at all 11 interior boundaries |
-| Missing Adam memory | m/v only, clock retained | Final weights differ at all 11 interior boundaries |
-| Evaluation RNG reset only | Evaluation generator | Training weights unchanged; future scheduled history changes |
+A separate float64 scalar-autograd browser model computes the complete tiny GPT and both backward paths. Tokens, targets, grouping, one-step SGD rate and every named weight are editable. Eighteen complete native controls cover 15,184 parameter positions. Every one of the shipped checkpoint's 419,328 parameter gradients is checked for both block groupings without retraining it.
 
-At boundary 4 the maximum final weight difference is about 0.01715618 for RNG reset and 0.02066660 for missing moments. Boundaries 0 and 12 are retained controls. The legacy arm isolates RNG loss rather than reproducing the old extra terminal-history row. This is one small-run counterexample, not a general ranking of state importance.
+The diagnostics count reachable logical Tensor.data elements or browser scalar nodes. These are different granularities, neither peak memory nor speed. Only deterministic dropout-zero, first-order derivatives with unchanged inputs and weights are supported. The audit also checks fanout, existing gradient contributions, mutation rejection and actual disposal of discarded interiors.
 
-Scalar JavaScript independently recomputes the Adam equation and full transformer forward pass from the selected update's weights. Editable contexts and before/after states expose all logits/probabilities; scalar gradient/LR/beta/epsilon edits show a one-coordinate hypothetical. Full update and inference JSON downloads retain the evidence. The browser does not calculate gradients or train.
+[Rematerialization contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md)
 
-## Verification
+### Reuse KV states only while their context stays valid
 
-- **70 Python tests** on 3.10, 3.11, 3.12 and 3.13, retaining all **11 original tests** and original model/autograd/optimizer/data sources.
-- All 13 exact restart boundaries compare full parameters, buffers, both RNGs and history, not just final loss. A separate-process CLI test compares 12 updates with 4+8, including terminal previews.
-- Independent scalar Adam checks **38,016** p/m/v values, maximum absolute native/reference error about **5.933e-8**; an independent forward checks **2,592** logits, maximum error about **3.031e-8**. Its objective also supplies central finite differences for three coordinates of every parameter tensor.
-- **Three Node/actual-Chrome tests** cover every scalar update, independent forward/loss references, causality and invalid domains. Chrome inspects **101,376 coordinate-table cells**, **468 coordinate views**, **72 before/after inference views**, both exports, invalidation and 320/390/1280 layouts.
-- Fresh-public-source tests and replay regeneration, plus an installed wheel outside the checkout: five import origins, all 13 boundaries, separate-process resume and sampling the original Shakespeare checkpoint.
-- Six CI jobs: four Python versions, browser and installed-package reproduction. GitHub Pages serves the offline workbench.
+The inference path takes a copied, read-only float32 weight snapshot. Prefill computes the causal context; append projects only new token rows and uses a right-aligned mask for multi-token chunks. A low-level append refuses overflow. Rolling advance rebuilds every layer of the entire final window whenever cropping shifts learned absolute positions. Dropping old KV slots alone is included as a deliberately wrong control, not attributed to another library.
 
-Original checkpoint SHA-256: `3de6a1626e4489a2e0bc867fc58fe66d323ac6c527bb3af7be662b49510a817e`.
+The independent float64 browser model exposes all context tokens, rebased positions, masks, logits and paged K/V coordinates. Complete editable inputs and reports download as JSON; the input runs in the native CLI against the original GPT. Edits clear stale results. A native-witness label appears only for an exact complete-input match.
 
-## Limits and attribution
+Eight full controls contain 43 chunk steps, 685 cached logits and 3,256 K/V coordinates. Chrome checks every displayed coordinate and mask, 24 control/viewport combinations, trusted input changes, valid and invalid imports, two real downloads and native replay of the downloaded input. The controls are tiny synthetic models, some after three original Adam updates, not the Shakespeare checkpoint.
 
-Exactness is scoped to uninterrupted/resumed runs in the same numerical environment. Python/NumPy build, platform/machine and thread settings are recorded; a matching fingerprint is necessary, not proof that every runtime detail is identical. Cross-version regeneration and browser/native comparisons use tolerances, not universal bitwise promises. Atomic replacement is not a guarantee against every filesystem/power-loss failure. Hashes bind identity, not trust or licensing; the loader does not authenticate arbitrary checkpoint provenance.
+The archived timing run uses the unchanged original checkpoint, 48 teacher-forced steps, two warmups and seven retained timed repeats. Only NumPy full versus NumPy cached isolates caching from removing autograd graph construction. Full/cached median factors are 8.287x, 10.722x, 1.407x and 0.994x for prompt lengths 4, 16, 48 and 64. At full context, caching rebuilds every step and loses slightly: 253.230 ms cached versus 251.783 ms full. The CPU model was not recorded. These are local timings, not a decoding-throughput or hardware comparison.
 
-Historical Shakespeare loss/timing numbers remain historical. The synthetic replay is not a text-quality benchmark; edited optimizer scalars are not newly trained trajectories. No speed, GPU, generalization or new-algorithm claim is made.
+[Cache contract and complete timing record](https://github.com/midya8/scratchgpt/blob/master/CACHE.md) · [Implementation PR #5](https://github.com/midya8/scratchgpt/pull/5)
 
-Educational implementation and this continuation/replay by Midya Rahmani. Adam, transformers and RNG checkpointing are prior work. [Source notes](https://github.com/midya8/scratchgpt/blob/master/CONTINUATION.md#sources-and-attribution) cover the Adam/transformer papers, NumPy RNG/NPZ contracts, checkpoint components and Python file-replacement semantics.
+## Current checks
 
-### 0.3: real activation rematerialization and full browser backward
+- 158 Python tests on 3.10-3.13 and 13 Node/Chrome tests retain all prior tests. No old numerical tolerance or test was weakened.
+- Fresh public source is compared byte-for-byte with the reviewed files. Native controls regenerate from their complete inputs.
+- Installed wheels run outside the checkout. Checks cover original continuation/sample routes, all rematerialization controls and full trained-checkpoint gradients, both cache-audit CLI routes, the benchmark CLI and 80 original-checkpoint inference steps through 16 window rebuilds.
+- CI tests the four Python versions, browser behavior and installed reproduction. Pages deployment and current live behavior are verified separately from a successful source merge.
 
-[Full-backward workbench](https://midya8.github.io/scratchgpt/remat.html) · [Execution/measurement contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md) · [Implementation PR #4](https://github.com/midya8/scratchgpt/pull/4)
+## Limits
 
-An opt-in native path executes groups of original NumPy transformer blocks, discards their interior graph and recomputes those blocks during backward. Fresh private leaves take the actual upstream vector-Jacobian product, then add boundary-input and parameter contributions to the outer graph. It does not replace the original Tensor.backward, GPT forward, optimizer, trainer or durable exact-continuation schema. Mutation/replacement guards, fresh-graph single-use semantics, shared outer paths, existing gradient contributions and actual GC-visible disposal of forward interiors are tested. Only deterministic dropout=0 and first-order derivatives are supported; tied parameters inside a region are rejected.
+Exact continuation is limited to the same validated numerical environment; matching metadata is necessary, not proof that every runtime detail agrees. Float32 native and float64 browser results use tolerances, not universal bitwise promises. Cache matrix-vector/matrix-matrix shapes can round differently. The new shipped-checkpoint cache test uses a `1e-5` absolute logit bound and `3e-6` softmax total-variation bound. Close distributions can still produce different sampled tokens near an RNG threshold. The original sampler is unchanged.
 
-A separate float64 scalar JavaScript autograd engine implements the complete small GPT: token/position embeddings, layer norms, causal multi-head QKV attention, residuals, GELU MLP, logits, CE, reverse differentiation and region recomputation. This new browser page computes actual gradients rather than replaying stored native gradients. The existing continuation page remains its separate optimizer/forward replay. Tokens, targets, grouping, one-step SGD rate and every named weight are editable through a bounded CLI-compatible JSON input. Stale results and downloads clear on edit; actual input/report downloads retain all coordinates.
+KV bytes are resident native ndarray payload, excluding weights, token history, temporaries, allocator/Python/BLAS storage and audit references. They are not peak memory or RSS. Matrix-row and score-cell counters describe executed shapes, not FLOPs or wall time. Snapshot weights do not track later training.
 
-111 Python tests retain all 70 prior tests byte-for-byte. Thirty seeded shape/batch/head/width/layer controls use nonuniform upstream derivatives; all grouping choices, five-step original Adam trajectories and an independent all-parameter float64 forward/finite-difference oracle check the VJPs. Every one of the historical Shakespeare checkpoint's 419,328 parameter gradients is checked against original eager backward for both block groupings. The checkpoint is not retrained or rebenchmarked.
-
-Eighteen complete native witnesses contain 15,184 parameter positions, including eager controls and weights after three real original Adam steps. Eight Node/actual-Chrome tests retain all three prior tests. Independent native/browser comparisons check 61,888 numeric fields; an all-88-parameter scalar finite-difference control checks browser derivatives. Actual Chrome verifies all reports, 106,288 parameter-table cells, 1,206 coordinate selections, 54 layouts, trusted-input invalidation and two actual downloads with native CLI replay. Installed-wheel reproduction outside the checkout checks both new CLI routes, every native witness and the full trained-checkpoint gradients. Original continuation regeneration and installed continuation/sample checks remain intact.
-
-Observed diagnostics are graph-reachable logical Tensor.data elements or separate browser scalar nodes, not allocator bytes, process RSS, peak memory, complete backward storage or speed. Native parameter/mask nodes, closure arrays, gradients, audit copies and Python/BLAS buffers are excluded; views count per Tensor even if allocations alias. The browser has a different graph granularity, so its counts are not equated with native counts. Bigger regions trade fewer retained boundaries for larger temporary recomputation graphs. The full audit itself stores reference outputs and gradients.
-
-Fresh public source and all 14 deployed assets are byte-checked; 54 local/public and 54 public/deployed screenshot pairs match without masks. Feature, PR and main pass all six CI jobs; Pages and deployed original/new browser suites pass. These checks establish this bounded implementation, not a GPU kernel, optimal schedule, training-speed/process-memory reduction, new method, new trajectory or generalization gain. Standard activation checkpointing/rematerialization, transformers and reverse-mode differentiation are credited in the contract.
+No new model training, generalization gain, attention algorithm, GPU kernel, optimal checkpoint schedule or production inference server is claimed. Transformers, Adam, activation checkpointing and KV caching are established techniques, with source notes in each contract. The original checkpoint's SHA-256 remains `3de6a1626e4489a2e0bc867fc58fe66d323ac6c527bb3af7be662b49510a817e`.
