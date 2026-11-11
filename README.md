@@ -1,5 +1,16 @@
 # Midya Rahmani
 
+## AgentTrace 0.2: keep the value, respect the overlap
+
+A separate exact fixed-interval retention policy under a supplied overlap cap. With one lane, two touching spans worth 6 each beat one enclosing span worth 9. Native integer min-cost flow exposes every edge, flow, canonical potential and residual reduced cost, with a matching primal/dual bound and exact zero gap. The original trace validator, analyzer, timing inspector and gates stay unchanged.
+
+64 Python tests retain all 57 prior tests; seven Node/actual-Chrome tests retain all three prior tests. Independent full-subset/unit-cell references check 250 seeded inputs at all five capacities; 120 larger controls check feasibility and certificates. Python Bellman-Ford successive shortest paths and independent browser subset enumeration/Floyd-Warshall agree on 24 full reports, 113 interval rows, 124 segments, 120 frontier entries, 222 network edges and 241 residual arcs. Chrome checks every displayed row, timeline geometry, stale/invalid state, 320/390/1280px containment and two trusted exports replayed through native CLI. Separate isolated API/module/console and original eleven-module wheel checks pass.
+
+[Live policy inspector](https://midya8.github.io/agenttrace/capacity.html) · [Source](https://github.com/midya8/agenttrace) · [Exact contract and sources](https://github.com/midya8/agenttrace/blob/main/CAPACITY.md) · [Case study](projects/agenttrace.md)
+
+Earlier AgentTrace descriptions below cover the retained timing audit and original analyzer. The new policy checks supersede their aggregate test count; recorded spans still are not real resource use.
+
+
 
 ## EvalForge 0.2: one family, shared cluster signs
 
