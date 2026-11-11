@@ -1,6 +1,6 @@
 # ScratchGPT
 
-A NumPy GPT with hand-written autograd, a trained Shakespeare checkpoint and an inspectable exact-continuation contract.
+A NumPy GPT with exact continuation and actual activation rematerialization: original-block upstream VJPs, full-gradient controls and an independent full-backward browser engine.
 
 [Live optimizer replay](https://midya8.github.io/scratchgpt/) · [Source](https://github.com/midya8/scratchgpt) · [Continuation contract](https://github.com/midya8/scratchgpt/blob/master/CONTINUATION.md)
 
@@ -54,3 +54,19 @@ Exactness is scoped to uninterrupted/resumed runs in the same numerical environm
 Historical Shakespeare loss/timing numbers remain historical. The synthetic replay is not a text-quality benchmark; edited optimizer scalars are not newly trained trajectories. No speed, GPU, generalization or new-algorithm claim is made.
 
 Educational implementation and this continuation/replay by Midya Rahmani. Adam, transformers and RNG checkpointing are prior work. [Source notes](https://github.com/midya8/scratchgpt/blob/master/CONTINUATION.md#sources-and-attribution) cover the Adam/transformer papers, NumPy RNG/NPZ contracts, checkpoint components and Python file-replacement semantics.
+
+### 0.3: real activation rematerialization and full browser backward
+
+[Full-backward workbench](https://midya8.github.io/scratchgpt/remat.html) · [Execution/measurement contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md) · [Implementation PR #4](https://github.com/midya8/scratchgpt/pull/4)
+
+An opt-in native path executes groups of original NumPy transformer blocks, discards their interior graph and recomputes those blocks during backward. Fresh private leaves take the actual upstream vector-Jacobian product, then add boundary-input and parameter contributions to the outer graph. It does not replace the original Tensor.backward, GPT forward, optimizer, trainer or durable exact-continuation schema. Mutation/replacement guards, fresh-graph single-use semantics, shared outer paths, existing gradient contributions and actual GC-visible disposal of forward interiors are tested. Only deterministic dropout=0 and first-order derivatives are supported; tied parameters inside a region are rejected.
+
+A separate float64 scalar JavaScript autograd engine implements the complete small GPT: token/position embeddings, layer norms, causal multi-head QKV attention, residuals, GELU MLP, logits, CE, reverse differentiation and region recomputation. This new browser page computes actual gradients rather than replaying stored native gradients. The existing continuation page remains its separate optimizer/forward replay. Tokens, targets, grouping, one-step SGD rate and every named weight are editable through a bounded CLI-compatible JSON input. Stale results and downloads clear on edit; actual input/report downloads retain all coordinates.
+
+111 Python tests retain all 70 prior tests byte-for-byte. Thirty seeded shape/batch/head/width/layer controls use nonuniform upstream derivatives; all grouping choices, five-step original Adam trajectories and an independent all-parameter float64 forward/finite-difference oracle check the VJPs. Every one of the historical Shakespeare checkpoint's 419,328 parameter gradients is checked against original eager backward for both block groupings. The checkpoint is not retrained or rebenchmarked.
+
+Eighteen complete native witnesses contain 15,184 parameter positions, including eager controls and weights after three real original Adam steps. Eight Node/actual-Chrome tests retain all three prior tests. Independent native/browser comparisons check 61,888 numeric fields; an all-88-parameter scalar finite-difference control checks browser derivatives. Actual Chrome verifies all reports, 106,288 parameter-table cells, 1,206 coordinate selections, 54 layouts, trusted-input invalidation and two actual downloads with native CLI replay. Installed-wheel reproduction outside the checkout checks both new CLI routes, every native witness and the full trained-checkpoint gradients. Original continuation regeneration and installed continuation/sample checks remain intact.
+
+Observed diagnostics are graph-reachable logical Tensor.data elements or separate browser scalar nodes, not allocator bytes, process RSS, peak memory, complete backward storage or speed. Native parameter/mask nodes, closure arrays, gradients, audit copies and Python/BLAS buffers are excluded; views count per Tensor even if allocations alias. The browser has a different graph granularity, so its counts are not equated with native counts. Bigger regions trade fewer retained boundaries for larger temporary recomputation graphs. The full audit itself stores reference outputs and gradients.
+
+Fresh public source and all 14 deployed assets are byte-checked; 54 local/public and 54 public/deployed screenshot pairs match without masks. Feature, PR and main pass all six CI jobs; Pages and deployed original/new browser suites pass. These checks establish this bounded implementation, not a GPU kernel, optimal schedule, training-speed/process-memory reduction, new method, new trajectory or generalization gain. Standard activation checkpointing/rematerialization, transformers and reverse-mode differentiation are credited in the contract.
