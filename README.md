@@ -840,6 +840,10 @@ Same model, different factor-SGD step. A dependency-free Python implementation a
 
 ### SpecLab
 
+The v0.4 extension adds **exact within-proposal stopping**: keep-and-verify preserves the target law while a deliberately wrong censor-and-forget control gives full-sequence TV `1/8`. Complete stopped proposal trees and joint sequence/count laws, independent full-path verification and an editable BigInt inspector expose the selection bias. 61 Python + 4 Node/Chrome tests retain all earlier engines; all fixed caps and target-only remain visible. No production-library accusation or speedup claim. [Live stopping lab](https://midya8.github.io/speclab/).
+
+The v0.3 record below is retained for context.
+
 Speculative decoding from scratch: greedy n-gram verification, exact stochastic
 residual correction, and a finite **oracle lookahead planner** that includes
 no speculation as a genuine action.
