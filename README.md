@@ -995,6 +995,9 @@ The replay is a separate 1,056-parameter synthetic model. The browser recomputes
 
 - Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt) · [Live replay](https://midya8.github.io/scratchgpt/) · Case study: [projects/scratchgpt.md](projects/scratchgpt.md)
 
+
+New [activation rematerialization workbench](https://midya8.github.io/scratchgpt/remat.html): actual original NumPy blocks are recomputed during backward, with upstream VJPs and every input/parameter contribution checked against eager execution. Independent browser scalar autograd runs the full tiny GPT and both backward paths. 111 Python/eight Node tests retain every prior test; 18 native witnesses cover 15,184 parameter positions, 61,888 cross-runtime numeric fields and actual Chrome 106,288 table cells/1,206 coordinate views. All 419,328 historical trained-checkpoint gradients are checked for both groupings without retraining. Explicit logical-graph counts only, not RSS/peak memory/speed; deterministic dropout=0 and first-order only. Original trainer/continuation behavior intact. [Execution contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md).
+
 ### sre-toolkit
 
 Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-rate alerting, alert triage, and the Markdown documents an incident workflow runs on.
