@@ -1,5 +1,18 @@
 # EvalForge - case study
 
+## EvalForge 0.2: one family, shared cluster signs
+
+A separate exact clustered sign-flip audit for common-task model comparisons. Each supplied cluster gets one sign shared across every candidate. The default candidate has raw absolute-sum tail 1/4 but family-maximum tail 1/2. Repeated-row controls show how the declared flip unit changes the orbit without changing observed task-weighted sums. The original regression gate, paired inspector and McNemar calculation stay unchanged.
+
+102 Python tests retain all 92 prior tests; seven Node/actual-Chrome tests retain all three prior tests. Independent original-task relabeling checks 150 seeded matrices and all 729 small two-column controls. Python block aggregation/bit masks and independent browser Cartesian signs/original-task sums agree on 24 complete reports, 118 task rows, 73 cluster rows, 506 full assignments and 10,474 candidate-by-cluster contributions. Chrome checks all displayed rows, bar geometry, stale/invalid state, both exports and 320/390/1280px containment. Isolated installed API, module and console runs reproduce every report, plus all original wheel/adapter/export checks.
+
+At most four candidates, 12 common tasks and eight clusters, with integer score ticks 0..1000. Zero blocks and ties retain full multiplicity; empty evidence stays undefined. Supplied labels do not prove independent clusters, joint symmetry or randomization. Marginal symmetry is insufficient for the joint maximum. Complete-joint-null orbit arithmetic is not universal strong-FWER protection under arbitrary partial nulls, a superiority/equivalence result or a new statistical method. Original methods and seven sources are credited.
+
+[Live family inspector](https://midya8.github.io/evalforge/family.html) · [Source](https://github.com/midya8/evalforge) · [Exact contract and sources](https://github.com/midya8/evalforge/blob/main/FAMILY.md)
+
+The earlier paired-inspector release below is preserved. The new separate family audit supersedes its aggregate test counts, not its original gate or individual-pair model.
+
+
 Local-first LLM/agent evaluation with complete paired comparison evidence.
 
 - [Source](https://github.com/midya8/evalforge)
