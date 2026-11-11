@@ -1,5 +1,19 @@
 # SpecLab
 
+Exact within-proposal stopping for speculative sampling: a stopped proposal tree, full sequence/count laws, independent full-path replay and an editable BigInt inspector. Keeping a low-confidence stop token preserves the target law; a deliberately wrong censor-and-forget control gives full-sequence TV 1/8. No library accusation, trained LLM or speedup claim.
+
+## v0.4: stopping is not censoring
+
+[Open the exact stopping inspector](https://midya8.github.io/speclab/) · [Derivation and six primary sources](https://github.com/midya8/speclab/blob/main/STOPPING.md)
+
+This extension makes decisions **while drafting**, rather than choosing a complete block length before the round. The safe before-next max(q) rule and sampled-token keep-and-verify rule preserve the full target law. The deliberately wrong sample-censoring control gives `(5/8,3/8)` instead of target `(1/2,1/2)`, with complete two-position sequence TV `1/8`. That negative control is defined here, not attributed to a production library.
+
+Every stopped leaf, acceptance/residual/bonus branch and joint sequence/count outcome is retained. A separate verifier enumerates full maximum-length paths, marginalizes unused suffixes and expands decoding states forward. The browser recomputes complete edited conditional tables in BigInt, invalidates stale evidence and downloads reports for independent replay. Target-only and every fixed cap 1-3 are full-strength baselines; unused before-next distribution lookups are charged.
+
+61 Python tests retain all 47 earlier tests, with 14 new tests covering 125 binary distribution/threshold controls, seeded prefix-dependent tables, every scalar-leaf tamper and full count conservation. Four Node/Chrome tests compare full reports and exercise 12 controls, 604 stopped leaves, 1,503 verification branches, 1,950 exact sequence cells, 36 layouts, trusted edits and actual downloaded evidence. Python 3.10-3.13 and isolated installed-wheel checks retain the original greedy, stochastic and oracle gates.
+
+Supplied exact finite tables only: 1-3 tokens, horizon 1-4, max draft length 1-3. No EOS, learned predictor, entropy approximation, library default claim, measured latency or new-algorithm claim. Stopping changes operation counts, not automatically hardware speed. Earlier releases are preserved below.
+
 Speculative decoding built from scratch in pure Python: output verified identical to target-only decoding on the tested configurations, with verification rounds counted exactly.
 
 ## v0.3: exact oracle lookahead planning
