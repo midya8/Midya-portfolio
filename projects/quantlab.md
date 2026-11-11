@@ -1,6 +1,26 @@
 # QuantLab
 
-Weight-only int8 quantization from scratch, with real packed files and an independent editable browser inspector.
+QuantLab now traces activation × weight integer dot products, not only packed weights. A fixed user-declared activation range produces signed 8-bit codes; every integer product and partial accumulator stays visible. Exact rational witnesses separate weight error from activation error. The constructed default has zero weight error, yet activation rounding changes a strict row-1 winner into a zero-code tie won by row 0.
+
+## Activation integer dot products
+
+47 Python tests retain all 39 earlier tests. Independent floor/remainder rounding checks 240 seeded reports and all 519 signed half-unit controls. Python Fraction and independent browser BigInt dyadics agree on 72 complete reports with 6,848 products and all exact error strings. Actual NumPy2.2.6 int32 matmul and cumsum check every accumulator and prefix. Seven Node/actual-Chrome tests cover 168 row selections, 20 responsive views, two trusted downloads replayed natively and stale-result rejection. A fresh isolated eight-module package reproduces original training, all 52 old reports and all 72 new reports, with both new CLI entrypoints. Original QLB1 bytes and 59/60 weight-only synthetic results remain unchanged.
+
+Source PR3 passed all 16 latest feature/PR jobs and merged with previous history intact. All 53 merged files and ten deployed assets match the tested public source. Merged-main eight-job CI and Pages passed. The complete deployed browser workflow passes; all 20 unmasked local/deployed captures are pixel-identical. Desktop and phone controls, values and tables were inspected. Integer products and prefixes are exact under the checked shape bound of 2,064,512. Final output rescaling uses binary64, not integer-only end-to-end inference. Fixed activation range is supplied, not calibrated. Exact fractions describe represented-real maps, not runtime summation or unseen accuracy. Error decomposition is order-dependent arithmetic, not causal attribution. No hardware speed, RAM, learned improvement, new algorithm or ONNX/TFLite compatibility claim. Established quantization literature is credited.
+
+The default control uses W=[[127,0],[0,127]], x=[0.4,0.49], activation range127. Stored weight scales and activation scale are exactly1. Original exact-real scores are127 times the represented input values, with row1 strictly larger. Quantized activations are[0,0], so every product and accumulator is0 and row0 wins the tie. Weight error is exactly0; activation error explains the whole change. This is a constructed arithmetic control, not trained performance.
+
+For each row, a=Wx, b=W_hat*x and c=W_hat*x_hat=s_w*s_x*sum(q_w*q_x). Coordinate terms(W_hat-W)*x sum to b-a; W_hat*(x_hat-x) sum to c-b. Full rational strings and every contribution are exported. The source, weight-only and full exact-real winners remain separate from the binary64 runtime-rescale winner, with first-index tie handling. No sufficient floating-runtime certificate is claimed.
+
+The supplied range produces s_x=range/127, divided in binary64 and rounded to selected IEEE32/64 storage. Activation codes use exact represented-real x/s_x with nearest-even rounding and saturation to[-127,127]. Old weight codes retain their original binary64 quotient semantics and unchanged QLB1 file. The explicit endpoint flag tests |x|>127*stored_scale, not whether the rounded code is127. Scale metadata can move the endpoint slightly. No calibration or test-set range optimization is performed.
+
+Every accepted input has2..8 rows and1..128 features, finite nonboolean magnitudes at most1,000,000 and a positive range. Unrepresentable positive scales fail explicitly. Since each product has magnitude at most16,129, every prefix is at most n*16,129<=2,064,512, well within signed int32. Native Python uses unbounded integers; browser Numbers are exact over these bounded integers. The additional actual NumPy int32 check is arithmetic evidence, not a kernel-speed benchmark.
+
+The independent editable page has complete activation/product/prefix/error tables, exact report export and input export. Edits invalidate all prior output and disable downloads; duplicate keys and nonfinite input are rejected. Nine controls retain clipping, signed half-way ties, zeros, maximum shape, scale precision and three original trained examples. Neither original data nor candidates are filtered.
+
+[Live activation audit](https://midya8.github.io/quantlab/integer.html) · [Source PR3](https://github.com/midya8/quantlab/pull/3) · [Method and seven-source ledger](https://github.com/midya8/quantlab/blob/main/INTEGER.md)
+
+The earlier weight-only evidence follows. Its39-test/four-browser-test counts describe the retained release, not the combined suite.
 
 ## Problem
 
