@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## TokenForge 0.2: same merges, different work
+
+Optional occurrence-indexed BPE training with exact original merges and saved artifacts. Live pair sets, linked positions and a lazy heap replace repeated recounting, while the unchanged scan stays the default. An independent browser recounts every overlapping frequency, numeric tie and leftmost replacement on explicit byte rows. Structural work is not a speed, RAM or complexity result.
+
+49 Python tests retain all 40 originals; 4 Node/actual-Chrome tests check 27 full reports, 160 merge selections, 3,033 displayed pair rows, 24 responsive views and trusted exports. Independent Python and JavaScript small-row oracles each cover 2,555 settings, plus 250 native seeded multirow cases. An installed wheel reproduces original and new CLI modes outside the checkout. The original 1,227-byte corpus gives 44 identical merges and saved JSON bytes.
+
+The browser validates semantic histories, not native heap operations or Python regex parity. Overlapping pair frequency differs from replacement gain: five equal bytes have four adjacent matches but only two first-round replacements. Trace copying, sorting, set/link storage and stale heap entries cost work and memory. Established BPE/indexing/heap ideas are credited; no imported complexity theorem, production quality or global compression optimum is claimed.
+
+[Live merge inspector](https://midya8.github.io/tokenforge/) · [Source](https://github.com/midya8/tokenforge) · [Exact contract and sources](https://github.com/midya8/tokenforge/blob/main/INDEXED.md) · [Full case study](tokenforge.md)
+
 ## VectorLite0.3: actual block-bucket retrieval
 
 VectorLite now has actual reusable block buckets. An optional backend partitions fixed binary signatures into r+1 disjoint blocks, unions exact-key postings and verifies full Hamming distance before unchanged cosine/id rescoring. The original signature scan remains the default and reference.
