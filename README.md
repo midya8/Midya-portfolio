@@ -1,5 +1,27 @@
 # Midya Rahmani
 
+## GraphLab: one edge at a time can miss the change
+
+
+
+GraphLab now enumerates every original-edge deletion set up to a declared budget, recomputes all degree normalization and exposes all target logits, class changes and signed nonadditivity residuals. A four-node control keeps class 1 under every single deletion, yet a pair flips to class 0 while summing those single effects still predicts class 1. Inspect the complete census, including a stronger minimum-margin pair, instead of a hidden top-k attack list.
+
+
+
+51 Python tests retain all 42 original tests. Independent dense/bitmask checks cover 180 seeded graph/model cases; 70-digit Decimal checks all 16 counterexample sets. Python/JavaScript agree on 46 complete reports and 559 subsets. Actual NumPy checks all 559 logit vectors, max difference 8.88e-16. Five Node/Chrome tests cover 24 responsive views, 568 subset selections and six natively replayed trusted downloads. An isolated wheel checks seven module origins and all nine commands via both entrypoints. Original trained GCN/MLP/scrambled results, centroid/final controls and both figures reproduce unchanged.
+
+
+
+Source PR1 passed all 16 latest feature/PR jobs and merged with prior history intact. All 44 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed after enabling the repository's Pages source. Full deployed Chrome workflow passes. Twenty of 24 unmasked captures are byte-identical in pixels; the other four differ only on one 150-pixel table-border line, with identical layout/content. The four differences were inspected, not masked. Actual desktop and phone graphs, values and complete tables were inspected. This is a bounded binary64 fixed-model sensitivity census, not a causal effect, learned robustness improvement, new algorithm, formal real-arithmetic certificate or scale claim. Original edges only, with self loops retained. Chosen two-class margins stay separate from all-class predictions. Established GCN and formal graph-verification literature are credited.
+
+
+
+[Live joint inspector](https://midya8.github.io/graphlab/) · [Source](https://github.com/midya8/graphlab) · [Full evidence](projects/graphlab.md)
+
+
+
+Earlier GraphLab summaries below record the single-deletion release; the joint-audit counts and scope above supersede them. Original experiments remain unchanged.
+
 ## RectLab0.2: every optimum, not only the first
 
 
