@@ -1,5 +1,23 @@
 # Midya Rahmani
 
+## PlanBench 0.2: the cheap run that failed
+
+
+
+Exact finite retry-risk analysis for supplied agent DAGs. Inspect the joint plan-success, completion-time and cost law, including exhausted retries, skip cascades and shared ancestors. A cheap failed run can satisfy a budget by skipping the work: within-limit probability is not successful-completion probability. The original seeded simulator stays unchanged.
+
+
+
+39 Python tests retain all 29 originals; four Node/actual-Chrome tests compare 28 complete Fraction/BigInt reports, 260 terminal histories, 177 joint atoms, 778 selected step rows, 24 responsive views and native-replayed trusted exports. An independent Bernoulli-bit/completion-event oracle checks 65 seeded DAGs and retry boundaries. An installed wheel reproduces both new CLI entrypoints and original validate/simulate gates outside the checkout.
+
+
+
+[Live retry-risk inspector](https://midya8.github.io/planbench/) · [Source](https://github.com/midya8/planbench) · [Exact model and sources](https://github.com/midya8/planbench/blob/main/RISK.md) · [Case study](projects/planbench.md)
+
+
+
+Earlier PlanBench descriptions below cover the retained original simulator. The new risk-law evidence above supersedes its test count; default simulation stays unchanged.
+
 ## TokenForge 0.2: same merges, different work
 
 
