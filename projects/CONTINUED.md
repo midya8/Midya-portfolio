@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## PlanBench 0.2: the cheap run that failed
+
+Exact finite retry-risk analysis for supplied agent DAGs. Inspect the joint plan-success, completion-time and cost law, including exhausted retries, skip cascades and shared ancestors. A cheap failed run can satisfy a budget by skipping the work: within-limit probability is not successful-completion probability. The original seeded simulator stays unchanged.
+
+39 Python tests retain all 29 originals; four Node/actual-Chrome tests compare 28 complete Fraction/BigInt reports, 260 terminal histories, 177 joint atoms, 778 selected step rows, 24 responsive views and native-replayed trusted exports. An independent Bernoulli-bit/completion-event oracle checks 65 seeded DAGs and retry boundaries. An installed wheel reproduces both new CLI entrypoints and original validate/simulate gates outside the checkout.
+
+At most six steps and two retries each. Failure rates, fixed durations and costs are declared, not learned. Calls fail independently; unlimited workers and immediate retries exclude resource contention, backoff, timeouts and correlated outages. Exact rational laws are not production reliability, empirical confidence or a new scheduling algorithm. Original float/seed behavior is preserved, not reinterpreted as a rational seed-equivalence guarantee.
+
+[Live retry-risk inspector](https://midya8.github.io/planbench/) · [Source](https://github.com/midya8/planbench) · [Exact model and sources](https://github.com/midya8/planbench/blob/main/RISK.md) · [Full case study](planbench.md)
+
 ## TokenForge 0.2: same merges, different work
 
 Optional occurrence-indexed BPE training with exact original merges and saved artifacts. Live pair sets, linked positions and a lazy heap replace repeated recounting, while the unchanged scan stays the default. An independent browser recounts every overlapping frequency, numeric tie and leftmost replacement on explicit byte rows. Structural work is not a speed, RAM or complexity result.
