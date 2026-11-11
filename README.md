@@ -1,5 +1,17 @@
 # Midya Rahmani
 
+## RetrievalBench: every ranking is a vote
+
+Exact weighted rank fusion, source prefixes and repeated votes are now inspectable end to end. An opt-in fuse-search command runs the original exhaustive BM25 index on explicitly supplied query variants, then fuses admitted prefixes using standard reciprocal rank fusion. Source scores never enter fusion; all original BM25 search, evaluation and audit commands retain their behavior.
+
+80 Python tests retain all 68 existing tests unchanged. Seven Node/actual-Chrome tests retain all three existing tests. Independent Python Fraction and source-first BigInt arithmetic reproduce 230 complete reports: 2,006 candidate rows, 9,674 candidate/source contribution cells, 6,416 raw entries and 16 actual original-BM25 query-variant pipelines. Native controls include 432 exhaustive permutation/depth/constant comparisons, 200 conservation/order/weight-scaling controls and 100 random actual-BM25 pipeline comparisons. Installed-wheel checks verify nine module origins, every report/pipeline, both new CLI commands and invalid-output preservation.
+
+Every missing versus beyond-depth rank, zero-weight candidate, duplicate ranking, exact fraction and inside/outside cutoff gap stays visible. Final k is separate from source depth. Exact score ties use printable ASCII document-id order, and zero-score candidates remain eligible. Duplicate sources add influence, not independent evidence. The browser replays supplied rankings exactly; it does not claim exact cross-language BM25 logarithms. Standard RRF is credited to Cormack, Clarke and Buettcher, SIGIR 2009. No new method, semantic-relevance improvement, calibrated confidence, speed, causal effect or vendor parity is claimed.
+
+[Live exact fusion inspector](https://midya8.github.io/retrievalbench/fusion.html) · [Source and CLI](https://github.com/midya8/retrievalbench) · [Contract, bounds and inspected sources](https://github.com/midya8/retrievalbench/blob/main/FUSION.md)
+
+[Full case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/retrievalbench.md)
+
 ## RAGLine: a zero can win
 
 An opt-in fixed-corpus signed-vector postings backend runs the actual retrieval loop. An unvisited, implicit zero can outrank a negative match; shared-bin products can cancel to zero. Complete raw-score stable ranking stays intact before slicing and six-decimal score display. The original scan remains the default, with unchanged extraction, citations and lexical grounding.
