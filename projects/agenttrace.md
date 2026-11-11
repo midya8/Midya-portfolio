@@ -1,5 +1,29 @@
 # AgentTrace - case study
 
+## AgentTrace 0.2: keep the value, respect the overlap
+
+A separate exact fixed-interval retention policy under a supplied overlap cap. With one lane, two touching spans worth 6 each beat one enclosing span worth 9. Native integer min-cost flow exposes every edge, flow, canonical potential and residual reduced cost, with a matching primal/dual bound and exact zero gap. The original trace validator, analyzer, timing inspector and gates stay unchanged.
+
+64 Python tests retain all 57 prior tests; seven Node/actual-Chrome tests retain all three prior tests. Independent full-subset/unit-cell references check 250 seeded inputs at all five capacities; 120 larger controls check feasibility and certificates. Python Bellman-Ford successive shortest paths and independent browser subset enumeration/Floyd-Warshall agree on 24 full reports, 113 interval rows, 124 segments, 120 frontier entries, 222 network edges and 241 residual arcs. Chrome checks every displayed row, timeline geometry, stale/invalid state, 320/390/1280px containment and two trusted exports replayed through native CLI. Separate isolated API/module/console and original eleven-module wheel checks pass.
+
+At most 12 supplied intervals and cap 0..4, with integer endpoints and penalties. Half-open touching spans share a hypothetical lane; zero-length points consume no cap by explicit convention. Primary penalty ties use the smallest retained input-order bitmask, not all primary optima. No trace deletion, inferred real workers, dependency-safe cancellation, counterfactual duration, measured savings or quality claim. Established fixed-interval flow method with credited sources, original implementation and synthetic fixtures.
+
+[Live policy inspector](https://midya8.github.io/agenttrace/capacity.html) · [Source](https://github.com/midya8/agenttrace) · [Exact contract and sources](https://github.com/midya8/agenttrace/blob/main/CAPACITY.md)
+
+### Reproduce the declared policy
+
+```sh
+python -m agenttrace.capacity_cli --input examples/capacity.json
+bash tools/capacity_wheel_smoke.sh
+```
+
+The default keeps penalty 12 and drops penalty 9 at cap 1; cap 2 retains all three positive-duration spans. Positive-penalty points are fixed optimal additions outside the flow network, including at cap 0. The inspector retains the original input, all five capacity-frontier choices, feasible lanes and every certificate row. No real trace record changes.
+
+## Retained timing audit and original analyzer
+
+Earlier counts below describe the unchanged prior version; the new 64-test suite retains all 57 tests.
+
+
 Local-first validation, analysis, and HTML, JUnit XML, Markdown and SARIF reporting for AI agent execution traces: read JSONL traces, check their structure, summarize every run, detect repeated tool/action loops, track failures, latency, tokens and cost, enforce CI-friendly gates, and render a standalone HTML timeline. Standard library only, CLI, 57 unit tests (all original 33 retained) with CI across Python 3.10-3.13.
 
 - Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
