@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## SubgameLab: a threat is not a credible plan
+
+Exact finite sequential multiagent analysis separates a root-stable outcome from a credible contingent plan. The default has two pure Nash plans but only one subgame-perfect plan. A same-player control needs a joint two-node change to improve, while a chance-zero branch still carries a subgame obligation. Inspect every full-player alternative, continuation payoff, reach probability and backward-induction tie.
+
+14 Python tests include 2,916 exhaustive two-decision games. Python/BigInt agree on 65 complete reports, 1,233 profiles and 48,250 alternatives; both engines reject 317 primitive forgeries. A separate leaf-path checker reconstructs every report. Actual Nashpy 0.0.43 checks 533 input-built subtree matrices with a documented numerical-tolerance caveat. Outside-checkout wheel reproduction and 40 deployed Chrome views with 20 trusted downloads pass.
+
+Source PR1 passed all 12 feature/PR jobs and merged with history intact. Pages deployment passed; all 27 merged source files and five deployed assets match the tested source. All 48 unmasked deployed captures match local pixels. Merged-main CI passed. Deployed desktop/mobile pixels were inspected. Classical theory and existing game-theory software are credited; no mixed-equilibrium, formal-proof, new-algorithm or real-agent-strength claim.
+
+[Live inspector](https://midya8.github.io/subgamelab/) · [Source](https://github.com/midya8/subgamelab) · [Case study](subgamelab.md)
+
 ## CompileLab: one function, many shapes
 
 Exact finite Boolean knowledge compilation makes every reduced ordered decision graph inspectable. Two paired equalities keep the same four full models while their ordinary ROBDD uses 6 to 9 nonterminals across all 24 orders. Projection is a different operation: an OR control has three full models but two retained assignments, with unequal hidden-extension fibers. Inspect every graph path, reduction decision, skipped-variable weight factor and complete extension witness.
