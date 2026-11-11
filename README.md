@@ -796,24 +796,25 @@ Knowledge distillation built from scratch in pure Python: a teacher trained on a
 
 ### MoeLab
 
-A small pure-Python mixture-of-experts model with separate inspectors for routing
-boundaries and finite batch capacity dispatch. The original sparse trainer,
-dense baseline, frozen models, 340 data rows and measured results stay intact.
+A pure-Python mixture-of-experts model with exact gate-table regret, finite
+capacity dispatch and routing-boundary inspectors. Original training, frozen
+models, 340 data rows and measured results stay intact.
 
-- The route inspector separates exact affine cells and ties from rounded
-  predictions. It shows retained gate probabilities, one-sided limits, signed
-  jumps, fixed-branch derivatives and three different balance statistics.
-- The capacity inspector first maximizes dispatched tokens, then retained gate
-  mass. It keeps every routing optimum, every capacity-state edge and Hall
-  bottleneck, with an independent exhaustive verifier. Supplied gate mass is
-  not task quality: equally optimal routes can have scalar-update MSE 0 or 25.
-- 53 Python and nine Node/Chrome tests, plus both installed-wheel checks, retain
-  all earlier controls. Original aux MSE is 0.0303 versus dense 0.1853; no-aux
-  does better at 0.0015. These are synthetic fixture results, not generalization,
-  causal-mechanism, production-traffic or speed claims. Training derivatives
-  hold the selected branch fixed; they do not differentiate argmax.
+- Freeze a nominal capacity dispatch, declare probability bounds, then find an
+  attaining worst-regret table and challenger. Exact row primal/dual witnesses
+  and every capacity-state edge are independently verified by vertex and
+  assignment enumeration. The browser has its own BigInt vertex engine.
+- One-table regret is `1/10` on a control whose separate extrema give `1/5`.
+  A forced-route control has zero regret despite that positive bound. Supplied
+  bounds are not calibrated model uncertainty or a task-quality guarantee.
+- Capacity dispatch keeps every optimum and Hall bottleneck; equal routing
+  optima can have scalar-update MSE 0 or 25. Exact routing cells/ties remain
+  separate from rounded predictions and fixed-branch derivatives.
+- 72 Python and 14 Node/Chrome tests, plus three installed-wheel checks, retain
+  all earlier controls. Aux MSE 0.0303 versus dense 0.1853 and stronger no-aux
+  MSE 0.0015 remain synthetic results, not production or speed claims.
 
-[Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab) · [Case study](projects/moelab.md)
+[Gate regret](https://midya8.github.io/moelab/gate.html) · [Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab) · [Case study](projects/moelab.md)
 
 ### AlignLab
 
