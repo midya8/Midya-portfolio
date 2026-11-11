@@ -1,5 +1,31 @@
 # Midya Rahmani
 
+## RectLab0.2: every optimum, not only the first
+
+
+
+RectLab0.2 makes every optimal factor set accessible by exact lexicographic index, not only the first. Inspect each factor's complete inclusion count and mandatory/optional/never status in unrestricted covers, maximal-only covers and disjoint partitions. In the default, R12 appears in 40/68 unrestricted optima versus 9/13 maximal-only optima; R0 appears in 1/68 and is ineligible under maximal-only restriction. A unique-cover control instead has three mandatory factors.
+
+
+
+18 Python tests independently enumerate every optimum of all three families on all 512 binary 3×3 matrices and nine developed controls. Python/BigInt agree on 64 complete reports; all 170 small-control primitive forgeries fail per engine. The independent checker uses forced-factor inclusion-exclusion/residual partition recursion, not producer optimal-prefix/suffix propagation. Actual Chrome checks all 130 developed optimal sets at four widths: 520 set views, 2,988 membership rows, trusted rank controls and 18 independently checked downloads. An isolated six-module wheel adds 54 select/rank pairs. The 159 actual SciPy MILP objectives remain supplemental numerical evidence, not membership/count/rank proof.
+
+
+
+Source PR2 passed all 10 latest feature/PR jobs and merged with previous history intact. All 30 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed; deployed native Chrome passes, and all 40 unmasked local/live captures are pixel-identical. Schema 2 adds the complete census and rejects old schema 1 certificates until regenerated from input. Certificates retain canonical index 0 regardless of the inspected view; indices reproduce selections without exporting a different report. Counts concern distinct unordered optimal factor sets, not learned likelihoods. Established counting/ranking theory is credited; no random sampler, new mathematics or scale claim.
+
+
+
+[Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Full evidence](projects/rectlab.md)
+
+
+
+### Previous release evidence: RectLab0.1
+
+
+
+The block below records the earlier schema 1 release. Version 0.2 evidence above supersedes its counts and schema.
+
 ## RectLab: a cover is not a partition
 
 
