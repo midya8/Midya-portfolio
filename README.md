@@ -1,5 +1,23 @@
 # Midya Rahmani
 
+## RectLab: a cover is not a partition
+
+
+
+Exact finite Boolean factorization separates overlapping covers, disjoint partitions and fooling-set lower bounds. A developed matrix needs four factors despite a largest fooling set of three. Another has Boolean rank three, arithmetic rank four and minimum partition size four. Inspect exact optimum counts, reconstructed B/C factors, overlap multiplicities and every subset audit.
+
+
+
+12 Python tests include all 512 binary 3×3 matrices. Python/BigInt agree on 64 complete reports, 964 rectangles and 24,575 fooling-subset audits; both engines reject all 140 small-control primitive forgeries. A separate inclusion-exclusion/minor checker reconstructs each report. Actual SciPy 1.15.3 checks 159 input-built MILP models with a numerical-tolerance caveat. Clean installed-wheel reproduction and 36 native Chrome views with 18 independently checked trusted downloads pass.
+
+
+
+Source PR1 passed all 10 latest feature/PR jobs and merged with history intact. All 28 merged source files match the tested source. Merged-main CI and Pages passed. Five live assets match merged source; the complete deployed Chrome workflow passes, and all 36 unmasked captures match local pixels. Actual desktop, phone and narrow layouts were inspected. Classical Boolean factorization and existing software are credited. This is a bounded evidence interface, not learned/noisy factorization, a scalable solver or new mathematics.
+
+
+
+[Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Full evidence](projects/rectlab.md)
+
 ## SubgameLab: a threat is not a credible plan
 
 
