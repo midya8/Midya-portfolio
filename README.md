@@ -799,6 +799,10 @@ Knowledge distillation built from scratch in pure Python: a teacher trained on a
 
 ### MoeLab
 
+The batch decides: an exact-rational capacity allocator retains every optimal dispatch, capacity-state witness, assignment count and eligibility bottleneck. Four full-strength greedy controls expose confidence-priority `51/100` versus global `49/50` gate mass; another tie has attained scalar-update MSE **0 to 25** within the same routing optimum. Independent exhaustive native replay and a separate BigInt engine check all leaves. 53 Python/nine Node tests, 14 controls, 98 real UI dispatches and both installed-wheel gates. Seven tokens/four experts, supplied gates, no new training, quality or speed claim. [Exact capacity inspector](https://midya8.github.io/moelab/capacity.html).
+
+Earlier routing-seam audit, preserved:
+
 Mixture-of-experts from scratch, now with an [interactive route-boundary inspector](https://midya8.github.io/moelab/). Independent Python Fraction and browser BigInt arithmetic find exact affine cells and point ties, with retained-probability outputs, one-sided limits, jumps, zero-jump transitions, triple-tie point values and fixed-branch derivatives. Actual rounded inference remains separate from mathematical geometry.
 
 - Original aux/no-aux training, initialization, dense baseline and all 340 data rows retained. Measured aux MSE 0.0303 vs dense 0.1853 (136 vs 145 parameters), purity 1.0000 and equal usage shares are descriptive fixture results, not causal/generalization claims. Soft MSE remains 0.6291. No-aux MSE is 0.0014970307791088836 (0.0015), correcting stale 0.0010 prose without retraining changes.

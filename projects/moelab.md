@@ -1,4 +1,20 @@
-# MoeLab: mixture-of-experts from scratch, routing measured
+# MoeLab: the batch decides
+
+Exact finite capacity dispatch for supplied mixture-of-experts gate tables retains the entire optimal assignment family, not just one greedy route. Every capacity-state edge, optimal count, Hall bottleneck and attainable scalar-update error extreme is independently replayed; original sparse training and routing-seam audits remain intact.
+
+## The batch decides: capacity is not independent routing
+
+[Exact capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Proof, schema, sources and limits](https://github.com/midya8/moelab/blob/main/CAPACITY.md)
+
+The objective is explicit: maximize dispatched tokens first, then the sum of their original gate probabilities. Each token can receive one eligible expert or skip its expert update; the token is not deleted. Capacities and eligibility are supplied, including empty eligibility and eligible zero gates. Four full-strength controls compare input-order/confidence-order top-choice/drop and best-available rerouting. Confidence-first best-available keeps `51/100` gate mass on one control versus global `49/50`; on another it exactly matches the optimum. Coverage first can retain less gate mass while dispatching more tokens. No equal-load or task-quality objective is smuggled into that ordering.
+
+A Fraction dynamic program records all reachable capacity states and every feasible transition. Its root's optimal-edge DAG represents every optimal dispatch. Exact completion and marginal counts retain ties without distinguishing identical buffer slots. All token subsets expose capacitated Hall deficiencies; total spare capacity alone need not prevent skipped updates. An independent Cartesian-product verifier never imports the producer and reconstructs every report leaf, state, edge, family count and bottleneck. The independent browser BigInt engine matches the complete report, not a rounded summary.
+
+Gate mass is not task quality. One two-token control has two routing optima with the same dispatched count and gate mass but scalar-update MSE **0 and 25**. Minimum and maximum MSE over the entire routing-optimal family have attained assignment witnesses. Targets are used only for this secondary audit; they never select the routing-optimal family. Outputs are original gate times supplied scalar expert value, without post-routing gate renormalization. This is neither an end-to-end residual-stream loss nor a model-quality result.
+
+Fourteen controls include three bridges from the original frozen aux/no-aux/initialization models and the first six original training rows. Captured binary64 gate/output bytes carry provenance, reproduce numerically at `1e-12` across Python versions, and undergo explicitly labeled exact rational row normalization. All **53 Python/nine Node tests** pass, including 225 probability pairs, 1,024 eligibility/capacity cases, 125 full native/BigInt reports, tiny gates, permutations and every-leaf tampering. Actual Chrome checks 98 dispatch displays, 1,085 exact gate/support cells, all 813 capacity states, 42 layouts and two real JSON downloads with native verification. Both original and new isolated installed-wheel gates pass. At most seven tokens/four experts; no new algorithm, production router, gradients through allocation, new training gain, causal-masking guarantee or measured GPU speed. Original data, checkpoints, training, earlier route inspector and results are retained.
+
+## Earlier sparse-training and routing-seam audit, preserved
 
 A mixture-of-experts layer routes each input to one (or a few) specialized sub-models instead of running one dense network over everything. MoeLab implements the whole mechanism in dependency-free Python - router, experts, sparse training objective, load-balancing term - and treats routing behavior as something to measure, not assume.
 
