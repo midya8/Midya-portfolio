@@ -1,5 +1,23 @@
 # Midya Rahmani
 
+## StructGate0.3: the future has a weight
+
+
+
+Exact finite-horizon conditioning for a supplied first-order source and total DFA. A legal next symbol can still have an unlikely future: the default word 01 has source probability 1/20, viability-mask probability 1/2 and global conditional probability 1/10. Inspect every future mass, transition, selected-word prefix and forward marginal. The original JSON/schema inspector and all source-model paths stay unchanged.
+
+
+
+64 Python tests retain all 54 previous tests; six Node/actual-Chrome tests retain all three previous tests. Independent complete-word checks cover 60 seeded small DFAs and all source/local/global marginals. Native Fraction backward recursion and independent BigInt full forward-kernel propagation agree on 24 complete reports, 2,043 future rows, 6,550 symbol rows and 2,239 marginal rows. Chrome checks all 156 selected-word prefixes, 24 responsive views and two natively replayed trusted downloads. An isolated eleven-module install reproduces all new reports through API, module and console, while the original nine-module wheel/demo/evaluation/gates remain intact.
+
+
+
+[Live DFA conditioning inspector](https://midya8.github.io/structgate/automaton.html) · [Source](https://github.com/midya8/structgate) · [Exact contract and credited sources](https://github.com/midya8/structgate/blob/main/AUTOMATON.md) · [Case study](projects/structgate.md)
+
+
+
+Earlier StructGate descriptions below cover the retained source-model and trie release; the new DFA evidence above supersedes its test counts. Original model paths and gates stay unchanged.
+
 ## PlanBench 0.2: the cheap run that failed
 
 
