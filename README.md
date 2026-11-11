@@ -879,6 +879,9 @@ A real manually differentiated attention trainer with a fixed-weight interventio
 - Live workbench: [AttnLens](https://midya8.github.io/attnlens/)
 - Repo: [midya8/attnlens](https://github.com/midya8/attnlens) · Case study: [projects/attnlens.md](projects/attnlens.md)
 
+
+New opt-in [online causal inference](https://midya8.github.io/attnlens/online.html): actual checkpoint Q/K/V → running max/normalizer/value accumulator → head projection/residual stack → every logit, with independent dense controls, strict CLI replay and editable block size/order. 76 Python tests preserve the original 59; six Node/Chrome tests include 106 complete model and 80 standalone reports, 11,254 accumulator states, 2,112 displayed head/query views and real downloaded audits replayed natively. One observed bounded score buffer in the inference core, not a total memory or speed claim; debug traces/dense audit are deliberately quadratic. Standard prior algorithm, no GPU/FlashAttention/KV-cache/linear-attention claim. Legacy finite-sentinel edge case explicitly tested and reported. [Contract](https://github.com/midya8/attnlens/blob/main/ONLINE.md).
+
 ### EmbedKit
 
 Independent editable SGNS objective and gradient inspector: every sampled event, 1,593 coordinate finite differences, real sequential replay versus a frozen simultaneous step, and visible clamp/order effects. Twelve original pairs capture 72 actual calls; seven labeled controls expose repetition, conflicting labels, saturation and overshoot. Full 300-sentence corpus and all 32 trained vectors retained; browser recomputes all 992 cosine neighbors. 53 Python tests and four Node/actual-Chrome tests compare 19 complete reports. Original 40 tests, trainer and gates remain unchanged.

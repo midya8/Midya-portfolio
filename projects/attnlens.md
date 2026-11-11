@@ -1,6 +1,6 @@
 # AttnLens
 
-Train attention from scratch, then test what changes when its heads are switched off.
+Actual blockwise online-softmax inference on trained checkpoints: inspect running maximum, normalizer, weighted values and the full residual stack against dense causal controls. Original from-scratch training and all-head interventions remain intact. Bounded score-buffer counts are not total memory or speed claims.
 
 [Live intervention workbench](https://midya8.github.io/attnlens/) · [Source](https://github.com/midya8/attnlens) · [Exact intervention contract](https://github.com/midya8/attnlens/blob/main/INTERVENTIONS.md)
 
@@ -39,3 +39,17 @@ Native/browser comparisons use normalized tolerance 1e-10. No cross-runtime bitw
 ## Prior work
 
 Architecture, head interventions and induction-head ideas are prior work, not a new method. Six primary/official sources, including both sides of the attention-explanation debate, are linked in the [methods and attribution](https://github.com/midya8/attnlens/blob/main/INTERVENTIONS.md). This project is an educational implementation with a numerical repair, independent inference and a tested inspection surface.
+
+### 0.3: actual blockwise online-softmax inference
+
+[Online inference workbench](https://midya8.github.io/attnlens/online.html) · [Numerical and storage contract](https://github.com/midya8/attnlens/blob/main/ONLINE.md) · [Implementation PR #4](https://github.com/midya8/attnlens/pull/4)
+
+An opt-in inference backend consumes causal key blocks on the actual trained and initialized checkpoints, carrying a running maximum, normalizer and weighted-value numerator into the real head projections and residual stack. Independent JavaScript computes full Q/K/V, every accumulator transition and all vocabulary logits against a separately computed dense causal control. Block size and forward/reverse order are editable; downloaded inputs and full audits replay through the installed native CLI.
+
+The core observes one live score-list buffer, bounded by the selected block size, without constructing full score/probability matrices. This is a structural count, not process memory, bytes, speed or GPU IO. Q/K/V, head outputs and residual arrays remain. The debug trace, dense control and browser deliberately add quadratic audit storage; arithmetic work is still quadratic. Standard online normalization and blocked attention are prior work, not a new method, FlashAttention kernel, KV cache, linear attention or training backend.
+
+76 Python tests retain the original 59 byte-for-byte. Independent 80-digit Decimal controls cover 648 exhaustive signed-value/ternary-score cases and 80 seeded Q/K/V sets; all 24 block sizes and both orders are checked on all 22 original checkpoint/fixture pairs, totaling 1,056 actual original-forward comparisons. Every structural buffer/work count, causal prefix and accumulator transition is checked, with overflow/underflow, equal-score means, invalid inputs and output preservation controls.
+
+Six Node/actual-Chrome tests retain all four originals. The new native/JavaScript comparison covers 106 full-model and 80 standalone reports, 5,585 query rows, 11,254 accumulator states and 775,344 numeric fields. Actual Chrome checks 66 full native reports, every displayed tensor and state over 2,112 head/query views, 198 layouts and two real downloaded files replayed natively. Full public source, installed-wheel API/both new CLI paths, original training/intervention reproduction and deployed behavior are checked separately; screenshot comparisons do not substitute for numerical controls.
+
+Binary64 block/order changes can alter rounding or near-tied predictions. The unchanged legacy engine uses a finite `-1e30` future sentinel, which can differ from exact causal skipping for extreme bounded custom weights. That counterexample is tested, and legacy error/prediction is reported separately rather than quietly rewriting old semantics. The original native modules, tests, checkpoint, intervention JavaScript/app/CSS and training remain unchanged; the original page only gains a link.
