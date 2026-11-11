@@ -992,18 +992,16 @@ Local-first prompt linting with a full-stage baseline and CI-gate witness. Nativ
 
 ### ScratchGPT
 
-A NumPy GPT with hand-written autograd and a real Shakespeare checkpoint, now with a validated exact-continuation contract. Both complete PCG64 states, Adam memory/clock, data identity, options and runtime metadata survive restart; terminal previews do not consume evaluation randomness.
+A small NumPy GPT with exact training continuation, transformer-block recomputation during backward and cached inference that rebuilds whenever its learned-position window moves. The original 419,328-parameter Shakespeare checkpoint and default training/sampling paths stay intact.
 
-- All 13 stop boundaries reach identical complete final state in the same environment. RNG-reset and missing-moment controls change weights at all 11 interior boundaries; evaluation-only reset changes future validation history, not weights.
-- Independent scalar Adam checks 38,016 p/m/v values and independent transformer inference checks 2,592 logits. Actual Chrome inspects all 101,376 coordinate-table cells, 468 coordinate views, 72 inference views, editable contexts and two exports.
-- 70 Python tests retain all 11 original tests; three Node/Chrome tests, four Python versions and isolated installed-wheel reproduction. Original model/autograd/optimizer/data, historical checkpoint, loss records and sample preserved.
+- All 13 synthetic restart boundaries preserve complete state in the same environment. Dropped RNG/Adam-state controls show why weights alone are not enough.
+- Rematerialization uses original blocks and actual upstream derivatives. The separate scalar-autograd browser model computes full gradients; 18 native controls and both original-checkpoint block groupings are checked.
+- Cached inference compares every logit and K/V coordinate with original full forwards. Eight complete controls cover 43 steps, 685 logits and 3,256 K/V coordinates, with editable input, masks, a wrong-shift control and native-replayable downloads.
+- 158 Python and 13 Node/Chrome tests retain all old tests. Isolated installed wheels check all three paths. Local timings keep the full-context case where caching is slightly slower: 253.230 ms cached versus 251.783 ms full over 48 teacher-forced steps.
 
-The replay is a separate 1,056-parameter synthetic model. The browser recomputes arithmetic and forward inference, not gradients/training. No cross-machine determinism, text-quality, speed or novelty claim.
+Exactness is same-environment; float32/float64 comparisons use tolerances. Graph/array counts are not peak memory, and local CPU timings are not a general speed or sampled-token identity guarantee. Standard methods, no new training-quality claim.
 
-- Repo: [midya8/scratchgpt](https://github.com/midya8/scratchgpt) · [Live replay](https://midya8.github.io/scratchgpt/) · Case study: [projects/scratchgpt.md](projects/scratchgpt.md)
-
-
-New [activation rematerialization workbench](https://midya8.github.io/scratchgpt/remat.html): actual original NumPy blocks are recomputed during backward, with upstream VJPs and every input/parameter contribution checked against eager execution. Independent browser scalar autograd runs the full tiny GPT and both backward paths. 111 Python/eight Node tests retain every prior test; 18 native witnesses cover 15,184 parameter positions, 61,888 cross-runtime numeric fields and actual Chrome 106,288 table cells/1,206 coordinate views. All 419,328 historical trained-checkpoint gradients are checked for both groupings without retraining. Explicit logical-graph counts only, not RSS/peak memory/speed; deterministic dropout=0 and first-order only. Original trainer/continuation behavior intact. [Execution contract](https://github.com/midya8/scratchgpt/blob/master/REMATERIALIZATION.md).
+[Cache workbench](https://midya8.github.io/scratchgpt/cache.html) · [Source](https://github.com/midya8/scratchgpt) · [Continuation replay](https://midya8.github.io/scratchgpt/) · [Case study](projects/scratchgpt.md) · [Cache contract](https://github.com/midya8/scratchgpt/blob/master/CACHE.md)
 
 ### VisionLab
 
