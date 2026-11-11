@@ -796,13 +796,24 @@ Knowledge distillation built from scratch in pure Python: a teacher trained on a
 
 ### MoeLab
 
-Mixture-of-experts from scratch, now with an [interactive route-boundary inspector](https://midya8.github.io/moelab/). Independent Python Fraction and browser BigInt arithmetic find exact affine cells and point ties, with retained-probability outputs, one-sided limits, jumps, zero-jump transitions, triple-tie point values and fixed-branch derivatives. Actual rounded inference remains separate from mathematical geometry.
+A small pure-Python mixture-of-experts model with separate inspectors for routing
+boundaries and finite batch capacity dispatch. The original sparse trainer,
+dense baseline, frozen models, 340 data rows and measured results stay intact.
 
-- Original aux/no-aux training, initialization, dense baseline and all 340 data rows retained. Measured aux MSE 0.0303 vs dense 0.1853 (136 vs 145 parameters), purity 1.0000 and equal usage shares are descriptive fixture results, not causal/generalization claims. Soft MSE remains 0.6291. No-aux MSE is 0.0014970307791088836 (0.0015), correcting stale 0.0010 prose without retraining changes.
-- Three balance conventions are reported separately. Uniform ties give penalty one yet send every row to expert 0. Eight arithmetic controls and strict JSON exports expose limits instead of treating a low penalty as a traffic guarantee.
-- 39 Python tests and five substantive Node/actual-Chrome tests, 32 full witnesses, 80 integer geometries, 160 independent Decimal controls and installed-wheel reproduction. Full retraining uses documented 1e-11 runtime/libm tolerance; frozen rational geometry is checked exactly. No transformer, token capacity, measured serving speed or robustness certificate.
+- The route inspector separates exact affine cells and ties from rounded
+  predictions. It shows retained gate probabilities, one-sided limits, signed
+  jumps, fixed-branch derivatives and three different balance statistics.
+- The capacity inspector first maximizes dispatched tokens, then retained gate
+  mass. It keeps every routing optimum, every capacity-state edge and Hall
+  bottleneck, with an independent exhaustive verifier. Supplied gate mass is
+  not task quality: equally optimal routes can have scalar-update MSE 0 or 25.
+- 53 Python and nine Node/Chrome tests, plus both installed-wheel checks, retain
+  all earlier controls. Original aux MSE is 0.0303 versus dense 0.1853; no-aux
+  does better at 0.0015. These are synthetic fixture results, not generalization,
+  causal-mechanism, production-traffic or speed claims. Training derivatives
+  hold the selected branch fixed; they do not differentiate argmax.
 
-[Source](https://github.com/midya8/moelab) · [Case study](projects/moelab.md)
+[Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab) · [Case study](projects/moelab.md)
 
 ### AlignLab
 
