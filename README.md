@@ -639,13 +639,13 @@ Hamiltonian Monte Carlo from scratch with full rejection histories, leapfrog ene
 
 ### TransportLab
 
-Log-domain entropic optimal transport with full mass plans, explicit nonconvergence and weighted interpolation atoms. Full pushforward preserves actual endpoint marginals; barycentric means do not. Separate rounded primal/dual audits retain raw failed solves and report signed numerical gaps, marginal residuals and L1 changes. Analytic fixed-iteration plan tangents expose a nonconverged envelope-shortcut error0.007670872, checked against central differences. Zero support, covariance decomposition and exact tiny assignment remain visible. 46 tests, offline solve/assignment/push/audit/sensitivity CLI and SVGs. Not a metric, sampled trajectory, implicit-optimum gradient or certified OT bound.
+Entropic optimal transport with explicit marginal errors, full weighted interpolation atoms and separate rounded primal/dual audits. The new browser workbench differentiates raw-weight normalization and exactly N log-Sinkhorn updates, retaining actual and requested marginal tangents. One early weight edit has full objective derivative `0.010665526` versus a requested-marginal candidate `-0.019162331`; their difference is shown through the missing residual-tangent terms. Every history row, potential, plan/log-plan tangent and complete JSON remains available.
 
-- Log-sum-exp scaling avoids an entirely underflowed kernel. Full plans and row/column errors expose feasibility separately from cost and entropy.
-- Exhaustive720-permutation uniform assignment reference, independent coupling and a deliberately capped failure. No comparison of unlike regularized objectives as a ranking.
-- Numeric full-cell heatmaps retain all mass; barycentric target means are explicitly not samples or one-to-one matching.
+- Twelve editable controls include normalization null directions, a closed-form product plan, rectangular inputs, zero support and underflow. A null derivative does not imply a feasible plan.
+- 62 Python tests and six Node/actual-Chrome tests. Independent Decimal80 ordinary-kernel differences check 33 snapshots and 60 generated cases; independent browser dual numbers match native reports on 12 controls plus 80 generated cases. Installed-wheel replay preserves the earlier demo and fixed-weight sensitivity outputs.
+- Earlier failed solves, covariance decomposition and exhaustive tiny assignment references remain visible. Fixed support and bounded binary64 arithmetic only, with no adaptive-stop/rounding derivative, implicit optimum or certified bound.
 
-- Repo: [midya8/transportlab](https://github.com/midya8/transportlab) · Case study: [projects/transportlab.md](projects/transportlab.md)
+- [Browser workbench](https://midya8.github.io/transportlab/) · [Source](https://github.com/midya8/transportlab) · [Case study](projects/transportlab.md) · [Derivation](https://github.com/midya8/transportlab/blob/main/MARGINALS.md)
 
 ### FlowLab
 
