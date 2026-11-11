@@ -1,6 +1,24 @@
 # EmbedKit: inside the sampled step
 
-Train word embeddings from scratch with dependency-free Python SGNS, then inspect what one sampled step actually does in an independently implemented browser.
+EmbedKit now audits the noise behind its negatives. The unchanged sampler excludes positive context and earlier negatives, retries20 times, then returns the first eligible sorted word. Native Fraction and independent browser BigInt count exact53-bit proposal intervals and propagate every reachable bounded subset state, with finite retry versus unlimited conditional rejection on the same proposals.
+
+## Exact finite retry sampler audit
+
+61 Python tests retain all53 prior tests and40 original trainer tests. Eight Node/actual-Chrome tests retain all4 prior tests;33 complete reports agree on2,085 exact rational strings and3,682 numeric values, with maximum normalized decimal-display delta2.22e-16. Independent enumeration checks10,844 small-grid random tuples and289 unlimited-conditional ordered paths. Scripted calls exercise1,659 actual original-sampler grid boundaries plus success/retry/fallback consumption. All195 witness states,20 responsive views and2 trusted downloads are checked. A fresh10-module installed package reproduces original training/19 old step reports and all33 sampler reports through both new entrypoints.
+
+Source feature/PR/main checks and Pages deployment were verified before this showcase update. Exact probabilities assume independent uniform-grid proposals, not a true-IID claim about deterministic PRNG output or an exact fixed-seed joint law. Multi-draw audits are bounded to8 words; the unchanged32-word synthetic corpus is one draw only. Final subset TV is not ordered-sequence TV, and inclusion weights do not imply expected changing-vector SGD updates. Expected fallback events are not probability of any fallback. Undefined unlimited rejection at zero eligible mass stays undefined. No training-quality, speed, generalization or new-algorithm claim.
+
+The constructed default counts are a:1, b:1, z:1,000,000 with positive context z excluded. Under independent53-bit grid proposals and20 attempts, fallback probability is0.9987359285, selection of sorted-first a is0.9993679643 and selection of b is0.0006320357. Unlimited rejection gives about0.5 each on the same stored-threshold proposal. The tiny a/b asymmetry comes from exact grid endpoints, not an imposed equality. This is a stress case, not a natural-language benchmark.
+
+For excluded proposal mass e, the geometric factor G is the sum of e^t for t=0..A-1. Each eligible word receives its proposal mass times G; the sorted first eligible word additionally receives e^A. Expected random calls equal G. A subset-mask dynamic program sums all ordered paths reaching each subset, then applies the same state-dependent transition. It returns every state/outgoing law, exact interval counts, final inclusion, expected fallback events, expected proposals and final subset total variation. Selecting all eligible words can give final-subset TV zero even while intermediate laws differ.
+
+Stored binary64 thresholds are inputs. Count witnesses read the unchanged original closure, preserving its count^0.75 construction and rounding. Strict comparisons use exact ceil(D*threshold) endpoints, with the last word receiving residual grid mass because the last stored threshold is not tested. Repeated thresholds and zero proposal masses are supported. At e=1 finite retry returns afterA draws but unlimited rejection never returns, so the comparator is undefined, not uniform.
+
+The editable independent page supports exclusions, retry and grid counterfactuals, state/layer selection, full exact report and input exports. Edits clear prior output and disable downloads; duplicate keys, nonfinite values, infeasible draw counts and out-of-bound shapes are rejected. Bounds are2..32 words for zero/one draw, at most8 words for complete multi-draw laws,1..53 bits and1..20 attempts. Original32-word counts retain all1,658 tokens; named controls cover skew, balance, center eligibility, duplicate thresholds and zero eligible mass. Twenty-four seeded tables supplement the controls without replacing originals.
+
+[Live sampler audit](https://midya8.github.io/embedkit/sampler.html) · [Source PR3](https://github.com/midya8/embedkit/pull/3) · [Math and eight-source ledger](https://github.com/midya8/embedkit/blob/main/SAMPLER.md)
+
+The earlier sampled-step evidence follows. Its53-test/four-browser-test counts describe the retained release, not the combined61/eight suite.
 
 ## From objective to update
 
