@@ -1,5 +1,16 @@
 # Midya Rahmani
 
+## PromptGuard: an allowance is not unlimited
+
+An opt-in actual-scanner baseline limits how many equal-identity findings can be suppressed. One prior allowance suppresses one of three current occurrences; two remain reported, while the legacy set suppresses all three. Inspect exact path/severity identity, every before/after allowance, unused entry and gate decision. The original scanner patterns, v1 baseline and prior policy inspector stay unchanged.
+
+100 Python tests retain all 87 prior tests byte-for-byte; seven Node/actual-Chrome tests retain all three originals. Independent occurrence-rank references cover 4,374 exhaustive controls, 200 seeded complete native/browser reports and 162 browser duplicate-count controls. All 24 complete reports include 52 current rows, 32 prior rows, 22 quota entries, 52 legacy-control rows and 104 SVG marks. Chrome checks every displayed row, full selected record, gate/payload, stale/invalid state, 320/390/1280 containment and two trusted exports replayed through native CLI. Separate installed API/module/console reproduces all reports and actual scanner duplicate-contact gates, plus the original eight-module wheel, 27 audits, adapters and offline demo.
+
+[Live quota inspector](https://midya8.github.io/promptguard/quota.html) · [Source](https://github.com/midya8/promptguard) · [Contract, limits and credited sources](https://github.com/midya8/promptguard/blob/main/QUOTAS.md) · [Case study](projects/promptguard.md)
+
+Earlier PromptGuard descriptions below cover the unchanged scanner and original policy audit. The new 100-test suite retains their tests; suppression is not safety.
+
+
 ## AgentTrace 0.2: keep the value, respect the overlap
 
 A separate exact fixed-interval retention policy under a supplied overlap cap. With one lane, two touching spans worth 6 each beat one enclosing span worth 9. Native integer min-cost flow exposes every edge, flow, canonical potential and residual reduced cost, with a matching primal/dual bound and exact zero gap. The original trace validator, analyzer, timing inspector and gates stay unchanged.
