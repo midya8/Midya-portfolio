@@ -1,5 +1,30 @@
 # RetrievalBench
 
+## RetrievalBench: every ranking is a vote
+
+Exact weighted rank fusion, source prefixes and repeated votes are now inspectable end to end. An opt-in fuse-search command runs the original exhaustive BM25 index on explicitly supplied query variants, then fuses admitted prefixes using standard reciprocal rank fusion. Source scores never enter fusion; all original BM25 search, evaluation and audit commands retain their behavior.
+
+80 Python tests retain all 68 existing tests unchanged. Seven Node/actual-Chrome tests retain all three existing tests. Independent Python Fraction and source-first BigInt arithmetic reproduce 230 complete reports: 2,006 candidate rows, 9,674 candidate/source contribution cells, 6,416 raw entries and 16 actual original-BM25 query-variant pipelines. Native controls include 432 exhaustive permutation/depth/constant comparisons, 200 conservation/order/weight-scaling controls and 100 random actual-BM25 pipeline comparisons. Installed-wheel checks verify nine module origins, every report/pipeline, both new CLI commands and invalid-output preservation.
+
+Every missing versus beyond-depth rank, zero-weight candidate, duplicate ranking, exact fraction and inside/outside cutoff gap stays visible. Final k is separate from source depth. Exact score ties use printable ASCII document-id order, and zero-score candidates remain eligible. Duplicate sources add influence, not independent evidence. The browser replays supplied rankings exactly; it does not claim exact cross-language BM25 logarithms. Standard RRF is credited to Cormack, Clarke and Buettcher, SIGIR 2009. No new method, semantic-relevance improvement, calibrated confidence, speed, causal effect or vendor parity is claimed.
+
+[Live exact fusion inspector](https://midya8.github.io/retrievalbench/fusion.html) · [Source and CLI](https://github.com/midya8/retrievalbench) · [Contract, bounds and inspected sources](https://github.com/midya8/retrievalbench/blob/main/FUSION.md)
+
+### Reproduce the real query-variant pipeline
+
+```bash
+python -m retrievalbench fuse --spec examples/fusion.json --json fusion.json
+python -m retrievalbench fuse-search --corpus examples/data/corpus.jsonl \
+  --query 'bread yeast' --query 'fermentation' --depth 3 -k 3 --json fused.json
+python -m unittest discover -s tests -v
+npm test
+bash tools/wheel_smoke.sh
+```
+
+The retained BM25 inspector and its original judgments, metric definitions and limitations are described below. These are development controls, not a relevance benchmark.
+
+---
+
 A cutoff is a policy. Offline BM25 retrieval evaluation with complete arithmetic and an independent browser inspector.
 
 [Open the inspector](https://midya8.github.io/retrievalbench/) · [Source and CLI](https://github.com/midya8/retrievalbench) · [Evidence contract](https://github.com/midya8/retrievalbench/blob/main/EVIDENCE.md)
