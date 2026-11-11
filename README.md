@@ -407,6 +407,10 @@ Offline CTC target marginalization with log-space forward/backward, full state/s
 
 ### PPOlab
 
+Clipping is not a policy box. An exact-rational categorical optimizer exposes every optimal policy, supporting-line bounds, independent piecewise-cell replay, all vertices and attainable TV extrema. A centered control has clipped optimum 9/25 versus hard-box optimum 1/5, and a positive optimal family with unbounded old-to-new KL. 64 Python/seven Node tests, 351 exhaustive reports, 135 real UI states and installed replay. Single-state full expectations only, not new training or runtime claims. [Exact policy-face inspector](https://midya8.github.io/ppolab/clip.html).
+
+Earlier boundary audit, preserved:
+
 From-scratch NumPy PPO with a corrected internal-timeout collector, separate bootstrap/trace masks, full GAE credit matrices and sign-dependent clip-gradient audits. Independent scalar JavaScript evaluates all 4,675 checkpoint parameters and real CartPole physics. Fifty Python tests retain all 18 original tests; four Node/actual-Chrome tests compare 26 full reports/12,408 numbers and all 14,871 original one-step observations. New free-running paths can diverge: the reference run differs on 377 actions despite matching all 30 return lengths. Original checkpoint/results retained; no training-improvement, speed, trajectory-equivalence, KL-bound or universal-solve claim. [Live boundary and policy inspector](https://midya8.github.io/ppolab/) · [Equations, bug and limits](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md). [Case study](projects/ppolab.md).
 
 ### TagLab
