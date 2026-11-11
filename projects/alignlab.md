@@ -1,39 +1,56 @@
-# AlignLab: know what you optimized
+# AlignLab: what the comparisons leave open
 
-A policy can solve its reward objective and still lose utility. AlignLab attaches the standard finite-action Gibbs optimum and a KL-budget frontier to a preference-based alignment experiment, so optimizer error and reward quality are separate questions.
+A reward optimizer can do its job while the preference data leaves its target open. AlignLab makes those two questions visible. The new inspector shows which reward ratios a comparison graph fixes, which policies still fit it, and when the supplied probabilities contradict a scalar reward model.
 
-[Live inspector](https://midya8.github.io/alignlab/) · [Source](https://github.com/midya8/alignlab) · [Equations, schema and limits](https://github.com/midya8/alignlab/blob/main/FRONTIER.md) · [Implementation PR](https://github.com/midya8/alignlab/pull/2)
+[Preference inspector](https://midya8.github.io/alignlab/identification.html) · [Original optimizer inspector](https://midya8.github.io/alignlab/) · [Source](https://github.com/midya8/alignlab) · [PR #3](https://github.com/midya8/alignlab/pull/3)
 
-## The original experiment stays attached
+## Same preferences, different policies
 
-The dependency-free Python experiment fits a linear Bradley-Terry reward model on 800 noisy preference pairs over 120 synthetic response feature vectors. It evaluates 150 held-out pairs from that same response pool, not new tasks or new styles. A second model fits 800 utility-independent pairs. Latent utility is available only because this synthetic fixture defines it; it is not an input to reward training or optimization.
+Take four items with a uniform reference policy. We know that A beats B with probability 2/3 and C beats D with probability 2/3. That fixes the merit ratios within each pair, but says nothing about how the two pairs compare.
 
-The original softmax policy ascends `J = E_p[r] - beta KL(p||q)` over six styles. All original training, data, evaluation, gradients, gate thresholds and 15 original tests remain unchanged. The inspector retains all 201 states of the learned, no-KL and noise-control runs plus two explicitly additional stiff-KL controls: 1,005 states, no best-state replacement.
+Give each pair an independent merit scale between 1 and 4. Every scale choice preserves both observed preferences. Yet the first pair's policy mass can range from 1/5 to 4/5. With supplied utility (1,0,0,0), expected utility ranges from 2/15 to 8/15. These are exact fractions, not estimates.
 
-## A concrete separation between questions
+Adding the exact population comparison p(B > C)=1/2 joins the graph and fixes the policy up to a common scale. One noisy win would not do that. The inspector takes population probabilities, not finite win counts.
 
-For positive beta and fixed finite support, `p*_i ∝ q_i exp(r_i/beta)` and `J(p*) - J(p) = beta KL(p||p*)`. The inspector shows every action's reference/current/optimal probability, the gap identity, 13 beta samples, 33 budget samples and full trajectories. Optional supplied utilities are shown separately, never used to choose the optimum.
+## What it computes
 
-The original noise-control run finishes with an objective gap about 4e-15, yet synthetic utility is 1.8548647, below the reference's 2.0375. Its optimizer is doing its job for a poor reward. The original learned-reward run reaches utility 4.5704247; its finite-policy optimum has utility about 4.5768334. These are descriptive results of one seeded six-action fixture, not causal attribution, generalization or deployment evidence.
+The Python producer propagates Bradley-Terry merit ratios from one anchor per connected component. It then checks every edge. Contradictory inputs return a closed cycle whose odds product differs from 1, with no policy family or feasible scale dimension.
 
-For a supplied KL budget the implementation brackets and bisects a dimensionless reward tilt. It exposes computed KL/tilt brackets, a numerical dual reward value and a numerical duality gap. At zero beta, reward ties are weighted by the reference; zero-reference actions remain outside the finite-KL domain. Below-resolution budgets and unresolved near ties are explicit statuses and gaps in the plotted frontier, not silently declared optima.
+For consistent inputs, the beta-1 Gibbs policy is proportional to reference probability times merit. A common merit scale cancels; separate component scales change component mass. The conditional policy within each component stays fixed.
 
-Two additional beta-50 runs keep their entire large-step failure and smaller-step trajectory visible. Their final objective gaps are about 89.859927 and 2.87e-9. They do not replace the original three runs or identify a general optimizer mechanism.
+The inspector enumerates every corner of the supplied scale box. It shows all action and component mass ranges, every item-pair probability range, supplied-utility extremes, and the complete policies that attain them. Duplicate policies and all ties are kept. With at most six components, there are at most 64 corners.
 
-## Reproduced numbers, not repaired training
+This enumeration is enough for the reported objectives. Hold all but one scale fixed and the objective has the form (a*s+b)/(c*s+d), with a positive denominator. Its derivative cannot change sign, so moving that scale to an endpoint cannot worsen an extremum. Repeat for each coordinate. The proof and full schema are in [IDENTIFICATION.md](https://github.com/midya8/alignlab/blob/main/IDENTIFICATION.md).
 
-Earlier published prose was stale. The unchanged current original code gives learned reward 3.4641183 to 6.2462098, synthetic utility 2.0375 to 4.5704247, noise-control utility 1.8548647, KL 1.0750099 and entropy .7167496. The no-KL run gives KL 1.7510340 and entropy .0407255. Older prose said utility 4.6154, control 2.5800 and KL 1.0216; those are not regenerated results. The repository preserves a full old/current table and corrects the prose rather than tuning training to it.
+## Checks that do not just trust the producer
 
-## Independent implementations and installed reproduction
+A separate Python reference enumerates every simple path and rebuilds the whole report. The browser has its own BigInt fractions, JSON parser, path search and corner enumeration. Neither calls the producer to get an answer.
 
-Python and JavaScript independently evaluate 35 complete report witnesses and all 1,005 trajectory audits. Tests include independent 80-digit Decimal Gibbs optima, 100-digit near-reference divergence terms, random gap identities, finite simplex-grid lower-bound controls, ties, underflow, support restrictions, subnormal references and unresolved near ties.
+- 12 full controls retain 107 corner records. They cover inconsistent and redundant cycles, isolated items, no edges, fixed bounds, constant utility, skew references, tiny positive 2^-128 reference mass and all 64 corners.
+- 65 Python tests retain all 47 earlier tests. New checks cover every report-leaf edit, every four-item support graph, 100 consistent random graphs and 100 arbitrary-odds graphs.
+- Eight Node/actual-Chrome tests retain all four earlier tests. They compare every report field, select all 107 corners, check 36 layouts, invalidate stale results after a real edit and verify two actual JSON downloads.
+- An installed wheel runs every audit/verify round trip outside the checkout. It also reconstructs the old learned fixture, original gates, 35 floating witnesses and all 1,005 trajectory states.
 
-47 Python tests run across Python 3.10-3.13, including all 15 original tests unchanged. Four substantive Node/actual-Chrome tests check all 201 learned UI states, all five runs, ten arithmetic controls, 64-action Unicode-label bounds, strict JSON, invalid-state non-revival, exports, clipboard outcomes, keyboard operation and 320/390/1280 layouts. Full frozen archive and browser-data regeneration is checked, not just selected totals.
+The bounds are assumptions, not confidence intervals. Utility is a supplied evaluation axis, not inferred human utility. Beta is fixed at 1 to keep the arithmetic rational. Reference probabilities must be positive. General beta and finite-sample MLE fitting belong to different contracts. In particular, connected undirected comparison support identifies population merit ratios; it does not guarantee a finite MLE from a directed win graph.
 
-An isolated installed wheel imports nine modules and runs all four CLI commands outside the checkout. It retrains both original reward models and reconstructs all original vectors, pairs, weights, scores, report and all 1,005 states. Complete retraining uses 1e-11 abs/rel for runtime/libm differences; frozen report/audit comparisons use 1e-12. Same-runtime reconstruction equals the unchanged original report exactly. No original tolerance or gate is weakened.
+## The original experiment is still here
 
-## Limits and attribution
+The original dependency-free experiment fits a linear Bradley-Terry reward model on 800 noisy pairs over 120 synthetic response feature vectors. It evaluates 150 held-out pairs from the same pool, not new tasks or styles. A second model fits 800 utility-independent pairs. The fixture supplies latent utility, but training and optimization cannot see it.
 
-The standard Gibbs variational formula is tractable because every action is enumerated. This is not DPO training, PPO, a language model, a scalable substitute for sequence optimization, or a new alignment algorithm. The browser shows finite sampled curves, not the entire continuum. Stable shifted arithmetic, supported log probabilities and a cancellation-aware KL formula reduce numerical problems but do not certify rounded-device arithmetic. Computed brackets and dual values are not outward-rounded certificates.
+A categorical policy over six styles ascends reward minus beta times KL to its reference. All original training, data, gradients, gates and 15 original tests are unchanged. The original learned, no-KL and noise-control runs keep all 201 steps. Two additional stiff-KL controls bring the total to 1,005 states; the large-step failure is kept, not replaced with a better result.
 
-Methods are attributed in [FRONTIER.md](https://github.com/midya8/alignlab/blob/main/FRONTIER.md), including the [DPO reward-policy mapping](https://arxiv.org/html/2305.18290), [finite Gibbs formula and reference-weighted tie limit](https://lihanqing1997.github.io/notes/reinforcement-learning/entropy-regularized-reinforcement-learning/) and [numerical analysis of log-sum-exp/softmax](https://academic.oup.com/imajna/article/41/4/2311/5893596). Synthetic utility is not a measured human outcome; reward optimality alone proves no safety or generalization claim.
+The noise-control policy ends about 4e-15 from its reward optimum, yet its synthetic utility is 1.8548647, below the reference's 2.0375. The learned-reward policy reaches 4.5704247; its finite-policy optimum is about 4.5768334. These are results of one seeded fixture, not causal evidence or a generalization claim.
+
+The older optimizer inspector shows every action's reference, current and optimal probability, the standard gap identity, 13 beta samples, 33 budget samples and full trajectories. Supplied utility is shown separately. Tiny budgets and unresolved near ties remain explicit failures to resolve, not claimed optima. The beta-50 controls keep final gaps of about 89.859927 and 2.87e-9 without claiming that this pair of runs explains a general optimizer mechanism.
+
+## Corrected prose, unchanged training
+
+Earlier README numbers were stale. The original code gives learned reward 3.4641183 to 6.2462098, utility 2.0375 to 4.5704247, noise-control utility 1.8548647, KL 1.0750099 and entropy .7167496. Without KL, the final KL is 1.7510340 and entropy .0407255. The older prose had utility 4.6154, control utility 2.5800 and KL 1.0216. The [old/current table](https://github.com/midya8/alignlab/blob/main/FRONTIER.md) keeps the discrepancy visible. Training was not tuned to match the prose.
+
+The earlier 47 Python tests and four Node/Chrome tests remain in the current suite. They cover 35 full floating reports, all 1,005 trajectory audits, independent 80/100-digit controls, ties, underflow, reference support and unresolved near ties. Installed retraining uses 1e-11 abs/rel tolerance for runtime/libm differences; frozen report and audit checks use 1e-12. The original tolerances and gates are unchanged.
+
+## What not to conclude
+
+This is a finite synthetic lab, not DPO training, PPO, a language model or a safety certificate. Exact preference geometry is separate from the floating optimizer calculations. Numerical brackets and dual values in the older inspector are not outward-rounded certificates. Sampled curves are not the whole continuum.
+
+Bradley-Terry identification and the Gibbs mapping are standard results, not new methods. Six primary papers and official documentation are cited with the derivations in [IDENTIFICATION.md](https://github.com/midya8/alignlab/blob/main/IDENTIFICATION.md). The older [FRONTIER.md](https://github.com/midya8/alignlab/blob/main/FRONTIER.md) also links the DPO mapping, reference-weighted tie limit and softmax numerical analysis. A solved reward objective alone says nothing about safety or preferences beyond the supplied comparisons.

@@ -806,14 +806,14 @@ Mixture-of-experts from scratch, now with an [interactive route-boundary inspect
 
 ### AlignLab
 
-Finite-policy Gibbs optimum and KL-budget inspector attached to a dependency-free Bradley-Terry preference experiment. Independent native/browser implementations separate optimization error from reward quality: the original noise-control policy is essentially reward-optimal and still loses synthetic utility.
+What do the comparisons leave open? The preference inspector fixes observed Bradley-Terry ratios and shows how disconnected component scales can still change the Gibbs policy. In the four-item control, both observed probabilities stay at 2/3 while supplied utility ranges from 2/15 to 8/15.
 
-- Retains all original data, reward fits, original three trajectories and 15 original tests. Two additional stiff-KL controls keep their large-step failure visible; all 1,005 states remain available.
-- Shows the standard objective-gap identity, reference-weighted tied maxima, finite-support restrictions and a bracketed KL frontier. Tiny budgets and unresolved near ties are explicit, not false optimum claims. Utilities are evaluation-only.
-- Corrects stale published numbers without changing training: utility 2.0375 to 4.5704247, noise control 1.8548647, KL 1.0750099. The full old/current table remains in the source.
-- 47 Python tests across 3.10-3.13, four substantive Node/actual-Chrome tests, 35 full report witnesses, independent Decimal controls and complete installed-wheel reconstruction. Finite synthetic arithmetic, not a new alignment method, causal result or safety/generalization certificate.
+- Exact fractions, contradictory cycle witnesses and every assumed scale-box corner. Bounds are assumptions, not confidence intervals; inputs are population probabilities, not win counts.
+- Separate Python propagation/path evaluators and a BigInt browser engine agree on 12 full reports and 107 corners. 65 Python and eight Node/Chrome tests, real downloads, strict editing and installed replay.
+- The original reward training, all 1,005 recorded states and the floating optimizer frontier remain intact. Its noise-control policy is nearly reward-optimal but still loses synthetic utility. Stale prose was corrected, not repaired by tuning training.
+- Finite synthetic controls only. No new alignment algorithm, MLE-fitting, safety or generalization claim.
 
-- Repo: [midya8/alignlab](https://github.com/midya8/alignlab) · [Live inspector](https://midya8.github.io/alignlab/) · Case study: [projects/alignlab.md](projects/alignlab.md)
+[Preference inspector](https://midya8.github.io/alignlab/identification.html) · [Optimizer inspector](https://midya8.github.io/alignlab/) · [Source](https://github.com/midya8/alignlab) · [Case study](projects/alignlab.md)
 
 
 ### LoRALab
