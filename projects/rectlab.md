@@ -1,14 +1,28 @@
 # RectLab: a cover is not a partition
 
-**A perfect reconstruction does not settle how its factors should be counted.** This finite Boolean factorization inspector separates minimum overlapping covers, minimum disjoint partitions, maximal-only factor restrictions and fooling-set lower bounds. Inspect the factors, not only the headline rank.
+**A perfect reconstruction does not settle how its factors should be counted, or which factors are mandatory.** This finite Boolean factorization inspector separates minimum overlapping covers, minimum disjoint partitions, maximal-only factor restrictions and fooling-set lower bounds. Inspect the factors, not only the headline rank.
 
 [Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Reviewed implementation](https://github.com/midya8/rectlab/pull/1) · [Exact method](https://github.com/midya8/rectlab/blob/main/docs/method.md)
+
+## Version 0.2: every optimum, not only the first
+
+The launch version computed exact counts but displayed only the first cover in each family. Version 0.2 adds random access by canonical zero-based decimal index, plus every factor's exact optimum inclusion count. The certificate retains the first witness for deterministic replay while the UI can inspect any index, with native previous/next and direct entry. This is access by index, not a random sampler.
+
+The default still has 68 unrestricted optimal covers. R0 appears in exactly one, while R12 appears in 40. Restricting to maximal factors makes R0 ineligible and changes R12's count to nine out of thirteen. No default factor is mandatory. In the unique-cover overlap control, all three selected factors are mandatory. These statements are about an explicitly counted finite family, not learned explanation likelihoods, uncertainty about the matrix or causal necessity.
+
+Membership is relative to the selected family: mandatory means in every optimum, optional means some but not all, never optimal means none. Ineligible nonmaximal factors have zero incidence in maximal-only mode and are labeled separately. Summing all factor inclusion counts yields family count times minimum factor count. The empty input has one empty optimal set and no mandatory factors.
+
+The generator propagates counts of optimal prefixes over the skip/take DP graph. A take edge contributes prefix count times exact suffix count to its factor. Shared states combine prefix multiplicities without identifying distinct sets. The checker instead forces each factor, then counts residual k-1-factor covers by inclusion-exclusion. For partitions it uses the independent residual partition recursion, only accepting residual optimum k-1. It reconstructs every inclusion vector and classification rather than trusting a displayed summary.
+
+Lexicographic rank/unrank uses take-before-skip blocks of fixed-cardinality factor sets. Unrank subtracts whole exact suffix counts; rank adds blocks skipped by the selected factor list. No complete family is materialized by production access. Tests separately enumerate all optimum sets for every 3×3 matrix and developed control, checking order, bijection, reconstruction and each factor's membership. Indices are canonical unsigned decimal strings up to 100 digits and must be below the exact count; factor lists must be sorted distinct integer IDs and actually optimal. Invalid browser indices report rejection while preserving the last valid witness. Boundary buttons stop rather than wrap.
+
+Schema `rectlab/2` includes the full census. Old schema 1 certificates are rejected rather than silently treated as if they carried new fields. Regenerate using their embedded input. The low-level rank/select methods take a generated or verified report; public input-based helpers compute their own report. This remains a bounded exact tool, not a new ranking algorithm, statistical sampler or certificate-authenticity system.
 
 ## A lower bound can stop short
 
 The default synthetic 4×4 matrix is `0101 / 1101 / 1110 / 1011`, read row by row. Its 11 positive cells admit 41 nonempty all-one rectangles. Every cover needs at least four rectangles, but the maximum fooling-set size is only three. The gap is real: a valid largest fooling set does not certify the minimum cover size here.
 
-The unrestricted optimum has 68 unordered minimum covers. Restricting factors to maximal rectangles leaves the size at four and reduces the count to 13. Both counts are correct for different candidate families. The interface states which family is selected and displays its lexicographically first optimal factor-id set, not a truncated list presented as every optimum.
+The unrestricted optimum has 68 unordered minimum covers. Restricting factors to maximal rectangles leaves the size at four and reduces the count to 13. Both counts are correct for different candidate families. The interface states which family is selected, exposes its full factor membership census and can reconstruct any optimum by index. Its certificate keeps the first set as a deterministic canonical witness.
 
 ## Overlap changes the optimization problem
 
@@ -48,27 +62,27 @@ This is a floating-point MILP reference with numerical solver tolerances, not pr
 
 | Check | Observed result |
 |---|---|
-| Python suite | 12 tests |
-| Exhaustive tiny class | All 512 binary 3×3 matrices, complete reports compared with independent reconstruction |
+| Python suite | 18 tests |
+| Exhaustive tiny class | All 512 binary 3×3 matrices: complete independent reports plus every optimal set/order/rank and membership in all three families |
 | Python/JavaScript corpus | 64 complete reports: nine developed controls and 55 seeded inputs |
 | Retained evidence | 964 legal rectangles; 24,575 fooling-subset audits |
-| Primitive tampering | All 140 primitive noninput fields in a three-positive-cell certificate forged individually and rejected per engine |
+| Primitive tampering | All 170 primitive noninput fields in a three-positive-cell certificate forged individually and rejected per engine |
 | Structural tampering | Extra/missing fields, reversed lists, invalid input types and Boolean-for-integer substitutions |
 | Actual SciPy reference | 159 input-built cover/partition/fooling MILP models over 53 nonempty inputs |
-| Installed wheel | Five site-packages module origins; nine controls; two CLI entrypoints; 18 forgery failures |
-| Actual Chrome | 36 control-width views at 1440/768/390/320; 108 witness-family selections; 192 maximum-fooling selections |
-| Trusted browser transfers | Nine input and nine certificate downloads; certificates checked natively; one native upload/replay |
+| Installed wheel | Six site-packages module origins; nine controls; two CLI entrypoints; 18 forgery failures; 54 select/rank pairs |
+| Actual Chrome | 36 control-width views at 1440/768/390/320; 108 witness-family selections; 520 optimal-set inspections; 2,988 membership rows; 192 maximum-fooling selections |
+| Trusted browser transfers | Nine input and nine certificate downloads; certificates checked natively; one native upload/replay; trusted next/previous/index entry |
 
 The exhaustive class is all 3×3 binary matrices, not every accepted 5×5 input. Seeded matrices vary dimensions and sparsity. Developed controls include lower-bound and partition gaps, census restrictions, solid rectangles, diagonal structure, empty input, unused rows and the twelve-one boundary. These are bounded checks, not statistical claims, learned data or a causal ablation.
 
 ## Publication
 
-PR1 merged after all 10 latest feature/PR jobs passed. All 28 public source files match the checked implementation, and the public checkout reproduces the native/browser and isolated installed-package checks. Merged-main CI and Pages passed. Five live assets match merged source; the complete deployed Chrome workflow passes, and all 36 unmasked captures match local pixels. Actual desktop, phone and narrow layouts were inspected. Showcase deployment is validated separately from source and model correctness.
+Source PR2 passed all 10 latest feature/PR jobs and merged with previous history intact. All 30 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed; deployed native Chrome passes, and all 40 unmasked local/live captures are pixel-identical.
 
 ## Scope and sources
 
-At most five rows, five columns and twelve positive cells. Every rectangle is nonempty; counts concern distinct unordered rectangle sets, not ordered matrix-factor columns or duplicate factors. Only one optimum witness per cover family is shown, although exact counts cover the entire family. All maximum fooling witnesses are present. The UI and certificate explain this boundary.
+At most five rows, five columns and twelve positive cells. Every rectangle is nonempty; counts concern distinct unordered rectangle sets, not ordered matrix-factor columns or duplicate factors. The deterministic certificate retains index 0, but every optimum in each cover family is accessible by index, with a complete factor inclusion census. All maximum fooling witnesses are present. The UI and certificate explain this boundary.
 
 No noisy or approximate factorization, missing-data completion, neural training, real-user permission inference, production role mining, deterministic communication protocol, scale advantage, new lower bound or formal-verification claim. Python CLI rejects duplicate JSON keys; browser JSON parsing does not promise that check. Certificates validate the embedded matrix, not the truth of a claimed real-world relation.
 
-The [IJCAI survey](https://ijcai.org/proceedings/2020/685) grounds Boolean OR factors and biclique equivalence. [Theis](https://arxiv.org/abs/0708.1174) grounds fooling-set lower bounds. [Pourmoradnasseri and Theis](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v24i2p37/pdf/) supplies rectangle-cover and conflict-graph definitions. [Bun's university notes](https://cs-people.bu.edu/mbun/courses/591_F19/notes/lec2.pdf) distinguish cover and partition. [Konecny's FCA tutorial](https://www.kde.cs.uni-kassel.de/icfca2023/assets/slides/Konecny.pdf) and the [binary factorization tutorial](https://cs.uef.fi/~pauli/bmf_tutorial/material.html) acknowledge existing related work. [SciPy's documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.milp.html) grounds the optional numerical reference. Original bounded implementation and synthetic controls; no third-party code, figures, dataset or weights copied.
+[Skiena's combinatorial generation lecture](https://www3.cs.stonybrook.edu/%7Eskiena/392/brazil/lecture3.pdf) grounds count-guided rank/unrank; [Python's itertools documentation](https://docs.python.org/3/library/itertools.html) grounds explicit combination test oracles. Existing ranking theory is credited, not claimed as new. The [IJCAI survey](https://ijcai.org/proceedings/2020/685) grounds Boolean OR factors and biclique equivalence. [Theis](https://arxiv.org/abs/0708.1174) grounds fooling-set lower bounds. [Pourmoradnasseri and Theis](https://www.combinatorics.org/ojs/index.php/eljc/article/download/v24i2p37/pdf/) supplies rectangle-cover and conflict-graph definitions. [Bun's university notes](https://cs-people.bu.edu/mbun/courses/591_F19/notes/lec2.pdf) distinguish cover and partition. [Konecny's FCA tutorial](https://www.kde.cs.uni-kassel.de/icfca2023/assets/slides/Konecny.pdf) and the [binary factorization tutorial](https://cs.uef.fi/~pauli/bmf_tutorial/material.html) acknowledge existing related work. [SciPy's documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.milp.html) grounds the optional numerical reference. Original bounded implementation and synthetic controls; no third-party code, figures, dataset or weights copied.
