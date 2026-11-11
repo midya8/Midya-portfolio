@@ -1,11 +1,23 @@
-# PPOlab
+# PPOlab: clipping is not a policy box
 
-A PPO implementation that makes reset boundaries, credit assignment and numerical replay limits inspectable.
+A separate exact-rational PPO clipped-surrogate optimizer exposes the whole optimal policy face, not one preferred update. Constructive dual bounds, independent global replay and a BigInt browser distinguish objective clipping from a hard probability-ratio box. The original trainer, checkpoint, boundary fix and numerical replay audit remain intact.
 
 - Repository: [midya8/ppolab](https://github.com/midya8/ppolab)
 - Live: [Boundary and policy inspector](https://midya8.github.io/ppolab/)
 - Method: [BOUNDARIES.md](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md)
 - Reviewed change: [Fix timeout credit leakage and add independent audits](https://github.com/midya8/ppolab/pull/1)
+
+## Clipping is not a policy box
+
+For the centered supplied control p=(1/10,9/10), A=(9,-1), epsilon=1/5, the best clipped score is 9/25. Imposing an actual hard ratio box on that same objective lowers the optimum to 1/5, a strict 4/25 gap. Every unconstrained optimizer has q0 in [7/25,1]; exact total variation ranges from 9/50 to 9/10, with both endpoints attained. A positive exact optimal family approaches a zero-probability vertex, proving unbounded old-to-new KL without rounded logarithms. A separate forced-zero control has no fully supported exact optimizer, which is not confused with an unbounded family inside an empty set.
+
+The rational producer solves a separable concave objective using coordinate supporting-line bounds. Zero dual gap identifies every optimizer as a box-simplex face. It retains all vertices, attainable marginal ranges, nearest/farthest TV witnesses and every dual knot. The independent native verifier never imports the optimizer: it enumerates every clipped cell's vertices and checks the original min expression before replaying every certificate leaf. A separately written browser BigInt engine reproduces the complete evidence.
+
+The current suite has 64 Python tests (all 50 earlier tests unchanged) and seven Node/actual-Chrome tests (all four earlier tests unchanged). New checks cover 351 exhaustive signed-advantage reports, denominator-24 simplex controls, six-action/tiny-probability cases, permutations/positive scaling, all-leaf tampering, strict schemas and the unchanged NumPy loss with correctly old-probability-weighted batches. Actual Chrome visits 135 policy selectors, 60 layouts and 2,658 exact table cells, clears stale results on trusted edits, and downloads two real JSON Blobs for native regeneration and independent replay. Both earlier and extension installed-wheel gates reproduce outside checkout.
+
+This is a full old-policy expectation at one supplied state with 2–6 actions. It does not model empirical minibatches, shared neural parameters, entropy/value losses, dynamics, optimizer trajectories or new training performance. Closed-simplex optima can have zeros; finite softmax logits cannot. The clipping limitation is established PPO mathematics, not a new algorithm or a new failure benchmark.
+
+[Exact policy-face inspector](https://midya8.github.io/ppolab/clip.html) · [Proof, schema, sources and reproduction](https://github.com/midya8/ppolab/blob/main/CLIP_FACE.md). The standard objective and caveats are attributed to Schulman et al., OpenAI Spinning Up and prior PPO analyses. Earlier boundary and policy inspector retained below.
 
 ## The real problem
 
