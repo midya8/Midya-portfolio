@@ -1,8 +1,8 @@
-# ChainLab: sequence likelihood is not a path decoder
+# ChainLab: paths, losses and uncertainty
 
 [Public repository](https://github.com/midya8/chainlab)
 
-Dependency-free Python, 41 Python tests and four Node/actual-Chrome tests, infer/viterbi/fit JSON CLI, reproducible SVG and Python3.10-3.13 CI. Standard HMM theory, no new method.
+Exact rational path decisions and whole-path uncertainty, alongside the original floating HMM trainer and prefix-evidence inspector. Four decoders expose different loss objectives; exact state and edge probabilities keep dependence and impossible paths visible. Dependency-free Python, independent browser BigInt and a standalone verifier. Standard HMM inference and decision theory, no new method.
 
 
 ## Three distinct questions
@@ -173,3 +173,22 @@ Standard HMM/EM theory. Independent implementation, no new algorithm claim.
 Live v0.2 [prefix-evidence inspector](https://midya8.github.io/chainlab/) keeps all three original models and both exact counterexamples fixed. Edit a bounded observation window and compare each own-prefix filtered row, full-window smoothed row, supported Viterbi path and prefix-only future marginals. Original 40-symbol reports and scores remain unchanged; the first three displays show only the first 12 symbols. Independent scaled browser versus native log inference checks cover 114 symbol edits and 40 prefix boundaries, plus 62 exhaustive high-precision controls. Underflowed browser mass refuses instead of inventing a posterior. 41 Python tests, four Node/actual-Chrome tests and installed eight-module/nine-command reproduction. No new training, state accuracy, calibration or causal claim. [Conditioning and numerical limits](https://github.com/midya8/chainlab/blob/main/EVIDENCE.md).
 
 The displayed suffix is evidence for smoothing and Viterbi, but not the selected prefix forecast. Horizon h makes h transitions from the last filtered state. Marginals must not be multiplied into an independent joint future path. Native log inference can resolve tiny supported paths that scaled probability arithmetic loses. All 22 retained archive files regenerate with exact structure/nonfloats and 1e-11 absolute / 1e-12 relative float checks, without changing original inference tolerances. Invalid input clears stale rows and exports. Mobile heatmaps become labeled state rows; full predictive score tables scroll locally.
+
+
+## v0.3: a path is a decision, not the uncertainty
+
+[Open the path workbench](https://midya8.github.io/chainlab/paths.html) · [Derivation, input/report schemas, sources and limits](https://github.com/midya8/chainlab/blob/main/PATHS.md)
+
+The separate rational model exposes MAP, supported maximum expected matches, supported product marginals and unconstrained posterior modes. The default control gives three different supported paths; its unconstrained modes form an impossible string. MAP has posterior about .05823316 and expected Hamming loss 2.880904. The supported expected-matches path has lower posterior .05686832 but lower expected loss 2.531237. The product-marginal path has posterior .03639572 and loss 2.535156. These are model-conditional expectations, not measured true-state accuracy or an algorithm ranking.
+
+Whole-path entropy uses the smoothed posterior chain rule, not a sum of independent state entropies. Locked and independent five-position chains have identical half/half state marginals, but path entropies ln(2) and 5 ln(2). Their dependence gap equals summed adjacent-state mutual information. The UI exposes all state, edge and conditional probabilities, three full decision trellises, complete model/sequence editing and source-bound archive exports.
+
+Thirteen controls include emission support, undefined zero-occupancy conditionals, whole-path lexicographic ties, 4^32 supported paths counted without enumeration and exact evidence 2^-3840 below binary64 range. The standalone verifier imports neither producer nor parser: independent suffix/prefix arithmetic, every Bellman alternative and Decimal80 logarithms check the report. Tiny exhaustive Fraction/Decimal controls add a different oracle.
+
+The full suite passes 58 Python and 10 Node/actual-Chrome tests, preserving the earlier 41/four tests. New checks include 120 random tiny exhaustive models, 150 generated native/BigInt cases and all 438 primitive modifications of the default report. Chrome inspects 296 state cells, 1,532 edge cells, 867 reachable decoding states, 39 layouts, physical JSON edits and two completed downloads verified natively. Installed-wheel replay imports all 10 modules, retains old training/data/prefix reproduction and nine commands, then replays all 13 new controls, both new module commands and 26 malformed-report checks outside checkout.
+
+### Limits of the new work
+
+The rational model accepts 1-4 states, 1-8 symbols and 1-32 observations, with 128-bit input fractions, an 8,192-bit reported-fraction cap, 64 KiB input and 4 MiB verifier reports. Complex otherwise-valid models can refuse rather than round. Probabilities, support, path ties and objectives are exact; entropy and logarithms are approximate binary64 nats, independently checked at absolute 1e-10 tolerance. Low entropy can mean a misspecified model is confidently wrong.
+
+Three original-model examples explicitly round probabilities to millionths then normalize rows exactly. They are different rational models, not unchanged original fits or newly trained arms. All original floating computational files, saved numerical artifacts, data and tests are unchanged. No calibration, true-state recovery, model identification, causal claim, external quality result, production/speed promise or algorithm novelty. Standard methods are attributed in PATHS.md.
