@@ -41,24 +41,24 @@ Optional actual Nashpy 0.0.43 builds a fresh normal-form payoff matrix for each 
 | Check | Observed result |
 |---|---|
 | Python suite | 14 tests |
-| Exhaustive tiny class | All 2, 916 two-decision games: four player-owner patterns × 729 ternary six-payoff assignments |
+| Exhaustive tiny class | All 2,916 two-decision games: four player-owner patterns × 729 ternary six-payoff assignments |
 | Complete Python/BigInt reports | 65: ten developed controls and 55 seeded trees |
-| Retained report content | 1, 233 profiles; 12, 820 subgame/player audits; 48, 250 full-player alternatives |
+| Retained report content | 1,233 profiles; 12,820 subgame/player audits; 48,250 full-player alternatives |
 | Primitive certificate tampering | 317 noninput forgeries rejected per engine |
-| Actual Nashpy reference | 533 input-built subtree matrices; 2, 353 pure-pair checks; all 1, 233 profile classifications |
+| Actual Nashpy reference | 533 input-built subtree matrices; 2,353 pure-pair checks; all 1,233 profile classifications |
 | Installed wheel | Five site-packages module origins; ten controls; two entrypoints; 20 CLI forgery failures |
-| Actual Chrome | 40 views at 1440/768/390/320; 388 plan selections; 1, 209 continuation selections; 2, 837 alternative rows |
+| Actual Chrome | 40 views at 1440/768/390/320; 388 plan selections; 1,209 continuation selections; 2,837 alternative rows |
 | Trusted completed downloads | Ten inputs and ten certificates; certificates independently replayed by native CLI |
 
 The exhaustive class fixes a particular two-decision chain topology, not all finite trees. Seeded trees vary shape and repeated player ownership, with some chance roots. Developed controls cover the six-decision/two-chance boundaries. Counts are bounded reproduction evidence, not statistical generalization, timing measurements or real-agent strength.
 
 ## Publication
 
-[PR1](https://github.com/midya8/subgamelab/pull/1) merged after all 12 latest feature/PR jobs passed. Main `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgamelab/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgamelab/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320px boundary witness tables were inspected.
+[PR1](https://github.com/midya8/subgamelab/pull/1) merged after all 12 latest feature/PR jobs passed. Main `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgamelab/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgamelab/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320 px boundary witness tables were inspected.
 
 ## Scope and credited theory
 
-Two players, at most six binary player decisions, two binary chance nodes and 17 nodes. Complete pure contingent plans; singleton information sets; exact canonical rational inputs with absolute numerator/denominator at most 1, 000. No hidden information, mixed-equilibrium enumeration, imperfect recall, CFR, learning, preference inference, formal verification, new theorem, scalable solver or real-market advice. Native duplicate JSON keys are rejected; browser JSON.parse keeps the last. Stale edits clear evidence and disable downloads; tables/tree scroll inside bounded mobile regions.
+Two players, at most six binary player decisions, two binary chance nodes and 17 nodes. Complete pure contingent plans; singleton information sets; exact canonical rational inputs with absolute numerator/denominator at most 1,000. No hidden information, mixed-equilibrium enumeration, imperfect recall, CFR, learning, preference inference, formal verification, new theorem, scalable solver or real-market advice. Native duplicate JSON keys are rejected; browser JSON.parse keeps the last. Stale edits clear evidence and disable downloads; tables/tree scroll inside bounded mobile regions.
 
 [Osborne's textbook chapter](https://www.economics.utoronto.ca/osborne/igt/igtChapter5.pdf), [Tamuz's notes](https://tamuz.caltech.edu/teaching/ps172/lectures.pdf), [MIT refinement lectures](https://ocw.mit.edu/courses/14.126-game-theory-spring-2024/mit14_126_s24_lecture_2_refinements.pdf) and [Maryland's game-tree lecture](https://www.cs.umd.edu/~hajiagha/474GT15/Lecture12122013.pdf) ground the finite model and continuation requirements. [Knight's educational chapter](https://vknight.org/gtb/chapters/subgame-perfection/), [Gambit's algorithms](https://gambitproject.readthedocs.io/en/stable/algorithms.html) and [Nashpy's best-response API](https://nashpy.readthedocs.io/en/stable/how-to/check-best-responses.html) acknowledge existing teaching and software. Subgame perfection is classical Selten theory, not our invention. Full source ledger and API distinctions are in SOURCES.md.
 
