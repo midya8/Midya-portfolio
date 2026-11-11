@@ -1,5 +1,19 @@
 # Midya Rahmani
 
+## RAGLine: a zero can win
+
+An opt-in fixed-corpus signed-vector postings backend runs the actual retrieval loop. An unvisited, implicit zero can outrank a negative match; shared-bin products can cancel to zero. Complete raw-score stable ranking stays intact before slicing and six-decimal score display. The original scan remains the default, with unchanged extraction, citations and lexical grounding.
+
+49 Python tests retain all 31 originals byte-for-byte. Independent dense references cover 729 exhaustive signed-cube controls, 400 seeded real-vector matrices and 1,350 actual hashed-pipeline query/k comparisons. Four Node/actual-Chrome tests check 24 complete integer-engine reports plus 200 seeded native/browser reports, all 186 rows, 1,161 products and 186 signed SVG marks, stale/invalid state, 320/390/1280 containment and two trusted exports replayed natively. A separate installed wheel checks nine module origins, API/module/console reports, 45 real-pipeline fixture comparisons and both CLI gate sides.
+
+The browser is a bounded integer-vector ENGINE reference, not text/IDF pipeline parity. Native text-pipeline comparisons use the original scan within each supported Python runtime. A constructed 32×64 control visits one posting versus 2,048 dense dot-coordinate products, but query still makes all row scores and fully sorts the corpus. These are structural counts, not time, memory or semantic-quality gains. Construction retains a dense snapshot plus postings and cached norms; rebuild after corpus/fit changes. Signed collisions, extractive copying and lexical grounding retain their original limits. No new method or retrieval-quality claim.
+
+[Live engine inspector](https://midya8.github.io/ragline/) · [Source](https://github.com/midya8/ragline) · [Contract, limits and credited sources](https://github.com/midya8/ragline/blob/main/POSTINGS.md)
+
+[Full case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/ragline.md)
+
+Earlier RAGLine descriptions below cover the retained original scan and fixture. Exact hashed-space retrieval is not semantic relevance.
+
 ## PromptGuard: an allowance is not unlimited
 
 An opt-in actual-scanner baseline limits how many equal-identity findings can be suppressed. One prior allowance suppresses one of three current occurrences; two remain reported, while the legacy set suppresses all three. Inspect exact path/severity identity, every before/after allowance, unused entry and gate decision. The original scanner patterns, v1 baseline and prior policy inspector stay unchanged.
