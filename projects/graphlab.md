@@ -1,10 +1,30 @@
 # GraphLab: audit what the graph contributes
 
-Two-layer GCN from scratch with exact input-margin gradients and budgeted single-edge deletion sensitivity. Input locality differs from graph normalization: node 3 has zero feature gradient for node 0, yet deleting edge 2-3 changes its margin by +0.016852 after degree renormalization. Full signed contributions, every edge effect, preflight call budgets and zero-gradient/large-change counterexample. Original transductive development results remain: selected GCN0.96875, MLP0.34375, scrambled GCN0.515625; final/centroid controls visible. Synthetic graph carries class signal; no causal, probability-attribution, unseen-graph or general ranking claim. 42 tests, strict artifacts and offline CLI/SVGs.
+GraphLab now enumerates every original-edge deletion set up to a declared budget, recomputes all degree normalization and exposes all target logits, class changes and signed nonadditivity residuals. A four-node control keeps class 1 under every single deletion, yet a pair flips to class 0 while summing those single effects still predicts class 1. Inspect the complete census, including a stronger minimum-margin pair, instead of a hidden top-k attack list.
 
 [Source repository](https://github.com/midya8/graphlab) · [Design contracts](https://github.com/midya8/graphlab/blob/main/DESIGN.md)
 
 ![Synthetic graph and expressivity audit](https://raw.githubusercontent.com/midya8/graphlab/main/assets/graph-audit.svg)
+
+## Joint deletion: complete sets, not an additive guess
+
+51 Python tests retain all 42 original tests. Independent dense/bitmask checks cover 180 seeded graph/model cases; 70-digit Decimal checks all 16 counterexample sets. Python/JavaScript agree on 46 complete reports and 559 subsets. Actual NumPy checks all 559 logit vectors, max difference 8.88e-16. Five Node/Chrome tests cover 24 responsive views, 568 subset selections and six natively replayed trusted downloads. An isolated wheel checks seven module origins and all nine commands via both entrypoints. Original trained GCN/MLP/scrambled results, centroid/final controls and both figures reproduce unchanged.
+
+Source PR1 passed all 16 latest feature/PR jobs and merged with prior history intact. All 44 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed after enabling the repository's Pages source. Full deployed Chrome workflow passes. Twenty of 24 unmasked captures are byte-identical in pixels; the other four differ only on one 150-pixel table-border line, with identical layout/content. The four differences were inspected, not masked. Actual desktop and phone graphs, values and complete tables were inspected. This is a bounded binary64 fixed-model sensitivity census, not a causal effect, learned robustness improvement, new algorithm, formal real-arithmetic certificate or scale claim. Original edges only, with self loops retained. Chosen two-class margins stay separate from all-class predictions. Established GCN and formal graph-verification literature are credited.
+
+The hand-set counterexample uses four scalar features [-4,-4,6,6] and five original edges. Its baseline class-1 minus class-0 margin is 0.5534180126. All five single deletions preserve class 1. Removing e1=(0,2) and e3=(1,2) produces margin -0.6666666667 and class 0. Singleton extrapolation predicts +0.3151513784 instead; the residual is -0.9818180451. Of all 16 empty/single/pair sets, five change the class. The stronger minimum-margin pair e1/e2 has margin -1.0606601718 and remains visible. This fixture was found by a disclosed tiny integer search, not a held-out experiment or trained-model quality result.
+
+The Python producer reuses the original sparse fixed-model forward evaluator but independently constructs each perturbed edge list and recomputes every degree. A separate dense checker uses full adjacency/matrix products and bitmask enumeration. JavaScript uses its own dense engine and recursive subset generation. A numerical NumPy matmul reference checks logits, with a separate tolerance for discrete near-tie decisions. High-precision Decimal checks the developed counterexample. None is presented as a formal proof of every accepted real-valued input.
+
+A preflight call count sums binomial coefficients for all cardinalities through min(k,m). Native limits permit k=0..8 and 1..65,536 forwards; an oversized request fails before any model forward. The original 483-edge graph at k=2 exceeds the cap, while k=1 fits. No candidate restriction is silently substituted. The page supports 12 nodes/edges, four input/hidden/class dimensions and at most 4,096 calls. Empty input edges retain one empty subset, and self loops always remain.
+
+Every report records all target logits, selected margin, signed change, singleton sum and residual. Budget summaries keep minimum/maximum margin witnesses, largest residual and all-class prediction-change counts. Lowest class index wins evaluated exact ties. Choosing two margin classes does not hide another class that wins. The multiclass control shows a negative selected margin while baseline class 2 stays unchanged. MLP identity propagation and all-zero ties remain explicit controls.
+
+The browser invalidates all old outputs and disables downloads on edits. Six trusted JSON downloads are independently replayed by native sparse Python. Reports are unsigned and attest only to consistency with their embedded input, not source authenticity or real-world truth. The ordinary CLI/page JSON parsers do not reject duplicate keys. No cross-language exact tie guarantee, runtime comparison, edge-addition/rewiring, causal importance or robustness-accuracy score is claimed.
+
+[Live inspector](https://midya8.github.io/graphlab/) · [Full contract, commands and seven-source ledger](https://github.com/midya8/graphlab/blob/main/JOINT.md)
+
+The original single-edge and input-gradient evidence follows. The earlier 42-test description refers to those retained tests; the combined suite now has 51.
 
 ## Why this project
 
