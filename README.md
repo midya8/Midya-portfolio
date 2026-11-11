@@ -1,5 +1,17 @@
 # Midya Rahmani
 
+## CompileLab: one function, many shapes
+
+
+
+Exact finite Boolean knowledge compilation makes every reduced ordered decision graph inspectable. Two paired equalities keep the same four full models while their ordinary ROBDD uses 6 to 9 nonterminals across all 24 orders. Projection is a different operation: an OR control has three full models but two retained assignments, with unequal hidden-extension fibers. Inspect every graph path, reduction decision, skipped-variable weight factor and complete extension witness.
+
+15 native tests include 2,048 exhaustive clause/keep settings, 180 seeded inputs and separate truth-function replay. Python/JavaScript agree on 102 complete reports; 719 primitive forgeries fail per engine. Actual dd 0.6.0 checks 574 input-built CNFs, complete original/projected model sets and exact weighted masses. Clean installed-wheel reproduction passes. Actual Chrome checks 48 responsive views, 144 graphs, 924 assignment paths, all 120 boundary-control orders and 12 independently replayed downloads.
+
+Feature/PR, merged-main and Pages checks passed. All 30 public files and six deployed assets match tested source. The complete deployed Chrome workflow passes; all 64 unmasked captures match local pixels. Actual desktop hero, phone zero-mass verdicts and narrow boundary graph were inspected. Classical ROBDD theory and existing certified projected-compilation work are credited. No new algorithm, formal-proof or scalable-compiler claim.
+
+[Workbench](https://midya8.github.io/compilelab/) · [Source](https://github.com/midya8/compilelab) · [Full evidence](projects/compilelab.md)
+
 ## FireLab: balance is not an execution
 
 
