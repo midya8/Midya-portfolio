@@ -1,8 +1,26 @@
 # VectorLite
 
-**A signature is not a neighbor.** A finite random-hyperplane retrieval inspector with exact candidate, probability and evaluation-protocol witnesses.
+VectorLite now has actual reusable block buckets. An optional backend partitions fixed binary signatures into r+1 disjoint blocks, unions exact-key postings and verifies full Hamming distance before unchanged cosine/id rescoring. The original signature scan remains the default and reference.
 
 [Live inspector](https://midya8.github.io/vectorlite/) · [Source](https://github.com/midya8/vectorlite) · [Numerical/probability contract](https://github.com/midya8/vectorlite/blob/main/METHOD.md)
+
+## Actual optional block-bucket backend (v0.3)
+
+59 Python tests retain all50 prior tests;8 Node/actual-Chrome tests retain all3 prior tests. Independent native and BigInt small-cube oracles each cover5,376 query/radius/mode comparisons. Another480 random excluded-query checks,360 random cosine rankings and105 original-spec backend rankings agree with scans. All34 full reports,1,908 selected Chrome rows,24 responsive views and2 trusted JSON exports are checked. An installed8-module wheel reproduces all35 old audits,34 new reports and both new CLI entrypoints.
+
+A constructed512-row24-bit/radius2 control needs3 lookups,11 posting visits and9 full Hamming checks versus512 scan checks. A dense duplicate control would visit1,536 postings; auto instead scans after3 lookups. These are structural counts, not elapsed time, measured RAM or total operations. The fallback rule is a heuristic, not a general sublinear guarantee. Exact signature filtering is still approximate cosine retrieval, not semantic relevance. The r+1 exact-block method is a credited specialization of established multi-index hashing, not a new algorithm.
+
+For radius r<bits, any code with at most r changed bits must share at least one of r+1 disjoint nonempty blocks. Each block has a real key-to-row-position posting table. Candidate union is only a superset: duplicates are removed by row index, exclusions apply before the full XOR/popcount check, and surviving ids receive the unchanged cosine score/id order. Duplicate signatures keep distinct positions. This is exact relative to the old threshold filter, not exact cosine nearest neighbors.
+
+`HammingBuckets` copies signatures and supports repeated lookups at a fixed radius. `BucketLSHIndex` copies vectors/ids and retains the original hyperplanes and stable arithmetic. `scan`, forced `blocks` and `auto` modes expose key lookup count, posting-length sum, references visited, unique candidates, excluded entries, full checks and cosine rescores. The auto rule probes lengths without traversing postings and scans when their sum is at least N. All-radius and declared block-cap cases skip building tables entirely. Index construction still stores N times the number of blocks posting references; sparse query checks do not erase build, memory, union/sort or reporting costs.
+
+The separate BigInt browser receives only input signatures, builds its own Map postings and shows partitions, occupied keys, query bucket lengths, all checked/admitted/rejected rows and per-row XOR/matching blocks. Changing input or policy hides stale output and disables exports. Strict input rejects duplicate keys, invalid hex, unknown keys and bad exclusions. JSON input/report exports replay native exactly, with no numeric tolerance. CLI/browser limits are128 bits,1,024 rows,128KiB; the generic native signature API allows up to4,096 bits and a maximum64-block declared cap. No online insertion/removal or in-place threshold change is implemented.
+
+The original12-vector corpus,35 reports, scan, projections and original geometry browser engine remain unchanged. An additional original-corpus signature control XORs every code with the first query signature; this preserves Hamming distances, not a new embedding or cosine-quality evaluation. Sparse and dense constructed tables are both visible, alongside cap/all-radius, empty table, exclusions, false candidates and24 seeded tables. Source feature/PR/main checks and Pages deployment were verified before this showcase update;46 public files and12 live assets matched source.24 local/public and24 public/deployed unmasked pixel pairs matched exactly.
+
+[Live block buckets](https://midya8.github.io/vectorlite/buckets.html) · [Algorithm, costs and source ledger](https://github.com/midya8/vectorlite/blob/main/BUCKETS.md) · [Source PR4](https://github.com/midya8/vectorlite/pull/4)
+
+The earlier geometry/probability release follows. Its50-test and six-module installed evidence describes that retained release; the combined suite has59 tests and8 checked module origins. Its O(N) scan limitation still describes the original default, not a claim that the optional sparse query always traverses all codes.
 
 ## Problem
 
@@ -48,7 +66,7 @@ Two original synthetic vectors, the same query, 8 planes, seed 0 and strict thre
 
 ## Bounds
 
-This is an O(N) signature scan, not a bucketed/sublinear or production-scale ANN index. Candidate rescoring fractions are not latency or operation totals. Canonical score/id ties are a declared ground truth, not human relevance judgments. Near-zero projections and near-tied scores remain floating-point sensitive; same-environment reproducibility is not universal determinism.
+The original default is an O(N) signature scan. The optional block backend above adds a real index but makes no general sublinear or production-scale ANN claim. Candidate rescoring fractions are not latency or operation totals. Canonical score/id ties are a declared ground truth, not human relevance judgments. Near-zero projections and near-tied scores remain floating-point sensitive; same-environment reproducibility is not universal determinism.
 
 The audit is deliberately bounded to 64 items, 16 dimensions, 128 bits and a 128KiB strict JSON spec. Probability theory assumes ideal independent isotropic nonzero planes and is not conditional on displayed fixed or edited arbitrary planes. The 1,200-rebuild check is a sanity control, not a confidence interval. These vectors are synthetic, not learned embeddings or a retrieval-quality benchmark. No speed, model-quality, confidence-interval or new-algorithm claim is made.
 
