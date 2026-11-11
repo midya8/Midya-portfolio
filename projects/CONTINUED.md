@@ -2,6 +2,16 @@
 
 [Full project index](README.md)
 
+## StructGate0.3: the future has a weight
+
+Exact finite-horizon conditioning for a supplied first-order source and total DFA. A legal next symbol can still have an unlikely future: the default word 01 has source probability 1/20, viability-mask probability 1/2 and global conditional probability 1/10. Inspect every future mass, transition, selected-word prefix and forward marginal. The original JSON/schema inspector and all source-model paths stay unchanged.
+
+64 Python tests retain all 54 previous tests; six Node/actual-Chrome tests retain all three previous tests. Independent complete-word checks cover 60 seeded small DFAs and all source/local/global marginals. Native Fraction backward recursion and independent BigInt full forward-kernel propagation agree on 24 complete reports, 2,043 future rows, 6,550 symbol rows and 2,239 marginal rows. Chrome checks all 156 selected-word prefixes, 24 responsive views and two natively replayed trusted downloads. An isolated eleven-module install reproduces all new reports through API, module and console, while the original nine-module wheel/demo/evaluation/gates remain intact.
+
+At most four symbols, eight DFA states and 32 emitted symbols. Zero-probability conditioning stays undefined; syntactically viable source-zero branches retain local failure mass. The 32-symbol ending control represents 4,294,967,296 possible source words with 192 transition rows, a structural count rather than a speed, RAM or scaling benchmark. Standard finite-state/Doob conditioning, not a new algorithm, random sampler, arbitrary JSON/CFG solver or LLM-quality result. Aggregated marginals are not full-word total variation.
+
+[Live DFA conditioning inspector](https://midya8.github.io/structgate/automaton.html) · [Source](https://github.com/midya8/structgate) · [Exact contract and credited sources](https://github.com/midya8/structgate/blob/main/AUTOMATON.md) · [Full case study](structgate.md)
+
 ## PlanBench 0.2: the cheap run that failed
 
 Exact finite retry-risk analysis for supplied agent DAGs. Inspect the joint plan-success, completion-time and cost law, including exhausted retries, skip cascades and shared ancestors. A cheap failed run can satisfy a budget by skipping the work: within-limit probability is not successful-completion probability. The original seeded simulator stays unchanged.
