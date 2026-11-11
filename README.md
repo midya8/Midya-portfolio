@@ -1,5 +1,23 @@
 # Midya Rahmani
 
+## TokenForge 0.2: same merges, different work
+
+
+
+Optional occurrence-indexed BPE training with exact original merges and saved artifacts. Live pair sets, linked positions and a lazy heap replace repeated recounting, while the unchanged scan stays the default. An independent browser recounts every overlapping frequency, numeric tie and leftmost replacement on explicit byte rows. Structural work is not a speed, RAM or complexity result.
+
+
+
+49 Python tests retain all 40 originals; 4 Node/actual-Chrome tests check 27 full reports, 160 merge selections, 3,033 displayed pair rows, 24 responsive views and trusted exports. Independent Python and JavaScript small-row oracles each cover 2,555 settings, plus 250 native seeded multirow cases. An installed wheel reproduces original and new CLI modes outside the checkout. The original 1,227-byte corpus gives 44 identical merges and saved JSON bytes.
+
+
+
+[Live merge inspector](https://midya8.github.io/tokenforge/) · [Source](https://github.com/midya8/tokenforge) · [Exact contract and sources](https://github.com/midya8/tokenforge/blob/main/INDEXED.md) · [Case study](projects/tokenforge.md)
+
+
+
+The earlier TokenForge description below covers the retained original trainer. The optional indexed-backend checks above supersede its test counts; original training stays unchanged.
+
 ## VectorLite0.3: actual block-bucket retrieval
 
 
