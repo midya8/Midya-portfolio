@@ -17,7 +17,9 @@ test('actual Chrome catalog, source links, filtering, history, no-JS and mobile 
  for(let i=0;i<500;i++){if(await js('Boolean(globalThis.PORTFOLIO_CATALOG&&!document.getElementById("search-form").hidden)'))break;await delay(20);}assert.ok(await js('Boolean(globalThis.PORTFOLIO_CATALOG)'));
  const data={projects:Array.from({length:JSON.parse(fs.readFileSync(path.join(__dirname,'../docs/catalog.json'),'utf8')).shards.length},(_,i)=>JSON.parse(fs.readFileSync(path.join(root,'catalog-'+i+'.json'),'utf8'))).flat()};const visible=()=>js('[...document.querySelectorAll(".project")].filter(x=>!x.hidden).map(x=>x.dataset.id)');
  assert.deepEqual(await visible(),data.projects.map(p=>p.id));assert.deepEqual(await js('[...document.querySelectorAll(".source")].map(x=>x.href)'),data.projects.map(p=>p.source_url));
- const set=q=>js(`document.getElementById('query').value=${JSON.stringify(q)};document.getElementById('query').dispatchEvent(new Event('input',{bubbles:true}))`);
+ // Pace synthetic input so this UI test does not flood History API writes.
+ // Every existing DOM and URL assertion remains unchanged.
+ const set=async q=>{await delay(350);return js(`document.getElementById('query').value=${JSON.stringify(q)};document.getElementById('query').dispatchEvent(new Event('input',{bubbles:true}))`);};
  const screens=process.env.CATALOG_SCREEN_DIR;if(screens)fs.mkdirSync(screens,{recursive:true});
  const shot=async name=>{if(!screens)return;await js('document.activeElement.blur();window.scrollTo(0,0)');const m=await call('Page.getLayoutMetrics');const r=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip:{x:0,y:0,width:m.cssContentSize.width,height:m.cssContentSize.height,scale:1}});fs.writeFileSync(path.join(screens,name+'.png'),Buffer.from(r.data,'base64'));};
  let checks=0;for(const width of [320,390,1280]){
