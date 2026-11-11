@@ -1,8 +1,20 @@
-# MoeLab: the batch decides
+# MoeLab: one table, worst regret
 
-A pure-Python mixture-of-experts model with separate inspectors for exact finite capacity dispatch and routing boundaries. The original sparse trainer, dense baseline, frozen models, 340 data rows and measured results stay intact.
+A pure-Python mixture-of-experts model with exact gate-table regret, finite capacity dispatch and routing-boundary inspectors. The original sparse trainer, dense baseline, frozen models, 340 data rows and measured results stay intact.
 
-[Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab)
+[Gate regret inspector](https://midya8.github.io/moelab/gate.html) · [Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab)
+
+## Worst regret on one gate table
+
+Choose the canonical nominal maximum-coverage/mass dispatch, then freeze it. Supply lower and upper probability bounds containing every nominal row, with row sums fixed at one. Find a maximum-coverage challenger and a single admissible table that maximize its retained-mass advantage. Capacities and eligibility stay fixed. This evaluates one reference, not a minimax-regret policy.
+
+Shared route entries cancel before optimization. On the simplex-coupling control, the tempting independent-box contrast is `1/5`, but its coordinates sum to `11/10`; actual one-table regret is `1/10`. On a forced-route control every coefficient cancels: regret is zero, even though separate challenger-best/reference-worst tables give a loose `1/5` bound. Both separate tables remain in the report, so an upper bound is never presented as an attained loss.
+
+The native producer uses exact bounded-simplex sorted fill and a capacity-state DP. Every row has an attaining point and an equal dual upper bound. Every reachable capacity state, feasible edge and tied assignment count is retained. The standalone verifier imports neither producer nor parser: it enumerates row vertices, complete assignments and suffixes. The browser independently enumerates vertices with BigInt arithmetic, supports all five editable input fields, exposes three tables and all state searches, and downloads full native-verifiable evidence.
+
+Ten declared controls include ties, zero-width bounds, zero capacity, eligibility, skipped updates, stable references, tiny fractions and four experts. These are assumed gate bounds, not calibrated confidence, learned uncertainty, router jitter or an input/weight attack. There are no expert predictions or targets here, so retained-mass regret says nothing about task quality.
+
+[Objective, row proof, complete schema, sources and limits](https://github.com/midya8/moelab/blob/main/GATE-REGRET.md)
 
 ## Exact capacity dispatch
 
@@ -61,8 +73,8 @@ The mean per-example `E sum p^2`, squared batch-mean gates `E sum(mean p)^2` and
 
 ## Reproduction and limits
 
-All **53 Python and nine Node/Chrome tests** retain the earlier nine original tests and the 39-Python/five-Node route suite. Capacity checks include 225 probability pairs, 1,024 eligibility/capacity cases, 125 complete native/BigInt reports, tiny gates, permutation invariants, every-leaf tampering and task-error extrema. Actual Chrome checks 98 dispatch displays, 1,085 gate/support cells, all 813 capacity states, 42 layouts and two real JSON downloads with native verification.
+All **72 Python and 14 Node/Chrome tests** retain the previous 53-Python/nine-Node suite. The regret checks add 500 vertex-oracle row problems, 90 random assignment problems, every primitive leaf on a tamper control, attaining-table optimality, wider-set monotonicity, unique-reference expert permutations, full seven-token/four-expert actions and strict JSON. Another 125 browser reports independently verify natively. Actual Chrome checks 30 tables, 58 row proofs, 234 states, 30 layouts, trusted keyboard invalidation and two real downloads with native replay. Capacity checks include 225 probability pairs, 1,024 eligibility/capacity cases, 125 complete native/BigInt reports, tiny gates, permutation invariants, every-leaf tampering and task-error extrema. Actual Chrome checks 98 dispatch displays, 1,085 gate/support cells, all 813 capacity states, 42 layouts and two real JSON downloads with native verification.
 
-The route evidence includes 32 complete witnesses, 8,176 evaluation positions, 2,080 path display positions, 80 independent integer geometries and 160 independent 70-digit Decimal controls. Chrome checks all destination choices and evaluation positions, exports, invalid-state clearing and 320/390/1280 layouts. Both outside-checkout wheel scripts pass: the original retrains aux/no-aux/dense models and compares full data/models/report at `1e-11`, keeping regenerated rational fractions distinct from frozen models; the capacity wheel imports ten modules and independently replays all 14 controls. CI covers Python 3.10-3.13, demo, browser and installed packages.
+The route evidence includes 32 complete witnesses, 8,176 evaluation positions, 2,080 path display positions, 80 independent integer geometries and 160 independent 70-digit Decimal controls. Chrome checks all destination choices and evaluation positions, exports, invalid-state clearing and 320/390/1280 layouts. All three outside-checkout wheel scripts pass: the original retrains aux/no-aux/dense models and compares full data/models/report at `1e-11`, keeping regenerated rational fractions distinct from frozen models; the capacity wheel imports ten modules and independently replays all 14 controls. The third imports the three gate-regret modules and independently replays all ten controls and CLI modes outside the checkout. CI covers Python 3.10-3.13, demo, browser and installed packages.
 
-Capacity dispatch is limited to supplied rational tables with at most seven tokens/four experts. Experts and router are linear; the data are small and synthetic. These are established methods with attributed sources, not a new routing algorithm, production router, gradients through allocation, new training gain, robustness or causal guarantee, calibrated uncertainty, generalization result or measured GPU/serving speed.
+Capacity dispatch and gate-table regret are limited to supplied rational tables with at most seven tokens/four experts. Experts and router are linear; the data are small and synthetic. These are established methods with attributed sources, not a new routing algorithm, production router, gradients through allocation, new training gain, robustness or causal guarantee, calibrated uncertainty, generalization result or measured GPU/serving speed.
