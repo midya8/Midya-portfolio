@@ -63,7 +63,7 @@ The exhaustive class is all 3×3 binary matrices, not every accepted 5×5 input.
 
 ## Publication
 
-PR1 merged after all 10 latest feature/PR jobs passed. All 28 public source files match the checked implementation, and the public checkout reproduces the native/browser and isolated installed-package checks. Merged-main CI and Pages passed. Five live assets match merged source; the complete deployed Chrome workflow passes, and all 36 unmasked captures match local pixels. Actual desktop, phone and narrow layouts were inspected. Portfolio/profile publication and visual checks remain pending until separately observed.
+PR1 merged after all 10 latest feature/PR jobs passed. All 28 public source files match the checked implementation, and the public checkout reproduces the native/browser and isolated installed-package checks. Merged-main CI and Pages passed. Five live assets match merged source; the complete deployed Chrome workflow passes, and all 36 unmasked captures match local pixels. Actual desktop, phone and narrow layouts were inspected. Showcase deployment is validated separately from source and model correctness.
 
 ## Scope and sources
 
