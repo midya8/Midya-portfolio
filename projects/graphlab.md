@@ -1,16 +1,16 @@
-# GraphLab: audit what the graph contributes
+# GraphLab: graph convolution and fixed-model audits
 
-GraphLab now enumerates every original-edge deletion set up to a declared budget, recomputes all degree normalization and exposes all target logits, class changes and signed nonadditivity residuals. A four-node control keeps class 1 under every single deletion, yet a pair flips to class 0 while summing those single effects still predicts class 1. Inspect the complete census, including a stronger minimum-margin pair, instead of a hidden top-k attack list.
+GraphLab trains a two-layer graph convolutional network on a small synthetic graph, with masked training labels, validation-only checkpoint selection and matched feature-only and scrambled-graph controls. For a fixed model, it audits input gradients, single-edge deletions and complete joint-edge deletion sets. The joint audit recomputes normalization for every set and shows where adding singleton effects gives the wrong class prediction.
 
 [Source repository](https://github.com/midya8/graphlab) · [Design contracts](https://github.com/midya8/graphlab/blob/main/DESIGN.md)
 
 ![Synthetic graph and expressivity audit](https://raw.githubusercontent.com/midya8/graphlab/main/assets/graph-audit.svg)
 
-## Joint deletion: complete sets, not an additive guess
+## Joint-edge deletion
 
 51 Python tests retain all 42 original tests. Independent dense/bitmask checks cover 180 seeded graph/model cases; 70-digit Decimal checks all 16 counterexample sets. Python/JavaScript agree on 46 complete reports and 559 subsets. Actual NumPy checks all 559 logit vectors, max difference 8.88e-16. Five Node/Chrome tests cover 24 responsive views, 568 subset selections and six natively replayed trusted downloads. An isolated wheel checks seven module origins and all nine commands via both entrypoints. Original trained GCN/MLP/scrambled results, centroid/final controls and both figures reproduce unchanged.
 
-Source PR1 passed all 16 latest feature/PR jobs and merged with prior history intact. All 44 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed after enabling the repository's Pages source. Full deployed Chrome workflow passes. Twenty of 24 unmasked captures are byte-identical in pixels; the other four differ only on one 150-pixel table-border line, with identical layout/content. The four differences were inspected, not masked. Actual desktop and phone graphs, values and complete tables were inspected. This is a bounded binary64 fixed-model sensitivity census, not a causal effect, learned robustness improvement, new algorithm, formal real-arithmetic certificate or scale claim. Original edges only, with self loops retained. Chosen two-class margins stay separate from all-class predictions. Established GCN and formal graph-verification literature are credited.
+The original joint-deletion release in source PR1 passed all 16 latest feature/PR jobs and merged with prior history intact. All 44 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed after enabling the repository's Pages source. Full deployed Chrome workflow passes. Twenty of 24 unmasked captures are byte-identical in pixels; the other four differ only on one 150-pixel table-border line, with identical layout/content. The four differences were inspected, not masked. Actual desktop and phone graphs, values and complete tables were inspected. This is a bounded binary64 fixed-model sensitivity census, not a causal effect, learned robustness improvement, new algorithm, formal real-arithmetic certificate or scale claim. Original edges only, with self loops retained. Chosen two-class margins stay separate from all-class predictions. Established GCN and formal graph-verification literature are credited.
 
 The hand-set counterexample uses four scalar features [-4,-4,6,6] and five original edges. Its baseline class-1 minus class-0 margin is 0.5534180126. All five single deletions preserve class 1. Removing e1=(0,2) and e3=(1,2) produces margin -0.6666666667 and class 0. Singleton extrapolation predicts +0.3151513784 instead; the residual is -0.9818180451. Of all 16 empty/single/pair sets, five change the class. The stronger minimum-margin pair e1/e2 has margin -1.0606601718 and remains visible. This fixture was found by a disclosed tiny integer search, not a held-out experiment or trained-model quality result.
 
@@ -24,9 +24,9 @@ The browser invalidates all old outputs and disables downloads on edits. Six tru
 
 [Live inspector](https://midya8.github.io/graphlab/) · [Full contract, commands and seven-source ledger](https://github.com/midya8/graphlab/blob/main/JOINT.md)
 
-The original single-edge and input-gradient evidence follows. The earlier 42-test description refers to those retained tests; the combined suite now has 51.
+The single-edge and input-gradient sections below describe the original 42 tests, retained within the current 51-test suite.
 
-## Why this project
+## What the graph changes
 
 Message passing changes which information a node prediction can use. This implementation makes that context, the label masks, checkpoint choice and failure cases inspectable. A high fixture accuracy is not enough without stating how the graph was made and which nodes were visible.
 
@@ -62,9 +62,9 @@ A separate **train-only nearest-class-centroid** feature control fits 8 numbers 
 
 The feature MLP's excellent small-validation accuracy does not transfer to this test split; validation selection is no guarantee of representative evaluation. These are descriptive fixture results, not causal contributions or a general GCN ranking. Validation selection and the centroid control were added after inspecting the initial fixed-budget arms and their overfit losses. This is a **development fixture**, not an untouched benchmark or a multi-seed study. No architecture or seed sweep was run.
 
-## Exact audits and an exact limitation
+## Original tests and an architecture limitation
 
-42 tests cover every parameter of tiny reference models by finite differences in both modes, sparse-vs-dense forward arithmetic, independent degree normalization, permutation-equivariant predictions and training, mask isolation, stable unclipped cross-entropy, selection vs independent prefix refits, artifacts and CLI.
+The original 42 tests cover every parameter of tiny reference models by finite differences in both modes, sparse-vs-dense forward arithmetic, independent degree normalization, permutation-equivariant predictions and training, mask isolation, stable unclipped cross-entropy, selection vs independent prefix refits, artifacts and CLI.
 
 A six-cycle and two disconnected triangles are different graphs, but with identical constant node features and degree 2, every normalized neighborhood produces the same feature at every layer. This model gives **identical node probabilities** on both. The counterexample is exact for this architecture and fixture; it is not a claim that all graph neural networks fail on those graphs. No graph-level classifier or universal graph-isomorphism test is implemented.
 
