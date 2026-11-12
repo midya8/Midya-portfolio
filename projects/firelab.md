@@ -1,6 +1,6 @@
 # FireLab: balance is not an execution
 
-**Token balance is not an executable resource plan.** FireLab separates a supplied firing-count equation, legal orderings of exactly that multiset and arbitrary goal reachability in an ordinary weighted Petri net. Original finite teaching controls, not a deployed agent or a new Petri-net algorithm.
+FireLab checks three different questions in a small ordinary weighted Petri net: whether supplied transition counts balance the tokens, whether those exact counts can execute in some order, and whether any sequence can reach the goal. A balanced count vector can fail to execute even when the goal is reachable with different counts. These are synthetic teaching controls, not a deployed agent or a new Petri-net algorithm.
 
 [Live inspector](https://midya8.github.io/firelab/) · [Source](https://github.com/midya8/firelab) · [Reviewed implementation](https://github.com/midya8/firelab/pull/1)
 
@@ -18,7 +18,7 @@ This makes three claims explicit:
 
 Fixed-count failure is not a global impossibility proof. Neither a bounded count search nor a place invariant is silently presented as an unrestricted nonnegative-integer marking-equation solver.
 
-## All ordinary markings and guards
+## What you can inspect
 
 Every transition preserves total tokens. The checked all-ones place invariant proves a finite ordinary state space, without adding artificial capacity constraints. Enumerate every nonnegative distribution of that total, not only initially reachable states. Every positional transition retains its exact missing-token deficits or successor. Shared pre/post arcs consume then produce; zero-arc transitions are enabled even at zero tokens.
 
@@ -38,7 +38,7 @@ JavaScript implements a second runtime with all-pairs distances and count-lattic
 
 An optional real PM4Py 2.7.23 reference constructs ordinary places, transitions and weighted arcs directly from each request. Actual classic enabling/execute checks every full-state transition. Separate traversal exhausts its complete initially reachable graph and goal distance without a timeout cutoff; actual firing semantics also counts the supplied multiset words. It does not consume our incidence or expected-edge answers. PM4Py remains optional and nonvendored; native/browser runtimes need no external model or paid API.
 
-## Reproduced evidence
+## Verification
 
 | Check | Observed result |
 |---|---|
