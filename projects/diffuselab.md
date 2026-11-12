@@ -1,14 +1,16 @@
-# DiffuseLab: audit a learned reverse process
+# DiffuseLab: training and comparing 2-D samplers
 
-Learned 2-D diffusion from scratch, now with selected-grid DDIM sampling and exact denoiser-call audits. The same 482-parameter model uses 8/16/64 DDIM steps without retraining. Eight steps saves 87.5% of predictor calls but has worse symmetric reference distance here (0.210661 vs DDPM 0.037103), despite a slightly higher near-center fraction. All 8 neighborhoods reached, uneven frequencies and outliers retained. Full-grid eta=1 matches DDPM arithmetic with matched draws. 33 tests, strict artifacts and offline train/sample/DDIM CLI. Development fixture only, no walltime speedup, image-generation or general ranking claim.
+DiffuseLab trains a small diffusion model on two-dimensional points, then compares DDPM and selected-grid DDIM sampling with the same saved noise predictor. The implementation uses explicit Gaussian arithmetic and handwritten gradients, with untrained and Gaussian-prior controls.
 
-[Source repository](https://github.com/midya8/diffuselab) · [Design contracts](https://github.com/midya8/diffuselab/blob/main/DESIGN.md)
+The same 482-parameter model uses 8/16/64 DDIM steps without retraining. Eight steps saves 87.5% of predictor calls but has worse symmetric reference distance here (0.210661 vs DDPM 0.037103), despite a slightly higher near-center fraction. All 8 neighborhoods are reached, with uneven frequencies and outliers retained. Full-grid eta=1 matches DDPM arithmetic with matched draws. 33 tests, strict artifacts and offline train/sample/DDIM CLI. Development fixture only, no walltime speedup, image-generation or general ranking claim.
+
+[Source repository](https://github.com/midya8/diffuselab) · [Numerical choices](https://github.com/midya8/diffuselab/blob/main/DESIGN.md)
 
 ![Shared-axis sample audit](https://raw.githubusercontent.com/midya8/diffuselab/main/assets/diffusion-audit.svg)
 
-## Why this project
+## Learning the noise predictor
 
-The central learning problem is to estimate added noise at many timesteps, then use that predictor inside a stochastic reverse chain. A useful portfolio implementation should make both arithmetic and failure modes inspectable, rather than only show an attractive scatterplot.
+The central learning problem is to estimate added noise at many timesteps, then use that predictor inside a stochastic reverse chain. The sample plots keep failed controls and outliers visible; distance, coverage and symmetric reference distance describe different errors.
 
 ## What is implemented
 
@@ -50,9 +52,9 @@ The learned model reaches all eight neighborhoods but is imperfect: 39.45% of sa
 
 The larger near-center fraction does **not** establish better sample quality: all DDIM arms have worse symmetric reference distance on this fixture. Every setting is shown, not just a selected winner. The 8/16/64 grids and eta=0 were fixed for this comparison, with no setting or seed search. Call savings count actual scalar predictor invocations (256 times the listed calls), not measured runtime, FLOPs, memory or quality equivalence. Both DDPM and DDIM start from the same Gaussian latents; DDPM then adds step noise while eta=0 does not.
 
-## Audit, not hype
+## Tests and limits
 
-33 tests include all-parameter central finite differences, independent posterior-mean algebra, schedule indexing, final-step determinism, serialization, bounds, CLI a mode-collapse counterexample, DDPM/DDIM equivalence, skipped-step formulas and counted predictor invocations. CI runs on Python 3.10-3.13 and regenerates the figure from the actual demo on 3.11.
+33 tests include all-parameter central finite differences, independent posterior-mean algebra, schedule indexing, final-step determinism, serialization, bounds, CLI, a mode-collapse counterexample, DDPM/DDIM equivalence, skipped-step formulas and counted predictor invocations. CI runs on Python 3.10-3.13 and regenerates the figure from the actual demo on 3.11.
 
 This is an educational low-dimensional generator. It is not an image model, latent diffusion system, density estimator, FID evaluation, security tool or production library. Nearest-neighbor metrics depend on sample size and are not likelihoods or distributional guarantees. This demo does not isolate causal contributions of architecture, schedule or optimizer. The terminal alpha-bar is about 0.006123, not zero: starting from a standard normal is an approximation to the finite forward marginal. No privacy guarantee, robust generalization claim or real-data evaluation is made.
 
