@@ -1,8 +1,6 @@
-# MatchLab: stable is not cost-optimal
+# MatchLab: stable matching and supplied costs
 
-**No pair wants to leave together. That does not select the cheapest stable assignment.**
-
-MatchLab is an exact finite two-sided preference workbench for AI allocation and multi-agent reasoning teaching profiles. Inspect every complete pairing, strict blocking-pair test, deferred-acceptance proposal state, attainable stable partner and stable-lattice operation. An explicitly separate supplied assignment-cost matrix exposes where stability and optimization answer different questions.
+MatchLab enumerates strict complete two-sided stable matchings on small synthetic profiles. It shows every pairing, blocking-pair test, deferred-acceptance proposal state and stable-lattice operation. Supplied assignment costs are separate from preference rankings: inspect what each side can attain and which assignment minimizes the chosen costs.
 
 [Live inspector](https://midya8.github.io/matchlab/) · [Source](https://github.com/midya8/matchlab) · [Method and attributed theory](https://github.com/midya8/matchlab/blob/main/METHOD.md) · [Reviewed change](https://github.com/midya8/matchlab/pull/1)
 
@@ -29,7 +27,7 @@ The inspector retains the full assignment census and all n-squared pair tests pe
 
 The cost/blocker-count frontier keeps every tied nondominated assignment. Cap zero recovers the stable cost minimum; the maximum cap recovers the unconstrained one. The relaxation is something to inspect, not a recommendation to tolerate departures. Ordinal rank sums and worst ranks are descriptive indices, not cardinal utilities or an implicit policy. Input edits clear old evidence and disable stale exports; narrow-screen tables scroll internally.
 
-## Checks with different obligations
+## What each checker covers
 
 The Python generator enumerates bijections, builds rank lookup arrays and constructs lattice joins/meets from coordinatewise A-better/A-worse partners. The native replay checker does not import the generator: it enumerates independently, uses direct preference-list indexing, tracks proposals through per-proposer partners, and finds joins/meets by exhaustive search over the full family's upper/lower bounds. It checks exact types, values, order and completeness, including every optimum tie. Shared schema validation remains a common trust surface.
 
@@ -37,31 +35,40 @@ JavaScript independently enumerates full assignments and searches lattice bounds
 
 The optional input-built SciPy/HiGHS reference creates binary assignment variables, row/column bijection constraints and a no-blocking inequality for each pair. It independently solves unconstrained and stable cost objectives and rescores/checks its returned assignment from the original input. It does not verify every optimum tie, lattice operation or cap; exhaustive replay covers those obligations. It is a numerical reference at tolerance `1e-8`, not an exact solver certificate or scalability benchmark.
 
-## Reproduced evidence
+## Run and check
 
-| Check | Developed scope |
-|---|---|
-| Native Python | 20 tests; 76 complete reports: 16 developed controls plus 12 seeded profiles per size 1..5 |
-| Exact report evidence | 2,219 assignments; 49,295 pair witnesses; 113 stable assignments; 217 lattice operations; 715 proposal states |
-| Mutation rejection | 1,372 changed derived primitives across three controls, all rejected |
-| Cross-engine | Two Node tests; full 76-report Python/JavaScript parity and strict input handling |
-| Independent integer reference | 152 input-built HiGHS solves; 1,774 constraint rows; zero observed objective error |
-| Installed reproduction | Six module origins outside source; 16 controls; both CLI entrypoints; 32 forged reports rejected |
-| Actual Chrome | 48 responsive views; 1,149 selected assignments; 23,793 pair rows |
-| Interactive state oracle | 453 proposal states; 243 lattice-operation selections; 450 blocker-cap selections |
-| Download replay | 16 exact reports downloaded by trusted mouse click and independently verified natively |
+The native suite covers complete finite reports, forged evidence, side reversal,
+relabeling and lattice laws. Cross-engine checks compare the full Python and
+JavaScript reports. Chrome tests select matching, proposal, lattice and cost-cap
+states at desktop and mobile widths, then download reports and check them with
+the native verifier. The wheel check imports outside the source tree and runs
+both CLI entrypoints, including forged-report rejection.
 
 ```sh
+python -m venv .venv
+. .venv/bin/activate
 python -m pip install .
 matchlab demo > report.json
 matchlab verify report.json
 python -m unittest discover -s tests -v
 node --test tests/test_engine.cjs tests/test_browser.cjs
+python tools/check_assets.py
 python tools/check_installed.py
+```
+
+Node 22+ and Chrome (or `CHROME_BIN`) are needed for browser tests. To run the
+optional input-built integer reference in the active environment:
+
+```sh
+python -m pip install scipy==1.15.3
 python tools/check_milp.py
 ```
 
-Publication verified at main `03d9549d21565f50b49320bff645152d40446d7d`. [PR #1](https://github.com/midya8/matchlab/pull/1) merged after all six latest feature/PR jobs passed. [Main CI](https://github.com/midya8/matchlab/actions/runs/42889633488) and [Pages deployment](https://github.com/midya8/matchlab/actions/runs/42889689979) passed for that exact main. All 44 public files match tested source; all five deployed assets match byte-for-byte. The full deployed Chrome workflow passes, including independent download replay; all 31 captures match inspected local pixels. These gates identify this released implementation, not the truth of supplied preferences or social suitability of an assignment.
+The test output reports the finite corpus and numerical tolerance. These checks
+do not establish the truth of supplied preferences or the social suitability of
+an assignment. [README review](https://github.com/midya8/matchlab/pull/2) ·
+[Main checks](https://github.com/midya8/matchlab/actions/runs/43236650962) ·
+[Pages deployment](https://github.com/midya8/matchlab/actions/runs/43236649201).
 
 ## Scope and prior work
 
