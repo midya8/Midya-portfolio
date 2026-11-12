@@ -816,18 +816,11 @@ What do the comparisons leave open? The preference inspector fixes observed Brad
 
 ### LoRALab
 
-Width is not predictive rank. A separate exact-rational inspector proves minimum all-input softmax-equivalent rank with constructive factors and nonzero minors, and distinguishes finite-probe agreement with explicit blind-direction counterexamples. All 124 original states remain intact; nonzero widths 4/8 have exact product rank 3 but quotient rank 2. 39 Python/seven Node tests, complete native/browser report hashes, independent verifier and installed replay. No rounded-runtime, saved-byte or training claim. [Exact rank inspector](https://midya8.github.io/loralab/rank.html).
+LoRALab compares low-rank adaptation on a fixed linear-classifier fixture and provides two inspectors: factor-coordinate SGD updates and exact predictive rank. Rational factors and nonzero minors establish the minimum all-input softmax-equivalent rank; explicit blind directions separate finite-probe agreement from global equality. All 124 original states remain available. Nonzero widths 4/8 have exact product rank 3 but class-difference rank 2. This does not certify rounded runtime probabilities, storage savings or training behavior.
 
-Earlier coordinate inspector, preserved:
+The coordinate inspector compares equivalent factors, full gradients and the finite-step second-order identity. Orthogonal changes preserve ordinary factor SGD in real arithmetic; general scaling and shear need not. Scalar learning-rate compensation is an attributed coordinate identity, not a new optimizer. The original width-2 result reaches B accuracy 1.0000 with 67.7% of full fine-tuning's parameters, but retains less A accuracy: 0.7556 versus 0.9556. Widths 4/8 cost more parameters than full fine-tuning. Synthetic finite-classifier results are not transformer benchmarks or explanations of retention loss.
 
-Same model, different factor-SGD step. A dependency-free Python implementation and independent browser inspector expose equivalent low-rank factor coordinates, full gradients and the finite-step second-order identity. Scalar learning-rate compensation is an attributed coordinate identity, not a new optimizer.
-
-- All 124 original epoch boundaries across widths 1/2/4/8 remain available, with full matrix-gauge input, 31-scale sweeps, per-example outputs and complete report/input/archive exports. No best-state selection or retraining from the controls.
-- The unchanged width-2 result reaches B accuracy 1.0000 with 67.7% of full fine-tuning's parameters, but retains less A accuracy: 0.7556 versus 0.9556. Widths 4/8 cost more parameters than full fine-tuning; three output rows cap update-matrix rank at three.
-- 31 Python tests, four Node/actual-Chrome tests, 54 complete native/browser witnesses with 591,615 numeric values, independent finite-difference/80-digit checks and isolated installed-wheel reproduction. All 14 original tests and gates remain intact.
-- Synthetic finite classifier only. Orthogonal changes preserve ordinary SGD in real arithmetic; general scaling/shear need not. Binary64 residuals are diagnostics, not certificates or generalization evidence.
-
-- [Interactive inspector](https://midya8.github.io/loralab/) · Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
+- [Coordinate inspector](https://midya8.github.io/loralab/) · [Exact rank inspector](https://midya8.github.io/loralab/rank.html) · Repo: [midya8/loralab](https://github.com/midya8/loralab) · Case study: [projects/loralab.md](projects/loralab.md)
 
 ### SpecLab
 
