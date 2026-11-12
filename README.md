@@ -350,11 +350,13 @@ Exact probability constraints, shared-belief decisions and exclusion proofs. [Ca
 
 Exact Blackwell comparison and prior atlas. [Live](https://midya8.github.io/channellab/) · [Case study](projects/channellab.md).
 
-### RiskLab: the plan you would change
+### RiskLab: static and nested CVaR
 
-Exact finite scenario-tree decisions under static and nested CVaR. Inspect every full deterministic policy, terminal probability, split boundary atom, threshold/envelope certificate and continuation regret. A disclosed development control chooses static policy p3 at 7/3 versus nested p2 at 22/9; a separate control shows that a root-optimal nested policy can still have a worse reached continuation. Separate path/vertex verification, a lossless BigInt inspector and 9,896 executed HiGHS LP comparisons accompany 821 complete cross-engine reports / 1,121 policies, 16 Python tests, four Node tests and isolated wheel reproduction.
+RiskLab enumerates full deterministic policies on a supplied finite scenario tree and compares static CVaR with nested conditional CVaR. The inspector shows terminal probabilities, split boundary atoms, risk certificates and continuation regrets. In the development-selected reversal control, static policy p3 has value 7/3 and nested policy p2 has value 22/9. These are different objectives, not competing estimates of the same risk. A separate control shows why a nested-root-optimal policy need not have the best reached continuation.
 
-Supplied teaching trees with at most 15 nodes, eight leaves and four decisions. Classical risk-sensitive planning, not a learned agent, held-out benchmark, financial advice, new CVaR algorithm or real-world safety guarantee. Exact arithmetic does not validate the supplied model.
+Checks include 16 Python tests, four Node/actual-Chrome tests, 821 complete cross-engine reports covering 1,121 policies, an optional 9,896-solve HiGHS reference and an isolated installed-wheel check. The native verifier uses separate path and bounded-vertex enumeration; the browser uses lossless BigInt arithmetic.
+
+Supplied teaching trees are limited to 15 nodes, eight leaves and four decisions. This is not a learned agent, held-out benchmark, general risk-sensitive MDP solver or new CVaR algorithm. Exact arithmetic does not validate the model. No financial advice or real-world safety guarantee.
 
 [Live inspector](https://midya8.github.io/risklab/) · [Source](https://github.com/midya8/risklab) · [Case study](projects/risklab.md)
 
