@@ -1,20 +1,22 @@
-# DPPLab: every finite subset, exactly
+# DPPLab: inspecting finite subset laws
 
 [Source](https://github.com/midya8/dpplab) · [Live inspector](https://midya8.github.io/dpplab/) · [Method and sources](https://github.com/midya8/dpplab/blob/main/METHOD.md)
 
-Exact-rational finite DPP subset laws with every determinant, inclusion-kernel witness, Schur include/exclude conditioning and fixed-total-size contrast. Dependency-free Python and independent BigInt JavaScript agree on 24 complete reports / 4,050 exact leaves; 24 Python tests on 3.10-3.13 and actual-Chrome full-record/geometry checks. Duplicate-item controls separate zero co-occurrence from equal-marginal independence. Established bounded L-ensembles, not learned relevance, a scalable sampler or a downstream quality result.
+DPPLab computes the complete subset law for a supplied determinantal point process likelihood kernel. Inspect every determinant, inclusion probability, include/exclude condition and fixed-total-size selection using exact rational arithmetic. Duplicate-item controls separate zero co-occurrence from equal-marginal independence.
 
-## The control
+Python and independent BigInt JavaScript agree on 24 complete reports and 4,050 exact leaves. The checks include 24 Python tests on 3.10-3.13 and actual-Chrome records and bar geometry. This is a bounded L-ensemble inspector, not learned relevance, a scalable sampler or a downstream quality result.
+
+## Duplicate-item control
 
 L = [[4,4,0],[4,4,0],[0,0,1]] gives normalizer 18. Items 0 and 1 each have inclusion probability 4/9, but their joint inclusion is zero, versus 16/81 under independent equal marginals. Item 2 is independent with probability 1/2. Mean size is 25/18 and variance 113/324. This demonstrates supplied mathematical repulsion, not semantic diversity measured on a corpus.
 
-## The implementation
+## Computing and inspecting the laws
 
 Native Fraction elimination and Gauss-Jordan inversion compute every subset weight, normalizer, inclusion kernel and Schur residual. Independent BigInt JavaScript instead uses permutation determinants and adjugate inverses. The interface retains all exact fractions, every selected atom, all mode ties, item/cardinality laws and full matrix records; SVG uses decimal conversion only for geometry.
 
 Include/exclude conditions are separate from optional fixed total size k. Residual kernels condition only on include/exclude; a highlighted warning prevents treating them as fixed-k kernels. Identity L with k=1 gives zero probability to the pair, even though its event-only inclusion determinant is 1/4. Impossible events return null laws, not a silently repaired answer.
 
-## Independent evidence
+## Independent checks
 
 - 24 Python tests on 3.10-3.13, including 120 determinant references, 50 inverse identities, 140 full Gram-kernel oracles, 100 conditioning oracles, 40 fixed-k scale controls and 20 sign-conjugation controls.
 - 24 complete retained reports match all 4,050 exact native/BigInt leaves.
