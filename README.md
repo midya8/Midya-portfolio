@@ -767,15 +767,12 @@ Split-conformal classification sets from scratch: a fixed classifier's probabili
 
 ### CalibrLab
 
-Confidence calibration from scratch in pure Python, with a JSON CLI/API for caller-supplied validation/test logits, unclipped logit-space NLL and optional conditional paired test-row bootstrap intervals: ECE/MCE/Brier/NLL metrics, per-bin reliability tables, and temperature scaling fit on validation NLL only.
+Temperature scaling with separate validation/test logits, stable logit-space NLL, reliability bins and optional paired test-row bootstrap intervals. Python uses only the standard library.
 
-- **Measured calibration repair** - an overfit small-data MLP (train 1.0000, test 0.5563; top bin 0.9735 mean confidence at 0.6602 accuracy) goes from ECE 0.2765 to 0.0651 and test NLL 2.0030 to 1.2060 with one validation-fitted temperature (T = 3.85) - at exactly zero accuracy change, a property of the method asserted bit-for-bit in the gates.
-- **Honest bounds, not just wins** - the test-optimal (oracle) temperature 3.30 would give NLL 1.1984, so the validation fit leaves only 0.0076 on the table; post-scaling bins skew mildly under-confident and MCE stays noisy (0.1216), both reported.
-- **Gradients by hand, verified** - the MLP's backprop is derived in code and finite-difference checked; the suite separates metric unit tests from fixture regression.
-- Dependency-free Python 3.10+, 56 Python tests plus four Node/Chrome tests, a fully offline demo asserting both gate sides, and CI across Python 3.10-3.13.
-
-- Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab) · Case study: [projects/calibrlab.md](projects/calibrlab.md)
-- v0.2 [live score ledger](https://midya8.github.io/calibrlab/): independent native/browser arithmetic, all row logit NLL/class Brier terms, signed bin gaps/ECE terms, migration and fixed-temperature deletion; five public controls, 19 sampled temperatures and complete input/report JSON. 95 witnesses, 160 Decimal/80 integer games and installed original-training/wheel reproduction. Original adverse caller and all results retained. Binned ECE is not classwise calibration, proper losses are not calibration-only and deletion is not refitting/uncertainty. Full-precision oracle gap rounds to .0075; prior .0076 subtracts rounded NLLs.
+- The synthetic MLP fixture improves from ECE 0.2765 to 0.0651 and test NLL 2.0030 to 1.2060 at validation-fitted T=3.85, with unchanged accuracy. A separate caller example worsens test NLL. Neither outcome promises improvement on new data.
+- The [live score ledger](https://midya8.github.io/calibrlab/) shows row losses, class Brier terms, bin gaps, migration, fixed-temperature deletion and complete input/report JSON. Deletion is not refitting or uncertainty; ECE depends on bins and top-class probabilities.
+- 56 Python tests and four Node/Chrome tests cover metrics, gradients, fixture regression and ledger arithmetic. Installed-wheel reproduction checks the original full training/report, 95 witnesses and five commands outside checkout. CI runs Python 3.10-3.13.
+- Repo: [midya8/calibrlab](https://github.com/midya8/calibrlab) | Case study: [projects/calibrlab.md](projects/calibrlab.md)
 
 ### DistillLab
 
