@@ -744,14 +744,12 @@ Offline contextual-bandit evaluation from scratch: IPS, self-normalized IPS, dir
 
 ### DriftLens
 
-Embedding-distribution tests from scratch in pure Python: unbiased RBF MMD, one cached pooled kernel, exact tiny-sample enumeration and seeded Monte Carlo permutations with nonzero finite p-values.
+Dependency-free RBF MMD two-sample tests with a cached pooled kernel, exact tiny-sample enumeration, seeded Monte Carlo permutations, prespecified bandwidth families and Holm correction. A separate rational supplied-Gram inspector exposes every allocation, tied tail rank, PSD certificate and recalibrated global minimum-p decision.
 
-- On the selected 30x4 development fixture, independent same-generator samples give MMD squared -0.004871, p=0.550; adding +2 to each current coordinate gives 0.634539, p=0.002, the 1/500 resolution floor. Not a power/type-I error benchmark.
-- A tiny separated 2-vs-2 example still has exact p=1/3 over six allocations, making finite resolution and non-rejection limits visible.
-- Explicit exchangeability, prespecified bandwidth/preprocessing and repeated-test caveats. No cause, model-performance or continuous-monitoring guarantee; non-rejection is not equivalence.
-- Dependency-free Python 3.10+, 45 tests, JSON CLI/API with prespecified bandwidth families and Holm correction and prespecified within-block permutations and descriptive row-index witness diagnostics and counted imbalanced-group scoring savings, exact rank-superuniformity check, cached-kernel verification, offline demo and CI on Python 3.10-3.13. Standard method attributed to Gretton et al. and permutation convention to Phipson/Smyth.
-
-- Repo: [midya8/driftlens](https://github.com/midya8/driftlens) · Case study: [projects/driftlens.md](projects/driftlens.md)
+- The RBF API uses floating arithmetic. The supplied-Gram mode uses exact fractions on 4-10 pooled rows, 1-6 fixed kernels and at most 252 allocations. It does not choose bandwidths or make the RBF API rational.
+- Blocks constrain allowed allocations, not the truth of exchangeability. Witness scores are descriptive. Rejection does not identify a cause or model-quality loss; non-rejection is not equivalence.
+- 58 Python and four Node tests, actual Chrome checks and installed-wheel checks cover both modes. Selected synthetic controls are not real-data error-rate or power benchmarks.
+- Repo: [midya8/driftlens](https://github.com/midya8/driftlens) · Case study: [projects/driftlens.md](projects/driftlens.md) · [Exact-orbit inspector](https://midya8.github.io/driftlens/)
 
 ### SetGuard
 
