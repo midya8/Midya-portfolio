@@ -1,43 +1,64 @@
-# ConceptLab case study
+# ConceptLab
 
+ConceptLab inspects the concepts and implication rules of small object-attribute tables. Python integer masks and browser JavaScript sets compute independent reports. Three modes separate a complete table, explicit unknown cells and observations checked against a supplied expert table. No model, API or private data is used.
 
-## ConceptLab: exact concepts and implication witnesses
+| Question | Inspector | Method |
+| --- | --- | --- |
+| Which concepts and implications hold in a complete table? | [Binary context](https://midya8.github.io/conceptlab/) | [Definitions and sources](https://github.com/midya8/conceptlab/blob/main/METHOD.md) |
+| What can change when unknown cells are filled in? | [Completions](https://midya8.github.io/conceptlab/partial.html) | [Completion semantics](https://github.com/midya8/conceptlab/blob/main/PARTIAL.md) |
+| Which observed rules survive counterexamples from the supplied domain? | [Attribute exploration](https://midya8.github.io/conceptlab/exploration.html) | [Exploration protocol](https://github.com/midya8/conceptlab/blob/main/EXPLORATION.md) |
 
-[Live inspector](https://midya8.github.io/conceptlab/) | [Source](https://github.com/midya8/conceptlab) | [Method and prior work](https://github.com/midya8/conceptlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/conceptlab)
 
-A bounded knowledge-representation workbench for formal concept analysis. Independent Python and JavaScript enumerate every formal concept, cover, meet/join, attribute closure and object derivation. Inspect canonical implications, pseudo-intent decisions, NextClosure pivots, forward rule traces and rule-removal countermodels. Every implication query retains supporting and counterexample rows; an empty premise extent means vacuous validity and null confidence, not evidence.
+## Complete contexts
 
-Fourteen original controls include duplicate rows, zero support, empty universes, strict joins, nonminimal pseudo-intents and multi-rule closure. The retained suite covers 194 attribute subsets, 390 object subsets, 69 concepts, 30 canonical rules, 635 ordered lattice operations and 5,762 implication queries. Independent set-based checks cover all 689 contexts with zero to three objects/attributes plus 100 seeded larger contexts per engine. Native CLI, installed wheel and actual-Chrome checks accompany the interactive inspector.
+Inspect every attribute closure, object derivation, formal concept, cover and pairwise meet/join. Pseudo-intent decisions, canonical implications, forward-rule traces, rule-removal countermodels and NextClosure pivots retain their intermediate records. A join can contain more objects than the raw union. A pseudo-intent need not be a minimal nonclosed set.
 
-Finite exact teaching/audit tool: at most six attributes and eight objects. Not learned prediction, fuzzy concept analysis, noisy-data inference, causality or a scalable mining system. Existing FCA theory and software are attributed; no new algorithm is claimed.
+Implication queries list every supporting and counterexample row. An empty premise extent gives vacuous validity and null confidence, not evidence. Missing incidence is false in this mode; it is not an unknown cell. The canonical-basis theorem concerns minimum implication count, not minimum total premise/conclusion literal count.
 
-## Reproduction
+Fourteen synthetic controls include duplicate rows, empty universes, unsupported premises, strict joins and multi-rule closure. Independent set checks cover all 689 contexts with zero to three objects and attributes, plus seeded larger contexts. The method retains individual query, lattice and witness counts. Limits are six attributes and eight objects.
 
-Run `python -m unittest discover -s tests -v`, `npm test` and `bash tools/wheel_smoke.sh` from the source checkout. The wheel check runs outside the checkout, verifies all retained reports and installed module origins, and checks the console and module CLI. Python 3.10 through 3.13 are checked in CI. The browser checks every retained query, witness and report, JSON export, invalid-input clearing and 320/390/1280 layouts.
+## Unknown-cell completions
 
-The method documents formulas, set conventions, input limits, implementation differences and prior sources. Zero-object and zero-attribute contexts explicitly extend the ordinary set formulas beyond texts that assume nonempty universes.
+Enumerate every compatible binary completion of a 0/1/null table. An implication can be certain, contingent or impossible. Confidence endpoints retain all ties, while undefined zero-support completions stay separate. Goals share one completion: separately possible goals can be jointly impossible. Every inclusion-minimal impossible goal set retains its one-goal-deletion witnesses.
 
+Controls show why checking only the all-false and all-true fill-ins is insufficient. Twelve controls include all 64 worlds of six unknown cells, overlapping-premise tautologies, duplicate objects and empty universes. Python and JavaScript compare complete reports against independent exhaustive references. Limits are four attributes, four objects, six unknown cells and four goals. Completion counts are not probabilities, and confidence bounds do not estimate unseen data.
 
-### ConceptLab incomplete-context completions
+## Attribute exploration
 
-[Live completion inspector](https://midya8.github.io/conceptlab/partial.html) | [Semantics and sources](https://github.com/midya8/conceptlab/blob/main/PARTIAL.md)
+An implication can fit every observed row and still fail in the supplied domain. The simulator asks the strongest observed implication for a premise, retains every expert-table counterexample, reveals the lowest-ID refutation and retries that premise. Accepted implications change the next lectic pivot. Every seed, earlier-coordinate disagreement and derivation round remains inspectable.
 
-Unknown is not false. Enumerate every compatible binary completion of a three-valued table. Inspect certain, contingent and impossible implications, all object counterexamples, exact defined row-confidence bounds and endpoint ties, with zero-support completions kept separate. Intersect goals in one shared completion and retain every inclusion-minimal impossible goal set with deletion witnesses.
+A separate Python checker reconstructs theory closure by intersecting all satisfying models, checks pivots against exhaustive lectic successors and checks the canonical basis through an independent recursive pseudo-intent characterization. It does not call either generator. The final audit compares accepted-knowledge, full-expert and final-observed closure for every attribute subset. Some rows can stay unseen without losing the supplied table's implication theory.
 
-Original controls expose two traps: both extreme fill-ins can pass while an intermediate world refutes an implication, and separately possible goals can be jointly impossible. Overlapping-premise tautologies, empty universes, duplicate objects and all 64 worlds of six unknowns remain explicit. Twelve controls cover 86 completions, 438 implication queries, 4,634 query/completion witness rows and 63 goal subsets.
+Twelve controls include repeated rejection, implication chains, unsupported premises, duplicate row identities and sufficient-but-not-exhaustive observations. Exhaustive small inputs and seeded inputs are compared across both engines. Limits are five attributes and eight supplied objects. This is a simulated exact expert, not a human, language model or claim about external domain truth.
 
-Independent Python and JavaScript engines, 17 native tests on four Python versions, six Node/Chrome tests and 26 installed-wheel reports preserve the complete-context workbench. Every retained UI record, export and invalid-input clearing is checked; all controls are layout-tested at 320/390/1280. Limits: four attributes, four objects, six unknown cells. Completion counts are not probabilities; confidence bounds describe supplied rows, not unseen data. No imputation, causal claim, graded possibility model, incomplete-context basis or new algorithm is claimed.
+## Reproduce and check
 
+From a checkout, using Python 3.10+:
 
-### ConceptLab: a table is not an expert
+```sh
+git clone https://github.com/midya8/conceptlab.git
+cd conceptlab
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install .
+python -m conceptlab examples/demo.json -o audit.json
+python -m conceptlab --partial examples/partial.json -o completions.json
+python -m conceptlab --exploration examples/exploration.json -o exploration.json
+python -m conceptlab --verify-exploration exploration.json
+python -m unittest discover -s tests -v
+npm test
+sh tools/wheel_smoke.sh
+```
 
-[Live exact-expert exploration](https://midya8.github.io/conceptlab/exploration.html) | [Source](https://github.com/midya8/conceptlab) | [Protocol and inspected foundations](https://github.com/midya8/conceptlab/blob/main/EXPLORATION.md) | [Merged PR #3](https://github.com/midya8/conceptlab/pull/3)
+The Node tests need Node 22+ and Chrome/Chromium. The wheel script also needs uv. It installs into a temporary environment and runs outside the checkout, checks all six module origins, reproduces the complete/partial/exploration controls through both entry points and rejects altered exploration reports through both verifier entry points.
 
-An implication can fit every observed row and still fail in the supplied domain. This finite attribute-exploration simulator asks the strongest observed implication for a premise, retains every expert-table counterexample, reveals the lowest-ID refutation and retries the same premise. Accepted implications change the next lectic pivot; every seed, earlier-coordinate disagreement and derivation round remains inspectable. The expert is an explicitly supplied complete table, not a human or language model. Vacuous validity is not evidence about the world.
+The documentation review reran all 24 Python tests and eleven Node/actual-Chrome tests on fresh baseline, revised, published and merged source. Hosted CI checks Python 3.10 through 3.13. Deployed Chrome tests exercise all three inspectors at 320/390/1280, compare displayed records with native reports, replay exploration downloads through the independent verifier and check that invalid edits clear stale results and disable export.
 
-- A separate set-based Python checker reconstructs theory closure by intersecting all satisfying models, checks each pivot against exhaustive lectic successors, and checks the canonical basis through an independent recursive pseudo-intent characterization. It does not call either generator. The final audit compares accepted-knowledge, full-expert and final-observed closures for every attribute subset, with support IDs and all missing-attribute counterexamples. Some rows can remain unseen without losing the supplied table's implication theory.
-- Fresh feature/main reproduction passes 24 native tests on Python 3.10/3.11/3.12/3.13 and all eleven Node/Chrome tests. All 6,654 small expert-family/initial-observation combinations are checked; Python and JavaScript agree across 6,966 reports and 64,658 events. The installed 0.3.0 wheel runs both entry points outside the checkout for fourteen complete-context, twelve partial-context and twelve exploration controls, with forged-export rejection.
-- Optional concepts 0.9.2 agrees on 175,003 support/closure checks. It does not validate scheduling; 88 empty-axis requests are excluded from that package comparison and remain tested internally. Actual deployed Chrome checks 36 exploration reports at 1280/390/320, 273 events, 204 pivots, 294 premise obligations, 702 displayed derivation rounds and twelve downloaded exports accepted by the independent Python CLI. Both earlier inspectors pass their full behavior checks.
-- All fifty native/fresh feature/main files and fourteen deployed assets plus root match exactly. Feature/PR/main CI and Pages are green. Forty new-inspector plus 21 targeted original-inspector/accepted-pivot screenshots match unmasked in feature/main and main/live comparisons. Phone rejection, narrow-phone lectic evidence, desktop accepted implication and both prior inspectors' new links were visually inspected.
+The exploration method records the earlier optional concepts 0.9.2 comparison, including its empty-axis exclusions. That historical comparison was not rerun for this documentation review and does not validate the exploration scheduler.
 
-Five attributes, eight supplied objects. Twelve original synthetic controls include repeated rejection, implication chains, empty contexts, unsupported premises, duplicate row identities and sufficient-but-not-exhaustive observations. Published FCA, NextClosure and attribute-exploration theory are credited; no new algorithm, minimum-question claim, live human expert, background theory, partial/noisy expert, statistical generalization or production scalability claim. Previous complete and partial inspectors are preserved.
+## Scope and prior work
+
+This implements established formal concept analysis, NextClosure and attribute exploration. The method files credit the inspected research, teaching and software sources and state what was implemented independently. No external FCA code, datasets, examples, benchmarks or optimized algorithms were copied. No affiliation with the credited projects is claimed.
+
+These are bounded teaching and audit tools, not new algorithms, scalable mining systems, learned predictions, missing-data estimates or causal evidence. No fuzzy/noisy expert, live human expert, background theory, minimum-question guarantee or statistical generalization is claimed. Zero-object and zero-attribute contexts explicitly extend the set formulas beyond texts that assume nonempty universes.
