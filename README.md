@@ -1036,14 +1036,11 @@ Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-ra
 
 ### loglens
 
-Dependency-free access-log analysis for incident work: the numbers that matter in the first five minutes — error rate, status distribution, hottest failing paths, and the source IPs behind 5xxs.
+Standard-library analysis of combined and JSON access logs: recorded request/status counts, paths, latency, response sizes and client metadata. CLI and importable functions share the same parsers and statistics.
 
-- **Headline answers first, then the detail** — per-bucket incident timelines, p50/p95/p99 latency, per-path and per-client volume/error/latency tables sortable by errors, volume, or p95, a 2xx/3xx/4xx/5xx status-class roll-up, throughput (mean/peak per bucket), fixed-bucket latency-distribution reports, and an hour-of-day (UTC) pattern breakdown.
-- **Narrow to the failing slice** — time-window, status-code, class, and path-prefix filters scope every statistic; consecutive-bucket spike windows, method/user-agent/referer triage behind the 5xxs, and a listing of the individual requests behind the 5xxs.
-- **Before/after around a deploy** — `--split-at` compares the windows on either side of a deploy timestamp (error-rate delta, newly failing paths, paths that recovered), and `--vs` compares two whole logs, ranking the paths carrying the biggest error-count increases as regressions.
-- **A gate, not just a report** — Apdex user-satisfaction scoring at a chosen threshold T (overall and per-path, worst first) with a `--min-apdex` gate, a `--max-error-rate` gate that exits 1 when the 5xx rate breaches the threshold, the failing-path status pivot (`--path-status`), and Markdown incident reports with per-path breakdowns, spike windows, and optional before/after deploy comparisons.
-- Parses nginx/Apache combined and JSON logs with per-line auto-detection, standard library only, CLI plus importable library, 241 unit tests with CI across Python 3.10-3.13.
-
+- Timelines and baseline comparisons describe supplied records, not incident causes or release effects. Skipped malformed records and missing durations can bias the result.
+- IPs and user-agent strings do not establish person identity or bot activity. Duration-based Apdex is not measured human satisfaction; gates do not verify service availability or log freshness.
+- 241 tests and CI on Python 3.10-3.13 cover parsing, statistics, filters, comparisons, reports and CLI gates. Local examples include a failing error-rate control.
 - Repo: [midya8/loglens](https://github.com/midya8/loglens) · Case study: [projects/loglens.md](projects/loglens.md)
 
 ### flowkit
