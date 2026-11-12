@@ -1,12 +1,14 @@
-# FlowLab: exact model density is not an exact fit
+# FlowLab: two-dimensional density and conditional-grid audits
 
-Affine-coupling normalizing flow from scratch: exact 2-D model log density, explicit inverse sampling, bounded log scales and handwritten likelihood gradients. A 200-parameter flow gives test NLL2.188408 on a disclosed banana-shaped development fixture, vs train-fitted full-covariance Gaussian2.907770 and untrained flow2.896854; known generating density2.151426 is report-only. Test roundtrip/logdet residual max1.78e-15 is an implementation audit, not a global error bound. Sample residuals/outliers remain visible. 45 tests, strict artifacts and offline train/score/gradient/sample CLI. No exact-fit, image, anomaly-detection or general ranking claim.
+FlowLab fits an affine-coupling density model to two-dimensional points. It implements the inverse, model log density and likelihood gradients without runtime dependencies, then compares the fitted model with an untrained flow and a train-fitted full-covariance Gaussian.
+
+The same model supports input-score gradients, finite-interval conditional slices and aligned-window sensitivity checks. The sections below separate model density from fit quality and conditional-grid agreement from accuracy.
 
 [Source repository](https://github.com/midya8/flowlab) · [Design contracts](https://github.com/midya8/flowlab/blob/main/DESIGN.md)
 
 ![Shared-axis density and sample audit](https://raw.githubusercontent.com/midya8/flowlab/main/assets/flow-audit.svg)
 
-## Why this project
+## What the model checks
 
 Invertible layers let one model score observed data and generate samples with the same weights. This project makes the Jacobian sign, inverse arithmetic, train-only baseline and gap to the known generator inspectable. Exact likelihood computation describes the fitted model, not the unknown data distribution.
 
@@ -28,7 +30,7 @@ The log density is the analytic change-of-variables density of this invertible m
 
 ## Measured development fixture
 
-Independent u,v ~ N(0,1), then `x=u`, `y=0.5*v+0.6*(u*u-1)`. This is a smooth banana-shaped density with a known reference likelihood. 1,024 training points (seed53), 512 fresh test points (seed59); flow seed11, training-draw seed12, 2,000 updates, batch32, learning rate0.003. Final checkpoint, no validation or test-based selection. No architecture, schedule or seed sweep was run. The data and outputs were inspected during development, so this is not an untouched benchmark.
+Independent u,v ~ N(0,1), then `x=u`, `y=0.5*v+0.6*(u*u-1)`. This is a smooth banana-shaped density with a known reference likelihood. 1,024 training points (seed 53), 512 fresh test points (seed 59); flow seed 11, training-draw seed 12, 2,000 updates, batch 32, learning rate 0.003. Final checkpoint, no validation or test-based selection. No architecture, schedule or seed sweep was run. The data and outputs were inspected during development, so this is not an untouched benchmark.
 
 | Density | Train NLL, nats/2-D point | Test NLL, nats/2-D point |
 | --- | ---: | ---: |
@@ -39,7 +41,7 @@ Independent u,v ~ N(0,1), then `x=u`, `y=0.5*v+0.6*(u*u-1)`. This is a smooth ba
 
 The Gaussian fits both means and the complete 2x2 maximum-likelihood covariance on training data only. It is not an intentionally unfit standard-normal control. The untrained flow uses the same initial parameters. These are descriptive fixture comparisons, not a causal decomposition or a general model ranking.
 
-All 256-sample arms use sample seed19 except the fresh generator reference (seed61). Trained/generated curve-residual second moments are **0.293054 / 0.244743**; untrained/Gaussian are **1.720324 / 1.714797**. Fractions with absolute residual <=1 are **91.41% / 93.36% / 55.86% / 55.86%** in that order. The known population residual second moment is 0.25. These are sample summaries, not calibrated probability coverage or a full distribution test. Raw points and means are in demo JSON.
+All 256-sample arms use sample seed 19 except the fresh generator reference (seed 61). Trained/generated curve-residual second moments are **0.293054 / 0.244743**; untrained/Gaussian are **1.720324 / 1.714797**. Fractions with absolute residual <=1 are **91.41% / 93.36% / 55.86% / 55.86%** in that order. The known population residual second moment is 0.25. These are sample summaries, not calibrated probability coverage or a full distribution test. Raw points and means are in demo JSON.
 
 Across 512 test points, the maximum forward/inverse reconstruction or opposing-logdet residual is **1.7763568394002505e-15** on the development run. That is an implementation audit on those inputs, not a global error bound. The trained model remains worse than the known generating density on this test set; likelihood fidelity and sample fidelity are different checks.
 
@@ -47,15 +49,15 @@ Across 512 test points, the maximum forward/inverse reconstruction or opposing-l
 
 45 tests include every parameter of tiny one/two/three-layer flows by central finite differences, an independent finite-difference full Jacobian determinant, both inverse directions, constant-affine density, logdet sign, standard-normal identity, midpoint density integration of a small near-identity model, strict serialization, bounds, no mutation and CLI. The quadrature test is a finite-grid sanity check, not a general normalization proof; the bijective change-of-variables construction supplies the model's mathematical normalization.
 
-CI tests Python3.10-3.13, trains the actual fixture and checks all four reproduced SVGs on3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
+CI tests Python 3.10-3.13, trains the actual fixture and checks all four reproduced SVGs on 3.11. Figures use shared axes and expose outside-plot counts rather than silently dropping outliers.
 
 ## Limits
 
-Only continuous 2-D points, 1-8 layers and hidden width1-32. No image model, dequantization, multiscale architecture, batch normalization, residual conditioner, classifier, out-of-distribution detector or production guarantee. Bounded scales limit per-layer dilation but do not bound translation, all input derivatives or every composite condition number. Artifacts save inference weights/settings, not optimizer state, and do not support exact training resume. No privacy or anomaly-detection claim. Density values may exceed1; densities are not discrete point probabilities and NLL units depend on coordinate units.
+Only continuous 2-D points, 1-8 layers and hidden width 1-32. No image model, dequantization, multiscale architecture, batch normalization, residual conditioner, classifier, out-of-distribution detector or production guarantee. Bounded scales limit per-layer dilation but do not bound translation, all input derivatives or every composite condition number. Artifacts save inference weights/settings, not optimizer state, and do not support exact training resume. No privacy or anomaly-detection claim. Density values may exceed 1; densities are not discrete point probabilities and NLL units depend on coordinate units.
 
 ## Source credit
 
-Independent educational implementation of **Dinh, Sohl-Dickstein and Bengio (2017), [Density estimation using Real NVP](https://arxiv.org/pdf/1605.08803v3.pdf)**, especially change of variables Eq.2-3, affine coupling/inverse Eq.4-9 and alternating couplings Section3.5. Source read for mathematics; no copied code or pretrained weights. The paper's image architecture and benchmark results are not reproduced here.
+Independent educational implementation of **Dinh, Sohl-Dickstein and Bengio (2017), [Density estimation using Real NVP](https://arxiv.org/pdf/1605.08803v3.pdf)**, especially change of variables Eq. 2-3, affine coupling/inverse Eq. 4-9 and alternating couplings Section 3.5. Source read for mathematics; no copied code or pretrained weights. The paper's image architecture and benchmark results are not reproduced here.
 
 MIT license.
 
@@ -76,9 +78,9 @@ The train/score/gradient/sample CLI accepts bounded continuous 2-D data. No exte
 
 ![Shared-scale input gradient decomposition](https://raw.githubusercontent.com/midya8/flowlab/main/assets/score-audit.svg)
 
-The new `gradient` CLI and `Flow.input_score` API return fitted log density, the full input score, normal-base pullback and log-Jacobian gradient. For `log p_X=log p_Z(f(x))+L(x)`, the full score is `J_f^T(-f(x))+grad L`. With fixed trained weights on a fixed9x9 grid (x=-2..2,y=-1..3,spacing.5), central differences at epsilon1e-5 give max coordinate error **1.1904095487125232e-9**. Omitting the volume term raises the max coordinate discrepancy to **0.6605454933292365**. Both gates run in the demo; all original training, likelihood and sample outputs are unchanged.
+The `gradient` CLI and `Flow.input_score` API return fitted log density, the full input score, normal-base pullback and log-Jacobian gradient. For `log p_X=log p_Z(f(x))+L(x)`, the full score is `J_f^T(-f(x))+grad L`. With fixed trained weights on a fixed 9x9 grid (x=-2..2,y=-1..3,spacing.5), central differences at epsilon 1e-5 give max coordinate error **1.1904095487125232e-9**. Omitting the volume term raises the max coordinate discrepancy to **0.6605454933292365**. Both gates run in the demo; all original training, likelihood and sample outputs are unchanged.
 
-The figure uses the same axes and vector gain across all components, with a disclosed length cap and capped counts; raw vectors and finite-difference values remain in JSON. Tests check both coordinates and both components across1/2/3/8 layers plus independent standard-normal, constant-affine and variable-scale formulas. CLI accepts1-256 rows and rejects nonfinite vectors.
+The figure uses the same axes and vector gain across all components, with a disclosed length cap and capped counts; raw vectors and finite-difference values remain in JSON. Tests check both coordinates and both components across 1/2/3/8 layers plus independent standard-normal, constant-affine and variable-scale formulas. CLI accepts 1-256 rows and rejects nonfinite vectors.
 
 These are implementation audits, not global error bounds, feature importance, causal effects or a comparison of learning mechanisms. A score vector is the local derivative of fitted log density in these coordinate units, not a probability or an out-of-distribution detector. No gradient-ascent trajectories, mode finder or score-based sampler is claimed. Likelihood gradients and true data quality remain different questions.
 
@@ -88,19 +90,19 @@ These are implementation audits, not global error bounds, feature importance, ca
 
 `conditional_slice(flow, fixed_axis, fixed_value, low, high, grid_size)` and the `conditional` CLI evaluate the joint log density along one free coordinate. Log-max subtraction avoids underflow from a large shared log-density offset. The trapezoid rule normalizes a **piecewise-linear density on the supplied finite interval**; moments integrate that interpolation analytically, CDF integrates each segment, and quantiles invert it by bounded bisection. JSON retains every grid point, original joint log density, normalized density, CDF, requested quantiles, moments and actual model-call count. Both fixed-axis choices work. No unreported adaptive search.
 
-The same trained model, observed x=-1.5/0/1.5, free y interval[-4,5] and grids65/257/513 use **2,505 model evaluations** in total. On the finest grid:
+The same trained model, observed x=-1.5/0/1.5, free y interval [-4,5] and grids 65/257/513 use **2,505 model evaluations** in total. On the finest grid:
 
-| Fixed x | Flow median | Flow variance | Flow 5%-95% quantiles | Median change257 to513 |
+| Fixed x | Flow median | Flow variance | Flow 5%-95% quantiles | Median change 257 to 513 |
 | ---: | ---: | ---: | --- | ---: |
 | -1.5 | 0.726272 | 0.256504 | [-0.080939,1.582895] | 0.00000649 |
 | 0 | -0.632395 | 0.277220 | [-1.507665,0.223181] | 0.00000070 |
 | 1.5 | 0.722021 | 0.334000 | [-0.117114,1.771246] | 0.00001986 |
 
-The known generator's full-line conditional means are0.75/-0.6/0.75, each with variance0.25. The train-fitted Gaussian's full-line conditional means are0.005363/0.019952/0.034542, with variance0.924248. Reference curves are clearly labeled full-line formulas; the flow curves are interval-renormalized approximations. These descriptive development slices do not establish calibrated coverage or model quality elsewhere. Original training and earlier audit outputs are unchanged.
+The known generator's full-line conditional means are 0.75/-0.6/0.75, each with variance 0.25. The train-fitted Gaussian's full-line conditional means are 0.005363/0.019952/0.034542, with variance 0.924248. Reference curves are clearly labeled full-line formulas; the flow curves are interval-renormalized approximations. These descriptive development slices do not establish calibrated coverage or model quality elsewhere. Original training and earlier audit outputs are unchanged.
 
 Grid refinement checks only sensitivity to these grid sizes **inside the same interval**. It cannot measure missing tail mass or guarantee accuracy; two grids can miss the same narrow peak. The returned log slice integral is an approximate integral of joint density over this interval, with density units for the fixed coordinate. It is not an event probability, exact marginal likelihood or tail probability. A continuous exact-coordinate condition has probability zero; the density slice defines the conditional approximation. Narrower intervals change the distribution, not just its displayed crop.
 
-All bounds are validated before model evaluation: fixed axis0/1, fixed value[-100,100], interval endpoints[-100,100] with width>=1e-6, grid2-513, and1-33 requested quantiles in[0,1]. Nonfinite joint scores fail. Default quantiles are.05/.5/.95, with endpoints and duplicate/unsorted requests supported. Uniform and linear-density formulas, normal/affine references, explicit truncation, refinement, log offsets+/-10000, monotone CDF/normalization, no mutation, preflight call budgets and CLI errors are tested.
+All bounds are validated before model evaluation: fixed axis 0/1, fixed value [-100,100], interval endpoints [-100,100] with width >=1e-6, grid 2-513, and 1-33 requested quantiles in [0,1]. Nonfinite joint scores fail. Default quantiles are .05/.5/.95, with endpoints and duplicate/unsorted requests supported. Uniform and linear-density formulas, normal/affine references, explicit truncation, refinement, log offsets +/-10000, monotone CDF/normalization, no mutation, preflight call budgets and CLI errors are tested.
 
 ## Window sensitivity and a grid-agreement counterexample
 
@@ -108,7 +110,7 @@ All bounds are validated before model evaluation: fixed axis0/1, fixed value[-10
 
 `window_audit` and the `windows` CLI evaluate one outer grid, then reuse a contiguous, index-aligned subgrid for an inner window. They return both full interpolated distributions, the inner/outer segment-area ratio, the removed fraction **within the finite outer window**, and inner-minus-outer median shift. No second round of model evaluations and no adaptive choice of bounds. Shared sampled heights make these mass ratios internally consistent for this interpolant; they do not make the interpolant accurate.
 
-Same trained flow, outer[-4,4],513 points; inner indices192..320 give[-1,1],129 points. Each row costs513 model evaluations, **1,539 total**, not513+129 per row:
+Same trained flow, outer [-4,4], 513 points; inner indices 192..320 give [-1,1], 129 points. Each row costs 513 model evaluations, **1,539 total**, not 513+129 per row:
 
 | Fixed x | Removed interpolated fraction within outer | Inner-minus-outer median | Inner median | Inner variance |
 | ---: | ---: | ---: | ---: | ---: |
@@ -116,8 +118,8 @@ Same trained flow, outer[-4,4],513 points; inner indices192..320 give[-1,1],129 
 | 0 | 0.243537 | +0.161078 | -0.471317 | 0.144531 |
 | 1.5 | 0.319448 | -0.226502 | 0.495517 | 0.127310 |
 
-This measures how renormalizing on a narrower window changes the fitted conditional approximation. The removed fractions are **not whole-line tail probabilities**. They exclude everything outside[-4,4] and may miss structure between grid points. The inner curve is not a cropped version of the outer density: it has a new normalizer and new quantiles. Bounds and indices remain user-selected, never optimized to make results look stable.
+This measures how renormalizing on a narrower window changes the fitted conditional approximation. The removed fractions are **not whole-line tail probabilities**. They exclude everything outside [-4,4] and may miss structure between grid points. The inner curve is not a cropped version of the outer density: it has a new normalizer and new quantiles. Bounds and indices remain user-selected, never optimized to make results look stable.
 
-The demo also supplies a non-neural adversarial integrand, `.0001 + .5*NormalPDF(y; mean=.015625, sd=.0001)` on[0,1]. Both17- and33-point grids miss the same narrow peak and report integral0.0001, while the analytic normal-CDF reference gives0.5001. Both grids' interpolated means are0.5 despite the actual mean being near0.01572. These50 callback evaluations are separate from the1,539 trained-model calls. The constant component is a density floor **in this artificial integrand only**, not a clipping rule for flow inference. This demonstrates why grid agreement cannot certify conditional accuracy; it is not evidence that this trained model has the same missed peak.
+The demo also supplies a non-neural adversarial integrand, `.0001 + .5*NormalPDF(y; mean=.015625, sd=.0001)` on [0,1]. Both 17- and 33-point grids miss the same narrow peak and report integral 0.0001, while the analytic normal-CDF reference gives 0.5001. Both grids' interpolated means are 0.5 despite the actual mean being near 0.01572. These 50 callback evaluations are separate from the 1,539 trained-model calls. The constant component is a density floor **in this artificial integrand only**, not a clipping rule for flow inference. This demonstrates why grid agreement cannot certify conditional accuracy; it is not evidence that this trained model has the same missed peak.
 
 Tests verify aligned reuse/counts, constant-density offset invariance, exact full-window identity, nested mass monotonicity, the normal erf reference, zero-call index rejection, CLI limits and the missed-peak counterexample. Original training, density, score and conditional-grid outputs remain unchanged. Fixed finite windows cannot establish calibrated coverage, full-line normalization or safe automatic bounds.
