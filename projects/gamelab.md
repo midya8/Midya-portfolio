@@ -1,4 +1,4 @@
-# GameLab: minimax value is unique, the strategy may not be
+# GameLab: exact zero-sum payoff audits
 
 [Public source](https://github.com/midya8/gamelab) · Python 3.10+ · standard library only · MIT
 
@@ -6,7 +6,9 @@
 
 ## Problem
 
-A multi-agent score table can be cyclic. A single average payoff can look balanced even when both policies are exploitable. Even an exact game value need not identify one optimal randomized policy. GameLab makes those distinctions inspectable for a supplied small zero-sum matrix, rather than hiding degeneracy behind a single solver vector.
+GameLab solves supplied zero-sum payoff tables with at most four actions per player. It reports exact security witnesses, every optimal strategy vertex and the exploitability of a chosen policy pair. A fixed matrix and a full Cartesian payoff box use separate audits.
+
+A score table can be cyclic. A single average payoff can look balanced even when both policies are exploitable, and an exact game value need not identify one optimal randomized policy. These audits expose those differences; they do not infer payoff tables from agent behavior.
 
 ## Build
 
@@ -25,7 +27,7 @@ The payoff-change audit retains both complete solutions, entry differences, ever
 
 ## Verification
 
-37 tests cover all 81 ternary 2x2 matrices against an independent one-dimensional envelope oracle, independent permutation determinants and every basis residual on four controls, optimal-vertex cross-pairs and convex mixtures, coordinate attaining witnesses, all 81 grid strategy pairs, affine/permutation/negative-transpose invariances, perturbation cases, 4x4 capacity and strict input failures. Four SVG tests bind 23 cells, four range segments/eight endpoints, complete compressed report metadata, hidden-basis tampering and exact regeneration. The five-module installed wheel matches all four full CLI JSON outputs outside checkout. CI runs Python 3.10-3.13 plus a package-parity job.
+The original 37 fixed-matrix tests, retained in the current total of 53, cover all 81 ternary 2x2 matrices against an independent one-dimensional envelope oracle, independent permutation determinants and every basis residual on four controls, optimal-vertex cross-pairs and convex mixtures, coordinate attaining witnesses, all 81 grid strategy pairs, affine/permutation/negative-transpose invariances, perturbation cases, 4x4 capacity and strict input failures. Four SVG tests bind 23 cells, four range segments/eight endpoints, complete compressed report metadata, hidden-basis tampering and exact regeneration. The original five-module installed checks match all four fixed-matrix CLI JSON outputs outside checkout. The interval extension below adds a sixth module and two commands. CI runs Python 3.10-3.13 plus a package-parity job.
 
 ## Scope and attribution
 
@@ -46,6 +48,6 @@ For a full 2x2 unit box with uniform fixed policies, shared worst gap is 1/2 ver
 
 Complete endpoint game solves certify the attainable game-value extrema v(L) and v(U). The lower-game row policy and upper-game column policy separately optimize worst security and guarantee pair gap at most v(U)-v(L); a signed audit can be tighter. This construction does not claim to minimize worst joint gap over policies. Individual unilateral deviations are not confused with individual security exploitability as the game value varies.
 
-53 tests include all 16 zero/one-width boxes on a nonconstant 2x2 base, each at nine fixed policy pairs, against independent exhaustive endpoint enumeration; every candidate support contribution/attainment; corner game values and robust security; shared-entry and singleton cancellation; affine, zero-width, rectangular and 4x4 controls; strict schemas and no mutation. Three added SVG tests bind all 29 numbers, complete metadata, hidden-coefficient tampering and exact regeneration. The original 37 tests and four original full CLI outputs remain unchanged; the six-module wheel matches all six full outputs outside checkout.
+The current 53-test suite includes all 16 zero/one-width boxes on a nonconstant 2x2 base, each at nine fixed policy pairs, against independent exhaustive endpoint enumeration; every candidate support contribution/attainment; corner game values and robust security; shared-entry and singleton cancellation; affine, zero-width, rectangular and 4x4 controls; strict schemas and no mutation. Three added SVG tests bind all 29 numbers, complete metadata, hidden-coefficient tampering and exact regeneration. The original 37 tests and four original full CLI outputs remain unchanged; the six-module wheel matches all six full outputs outside checkout.
 
 The box is deterministic supplied data, not a statistical confidence region or an independence assumption. No coupled-budget/ellipsoid uncertainty, sampling coverage, payoff estimation, empirical strength or new theorem is claimed. The implementation applies established box support functions; the source INTERVALS.md gives proofs, complete schema and Li-Ding-Floudas, Gorissen-den Hertog and Bertsimas-den Hertog-Pauphilet attribution.
