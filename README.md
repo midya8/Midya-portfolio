@@ -1023,12 +1023,12 @@ A convolutional neural network, its trainer, three attribution methods and two a
 
 ### sre-toolkit
 
-Dependency-free Python utilities for day-to-day SRE work: error budgets, burn-rate alerting, alert triage, and the Markdown documents an incident workflow runs on.
+Dependency-free Python CLI and library for error-budget math, supplied-sample burn rules, keyword alert triage and incident documents. 254 Python tests cover the current implementation.
 
-- **Error budgets and burn-rate alerting** — budget math with exhaustion projections and remaining-bad-event counts, multi-window burn-rate alerting with custom rules, a `--suggest` mode that emits the standard three-tier multi-window policy for any SLO window, and `burn --replay` to tune alert policy against a past incident's time series.
-- **Alert triage that reduces noise** — rule-based triage (custom rule files) that dedupes repeats, keeps each alert's fire count, ranks the noisiest alerts first (`--top-talkers`), inhibits lower-severity symptoms under an active critical, and applies bounded, reasoned silences matched on service, severity, or summary text (`--silences`). `triage --routes` maps services to owning teams with an explicit default owner, and `--by-owner` rolls the board up per team, worst severity first.
-- **Documents as output** — SLO definitions (Markdown or JSON), status reports with budget-exhaustion projections and worst-first sorting, and postmortems with automatic response metrics (Markdown or JSON), plus MTTR aggregation (mean/median/p90 per severity, weekly trend view, JSON output) across incidents and fleet-wide roll-ups across whole incident sets. `metrics --action-items` groups open postmortem items per incident with days since resolution and exits 1 when items go stale past `--stale-days`.
-- CLI plus importable library, 254 unit tests, CI across Python 3.10-3.13. Every command doubles as a scriptable health gate through meaningful exit codes.
+- Budget and downtime calculations, long/short-window burn rules, policy templates and timestamped bucket replay. Two-window rules filter some spikes; they do not guarantee that a brief spike cannot page.
+- Triage deduplicates records, keeps occurrence counts, applies inhibition and reasoned silences, and maps services to owners. These are classification rules, not a causal diagnosis.
+- SLO definitions, snapshot reports, postmortems and response-time aggregates are Markdown or JSON. Exhaustion projections assume the current burn continues; they are not forecasts.
+- CLI exit gates have command-specific meanings. Fresh public and merged checkouts pass 254 tests; nineteen CLI comparisons and all nine copied-module origins are checked outside the checkout.
 
 - Repo: [midya8/sre-toolkit](https://github.com/midya8/sre-toolkit) · Case study: [projects/sre-toolkit.md](projects/sre-toolkit.md)
 
