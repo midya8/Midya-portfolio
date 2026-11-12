@@ -1,10 +1,21 @@
-# DenoiseLab: learned reconstruction with strong observed-pixel controls
+# DenoiseLab: reconstruct pixels, then inspect the edits
 
-DenoiseLab's [two-pixel retrieval map](https://midya8.github.io/denoiselab/plane.html) now shows exact rational closed minimum cells over two observed values, including area, segment-only, point-only and explicitly proved empty regions. Fraction/BigInt witnesses retain all 3,062 original fitting-row coefficients. A source-matched verifier checks supporting halfplanes, maximal lower-dimensional cells and nonnegative infeasibility combinations without rerunning clipping. Shared boundaries use complete all-row exact tie queries, not an interior representative. [Geometry, proof and limits](https://github.com/midya8/denoiselab/blob/main/PLANE.md).
+DenoiseLab reconstructs hidden pixels in small UCI digit images with manual NumPy backpropagation. It compares the network with PCA and nearest-neighbor controls that use only visible values. Independent scalar JavaScript runs the same models in the browser, without an API or pretrained weights.
 
-52 Python/fourteen Node/Chrome tests include independent boundary-pair enumeration of 238 small-source cells and 2,110 rational queries, forty complete cross-language maps, 160 browser queries and 30,720 actual canvas colors. Ten-module/nine-command installed reproduction retains full refit/evaluation. [Scalar paths](https://midya8.github.io/denoiselab/path.html), [neural/PCA response](https://midya8.github.io/denoiselab/response.html) and the [original reconstruction audit](https://midya8.github.io/denoiselab/) remain live with stronger winning controls visible. Fixed two-coordinate slice only, not general robustness, causal recourse, uncertainty, better accuracy or binary64 tie equivalence. Licensed UCI data, MIT code; original models and scores unchanged.
+The controls matter. At 16 scattered missing pixels, PCA and nearest neighbor both beat the network on the original test set. At 32 missing pixels, the network has lower measured error. At 48, the three are close. The table below keeps every result visible rather than presenting one mask as a general ranking.
 
-[Open the live reconstruction inspector](https://midya8.github.io/denoiselab/).
+## Choose an inspector
+
+| Question | Live page | What it checks |
+| --- | --- | --- |
+| What is reconstructed from this mask? | [Reconstruction](https://midya8.github.io/denoiselab/) | Neural, PCA, neighbor and mean predictions |
+| Does a local derivative predict a finite edit? | [Input response](https://midya8.github.io/denoiselab/response.html) | Actual edits, neural/PCA Jacobians and residuals |
+| Where does the nearest neighbor switch? | [One-pixel path](https://midya8.github.io/denoiselab/path.html) | Exact rational intervals and endpoint ties |
+| Which neighbor wins when two values move? | [Two-pixel cells](https://midya8.github.io/denoiselab/plane.html) | Exact area, segment, point and empty cells |
+
+The edit inspectors use the original fits. They do not improve test scores or make a fixed coordinate slice a general robustness guarantee. The two-pixel map retains all 3,062 original fitting-row coefficients. A separate source-matched verifier checks supporting halfplanes, maximal lower-dimensional cells and empty-cell infeasibility proofs without rerunning clipping. Boundary queries check every original row and retain complete ties. [Geometry, proof and limits](https://github.com/midya8/denoiselab/blob/main/PLANE.md).
+
+The current checks pass 52 Python and fourteen Node/real-Chrome tests. Geometry checks include independent boundary-pair enumeration of 238 small-source cells and 2,110 rational queries, forty cross-language maps, 160 browser queries and 30,720 actual canvas colors. Installed reproduction covers ten modules, nine commands and the full refit/evaluation. Exact rational ties and binary64 inference have different numerical contracts.
 
 ## Measured official test audit
 
@@ -76,20 +87,20 @@ target values. The CLI exits 2 for invalid JSON or inputs.
 
 ## Verification
 
-**27 Python tests** include 200 full-parameter finite differences against a
+**52 Python tests** include 200 full-parameter finite differences against a
 separate objective, a separate augmented least-squares PCA solve, nearest/tie
 controls, exact data hashes and no duplicate features, full refit with a test
 loader prohibition, full test re-evaluation, validation-only selection,
 tampering refusal, CLI paths, SVG pixels/values and complete report metadata.
 
-**Four Node/real-Chrome tests** compare independent JavaScript inference with
+**Fourteen Node/real-Chrome tests** compare independent JavaScript inference with
 Python on all 40 public test/mask examples, verify hidden-target erasure and
 visible-pixel identity, check a tiny analytic ridge solve, and exercise actual
 browser masks, keyboard controls, copy denial/success, downloads and responsive
 320/390/1280 layouts. The phone audit table stacks into labeled cards; it does
 not hide core values behind horizontal scrolling.
 
-CI also builds a wheel and runs all seven modules and four CLI commands from
+CI also builds a wheel and runs all ten modules and nine CLI commands from
 outside the checkout, refitting and evaluating the installed package. Floating
 training is checked with explicit tolerances, not claimed bitwise portable
 across BLAS implementations. Exported files are exact from committed artifacts.
