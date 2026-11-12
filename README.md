@@ -1062,14 +1062,10 @@ Dependency-free workflow runner: JSON-defined DAGs of shell commands with retrie
 
 ### uptimekit
 
-Synthetic uptime monitoring and availability reporting in pure Python, no dependencies and no database.
+Standard-library HTTP, TCP and TLS checks with JSONL history and local reports. Availability is a check-success fraction, not duration-weighted uptime. Consecutive-failure incident classification and recorded-incident age gates return exit codes; they do not send notifications. Saved HTML status pages show the latest recorded sample and need regeneration and an external freshness policy.
 
-- **Probes that call a failure a failure** — HTTP (status, keyword-in-body, latency), TCP connect, and TLS certificate-expiry probes, with latency assertions that turn slow into down and TLS expiry thresholds that turn a quietly approaching expiry into one.
-- **One history, honestly kept** — an append-only JSONL history with atomic retention compaction, availability roll-ups with p50/p95 latency percentiles, a per-day trend strip where monitoring gaps stay visible, and window-over-window comparison.
-- **Alerting that means something** — incident detection with a consecutive-failure flap guard and a sustained-outage gate (`--max-open-minutes` pages on real outages, not self-healing blips); `check` exits 1 on any failure so a cron line doubles as alerting, `report --fail-open` gates CI on open incidents, and `report --fail-slo` exits 1 on an SLO breach.
-- **SLOs and a status page from the same record** — SLO targets (`"slo": 99.9`) measured by `report --config` (error budget consumed, met-or-breached status), a watch mode for hosts without cron, and a self-contained HTML status-page renderer (inline CSS, no JavaScript, fully escaped).
-- CLI plus importable library, 98 unit tests running fully offline, CI on Python 3.11.
-
+- 98 tests use loopback servers and mocked probes, with no remote service required. CI runs Python 3.11.
+- Reports include successful-check latency summaries, daily sampling gaps, window comparisons and check-based SLO budgets.
 - Repo: [midya8/uptimekit](https://github.com/midya8/uptimekit) · Case study: [projects/uptimekit.md](projects/uptimekit.md)
 
 ### Kurdistan International Sociological Association website
