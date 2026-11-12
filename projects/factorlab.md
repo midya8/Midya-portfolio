@@ -2,11 +2,11 @@
 
 [Source](https://github.com/midya8/factorlab) · [Live inspector](https://midya8.github.io/factorlab/) · [Method and sources](https://github.com/midya8/factorlab/blob/main/METHOD.md)
 
-## Why this exists
+## The inference question
 
-A graph alone does not tell you what inference question was answered. Summing hidden variables, maximizing a joint assignment and maximizing a marginal decision can produce different answers. An elimination order can change the question when sum and max are mixed, or change allocated table size while preserving the answer when they are not.
+FactorLab shows how three queries on the same supplied factors can give different answers: a sum over hidden variables, a joint maximum and a marginal-MAP decision. When sum and max are mixed, changing the elimination order can produce an upper bound instead of the requested answer. In an all-sum query, the order can change the allocated table size without changing the answer.
 
-## What it implements
+## What you can inspect
 
 - Nonnegative rational binary factors with explicit little-endian scope indexing.
 - Evidence restriction, scalar factors and injected units for variables absent from all factors.
