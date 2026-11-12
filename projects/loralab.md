@@ -1,4 +1,4 @@
-# LoRALab: width is not predictive rank
+# LoRALab
 
 [Interactive inspector](https://midya8.github.io/loralab/) · [Source and reproduction](https://github.com/midya8/loralab)
 
@@ -12,11 +12,11 @@ All 124 original states remain attached. At every nonzero epoch, widths 4/8 have
 
 Finite-probe minimum rank is rank(D X^T), with an attaining extension, an explicit unseen-coordinate counterexample when it differs globally, and a nonzero probe-nullspace direction whenever probes fail to span feature space. Even a canonical extension that happens to equal D cannot make non-spanning probes complete.
 
-The current suite has 39 Python tests (all 31 earlier tests unchanged) and 7 substantive Node/Chrome tests. New checks include 729 ternary 3x2 matrices at all 3 references against independent Leibniz minors, 11 exact controls, all 124 complete native/browser report hashes, altered factor/minor leaves, every real UI archive selector, 36 layouts, 1,322 selectable exact factor cells, trusted edit invalidation, 3 downloads and native verification replay. Both the earlier and new installed-wheel gates reproduce outside the source checkout. Exact arithmetic certifies a real probability function only; rounded probabilities, argmax, loss, future factor training and hidden layers are outside scope. Exact rank is not tolerance-based numerical rank.
+Python, Node and actual-Chrome tests compare full native/browser reports at every archived boundary, reject altered factors and minors, and replay downloaded certificates through the independent native verifier. Exact controls include finite-probe blind directions and exhaustive small-matrix/minor checks. Both installed-wheel checks reproduce outside the source checkout. Exact arithmetic certifies a real probability function only; rounded probabilities, argmax, loss, future factor training and hidden layers are outside scope. Exact rank is not tolerance-based numerical rank.
 
 [Exact inspector](https://midya8.github.io/loralab/rank.html) · [Proof, schema and reproduction](https://github.com/midya8/loralab/blob/main/PREDICTIVE_RANK.md). Standard softmax equivalence and rank facts are attributed to [Yang et al.](https://arxiv.org/abs/1711.03953), [LoRA](https://arxiv.org/abs/2106.09685) and [Nick Higham](https://nhigham.com/2021/02/23/matrix-rank-relations/), not presented as a new algorithm.
 
-## Change coordinates, not the experiment
+## Factor-coordinate updates
 
 For a frozen base and factors, `W' = W + BA`. An invertible change `B' = BC`, `A' = C^-1 A` preserves `BA` in real arithmetic. Ordinary Euclidean factor SGD is invariant to orthogonal changes of basis, but general scaling and shear need not preserve its next merged model.
 
@@ -28,7 +28,7 @@ For scalar `C = cI`, the compensated rates `eta_A' = eta/c^2` and `eta_B' = eta*
 
 At original width 2, epoch 30, the first training example, learning rate 0.1 and scale 4, before-step logit residual is 0. The ordinary next-matrix difference is 0.0056767304; scalar compensation gives residual 0 in this binary64 calculation. These are descriptive residuals, not numerical certificates or causal explanations of retention.
 
-## Every original epoch boundary stays attached
+## Archived epoch boundaries
 
 All 31 epoch boundaries at widths 1, 2, 4 and 8 remain inspectable: 124 states with full factors, norms, online-update counts and train/test metrics. These are not all 14,400 individual online updates. The diagnostic first-example or mean-batch step is not a retrained original online epoch. Custom finite-classifier JSON and full matrix gauges are supported with strict shape, finite-value and operational inversion bounds. Inputs, complete reports and the full archive can be downloaded.
 
@@ -45,16 +45,29 @@ The unchanged seeded hashed-bag-of-words classifier has three outputs and 128 fe
 | Factor width 8 | 1.0000 | 0.7778 | 1048 | 270.8% |
 | Full fine-tuning | 1.0000 | 0.9556 | 387 | 100.0% |
 
-Width 2 matches full fine-tuning's B accuracy with 67.7% of its trainable parameters, but retains less A accuracy: 0.7556 versus 0.9556. Widths 4 and 8 cost more parameters than the full baseline. Factor width is not measured matrix rank: three output rows cap `rank(BA)` at three. Adapters freeze the base bias; the original full baseline trains it. These original design choices and results are preserved, not normalized away.
+Width 2 matches full fine-tuning's B accuracy with 67.7% of its trainable parameters, but retains less A accuracy: 0.7556 versus 0.9556. Widths 4 and 8 cost more parameters than the full baseline. Factor width is not measured matrix rank: three output rows cap `rank(BA)` at three. Adapters freeze the base bias; the original full baseline trains it. The comparison keeps these original design choices.
 
 The original merge-back check still measures a nonzero maximum logit difference of about 1.07e-14, below its unchanged 1e-12 gate. Exact algebra does not imply exact floating-point reassociation.
 
 ## Verification and installed reproduction
 
-- 31 Python tests across Python 3.10-3.13, including all 14 unchanged original tests, finite differences of every factor coordinate, randomized controls and independent 80-digit Decimal finite-step checks.
-- Four Node/actual-Chrome tests compare 54 complete reports containing 591,615 numeric values, all retained states, full matrix controls, strict invalid-state behavior, keyboard, report/input/archive exports and responsive layouts.
-- An isolated installed wheel imports all eight implementation modules, exercises all four commands and reconstructs the original data, base, factors, states and report outside the source checkout. Frozen reports use 1e-12 comparison tolerance; original retraining across runtimes allows 1e-11 for libm differences. Original gates are unchanged.
-- Seven CI jobs cover four Python versions, the original demo, browser checks and installed-package reproduction.
+The Python checks cover training, finite differences of factor coordinates, randomized controls and independent 80-digit Decimal finite-step checks. Browser checks compare complete reports, strict invalid-state behavior, keyboard input, exports and responsive layouts. Original retraining across runtimes allows 1e-11 for libm differences; frozen reports use 1e-12. The original accuracy, retention, parameter and merge gates are unchanged.
+
+From a source checkout:
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install .
+python -m unittest discover -s tests
+bash examples/demo.sh
+node --test tests/test_coordinates.cjs tests/test_coordinates_browser.cjs \
+    tests/test_rank.cjs tests/test_rank_browser.cjs
+bash examples/verify_wheel.sh
+bash examples/verify_rank_wheel.sh
+```
+
+The wheel scripts install into temporary environments and check packaged data, commands, original states and independent certificates outside the checkout. Web checks need Node 22+ and Chrome.
 
 ## Limits and attribution
 
