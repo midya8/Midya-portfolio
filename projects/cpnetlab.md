@@ -1,53 +1,60 @@
-# CPNetLab
+# CPNetLab: what follows from the preference rows?
 
-Exact finite qualitative preferences. Supplied tables, not learned human tastes.
+CPNetLab takes a small supplied binary CP-net and lists its legal single-variable improving flips. It computes reachability paths, inconsistency cycles, compatible strict rankings and witnesses for incomparable outcomes. A separate whole-row analysis asks which conditional statements support a path or conflict, and which withdrawals restore consistency. These are supplied qualitative preferences, not learned human tastes or cardinal scores.
 
-## CPNetLab: a ranking is not an entailed preference
+[Complete-model inspector](https://midya8.github.io/cpnetlab/) · [Whole-row inspector](https://midya8.github.io/cpnetlab/scopes.html) · [Public source](https://github.com/midya8/cpnetlab)
 
-[Live workbench](https://midya8.github.io/cpnetlab/) · [Source and reproduction](https://github.com/midya8/cpnetlab) · [Contract and limits](https://github.com/midya8/cpnetlab/blob/main/CONTRACT.md) · [Prior-work ledger](https://github.com/midya8/cpnetlab/blob/main/SOURCES.md)
+## Two questions, two reports
 
-Complete, supplied binary CP-nets define legal single-variable improvements, not a universal score. CPNetLab enumerates every outcome and improving flip, finds shortest paths or closed no-path cuts, counts every compatible strict ranking, and supplies two actual opposite rankings when a pair is incomparable. Incomparable does not mean indifferent.
+| Question | Commands | What the report means |
+| --- | --- | --- |
+| What follows from the complete supplied model? | `analyze`, `verify` | Every outcome and improving flip, shortest positive-length paths, cycles, ranking counts and opposite ranking witnesses for incomparable pairs |
+| Which whole rows suffice, conflict or can be withdrawn? | `scopes`, `verify-scopes` | Every row subset, actual path/cycle/ranking witnesses, all inclusion-minimal supports, conflicts and consistency-restoring withdrawals |
 
-- **One legal flip can violate more rows.** In a four-variable fanout, `0000 → 1000` is an improving flip while violated rows rise from 1 to 3. All 2,304 compatible strict rankings still put the target above the start. Counting violated rows is not the preference semantics.
-- **Dependency cycles and inconsistency are different.** A matching two-variable dependency cycle permits four strict rankings. Reversing one table produces the actual improving cycle `00 → 01 → 11 → 10 → 00`, zero strict rankings, and no vacuous dominance verdict.
-- **Many rankings need not settle a pair.** Two independent consistent cycles admit exactly 101,977,088 rankings while leaving `0000` and `1111` incomparable. The UI displays a complete ranking for each direction.
+A compatible ranking is one possible total order, not an entailed preference. Incomparability is not indifference. A withdrawn row removes every flip it justifies, not one convenient edge. All outcomes and the original supplied model remain intact.
 
-A separate Python checker rebuilds the entire evidence report using Hamming-one pairs, Floyd-Warshall and suffix-removal counting, rather than the generator's conditional-row flips, breadth-first paths and prefix-ideal counting. Shared validation and binary encoding are disclosed. Python and JavaScript agree on all eight controls, 61 outcomes and 100 edges. Browser JSON is independently checked only after the Python verifier accepts it, not merely because export worked.
+## A local improvement is not a score increase
 
-Reproduction covers all 36 two-variable networks and 576 ordered queries against all permutations; five three-variable fixtures against all 40,320 permutations each; 160 seeded additional networks; strict evidence forgeries; Python 3.10-3.13; and installed-wheel execution outside the checkout through module and console commands. Actual Chrome checks 24 reports at three widths, all 689 ordered control comparisons, every rendered conditional row, path, ranking witness and no-path cut, all eight evidence exports, and stale/invalid/cycle recovery. Final source, CI, deployment assets, behavior and pixels were checked before this showcase was published.
+In the four-variable fanout control, `0000 → 1000` is a legal improving flip even though the number of violated rows rises from one to three. All 2,304 compatible strict rankings put the target above the start. Counting violated rows does not implement the preference semantics.
 
-**Exact scope:** zero to four variables and at most 16 outcomes; complete strict binary local tables. No learned human preferences, local ties, missing rows, constraints, cardinal utility, partial-model semantics or scalable-solver claim. CP-net theory and graph/counting methods are established prior work; these are developed synthetic controls, not human-choice measurements or a new algorithm.
+Dependency cycles and inconsistency also differ. One two-variable dependency cycle permits four compatible rankings and two locally unimprovable outcomes. Reversing a preference table creates the actual improving cycle `00 → 01 → 11 → 10 → 00`, with zero compatible rankings. The inspector shows the cycle rather than making a vacuous preference verdict.
 
+Two independent consistent cycles admit 101,977,088 compatible rankings while leaving `0000` and `1111` incomparable. A complete ranking witness for each direction makes that distinction inspectable.
 
-## CPNetLab row subsets: minimal is not minimum
+## Minimal does not mean minimum
 
-[Live whole-row atlas](https://midya8.github.io/cpnetlab/scopes.html) · [Source](https://github.com/midya8/cpnetlab) · [Contract](https://github.com/midya8/cpnetlab/blob/main/ROW-SUBSETS.md)
+The whole-row inspector enumerates every subset of at most eight conditional rows. Across eight developed controls there are 865 subset graphs, with actual paths, cycles and ranking witnesses. It lists all minimal supports, conflicts and withdrawals, rather than choosing a repair for the user.
 
-Enumerate every whole conditional-row subset, not one convenient explanation.
-Eight developed controls cover 865 subset graphs with actual improving paths,
-inconsistency cycles and compatible strict-ranking witnesses. The default
-256-subset control has two minimal conflicts and six irreducible withdrawals:
-three remove one row, three remove two. A separate control has two-row and four-row
-minimal path supports. Minimal does not mean minimum; neither means the right
-human preference to abandon.
+The default eight-row control has 256 subsets, two minimal conflicts and six irreducible withdrawals: three remove one row, three remove two. A separate control has two-row and four-row minimal path supports. Inclusion-minimal means no proper subset works. Minimum means the smallest cardinality. Neither identifies the human preference that should be abandoned.
 
-The independent Python checker labels Hamming-one pairs, uses Floyd-Warshall
-paths and checks all proper candidate subsets. It reconstructs every mask and
-all four antichains without importing either analyzer. Shared strict input
-validation/outcome encoding is disclosed. Browser JSON is independently checked
-only after Python accepts it. Whole-row withdrawal removes all justified flips,
-not an arbitrary single edge. All outcomes and the supplied model remain intact.
-This is bounded what-if constraint evidence, not automatic preference revision,
-indifference, extended partial-model semantics, learned preferences or a new
-algorithm. At most eight rows, sixteen outcomes and 256 subsets.
+These are counterfactual constraint graphs, not automatic preference revision or extended partial-model semantics. Reachability can still be reported in an inconsistent row-subset graph, without calling it an entailed strict preference.
 
-Release checks: 14 Python tests on 3.10-3.13; six combined Node/actual-Chrome tests;
-all 576 ordered two-variable query atlases (6,400 subset records); all 400
-two-variable masks against every possible total order; 91 accepted seeded row
-atlases; installed 0.2.0 wheel outside the checkout through both CLI entry points
-for both eight-control families; forged-evidence rejection. Actual deployed Chrome
-selects all 865 masks, all 46 antichain buttons, every row toggle and all eight
-exports, with stale/invalid/row-limit recovery and eight controls at three widths.
-The original complete-model checks remain green. Feature/PR/main CI and Pages
-passed; 37 source files, all 11 live assets and the root page match, with 28
-main/feature and 28 main/deployed unmasked pixel matches.
+## Reproduce and check
+
+Python 3.10+ has no runtime dependencies. Node 22+ and Chrome are needed for browser tests.
+
+```sh
+git clone https://github.com/midya8/cpnetlab.git
+cd cpnetlab
+python -m pip install .
+python -m cpnetlab analyze docs/example.json > evidence.json
+python -m cpnetlab verify evidence.json
+cpnetlab scopes docs/example.json > rows.json
+cpnetlab verify-scopes rows.json
+python -m unittest discover -s tests -v
+node --test --test-concurrency=1 tests/test_engine.mjs tests/test_scopes.mjs tests/test_browser.cjs tests/test_scopes_browser.cjs
+bash tools/check_wheel.sh
+python -m http.server --directory docs 8000
+```
+
+Python builds flips from conditional rows, uses breadth-first paths and prefix-ideal ranking counts. The independent checker instead compares Hamming-one outcome pairs, uses Floyd-Warshall and suffix-removal counting, and reconstructs the complete report without importing either analyzer. For row subsets it checks all proper candidate subsets and all four antichains. Shared strict input validation and binary encoding are disclosed. JavaScript uses exact BigInt ranking counts, but is not a separate verifier. Browser JSON is independently checked only after the Python verifier accepts it.
+
+The documentation review ran fresh baseline, revised, published and merged source: each passed 14 Python and six Node/actual-Chrome tests. Each isolated wheel checked eight complete-model and eight row-subset controls outside the checkout through module and console analyzers/verifiers, including forged-evidence rejection. The full six-test suite also passed against both deployed inspectors; all 11 live assets matched source bytes.
+
+The complete-model checks include all 36 two-variable networks and 576 ordered queries, five three-variable fixtures against all 40,320 permutations each, and 160 seeded additional networks. Row checks include all 576 ordered two-variable query atlases with 6,400 subset records, all 400 two-variable masks against every total order, and 91 accepted seeded atlases. Actual Chrome checks all 689 ordered complete-model control queries and all 865 row masks, antichain buttons, exports and stale/invalid recovery at three widths.
+
+## Scope and prior work
+
+Complete models have zero to four binary variables, complete strict local tables, no self parents and at most 16 outcomes. The row atlas additionally allows at most eight complete conditional rows and 256 subsets. No local ties, missing rows, learned preferences, cardinal utility, constraints, uncertainty, recommendation-quality or scalable-solver claim. Inconsistent complete models have no compatible strict ranking; the tool does not turn that into a vacuous preference verdict.
+
+CP-net theory, graph search, linear-extension counting and minimal-conflict/correction-set concepts are established prior work. The controls are developed synthetic examples, not measured human choices or a new algorithm. The [complete-model contract](https://github.com/midya8/cpnetlab/blob/main/CONTRACT.md), [row-subset contract](https://github.com/midya8/cpnetlab/blob/main/ROW-SUBSETS.md) and [source ledger](https://github.com/midya8/cpnetlab/blob/main/SOURCES.md) record the definitions, attribution and limits.
