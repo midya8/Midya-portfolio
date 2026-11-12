@@ -1048,13 +1048,11 @@ Dependency-free access-log analysis for incident work: the numbers that matter i
 
 ### flowkit
 
-Dependency-free workflow runner: JSON-defined DAGs of shell commands with retries and exponential backoff, per-attempt timeouts, fail-fast or continue-on-error semantics, and parallel execution of independent steps (`--jobs`).
+Standard-library runner for JSON-defined shell-command DAGs, with retries, per-attempt timeouts, conditional steps, parallel scheduling and end-phase hooks. CLI and importable runner share the same execution code.
 
-- **Flows that stay readable** — conditional steps (`when` on environment variables), subset runs (`--only`/`--skip`), and end-phase hook steps (`trigger: on_failure`, `on_success`, or `finally`) for cleanup and notify work pinned to the run's outcome.
-- **Validated before executing** — definitions are checked up front (duplicate step names, dangling dependencies, cycles, malformed interpolation) and executed in deterministic topological order; layered flow-level and per-step environment variables interpolate into commands (`$VAR`, `${VAR:-default}`), with a `--strict-env` pre-run check that fails on unset references.
-- **Reports as output** — dry-run plan mode and text/JSON run reports with captured output tails (also writable to a JSON report file, with full per-step logs via `--output-dir`); exit codes make it a scriptable gate (0 ok / 1 step failed / 2 invalid flow file).
-- Standard library only, CLI plus importable library, 123 unit tests, CI across Python 3.10-3.13.
-
+- Dry-run lists selected steps and dependencies, not expanded commands. Validation checks structure, not shell safety; environment values are not shell-escaped.
+- Hook execution still depends on selection, conditions and dependencies. A failed command may already have changed state; there is no rollback.
+- 123 tests and CI on Python 3.10-3.13 cover scheduling, failures, hook gates, interpolation, reports and CLI exits. The ETL example needs user-supplied scripts and reviewed cleanup paths.
 - Repo: [midya8/flowkit](https://github.com/midya8/flowkit) · Case study: [projects/flowkit.md](projects/flowkit.md)
 
 ### uptimekit
