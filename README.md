@@ -515,8 +515,7 @@ Exact-rational zero-sum game audits with complete optimal faces, minimax witness
 
 ### BetLab
 
-Exact-rational sequential evidence for bounded paired model scores, with fixed/past-only betting, full null-tree audits and prespecified start allocations with future reserve. The confidence extension inverts a separate conservative fixed-bet mean family, certifies rational crossing/noncrossing brackets and retains earlier bounds after reversal. Its 256-path coverage control excludes the true mean with probability 2187/16384 at alpha 1/4. Three reproducible SVGs, strict offline JSON CLI, seven-module wheel parity and 67 tests. Supplied-law/fixture audits, not drifting-mean estimation, optimized betting, causal effects or model-selection correction.
-
+Compare a fixed pair of models on ordered bounded scores. Inspect exact betting evidence and full null-tree audits, allocate capital across fixed starts, or invert a separate conservative mean-test family into a one-sided confidence sequence. Three reproducible SVGs, ten offline JSON commands, seven-module installed-wheel parity and 67 tests. The 256-path coverage fixture excludes the true mean with probability 2187/16384 at alpha 1/4. These are supplied-law and developed-fixture audits, not drifting-mean estimates, causal effects or model-selection correction.
 - Repo: [midya8/betlab](https://github.com/midya8/betlab)
 - Case study: [projects/betlab.md](projects/betlab.md)
 
