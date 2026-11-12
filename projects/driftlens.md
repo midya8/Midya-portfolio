@@ -1,10 +1,11 @@
-# DriftLens: embedding distribution tests with finite permutation evidence
+# DriftLens
 
 [Public repository](https://github.com/midya8/driftlens)
 
 A dependency-free Python CLI/API for standard RBF MMD two-sample tests.
-45 tests and Python 3.10-3.13 CI; the offline demo asserts passing and
-failing gate behavior. No new test or benchmark-superiority claim.
+The package also has a separate exact supplied-Gram kernel-family mode.
+58 Python tests and four Node tests cover both modes; CI uses Python 3.10-3.13.
+The offline demo asserts passing and failing gate behavior.
 
 ## A fixed kernel and explicit assumptions
 
@@ -16,7 +17,7 @@ requires bandwidth to avoid silently presenting an arbitrary heuristic as
 an optimal choice. Tuning it against group separation needs fresh data or
 valid multiple-test correction, not the same nominal p-value.
 
-## Correct statistic and cached computation
+## Statistic and cached computation
 
 The unbiased squared MMD uses off-diagonal within-group averages and the
 full cross-group average. It can be negative on finite samples. Pooled
@@ -42,17 +43,17 @@ No adaptive permutation stopping or repeated-stream testing is implemented.
 
 ## Development evidence
 
-Seed13 builds independent 30x4 standard-normal samples; the shifted arm adds2
-to each current coordinate. Bandwidth2, B499, alpha.05. Observed same-generator
-MMD squared -0.00487090068 and p.55; shifted .63453882456 and p.002. A tiny
-2-vs-2 separated fixture has exact p1/3, illustrating low power/resolution.
+Seed 13 builds independent 30x4 standard-normal samples; the shifted arm adds 2
+to each current coordinate. Bandwidth 2, 499 draws, alpha 0.05. Observed same-generator
+MMD squared -0.00487090068 and p=0.55; shifted .63453882456 and p=0.002. A tiny
+2-vs-2 separated fixture has exact p=1/3, illustrating low power/resolution.
 These selected development fixtures are not a power/type-I error study.
 They do not establish real deployment drift-detection performance.
 
 ## Limits and security
 
-At least two rows per sample; finite numeric rectangular matrices. Up to500
-pooled rows and4096dimensions. Draw count1..10000; exact allocation count<=10000;
+At least two rows per sample; finite numeric rectangular matrices. Up to 500
+pooled rows and 4096 dimensions. Draw count 1..10000; exact allocation count<=10000;
 draws*N^2<=20000000. JSON parsing and schema checks precede expensive kernel
 work. Still, this is an offline local analysis package, not an internet-facing
 service hardened against arbitrarily large request bodies. No eval, subprocess,
@@ -138,7 +139,7 @@ because features are identical within each stratum. This artificial example
 shows different null questions, not a claim that the blocked result is
 universally more correct, a drift cause or practical validity on real data.
 Unrestricted exact space=184756, blocked space=2025; reported p-values here
-use499 Monte Carlo draws, seed13, bandwidth1.
+use 499 Monte Carlo draws, seed 13, bandwidth 1.
 
 Reference for within-group exchangeability:
 [Berkeley StatLab stratified permutation testing](https://statlab.github.io/permute/api/stratified.html).
@@ -152,7 +153,7 @@ python -m driftlens compare --input examples/embeddings.json --bandwidth 1 --wit
 ```
 
 API: `compare(payload, bandwidth=1., witness=3)`; family comparisons accept
-`witness` too. Zero (default) omits diagnostics; integers1..100 request that
+`witness` too. Zero (default) omits diagnostics; integers 1..100 request that
 many highest-absolute-score rows per group, capped by available rows. Output
 contains only group-local zero-based row indices and scores, not vectors.
 Ties are broken by original row index. The existing pooled kernel is reused;
@@ -177,26 +178,26 @@ Source: [Gretton et al., Section2.3, empirical witness](https://www.jmlr.org/pap
 
 When the smaller group is at most one quarter of pooled rows, permutations
 use cached off-diagonal row sums and one total kernel-pair sum. For a smaller
-group A, compute within-A sum a, cross sum from row sums minus2a, and within-B
+group A, compute within-A sum a, cross sum from row sums minus 2a, and within-B
 sum from total minus a minus cross. This is the same MMD formula with different
 arithmetic. Balanced groups keep the direct reference implementation.
 
 Reports expose scoring mode, kernel-pair reads per allocation, cached row-sum
-reads per allocation and setup off-diagonal reads. In the selected2-vs-18 exact
-demo, 190 allocations each read1 kernel pair plus2 cached row sums, after380
-setup reads; direct scoring would read190 kernel pairs per allocation. The
-kernel itself still takes190 off-diagonal RBF evaluations. These are operation
+reads per allocation and setup off-diagonal reads. In the selected 2-vs-18 exact
+demo, 190 allocations each read 1 kernel pair plus 2 cached row sums, after 380
+setup reads; direct scoring would read 190 kernel pairs per allocation. The
+kernel itself still takes 190 off-diagonal RBF evaluations. These are operation
 counts, not wall-time speedup, and exclude indexing, membership sets, arithmetic
 and validation. Allocation construction still takes O(N) work; memory is O(N^2).
 
 Complement subtraction can add floating cancellation. Tests compare all
 allocations on small fixtures against direct scoring, including near-constant
-kernels, exact p-values, group swapping and tied-zero results. The fixed1e-12
+kernels, exact p-values, group swapping and tied-zero results. The fixed 1e-12
 conservative near-tie rule remains. No bitwise equivalence for arbitrary
 floating inputs or universally faster performance is claimed.
 
 
-## DriftLens 0.2: choosing is part of the test
+## Exact supplied-Gram mode
 
 [Live exact-orbit inspector](https://midya8.github.io/driftlens/) · [Source](https://github.com/midya8/driftlens) · [Method, nine sources and limits](https://github.com/midya8/driftlens/blob/main/ORBIT.md) · [Merged implementation](https://github.com/midya8/driftlens/pull/1)
 
@@ -204,6 +205,25 @@ A dependency-free rational supplied-Gram mode makes kernel-family selection visi
 
 In one original six-row, three-view development control at alpha 1/5, the uncorrected smallest raw p rejects 8/20 allowed allocations, the global test 4/20 and Holm-any 0/20. These are complete finite-orbit counts, not measured real-world false-positive rates or a power benchmark. The control was searched and selected in development.
 
-Fresh public main reproduces all 58 Python tests, four Node tests and isolated installed-wheel commands, preserving all 45 prior Python tests and the original floating RBF modes. Checks include 50 rational orbits/1,410 allocations, 729 matrices against independent principal-minor PSD acceptance, and 753 single-leaf evidence mutations. Ninety-five complete native/JavaScript reports match exactly across 3,289 allocations, 12,600 scores and 179,225 global-tail memberships. Actual deployed Chrome covers eleven controls at 320/390/1280, all 372 allocation views and 51 matrix views, eleven trusted completed native-verified downloads, stale-state clearing, malformed requests and the ten-row/six-kernel/252-allocation boundary. All 20 feature/PR checks, ten main checks and three Pages jobs passed; all five deployed assets and the root match public source, and all 42 deployed browser states match tested unmasked pixels.
+The current documentation review leaves source code, tests, fixtures and browser
+assets unchanged. A fresh public checkout passes 58 Python tests and four Node
+checks, including actual Chrome. The installed wheel is checked outside the
+checkout: all fourteen module origins, eleven controls through both installed
+entry points, twenty-two forged-report CLI rejections and the original demo.
+The browser suite checks eleven controls at 320/390/1280, every allocation and
+matrix view, completed native-verified downloads, stale-state clearing, malformed
+requests and the ten-row/six-kernel/252-allocation boundary.
+
+```sh
+python -m unittest discover -s tests -v
+node --test tests/*.cjs
+bash examples/demo.sh
+bash examples/check_orbit_wheel.sh
+```
+
+The exact input contract, independent-oracle counts and selected controls are
+recorded in [ORBIT.md](https://github.com/midya8/driftlens/blob/main/ORBIT.md).
+These checks are implementation evidence on bounded inputs, not a real-world
+power benchmark or proof of a valid sampling design.
 
 This implements established finite randomization/minimum-p ideas, not a new test, automatic bandwidth optimizer or MMDAgg. One global decision requires a justified uniform allowed-allocation null and label-independent supplied family. Finite PSD proves geometry, not exchangeability. No strong component-wise, causal, equivalence, power or always-valid monitoring claim; replay is consistency checking, not authentication. Tiny bounded exact orbits only: 4-10 pooled rows, 1-6 supplied kernels. No paid API, private data or model download.
