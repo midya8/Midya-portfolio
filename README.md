@@ -685,17 +685,15 @@ Live v0.2 [target-response inspector](https://midya8.github.io/kernellab/) keeps
 
 ### BoostLab
 
-Binary gradient boosting from scratch: mean-residual defaults plus optional capped, L2-regularized Newton leaves on residual-SSE trees. The development fixture selects 35 Newton trees/237 nodes, test accuracy 0.9004/logloss 0.3341; its unselected 80-round checkpoint is also shown (0.8984/0.3469). Mean depth-2 control: 0.8906/0.3400; full-budget stumps: 0.6367/0.7366. Different capacity and settings, no causal or external-benchmark claim. Backward-compatible v1/v2 inference, Hessian/leaf arithmetic tests, validation-only prefix selection. Dependency-free Python, 36 Python tests and five Node/Chrome tests and offline CI.
+The stump model fits 80 trees, but validation keeps the zero-tree constant. Its last checkpoint improves test accuracy while worsening test logloss. BoostLab preserves both checkpoints and every intermediate prefix. Dependency-free Python binary boosting uses mean-residual leaves by default or capped, L2-regularized Newton leaves on the same residual-SSE splits.
 
-- Seed-7 noisy sign-of-product fixture, 256/128/512 train/validation/test rows. Newton depth-2 uses L2=1, leaf cap 3; validation selects 35 trees, not the last 80-round checkpoint. All fitted controls remain visible in the case study.
-- Mean depth-2 and depth-1 controls retain the original settings and results. Validation selects the depth-1 zero-tree prefix (0.4980/0.7060). Same round budgets are not equal capacity.
-- Newton refines only leaves, using residual-SSE splits rather than Hessian gains. History records cap and zero-denominator diagnostics. V1 mean artifacts still predict unchanged; new Newton artifacts use v2.
-- Dependency-free Python 3.10+, 36 Python tests and five Node/Chrome tests, offline CLI demo and CI. Standard boosting sources credited. No line search, new-method, calibration or production-performance claim.
+Inspect all 81 prefixes of three frozen arms, edit an input, follow every tree route and export a complete witness. Selected and last-fitted logits stay separate. All 243 training/validation/report-only-test metric states share a zero-based loss axis. No fitting, new selection or uploads run in the browser.
 
-- Repo: [midya8/boostlab](https://github.com/midya8/boostlab) · Case study: [projects/boostlab.md](projects/boostlab.md)
+The inspected seed-7 development fixture has 256/128/512 rows. Newton depth 2 selects 35 trees/237 nodes, test accuracy .900390625 and logloss .3341242425; its last 80-tree/538-node checkpoint scores .8984375/.3468631810. Mean depth 2 scores .8906/.3400 at 80 trees/556 nodes. Stumps select zero trees (.4980/.7060), versus their last 80 trees/240 nodes (.6367/.7366). All use rate .5, min_leaf 5 and patience 80; Newton also uses L2=1 and cap 3. Equal rounds are not equal capacity. This is no causal comparison, calibration guarantee or external benchmark.
 
+The current suite passes 36 Python and five Node/actual-Chrome tests, retaining all 29 original Python tests. Independent checks cover 4,860 original and 1,458 edited prefix states, 78 routes and 243 metric states. Fresh installed checks reproduce all three fits through seven modules and five commands. Standard boosting sources are credited; the method records the original patience change, binary64 summation boundary, strict v1/v2 artifacts and bounded scope.
 
-Live v0.2 inspector retains all 80 fitted trees and 81 prefixes for each original arm, including the selected zero-tree stump. Editable inputs expose complete additive-logit/tree-route witnesses, original selected-versus-last checkpoints and shared zero-based loss curves. No new tuning, attribution, calibration or performance claim. All original development-fixture metrics and limits above are unchanged. Independent native/browser checks cover 4,860 original and 1,458 edited prefix states, 78 complete paths and all 243 metric states. 36 Python tests, five Node/actual-Chrome tests, installed seven-module/five-command reproduction. [Try the training path](https://midya8.github.io/boostlab/) · [Derivation and numerical limits](https://github.com/midya8/boostlab/blob/main/PATH.md).
+[Source](https://github.com/midya8/boostlab) | [Case study](projects/boostlab.md) | [Training-path inspector](https://midya8.github.io/boostlab/) | [Path derivation and limits](https://github.com/midya8/boostlab/blob/main/PATH.md)
 
 ### ShapleyLab
 
