@@ -1,14 +1,19 @@
-# CredalLab: do these probabilities share a world?
+# CredalLab: one probability model, different questions
 
-**Each probability can look valid. Their joint model can still be impossible.**
+CredalLab checks finite probability assumptions and compares decisions under those assumptions. Both inspectors use one shared joint distribution. The probability inspector asks whether the supplied bounds can hold together. The decision inspector asks which actions survive several classical rules, and why those rules can disagree.
 
-CredalLab is a small, exact inspector for finite probability knowledge bases. Give it explicit worlds, unconditional interval assessments and an event query. It checks whether one joint distribution can satisfy every assessment, returns sharp attainable bounds when it can, and exports independently replayable primal/dual certificates.
+Every result includes exact primal/dual evidence that a separate native checker can replay without loading the solver. The inspectors run locally in the browser; the Python package has no runtime dependencies.
+
+| Start with | Inspector | What to inspect |
+|---|---|---|
+| Probability assessments | [Probability inspector](https://midya8.github.io/credallab/) | Joint compatibility, sharp event bounds and positive-mass conditional bounds |
+| Actions and utilities | [Decision inspector](https://midya8.github.io/credallab/decisions.html) | Five choice rules, shared-belief witnesses and exclusion mixtures |
 
 It is an original implementation of classical finite probabilistic satisfiability and linear optimization, not a new inference theorem, learned probability model, credal network, calibration benchmark or production safety system.
 
-## Version 0.2: survives every duel, never wins the menu
+## Why pairwise defenses do not settle a decision
 
-[Decision inspector](https://midya8.github.io/credallab/decisions.html) · [Decision semantics and sources](https://github.com/midya8/credallab/blob/main/DECISIONS.md) · [Reviewed change](https://github.com/midya8/credallab/pull/2)
+[Decision definitions, derivation and sources](https://github.com/midya8/credallab/blob/main/DECISIONS.md) · [Implementation review](https://github.com/midya8/credallab/pull/2)
 
 The exact menu `(3,0), (0,3), (1,1)` separates five classical criteria. The third action can defend against each pure rival at a different belief, yet no one common belief makes it best. It remains strict pairwise maximal and interval-undominated, and is the unique pure-action maximin choice. Its best shared-belief margin is exactly `-1/2` at belief `(1/2,1/2)`. A fixed 50/50 mixture of its rivals has utility `3/2` in both worlds and excludes it by `1/2` everywhere.
 
@@ -39,9 +44,7 @@ python tools/check_decisions_highs.py
 node --test --test-concurrency=1 tests/test_decisions.cjs tests/test_decision_browser.cjs
 ```
 
-Version 0.2 publication verified: [PR #2](https://github.com/midya8/credallab/pull/2) merged after all 12 feature/PR checks. [Merged-main CI](https://github.com/midya8/credallab/actions/runs/42878413289) and [Pages](https://github.com/midya8/credallab/actions/runs/42878411009) passed. All 76 public files match checked source at `3a51c42958a1bddafdf2e42f236fe927f5b2772d`; all ten deployed assets match that source. Both complete deployed Chrome workflows pass: 44 decision captures and 35 updated probability captures match inspected local pixels. Downloaded reports are independently replayed natively. These deployment checks establish this published version, not the truth of supplied utilities or beliefs.
-
-## The default probability counterexample
+## Why individually valid probabilities can conflict
 
 Consider three binary variables A, B, C and the events A≠B, A≠C and B≠C. Every binary assignment satisfies either zero or two of these events, never all three. Group assignments with the same event memberships into four worlds:
 
@@ -57,8 +60,6 @@ The teaching control uses the three event sets `{1,2}`, `{1,3}`, `{2,3}`. These 
 Lower each required probability to `2/3` and the unique grouped distribution becomes `(0, 1/3, 1/3, 1/3)`. The logical world universe matters as much as the numerical bounds. Grouping preserves these supplied event memberships, not arbitrary queries about A, B or C.
 
 [Live inspector](https://midya8.github.io/credallab/) · [Source](https://github.com/midya8/credallab) · [Reviewed change](https://github.com/midya8/credallab/pull/1)
-
-Version 0.1.0 is merged. All 12 feature/PR checks, merged-main checks and Pages deployment passed. All 43 public source files match the checked tree. Five deployed assets match merged source; all 35 deployed responsive/control/certificate captures match the inspected local pixels. The deployed browser repeats all 48 control-width views, 288 certificate selections and 16 downloaded-report replays. These are finite developed checks, not formal verification or held-out evaluation.
 
 ## Run it
 
@@ -91,7 +92,7 @@ assert report["bounds"]["event"]["upper"]["value"] == [1, 2]
 
 Those two half-probability marginals do not justify an independence guess of `1/4` for their intersection.
 
-## What the evidence contains
+## Probability evidence
 
 - A common-slack consistency LP, with an attaining distribution and dual certificate. A strictly positive minimum slack proves the original assessments impossible.
 - Exact event and given-event minima and maxima, with attaining distributions.
@@ -100,7 +101,7 @@ Those two half-probability marginals do not justify an independence guess of `1/
 - A standalone native certificate checker that imports schema validation only. It checks equations on the supplied witness, not equality with a regenerated preferred answer. Alternative valid witnesses are accepted.
 - Editing clears old results and disables download until a fresh successful check.
 
-## Reproduction
+## Probability checks
 
 ```sh
 python -m unittest discover -s tests -v
@@ -116,7 +117,7 @@ Developed checks, not held-out evaluation:
 
 | Check | Scope |
 |---|---|
-| Native tests | 16 tests, including world permutation, duplicate assessments, tightening, strict types, alternate witnesses, import independence and CLI failures |
+| Native probability tests | 16 tests, including world permutation, duplicate assessments, tightening, strict types, alternate witnesses, import independence and CLI failures |
 | Complete report agreement | 120 developed cases: 78 feasible, 42 infeasible, 69 with defined positive-mass conditional bounds |
 | Certificate mutations | 505 primitive modifications rejected across three developed reports |
 | Independent floating reference | 690 rebuilt HiGHS LPs, including 138 Charnes-Cooper conditional LPs; tolerance `1e-8` |
@@ -125,10 +126,16 @@ Developed checks, not held-out evaluation:
 
 These counts describe a finite development grid. They do not establish correctness for every input, large-scale performance, empirical usefulness or formal verification. The floating reference independently rebuilds the mathematical programs from inputs, but uses the same stated problem convention. The native checker shares parsing and matrix construction with the generator, so bugs in that common layer can affect both.
 
-## Limits and attribution
+## Limits and sources
 
 Inputs allow 1-6 explicit worlds and at most six interval assessments, with a further 20,000 phase-I candidate-basis limit. Rational input components and denominator LCM are bounded. This is deliberately an inspectable exponential enumerator, not a scalable LP engine. All constraints are unconditional; only the query can be conditional. See [METHOD.md](https://github.com/midya8/credallab/blob/main/METHOD.md) for exact signs, schema, endpoints, failure modes and sources.
 
 Classical foundations: [probabilistic satisfiability and coherence survey](https://isipta99.sipta.org/proc/041.pdf), [overlapping marginal compatibility](https://ar5iv.labs.arxiv.org/html/1112.4788), [LP duality notes](https://web.stanford.edu/class/ee364a/lectures/duality.pdf), [linear-fractional programming notes](http://www.seas.ucla.edu/~vandenbe/ee236a/lectures/lfp.pdf), [Python Fraction](https://docs.python.org/3/library/fractions.html), and [SciPy HiGHS](https://docs.scipy.org/doc/scipy/reference/optimize.linprog-highs.html).
 
 MIT license. Teaching controls and code are original to this project. The classical mathematics is attributed, not claimed as an invention.
+
+## Publication checked
+
+The current source is `a826fe8ae9976fe88dd988158da05d0124250b94`, published through [README review #3](https://github.com/midya8/credallab/pull/3). [Main CI](https://github.com/midya8/credallab/actions/runs/43265586734) and [Pages](https://github.com/midya8/credallab/actions/runs/43265585588) passed. All 76 public files match the checked source; the review changed only the README.
+
+Fresh baseline, revised, published and merged trees each passed 31 Python tests, six Node/Chrome tests, both isolated wheel checks and both independent HiGHS checks. All ten deployed assets match merged source, and the same six tests pass against both deployed inspectors. The complete main README and both deployed inspectors were visually checked through their evidence and limits sections. These checks establish the published version, not the truth of supplied beliefs or utilities.
