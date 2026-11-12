@@ -1,10 +1,12 @@
-# ForestLab: a vote with an auditable membership list
+# ForestLab: tree votes, bootstrap membership and leaf collisions
 
 [Repository](https://github.com/midya8/forestlab) | [Live inspector](https://midya8.github.io/forestlab/) | [Method, sources and limits](https://github.com/midya8/forestlab/blob/main/METHOD.md)
 
-## Why build it
+## What the inspectors show
 
-A hard-vote fraction can look reassuring while hiding which models saw the observation. This project exposes every bootstrap count, path, leaf and vote, then excludes in-bag trees before calling a prediction OOB. No estimator library or model API does the fitting.
+ForestLab fits binary CART forests to the UCI Banknote Authentication numeric descriptors. It orders Gini split candidates using exact integer comparisons and retains every bootstrap count. An editable browser separates all-tree predictions from votes made only by trees that did not train on a given group.
+
+The original inspector shows predictions, paths and membership. The joint-permutation inspector moves feature blocks through frozen models; the leaf-collision inspector compares all-tree geometry with separately normalized jointly-OOB pairs. No estimator library or model API does the fitting.
 
 ## Implementation
 
@@ -18,7 +20,7 @@ The original licensed UCI file has 1,372 numeric records but only 1,348 unique f
 
 Each model family selects by validation errors, then Brier score, then ID before test labels are read. All eight forests, four single trees and seven controls remain visible. The selected forest makes 3/270 test errors; the stronger selected 5NN control makes 0/270 and the selected single tree makes 8/270. This is one historical split, not a claim of zero future error or a test of real authentication.
 
-## V0.2: break a pairing, freeze the model
+## Joint permutation with frozen models
 
 [Joint permutation inspector](https://midya8.github.io/forestlab/permutation.html) | [Method and sources](https://github.com/midya8/forestlab/blob/main/PERMUTATION.md)
 
@@ -30,7 +32,7 @@ These diagnostics use the same validation set that already selected the models. 
 
 39 Python and 12 Node/real-Chrome tests check fresh fitting, source/group/split provenance, all bootstrap vectors, complete node witnesses, train-only standardization and logistic gradients. Test-label poisoning leaves fits and selections unchanged. Source, split, bootstrap, gain, metric and selection mutations are rejected.
 
-Independent scalar JavaScript checks 10,784 forest evaluations, 8,088 control scores and 6,464 OOB records. Chrome drives all 992 native path references and every model/partition state, physical-keyboard membership changes, invalid-input clearing/recovery, clipboard success/failure, actual JSON Blob download and 320/390/1280px layouts. The installed ten-module package runs all ten commands, refits all19 models, audits them and reproduces the checked browser exports outside the checkout.
+Independent scalar JavaScript checks 10,784 forest evaluations, 8,088 control scores and 6,464 OOB records. Chrome drives all 992 native path references and every model/partition state, physical-keyboard membership changes, invalid-input clearing/recovery, clipboard success/failure, actual JSON Blob download and 320/390/1280px layouts. The installed ten-module package runs all ten commands, refits all 19 models, audits them and reproduces the checked browser exports outside the checkout.
 
 The added diagnostic has independent scalar-JavaScript predictions for all 129,600 model-row evaluations, exact Fraction metric controls, full fresh regeneration, fit/map/count mutation rejection, train/test-label poisoning and 1,230 actual browser states. Outside-checkout reproduction regenerates all 240 cases, audits them and compares seven archive/loader exports exactly.
 
@@ -38,11 +40,11 @@ The added diagnostic has independent scalar-JavaScript predictions for all 129,6
 
 Classes stay the source's labels 0 and 1, not an invented genuine/forged mapping. These are historical precomputed image descriptors, not an image-upload classifier or a currency detector. Hard votes, leaf fractions and neighbor fractions are not calibrated probabilities, confidence intervals or conformal sets. OOB is a training-sample diagnostic, not the held-out full-forest test or independent specimen validation. Paths are not causal explanations.
 
-Original data: Lohweg, V. (2012), UCI Banknote Authentication, DOI10.24432/C55P57, CC BY4.0. Original bytes are retained in lossless checked text encoding; exact-copy grouping and partitioning are this project's transformations. No source images were copied. MIT code. Established CART/forest methods are credited in the method note; attribution is not endorsement.
+Original data: Lohweg, V. (2012), UCI Banknote Authentication, DOI 10.24432/C55P57, CC BY 4.0. Original bytes are retained in lossless checked text encoding; exact-copy grouping and partitioning are this project's transformations. No source images were copied. MIT code. Established CART/forest methods are credited in the method note; attribution is not endorsement.
 
-## v0.3 / Where the paths meet
+## Leaf-collision geometry
 
-The v 0.3 [leaf-collision inspector](https://midya8.github.io/forestlab/proximity.html) exposes all-tree similarity as an explicit Gram matrix, with exact integer/BigInt sum-of-squares witnesses. A separate jointly-OOB view keeps pair-specific tree counts and undefined comparisons. A constructed negative quadratic form (-2) and triangle failure show why OOB normalization is not a universal kernel guarantee. All 512 small partition controls, 5,760 native/scalar-JS matrix entries, 1,152 actual pair states and 13,824 heatmap colors are checked. Frozen supervised model geometry, not semantic similarity, causal influence, uncertainty or a new score. [Geometry derivation and limits](https://github.com/midya8/forestlab/blob/main/PROXIMITY.md).
+The [leaf-collision inspector](https://midya8.github.io/forestlab/proximity.html) exposes all-tree similarity as an explicit Gram matrix, with exact integer/BigInt sum-of-squares witnesses. A separate jointly-OOB view keeps pair-specific tree counts and undefined comparisons. A constructed negative quadratic form (-2) and triangle failure show why OOB normalization is not a universal kernel guarantee. All 512 small partition controls, 5,760 native/scalar-JS matrix entries, 1,152 actual pair states and 13,824 heatmap colors are checked. Frozen supervised model geometry, not semantic similarity, causal influence, uncertainty or a new score. [Geometry derivation and limits](https://github.com/midya8/forestlab/blob/main/PROXIMITY.md).
 
 The all-tree proximity is the mean of per-tree leaf collisions. Keeping tree identity in each leaf-indicator column makes P=ZZᵀ/T, including singular matrices. Exact Python integer and browser BigInt witnesses evaluate the full quadratic expression and every leaf-bucket square. Squared feature-space distance is 2(1-P); distinct raw inputs can have zero distance. This is not a semantic identity proof.
 
