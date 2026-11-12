@@ -45,24 +45,13 @@ The current suite has 64 Python tests and seven Node/actual-Chrome tests, includ
 
 [Live policy inspector](https://midya8.github.io/agenttrace/capacity.html) · [Source](https://github.com/midya8/agenttrace) · [Contract and sources](https://github.com/midya8/agenttrace/blob/main/CAPACITY.md) · [Case study](projects/agenttrace.md)
 
-## EvalForge 0.2: one family, shared cluster signs
+## EvalForge 0.2: shared cluster signs
 
+Compare a supplied candidate family using one sign per declared cluster, shared across every candidate. The default raw absolute-sum tail is 1/4; its family-maximum tail is 1/2. The inspector shows every assignment and contribution. Repeated-row controls change the flip unit without changing observed task-weighted sums.
 
+Current checks: 102 Python tests and seven Node/actual-Chrome tests, independent original-task relabeling, full-report comparison, browser exports and isolated installed-wheel reproduction. The original regression gate, paired inspector and McNemar calculation remain unchanged. Cluster labels do not establish joint symmetry, and this joint-null arithmetic is not universal strong-FWER protection or evidence of model superiority.
 
-A separate exact clustered sign-flip audit for common-task model comparisons. Each supplied cluster gets one sign shared across every candidate. The default candidate has raw absolute-sum tail 1/4 but family-maximum tail 1/2. Repeated-row controls show how the declared flip unit changes the orbit without changing observed task-weighted sums. The original regression gate, paired inspector and McNemar calculation stay unchanged.
-
-
-
-102 Python tests retain all 92 prior tests; seven Node/actual-Chrome tests retain all three prior tests. Independent original-task relabeling checks 150 seeded matrices and all 729 small two-column controls. Python block aggregation/bit masks and independent browser Cartesian signs/original-task sums agree on 24 complete reports, 118 task rows, 73 cluster rows, 506 full assignments and 10,474 candidate-by-cluster contributions. Chrome checks all displayed rows, bar geometry, stale/invalid state, both exports and 320/390/1280px containment. Isolated installed API, module and console runs reproduce every report, plus all original wheel/adapter/export checks.
-
-
-
-[Live family inspector](https://midya8.github.io/evalforge/family.html) · [Source](https://github.com/midya8/evalforge) · [Exact contract and sources](https://github.com/midya8/evalforge/blob/main/FAMILY.md) · [Case study](projects/evalforge.md)
-
-
-
-Earlier EvalForge descriptions below cover the retained individual-pair audit and original harness. The new family checks supersede their aggregate test count; original gates remain unchanged.
-
+[Live family inspector](https://midya8.github.io/evalforge/family.html) · [Source](https://github.com/midya8/evalforge) · [Contract and sources](https://github.com/midya8/evalforge/blob/main/FAMILY.md) · [Case study](projects/evalforge.md)
 
 ## StructGate0.3: the future has a weight
 
@@ -958,12 +947,15 @@ Every term contribution, full unit/parent text, collapse decision, grade/discoun
 
 ### EvalForge
 
-Local-first LLM/agent evaluation plus an [editable paired comparison inspector](https://midya8.github.io/evalforge/). Recomputed all-task versus matched-task means reveal cohort reversal; every per-task gate decision and full normalized result record stays visible. Exhaustive paired sign flips and exact McNemar expose all assignments/counts without changing the original regression gate. Independent scalar JavaScript, responsive fixed-axis chart and current JSON export.
+Run local command adapters against supplied checks, save their responses and compare paired task results. The editable inspector separates all-task and matched-task means, retains every normalized result and gate decision, and shows complete paired sign-flip and exact McNemar calculations. These arithmetic controls do not change the original regression rule.
 
-Original offline command-adapter/scorer/HTML/JUnit/Markdown/SARIF harness, all 68 tests and the six-task mock are retained. 92 Python tests across 3.10-3.13; 24 full reports (11,808 numeric and 2,691 other scalar leaves); actual Chrome pair/record/assignment/binomial/dot/export checks; isolated installed wheel with nine module origins. This is supplied evidence arithmetic, not rescoring or proof of model quality. Equal ids do not establish matching task definitions or independent samples. Persistent failures can pass a comparison; a comparison PASS is not a passing suite.
+A passing comparison is not a passing evaluation suite: persistent failures can pass if they do not regress. Equal IDs do not prove matching tasks or independent samples. Adapters and task checks run with the caller's permissions, not in a sandbox. The original six-task mock is synthetic, not an AI benchmark.
 
-- Repo: [midya8/evalforge](https://github.com/midya8/evalforge)
-- Case study: [projects/evalforge.md](projects/evalforge.md)
+The current suite has 102 Python tests and seven Node/actual-Chrome tests, including the earlier paired checks and original harness. It covers independent references, full reports, browser records/geometry/exports and isolated installed-wheel reproduction. The separate clustered family audit is described above.
+
+- [Source](https://github.com/midya8/evalforge)
+- [Case study](projects/evalforge.md)
+- [Paired inspector](https://midya8.github.io/evalforge/)
 
 ### AgentTrace
 
