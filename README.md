@@ -37,17 +37,13 @@ An opt-in actual-scanner baseline limits how many equal-identity findings can be
 Earlier PromptGuard descriptions below cover the unchanged scanner and original policy audit. The new 100-test suite retains their tests; suppression is not safety.
 
 
-## AgentTrace 0.2: keep the value, respect the overlap
+## AgentTrace 0.2: fixed-interval retention
 
-A separate exact fixed-interval retention policy under a supplied overlap cap. With one lane, two touching spans worth 6 each beat one enclosing span worth 9. Native integer min-cost flow exposes every edge, flow, canonical potential and residual reduced cost, with a matching primal/dual bound and exact zero gap. The original trace validator, analyzer, timing inspector and gates stay unchanged.
+Given fixed intervals, supplied drop penalties and an overlap cap, find the subset with the least dropped penalty. At cap 1, two touching spans worth 6 each beat one enclosing span worth 9. The inspector shows the retained subset, hypothetical lanes, all five capacity choices and the complete min-cost-flow certificate.
 
-64 Python tests retain all 57 prior tests; seven Node/actual-Chrome tests retain all three prior tests. Independent full-subset/unit-cell references check 250 seeded inputs at all five capacities; 120 larger controls check feasibility and certificates. Python Bellman-Ford successive shortest paths and independent browser subset enumeration/Floyd-Warshall agree on 24 full reports, 113 interval rows, 124 segments, 120 frontier entries, 222 network edges and 241 residual arcs. Chrome checks every displayed row, timeline geometry, stale/invalid state, 320/390/1280px containment and two trusted exports replayed through native CLI. Separate isolated API/module/console and original eleven-module wheel checks pass.
+The current suite has 64 Python tests and seven Node/actual-Chrome tests, including all earlier checks. Independent references, full-report comparisons, native export replay and isolated installed-wheel checks cover the policy and the retained timing analyzer. These are synthetic controls, not measured runtime savings. No trace records change, and the policy does not infer workers or dependency-safe cancellation.
 
-[Live policy inspector](https://midya8.github.io/agenttrace/capacity.html) · [Source](https://github.com/midya8/agenttrace) · [Exact contract and sources](https://github.com/midya8/agenttrace/blob/main/CAPACITY.md) · [Case study](projects/agenttrace.md)
-
-Earlier AgentTrace descriptions below cover the retained timing audit and original analyzer. The new policy checks supersede their aggregate test count; recorded spans still are not real resource use.
-
-
+[Live policy inspector](https://midya8.github.io/agenttrace/capacity.html) · [Source](https://github.com/midya8/agenttrace) · [Contract and sources](https://github.com/midya8/agenttrace/blob/main/CAPACITY.md) · [Case study](projects/agenttrace.md)
 
 ## EvalForge 0.2: one family, shared cluster signs
 
@@ -971,19 +967,15 @@ Original offline command-adapter/scorer/HTML/JUnit/Markdown/SARIF harness, all 6
 
 ### AgentTrace
 
-Local-first validation, analysis and reporting for AI agent execution traces: JSONL trace structure checks, run summaries, tool/LLM call counts, latency and cost rollups, graph depth, repeated-step loop detection, baseline/candidate regression comparison, quality gates, a standalone escaped HTML timeline, deterministic JUnit XML output for CI test viewers, Markdown job summaries, and SARIF 2.1.0 output for code-scanning integrations.
+Read and validate local JSONL agent traces, summarize recorded durations, tokens, costs and repeated tool/action signatures, compare a candidate with a baseline, and emit JSON, escaped HTML, JUnit XML, Markdown or SARIF reports. Configured gates check the supplied record, not answer quality.
 
-- **Agent runs as inspectable data** - parse JSONL traces from local agents, test fixtures, internal tools or hosted-model adapters without sending prompts or outputs anywhere.
-- **Gates that catch agent failure modes** - fail CI on errored steps, p95 latency, cost, step count, a repeated tool/action signature that indicates a loop, or regressions against a saved baseline trace.
-- **Reports built for review** - deterministic JSON analysis artifacts, JUnit XML for CI test viewers, Markdown job summaries, SARIF 2.1.0 for code-scanning tools, and a self-contained HTML report show run summaries and per-step timelines with untrusted trace fields escaped by default.
-- Dependency-free Python 3.10+, 57 unit tests (original 33 retained), a fully offline fixed-trace baseline/candidate demo that validates JUnit, Markdown and SARIF output, and CI across Python 3.10-3.13.
+The timing inspector separates duration sums from elapsed coverage and shows every endpoint, segment, parent relation and percentile term. Parent links are not causal dependencies. Missing timestamps stay unknown; recorded gaps and overlaps do not measure idle time, waste or utilization. The separate retention policy is described above.
 
-- Repo: [midya8/agenttrace](https://github.com/midya8/agenttrace)
-- Case study: [projects/agenttrace.md](projects/agenttrace.md)
+Current checks: 64 Python tests, seven Node/actual-Chrome tests, independent references, synthetic controls and isolated installed-wheel reproduction. Python 3.10-3.13; no model or API calls. The original fixture demo and analysis behavior remain available.
 
-Full-record graph/timing inspector: every endpoint, interval segment, parent path/relation, normalized record and p95 term. Independent Python/JavaScript recomputation and current JSON export. 57 Python tests retain all original 33 tests; 24 synthetic controls, 11,110 interval checks and an isolated installed-wheel reproduction. Parent links are not causal dependencies; recorded coverage/overlap is not CPU, idle, waste or utilization. No model/API call.
-
-- [Live graph/timing inspector](https://midya8.github.io/agenttrace/)
+- [Source](https://github.com/midya8/agenttrace)
+- [Case study](projects/agenttrace.md)
+- [Live timing inspector](https://midya8.github.io/agenttrace/)
 
 ### PromptGuard
 
