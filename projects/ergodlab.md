@@ -1,6 +1,6 @@
 # ErgodLab
 
-Exact stationary policy sensitivities, independently checked against directed spanning trees, with a Poisson-bias and temporal reward-variance audit.
+ErgodLab checks how a supplied finite policy changes long-run reward and reward-sum variance. It uses exact fractions and compares stationary derivatives against an independent directed spanning-tree calculation.
 
 - Repository: [midya8/ergodlab](https://github.com/midya8/ergodlab)
 - Runtime: Python 3.10+, standard library only
@@ -8,7 +8,7 @@ Exact stationary policy sensitivities, independently checked against directed sp
 
 ![Exact stationary reward audit](https://github.com/midya8/ergodlab/raw/main/assets/stationary-audit.svg)
 
-## The question
+## Why one-step rewards are not enough
 
 A policy changes both its immediate reward distribution and the states it visits. Long-run reward and reward-sum variance cannot generally be read from one-step quantities alone.
 
@@ -18,7 +18,7 @@ In the occupancy fixture, state rewards are 0 and 1 and are independent of the a
 
 Two separate symmetric chains with state rewards 0/1 have equal one-step stationary reward variance `1/4`. Staying in the same state with probability `7/8` gives asymptotic reward-sum variance per step `7/4`. Deterministic alternation gives zero. The alternating chain has period two: exact stationary block-sum variance is zero for even lengths and `1/4` for odd lengths. The figure shows all lengths 1..16 and both exact limits on the same axis. These are prescribed analytical fixtures, not training results or benchmark trials.
 
-## What was built
+## Stationary calculations
 
 The anchored policy is proportional to `weight(s,a)*exp(feature(s,a) dot theta)`, with fixed transitions/rewards and theta evaluated at zero. Exact pivoted linear solves return stationary distributions and derivatives. A structurally independent directed spanning-tree product/quotient rule returns the same values and every derivative. The controlled chain must be irreducible; periodicity is computed and reported, not silently ruled out.
 
@@ -32,7 +32,7 @@ For every positive state/action/next-state edge, the report returns the centered
 
 ## Independent checks
 
-39 tests cover 25 analytic two-state transition settings, 16 exact policy-weight gradient settings, nine multi-state/two-coordinate determinant and finite-difference references, and explicit path enumerations through four steps for all three fixtures. Additional checks cover the alternating chain through length 32, period-three chains, IID action rewards, zero-asymptotic-variance telescoping edge rewards, feature/reward/state/action transformations, five-state complete-graph tree counts, reducible refusal, strict CLI/schema/file bounds, input/output/RNG isolation and every SVG point/limit geometry.
+The full suite has 39 tests. Its stationary and reward checks cover 25 analytic two-state transition settings, 16 exact policy-weight gradient settings, nine multi-state/two-coordinate determinant and finite-difference references, and explicit path enumerations through four steps for all three fixtures. Additional checks cover the alternating chain through length 32, period-three chains, IID action rewards, zero-asymptotic-variance telescoping edge rewards, feature/reward/state/action transformations, five-state complete-graph tree counts, reducible refusal, strict CLI/schema/file bounds, input/output/RNG isolation and every SVG point/limit geometry.
 
 Input is a versioned JSON model with 1..5 states, 1..4 actions and 1..3 shared coordinates. Rational probabilities/rewards are bounded, transition rows sum exactly to one, and duplicate keys/booleans/floats/malformed shapes are rejected. The independent tree reference checks at most 1,280 parent assignments. The wheel and SVG need no external runtime dependency.
 
@@ -46,7 +46,7 @@ A separate two-coordinate fixture has controlled switch probabilities `1/2,1/4`,
 
 At beta `1`, the audit solves the centered Poisson limit instead of inverting the singular discounted matrix. It recovers the true average-reward gradient and zero curl, including periodic chains. Beta input is at most eight distinct rational pairs through denominator 10,000. No monotone-bias or sampled-estimator claim is made.
 
-Ten new tests check an exact 16-weight/four-beta proxy/curl grid, independent Cramer/determinant finite differences across three models, all seven starting-state choices and four betas, true fixed-start gradients, near-one/zero/one/periodic/IID cases, transformations, all residuals and strict CLI/isolation. Three new figure tests check every exact table cell and its position, full metadata and tamper rejection. The six-module v0.2 wheel reproduces the complete discount demo outside checkout; both original audit/demo outputs remain unchanged. [The derivation and source distinction](https://github.com/midya8/ergodlab/blob/main/DISCOUNT.md) explain the canceled symmetric second derivatives and fixed-start objective.
+Ten of the 39 tests check an exact 16-weight/four-beta proxy/curl grid, independent Cramer/determinant finite differences across three models, all seven starting-state choices and four betas, true fixed-start gradients, near-one/zero/one/periodic/IID cases, transformations, all residuals and strict CLI/isolation. Three more tests check every exact table cell and its position, full metadata and tamper rejection. The six-module v0.2 wheel reproduces the complete discount demo outside checkout; both original audit/demo outputs remain unchanged. [The derivation and source distinction](https://github.com/midya8/ergodlab/blob/main/DISCOUNT.md) explain the canceled symmetric second derivatives and fixed-start objective.
 
 ## Attribution and boundaries
 
