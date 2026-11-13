@@ -1,14 +1,14 @@
 # ShieldLab
 
+ShieldLab solves three small protocol-game objectives: stay safe forever, reach a safe goal for the first time, or stay safe while visiting a target infinitely often. These are separate inspectors with different stopping rules.
 
-
-### ShieldLab: a safe next step can still lose
+## Safety: a safe next step can still lose
 
 [Source](https://github.com/midya8/shieldlab) | [Interactive inspector](https://midya8.github.io/shieldlab/) | [Exact method and seven-source ledger](https://github.com/midya8/shieldlab/blob/main/METHOD.md)
 
-An exact tiny safety-game inspector for hand-written agent protocols. Every synchronous fixed-point obligation, winning controller move, losing rank and branching invariant/counterstrategy graph is visible. Changing only who controls a state flips the result: one-step-safe actions need not preserve safety forever. Independent bitmask Python and explicit-set JavaScript, plus a separate dual-attractor and exhaustive positional-policy checker.
+The safety inspector works on small, hand-written agent protocols. Every synchronous fixed-point obligation, winning controller move, losing rank and branching invariant/counterstrategy graph is visible. Changing only who controls a state flips the result: one-step-safe actions need not preserve safety forever. Independent bitmask Python and explicit-set JavaScript, plus a separate dual-attractor and exhaustive positional-policy checker.
 
-Eight native tests include all 21,952 three-state graph/ownership/safety combinations and 150 seeded larger arenas. Three Node/actual-Chrome tests compare 643 complete reports and all six controls at 320/390/1280. Installed wheels replay both CLI entry points outside checkout. Finite total perfect-information model only: no runtime shield, LLM guarantee, liveness, timing, probability, new algorithm or formal proof. Dead ends are rejected; safe waiting need not mean progress.
+The original eight native tests include all 21,952 three-state graph/ownership/safety combinations and 150 seeded larger arenas. The original three Node/actual-Chrome tests compare 643 complete reports and all six controls at 320/390/1280. Installed wheels replay both CLI entry points outside checkout. Finite total perfect-information model only: no runtime shield, LLM guarantee, liveness, timing, probability, new algorithm or formal proof. Dead ends are rejected; safe waiting need not mean progress.
 
 ## Why inspect the full game?
 
@@ -18,18 +18,18 @@ Winning proof graphs fix a controller policy and retain every environment move. 
 
 [PR and complete implementation history](https://github.com/midya8/shieldlab/pull/1). Original code and controls, dependency-free native runtime, no model API or private dataset. The method records standard safety-game theory, a conflicting dead-end convention, shielding abstraction requirements and the limits of this small model. Tests are evidence rather than proof.
 
-## ShieldLab: safe waiting is not arrival
+## Reach-avoid: safe waiting is not arrival
 
-ShieldLab now separates safe waiting from forced arrival. A finite reach-before-unsafe inspector exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/shieldlab/reachavoid.html), [source and reproduction](https://github.com/midya8/shieldlab), [contract and eight-source ledger](https://github.com/midya8/shieldlab/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/shieldlab/pull/2).
+The reach-before-unsafe inspector separates safe waiting from forced arrival. It exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/shieldlab/reachavoid.html), [source and reproduction](https://github.com/midya8/shieldlab), [contract and eight-source ledger](https://github.com/midya8/shieldlab/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/shieldlab/pull/2).
 
-All 24 native tests pass on Python 3.10-3.13, preserving all 8 original tests. Independent deterministic strategy-pair simulation checks 324 two-state and 32,928 three-state cases; 120 seeded larger cases and the 729-policy boundary have full replay. All six Node/Chrome tests pass, including 457 complete native/JavaScript reports, 1,329 policies and 6,291 root outcomes. Actual Chrome drills every policy/root across 12 controls at 320/390/1280 and verifies 12 event-confirmed downloaded reports through the native CLI. Fresh installed wheels on each Python version reproduce 6 original and 12 new reports through two entrypoints, check 8 module origins and reject 20 forged CLI records. Feature/PR, main and Pages checks are green; all 38 native files match fresh public source and deployed assets/behavior/pixels are verified.
+The reach-avoid release checked 24 native tests on Python 3.10-3.13, preserving all 8 original tests. Independent deterministic strategy-pair simulation checks 324 two-state and 32,928 three-state cases; 120 seeded larger cases and the 729-policy boundary have full replay. That release checked six Node/Chrome tests, including 457 complete native/JavaScript reports, 1,329 policies and 6,291 root outcomes. Actual Chrome drills every policy/root across 12 controls at 320/390/1280 and verifies 12 event-confirmed downloaded reports through the native CLI. Fresh installed wheels on each Python version reproduce 6 original and 12 new reports through two entrypoints, check 8 module origins and reject 20 forged CLI records. These are bounded release checks, not a proof or scaling benchmark.
 
 Terminal safe goals stop the play on first hit; empty targets lose and unsafe roots fail immediately. No fairness assumption forces the environment to cooperate. Safety-until-goal treats success as absorbing and is not necessarily the original nonterminal infinite-safety objective. Complete assignments include unreachable active controller decisions but exclude irrelevant goal/unsafe actions. The original safety engine, checker, controls and tests keep their semantics. Established finite-game theory and original bounded controls are credited, not presented as a new theorem, external-solver benchmark, scalable solver, learned runtime shield, probabilistic guarantee or proof about real software.
 
 
-## ShieldLab0.3: again is a different promise
+## Safe recurrence (0.3): repeated target visits
 
-An acknowledgement can arrive once without ever arriving again. The separate **safe recurrence inspector** checks that a supplied finite game stays safe forever and visits a target infinitely often, against every environment choice. Targets are live, not terminal: their outgoing moves still count. The old safety and first-goal inspectors retain their meanings.
+One acknowledgement is not a promise of repeated acknowledgements. The separate **safe recurrence inspector** checks that a supplied finite game stays safe forever and visits a target infinitely often, against every environment choice. Targets are live, not terminal: their outgoing moves still count. The old safety and first-goal inspectors retain their meanings.
 
 [Inspect safe recurrence](https://midya8.github.io/shieldlab/recurrence.html) | [Source](https://github.com/midya8/shieldlab) | [Exact method and inspected sources](https://github.com/midya8/shieldlab/blob/main/RECURRENCE.md)
 
@@ -38,6 +38,6 @@ An acknowledgement can arrive once without ever arriving again. The separate **s
 - Complete branching strategy/counterstrategy graphs retain every opponent move and stop only at unsafe, never at a target. One favorable path or target-containing SCC is not a recurrence guarantee.
 - Independent native full-report replay by unique strategy-pair simulation, a third matrix-cycle oracle and independent JavaScript. Strict atomic native CLI, isolated installed reproduction and trusted downloadable JSON.
 
-Reproduced from the exact public source: **39 Python tests**, all **74,088 three-state graph/owner/safety-target configurations**, **498 complete native/JavaScript/checker reports** and **163 individually rejected primitive-leaf mutations**. Actual Chrome at 1280/390/320 checks 36 complete control reports, every nested obligation and both policy atlases; all 12 trusted completed downloads are independently accepted by the native checker. Fresh installed checks retain all old safety/first-goal controls and entrypoints. Exact tested counts and assumptions are in the contract.
+The recurrence release checks cover **39 Python tests**, all **74,088 three-state graph/owner/safety-target configurations**, **498 complete native/JavaScript/checker reports** and **163 individually rejected primitive-leaf mutations**. Actual Chrome at 1280/390/320 checks 36 complete control reports, every nested obligation and both policy atlases; all 12 trusted completed downloads are independently accepted by the native checker. Fresh installed checks retain all old safety/first-goal controls and entrypoints. Exact tested counts and assumptions are in the contract. Hosted publication and deployment are separate checks, not inferred from local results.
 
 Established finite safety-and-Buchi theory, with original supplied controls, not a new algorithm or a measured agent result. Bounds: six states, three moves per state and at most 729 positional assignments per player. No fairness, probabilities, partial observation, scalable solver, formal proof or real-agent safety/liveness guarantee. No private data, paid API or hosted inference.
