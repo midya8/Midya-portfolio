@@ -8,7 +8,7 @@ PrivacyLab audits supplied finite probability tables against explicit neighborin
 
 ![Exact finite-channel privacy audits and shared-coin joint-release failure](https://raw.githubusercontent.com/midya8/privacylab/main/assets/privacy-audit.svg)
 
-## The failure worth making visible
+## When marginal privacy is not enough
 
 Individually private-looking releases need not compose when their randomness is shared incorrectly. In the developed bit-secret control, Z is zero with probability 3/4 and the releases are A=secret XOR Z and B=Z. A alone has pure privacy factor 3 and B alone factor 1, but A XOR B recovers the secret exactly. The joint distributions have disjoint supports and delta 1 for every finite factor. Conditioning on A=0 makes B deterministically 0 versus 1, exposing the missing conditional-mechanism premise. This is a counterexample to reasoning from marginals, not to a DP composition theorem.
 
@@ -24,15 +24,15 @@ Individually private-looking releases need not compose when their randomness is 
 
 Independent-product construction explicitly assumes fresh independent randomness conditional on the secret. Stochastic postprocessing uses one row-stochastic kernel unchanged for every secret, with fresh randomness. In the developed example the vote is exactly the original randomized-response channel, and parity is secret-independent with distribution [5/8,3/8]. More privacy is not a utility claim, and those helpers cannot verify that an outside program satisfies their randomness assumptions.
 
-## Exact arithmetic and inspectable witnesses
+## Exact arithmetic and event witnesses
 
 For each listed undirected edge, both directed pairs are audited. At factor t the maximum over every event E of P(E)-tQ(E) is exactly the sum of positive P_k-tQ_k terms. Reports keep every term, probability ratio or explicit support mismatch, strict-positive attaining event and its P/Q masses, all zero-excess ties, singular mass, every worst pair and finite pure-factor witnesses. All-zeros outputs are distinct from positive mass over zero comparison probability. Unlisted secret pairs remain visible rather than silently covered.
 
-Inputs are exact integers, unsigned decimal/fraction strings or API Fraction values; floats/bools are rejected. Rows sum exactly to 1 without renormalization. Work limits are 8 secrets, 64 outputs, 28 undirected edges,512-bit rational components and 100000-byte CLI input. Product artifacts preserve an explicit output-pair mapping and fail if output/rational limits would be exceeded. Point queries are not interpolated into an unverified full privacy curve.
+Inputs are exact integers, unsigned decimal/fraction strings or API Fraction values; floats/bools are rejected. Rows sum exactly to 1 without renormalization. Work limits are 8 secrets, 64 outputs, 28 undirected edges, 512-bit rational components and 100000-byte CLI input. Product artifacts preserve an explicit output-pair mapping and fail if output/rational limits would be exceeded. The original point audit reports only the requested factors. The separate frontier API computes the full curve on a smaller table domain; neither changes the adaptive transcript bounds.
 
 ## Verification and reproduction
 
-29 tests reconstruct all demo terms/events and compare 24 seeded channels against exhaustive all 16-event searches per directed pair at four factors. A 10^-100 singular support leak remains exact. Minimal pure witnesses, profile monotonicity/convexity, omitted adjacency, permutations, full capacity, exact parsing, strict error paths and nonmutation/RNG state are covered. Transform tests check every product probability, exact binomial count channels through four randomized-response releases, 24 seeded stochastic-kernel contractions, shared-coin reconstruction/conditional failure, identity/constant/permutation kernels, alignment and limits. The SVG checks all 36 exact cells/coordinates, full report metadata, hidden attaining-event tampering and byte-exact regeneration. A five-module wheel matches both complete CLI JSON outputs outside checkout; CI covers Python 3.10-3.13 and package parity.
+The original 29 tests reconstruct all demo terms/events and compare 24 seeded channels against exhaustive all 16-event searches per directed pair at four factors. A 10^-100 singular support leak remains exact. Minimal pure witnesses, profile monotonicity/convexity, omitted adjacency, permutations, full capacity, exact parsing, strict error paths and nonmutation/RNG state are covered. Transform tests check every product probability, exact binomial count channels through four randomized-response releases, 24 seeded stochastic-kernel contractions, shared-coin reconstruction/conditional failure, identity/constant/permutation kernels, alignment and limits. The SVG checks all 36 exact cells/coordinates, full report metadata, hidden attaining-event tampering and byte-exact regeneration. The original five-module wheel matched both complete CLI JSON outputs outside checkout. The current seven-module wheel matches six reports; the later sections describe that coverage. CI covers Python 3.10-3.13 and package parity.
 
 ```sh
 python -m privacylab demo
@@ -66,7 +66,7 @@ The fair branch charges conditional delta 1 only to incoming mass 1/2. A reveali
 
 ### Verification of the extension
 
-46 tests retain the original 29 and add 14 adaptive behavior plus three SVG tests. Twenty-four seeded three-round, three-secret trees use independent recursive path enumeration and exhaustive all-256-event searches per directed pair. Tests reconstruct conditional events and every flow/leaf inequality; compare the shared-coin joint with the original static report and independent trees with static products; exercise six rounds, 64 leaves, eight secrets and all 28 edges; and cover null histories, unary rounds, permutations, omitted adjacency, tiny exact mass, computed-rational limits and strict CLI errors. All 36 new figure cells/coordinates, both diagram edges, complete report metadata, hidden-witness tampering and regeneration are checked. Both figures regenerate byte-exactly; the six-module installed wheel matches all four complete CLI JSON outputs outside checkout. CI covers Python 3.10-3.13 and packaging.
+The adaptive release had 46 tests: the original 29, 14 adaptive behavior tests and three SVG tests. Twenty-four seeded three-round, three-secret trees use independent recursive path enumeration and exhaustive all-256-event searches per directed pair. Tests reconstruct conditional events and every flow/leaf inequality; compare the shared-coin joint with the original static report and independent trees with static products; exercise six rounds, 64 leaves, eight secrets and all 28 edges; and cover null histories, unary rounds, permutations, omitted adjacency, tiny exact mass, computed-rational limits and strict CLI errors. All 36 new figure cells/coordinates, both diagram edges, complete report metadata, hidden-witness tampering and regeneration are checked. Both figures regenerate byte-exactly. That release's six-module installed wheel matched all four complete CLI JSON outputs outside checkout; the current wheel and frontier coverage follow below. CI covers Python 3.10-3.13 and packaging.
 
 ```sh
 python -m privacylab adaptive-demo
