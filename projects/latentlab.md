@@ -1,6 +1,6 @@
 # LatentLab
 
-A trained Gaussian variational autoencoder whose reconstruction, latent regularization and prior generation can be inspected separately.
+A small Gaussian variational autoencoder in scalar Python. Compare held-out reconstruction with noisy prior samples, then inspect a separate importance-evidence report.
 
 - Repository: [midya8/latentlab](https://github.com/midya8/latentlab)
 - Derivations: [DESIGN.md](https://github.com/midya8/latentlab/blob/main/DESIGN.md)
@@ -12,13 +12,13 @@ A trained Gaussian variational autoencoder whose reconstruction, latent regulari
 
 If an autoencoder reconstructs held-out inputs well, does sampling its latent prior produce the same data distribution? This tiny experiment makes the distinction visible instead of treating reconstruction error as a generation certificate.
 
-## What I built
+## Model and training
 
 A 150-parameter Gaussian VAE, using scalar Python and no array library or autodiff. Both encoder and decoder have a 12-unit tanh hidden layer. The diagonal posterior uses smooth bounded logvariance, and the decoder defines a Gaussian likelihood with fixed standard deviation 0.2. Reparameterized latent samples and analytic Gaussian KL feed a hand-derived backward pass through every weight, bias and logvariance path. Adam includes explicit bias correction.
 
 A strict versioned JSON checkpoint supports detached export/import, reproducible inference and prior sampling. Runtime and tests are dependency-free. Packaging supplies an installed CLI, checked outside the repository checkout.
 
-## What the fixture actually shows
+## Measured reconstruction and generation
 
 Both arms train on the same 128 synthetic eight-mode points, from identical initialized weights and data/noise RNG streams, for 800 minibatch Adam updates. Neither seed nor checkpoint is selected using held-out outcomes. Another 128 synthetic points are used for evaluation. Negative ELBO uses four held-fixed posterior-noise draws per point, with analytic KL. Prior generation includes independent observation-likelihood noise, not only decoded means.
 
@@ -32,7 +32,7 @@ Both arms train on the same 128 synthetic eight-mode points, from identical init
 
 The no-KL arm has slightly lower deterministic reconstruction error yet worse prior-sample distance. Beta 1 improves the measured prior samples, but over half still lie outside the disclosed neighborhoods. These are descriptive results for a single toy run, not proof that one objective always wins. The model's observation noise 0.2 is wider than the fixture jitter 0.06, so the distance diagnostic also reflects likelihood-family mismatch.
 
-## Importance evidence extension
+## Importance evidence audit
 
 The VAE is unchanged. A separate inference audit computes complete importance witnesses, with latent draws, joint/proposal log densities, normalized weights, log mean weight, mean log weight and ESS. Analytic-KL MC negative ELBO is returned separately because it is not the same finite-sample quantity as negative mean log weight. Only expectation bounds have the IWAE monotonic hierarchy; one random prefix need not improve.
 
@@ -46,7 +46,7 @@ The two-atom failure control is stronger than a seed-picked bad run: joint masse
 
 Finite binomial enumeration uses exact rational event probabilities, probability sums and mean evidence estimates. Expected evidence is exactly 1 for every K; expected log estimates for K=1,4,16,64 are about -13.793788,-13.737278,-13.529377,-12.785808. They rise and stay below 0 while remaining far from the truth. Logs and their weighted sums are floating point. High ESS only measures observed weight balance, not missed mass.
 
-The extension adds 15 importance tests and three figure tests, for 43 total. Tests include exhaustive binary IID sequences through K=8, independent normal-density products, extreme-log underflow reports, exact-posterior constants, expected ELBO/posterior-KL identities, nonmutating inference, strict CLI validation and the real neural prefix fixture. The new figure checks all 48 numeric cells/positions, complete witness metadata and an undisplayed log-joint change. The five-module v0.2 wheel reproduces both demos outside checkout; original demo output and original SVG are byte-identical.
+The importance audit has 15 tests and three figure tests, bringing the suite to 43 tests. Tests include exhaustive binary IID sequences through K=8, independent normal-density products, extreme-log underflow reports, exact-posterior constants, expected ELBO/posterior-KL identities, nonmutating inference, strict CLI validation and the real neural prefix fixture. The importance figure checks all 48 numeric cells/positions, complete witness metadata and an undisplayed log-joint change. The five-module v0.2 wheel reproduces both demos outside checkout; original demo output and original SVG are byte-identical.
 
 See [IMPORTANCE.md](https://github.com/midya8/latentlab/blob/main/IMPORTANCE.md). Standard importance/IWAE formulas credit Burda, Grosse & Salakhutdinov, [Importance Weighted Autoencoders](https://arxiv.org/abs/1509.00519), Section 3 and Theorem 1. This is inference auditing, not IWAE training, a confidence interval, a new estimator, an ESS accuracy certificate or exact neural evidence.
 
