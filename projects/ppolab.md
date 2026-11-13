@@ -1,13 +1,13 @@
-# PPOlab: clipping is not a policy box
+# PPOlab: training boundaries and exact policy audits
 
-A separate exact-rational PPO clipped-surrogate optimizer exposes the whole optimal policy face, not one preferred update. Constructive dual bounds, independent global replay and a BigInt browser distinguish objective clipping from a hard probability-ratio box. The original trainer, checkpoint, boundary fix and numerical replay audit remain intact.
+A NumPy PPO trainer and separate inspectors cover CartPole episode boundaries and exact clipped-objective policy faces. The rational optimizer exposes every optimal policy for a supplied single-state problem, without selecting one preferred update. Constructive dual bounds, independent global replay and a BigInt browser distinguish objective clipping from a hard probability-ratio box. The original trainer, checkpoint, boundary fix and numerical replay audit remain intact.
 
 - Repository: [midya8/ppolab](https://github.com/midya8/ppolab)
 - Live: [Boundary and policy inspector](https://midya8.github.io/ppolab/)
 - Method: [BOUNDARIES.md](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md)
 - Reviewed change: [Fix timeout credit leakage and add independent audits](https://github.com/midya8/ppolab/pull/1)
 
-## Clipping is not a policy box
+## Exact clipped-objective policy faces
 
 For the centered supplied control p=(1/10,9/10), A=(9,-1), epsilon=1/5, the best clipped score is 9/25. Imposing an actual hard ratio box on that same objective lowers the optimum to 1/5, a strict 4/25 gap. Every unconstrained optimizer has q0 in [7/25,1]; exact total variation ranges from 9/50 to 9/10, with both endpoints attained. A positive exact optimal family approaches a zero-probability vertex, proving unbounded old-to-new KL without rounded logarithms. A separate forced-zero control has no fully supported exact optimizer, which is not confused with an unbounded family inside an empty set.
 
@@ -19,13 +19,16 @@ This is a full old-policy expectation at one supplied state with 2–6 actions. 
 
 [Exact policy-face inspector](https://midya8.github.io/ppolab/clip.html) · [Proof, schema, sources and reproduction](https://github.com/midya8/ppolab/blob/main/CLIP_FACE.md). The standard objective and caveats are attributed to Schulman et al., OpenAI Spinning Up and prior PPO analyses. Earlier boundary and policy inspector retained below.
 
-## The real problem
+The counts below describe the retained boundary-audit stage. The current
+64-Python/seven-Node suite includes those tests.
+
+## Collector reset bug
 
 A time limit is not necessarily a terminal state. The original training collector reset on time-limit truncation, but recorded only true failures as done. Its GAE calculation then used the next episode's reset value and carried that episode's advantage backward. A tail-value unit test did not exercise the collector's internal reset.
 
 The corrected collector saves each actual post-step state and value before reset. Training now uses two masks: genuine termination suppresses bootstrap, while either termination or truncation cuts the recursive advantage trace. A documented seven-array compatibility adapter uses reward augmentation at truncation; raw rewards and flags live in the explicit transition API. The original model, optimizer, loss, physics and GAE helper remain unchanged.
 
-## Working implementation
+## Network, physics and estimator inspectors
 
 The live page runs both tanh hidden layers and both heads from all 4,675 original checkpoint parameters, with scalar JavaScript and the original Euler equations. All 30 initial states from the full 20-episode historical evaluation and ten-episode original gate are available, with every scalar path step, frame selection, play/pause and complete JSON export. Custom state simulation is actual policy inference and physics, not prerecorded frames or a model API.
 
@@ -33,7 +36,7 @@ Editable strict JSON exposes ten GAE fixtures: four complete actual trajectories
 
 Sixteen PPO fixtures cover advantage signs and ratios, including a complete tiny original-network batch. Every loss term, selected clip branch and output derivative is visible. All 57 finite-difference stencils expose left/right slopes. Four cross a clip kink and are explicitly not counted as ordinary central-gradient failures. A ratio outside the clip interval can still have active policy gradients; entropy/value gradients and full policy KL are separate questions.
 
-## Evidence, including the failure of exact replay
+## Boundary-audit checks and trajectory differences
 
 - 50 Python tests on 3.10-3.13, retaining all 18 original tests and original checkpoint/results/images.
 - Four Node/actual-Chrome tests compare all 26 complete reports and 12,408 numbers, all contribution rows, four actual JSON exports, invalid-state clearing, keyboard/playback, custom-state errors and 320/390/1280 layouts.
