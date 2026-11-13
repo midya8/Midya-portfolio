@@ -1,12 +1,10 @@
-# OrderLab: no improving swap, still not the best order
+# OrderLab: exact rank aggregation
 
-**A strict adjacent-local optimum can still lose globally.**
+OrderLab combines weighted complete rankings into a total order with the least pairwise disagreement. Compare every exact Kemeny optimum with an adjacent-swap local search, which can stop at a worse order. The browser shows each majority comparison, cycle, descent step and subset recurrence. Export the report and replay it independently from ballot inversions.
 
-OrderLab is an exact finite rank-aggregation workbench for AI preference reasoning and search-ensemble teaching profiles. Supply weighted complete strict rankings; inspect every pairwise majority, strict cycle, globally optimal order, local descent step and subset-DP transition. Export the complete report and replay it independently from ballot inversions.
+[Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Method and attributed theory](https://github.com/midya8/orderlab/blob/main/METHOD.md) · [Documentation review](https://github.com/midya8/orderlab/pull/2)
 
-[Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Method and attributed theory](https://github.com/midya8/orderlab/blob/main/METHOD.md) · [Reviewed change](https://github.com/midya8/orderlab/pull/1)
-
-## Three different gaps
+## Local cost, global cost and the pair bound
 
 The developed default uses ballot `0>1>2` with weight 3, `1>2>0` with weight 2 and `2>0>1` with weight 2. Strict majority margins form the cycle `0>1>2>0`, with margins `3,3,1`.
 
@@ -22,7 +20,7 @@ Start at `1>2>0`: cost **10**. Its two adjacent swaps worsen cost by **3** and *
 
 The report calls the last quantity `cycle_tax`; it is not a cycle count or causal attribution to individual cycles. Weights are supplied multiplicities, not learned reliability. All tied optimal orders remain: the six-candidate all-tie control has 720 optima, not one ID-selected answer.
 
-## Every obligation is visible
+## Inspect any order or subset
 
 Select any complete order to see each ballot's inversions and weighted cost, every pair's disagreement and lower-bound excess, and every adjacent neighbor's exact cost delta. The complete order census marks local, strict-local and global status independently. Select any subset to inspect all candidate-first transitions, minimum choices and complete restricted optimum counts. The empty subset has one empty order. Singleton local predicates hold vacuously.
 
@@ -30,13 +28,13 @@ The local policy takes the most negative adjacent delta, breaking equal improvem
 
 Dense majority graphs retain all pairs and strict/tied directions. Four-or-more-candidate edge labels are omitted to prevent overlap; complete exact weight tables sit directly below. Editing input clears prior evidence and disables stale export. Tables scroll internally on small screens.
 
-## Independent paths, not one echoed implementation
+## Solver and checker paths
 
 Python places the first candidate in each exact subset recurrence. JavaScript independently computes values by placing the last candidate and scores full orders directly from ballots. The native replay checker imports neither solver nor report generator: it enumerates every restricted permutation and sums ballot inversions directly. It checks types, omissions, complete tied families, transition rows, all neighbor deltas, strict cycles and the deterministic trace. Shared input validation remains a common trust surface.
 
 An optional input-built binary linear-ordering formulation uses SciPy/HiGHS with every triangle constraint, explicit 0..1 bounds and integrality. It checks one optimum cost per non-singleton profile and decodes/rescores the returned order. This is a numerical reference at tolerance `1e-8`, not the exact all-family certificate.
 
-## Reproduced evidence
+## Reproduction checks
 
 | Check | Developed scope |
 |---|---|
@@ -60,7 +58,7 @@ python tools/check_installed.py
 python tools/check_milp.py
 ```
 
-Publication verified at main `08220e519d0ec39fbc635def504be9ec94dc45da`. [PR #1](https://github.com/midya8/orderlab/pull/1) merged after all six feature/PR jobs passed. [Main CI](https://github.com/midya8/orderlab/actions/runs/42883808497) and [Pages deployment](https://github.com/midya8/orderlab/actions/runs/42883876847) passed. All 46 public files and five deployed assets match checked source. The full deployed Chrome workflow passes, including independent download replay; all 35 deployed screenshots match inspected local pixels. These gates identify this released implementation, not the truth or fairness of supplied preferences.
+The documentation review is published at main `4c9de871db767949470d4217265b4c58f1c48f6c` in [PR #2](https://github.com/midya8/orderlab/pull/2). Fresh checkouts of its head and merged main matched all 46 intended files and passed the Python, Node, actual-Chrome, installed-wheel and generated-asset checks. Both [head CI runs](https://github.com/midya8/orderlab/actions/runs/43349613439), [main CI](https://github.com/midya8/orderlab/actions/runs/43349781930) and [Pages deployment](https://github.com/midya8/orderlab/actions/runs/43349781506) passed. The five deployed assets match main, and the full deployed Chrome workflow passes, including independent download replay. All 35 deployed screenshots match the local captures; desktop and mobile review covers the local-gap, global-optimum, empty-subset, all-tie, invalid-input and horizontally scrolled table states. These checks cover the released implementation, not the truth or fairness of supplied preferences.
 
 ## Scope and prior work
 
