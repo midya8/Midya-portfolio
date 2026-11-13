@@ -1,10 +1,10 @@
-# VariLab: optimizing the bound is not recovering every marginal
+# VariLab: inference objectives, curvature and compatible decisions
 
 [Source repository](https://github.com/midya8/varilab)
 
-Mean-field variational inference is an optimization problem, but a better objective does not mean every requested statistic is better. VariLab makes that distinction inspectable for tiny supplied Ising distributions where every target state can be enumerated.
+VariLab compares inference questions on supplied Ising models: approximate a joint distribution, inspect curvature, condition on evidence or choose a compatible joint MAP assignment. Each calculation exposes its arithmetic and work limits. Fields and couplings are inputs, not learned parameters.
 
-## The result that stays uncomfortable
+## A better objective can give worse marginal means
 
 Two spins have zero fields and coupling `J=3`. The target favors aligned states, almost equally split between `(-1,-1)` and `(1,1)`. Exact means are zero; exact cross-covariance is `tanh(3)=0.995055`. Three product-distribution runs change only the initial means, using the same ascending sequential coordinate order, 100-sweep cap and `1e-12` sweep-change tolerance.
 
@@ -20,7 +20,7 @@ The separate no-edge control is exactly representable by the product family: mea
 
 ## A curvature certificate, not an optimizer claim
 
-The new `curvature(model, means)` API and strict CLI return the analytic ELBO Hessian at supplied interior means using exact fractions of the compiled binary-float inputs. Symmetric congruence returns `T`, block-diagonal `D`, exact positive/negative/zero eigenvalue counts and signed rational directions with quadratic forms; the independently checked identity is `T^T H T = D`. A nonzero diagonal uses a scalar pivot, an all-zero diagonal with an off-diagonal entry uses a 2x2 pivot, and a zero remainder records nullity. No numerical eigenvalue threshold is used.
+The `curvature(model, means)` API and strict CLI return the analytic ELBO Hessian at supplied interior means using exact fractions of the compiled binary-float inputs. Symmetric congruence returns `T`, block-diagonal `D`, exact positive/negative/zero eigenvalue counts and signed rational directions with quadratic forms; the independently checked identity is `T^T H T = D`. A nonzero diagonal uses a scalar pivot, an all-zero diagonal with an off-diagonal entry uses a 2x2 pivot, and a zero remainder records nullity. No numerical eigenvalue threshold is used.
 
 At `J=3,m=0`, inertia is `(1,1,0)` and direction `(3,1)` has exact positive form `8`, so the coordinate fixed point is a saddle. At the existing broken-symmetry fitted point, inertia is `(0,2,0)`. At `J=1,m=0`, it is `(0,1,1)`; the immediately adjacent representable couplings below and above 1 have `(0,2,0)` and `(1,1,0)`. The fixture uses those direct neighbors, not a search. The figure embeds complete rational certificates and plots all counts on one scale. Inertia preserves signs, not eigenvalue magnitudes.
 
@@ -32,29 +32,31 @@ python -m varilab curvature examples/coupled.json --means '[0,0]'
 PYTHONPATH=. python examples/render_curvature.py --check
 ```
 
-## What is implemented
+## What to run
 
-- Full finite support in log space, with probabilities/log probabilities, log partition, means, second moments and covariance.
-- Product-Bernoulli ELBO, entropy, expected log potential and analytic interior gradients.
-- Sequential coordinate updates `m_i=tanh(h_i+sum_j J_ij*m_j)`, with explicit coordinate order, every update snapshot, recomputed objective, sweep-change stopping status and final coordinate residual.
-- Independently summed `KL(q || p)` from complete product state probabilities, compared with `log_partition - ELBO`.
-- Strict versioned JSON model/API/CLI, bounded work, an offline demo and a reproducible SVG containing the complete model, state probabilities, settings and histories.
-
-This is inference for supplied target distributions, not fitting parameters or learning a posterior from data. The product family cannot represent arbitrary dependence, even if the optimizer improves its own objective. Synchronous/Jacobi updates are not implemented or treated as equivalent.
-
-## Why the checks matter
-
-183 tests include analytic independent/two-spin references, direct exponentials on 216 three-spin models, every pair moment, product-state ELBO and KL reconstructions, finite differences for every gradient coordinate, exhaustive one-coordinate objective scans and every-update ascent checks. They also cover full history reconstruction/copy isolation, symmetry and coordinate-label/order equivalence, the nonmaximum stopping example, lost covariance, saturated point masses, retained finite logs for underflowed target probabilities, strict validation and actual/reference work boundaries. 20 added curvature tests cover a 729-matrix independent inertia oracle, exact reconstruction and signed witnesses, finite-difference Hessians, permutations, singular/zero/2x2 pivots, near-endpoint and full-size models, validation and CLI equality. Four added figure tests verify all 15 inertia bars and complete certificates. Six original CLI tests and four original figure tests cover outputs/errors and every displayed bar/value.
-
-A standalone wheel contains all nine runtime modules and produces the same inference, curvature, forest, MAP, elimination and cyclic MAP demos outside the source directory. The runtime and tests use only Python's standard library. No API, GPU, network, external data or model download is needed.
+| Question | API | Arithmetic and cap |
+|---|---|---|
+| Full state reference or product approximation | `exact`, `mean_field`, `compare` | Floating enumeration/coordinate ascent, 12 spins |
+| Hessian sign counts | `curvature` | Rational congruence at represented interior means, 12 spins |
+| Condition an acyclic model | `forest` | Floating sum-product, 128 spins |
+| Compatible forest MAP and tie counts | `forest_map` | Rational max-sum, 128 spins |
+| Bounded cyclic conditional query | `elimination_plan`, `eliminate` | Symbolic preflight, floating log-sum-exp, 64 spins |
+| Cyclic joint MAP and tie counts | `cyclic_map` | Same preflight, rational max-sum/traceback, 64 spins |
 
 ```sh
 python -m varilab demo
 python -m varilab exact examples/coupled.json
 python -m varilab compare examples/coupled.json --initial '[0.1,0.1]'
 python -m unittest discover -s tests -v
-PYTHONPATH=. python examples/render_audit.py --check
+for name in audit curvature forest map elimination cyclic_map; do
+  PYTHONPATH=. python examples/render_$name.py --check
+done
 ```
+
+A standalone wheel contains nine runtime modules. All 15 CLI modes and console
+entry points match the source checkout outside the source directory. The runtime
+and tests use only Python's standard library. No API, GPU, network, external data
+or model download is needed.
 
 ## The boundary of the claim
 
@@ -75,7 +77,9 @@ For portable regeneration, the curvature figure fixes the captured broken-symmet
 
 A direct four-node zero-field J=2 chain has prior means zero. Observing its first spin as +1 gives means `(1,0.964028,0.929349,0.895918)`, analytically `tanh(2)^distance`, with evidence probability 0.5. An endpoint >0.8 gate passes with evidence and fails without it: different queries, not a method benchmark. A direct 128-node chain returns 254 directed messages without enumerating its state table. No timing claim is made. Cavity recomputation and serialized dependencies give `O(n+sum degree^2)` work/output, bounded by the 128-spin cap; this implementation does not claim linear complexity. Conditioning is not causal intervention and the graph is not learned.
 
-25 added API/CLI tests include 324 independent enumerated conditioned cases, direct source-side message oracles, analytic chain/star partitions, singleton/edge consistency, schedule readiness, rare evidence, cycles/size/validation and isolation. Four new figure tests verify analytic display geometry and explicit rounded metadata. Full float messages are in the demo; the figure uses the small-chain analytic values rounded to 12 decimals for portable rendering. It does not mislabel float messages as exact rational certificates. Sum-product follows [Zemel and Urtasun, CSC412 exact inference lectures (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); implementation and test references are independent.
+The forest SVG uses small-chain analytic values rounded to 12 decimals for
+portable geometry; full float messages remain in the demo. This does not make
+floating messages rational certificates. Sum-product follows [Zemel and Urtasun, CSC412 exact inference lectures (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); implementation and test references are independent.
 
 ```sh
 python -m varilab forest-demo
@@ -90,9 +94,9 @@ PYTHONPATH=. python examples/render_forest.py --check
 
 Directly constructed h=(1/4,63/256), J=-2 has two unique ordinary marginal modes +1, with P(+1) about 0.506550 and 0.502723. Their joint (+1,+1) scores -385/256. The unique joint MAP (+1,-1) scores 513/256, exact gap 449/128=3.5078125. Both demo gates are asserted: compatible decoding reaches the optimum; independent marginal modes do not. This distinguishes decision questions rather than ranking algorithms. A separate symmetric zero-field J=-2 example has two global optima: all local max-marginals permit either spin, but independent first choices (-1,-1) are incompatible. Stored parent-conditioned traceback chooses (-1,+1), an actual optimum. The deterministic local first-compatible tie rule is not a global lexicographic or relabel-invariant witness rule.
 
-A 128-isolated-spin fixture counts exactly 2^128 maximizing assignments without enumeration. Recomputed cavities plus serialized dependencies cost O(n+sum degree^2) rational/count operations and output entries; variable integer bit costs matter, and no timing claim is made. Singleton scores/counts include other disconnected components. Scores are not probabilities; this MAP path makes no cyclic decoding, parameter learning, top-k or causal claim. The fourth SVG plots both signed scores on one zero scale and embeds complete rational scores/counts/traceback certificates; only ordinary marginal-probability labels are rounded to 12 decimals for portability.
+A 128-isolated-spin fixture counts exactly 2^128 maximizing assignments without enumeration. Recomputed cavities plus serialized dependencies cost O(n+sum degree^2) rational/count operations and output entries; variable integer bit costs matter, and no timing claim is made. Singleton scores/counts include other disconnected components. Scores are not probabilities; this forest MAP path makes no parameter learning, top-k or causal claim. The fourth SVG plots both signed scores on one zero scale and embeds complete rational scores/counts/traceback certificates; only ordinary marginal-probability labels are rounded to 12 decimals for portability.
 
-27 added API/CLI tests cover 972 independent Fraction enumerations with evidence and every constrained singleton optimum/count, source-side message/count/backpointer oracles, analytic 128-node cases, exact subnormal gaps, binary-vs-decimal fractions, compatible traceback, disconnected accounting, deterministic ordering, relabelled scores/counts, input/RNG isolation, validation and strict CLI equality/errors. Four figure tests inspect score geometry, complete certificates, regeneration and rejection of changed payloads. The original three demos/figures remain unchanged. Max-sum and backtracking follow [University of Washington CSE515 max-product lecture (2020)](https://courses.cs.washington.edu/courses/cse515/20wi/maxprod.pdf); code, rational multiplicity accounting, fixtures and independent test references are original.
+Max-sum and backtracking follow [University of Washington CSE515 max-product lecture (2020)](https://courses.cs.washington.edu/courses/cse515/20wi/maxprod.pdf); code, rational multiplicity accounting, fixtures and independent test references are original.
 
 ```sh
 python -m varilab map-demo
@@ -107,9 +111,10 @@ PYTHONPATH=. python examples/render_map.py --check
 
 The directly specified 16-node zero-field star with J=1/2 exposes order dependence on the same partition query. Hub first needs 65,536 bucket assignments and is refused before numeric tables; min-fill peaks at 4 and matches analytic log Z 12.892072. A separate 64-node cycle answers joint query [0,1] at peak 8, with log Z 52.048748 and adjacent moment 0.462117 matching independent transfer-matrix formulas. Both resource gates are asserted. A refused order is not an impossible graph, and min-fill is a heuristic rather than an optimal-treewidth proof or speed benchmark.
 
-Fixed caps are 4,096 peak assignments (including larger initial/final tables), 250,000 scalar factor-entry reads and 65,536 total initial/intermediate/final output entries. The plan exposes every input factor ID, bag, output scope and step counter. Constants from evidence are retained; zero-weight stored edges remain conservatively in symbolic scopes. Rejected plans remain inspectable, but execution returns no partial inference. Counters exclude set/index/transcendental/Python-object costs and are not seconds, FLOPs or memory bytes. Query probabilities may underflow while retaining finite log probabilities. No cyclic MAP, arbitrary factors, learning, causal interpretation or unbounded inference is claimed.
+Fixed caps are 4,096 peak assignments (including larger initial/final tables), 250,000 scalar factor-entry reads and 65,536 total initial/intermediate/final output entries. The plan exposes every input factor ID, bag, output scope and step counter. Constants from evidence are retained; zero-weight stored edges remain conservatively in symbolic scopes. Rejected plans remain inspectable, but execution returns no partial inference. Counters exclude set/index/transcendental/Python-object costs and are not seconds, FLOPs or memory bytes. Query probabilities may underflow while retaining finite log probabilities. The sum-product path does not perform MAP. Neither path claims arbitrary-factor, learned, causal or unbounded inference.
 
-30 added API/CLI tests cover 432 cyclic model/evidence/query/order combinations with independent full-state exponential references, all 24 orders of a dense four-node graph, source-factor values/scope reconstruction, exact counters and budget boundaries, refusal before numeric allocation, dense 64 symbolic refusal, analytic ring/star and old forest partition agreement, full evidence/query and disconnected cases, underflow logs, validation and input/RNG isolation. Four figure tests verify all logarithmic count bars/cap geometry and complete symbolic metadata. Float display labels are rounded to 12 decimals; full numerical traces remain in the demo. All four previous demos/figures are unchanged. Variable elimination and scope accounting follow [Zemel and Urtasun, CSC412 exact inference lecture (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); code, explicit resource contract, fixtures and independent references are original.
+The cyclic sum-product SVG embeds complete symbolic metadata and rounds float
+display labels to 12 decimals; full numerical traces remain in the demo. Variable elimination and scope accounting follow [Zemel and Urtasun, CSC412 exact inference lecture (2016)](https://www.cs.toronto.edu/~duvenaud/courses/csc412/lectures/05-exactInference.pdf); code, explicit resource contract, fixtures and independent references are original.
 
 ```sh
 python -m varilab elimination-demo
@@ -135,4 +140,24 @@ The directly specified zero-field triangle has all three couplings -1. Every sin
 
 The result includes the complete symbolic plan, every produced rational score/count/choice table, a chosen query state, reverse traceback with actual separator context, the full compatible assignment and separately recomputed score. Equal scores use rational equality, never a tolerance. Ties pick the first sorted query state, then first compatible stored spin in reverse elimination order. The witness is deterministic for that plan, **not globally lexicographic or order-invariant**. Counts include disconnected components and eliminated-variable multiplicities. The planner's counters still count table-cell reads/outputs, not scalar arithmetic operations: rational numerator/denominator and count bit lengths, choice arrays, traceback, serialization and object overhead cost more. No time, RAM-byte, optimal-treewidth, learning or causal claim follows.
 
-27 new API/CLI tests cover 972 field/evidence/query/order cases against independent Fraction enumeration, every query-constrained optimum/count/gap, all 24 dense-four orders, full intermediate-factor semantic oracles, compatible context-aware traceback, odd/even ring analytic scores/counts, disconnected multiplicity, 64 isolated spins with 2^64 optima, fully observed/all-query cases, all three resource boundaries and rejection before numeric tables, dense-64 refusal, subnormal gaps, binary-vs-decimal fractions, forest agreement, relabelled scores/counts, validation, strict CLI, determinism and input/output/RNG isolation. Four new figure tests check signed-score geometry on one zero scale, the complete exact demo metadata, regeneration and changed-trace rejection. Project total: **183 tests and six reproducible SVGs**. All five earlier demos and SVGs are unchanged. MAP elimination and traceback follow [University of Washington CSE515 max-product lecture (2020)](https://courses.cs.washington.edu/courses/cse515/20wi/maxprod.pdf); rational multiplicity accounting, implementation, fixtures and independent tests are original.
+MAP elimination and traceback follow [University of Washington CSE515 max-product lecture (2020)](https://courses.cs.washington.edu/courses/cse515/20wi/maxprod.pdf); rational multiplicity accounting, implementation, fixtures and independent tests are original.
+
+
+## Checks and limits
+
+The current suite has **183 tests and six reproducible SVGs**. Independent
+references include direct exponentials on 216 three-spin targets, an inertia
+oracle over 729 symmetric matrices, 324 enumerated conditioned forest cases,
+972 Fraction enumerations for each MAP path and 432 cyclic
+model/evidence/query/order combinations. Tests reconstruct per-update objectives,
+messages, factor scopes, score/count tables and compatible traceback. They check
+resource boundaries before numeric allocation, underflow/subnormal cases,
+validation, deterministic outputs, isolation and strict CLI behavior.
+
+All six figures regenerate from demo data. Tests inspect plotted values,
+geometry and complete metadata, and reject changed fixtures. These are finite
+implementation checks, not all-input proofs, speed benchmarks or a ranking of
+inference methods. Rational certificates concern represented binary-float
+inputs, not decimal intentions or uncertain data. Scores/counts are not
+probabilities; conditioning is not intervention; cyclic joint MAP is not
+marginal MAP. A rejected plan is a resource refusal, not an impossible query.
