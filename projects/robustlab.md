@@ -2,9 +2,11 @@
 
 [Source repository](https://github.com/midya8/robustlab)
 
-A high clean accuracy does not certify a classifier against an explicit adversarial input budget. RobustLab makes that distinction measurable for a small class where the inner attack problem can actually be solved: binary affine scores under L1, L2 and L-infinity balls.
+RobustLab computes worst-case margins and attacks for binary linear classifiers. It compares ordinary and robust logistic training, checks exact rational boundaries, and solves attacks inside explicit coordinate bounds. Each audit names its threat set and returns an attack that attains its minimum margin. It uses only Python's standard library.
 
-## The result, including the cost
+These reports concern the supplied linear score and threat set. They do not certify a neural network, an image preprocessing pipeline or an unspecified real-world attack.
+
+## Ordinary and robust training
 
 Both arms train from zero on the same 30 fixed synthetic rows for 4,000 updates with rate 0.1 and L2 coefficient 0.001. The only changed training setting is the L-infinity radius, 0 versus 0.30. There is no test-driven stopping, seed search or checkpoint selection.
 
@@ -17,7 +19,7 @@ The 30-row holdout is a different supplied factorial grid, not independent rando
 
 This is a constructed descriptive comparison, not an image benchmark or a universal claim about the cost of robustness.
 
-## Mechanism and evidence
+## Worst-case margins and checks
 
 For signed margin `y*(w.x+b)`, the worst margin in an Lp ball is the clean margin minus epsilon times the dual weight norm. The implementation returns the actual perturbation attaining that margin: a signed coordinate vertex for L1, an opposite weight direction for L2, and a signed corner for L-infinity. It also returns the attacked coordinates, attained signed margin and zero-margin radius.
 
@@ -28,6 +30,19 @@ The initial 35 tests include independent rational corner enumeration over 240 sm
 The generated SVG displays both gate directions and both fixed-model radius sweeps. Its metadata retains the full unchanged fixture, fit settings/checkpoints, models and train/holdout attacks. Sweep summaries avoid repeated row arrays; the audit API recovers witnesses at any chosen radius.
 
 ## Run it
+
+Run a command after `python -m robustlab`:
+
+| Command | What it returns |
+|---|---|
+| `demo` | The fixed training comparison, attacks and radius sweeps |
+| `audit` | Float margins and attacks over an all-real norm ball |
+| `fit` | A fixed-step robust logistic fit and loss checkpoints |
+| `exact-demo` | Selected float/rational disagreements and a zero-margin control |
+| `exact-audit` | Rational margins and attacks for stored binary inputs, for L1 or L-infinity |
+| `box-demo` | The clipping counterexample and box-constrained radius sweeps |
+| `box-audit` | Rational attacks within supplied bounds, with primal/dual certificates |
+
 
 ```sh
 python -m robustlab demo
@@ -67,7 +82,7 @@ Exact float-to-rational conversion follows [Python's Fraction documentation](htt
 
 ## Box intersection: an optimal witness, not a clipped candidate
 
-The new `box_audit` API solves L1/L-infinity balls intersected with supplied per-coordinate bounds. It requires clean inputs inside those bounds and returns exact rational primal movement plus a matching dual gain bound. The L1 problem is bounded fractional knapsack; L-infinity separates by coordinate. L2 is explicitly unsupported here. Neither existing training nor the all-real audits change.
+The `box_audit` API solves L1/L-infinity balls intersected with supplied per-coordinate bounds. It requires clean inputs inside those bounds and returns exact rational primal movement plus a matching dual gain bound. The L1 problem is bounded fractional knapsack; L-infinity separates by coordinate. L2 is explicitly unsupported here. Neither existing training nor the all-real audits change.
 
 A direct dyadic fixture makes the failure mode concrete: weights `(4,1)`, bias `-1/4`, point `(1/16,3/4)`, positive label and unit box. At L1 radius `5/8`, clipping the old all-real attack leaves margin `+1/2`. The actual minimum is `-1/16`, attained by movements `(-1/16,-9/16)`. The positive clipped candidate cannot prove robustness. Exact primal and dual gains both equal `13/16`, with zero gap. Under L-infinity, independent adverse-direction clipping is optimal.
 
