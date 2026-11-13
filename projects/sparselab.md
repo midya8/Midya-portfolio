@@ -1,12 +1,21 @@
-# SparseLab
+# SparseLab: check the fit, not just the coefficients
 
 [Public repository](https://github.com/midya8/sparselab) · [Equations and limits](https://github.com/midya8/sparselab/blob/main/DESIGN.md) · [Full numerical report](https://github.com/midya8/sparselab/blob/main/examples/demo.json)
 
 ## The question
 
-Sparse coefficients are easy to display as a feature ranking. But a sparse selected support may be a coordinate-descent tie choice rather than an identified property of the fitted prediction. SparseLab separates the supplied convex optimization problem, numerical optimality checks and coefficient ambiguity.
+SparseLab fits small LASSO regressions and records every solver sweep. Check the primal objective, dual gap and KKT residuals, then compare with exact-rational active/sign enumeration. The Python runtime has no dependencies. A sparse coefficient vector can be one of many equally good fits, not an identified feature ranking.
 
-## The implementation
+## Choose a check
+
+- Fit a floating-point solution and inspect every sweep.
+- Enumerate small active/sign patterns with exact rational arithmetic.
+- Audit a supplied iterate for exact Gap Safe zero certificates.
+- Verify the interval for one supplied affine sign branch.
+
+The last two use stored binary64 inputs interpreted as rationals. A failed screening test does not establish relevance; one supplied branch does not discover a complete path.
+
+## Solver and exact checks
 
 Dependency-free Python 3.10+ cyclic coordinate descent for `||y-X beta||^2/(2N) + lambda*||beta||_1`. Every supplied column is penalized. There is no hidden intercept, standardization, centering or ridge term. Partial residuals are recomputed, avoiding accumulated incremental-residual drift.
 
@@ -28,7 +37,7 @@ The duplicate-column exact oracle finds both sparse witnesses. Convexity makes e
 
 ## Verification and reuse
 
-28 tests: 25 behavior/CLI checks and three SVG checks. Independent scalar/orthogonal formulas, ten seeded exact-rational comparisons, full five-column enumeration, duplicate convex mixtures, weak duality, all primal/dual equations, monotone sweep histories, warm/cold agreement, explicit path failure propagation, sign/row/column symmetries, row replication, scale/penalty equivalence, zero columns, strict malformed JSON, nonmutation and RNG isolation.
+The original release had 28 tests: 25 behavior/CLI checks and three SVG checks. Independent scalar/orthogonal formulas, ten seeded exact-rational comparisons, full five-column enumeration, duplicate convex mixtures, weak duality, all primal/dual equations, monotone sweep histories, warm/cold agreement, explicit path failure propagation, sign/row/column symmetries, row replication, scale/penalty equivalence, zero columns, strict malformed JSON, nonmutation and RNG isolation.
 
 All 18 coefficient plot points and polyline geometry, 23 table cells with their coordinates, full embedded compressed report metadata, hidden intermediate-history tampering and byte-exact SVG regeneration are tested. CI targets Python 3.10-3.13 and requires the five-module wheel to reproduce both complete CLI JSON outputs outside the source tree.
 
@@ -45,11 +54,11 @@ Small dense fits only: <=128 rows, <=12 columns; exact oracle <=32 rows, <=5 col
 
 Standard coordinate descent/soft thresholding and warm paths follow [Friedman, Hastie and Tibshirani](https://pmc.ncbi.nlm.nih.gov/articles/PMC2929880/); standard KKT and dual geometry are covered by [Ryan Tibshirani's coordinate descent notes](https://www.stat.cmu.edu/~ryantibs/convexopt/lectures/coord-desc.pdf). Original implementation and developed mathematical controls, no new algorithm claim. No external dataset, paid API, speed superiority, cross-validation, held-out prediction result, causal feature importance or statistical/post-selection inference. MIT license.
 
-## Exact Gap Safe screening extension
+## Exact Gap Safe screening
 
 [Derivation and six controls](https://github.com/midya8/sparselab/blob/main/SCREENING.md) · [Full exact screening report](https://github.com/midya8/sparselab/blob/main/examples/screen-demo.json)
 
-The original float solver and controls remain unchanged. `screen(X,y,coefficients,penalty)` now audits an arbitrary supplied iterate using exact rational arithmetic over the stored binary64 inputs. It constructs an exactly feasible residual-scaled dual vector, exact primal-dual gap G and sphere radius squared `2G/N`. For feature j, a positive exact margin `lambda-|X_j^T u|` and strict inequality `||X_j||^2*R_squared < margin^2` prove coefficient j zero in every optimizer. No rounded square root, tolerance decision or coordinate dropping is used.
+The original float solver and controls remain unchanged. `screen(X,y,coefficients,penalty)` audits an arbitrary supplied iterate using exact rational arithmetic over the stored binary64 inputs. It constructs an exactly feasible residual-scaled dual vector, exact primal-dual gap G and sphere radius squared `2G/N`. For feature j, a positive exact margin `lambda-|X_j^T u|` and strict inequality `||X_j||^2*R_squared < margin^2` prove coefficient j zero in every optimizer. No rounded square root, tolerance decision or coordinate dropping is used.
 
 ![Exact Gap Safe certificates and limits](https://raw.githubusercontent.com/midya8/sparselab/main/assets/safe-screening.svg)
 
@@ -64,7 +73,7 @@ The original float solver and controls remain unchanged. `screen(X,y,coefficient
 
 A separate equality control has ball term=squared margin=1/4 and must remain uncertified. These cases distinguish a sufficient screening certificate from current sparsity or a complete support detector. `not_certified` never means active, useful or causally relevant. Fractions describe the exact stored binary64 values, not ideal decimal values or unknown pre-rounding data.
 
-The extension adds 14 behavior checks and 3 SVG checks, for 45 tests total. Every rational equation and exact ball is reconstructed independently; 24 additional seeded designs compare certified zeros with independent active/sign-oracle witnesses and check exact dual-optimum containment. Strict equality, boundary zeros, duplicates, general 128-row/12-column size, permutations, signs, scaling, row replication/N normalization, nonmutation/RNG and strict JSON CLI errors are checked. The new SVG checks 27 exact cells/coordinates, two squared-bound bars, full lossless report metadata and hidden-dual tampering. The six-module v0.2 wheel reproduces all four complete CLI JSON outputs outside checkout; both SVGs regenerate byte-exactly.
+The extension adds 14 behavior checks and 3 SVG checks, bringing that release to 45 tests. Every rational equation and exact ball is reconstructed independently; 24 additional seeded designs compare certified zeros with independent active/sign-oracle witnesses and check exact dual-optimum containment. Strict equality, boundary zeros, duplicates, general 128-row/12-column size, permutations, signs, scaling, row replication/N normalization, nonmutation/RNG and strict JSON CLI errors are checked. The new SVG checks 27 exact cells/coordinates, two squared-bound bars, full lossless report metadata and hidden-dual tampering. The six-module v0.2 wheel reproduces all four complete CLI JSON outputs outside checkout; both SVGs regenerate byte-exactly.
 
 ```bash
 python -m sparselab screen-demo
@@ -75,7 +84,7 @@ python examples/render_screening.py --check
 Standard Gap Safe rules are due to Fercoq, Gramfort and Salmon, [Mind the duality gap: safer rules for the Lasso](https://proceedings.mlr.press/v37/fercoq15.html). This extension implements a strict rational sphere audit with explicit mean-loss normalization, not a new screening theorem, causal selector, statistical guarantee, complete zero detector or solver speedup. It does not upgrade the retained floating solver's numerical witnesses to interval certificates.
 
 
-## Exact affine regularization branch extension
+## Exact affine branches
 
 [Exact branch derivation and API](https://github.com/midya8/sparselab/blob/main/BRANCHES.md) · [complete report](https://github.com/midya8/sparselab/blob/main/examples/branch-demo.json)
 
@@ -87,7 +96,7 @@ The developed centered four-row fixture has columns a and 2a+b, response 2a-b, G
 
 Selected signs are weak: boundary zeros are allowed and are not a recovered support. An infeasible pattern returns a noncertificate with its conflicting bounds; a zero-lambda singleton is a valid point without a strict-sign interior. Selecting both duplicate columns instead returns singular_active_gram, not a fabricated ridge solution or proof of infeasibility. Selecting either duplicate separately yields different coefficients and identical predictions. These controls keep algebra failure, empty intervals and nonunique models distinct.
 
-62 tests retain 45 previous checks and add 14 branch behavior checks plus 3 SVG checks. Twelve seeded five-row/three-feature designs exercise all 27 sign patterns, reconstruct accepted endpoint/interior equations and compare dyadic in-interval points with the per-lambda enumeration oracle. Analytic closed forms, exact all-bound ties and just-outside violations, continuity/drop/re-entry, singular/empty/singleton/zero/unbounded cases, transformations/N normalization, binary64 semantics,128 x 12 capacity, no mutation/RNG and strict CLI errors are covered. Figure checks cover 20 cells/coordinates, both entire path geometries/all 10vertices, five knots, full exact report metadata and hidden singular-Gram tampering. Seven-module wheel parity reproduces all 6 complete CLI outputs outside checkout; all 3 SVGs regenerate byte-exactly. All earlier solver/oracle/demos/screening reports remain unchanged.
+62 tests retain 45 previous checks and add 14 branch behavior checks plus 3 SVG checks. Twelve seeded five-row/three-feature designs exercise all 27 sign patterns, reconstruct accepted endpoint/interior equations and compare dyadic in-interval points with the per-lambda enumeration oracle. Analytic closed forms, exact all-bound ties and just-outside violations, continuity/drop/re-entry, singular/empty/singleton/zero/unbounded cases, transformations/N normalization, binary64 semantics, 128 x 12 capacity, no mutation/RNG and strict CLI errors are covered. Figure checks cover 20 cells/coordinates, both entire path geometries/all 10 vertices, five knots, full exact report metadata and hidden singular-Gram tampering. Seven-module wheel parity reproduces all 6 complete CLI outputs outside checkout; all 3 SVGs regenerate byte-exactly. All earlier solver/oracle/demos/screening reports remain unchanged.
 
 ```bash
 python -m sparselab branch-demo
