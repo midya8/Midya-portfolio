@@ -1,13 +1,29 @@
 # ScanLab
 
-Exact affine prefix scans and input-gated state-space derivatives, with
-algorithmic span kept separate from real arithmetic work and floating behavior.
+ScanLab compares sequential state updates with associative prefix scans. It
+returns exact rational states, dependency graphs, arithmetic counts and
+derivative checks for diagonal and small full-matrix recurrences. A separate
+floating-point model shows input gating, streaming and rounding failures.
+Every operation runs serially in Python; dependency span is not a speed result.
 
-## v0.3: coupled dense-state scans
+## Commands
+
+Run these from the [source repository](https://github.com/midya8/scanlab).
+
+| Command | What it returns |
+|---|---|
+| `python -m scanlab demo` | Diagonal scan, LTI convolution, float failures and gated-model derivative checks. |
+| `python -m scanlab audit examples/input.json` | Exact diagonal states, scan graph and work/span counts for supplied pairs. |
+| `python -m scanlab adjoint-demo` | Saved diagonal JVP, VJP and squared-loss Hessian-vector checks. |
+| `python -m scanlab adjoint examples/adjoint-input.json` | Diagonal derivative checks for supplied coefficients, directions, cotangents and targets. |
+| `python -m scanlab dense-demo` | Saved full-matrix states, derivatives, operation counts and failure controls. |
+| `python -m scanlab dense examples/dense-input.json` | Full-matrix audit for supplied transitions, directions and cotangents. |
+
+## Coupled dense-state scans
 
 ![Coupled dense states, full matrix VJP and actual arithmetic](https://raw.githubusercontent.com/midya8/scanlab/1e6f1f4edc06d38b6babd203281c1efb836965b7/assets/dense-audit.svg)
 
-Full rational transition matrices now mix state coordinates. Matrix-affine
+Full rational transition matrices mix state coordinates. Matrix-affine
 composition preserves temporal multiplication order; reverse propagation
 uses the next transposed matrix. Every state JVP, full matrix/write/initial
 VJP, outer-product gradient and primal/tangent/reverse DAG is exposed.
@@ -31,17 +47,17 @@ independent homogeneous-product shapes, full DAGs through length 32, 216
 associativity cases, 672 full-polynomial VJP parameter coordinates across
 36 models, 24 full-direction polynomial models and 27 diagonal restrictions.
 Three reproducible full-witness SVGs and six-command/nine-module installed
-wheel parity. New path: width 1..4, length 0..32, exact rational supplied
+wheel parity. Dense path: width 1..4, length 0..32, exact rational supplied
 coefficients. No dense HVP, general AD engine, trained-model quality,
 hardware-speed or new-algorithm claim. Six sources are attributed.
 
 [Dense equations, counters, independent tests and sources](https://github.com/midya8/scanlab/blob/main/DENSE.md)
 
-## v0.2: exact derivatives and curvature
+## Exact derivatives and curvature
 
 ![Exact reverse scan, transposition and Hessian-vector certificate](https://raw.githubusercontent.com/midya8/scanlab/f30336e029fc595a9c2b6b2b60de44c85c48bc18/assets/adjoint-audit.svg)
 
-The exact supplied-pair path now records forward/tangent/reverse/loss-reverse/
+The exact diagonal path records forward/tangent/reverse/loss-reverse/
 HVP-reverse scan DAGs, every parameter VJP and every state JVP. The exact
 transposition identity is `-817/120 = -817/120`. A wrong reverse-index control
 uses the current rather than next decay and gives `139/360`, with gap `-259/36`.
@@ -55,18 +71,18 @@ VJP, gradient and HVP coordinate. Another 24 directional models, 24 Hessian
 symmetry checks and 51 independent future-decay product models verify the
 rules without sharing their scan or derivative recurrence.
 
-The v0.2 increment had 46 tests, including the original 30. A new 68-cell figure embeds all five
+The v0.2 increment had 46 tests, including the original 30. A 68-cell figure embeds all five
 complete DAGs; the original 114-cell figure and saved outputs are preserved.
 Five CI jobs include Python 3.10-3.13 and all four CLI commands from an installed
 eight-module wheel outside checkout. Exact rational inputs, no finite-difference
 tolerance in this extension. Scan counters exclude coefficient construction,
 gradient products and loss reductions, and are not end-to-end derivative latency.
 No general AD engine, symbolic compiler, new algorithm, global convexity or
-trained-model/hardware claim. Six sources are attributed in the new derivation.
+trained-model/hardware claim. Six sources are attributed in the derivative notes.
 
 [Exact equations, independent tests and attribution](https://github.com/midya8/scanlab/blob/main/ADJOINT.md)
 
-## Preserved v0.1 mechanics
+## Diagonal and floating-point comparisons
 
 ![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/scanlab/42355326cba179c5af1e8225192162918eac532c/assets/scan-audit.svg)
 
