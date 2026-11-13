@@ -4,12 +4,12 @@
 [Source and reproduction](https://github.com/midya8/kvlens) ·
 [Equations, state contract and sources](https://github.com/midya8/kvlens/blob/main/CACHE.md)
 
-A cache is state, not a shortcut in the answer. This offline project implements
-one untrained causal multi-head attention block and checks its actual logits,
-every retained key/value, absolute position and counted operation against four
-independently executed paths.
+KVLens compares cached and uncached decoding in one untrained causal multi-head
+attention block. The offline inspector shows every attention tensor and cache
+change across four compute paths. It counts operations rather than measuring
+latency.
 
-## The comparison needed a stronger baseline
+## Keep the two cache comparisons separate
 
 The original full-recompute path calculates every old query's attention, although
 this single-block model only uses the last row. A new final-query-only no-cache
@@ -32,7 +32,7 @@ different prefill policies, not an isolated effect or measured speedup. The old
 with the same original CI gate. One prediction offers no reuse within either
 matched pair; zero predictions perform no work and have no savings percentage.
 
-## Make every value inspectable
+## Inspect attention and cache state
 
 The separate scalar JavaScript engine computes seven complete seeded model
 weight inputs locally. Edit the prompt and prediction budget; follow every
@@ -48,7 +48,7 @@ ended. For G>0 predictions from L prompt tokens, L+G-1 positions are processed.
 Retained K/V state has 2 × positions × width elements; multiplying by eight gives
 an ideal packed binary64 payload, not actual Python/browser memory or traffic.
 
-## Fix the state bug, then test the lifecycle
+## Cache state checks
 
 Prefill on occupied state previously appended new rows while restarting positions
 at zero. It now fails before mutations or counter changes. Owner/shape/token
