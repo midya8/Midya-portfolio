@@ -1,12 +1,12 @@
-# SubgameLab: a threat is not a credible plan
+# SubgameLab: complete plans and subgame checks
 
-**Root stability is not continuation credibility.** This exact finite sequential multiagent workbench separates root one-node stability, full-player pure Nash equilibrium and subgame perfection, retaining complete contingent plans rather than only observed outcomes.
+SubgameLab checks small, supplied two-player sequential games with exact rational arithmetic. It compares root one-node stability, full-player pure Nash equilibrium and subgame perfection, retaining off-path choices and tied contingent plans.
 
 [Live inspector](https://midya8.github.io/subgamelab/) · [Source](https://github.com/midya8/subgamelab) · [Reviewed implementation](https://github.com/midya8/subgamelab/pull/1) · [Exact contract](https://github.com/midya8/subgamelab/blob/main/CONTRACT.md)
 
-## An empty threat survives root Nash
+## Empty threats and root Nash
 
-In the developed default, P1 chooses action 0 for payoff (1, 4), or action 1 to P2. P2's action 0 gives(-1, 0), while action 1 gives(3, 2). Complete plans 00 and 11 are pure Nash: against P2's fight action 0, P1 does not want to enter, and P2's unreached action cannot improve its root payoff. But if P2's node is actually reached, changing its action gains 2. Only 11 is subgame perfect. This is a developed variant of the classical entry-deterrence pattern, not a newly discovered phenomenon or market recommendation.
+In the developed default, P1 chooses action 0 for payoff (1, 4), or action 1 to P2. P2's action 0 gives (-1, 0), while action 1 gives (3, 2). Complete plans 00 and 11 are pure Nash: against P2's fight action 0, P1 does not want to enter, and P2's unreached action cannot improve its root payoff. But if P2's node is actually reached, changing its action gains 2. Only 11 is subgame perfect. This is a developed variant of the classical entry-deterrence pattern, not a newly discovered phenomenon or market recommendation.
 
 Every profile exposes each node's continuation payoff pair and root reach, every local root/continuation gain, and every full-player alternative in each subgame. Choose a plan, continuation node and player to see the complete witness. A valid certificate checks the arithmetic of included payoffs, not their truth or any real person's rationality.
 
@@ -16,19 +16,19 @@ The same-player control gives P1 payoff 1 by stopping at the root, 0 by entering
 
 This does not contradict the finite one-deviation principle. That principle requires continuation optimality at every player node, including unreached ones. Checking only reach-weighted root gains is a different condition. We compare full-player alternatives at every subtree directly rather than use that shortcut.
 
-## Zero reach does not erase the subgame
+## Zero-reach subgames
 
-A chance control reaches terminal (2, 2) with probability 1. Its probability 0 branch lets P2 choose(0, 0) or (0, 5). Both complete plans are root Nash and have identical root outcomes. Only the latter satisfies subgame perfection. Subtree values are evaluated from the subtree root; there is no division by its zero reach probability.
+A chance control reaches terminal (2, 2) with probability 1. Its probability 0 branch lets P2 choose (0, 0) or (0, 5). Both complete plans are root Nash and have identical root outcomes. Only the latter satisfies subgame perfection. Subtree values are evaluated from the subtree root; there is no division by its zero reach probability.
 
 Rational chance, terminal-only, one-player-only, all-tied and maximum-six-decision controls remain present. Chance probabilities are supplied exact distributions, not learned uncertainty or calibrated agent behavior.
 
-## Ties require whole continuation plans
+## Tied continuation plans
 
 In a tied P2 continuation, both actions give P2 payoff 3, while P1 receives 1 or 4. P1's outside option is 2. Depending on the retained P2 continuation, P1 should stop or enter. Both subgame-perfect plans survive. The all-zero three-decision control retains all 8 complete plans.
 
 Backward induction combines every pair of child-subgame equilibrium plans before selecting every maximizing current action. It never takes coordinatewise maxima from incompatible continuation plans. Unchosen child plans remain in the evidence. Deterministic IDs are lexicographic complete action assignments, not merged normal-form outcome classes.
 
-## Different construction, independent replay
+## Independent replay
 
 Native generation uses reverse dynamic evaluation and child-plan Cartesian products. The independent verifier imports validation only: it enumerates terminal paths, multiplies chance/choice indicators, sums exact terminal payoffs and enumerates every full unilateral assignment in every subtree. It reconstructs the complete report and each node's equilibrium-plan correspondence without using generator recurrence or backward induction. Strict recursive comparison rejects extra, missing, reordered, mistyped or forged evidence.
 
@@ -36,7 +36,7 @@ The separate JavaScript engine uses BigInt rational arithmetic and matches every
 
 Optional actual Nashpy 0.0.43 builds a fresh normal-form payoff matrix for each subtree directly from input paths, then checks every pure strategy pair with its best-response API. Matrices are not built from expected output. Exact rational matrix entries are scaled to integers; the largest absolute scaled entry is 18 and every nonzero payoff difference is at least 1 in this corpus. Nashpy uses NumPy isclose, so this is supplemental numerical reference evidence, not exact certification. Gambit was researched but its local build did not finish; no Gambit validation is claimed.
 
-## Reproduced evidence
+## Verification
 
 | Check | Observed result |
 |---|---|
@@ -52,9 +52,9 @@ Optional actual Nashpy 0.0.43 builds a fresh normal-form payoff matrix for each 
 
 The exhaustive class fixes a particular two-decision chain topology, not all finite trees. Seeded trees vary shape and repeated player ownership, with some chance roots. Developed controls cover the six-decision/two-chance boundaries. Counts are bounded reproduction evidence, not statistical generalization, timing measurements or real-agent strength.
 
-## Publication
+## Original implementation
 
-[PR1](https://github.com/midya8/subgamelab/pull/1) merged after all 12 latest feature/PR jobs passed. Main `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgamelab/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgamelab/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320 px boundary witness tables were inspected.
+The original [PR1](https://github.com/midya8/subgamelab/pull/1) merged after all 12 latest feature/PR jobs passed. Its merge `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgamelab/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgamelab/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320 px boundary witness tables were inspected.
 
 ## Scope and credited theory
 
