@@ -1,21 +1,23 @@
-# ParticleLab
+# ParticleLab: particle filtering and missing uncertainty
 
-[Repository](https://github.com/midya8/particlelab) · [Implementation and model](https://github.com/midya8/particlelab#explicit-model-and-timing)
+ParticleLab estimates hidden scalar states from noisy observations. It retains the full particle histories so weight concentration, current-state diversity and early ancestry can be checked separately. Exact Kalman and RTS references show approximation errors under the supplied linear model.
 
-## Problem
+[Repository](https://github.com/midya8/particlelab) · [Model and timing](https://github.com/midya8/particlelab#model-and-timing) · [Reviewed documentation](https://github.com/midya8/particlelab/pull/1)
 
-A particle filter can report equal weights and full effective sample size while carrying duplicate descendants of one badly placed initial particle. Weight ESS measures concentration of weights, not whether the state distribution has enough support. A single tidy score can hide lost uncertainty.
+## Equal weights can hide missing states
 
-## Built
+A particle filter can report equal weights and full effective sample size while carrying duplicate descendants of one badly placed initial particle. Weight ESS measures concentration of weights, not whether the state distribution has enough support.
+
+## Filter and references
 
 - Scalar bootstrap filter with a linear transition and identity or square observation function, known supplied Gaussian noise and a local seeded RNG.
 - Log-domain likelihood weighting, adaptive systematic resampling, filtered versus carried summaries, and full particles/weights/log weights/parent mappings/root-label histories.
 - Exact scalar linear-Gaussian Kalman reference with an explicit no-transition-at-t0 convention.
-- Strict JSON CLI, 114 tests, a reproducible four-panel SVG and CI on Python 3.10..3.13. Standard library only.
+- Strict JSON CLI, 114 tests, five reproducible SVGs and CI on Python 3.10..3.13. Standard library only.
 
 No roughening, state rejuvenation or parameter fitting is hidden in the filtering comparison. Separate retrospective genealogy and exact linear RTS commands are now available.
 
-## Results with qualifications
+## Fixed development examples
 
 The fixed twelve-point linear example uses 512 particles for all sixteen seeds 0..15. The mean of per-seed mean RMSEs versus the exact Kalman filter is **.0161016904**; the variance RMSE average is **.00794734279**. Seed 0 is plotted without selecting for fit. The example and smoke-check threshold were chosen during development, not held out. These are model-conditional approximation errors, not real-world accuracy or calibration.
 
@@ -48,7 +50,7 @@ All sixteen inherited linear seeds 0..15 are retained; mean-of-seed smoothing me
 
 An optional sampler connects retained filtering states outside the parent maps, with separate seeded backward draws and a strict candidate-work cap. On the same fixed fixture, 512 draws reach two initial indices instead of one genealogical path. Their time-0 variance .022290238 is still over twice the exact .009521314. More path diversity is not calibrated uncertainty or recovered state support. Process std below 1e-4 is rejected; the deterministic-transition density is not fabricated. [Algorithm, comparison figure, numerical guards and limits](https://github.com/midya8/particlelab/blob/main/BACKWARD.md).
 
-## Condition the proposal, keep the approximation honest
+## Observation-conditioned proposals
 
 An optional linear observation-conditioned Gaussian proposal exposes per-particle proposal moments and predictive importance weights, with exact initial predictive evidence and deterministic q=0 moves. Across all sixteen fixed seeds at N=32 on the inherited sequence, mean RMSE is similar (.082871/.081548 bootstrap/conditional), but conditional variance RMSE is worse (.037895 versus .035944). A more informative observation fixture has smaller conditional errors, not a general or causal ranking. Seed labels do not ensure paired identical random streams. [Derivation, all-seed figure, complete metrics and limits](https://github.com/midya8/particlelab/blob/main/PROPOSAL.md).
 
@@ -68,6 +70,12 @@ python -m particlelab backward examples/sequence.json --particles 32 --draws 512
 ```
 
 The repository has the complete six-field payload, strict input/resource bounds, CLI options and output semantics. Tests include hand weights/moments/evidence, evidence from full products over static initial samples, revival of log mass after probability underflow, systematic-resampling boundaries/zero bins/offspring, exact Gaussian references, RNG/input isolation, ancestry mappings and all SVG coordinates.
+
+## Reproduction and publication
+
+The documentation review is merged in [PR #1](https://github.com/midya8/particlelab/pull/1), main `06832dbab58fa99e1e0573e904ea645ab07b8e20`. Fresh current, revised, published-head and merged-main checkouts each passed 114 Python tests and five byte-identical SVG regeneration checks. Installed-wheel checks verified seven module origins and ten complete CLI reports outside the checkout, using the same interpreter for the source and installed comparisons. All 43 published and main files matched the reviewed checkout; 41 tracked files were unchanged.
+
+Both [head push checks](https://github.com/midya8/particlelab/actions/runs/43354899826) and [head PR checks](https://github.com/midya8/particlelab/actions/runs/43354953939) passed all five jobs. [Merged-main checks](https://github.com/midya8/particlelab/actions/runs/43355107329) passed five jobs. The main README and proposal derivation were inspected at full height, including figures and result tables. These checks verify implementation consistency, not real-world accuracy or calibrated uncertainty.
 
 ## Limits and attribution
 
