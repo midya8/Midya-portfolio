@@ -1,12 +1,12 @@
 # MixtureLab
 
-Manual Gaussian-mixture EM on real, licensed chemistry. Likelihood is not identity.
+Gaussian-mixture EM on UCI Wine measurements, with editable browser inference and numerical checks.
 
 - [Repository and reproduction](https://github.com/midya8/mixturelab)
 - [Live 13-feature density inspector](https://midya8.github.io/mixturelab/)
 - [Derivation, frozen protocol and source ledger](https://github.com/midya8/mixturelab/blob/main/METHOD.md)
 
-## The engineering question
+## Implementation
 
 Can a complete density-estimation implementation expose what each optimization step did, preserve a real holdout, and show why better likelihood does not identify true categories?
 
@@ -26,7 +26,7 @@ A new fixed label-free split uses 106 training, 36 validation and 36 test rows, 
 
 Mean negative natural log density in standardized 13D coordinates, lower is better. More capacity improves training density here while worsening test density. This one small historical split does not show general superiority or statistical significance.
 
-## The audit that matters
+## Covariance updates and EM checks
 
 With a fixed covariance constraint C >= 0.05I, the full-covariance M-step clips weighted scatter eigenvalues. Adding 0.05I is a different operation and generally does not solve that subproblem. The method derives the precision-space KKT conditions and checks them numerically on 100 random scatters, with 40 independent analytic 2D clipping references.
 
@@ -36,7 +36,7 @@ Every EM update keeps the old posterior and records:
 
 All initial/final models, complete scalar histories, and final before/after transition witnesses are retained. All 24 fits meet the stated likelihood-increment tolerance. That is not a stationary-point test or a global optimum certificate. Zero numerical component mass fails explicitly, with no hidden reseeding.
 
-## Actual browser inference
+## Browser inference
 
 A separate scalar JavaScript Cholesky implementation recomputes density and every component responsibility for arbitrary edited 13-feature vectors. Training-only PCA supplies a view, not the fit. Its ellipses are 90% probability contours of the model's 2D Gaussian marginals, not full-dimensional decision regions or measured coverage.
 
@@ -50,21 +50,21 @@ The controls show unconstrained covariance collapse, label permutation, duplicat
 
 No cultivar prediction, wine-quality score, calibrated uncertainty, identified latent cause, global mixture optimum, floor/split sensitivity guarantee or population-wide conclusion. Standard EM and constrained optimization, original implementation. Code MIT; data CC BY 4.0; no endorsement.
 
-## Fixed-model geometry extension (v0.2)
+## Fixed-model geometry
 
 [Live gradient, curvature and ascent inspector](https://midya8.github.io/mixturelab/geometry.html) · [Derivative and search derivation](https://github.com/midya8/mixturelab/blob/main/GEOMETRY.md)
 
-The new page computes all 13 input-score coordinates, the complete 13x13 Hessian, the kx13 component-posterior Jacobian and original-unit transforms. These are fixed-model input derivatives, not parameter training or causal feature importance. A chosen finite coordinate change is compared with first- and second-order predictions.
+The geometry page computes all 13 input-score coordinates, the complete 13x13 Hessian, the kx13 component-posterior Jacobian and original-unit transforms. These are fixed-model input derivatives, not parameter training or causal feature importance. A chosen finite coordinate change is compared with first- and second-order predictions.
 
 A normalized-gradient line search accepts only an actual log-density gain at least 0.0001 times step length times gradient norm. It retains every accepted point and stops explicitly on norm, budget or line-search exhaustion. Eight traces use the same already-public input at budget 128: the four diagonal models and full k=1 reach the norm criterion; full k=2,3,5 remain budget-exhausted. No mode is certified.
 
 Two equally weighted unit Gaussians at -2 and +2 have zero input gradient and curvature +3 at zero. The routine stops there at a strict minimum, visibly demonstrating why its norm rule is not a mode certificate. A perturbed start moves away; a single Gaussian and duplicate-component controls check closed forms.
 
-Independent checks include 312 all-coordinate finite-difference probes, every posterior-Jacobian and Hessian column, 50 scalar directional second differences, affine/rotation/permutation checks, 40 complete native/browser geometry cases and eight trace references. New tests also recreate only the two new reference artifacts, checking every nested numeric value with explicit tolerance and preserving keys, shapes, statuses and counts exactly, enforce CLI row/budget/number types and exercise all browser budgets, keyboard input, invalid exports, copy failure/success, real downloaded JSON and expanded mobile/desktop layouts. The final suite has 36 Python and eight Node/real-Chrome tests. The installed wheel imports ten modules and runs all seven commands outside checkout, including all 24 fresh fits and audits.
+Independent checks include 312 all-coordinate finite-difference probes, every posterior-Jacobian and Hessian column, 50 scalar directional second differences, affine/rotation/permutation checks, 40 complete native/browser geometry cases and eight trace references. Geometry tests recreate the two geometry reference artifacts, checking every nested numeric value with explicit tolerance and preserving keys, shapes, statuses and counts exactly, enforce CLI row/budget/number types and exercise all browser budgets, keyboard input, invalid exports, copy failure/success, real downloaded JSON and expanded mobile/desktop layouts. At the geometry stage, the suite had 36 Python and eight Node/real-Chrome tests. The installed wheel imported ten modules and ran seven commands outside checkout, including all 24 fresh fits and audits.
 
-All original models, experiment report, source data, split, scales, browser references, browser dataset and score figure remain byte-for-byte unchanged. The extension does not tune against test results, guarantee chemically plausible inputs, claim calibrated confidence or certify global/local modes. A technical secondary source has a matrix-form softmax typo; the derivation explicitly records it and uses the correct elementwise chain rule instead.
+All original models, experiment report, source data, split, scales, browser references, browser dataset and score figure remain byte-for-byte unchanged. The geometry calculation does not tune against test results, guarantee chemically plausible inputs, claim calibrated confidence or certify global/local modes. A technical secondary source has a matrix-form softmax typo; the derivation explicitly records it and uses the correct elementwise chain rule instead.
 
-## Frozen conditional inference (v0.3)
+## Fixed-model conditional inference
 
 [Conditional inspector](https://midya8.github.io/mixturelab/conditional.html) · [Algebra and sources](https://github.com/midya8/mixturelab/blob/main/CONDITIONAL.md)
 
@@ -72,6 +72,6 @@ Condition any observed-coordinate subset under the same frozen model. Each compo
 
 The mean can lie in a low-density gap. A separate diagonal-mixture control increases target variance from 1.09 to 25.1 by changing posterior component weights, even though each component target variance stays 0.1. These are mathematical controls, not experiments on the real data. Neither universal variance reduction nor mean-as-mode is assumed.
 
-The current suite has 45 Python and eleven Node/Chrome tests. New checks include 100 separate precision-block Gaussian oracles, direct scalar Gaussian formulas, all 5,696 original model/row/four-mask density factorizations and moment decompositions, 160 complete native/scalar-JS references and all 160 through the UI. Source-context retention after invalid edits, omitted-value poisoning, keyboard controls, clipboard refusal/success, actual Blob downloads and 320/390/1280 layouts are tested and actual page pixels inspected. Installed reproduction imports twelve modules and runs nine commands while retaining all 24 original fresh refits and audits.
+The current suite has 45 Python and eleven Node/Chrome tests. Conditional checks include 100 separate precision-block Gaussian oracles, direct scalar Gaussian formulas, all 5,696 original model/row/four-mask density factorizations and moment decompositions, 160 complete native/scalar-JS references and all 160 through the UI. Source-context retention after invalid edits, omitted-value poisoning, keyboard controls, clipboard refusal/success, actual Blob downloads and 320/390/1280 layouts are tested and actual page pixels inspected. Installed reproduction imports twelve modules and runs nine commands while retaining all 24 original fresh refits and audits.
 
 All original data, fitted artifacts, browser data and previous geometry references stay byte-exact. The original source has no naturally missing features. These masks are analytical queries of a fixed density, not a missingness-mechanism model, causal intervention, parameter-uncertainty estimate, empirical coverage guarantee or new accuracy result.
