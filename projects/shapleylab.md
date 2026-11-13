@@ -1,9 +1,17 @@
-# ShapleyLab: exact attribution for an explicit reference game
+# ShapleyLab: inspect the game behind feature credit
 
 [Public repository](https://github.com/midya8/shapleylab)
 
-Dependency-free Python scalar callback API/JSON CLI, 49 Python tests plus four Node/actual-Chrome tests, offline demo and Python 3.10-3.13 CI. Standard formula, no new theory.
+ShapleyLab computes feature credit from small, declared background-replacement games. Inspect every coalition, hybrid input and marginal contribution in Python or the browser. The Python runtime has no dependencies and needs Python 3.10+; it provides a scalar callback API and a strict JSON CLI. No model training or paid APIs.
 
+## Choose an allocation
+
+- Individual Shapley: evaluate every coalition and average each feature's marginal over all arrival orders.
+- Atomic groups: switch a whole supplied group at once and assign one share per group.
+- Two-level Owen: keep group members contiguous in arrival orders, then assign member shares.
+- Permutation sampling: approximate the individual-feature allocation with seeded random orders.
+
+All four use the declared reference background. They answer different allocation questions, not causal ones. The ledger and Owen browser inspectors retain their separate bounds. The original ledger release had 49 Python tests and four Node/actual-Chrome tests; the Owen release checks are recorded below.
 
 ## Boundary
 
@@ -192,7 +200,6 @@ The standard formula and masking distinction are documented at:
 Independent educational implementation. No new explanation theorem, conditional
 SHAP, TreeSHAP, causal identification or efficiency advantage is claimed.
 
-
 ### Live replacement and permutation ledger (v0.2)
 
 [Live inspector](https://midya8.github.io/shapleylab/) exposes every background
@@ -216,8 +223,7 @@ neither. No new model, training, causal attribution, representative-background,
 confidence or explanation-quality claim.
 [Derivation, six sources and limits](https://github.com/midya8/shapleylab/blob/main/LEDGER.md).
 
-
-## ShapleyLab 0.3: Together changes the share
+## Two-level Owen allocation (0.3)
 
 The same three-way product can assign `[1/3, 1/3, 1/3]` to individual features, `[1/2, 1/2]` to two atomic groups, and `[1/4, 1/4, 1/2]` to Owen members when `a,b` must arrive together. One score and background, different allowed orders. Equal splitting and post-summing ordinary credits are not the same rule.
 
