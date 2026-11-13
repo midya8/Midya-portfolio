@@ -18,12 +18,6 @@ Native code branches only on executed terminal outcomes. The independent browser
 
 ## Original seeded simulation retained
 
-# PlanBench
-
-Validate and simulate agent task plans before they run.
-
-## Validation and simulation
-
 The original validator checks plan structure and declared input production. The
 simulator follows one seeded sequence of failures with supplied durations, costs
 and retry limits. Neither runs real tools or learns their latency or reliability.
