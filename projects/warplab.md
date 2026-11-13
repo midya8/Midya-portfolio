@@ -1,71 +1,73 @@
-# WarpLab: inspectable differentiable alignment
+# WarpLab: soft-DTW paths, lengths and inverse response
 
-[Live inspector](https://midya8.github.io/warplab/) · [Source](https://github.com/midya8/warplab) · [Mathematical contract](https://github.com/midya8/warplab/blob/main/CONTRACT.md) · [Reviewed implementation](https://github.com/midya8/warplab/pull/1)
+[Alignment inspector](https://midya8.github.io/warplab/) · [Length atlas](https://midya8.github.io/warplab/lengths.html) · [Inverse response](https://midya8.github.io/warplab/inverse.html) · [Source](https://github.com/midya8/warplab)
 
-## The engineering question
+WarpLab makes a small soft-DTW calculation inspectable down to individual cells, edges and complete paths. Dependency-free scalar Python and browser JavaScript compute the same reports. Separate exhaustive oracles check them without calling the dynamic program or inverse solver. The mathematics is established; the work here is the implementation, experiment interface and independent checks.
 
-Can a differentiable alignment be explained cell by cell, then independently checked without trusting its dynamic program?
+## Choose the question
 
-WarpLab is a bounded instrument for established soft-DTW mathematics. Local squared costs induce a Gibbs distribution over monotone right/down/diagonal paths. Stable prefix/suffix log messages expose every cell occupancy and joint edge flow. Directional expectation messages compute cost Hessian-vector products without an autodiff package or a materialized Hessian.
+| Question | Calculation | Contract |
+| --- | --- | --- |
+| Which alignments carry probability, and how does the score change? | Gibbs cell occupancies, joint edge flows, sequence/temperature gradients and signed cost Hessian-vector products | [Alignment](https://github.com/midya8/warplab/blob/main/CONTRACT.md) |
+| What changes when each visited cell pays a penalty? | Every legal length's conditional law, exact path counts and hard minima, then the penalized mixture | [Length atlas](https://github.com/midya8/warplab/blob/main/LENGTHS.md) |
+| Can a penalty in [-4,4] attain a target expected length? | Finite endpoint reachability, bisection trace, sampled length laws and actual residual | [Inverse response](https://github.com/midya8/warplab/blob/main/INVERSE.md) |
 
-## What is implemented
+Positive penalty favors shorter paths; negative penalty rewards longer paths. This changes the objective, not alignment quality. A width stop and a small mean residual are different outcomes. Neither is an interval-arithmetic certificate or proof of a unique parameter.
 
-- Dependency-free scalar Python package and matching browser JavaScript.
-- Expected alignment, expected cost and visited-cell count; path entropy and temperature derivative; coordinate gradients.
-- Signed independent-cost Hessian-vector products. A separate covariance computation and finite differences check their sign, values and symmetry.
-- Hard minimum, exact hard-tie count and lexicographically first minimum path. Python Fraction and JavaScript BigInt compare exact sums of binary64 local costs, avoiding tolerance-defined ties.
-- Deterministic complete-path enumeration, clickable cost/occupancy/Hessian layers, incoming/outgoing edge inspector and accessible row/column selectors.
-- Versioned JSON export, strict input validation, 4 MiB CLI cap, atomic output and an independent exhaustive verifier.
+## Alignment, cell by cell
 
-## Controls with interpretable answers
+Stable prefix/suffix log messages recover every occupancy and joint edge probability. Directional expectation messages give cost Hessian-vector products without autodiff or a materialized Hessian. Path-incidence covariance and finite differences independently check their sign, values and symmetry.
 
-| Control | Expected behavior |
+The hard control reports the minimum, exact tie count and lexicographically first minimum path. Python Fraction and JavaScript BigInt compare exact sums of binary64 local costs, not tolerance-defined ties or ideal real-number input arithmetic. The browser provides cost/occupancy/Hessian layers, row/column selectors, edge inspection and a complete-path slider.
+
+| Control | What to look for |
 | --- | --- |
 | Three zeros against themselves, temperature one | 13 equal-cost paths; raw score `-log(13)`, not zero |
 | One-row grid | One legal path; entropy and cost Hessian are zero |
-| Seven zeros against seven zeros | All 8,989 legal paths tie; score `-log(8989)` at temperature one |
-| Same stretched sequences at 0.05 versus 8 | Different path distributions, not a measured accuracy improvement |
-| Large costs, low temperature | Finite report despite tiny probabilities underflowing to zero |
-| Signed cost perturbation | Occupancy changes according to negative path-incidence covariance |
+| Seven zeros against seven zeros | All 8,989 paths tie; score `-log(8989)` at temperature one |
+| Same sequences at 0.05 and 8 | Different path distributions, not an accuracy comparison |
+| Large costs, low temperature | Finite report even when tiny probabilities underflow to zero |
+| Signed cost perturbation | Occupancy response follows negative path-incidence covariance |
 
-## Reproduction evidence
+## Separate length before mixing
 
-The base implementation passed 15 Python tests on each of Python 3.10, 3.11, 3.12 and 3.13, plus five Node/Chrome tests. Tests compare 168 complete Python/JavaScript reports and verify both through independent exhaustive paths. Direct path-indicator sums reconstruct every occupancy and edge flow. Finite differences check sequence, temperature and cost-direction derivatives. Conservation, soft-min bounds, transpose/scaling, forged reports, input errors and atomic output are covered.
+Length-resolved log messages expose exact path counts, conditional occupancies and edges, hard minima/ties and conditional coordinate/temperature gradients. Length includes both endpoints. A per-visited-cell penalty changes the length mixture but leaves each conditional law unchanged.
 
-The installed wheel runs both module and console commands outside the checkout for all eight controls. Chrome at 320, 390 and 1280 pixels checks 24 complete reports, 396 cell selections, 576 complete-path selections and 72 layer changes, including hard-path selection, row/column controls, download and stale/error clearing. At base release, all five deployed assets were byte-identical to verified main and all 24 deployed control screenshots matched main pixel for pixel. The extension below rechecks both inspectors together.
+The atlas reports the entropy chain rule, expected-length penalty gradient and negative length-variance curvature. Its independent oracle groups complete paths by length and checks the penalized law directly, without using the length-message generator.
 
+## Invert the response without hiding failures
 
-### Path-length atlas
+The inverse report accepts a target in [1,13] and first checks the response at penalties -4 and +4. Unreachable targets, single-length unidentifiability and numerical flattening stay distinct. Each bisection step retains the pre-update bracket, mean, centered variance, derivative and complete length law. The selected point is the evaluated point with smallest absolute residual, not necessarily the final midpoint.
 
-[Live length atlas](https://midya8.github.io/warplab/lengths.html) · [Length contract](https://github.com/midya8/warplab/blob/main/LENGTHS.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/2)
+Absolute mean tolerance and pre-update penalty-width tolerance are both 1e-9, with at most 40 midpoint evaluations. One control deliberately stops on width while missing mean tolerance. Unreachable targets retain a diagnostic response, not a solution. A separate complete-path oracle evaluates every witness penalty and checks the trace, status and selection without calling the solver or length dynamic program. Binary64 replay can disagree at adversarial branch boundaries; those reports fail verification.
 
-Separate every legal visited-cell count before mixing paths. Length-resolved log messages expose exact path counts, conditional occupancies and joint edge flows, hard minima/ties, and conditional coordinate/temperature gradients. An explicit per-visited-cell penalty changes the mixture, not the conditional laws. Inspect the entropy decomposition, expected-length gradient and negative length-variance curvature.
+## Reproduce and check
 
-The extension adds 98 independently verified complete cross-language atlases. Merged main passes 27 Python tests on each Python 3.10-3.13 and nine Node/Chrome tests, plus installed module/console reproduction for eight base and eight length controls. Live Chrome checks 81 length selections, 1,740 row/column cell inspections, 72 penalty changes and 96 complete reports at 320/390/1280 pixels. All ten deployed assets are source-exact; all 48 screenshots across both inspectors match verified main pixel for pixel.
+```sh
+python -m pip install .
+python -m unittest discover -s tests -v
+npm test
+bash tools/check_wheel.sh
+```
 
-Length includes both endpoints. Positive penalty favors shorter paths, negative penalty rewards longer paths: this is a changed objective, not an accuracy improvement. The independent oracle groups complete paths and checks the penalized law directly; it does not trust the length-message generator. Synthetic grids remain bounded to 1..7 samples, with at most 8,989 paths. No new-algorithm or benchmark claim.
+Node 22+ and installed Chrome are required for the browser tests. The Python package has no runtime dependencies. The wheel check creates a fresh environment and runs module and console commands outside the checkout for eight alignment, eight length and nine inverse controls. CLI input is capped at 4 MiB; malformed, duplicate-key, nonfinite, unknown-field and out-of-bounds requests fail without replacing an existing output.
 
+The current source passes 37 Python tests and 12 Node tests including actual Chrome. CI covers Python 3.10-3.13 and Node 22/Chrome. Cross-language checks compare 168 alignment reports, 98 length atlases and 36 inverse reports; both implementations are checked against independent exhaustive paths. Tests cover conservation, soft-min bounds, transpose/scaling, sequence/temperature/cost finite differences, Hessian symmetry, monotonicity, forged reports and generator-disabled verification.
 
-## Inverse expected-length response
+Local and deployed Chrome checks at 320, 390 and 1280 pixels cover 396 cell selections, 576 complete-path selections and 72 layer changes for alignment; 81 length selections, 1,740 cell inspections and 72 penalty changes for the atlas; and 438 inverse witness selections. Row/column controls, export and stale/error clearing are checked. All 15 deployed assets match verified source bytes; all 75 unmasked control screenshots match locally rendered pages pixel for pixel. A separate trusted-download check retrieves all 25 control reports locally and live, matches each to browser runtime and independently verifies every report.
 
-[Live inverse inspector](https://midya8.github.io/warplab/inverse.html) · [Inverse contract](https://github.com/midya8/warplab/blob/main/INVERSE.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/3)
-
-Choose a target expected visited-cell count and inspect whether penalty -4..4 can reach it. The full numerical bisection witness exposes every bracket, response, centered length variance and probability law. Finite-range failures, single-length unidentifiability and numerical flattening stay distinct. A narrow-bracket control deliberately misses the mean-residual tolerance, making the difference between stopping rules visible.
-
-A separate complete-path oracle directly evaluates every witness penalty and checks the trace, status and selected response without calling the solver or length dynamic program. Merged main passes 37 Python tests on each Python 3.10-3.13 and 12 Node/Chrome tests. Tests include 36 complete cross-language inverse reports, derivative finite differences, random interior targets, generator-disabled verification and forged witnesses. Fresh installed module/console reproduction covers eight base, eight length and nine inverse controls. Live inverse Chrome checks 438 witness selections over 27 complete reports at 320/390/1280; all 15 deployed assets are source-exact, and all 75 screenshots across the three inspectors match verified main pixel for pixel.
-
-This is bounded numerical evidence, not interval arithmetic or a unique-parameter certificate. A width stop does not promise a 1e-9 mean residual; unreachable targets show a diagnostic response, not a solution. Binary64 rounding can disagree at adversarial branch boundaries, in which case verification fails. No learned model, benchmark or new-algorithm claim.
+[Alignment implementation](https://github.com/midya8/warplab/pull/1) · [Length extension](https://github.com/midya8/warplab/pull/2) · [Inverse extension](https://github.com/midya8/warplab/pull/3) · [Calculation guide review](https://github.com/midya8/warplab/pull/4)
 
 ## Mathematical boundaries
 
-Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperature 0.05..8 and signed cost directions -4..4. The largest grid has 8,989 paths. Larger requests fail rather than silently truncating. The base inspector's dynamic messages are O(nm). With K=n+m-1, length-resolved prefix/suffix messages take O(nmK), and all conditional occupancy/edge convolutions take O(nmK²). Path enumeration is exponential and deliberately bounded.
+Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperature 0.05..8 and signed cost directions -4..4. At most 8,989 paths are admitted. Larger requests fail rather than being truncated. Base dynamic messages are O(nm). With K=n+m-1, length-resolved messages take O(nmK), and conditional cell/edge convolutions take O(nmK²). The inverse solver currently uses that full atlas preprocessing, then O(K) work per response evaluation. Exhaustive enumeration is exponential and deliberately bounded.
 
-Raw soft-DTW can be negative and is not a metric. Cell occupancies sum to expected path length, not one, and are not a normalized transport coupling. Edge values are joint traversal probabilities, not conditional transitions. The Hessian product is with respect to independent cost entries, not sequence coordinates. Binary64 rounding and probability underflow remain numerical limitations.
+Raw soft-DTW can be negative and is not a metric. Occupancy sums to expected path length, not one, and is not a normalized transport coupling. Edge probabilities are joint traversal probabilities, not conditional transitions. Hessian products use independent cost coordinates, not sequence coordinates. Binary64 rounding and probability underflow remain; numerical verification is not a formal proof.
 
-The self-corrected divergence is absent. The 2021 primary paper's nonnegativity theorem has ground-cost-specific assumptions; for plain squared Euclidean cost it proves stationarity at equality and describes nonnegativity as conjectural. WarpLab does not broaden that theorem from library/teaching summaries or claim a later resolution.
+The self-corrected divergence is absent. The 2021 primary paper proves nonnegativity under ground-cost-specific assumptions; for plain squared Euclidean cost it proves stationarity at equality and describes nonnegativity as conjectural. WarpLab does not broaden that theorem from teaching/library summaries or claim a later resolution.
 
-No learned model, dataset benchmark, speed claim, accuracy comparison or novel-algorithm claim. No private data or paid APIs. Unlike CTC, there is no blank/label emission model; unlike optimal transport, there are no coupling marginal constraints.
+This is not a learned model, dataset benchmark, speed claim, accuracy comparison or new alignment algorithm. Unlike CTC, there is no blank/label emission model; unlike optimal transport, there are no coupling marginal constraints. No private data or paid APIs are involved.
 
-## Credit and primary sources
+## Credit
 
-[Cuturi & Blondel, ICML 2017](https://proceedings.mlr.press/v70/cuturi17a.html) introduced soft-DTW and its differentiable alignment. [Blondel, Mensch & Vert, AISTATS 2021](https://proceedings.mlr.press/v130/blondel21a.html) develops expected-alignment derivatives, Hessian products and cost-dependent divergence results. WarpLab's scalar implementation, verifier, experiment interface and reproduction tests are original; the underlying mathematics is credited, not presented as new.
+[Cuturi & Blondel, ICML 2017](https://proceedings.mlr.press/v70/cuturi17a.html) introduced soft-DTW and differentiable alignment. [Blondel, Mensch & Vert, AISTATS 2021](https://proceedings.mlr.press/v130/blondel21a.html) develops expected-alignment derivatives, Hessian products and cost-dependent divergence results. WarpLab's scalar implementation, verifier, experiment interface and reproduction tests are original; the underlying mathematics is credited, not presented as new.
