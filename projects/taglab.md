@@ -1,14 +1,14 @@
-# TagLab: the normalizer is part of the model
+# TagLab: fit a sequence model, then inspect its paths
 
 [Source](https://github.com/midya8/taglab) · [Live inspector](https://midya8.github.io/taglab/) · [Method and sources](https://github.com/midya8/taglab/blob/main/METHOD.md)
 
-## What it does
+## Fit and compare
 
 TagLab trains linear-chain conditional random fields from scratch, with no tensor library, autodiff, model API or external dataset. A 39-parameter sequence score combines fixed observed features, FROM/TO label transitions and separate start/end scores. Manual log-space forward/backward produces the global partition, node and adjacent-label marginals. Expected-minus-observed feature counts give the supervised conditional-likelihood gradient. Viterbi and token marginal decisions remain separate.
 
 The trained independent-label control uses exactly the same eight observed features, including left/right context. Its 15 sequence scores are fixed at zero; its remaining 24 weights are fitted, not left as a weak untrained baseline. Both families fit three positive L2 penalties and select by validation conditional NLL per token.
 
-## Don't hide the losing metric
+## Different objectives, different results
 
 | Selected model | Test NLL/token | Viterbi token errors | Marginal token errors | Whole-sequence errors |
 | --- | ---: | ---: | ---: | ---: |
@@ -24,6 +24,34 @@ The original fixture contains 24 training, 12 validation and 16 test sequences o
 Every one of 327 stored states retains all parameters, all 39 analytic gradient entries, objective, gradient norm, accepted Armijo step and rejected larger steps. The browser independently recomputes its objective and gradient from the original training examples. Three fits stop at the 1e-5 gradient tolerance; three exhaust their 80-update budget. The selected chain exhausts its budget with gradient norm about 0.000629. Convexity and a decreasing curve do not certify that finite iterate as an optimum.
 
 The editable inspector accepts custom symbol sequences and explicitly marked transition-score changes. It recomputes messages, node and pair probabilities, complete best-path score, entropy and backpointers using scalar JavaScript. Original labels are shown only while symbols match the selected stored example; custom observations carry no invented labels. Modified scores are never presented as retraining or fresh test performance. Invalid input clears stale evidence. Keyboard access, clipboard failure/success and real JSON download are exercised.
+
+## Condition on allowed labels
+
+The [label-event inspector](https://midya8.github.io/taglab/evidence.html) takes an allowed label subset at each position. Fixed fitted scores define both the original distribution and the restricted partition. Its ratio gives event probability; a new forward/backward pass gives conditional node and pair probabilities, entropy and best path. All 39 log-event derivatives are conditional expected features minus unrestricted expected features. The independent control fixes 15 sequence coordinates; their displayed derivatives are ambient-chain coordinates, not trainable control weights.
+
+An empty allowed set is exactly impossible: no conditional distribution or gradient is invented. A possible rare event can instead have finite log probability while its floating-point probability underflows to zero. JSON uses null for exact forbidden log entries, with no fake finite sentinel or NaNs. Conditioning can increase entropy; it is not automatically confidence improvement.
+
+Label-event checks include 60 independent Fraction/BigInt path controls, all 39 finite differences, 3,336 Python/JavaScript event witnesses and 3,336 real-browser label-event queries. Tests include unrestricted and single-path events, event additivity/nesting, a -2000 log-probability underflow case, 256 positions with large finite scores, factorized-control invariance, invalid-input clearing, actual download and clipboard behavior. The installed wheel reproduces the condition command outside the checkout.
+
+These are hypothetical label constraints on the same fitted model, not new ground truth, retraining, partial-label learning, general regular-language constraints, forbidden transitions, a causal intervention or evidence of better prediction. Original fitted metrics and budget warnings remain unchanged.
+
+## Sample a joint path
+
+The event inspector samples complete paths by a backward conditional recursion, with a paired independent-node control using the same supplied uniforms. Exact pair probabilities and total variation stay separate from descriptive frequencies of 64 seeded draws. Each reverse step retains its probabilities, log probabilities, uniform, CDF, chosen bin and numerical flags. The witness separates model path log probability, ideal kernel-product log probability and the finite-precision numeric kernel.
+
+Sampling checks include 428 exhaustive Fraction path-product witnesses, sixty independent BigInt fixtures, 2,304 Python/JavaScript full traces and 384 browser queries. The current installed totals are recorded below.
+
+Fixed fitted scores and original metrics are unchanged. This is an established sampling method, not a new algorithm, retraining, parameter uncertainty or accuracy improvement. The portable xorshift32 mid-bin stream is deterministic, not cryptographic or certified independent entropy. Underflow and collapsed CDF bins remain visible; PRNG lattice frequencies need not equal continuous-uniform probabilities.
+
+## Condition on an occurrence count
+
+The [count inspector](https://midya8.github.io/taglab/counts.html) conditions on exactly r occurrences of a chosen label. Unlike Cartesian position subsets, this is a nonlocal event: locations must agree on the total. An augmented (count, label) forward/suffix recursion exposes the full original count distribution and reconstructs conditional node/pair probabilities, entropy, a complete best path and all 39 event derivatives. Counts refer to positions, not runs or segments.
+
+An independent fair two-position control conditioned on exactly one A permits only AB and BA, each with mass 1/2. Node marginals remain halves, but independent draws from them leave the event half the time. The inspector separately computes this independent-node Poisson-binomial count law. Conditioning can create dependence without transition scores, and a correct expected count does not guarantee a valid complete path.
+
+Current totals are 43 Python and 20 Node/Chrome tests. Each of independent Fraction and BigInt path enumerators tests 600 events across sixty fixtures, all labels and counts. New checks include all 39 finite-difference event derivatives, 864 cross-language numerical witnesses and 864 browser queries. The inspectors total 5,895 UI states/queries. Eleven installed modules and nine commands reproduce six fresh fits, 327 audits and four exact archive exports.
+
+This is established state augmentation, not a new algorithm, training, causal intervention or accuracy gain. The quadratic count-state computation has a 64-position limit. Numerical near-ties may yield different Python/JavaScript path representatives; constraints and attained scores are checked separately from identity. Probability underflow is distinguished from finite log probability. Original fitted scores, held-out metrics and exhausted budgets are unchanged.
 
 ## Exact normalization witness
 
@@ -48,34 +76,6 @@ node --test tests/*.cjs
 
 Eleven modules and nine commands reproduce outside the checkout from the installed wheel, including six fresh fits, stored/fresh audits and four exact archive/loader exports. The lossless three-part compressed archive checks the raw report's SHA-256 before parsing in Python and the browser. Fresh floating-point fits use a declared finite tolerance, not a bitwise portability claim.
 
-## v0.2: condition on a hypothetical label event
-
-The [label-event inspector](https://midya8.github.io/taglab/evidence.html) takes an allowed label subset at each position. Fixed fitted scores define both the original distribution and the restricted partition. Its ratio gives event probability; a new forward/backward pass gives conditional node and pair probabilities, entropy and best path. All 39 log-event derivatives are conditional expected features minus unrestricted expected features. The independent control fixes 15 sequence coordinates; their displayed derivatives are ambient-chain coordinates, not trainable control weights.
-
-An empty allowed set is exactly impossible: no conditional distribution or gradient is invented. A possible rare event can instead have finite log probability while its floating-point probability underflows to zero. JSON uses null for exact forbidden log entries, with no fake finite sentinel or NaNs. Conditioning can increase entropy; it is not automatically confidence improvement.
-
-At v0.2, 31 Python and 12 Node/real-Chrome tests covered the combined project. The extension adds 60 independent Fraction/BigInt path controls, all 39 finite differences, 3,336 Python/JavaScript event witnesses and 3,336 additional real-browser cases, for 4,647 browser states overall. Tests include unrestricted and single-path events, event additivity/nesting, a -2000 log-probability underflow case, 256 positions with large finite scores, factorized-control invariance, invalid-input clearing, actual download and clipboard behavior. The installed wheel reproduces the new condition command outside the checkout.
-
-These are hypothetical label constraints on the same fitted model, not new ground truth, retraining, partial-label learning, general regular-language constraints, forbidden transitions, a causal intervention or evidence of better prediction. Original fitted metrics and budget warnings remain unchanged.
-
 ## Scope
 
 This models p(labels | observations), not p(observations). Both neighboring observations are available, so it is not streaming inference. Model posteriors are not calibrated real-world confidence. No semantic language task, external validation, population significance, causal isolation, deployment readiness or universal ranking is claimed. Standard CRF, forward/backward and Viterbi theory is cited in the method, including explicit notation differences. Original code, tests, fixture and prose are MIT; cited papers are not redistributed.
-
-## v0.3: joint posterior path sampling
-
-The event inspector now samples complete paths by a backward conditional recursion, with a paired independent-node control using the same supplied uniforms. Exact pair probabilities and total variation stay separate from descriptive frequencies of 64 seeded draws. Each reverse step retains its probabilities, log probabilities, uniform, CDF, chosen bin and numerical flags. The witness separates model path log probability, ideal kernel-product log probability and the finite-precision numeric kernel.
-
-The combined suites pass 37 Python and 16 Node/real-Chrome tests. New checks include 428 exhaustive Fraction path-product witnesses, sixty independent BigInt fixtures, 2,304 Python/JavaScript full traces and 384 browser queries, for 5,031 UI states/queries overall. Ten modules and eight commands work from the installed wheel.
-
-Fixed fitted scores and original metrics are unchanged. This is an established sampling method, not a new algorithm, retraining, parameter uncertainty or accuracy improvement. The portable xorshift32 mid-bin stream is deterministic, not cryptographic or certified independent entropy. Underflow and collapsed CDF bins remain visible; PRNG lattice frequencies need not equal continuous-uniform probabilities.
-
-## v0.4: a count is not an expectation
-
-The [count inspector](https://midya8.github.io/taglab/counts.html) conditions on exactly r occurrences of a chosen label. Unlike Cartesian position subsets, this is a nonlocal event: locations must agree on the total. An augmented (count, label) forward/suffix recursion exposes the full original count distribution and reconstructs conditional node/pair probabilities, entropy, a complete best path and all 39 event derivatives. Counts refer to positions, not runs or segments.
-
-An independent fair two-position control conditioned on exactly one A permits only AB and BA, each with mass 1/2. Node marginals remain halves, but independent draws from them leave the event half the time. The inspector separately computes this independent-node Poisson-binomial count law. Conditioning can create dependence without transition scores, and a correct expected count does not guarantee a valid complete path.
-
-Totals are now 43 Python and 20 Node/Chrome tests. Each of independent Fraction and BigInt path enumerators tests 600 events across sixty fixtures, all labels and counts. New checks include all 39 finite-difference event derivatives, 864 cross-language numerical witnesses and 864 browser queries. The inspectors total 5,895 UI states/queries. Eleven installed modules and nine commands reproduce six fresh fits, 327 audits and four exact archive exports.
-
-This is established state augmentation, not a new algorithm, training, causal intervention or accuracy gain. The quadratic count-state computation has a 64-position limit. Numerical near-ties may yield different Python/JavaScript path representatives; constraints and attained scores are checked separately from identity. Probability underflow is distinguished from finite log probability. Original fitted scores, held-out metrics and exhausted budgets are unchanged.
