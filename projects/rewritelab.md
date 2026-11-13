@@ -1,28 +1,28 @@
 # RewriteLab
 
-## RewriteLab: a shortcut can need a larger detour
+## A shortcut can need a larger detour
 
 [Live inspector](https://midya8.github.io/rewritelab/) · [Source and reproduction](https://github.com/midya8/rewritelab) · [Merged PR](https://github.com/midya8/rewritelab/pull/1)
 
-An exact, deliberately small arithmetic-optimization lab for inspecting the boundary between rewrite reachability and algebraic equivalence. Enumerate the whole bounded rewrite graph, inspect a shortest proof for every reachable tree, then compare it with every polynomial-equivalent tree in the same finite grammar.
+RewriteLab compares reachable rewrites with every equivalent expression in a small grammar. It keeps the complete bounded graph and a shortest proof for every reachable tree. A cheaper expression can fit the size limit but need a larger intermediate tree to reach it.
 
 - **A blocked shortcut:** `x*(1+1)` has two reachable five-node-budget terms costing 5, while `x+x` costs 3. Seven nodes unlock a three-rewrite distributive bridge to the cheaper term.
 - **A limit that remains:** `(1+1)*(1+1)` with multiplication cost 8 has one reachable term costing 14 at seven nodes. The separate complete semantic census contains six terms and an addition-only optimum costing 7.
 - **Independent evidence:** separate rule-template/grammar enumeration checks every proof edge, outgoing closure and shortest-distance inequality. Exact evaluation on a 5-by-5 grid proves polynomial identity for this degree-bounded grammar; it is not empirical sampling. The generator instead uses polynomial coefficient maps.
-- **Inspect it all:** eight controls, all reachable proofs and semantic candidates, tree/distance views, positive occurrence costs, stale-state clearing and JSON evidence export.
+- **Inspector:** eight controls, all reachable proofs and semantic candidates, tree/distance views, positive occurrence costs, stale-state clearing and JSON evidence export.
 
 Finite ordered binary trees over `0,1,x,y,+,*`, bounded to 3, 5 or 7 nodes: 36, 548 or 10,788 grammar terms. Bidirectional commutativity, associativity, identities, zero annihilation and distribution/factoring act at every subtree. Reverse zero can introduce any fitting grammar term, not just a source variable. Larger and non-improving intermediate terms are retained if they fit.
 
 This is an explicit bounded rewrite graph, not an e-graph, tensor engine, floating-point compiler proof, learned policy, runtime-speedup result or novel optimization algorithm. Exact rational algebra need not preserve IEEE floating-point behavior. The seven-node cap is a real exponential-enumeration limit; no claim applies beyond the stated grammar, rules and budget.
 
-Verified release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. All five deployed assets match main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/rewritelab/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/rewritelab/blob/main/SOURCES.md) state what was checked and what was not.
+Original base release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. The original five deployed assets matched main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/rewritelab/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/rewritelab/blob/main/SOURCES.md) state what was checked and what was not.
 
-## Why it belongs in an AI portfolio
+## AI compiler context
 
 Algebraic rewrites and cost-guided extraction are part of AI compiler and tensor-graph optimization. This lab isolates one inspectable question without pretending to run a tensor compiler: can a cheap equivalent expression fit the grammar but remain unreachable because its rewrite bridge is too large? The source notes distinguish this explicit finite graph from equality-saturation systems such as egg/TENSAT and from TASO, Herbie and Alive2.
 
 
-## RewriteLab budget barriers: when fitting is not reaching
+## Budget barriers: fitting is not reaching
 
 [Live budget-barrier atlas](https://midya8.github.io/rewritelab/barriers.html) · [Source](https://github.com/midya8/rewritelab) · [Exact filtration contract](https://github.com/midya8/rewritelab/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/2)
 
@@ -48,14 +48,14 @@ and base independent verifier are shared. A test-only heap directly minimizes
 peak-node labels through the independent template graph for all semantic
 candidates of six sources.
 
-Fresh public feature/main reproduction: 35 files source-exact; 20 tests on
+Budget-atlas release checks: 35 files source-exact; 20 tests on
 Python 3.10-3.13; six Node/actual-Chrome tests; installed eight controls per
 family through module and console outside the checkout, with forgeries rejected.
 36 complete Python/JS atlases compare 13,016 candidate rows and 13,745 nested
 proof rows. Chrome checks 25 atlases and every 3,844 candidate selection, all
 five level states, three widths, export, cap changes and invalidation. Base
 72 full cross-language reports and all base browser checks remain intact.
-Feature/PR/main CI and Pages pass; nine deployed assets match main and 57
+Feature/PR/main CI and Pages pass; nine deployed assets matched main and 57
 feature/main/live screenshots match without masks.
 
 This is the least allowed budget in a fixed small grammar, not a new minimax
@@ -66,7 +66,7 @@ optima each fall or stay fixed as the budget grows; their difference need not.
 No result above the cap or IEEE floating-point equivalence is claimed.
 
 
-## RewriteLab cost atlas: one graph, every cost tradeoff
+## Integer cost weights over one graph
 
 [Live cost-weight atlas](https://midya8.github.io/rewritelab/weights.html) · [Source](https://github.com/midya8/rewritelab) · [Exact weight-box contract](https://github.com/midya8/rewritelab/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/3)
 
@@ -95,7 +95,7 @@ expression ties, are cross-checked for both the constant crossover and the
 blocked bridge. Strict positive-weight dominance is kept separate from zero
 wins inside this finite box; absence of a box win is not a global impossibility.
 
-Fresh public feature and main clones match all 45 source files and tracked
+Weight-atlas release checks matched all 45 source files and tracked
 paths. There are 27 Python tests across 3.10-3.13 and nine Node/actual-Chrome
 tests. Seventeen complete Python/JS weight reports compare 8,704 outcomes and
 93 groups. Chrome checks 25 weight reports, all 4,096 outcome selections and
@@ -104,20 +104,20 @@ current-weight export, invalid-selection recovery and stale clearing. Fresh
 installed module and console reproduce eight controls each for all three
 families outside the checkout and reject forgeries. Base and budget-barrier
 checks remain intact. Feature/PR/main CI and Pages pass; all 13 live assets
-match main and all 83 feature/main/live screenshots match without masks.
+matched main and all 83 feature/main/live screenshots match without masks.
 
 Costs count tree-node occurrences, not shared subexpressions or hardware
 latency. This is an exhaustive integral weight box over a fixed seven-node
-maximum grammar, not a continuous parameter-region analysis, learned policy,
+maximum grammar, not itself a continuous parameter-region analysis, learned policy,
 e-graph, tensor engine, new algorithm or compiler-speed benchmark. The exact
 rational identities are not IEEE floating-point transformation licenses.
 Browser evidence is independently checked only after Python accepts its JSON.
-## RewriteLab continuous regions: beyond a sampled cost grid
+## Continuous cost regions
 
 [Live explorer](https://midya8.github.io/rewritelab/regions.html) · [Source](https://github.com/midya8/rewritelab) · [Exact region contract](https://github.com/midya8/rewritelab/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/4)
 
 A finite cost grid cannot prove that an expression never wins elsewhere.
-This extension computes complete optimum regions over every strictly positive
+The region atlas computes complete optimum regions over every strictly positive
 addition, multiplication and leaf-cost ratio. Normalizing their sum to one
 turns the parameter space into a triangle. Each group's exact halfplanes yield
 reduced rational vertices, with full expression memberships and reachable
@@ -138,7 +138,7 @@ the generator, clipping or recursive count traversal. Shared syntax and base
 independent closure checking are disclosed. JavaScript uses BigInt rational
 arithmetic; float coordinates are only a display layer over exact vertex text.
 
-Fresh public feature and main source match all 54 files and tracked paths.
+Current source checks match all 54 files and tracked paths.
 Thirty-five Python tests pass on each of 3.10-3.13, alongside eight Node engine
 and four actual-Chrome tests. Seventeen Python/JavaScript region reports agree
 on 93 groups and 215 vertices. Independent tests cover all 36 three-node
@@ -154,6 +154,16 @@ text, both diagrams per group, export, invalid recovery, stale clearing and
 outside-grid prices. All previous inspector, barrier and weight-box checks are
 retained. Feature/PR/main CI and Pages pass. All 16 deployed assets match main;
 all 111 feature/main/live screenshots match exactly without masks.
+
+The November 13 prose review changed the source README. A follow-up mobile
+layout fix stacks the selected region-weight controls and adds a label-boundary
+regression that fails on the old 320px layout. Fresh reviewed, published and main
+copies pass 35 Python and 12 Node/Chrome tests plus installed checks for all
+four report families. Live Chrome repeats all four browser suites, all 16
+deployed assets match main, and 111 local/live screenshots match without masks.
+Separate trusted clicks save each family's JSON to disk; the native Python
+checkers accept all four actual downloads. These are correctness and inspection
+checks, not new optimization results.
 
 The continuous cost domain does not enlarge the expression grammar: fixed
 3/5/7-node budgets, rational identities and complete ordered trees still apply.
