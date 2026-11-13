@@ -1,50 +1,85 @@
-# TokenForge: same merges, different work
+# TokenForge: count the pairs, then check the replacements
 
-Optional occurrence-indexed BPE training with exact original merges and saved artifacts. Live pair sets, linked positions and a lazy heap replace repeated recounting, while the unchanged scan stays the default. An independent browser recounts every overlapping frequency, numeric tie and leftmost replacement on explicit byte rows. Structural work is not a speed, RAM or complexity result.
+Train a byte-level BPE tokenizer offline, inspect every merge, and save the model
+as plain JSON. The original full-recount trainer stays the default. An optional
+occurrence-indexed trainer changes the bookkeeping with live pair sets, linked
+positions and a lazy heap, while keeping the same merge rules and saved format.
+
+[Live merge inspector](https://midya8.github.io/tokenforge/) · [Source](https://github.com/midya8/tokenforge) · [Method and source notes](https://github.com/midya8/tokenforge/blob/main/INDEXED.md)
 
 ## Occurrence indexing and overlapping frequency
 
-49 Python tests retain all 40 originals; 4 Node/actual-Chrome tests check 27 full reports, 160 merge selections, 3,033 displayed pair rows, 24 responsive views and trusted exports. Independent Python and JavaScript small-row oracles each cover 2,555 settings, plus 250 native seeded multirow cases. An installed wheel reproduces original and new CLI modes outside the checkout. The original 1,227-byte corpus gives 44 identical merges and saved JSON bytes.
+Each pre-token is a separate UTF-8 byte row. Training counts all adjacent pairs,
+including overlaps, chooses the highest count, and breaks ties by the smallest
+numeric token pair. It replaces leftmost nonoverlapping occurrences. For five
+`a` bytes, the first `aa` pair has four matches but only two replacements, leaving
+`[256,256,97]`. Frequency and compression gain are different quantities.
 
-The browser validates semantic histories, not native heap operations or Python regex parity. Overlapping pair frequency differs from replacement gain: five equal bytes have four adjacent matches but only two first-round replacements. Trace copying, sorting, set/link storage and stale heap entries cost work and memory. Established BPE/indexing/heap ideas are credited; no imported complexity theorem, production quality or global compression optimum is claimed.
+The indexed trainer updates only the edges around a replacement. Its heap keeps
+old entries until they are popped and checked against current counts. The method
+notes explain the adjacency invariant and why the numeric priority preserves the
+original choice. Bounded tests support the implementation; they are not a formal
+proof of every possible input or an imported complexity theorem.
 
-## Work witnesses and publication
+## Compare work without calling it a speedup
 
-The original full-corpus scan visits 30,664 adjacent positions. The index records 985 initial edges, 1,014 removals, 568 insertions, 446 snapshot positions/replacements and 117 heap pops, 73 stale. These are different operation units, not a speedup ratio. Optional tracing copies 13,857 pair records and 82,178 token entries separately. The browser uses a different full-recount algorithm and ships inputs only. Native work counts are not validated by JavaScript.
+Both trainers produce 44 identical merges and saved vocabulary bytes on the
+bundled 1,227-byte corpus. The full-recount trainer visits 30,664 adjacent
+positions. The index records:
 
-Feature/PR, merged-main and Pages checks passed. All six deployed assets and 24 public/deployed unmasked captures match checked source. Actual deployed exports replay natively exactly. The original trainer, split, stats, 40-test source, corpus and offline demo are byte-exact. This is an optional backend in the existing TokenForge, not a duplicate project or online training.
+| Operation | Count |
+|---|---:|
+| Initial adjacency insertions | 985 |
+| Edge removals | 1,014 |
+| New edge insertions | 568 |
+| Snapshot positions visited | 446 |
+| Pair replacements | 446 |
+| Heap pushes | 652 |
+| Heap pops | 117 |
+| Stale pops, included above | 73 |
 
-[Live merge inspector](https://midya8.github.io/tokenforge/) · [Source](https://github.com/midya8/tokenforge) · [Exact contract and sources](https://github.com/midya8/tokenforge/blob/main/INDEXED.md)
+These are different units, not a ratio. Link arrays, sets, sorting, heap entries
+and Python object costs are not a timing or RAM measurement. Stale entries can
+accumulate; this backend does not compact the heap. Optional tracing separately
+copies 13,857 pair records and 82,178 token entries on that corpus. Small inputs
+may favor the simpler scan. This is a new backend in TokenForge, not a duplicate
+tokenizer project or continued training on an online corpus.
 
-## Original tokenizer and checks retained
+## Replay the semantic history
 
-# TokenForge
+The browser takes explicit byte rows and independently recounts every pair,
+building fresh output rows rather than running the Python index. Inspect every
+selected pair, complete pair table, replacement position and before/after row.
+Edits clear stale results and disable downloads. Trusted-click downloads contain
+the input and full semantic report, which can be replayed through the native
+bounded CLI. No upload or model API is used.
 
-Byte-level BPE tokenizers trained from scratch, with no dependencies.
+The browser verifies semantic histories, not native heap counters. Its schema is
+`tokenforge-indexed-semantic/1`; native output additionally contains
+`indexed_work` under `tokenforge-indexed/1`. The original-row control uses Python's
+first 12 pre-token rows, while the Unicode control supplies explicit UTF-8 bytes.
+Neither establishes cross-language regex splitting parity.
 
-## Problem
+## Checks and limits
 
-Every language model reads text through a tokenizer, but the tokenizer usually arrives as a black-box artifact: an opaque vocab file produced by a training run nobody can reproduce. When merges cannot be rebuilt deterministically, token ids drift between pipelines, cached artifacts go stale silently, and "why is this word three tokens?" becomes guesswork.
+49 Python tests retain all 40 original tests. Independent Python and JavaScript
+oracles each cover 2,555 small binary-row/cap/count settings; native checks add
+250 seeded multirow tables and 39 overlap/boundary cases. The 27 complete audit reports
+retain 160 selected merge steps. Four Node/actual-Chrome tests compare those full
+histories, 3,033 displayed pair rows, 24 responsive views, strict input failures,
+invalidation and two trusted downloads. Installed-wheel checks run outside the
+checkout and reproduce original/new CLI modes, all 27 audits and 44 corpus merges.
 
-## Approach
+The original trainer, pre-tokenizer, encoding, statistics, corpus and offline demo
+remain. The README's encode/decode example now uses actual encoded ids rather
+than ids outside the advertised 300-token vocabulary. Compression gates check
+bytes per token on the supplied corpus, not model quality. UTF-8 text encoded by
+the tokenizer round-trips; arbitrary valid ids may decode to replacement
+characters, and unknown ids fail.
 
-TokenForge implements the full byte pair encoding pipeline in dependency-free Python:
-
-- base vocabulary of the 256 byte values, so any text - ASCII, Unicode, emoji - encodes and decodes exactly;
-- regex pre-tokenization (words, numbers, symbol runs, whitespace, contractions) in the style of GPT-2, so merges never cross those boundaries;
-- deterministic training: exact adjacent-pair counts over pre-token sequences, most-frequent pair merged first, ties broken on the pair itself, stopping at the requested vocabulary size or the minimum pair frequency;
-- rank-ordered encoding: the same merges applied lowest-rank-first at encode time, which keeps the token stream identical to the one training produced;
-- merges persisted as plain JSON that can be diffed, reviewed and rebuilt byte for byte;
-- compression statistics (bytes per token, unique tokens, most frequent tokens) as terminal, JSON and Markdown reports, with a `--min-compression` gate that fails CI when a tokenizer regresses.
-
-## Verification
-
-- 40 unit tests cover pre-tokenization, pair counting and merging, deterministic training, vocabulary caps and minimum counts, encode/decode round trips across ASCII, Unicode and emoji, save/load, statistics math, Markdown escaping, and the CLI end to end including both sides of the compression gate.
-- `bash examples/demo.sh` runs fully offline against the bundled corpus: it trains a 300-token vocabulary, verifies an encode/decode round trip, asserts the compression statistics, and checks both sides of the quality gate.
-- CI runs the same suite across Python 3.10-3.13.
-
-Byte-level BPE is the tokenizer family used by GPT-style models; TokenForge is a from-scratch teaching-and-tooling implementation, not a drop-in replacement for production vocabularies. The pre-tokenization pattern is ASCII-oriented and simplified relative to GPT-2's Unicode-aware split.
-
-## Links
-
-- Repository: [midya8/tokenforge](https://github.com/midya8/tokenforge)
+This is established BPE with a simplified ASCII-oriented split, not GPT-2
+pre-tokenization parity, a production vocabulary, a global compression optimum
+or a representative language benchmark. Gage, Sennrich and colleagues,
+subword-nmt, formal BPE analysis, existing indexed implementations and Python's
+heap documentation are credited in the method notes. Their algorithm variants,
+complexity theorems and benchmark results are not transferred to this backend.
