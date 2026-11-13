@@ -1,10 +1,12 @@
-# RectLab: a cover is not a partition
+# RectLab
 
-**A perfect reconstruction does not settle how its factors should be counted, or which factors are mandatory.** This finite Boolean factorization inspector separates minimum overlapping covers, minimum disjoint partitions, maximal-only factor restrictions and fooling-set lower bounds. Inspect the factors, not only the headline rank.
+RectLab covers the ones in a small binary matrix with all-one rectangles. It computes minimum overlapping covers, disjoint partitions, maximal-only covers and fooling-set lower bounds, with exact counts and selectable optimal factor sets.
+
+The current suite has 18 Python and 6 Node/Chrome tests. Python checks complete reports for every 3×3 binary matrix; separate browser code checks the finite corpus. Installed commands and a numerical SciPy reference are checked separately. These are bounded synthetic examples, not learned data or a scale benchmark.
 
 [Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Reviewed implementation](https://github.com/midya8/rectlab/pull/1) · [Exact method](https://github.com/midya8/rectlab/blob/main/docs/method.md)
 
-## Version 0.2: every optimum, not only the first
+## Indexed optimal sets and factor membership
 
 The launch version computed exact counts but displayed only the first cover in each family. Version 0.2 adds random access by canonical zero-based decimal index, plus every factor's exact optimum inclusion count. The certificate retains the first witness for deterministic replay while the UI can inspect any index, with native previous/next and direct entry. This is access by index, not a random sampler.
 
@@ -18,7 +20,7 @@ Lexicographic rank/unrank uses take-before-skip blocks of fixed-cardinality fact
 
 Schema `rectlab/2` includes the full census. Old schema 1 certificates are rejected rather than silently treated as if they carried new fields. Regenerate using their embedded input. The low-level rank/select methods take a generated or verified report; public input-based helpers compute their own report. This remains a bounded exact tool, not a new ranking algorithm, statistical sampler or certificate-authenticity system.
 
-## A lower bound can stop short
+## Fooling-set lower-bound gap
 
 The default synthetic 4×4 matrix is `0101 / 1101 / 1110 / 1011`, read row by row. Its 11 positive cells admit 41 nonempty all-one rectangles. Every cover needs at least four rectangles, but the maximum fooling-set size is only three. The gap is real: a valid largest fooling set does not certify the minimum cover size here.
 
@@ -42,7 +44,7 @@ Positive cells are numbered in row-major order. Every subset is classified. A fo
 
 Each rejected subset carries its first obstructing pair. Every maximum witness is selectable and highlighted on the input grid. A maximum witness proves only the reported lower bound. Empty input has size zero and exactly one empty witness. The certificate includes the complete subset census, not only selected positive examples.
 
-## Two constructions, independent checking
+## Producer and independent verifier
 
 The Python producer scans row/column subsets to generate candidates, then runs ordered skip/take dynamic programming over covered-cell masks. It stores minimum size, exact integer count and the lexicographically first optimal witness. Candidate reuse and factor permutations do not inflate counts. Partitions require disjoint masks. Zero matrices have one empty cover, not zero explanations.
 
@@ -52,7 +54,7 @@ The checker reconstructs the entire report from the included input and rejects e
 
 A separate JavaScript engine uses BigInt counts and exact rational row operations. Browser replay uses that same engine and is explicitly labeled same-engine. Downloaded certificates are independently checked with Python. Input edits clear stale reports and disable downloads until recomputation. Invalid matrices cannot silently leave an old result looking current.
 
-## Actual third-party reference, with its limit
+## Numerical reference and its limits
 
 SciPy 1.15.3/HiGHS receives fresh binary-variable models built directly from raw input cell subsets. Cover constraints require each positive cell to occur at least once; partition constraints require exactly once. A separate maximum-fooling-set model forbids choosing compatible pairs. All 159 nonempty models match exact objectives, and returned integer witnesses are checked against the raw matrix.
 
@@ -77,7 +79,7 @@ The exhaustive class is all 3×3 binary matrices, not every accepted 5×5 input.
 
 ## Publication
 
-Source PR2 passed all 10 latest feature/PR jobs and merged with previous history intact. All 30 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed; deployed native Chrome passes, and all 40 unmasked local/live captures are pixel-identical.
+The original v0.2 publication checked all 30 source files and five executable browser assets, alongside hosted CI, Pages and deployed Chrome behavior. The current README-only review preserves all 29 other files. Deployed behavior checks cover all nine controls, three factor families, indexed selections, membership rows, input invalidation and trusted JSON transfers. Source tests, numerical reference checks and deployment checks provide different evidence; none is a claim of large-scale performance.
 
 ## Scope and sources
 
