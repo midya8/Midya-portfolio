@@ -1,4 +1,4 @@
-# PlanBench: the cheap run that failed
+# PlanBench
 
 Exact finite retry-risk analysis for supplied agent DAGs. Inspect the joint plan-success, completion-time and cost law, including exhausted retries, skip cascades and shared ancestors. A cheap failed run can satisfy a budget by skipping the work: within-limit probability is not successful-completion probability. The original seeded simulator stays unchanged.
 
@@ -18,15 +18,13 @@ Native code branches only on executed terminal outcomes. The independent browser
 
 ## Original seeded simulation retained
 
-# PlanBench
+The original validator checks plan structure and declared input production. The
+simulator follows one seeded sequence of failures with supplied durations, costs
+and retry limits. Neither runs real tools or learns their latency or reliability.
+The separate exact-risk API above enumerates all positive-probability histories
+within its bounds.
 
-Validate and simulate agent task plans before they run.
-
-## Problem
-
-Agent plans fail in boring ways that are cheap to catch before execution: a step calls a tool that does not exist, waits on an input nobody produces, or sits in a dependency cycle. And plans that look fine on paper miss their budgets once real tool latency, failures and retries are accounted for. Reviewing a plan by eye catches neither reliably.
-
-## Approach
+## Original simulator
 
 PlanBench treats a plan as a DAG of tool calls and checks it twice:
 
@@ -37,9 +35,9 @@ PlanBench treats a plan as a DAG of tool calls and checks it twice:
 
 ## Verification
 
-- 29 unit tests cover loader validation, every finding kind, topological ordering including cycles, sequential and parallel timing, seeded determinism, retry exhaustion with skip cascades, cost accumulation, metrics, all three report formats, and the CLI end to end including both sides of every gate.
+- The original 29 unit tests cover loader validation, every finding kind, topological ordering including cycles, sequential and parallel timing, seeded determinism, retry exhaustion with skip cascades, cost accumulation, metrics, all three report formats, and the CLI end to end including both sides of every gate.
 - `bash examples/demo.sh` runs fully offline: a research-agent plan with flaky tools simulates green (retries exercised, real concurrency asserted), a broken plan is rejected with findings, and both gate sides are exercised.
-- CI runs the same suite across Python 3.10-3.13.
+- The current 39-test Python suite includes those originals and the exact-risk checks. Four Node/actual-Chrome tests check the browser. CI runs Python 3.10-3.13.
 
 Bounds worth stating: durations and failure rates are declared in the fixtures, not learned from real executions - the simulation measures what a plan would do under those assumptions, it does not predict real-world latency. Validation checks structure and producibility, not whether a tool call would actually succeed.
 
