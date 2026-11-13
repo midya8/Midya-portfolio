@@ -1,14 +1,25 @@
-# QuantLab
+# QuantLab: packed weights and integer-product audits
 
-QuantLab now traces activation × weight integer dot products, not only packed weights. A fixed user-declared activation range produces signed 8-bit codes; every integer product and partial accumulator stays visible. Exact rational witnesses separate weight error from activation error. The constructed default has zero weight error, yet activation rounding changes a strict row-1 winner into a zero-code tie won by row 0.
+Two independent browser inspectors follow quantized weights through packed
+files and fixed-input decision bounds, then add activation integer products
+and partial sums. Exact rational reports expose weight and activation error
+separately. The integer inspector ends with floating-point rescale, not
+integer-only inference or a hardware benchmark.
 
 ## Activation integer dot products
 
-47 Python tests retain all 39 earlier tests. Independent floor/remainder rounding checks 240 seeded reports and all 519 signed half-unit controls. Python Fraction and independent browser BigInt dyadics agree on 72 complete reports with 6,848 products and all exact error strings. Actual NumPy2.2.6 int32 matmul and cumsum check every accumulator and prefix. Seven Node/actual-Chrome tests cover 168 row selections, 20 responsive views, two trusted downloads replayed natively and stale-result rejection. A fresh isolated eight-module package reproduces original training, all 52 old reports and all 72 new reports, with both new CLI entrypoints. Original QLB1 bytes and 59/60 weight-only synthetic results remain unchanged.
+The current suite has 47 Python tests, including all 39 earlier tests, and
+seven Node/actual-Chrome tests. Independent floor/remainder rounding checks 240 seeded reports and all 519 signed half-unit controls. Python Fraction and independent browser BigInt dyadics agree on 72 complete reports with 6,848 products and all exact error strings. Actual NumPy 2.2.6 int32 matmul and cumsum check every accumulator and prefix. Seven Node/actual-Chrome tests cover 168 row selections, 20 responsive views, two trusted downloads replayed natively and stale-result rejection. A fresh isolated eight-module package reproduces original training, all 52 old reports and all 72 new reports, with both new CLI entrypoints. Original QLB1 bytes and 59/60 weight-only synthetic results remain unchanged.
 
-Source PR3 passed all 16 latest feature/PR jobs and merged with previous history intact. All 53 merged files and ten deployed assets match the tested public source. Merged-main eight-job CI and Pages passed. The complete deployed browser workflow passes; all 20 unmasked local/deployed captures are pixel-identical. Desktop and phone controls, values and tables were inspected. Integer products and prefixes are exact under the checked shape bound of 2,064,512. Final output rescaling uses binary64, not integer-only end-to-end inference. Fixed activation range is supplied, not calibrated. Exact fractions describe represented-real maps, not runtime summation or unseen accuracy. Error decomposition is order-dependent arithmetic, not causal attribution. No hardware speed, RAM, learned improvement, new algorithm or ONNX/TFLite compatibility claim. Established quantization literature is credited.
+The feature-stage publication checked all 53 merged files and ten deployed
+assets against the tested source, with separate hosted CI and Pages gates.
+Its deployed browser workflow and 20 local/deployed captures were checked
+separately from the native tests. These checks are regression evidence, not
+a deployment guarantee.
 
-The default control uses `W=[[127,0],[0,127]]`, `x=[0.4,0.49]`, and activation range 127. Stored weight scales and activation scale are exactly 1. Original exact-real scores are 127 times the represented input values, with row 1 strictly larger. Quantized activations are `[0,0]`, so every product and accumulator is 0 and row 0 wins the tie. Weight error is exactly 0; activation error explains the whole change. This is a constructed arithmetic control, not trained performance.
+Integer products and prefixes are exact under the checked shape bound of 2,064,512. Final output rescaling uses binary64, not integer-only end-to-end inference. Fixed activation range is supplied, not calibrated. Exact fractions describe represented-real maps, not runtime summation or unseen accuracy. Error decomposition is order-dependent arithmetic, not causal attribution. No hardware speed, RAM, learned improvement, new algorithm or ONNX/TFLite compatibility claim. Established quantization literature is credited.
+
+The default control uses `W=[[127,0],[0,127]]`, `x=[0.4,0.49]`, and activation range 127. Stored weight scales and activation scale are exactly 1. Original exact-real scores are 127 times the represented input values, with row 1 strictly larger. Quantized activations are `[0,0]`, so every product and accumulator is 0 and row 0 wins the tie. Weight error is exactly 0; activation error accounts for the whole score change. This is a constructed arithmetic control, not trained performance.
 
 For each row, `a = W x`, `b = W_hat x` and `c = W_hat x_hat = s_w s_x sum(q_w q_x)`. Coordinate terms `(W_hat - W) x` sum to `b - a`; `W_hat (x_hat - x)` sum to `c - b`. Full rational strings and every contribution are exported. The source, weight-only and full exact-real winners remain separate from the binary64 runtime-rescale winner, with first-index tie handling. No sufficient floating-runtime certificate is claimed.
 
@@ -55,7 +66,9 @@ The earlier 204 B row-scale figure is analytic payload accounting, not a seriali
 
 ## Scope
 
-Exact bounds apply to fixed represented-real linear maps, not floating-point accumulation, uncertain inputs, unseen accuracy or deployment. The synthetic classifier uses hashed count features and perceptron updates, not an LLM. The browser performs dequantized scalar inference, not integer matmul. No speedup, RAM reduction, complete checkpoint, authentication or ONNX/GGUF compatibility is claimed. Symmetric absmax quantization, ties-to-even rounding and triangle-inequality error bounds are standard methods, with sources and the full byte contract in FORMAT.md.
+Exact bounds apply to fixed represented-real linear maps, not floating-point accumulation, uncertain inputs, unseen accuracy or deployment. The synthetic classifier uses hashed count features and perceptron updates, not an LLM. The weight-only browser performs dequantized scalar inference, not integer
+matmul; the separate activation inspector above exposes bounded integer
+products and floating-point rescale. No speedup, RAM reduction, complete checkpoint, authentication or ONNX/GGUF compatibility is claimed. Symmetric absmax quantization, ties-to-even rounding and triangle-inequality error bounds are standard methods, with sources and the full byte contract in FORMAT.md.
 
 ## Links
 
