@@ -1,80 +1,158 @@
-# VectorLite
+# VectorLite: exact-code filtering, approximate vector search
 
-VectorLite now has actual reusable block buckets. An optional backend partitions fixed binary signatures into r+1 disjoint blocks, unions exact-key postings and verifies full Hamming distance before unchanged cosine/id rescoring. The original signature scan remains the default and reference.
+VectorLite ranks supplied vectors by cosine or negative L2 distance. Its
+random-hyperplane path filters candidates before cosine rescoring. The default
+scans every signature; an optional fixed-radius backend reuses block postings.
+Both have finite browser inspectors, with each projection, lookup and rejected
+candidate available to inspect.
 
-[Live inspector](https://midya8.github.io/vectorlite/) · [Source](https://github.com/midya8/vectorlite) · [Numerical/probability contract](https://github.com/midya8/vectorlite/blob/main/METHOD.md)
+[Signature inspector](https://midya8.github.io/vectorlite/) · [Block-bucket inspector](https://midya8.github.io/vectorlite/buckets.html) · [Source](https://github.com/midya8/vectorlite)
 
-## Actual optional block-bucket backend (v0.3)
+## Choose a retrieval path
 
-59 Python tests retain all50 prior tests;8 Node/actual-Chrome tests retain all3 prior tests. Independent native and BigInt small-cube oracles each cover5,376 query/radius/mode comparisons. Another480 random excluded-query checks,360 random cosine rankings and105 original-spec backend rankings agree with scans. All34 full reports,1,908 selected Chrome rows,24 responsive views and2 trusted JSON exports are checked. An installed8-module wheel reproduces all35 old audits,34 new reports and both new CLI entrypoints.
+| Question | API | Boundary |
+|---|---|---|
+| Rank every supplied vector | `ExactIndex` | Floating cosine or negative L2, then ID ties |
+| Filter by shared hyperplane bits | `LSHIndex` | Scan every signature; cosine-rescore admitted candidates |
+| Reuse signature posting tables | `HammingBuckets`, `BucketLSHIndex` | Exact Hamming-radius filtering, not exact cosine neighbors |
+| Inspect projections and every threshold | `vectorlite.audit.audit` | 64 items, 16 dimensions, 128 bits, 128 KiB JSON |
+| Inspect block lookups and checked rows | `vectorlite.bucket_cli` | 1,024 rows, 128 bits, 128 KiB JSON |
 
-A constructed512-row24-bit/radius2 control needs3 lookups,11 posting visits and9 full Hamming checks versus512 scan checks. A dense duplicate control would visit1,536 postings; auto instead scans after3 lookups. These are structural counts, not elapsed time, measured RAM or total operations. The fallback rule is a heuristic, not a general sublinear guarantee. Exact signature filtering is still approximate cosine retrieval, not semantic relevance. The r+1 exact-block method is a credited specialization of established multi-index hashing, not a new algorithm.
+```sh
+python -m vectorlite query --vectors examples/data/vectors.jsonl \
+  --query '0.9,0.1,0,0,0.1,0,0,0.1' -k 3
+python -m vectorlite audit --spec examples/audit.json --json report.json
+python -m unittest discover -s tests -v
+bash examples/demo.sh
+python scripts/build_audit.py
+python scripts/build_buckets.py
+node --test --test-concurrency=1 tests/engine.cjs tests/test_browser.cjs \
+  tests/test_buckets.cjs tests/test_buckets_browser.cjs
+bash scripts/wheel_smoke.sh
+```
 
-For radius r<bits, any code with at most r changed bits must share at least one of r+1 disjoint nonempty blocks. Each block has a real key-to-row-position posting table. Candidate union is only a superset: duplicates are removed by row index, exclusions apply before the full XOR/popcount check, and surviving ids receive the unchanged cosine score/id order. Duplicate signatures keep distinct positions. This is exact relative to the old threshold filter, not exact cosine nearest neighbors.
+Runtime and tests use Python's standard library. The independent browser
+engines use scalar JavaScript and BigInt. No model API, training, network or
+embedding download is required to run the calculations.
 
-`HammingBuckets` copies signatures and supports repeated lookups at a fixed radius. `BucketLSHIndex` copies vectors/ids and retains the original hyperplanes and stable arithmetic. `scan`, forced `blocks` and `auto` modes expose key lookup count, posting-length sum, references visited, unique candidates, excluded entries, full checks and cosine rescores. The auto rule probes lengths without traversing postings and scans when their sum is at least N. All-radius and declared block-cap cases skip building tables entirely. Index construction still stores N times the number of blocks posting references; sparse query checks do not erase build, memory, union/sort or reporting costs.
+## A signature is not a neighbor
 
-The separate BigInt browser receives only input signatures, builds its own Map postings and shows partitions, occupied keys, query bucket lengths, all checked/admitted/rejected rows and per-row XOR/matching blocks. Changing input or policy hides stale output and disables exports. Strict input rejects duplicate keys, invalid hex, unknown keys and bad exclusions. JSON input/report exports replay native exactly, with no numeric tolerance. CLI/browser limits are128 bits,1,024 rows,128KiB; the generic native signature API allows up to4,096 bits and a maximum64-block declared cap. No online insertion/removal or in-place threshold change is implemented.
+The signature inspector recomputes from editable vectors, query and actual
+exported planes. It shows normalized 2D directions without inventing a
+projection for higher-dimensional data, every dot product and bit, shared-bit
+counts, admitted and missed canonical exact neighbors, and every threshold
+from zero through the bit count. Edits hide stale results until recomputation.
 
-The original12-vector corpus,35 reports, scan, projections and original geometry browser engine remain unchanged. An additional original-corpus signature control XORs every code with the first query signature; this preserves Hamming distances, not a new embedding or cosine-quality evaluation. Sparse and dense constructed tables are both visible, alongside cap/all-radius, empty table, exclusions, false candidates and24 seeded tables. Source feature/PR/main checks and Pages deployment were verified before this showcase update;46 public files and12 live assets matched source.24 local/public and24 public/deployed unmasked pixel pairs matched exactly.
+Python generates the Gaussian-plane stream. JavaScript replays the actual
+planes rather than claiming a cross-language PRNG match. Explicit plane editing
+is supported. Scan JSON export matches the current browser report; native
+reports additionally carry `schema`, `plane_source` and `theory_contract`
+metadata. Numerical/witness fields are independently compared with stated
+floating tolerance, not advertised as byte-identical cross-language arithmetic.
 
-[Live block buckets](https://midya8.github.io/vectorlite/buckets.html) · [Algorithm, costs and source ledger](https://github.com/midya8/vectorlite/blob/main/BUCKETS.md) · [Source PR4](https://github.com/midya8/vectorlite/pull/4)
+Cosine scales vectors before normalization, avoiding direct-square overflow and
+underflow. The `1e300` and `1e-300` versions of `[1,1]` versus `[1,0]` both give
+approximately `sqrt(.5)`. Finite/dimension checks, unique IDs and copied inputs
+prevent silent invalid scores or set-recall collapse. L2 uses stable distance
+arithmetic and rejects unrepresentable results. Zero vectors retain cosine zero
+and all-positive bits, but have undefined angular theory. Unrounded dots set
+bits using `>=0`; full-precision means drive recall gates. Approximate L2 fails
+rather than silently using cosine.
 
-The earlier geometry/probability release follows. Its50-test and six-module installed evidence describes that retained release; the combined suite has59 tests and8 checked module origins. Its O(N) scan limitation still describes the original default, not a claim that the optional sparse query always traverses all codes.
+## Fixed-index recall and random-plane expectations
 
-## Problem
+For fixed query, planes, k and score/ID ordering, lowering the shared-bit
+threshold gives nested candidate sets. An admitted canonical exact top-k item
+survives exact candidate rescoring, so canonical recall cannot fall. This does
+not imply that more bits, a new seed or another tie policy improves recall.
+Canonical ID ties are a declared ground truth, not human relevance.
 
-A signature stores signs, not distances. A candidate filter can miss the exact best vector, and a self-query benchmark can reward finding the query itself. Candidate counts can also be mistaken for speed, even when an implementation scans every signature.
+For a nonzero pair, an ideal random isotropic plane agrees with probability
+`p = 1 - theta/pi`. Independent planes give a binomial shared-bit count. The
+inspector shows marginal admission tails, expected candidate count and expected
+canonical recall over ideal iid rebuilds. These are not conditional probabilities
+for the displayed fixed or edited planes. Candidate events share planes and may
+be correlated; there is no binomial claim for their aggregate count. A half-angle
+`atan2` identity stabilizes angular endpoints.
 
-VectorLite makes those boundaries visible. The original dependency-free exact cosine/L2 and Gaussian-plane LSH library remains, with its original 12-vector corpus, demo, 31 tests and self-inclusive mean recall@3 of 1.0. Its original README is retained as historical context. The new contract corrects the earlier suggestion that lowering the sharing threshold can reduce recall for the same fixed index and score/id ordering.
+The original synthetic corpus retains self-inclusive mean recall@3 of 1.0.
+`--exclude-self` removes the query ID from exact and approximate rankings;
+duplicate vectors may remain. A two-vector control changes recall from 1 to 0
+when only self exclusion changes. `--queries` accepts external supplied vectors.
+Neither alternative establishes an independent held-out relevance evaluation.
 
-## Implementation
+## Reusable blocks, including the case where scanning wins
 
-### Finite geometry, not a screenshot of results
+At radius `r < bits`, at most r changed bits cannot touch every one of `r+1`
+disjoint nonempty blocks. Each true radius neighbor therefore shares an exact
+block. Real key-to-row-position tables retrieve posting lists, union and
+deduplicate positions, apply exclusions and check full XOR/popcount distance.
+A block match is necessary, not sufficient. Duplicate signatures retain distinct
+positions; surviving vectors get the unchanged cosine/ID order.
 
-The working browser independently computes from editable vectors, query and actual exported planes. It shows normalized 2D directions without inventing a projection for higher-dimensional data, all dot products and bits, each vector's shared-bit count, every admitted/missed canonical exact neighbor and every threshold from 0 through the bit count. Input edits hide stale results until recomputation. Complete JSON export retains the witness.
+`HammingBuckets` copies signatures for repeated fixed-radius queries.
+`BucketLSHIndex` also copies vectors/IDs and retains the original hyperplanes and
+arithmetic. `scan`, forced `blocks` and `auto` expose lookups, posting-length
+sum, visits, unique candidates, exclusions, full checks and cosine rescores.
+Auto probes lengths without traversing lists and scans when their sum is at
+least N. Radius covering all bits and declared block-cap cases skip table
+construction and fall back even in forced-block mode.
 
-The Gaussian-plane stream is generated in Python. JavaScript replays the actual planes rather than claiming a cross-language PRNG match. Explicit plane editing is supported, with probability references labeled as ideal iid-isotropic rebuild expectations, not conditional probabilities for arbitrary fixed planes.
+A constructed 512-row, 24-bit/radius-2 control uses three lookups, 11 posting
+visits and nine full Hamming checks instead of 512 scan checks. Dense duplicates
+would visit 1,536 postings; auto instead scans after three lookups. These are
+structural counts, not time, measured RAM or total operations. Building tables
+still stores N times the number of blocks posting references. Union, sorting,
+reporting and construction costs do not disappear. The heuristic is not a
+general sublinear guarantee.
 
-### Stable arithmetic and honest ranking
+The separate BigInt browser builds its own Map postings from supplied
+signatures. It exposes partitions, occupied keys, lookup lengths, every checked
+row, XOR and matching blocks. Input/report downloads reproduce native reports
+exactly. Edits hide stale output and disable exports. Strict parsing rejects
+duplicate/unknown keys, invalid hex and bad exclusions. The generic native API
+allows up to 4,096 bits and a declared cap of at most 64 blocks; the bounded
+CLI/browser has the smaller limits in the table. Changing radius requires a
+rebuild. Online insert/delete is not implemented.
 
-Cosine scales each vector before normalization, avoiding the original direct-square overflow/underflow. `[1e300,1e300]` versus `[1e300,0]`, and their `1e-300` counterparts, now return approximately `sqrt(.5)`. Finite/dimension checks, unique ids and copied inputs prevent silent invalid scores or set-recall collapse. L2 uses stable distance arithmetic and rejects an unrepresentable result.
+The original 12-vector corpus remains. An additional control XORs its signatures
+with the first query code, preserving Hamming distances without creating a new
+embedding or quality benchmark. Sparse/dense tables, exclusions, false
+candidates, empty tables, cap/all-radius fallbacks and 24 seeded tables are
+available to inspect.
 
-Zero vectors retain cosine 0 and all-positive bits, but their angular probabilities are undefined, not silently set to one half. Signs use unrounded dots with `>=0` mapped to bit 1. Display rounding does not set signatures or gates. Mean recall is no longer rounded before gate comparison. Approximate L2, which was previously silently treated as cosine, now fails clearly.
+## Checks and limits
 
-### Complete threshold and probability witnesses
+The current suite has **59 Python tests and eight Node/Chrome tests**.
 
-For a fixed query, planes, k and score/id order, an admitted canonical exact top-k item must survive exact candidate rescoring: fewer than k corpus items precede it in the full ordering. Recall is therefore the fraction of ground-truth ids admitted. Lowering threshold creates nested candidates and cannot lower that recall. This says nothing about changing seeds or bit counts, semantic ties or another retrieval implementation.
+- Numerical references include 90-digit Decimal cosine calculations, rational
+  binomial tails, exhaustive sign patterns, full-circle geometry and 1,200
+  seeded Gaussian rebuilds. Finite checks do not prove ideal PRNG behavior.
+- The 35 scan audits contain 643 threshold rows and 20,784 numerical fields
+  checked in independent JavaScript. Chrome checks 332 vector rows, 643 threshold
+  rows and 5,856 projection rows, invalidation, errors and responsive containment.
+- Each language checks 5,376 small-cube query/radius/mode comparisons. Other
+  controls cover 480 random excluded-query cases, 360 cosine rankings and 105
+  original-spec backend rankings. All 34 bucket reports match native exactly;
+  Chrome checks 1,908 selected rows, 24 responsive views and trusted downloads.
+- An installed wheel is checked outside the checkout through eight named import
+  origins, all 35 scan audits, 105 original-spec rankings, 34 bucket reports,
+  original query/audit commands and both bucket CLI entry points. Eight checked
+  origins is not a claim that the package contains only eight Python files.
 
-For a nonzero pair, a random isotropic plane agrees with probability `p=1-theta/pi`. Across independent planes, shared bits follow a binomial distribution. VectorLite computes each threshold's marginal admission tail, expected candidate count and expected canonical recall. Candidate events share planes and can be correlated; no binomial law for total candidate count is claimed. The half-angle `atan2` identity stabilizes angular endpoints. Zero-vector theory is shown as undefined.
+Near-zero projections and near-tied scores remain floating-point sensitive.
+Synthetic vectors are not learned embeddings or human relevance labels.
+Same-environment reproduction is not universal determinism. No latency,
+measured-RAM, production-scale, semantic-relevance, recall-gain, model-quality or
+new-algorithm claim follows.
 
-### Keep the protocol next to the number
+## Method credit
 
-- Original `self-inclusive` remains the default benchmark.
-- `--exclude-self` removes the query id from both exact and approximate rankings, labeled `leave-one-id-out`. Duplicate vectors may remain; this is not held-out evaluation.
-- `--queries` runs `external-supplied` vectors. Providing a file does not establish an independent split or relevance quality.
-
-Two original synthetic vectors, the same query, 8 planes, seed 0 and strict threshold produce recall **1 with self included, 0 with its id excluded**. That control isolates an id-exclusion difference on this fixture, not general method performance.
-
-## Verification
-
-- **50 Python tests on 3.10-3.13**, including all 31 original tests unchanged; six original files including corpus/demo/tests remain byte-identical, and original README is preserved byte-exact.
-- **Independent references:** 120 cosine pairs checked with 90-digit Decimal arithmetic, rational binomial tails, exhaustive 8-bit sign patterns, full-circle angular geometry and 1,200 seeded Gaussian rebuilds.
-- **35 retained audits**, including original 8D data, synthetic 2D/5D controls, exact sign boundaries, zero vectors and self-exclusion pair. They regenerate byte-for-byte in the tested environments.
-- **Independent scalar JavaScript:** 20,784 numerical fields across 643 threshold rows. Actual Chrome verifies all 332 vector rows, 643 threshold rows and 5,856 projection rows, invalidation, bad input, one JSON export and 320/390/1280 containment.
-- **Installed distribution:** wheel imported outside checkout with six module origins, all 35 full audits, audit CLI and original-query CLI. Original offline demo and both gate sides remain.
-
-## Bounds
-
-The original default is an O(N) signature scan. The optional block backend above adds a real index but makes no general sublinear or production-scale ANN claim. Candidate rescoring fractions are not latency or operation totals. Canonical score/id ties are a declared ground truth, not human relevance judgments. Near-zero projections and near-tied scores remain floating-point sensitive; same-environment reproducibility is not universal determinism.
-
-The audit is deliberately bounded to 64 items, 16 dimensions, 128 bits and a 128KiB strict JSON spec. Probability theory assumes ideal independent isotropic nonzero planes and is not conditional on displayed fixed or edited arbitrary planes. The 1,200-rebuild check is a sanity control, not a confidence interval. These vectors are synthetic, not learned embeddings or a retrieval-quality benchmark. No speed, model-quality, confidence-interval or new-algorithm claim is made.
-
-## Attribution and links
-
-Random-hyperplane LSH is prior work. The [method contract](https://github.com/midya8/vectorlite/blob/main/METHOD.md) links Charikar's primary paper, UCSD geometry notes, SciPy's binomial definition, scikit-learn self-neighbor semantics, Python numerical documentation and ANN-Benchmarks as broader context. No benchmark code/data was copied. Implementation, original synthetic fixtures and audit by Midya Rahmani.
-
-- [Repository](https://github.com/midya8/vectorlite)
-- [Live geometry and recall inspector](https://midya8.github.io/vectorlite/)
-- [Method and limitations](https://github.com/midya8/vectorlite/blob/main/METHOD.md)
-- [Original historical README](https://github.com/midya8/vectorlite/blob/main/docs/original-readme.md)
+Random-hyperplane LSH and multi-index hashing are established methods. The block
+backend is a credited exact-block specialization, not a new algorithm.
+[METHOD.md](https://github.com/midya8/vectorlite/blob/main/METHOD.md) and
+[BUCKETS.md](https://github.com/midya8/vectorlite/blob/main/BUCKETS.md) retain the
+contracts, source ledger and limitations. The original README is preserved
+[as history](https://github.com/midya8/vectorlite/blob/main/docs/original-readme.md),
+including older claims; it is not the current contract. No benchmark code or data
+was copied. Implementation and original synthetic controls are by Midya Rahmani.
