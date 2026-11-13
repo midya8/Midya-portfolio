@@ -1,16 +1,16 @@
-# PromptGuard
+# PromptGuard: scanner baselines and occurrence quotas
 
-## PromptGuard: an allowance is not unlimited
+## Occurrence-limited suppression
 
 An opt-in actual-scanner baseline limits how many equal-identity findings can be suppressed. One prior allowance suppresses one of three current occurrences; two remain reported, while the legacy set suppresses all three. Inspect exact path/severity identity, every before/after allowance, unused entry and gate decision. The original scanner patterns, v1 baseline and prior policy inspector stay unchanged.
 
-100 Python tests retain all 87 prior tests byte-for-byte; seven Node/actual-Chrome tests retain all three originals. Independent occurrence-rank references cover 4,374 exhaustive controls, 200 seeded complete native/browser reports and 162 browser duplicate-count controls. All 24 complete reports include 52 current rows, 32 prior rows, 22 quota entries, 52 legacy-control rows and 104 SVG marks. Chrome checks every displayed row, full selected record, gate/payload, stale/invalid state, 320/390/1280 containment and two trusted exports replayed through native CLI. Separate installed API/module/console reproduces all reports and actual scanner duplicate-contact gates, plus the original eight-module wheel, 27 audits, adapters and offline demo.
+The current suite has 100 Python tests, including all 87 earlier tests, and seven Node/actual-Chrome tests, including all three earlier tests. Independent occurrence-rank references cover 4,374 exhaustive controls, 200 seeded complete native/browser reports and 162 browser duplicate-count controls. All 24 complete reports include 52 current rows, 32 prior rows, 22 quota entries, 52 legacy-control rows and 104 SVG marks. Chrome checks every displayed row, full selected record, gate/payload, stale/invalid state, 320/390/1280 containment and two trusted exports replayed through native CLI. Separate installed API/module/console reproduces all reports and actual scanner duplicate-contact gates, plus the original eight-module wheel, 27 audits, adapters and offline demo.
 
 Exact path spelling is not repository isolation. Equal-identity occurrences are interchangeable, not historically tracked: reordering can change which line survives. A manually editable quota is not acceptance provenance or safety; a hash is not anonymity. No new detection patterns, security-effectiveness or new-method claim, and no automatic v1 migration. Missing/malformed quotas fail closed; incomplete scans cannot write quotas. Atomic replacement preserves previous quota bytes on a write/replace failure. Public fixtures use only abstract tags and reserved-domain contacts; real witnesses remain private.
 
 [Live quota inspector](https://midya8.github.io/promptguard/quota.html) · [Source](https://github.com/midya8/promptguard) · [Contract, limits and credited sources](https://github.com/midya8/promptguard/blob/main/QUOTAS.md)
 
-### Reproduce finite occurrence quotas
+### Reproduce occurrence quotas
 
 ```sh
 python -m promptguard.quota_audit --input examples/quota.json
@@ -22,14 +22,13 @@ Actual quota creation is explicit with --write-quota-baseline. It captures eligi
 
 ## Retained scanner and original policy audit
 
-Earlier counts below describe the unchanged prior build. The 100-test suite retains all 87 tests.
-
+Earlier counts below describe the unchanged prior build. The current suite includes all 87 tests.
 
 Local-first prompt linting with a complete filter, baseline and CI-gate witness.
 
 [Interactive inspector](https://midya8.github.io/promptguard/) | [Source and reproduction](https://github.com/midya8/promptguard)
 
-## Problem
+## What the audit records
 
 A passing security gate can hide findings before the gate even runs. Severity filters remove rows; baselines suppress known identities; incomplete filesystem scans can look like empty results. Reviewers need to see why each finding disappeared, not only a final count.
 
