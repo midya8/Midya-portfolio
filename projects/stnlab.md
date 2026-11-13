@@ -1,13 +1,34 @@
-# STNLab: every implied deadline needs evidence
+# STNLab: temporal constraints, bounds and repairs
 
+[Live inspector](https://midya8.github.io/stnlab/) · [Source](https://github.com/midya8/stnlab) · [Method and sources](https://github.com/midya8/stnlab/blob/main/METHOD.md)
 
-## STNLab - temporal bounds with attainable schedules
+STNLab checks small temporal networks: whether their constraints fit together, which time differences they imply, what one extra constraint changes, and which edge removals repair a conflict. Each answer comes with a path, a complete schedule or a negative cycle that can be checked independently.
 
-[Live inspector](https://midya8.github.io/stnlab/) · [Source](https://github.com/midya8/stnlab) · [Method and source ledger](https://github.com/midya8/stnlab/blob/main/METHOD.md) · [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/stnlab.md)
+## Four inspectors
 
-For tiny hand-written AI plans, inspect every implied time difference: a tight path plus a complete schedule attaining the bound, or an explicit ray proving it unbounded. Negative cycles show exactly why no schedule exists, even away from the anchor. Removing one edge returns an alternate implication path or a complete separating schedule. Eleven editable controls include duplicate edges, zero cycles, free components and a chain with bound 100.
+| Question | Inspector | Evidence |
+| --- | --- | --- |
+| Is the plan consistent, and how tight is each bound? | [Temporal bounds](https://midya8.github.io/stnlab/) | Attaining schedules, unbounded rays, negative cycles and single-edge redundancy checks. |
+| What would one new constraint change? | [Insertion sensitivity](https://midya8.github.io/stnlab/insertions.html) | Exact consistency threshold, boundary schedule, changed bounds and candidate-first contradiction. |
+| Can hidden time points be removed without losing their consequences? | [Existential projection](https://midya8.github.io/stnlab/projection.html) | Retained bounds, full extensions, rejection paths and counterexamples to naive deletion. |
+| What are all the minimal conflicts and repairs? | [Conflicts and repairs](https://midya8.github.io/stnlab/conflicts.html) | Complete conflict/correction sets, deletion schedules, restoration cycles and hitting-set duality. |
 
-Native Floyd-Warshall/Bellman-Ford generation, independent permutation/edge-product verification and recursive browser search agree. Nine native tests cover exhaustive tiny graphs, seeded networks and strict CLI rejection; real Chrome checks all proof panels at three widths. Six points and twelve constraints, real-valued times, no resource capacity, uncertain durations or execution guarantee. Classic temporal-network theory, not a new optimization algorithm.
+An edge `[u,v,w]` means `t[v] - t[u] <= w`. The anchor `t0=0` removes only a common translation; negative real times are allowed. The public base input accepts up to six points and twelve edges. A proposed insertion can be a thirteenth edge, and derived projection witnesses can exceed the public input windows.
+
+## What is checked
+
+Native Floyd-Warshall and Bellman-Ford generation is checked by independent permutation/edge-product enumeration. The browser uses separate recursive path search. The current suite has 31 Python tests and 12 Node/Chrome tests. Isolated installed-wheel checks cover 11 base, 10 insertion, 12 projection and 10 conflict controls through both module and console entry points, outside the checkout. Chrome checks proof panels at 320, 390 and 1280 pixels.
+
+These are original synthetic controls, not real plans or a speed benchmark. Runtime code, controls, tests and attribution are unchanged by this prose review.
+
+## Important distinctions
+
+- Finite bounds are individually attainable. Picking several endpoints independently need not produce one valid schedule. Duplicate edges can each be redundant when removed alone without being jointly removable.
+- Insertion compares one candidate at a time against an immutable base. The distance-matrix update is quadratic; the exhaustive certificate generation and checker are not. The 41-weight sweep contains alternatives, not accumulated updates. [Insertion contract](https://github.com/midya8/stnlab/blob/main/INSERTIONS.md).
+- Projection restricts the closed network, not the original edge list. Retained values must fit jointly and extend to a full original schedule. A hidden inconsistent component still makes the projection empty. [Projection contract](https://github.com/midya8/stnlab/blob/main/PROJECTION.md).
+- Minimal means no proper subset has the same conflict or repair property. It does not mean smallest cardinality. All original edges are removable; there are no hard constraints or weighted repair priorities. [Conflict contract](https://github.com/midya8/stnlab/blob/main/CONFLICTS.md).
+
+This is bounded classical temporal reasoning. It does not handle resources, uncertain durations, task execution or real calendar changes, and it makes no new-algorithm or scalable-solver claim. The browser needs no API or paid model.
 
 ## Reproduce
 
@@ -20,33 +41,4 @@ bash tools/check_wheel.sh
 python -m http.server 8000 --directory docs
 ```
 
-An edge `[u,v,w]` means `t[v] - t[u] <= w`. The anchor `t0=0` only removes a common translation; negative times are allowed. Inconsistent networks produce no finite-bound or redundancy report. Finite bounds are individually attainable, not necessarily jointly selectable endpoints. Parallel duplicate edges can each be redundant when removed separately without being jointly removable. The browser runs its own solver without an API. The native strict verifier replays complete reports with a separate enumeration algorithm and rejects altered witnesses, unknown keys, duplicate JSON keys and non-finite values.
-
-See the linked method for the seven-source attribution ledger and exact report contract. Synthetic controls are original. No real calendars, private records, paid models, task execution or scalable STNU/dispatchability claim.
-
-
-## STNLab insertion sensitivity
-
-One proposed temporal constraint, an exact consistency threshold and every changed implied bound. [Source](https://github.com/midya8/stnlab) · [Insertion inspector](https://midya8.github.io/stnlab/insertions.html) · [Contract and source ledger](https://github.com/midya8/stnlab/blob/main/INSERTIONS.md).
-
-Native old-matrix one-edge closure is checked against independent full recomputation. Inspect the old return path, a complete schedule at the feasibility boundary, a candidate-first negative cycle, or a still-unbounded anchored ray. All finite post-insertion bounds include attaining schedules; 41 integer weights are separate alternatives, not accumulated changes.
-
-Ten new synthetic controls include exact-boundary feasibility, a missing return path, a pre-inconsistent base, duplicate/self-loop cases, a six-point threshold outside the input window and a 12-edge base plus candidate. The original inspector remains intact. Seventeen Python tests, six Node/real-Chrome tests and installed-wheel checks cover both families. This is bounded classical temporal reasoning, not event execution, uncertainty handling, a new algorithm or a scalable verifier.
-
-
-### STNLab existential projection
-
-[Interactive projection lab](https://midya8.github.io/stnlab/projection.html) | [Source](https://github.com/midya8/stnlab) | [Exact contract](https://github.com/midya8/stnlab/blob/main/PROJECTION.md)
-
-Hide time points without losing the bounds their paths imply. STNLab restricts the closed network to retained original IDs, lifts jointly feasible retained assignments into full original schedules, and exposes retained assignments that naive edge deletion wrongly permits. Each finite projected bound has an original path and a full attaining schedule; unbounded pairs have anchored rays. Hidden negative cycles remain impossible.
-
-Independent Fourier-Motzkin elimination, path enumeration and pinned-cycle checks audit the result. Native Python and separate browser recomputation agree across 12 projection controls, with installed CLI reproduction and real Chrome proof-panel tests at 320, 390 and 1280 pixels. Classical STN analysis over real-valued time points, not a new algorithm, calendar executor or uncertainty model.
-
-
-## STNLab complete conflicts and repairs
-
-[Live conflict/repair inspector](https://midya8.github.io/stnlab/conflicts.html) | [Source](https://github.com/midya8/stnlab) | [Exact contract and sources](https://github.com/midya8/stnlab/blob/main/CONFLICTS.md)
-
-Enumerate every inclusion-minimal temporal conflict and every inclusion-minimal correction set. Replay negative cycles, conflict-deletion schedules, repaired schedules and restoration contradictions. An independent native verifier checks complete hitting-set duality; a separate JavaScript engine powers the inspector. Minimal is explicitly distinct from minimum-cardinality.
-
-Validation: 31 native tests on Python 3.10-3.13, 12 Node/Chrome tests, 316 cross-engine reports, exhaustive tiny networks and installed-wheel reproduction for all four STNLab families. Chrome visits every control proof at 320/390/1280. Includes duplicate edges, disconnected conflicts, self-loops, empty repairs and the 12-edge boundary. Classical duality applied to bounded STNs, not a new-theory or scalable-solver claim.
+The linked method and family contracts preserve the original attribution ledgers and report schemas.
