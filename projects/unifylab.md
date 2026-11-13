@@ -1,27 +1,38 @@
-# UnifyLab
+# UnifyLab: equations, conflicts and ground-term generalization
 
-Finite first-order unification with complete equation rewrites, composed substitutions and independently checked certificates.
+[Source](https://github.com/midya8/unifylab) · [Live unifier](https://midya8.github.io/unifylab/) · [Method and sources](https://github.com/midya8/unifylab/blob/main/METHOD.md)
 
+## Finite first-order unification
 
+UnifyLab solves small equation systems over finite constructor trees. Each step retains the pending equations, earlier bindings and the change made by deleting, orienting, decomposing or eliminating an equation. Constructor clashes and occurs-check failures keep their witnesses. A successful result applies one normalized simultaneous substitution to every original equation.
 
-## A binding is not a solution
+Composition matters. If a variable already bound inside another term later gets a value, earlier bindings must change too. Reversing an alias is not automatically a cycle. The native engine eagerly composes replacements; a separate test oracle uses lazy bindings and symmetric dereferencing. A native certificate checker reconstructs local rewrites, resource limits and terminal claims without calling the solver. The separately written JavaScript engine reproduces complete reports. Browser equality/idempotence checks are narrower result checks, not this independent verifier.
 
-[Live finite-term inspector](https://midya8.github.io/unifylab/) | [Source](https://github.com/midya8/unifylab) | [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/METHOD.md)
+Seventeen original controls retain 38 rewrites: eleven successes, four non-unifiable tasks and two actual resource-limit cases. Python/JavaScript agree on 167 complete reports containing 270 rewrites. Native tests also compare the lazy oracle on 600 seeded systems and all 64 ordered pairs from a small term pool. Bounded ground-factorization tests are regression evidence, not a universal proof of most-generality. That interpretation follows the established solution-preserving rewrite and solved-form theory; the deterministic policy chooses a presentation, not a uniquely printed MGU.
 
-An original bounded classical-AI unification lab. Keep every equation rewrite, composed earlier binding, exact constructor clash and zero-based occurs-check cycle path. A normalized simultaneous substitution is applied to every original equation. Alias reversal is not automatically a cycle, and a resource limit never means non-unifiability.
+Input allows six variables, eight equations, 96 term nodes, depth six and arity two. Each composed state and the final applied-original result has a separate 4,096-node budget; at most 256 rewrites are retained. A limit keeps only the completed prefix and claims neither success nor non-unifiability. This expanded-tree implementation is not a compact-DAG or linear-time unifier.
 
-Independent Python and JavaScript engines reproduce 167 complete reports and 270 rewrites. A separate native certificate checker reconstructs local rules without calling the solver; a third lazy-environment oracle tests controls, 600 seeded systems and all 64 term-pool pairs. Seventeen controls retain 38 rewrites, including actual state/result expansion limits. Twelve native tests on Python 3.10-3.13, three Node/Chrome tests and seventeen isolated installed reports through two CLIs in solve/verify modes. Every retained browser step, equation, binding, witness, export and invalid edit is checked, with layouts at 320/390/1280.
+## Equation conflicts and deletion repairs
 
-Established finite-tree unification, not new theory. Six variables/eight equations, 96 input nodes, 4,096-node state/result budgets and 256 rewrites. No rational trees, higher-order/AC unification, resolution prover, linear-time or benchmark-win claim. Most-generality follows the established rewrite/solved-form theory; bounded ground-factorization tests are not a universal proof.
+[Subset inspector](https://midya8.github.io/unifylab/cores.html) · [Subset method and sources](https://github.com/midya8/unifylab/blob/main/SUBSETS.md)
 
+Every indexed equation subset is solved independently. Duplicate equations keep separate identities. A confirmed inclusion-minimal conflict fails while each single deletion succeeds. A confirmed deletion repair lists indices to remove; restoring any removed equation must fail. Minimal does not mean smallest: the default control has conflicts and repairs of different sizes.
 
-## What makes the evidence inspectable
+An unresolved resource limit is never treated as failure or inferred from a neighboring mask. Unknown required neighbors prevent frontier confirmation. Any unresolved mask withholds complete-frontier and minimum-cardinality claims, while separately confirmed conflicts can remain visible. For fully decided tables, tests independently enumerate all proper subsets and minimal hitting sets. Any selected subsystem opens its detailed rewrite trace with local indices; the subset inspector keeps the original indices.
 
-Each record retains full before/after pending systems and binding maps. Delete/orient/decompose/eliminate/occurs/clash rules have deterministic first-equation and left-to-right child order. Failure leaves the terminal state unchanged. A limit preserves a completed prefix and claims no unifier or non-unifiability.
+Eight controls cover 371 subsets, including all 256 masks at the equation bound, real state/result expansion limits and a known clash beside an unresolved expansion. Independent Python/JavaScript implementations agree on 108 full audits and 1,032 subset summaries. Chrome checks every control/subset/neighbor at 320/390/1280 and five linked rewrite reproductions. At most 256 bounded solves are run. The aggregate summary is not an independently verified rewrite certificate or a scalable MUS/MCS algorithm.
 
-The native checker independently validates the record, including resource-bound termination and final idempotence/equality, without invoking solve. It is an executable checker, not a cryptographic signature or proof-assistant extraction. The browser's narrower result checks are explicitly distinguished from it. CLI output is atomic after valid computation; native parsing rejects duplicate keys while browser JSON.parse uses the last duplicate key, disclosed in the page.
+## Ground-term generalization
 
-## Reproduce
+[Generalization inspector](https://midya8.github.io/unifylab/generalize.html) · [Generalization method and sources](https://github.com/midya8/unifylab/blob/main/GENERALIZATION.md)
+
+Unification finds a common instance. Anti-unification finds a common generalizer. This interface accepts two ground finite trees only, not variable-bearing equation inputs. It keeps common constructors and assigns the same variable to each repeated ordered disagreement pair. Reversed pairs remain distinct. Fresh/reuse records, both reconstruction maps and every postorder node are inspectable.
+
+Reconstructing both inputs does not establish least-generality. A fresh variable at every differing position can reconstruct them while losing a shared equality. The native checker rejects that coherent but overly general trace. It uses an explicit obligation stack, structural pair-list search and a private instantiator rather than calling the generator or its memoized traversal. It accepts the canonical naming/record policy, not every renamed LGG certificate.
+
+Python and JavaScript agree on 209 complete reports with 323 node records. Nine original controls expose 43 records. Native tests include 600 seeded ground pairs, all 64 small-pool pairs, field forgeries and bounded factorization against independently matched candidate patterns. These finite checks do not replace the first-order least-generality theorem.
+
+## Run and check
 
 ```sh
 python -m unittest discover -s tests -v
@@ -29,26 +40,15 @@ npm test
 bash tools/wheel_smoke.sh
 python -m unifylab examples/equations.json -o certificate.json
 python -m unifylab --verify certificate.json
+python -m unifylab --subsets examples/equations.json
+python -m unifylab --generalize terms.json -o generalization.json
+python -m unifylab --verify-generalization generalization.json
 ```
 
-No runtime dependencies, paid API, model, private dataset or account. Six inspected source groups span Martelli/Montanari, Oxford rewrite theory, Norvig's binding-list correction, SWI-Prolog finite/rational-tree semantics, Dresden substitution/complexity notes and an independent explanatory article. METHOD.md identifies inspected coverage and excluded algorithms/examples.
+The current suite has 27 native tests and fifteen Node tests, including actual Chrome and six navigation-readiness checks. Browser tests inspect every retained rewrite/generalization node, subset boundary, export and invalid-state clearing, with layouts at 320/390/1280. Isolated wheel checks reproduce seventeen solves, eight subset audits and nine generalizations through module and console entry paths in all five modes outside the checkout, with six installed module origins.
 
+Native parsing rejects duplicate keys, nonfinite constants and invalid UTF-8; output replacement is atomic after valid computation. Browser JSON.parse keeps the last duplicate key, disclosed in the pages. No runtime dependency, account, model, paid API or private dataset is required.
 
-## UnifyLab: minimal equation conflicts and deletion repairs
+## Boundaries and prior work
 
-[Live subset inspector](https://midya8.github.io/unifylab/cores.html) · [Source](https://github.com/midya8/unifylab) · [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/SUBSETS.md)
-
-Test every indexed subset, keep duplicate equation identities, and distinguish an inclusion-minimal conflict from a smallest conflict. Confirmed deletion repairs list indices to REMOVE and failing single restorations. The default control has independent duplicate/cycle conflicts and repairs of different sizes. A resource limit stays unresolved: no inferred status, false inconsistency, complete-frontier or minimum-size claim. Any selected subsystem opens its detailed rewrite trace.
-
-Eight synthetic controls cover 371 subsets, including all 256 masks at the eight-equation bound, real state/result limits and a known clash beside an unknown expansion. Independent Python/JavaScript engines match 108 full audits and 1,032 subset summaries. Nineteen native tests pass on Python 3.10-3.13; six Node/Chrome tests. Native tests use a third lazy-binding oracle, all proper subsets and independent minimal hitting-set enumeration. Actual Chrome checks every control/subset/neighbor at 320/390/1280, five linked rewrite reproductions, export and invalid-state clearing. Installed wheels reproduce seventeen base reports and eight subset audits through both entry points outside the checkout.
-
-Established finite-tree and constraint-diagnosis concepts, not a new scalable MUS/MCS algorithm. At most 256 independent bounded solves; the aggregate is not an independently verified rewrite certificate. Eight inspected sources distinguish minimal from minimum, conflict from repair, and unifiability semantics from resource limits. No model, API, paid service or private dataset.
-
-
-## UnifyLab: repeated differences, shared variables
-
-[Ground generalization inspector](https://midya8.github.io/unifylab/generalize.html) · [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/GENERALIZATION.md) · [Source](https://github.com/midya8/unifylab)
-
-Finite ground-term anti-unification: keep common constructors and give the same ordered disagreement pair the same variable. Inspect fresh/reuse records, two substitution maps and exact reconstructions. The independent native checker rejects coherent overgeneralization even when both inputs reconstruct. Python and independently written JavaScript agree on 209 reports; nine synthetic controls expose 43 node records. Original solver and subset inspectors retained.
-
-27 native tests, nine Node/Chrome tests, installed wheel checks through both CLI entry points and responsive 320/390/1280 inspection. Established syntactic anti-unification, not a new algorithm, semantic clone detector or code repair model. Ground finite trees only; the checker validates the canonical trace, not arbitrary renamed certificates or a formal proof.
+Finite-tree syntactic unification, minimal conflict/correction sets and Plotkin/Reynolds anti-unification are established work. Martelli/Montanari's rewrite theory, Norvig's correction to faulty binding-list implementations and the cited constraint-diagnosis/generalization literature inform the scope. UnifyLab is an original bounded implementation, not a new theorem, optimized multiequation solver, resolution prover, semantic clone detector or code-repair model. No rational trees, higher-order/AC unification, semantic similarity, benchmark win, scalability or proof-assistant guarantee is claimed.
