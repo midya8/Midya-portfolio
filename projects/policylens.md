@@ -1,10 +1,12 @@
-# PolicyLens: offline policy values with visible support and clipping limits
+# PolicyLens: offline policy evaluation
 
 [Public repository](https://github.com/midya8/policylens)
 
 Dependency-free Python CLI/API for standard IPS, SNIPS, DM and DR estimators.
-28 tests and Python 3.10-3.13 CI; offline demo asserts exact arithmetic and
-a failing clipped truth-equality gate. No new statistical method.
+The original 28 tests cover the core estimators; the current suite has 36 Python
+and four Node/actual-Chrome tests. Python 3.10-3.13 CI and the offline demo
+check exact arithmetic and a failing clipped truth-equality gate. No new
+statistical method.
 
 ## v0.2: live row-contribution ledger
 
@@ -28,12 +30,14 @@ confidence certificate or proof that clipping improves an estimate.
 36 Python and four Node/actual-Chrome tests include 160 independent Fraction
 cases, 80 independent integer-grid browser-oracle cases, 95 native/browser edit
 witnesses and 589 audited rows plus 589 deletion reports. Installed-wheel checks
-import seven modules and run all five commands outside checkout. The original
+import seven modules and run all five commands outside checkout. Browser
+regressions also check that estimate text fits its cards across all five cases
+at 320, 390, 768 and 1280 pixels. The original
 balanced, clipped, 2000-row oracle and cross-fitted reports, source data and
 estimator implementations are unchanged. Standard estimators, no new method,
 causal-identification, confidence-bound or deployment-safety claim.
 
-## Input and authority boundary
+## Inputs and scope
 
 This is local point-estimate arithmetic, not an online policy engine. No
 network requests, actions or automated deployment. Optional crossfit fits local
@@ -69,8 +73,8 @@ probability vectors. No automatic normalization or final clipping. SNIPS
 uses weights divided by their maximum, preserving its ratio while avoiding
 large raw sums. ESS uses those same scaled weights, avoiding raw squares.
 Means divide contributions before fsum; unrepresentable weights/results fail.
-If every observed target weight is zero, SNIPS=null and ESS=0. No made-up
-zero-denominator result or Infinity JSON.
+If every observed target weight is zero, SNIPS=null and ESS=0. An undefined
+denominator stays explicit; results outside finite range are rejected.
 
 ## Demonstration design
 
