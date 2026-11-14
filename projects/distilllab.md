@@ -1,6 +1,17 @@
-# DistillLab: knowledge distillation from scratch, measured against matched control arms
+# DistillLab: compare student training, then inspect the gradients
 
-A small model trained on a teacher's soft outputs often beats the same model trained on hard labels - the classic explanation is "dark knowledge": the teacher's per-sample class-similarity structure. DistillLab implements the whole pipeline in dependency-free Python and, more importantly, measures the gain against matched control arms instead of repeating the explanation: a pseudo-label arm trained on the teacher's argmax, a uniform-smoothing arm, and a permuted-target control.
+DistillLab trains a teacher and smaller students in dependency-free Python, then opens up their gradients in two browser inspectors. On its synthetic fixture, the distilled student scores 0.7469 test accuracy, versus 0.6813 for direct labels and 0.7094 for teacher argmax labels. These are matched-arm results, not proof of what caused the difference.
+
+## Where to start
+
+| Question | Open or run | What to keep in mind |
+| --- | --- | --- |
+| How do the original training arms compare? | `evaluate`, `gates` | One synthetic fixture; the comparisons do not identify a causal mechanism |
+| What happens in one student update? | [Step inspector](https://midya8.github.io/distilllab/) | Every parameter moves simultaneously from the same selected model |
+| Can the same teacher confidence give different gradients? | [Target/rest inspector](https://midya8.github.io/distilllab/tail.html) | Four fixed-mass tail variants, not DKD training or a new trained arm |
+| Can I replay a report outside the checkout? | `step-audit`, `distilllab-tail` | Native report checks and isolated-wheel reproduction |
+
+The current suite has 36 Python tests and seven substantive Node/real-Chrome tests (eight runner entries including a helper). Counts below label the earlier retained release stages.
 
 ## The fixture
 
@@ -56,11 +67,11 @@ The gates are deterministic regression checks on the primary arms (teacher stren
 
 ## Scope
 
-Small synthetic classification, not language-model logit distillation; capacity gaps in production are larger and the hard-label term is often dropped. The gain here is a few accuracy points - a descriptive comparison under controlled synthetic conditions, not a production-scale result. 24 Python tests plus four Node/actual-Chrome tests, fully offline, CI across Python 3.10-3.13.
+Small synthetic classification, not language-model logit distillation; capacity gaps in production are larger and the hard-label term is often dropped. The gain here is a few accuracy points - a descriptive comparison under controlled synthetic conditions, not a production-scale result. The earlier step-inspector release had 24 Python tests and four Node/actual-Chrome tests, fully offline, with CI across Python 3.10-3.13.
 
 - Repo: [midya8/distilllab](https://github.com/midya8/distilllab)
 
-## v0.2: one gradient, 254 moving parts
+## Follow one student update
 
 [Live student-update inspector](https://midya8.github.io/distilllab/) · [Equations, schema and numerical limits](https://github.com/midya8/distilllab/blob/main/STEP.md)
 
@@ -73,7 +84,7 @@ A supplied two-hidden-unit control makes the finite-step limitation visible: sel
 The new inspector uses stable, unclipped logit-space objectives. Original helper functions clamp probabilities at 1e-12 while their gradient formula is the ordinary unclipped derivative; the distinction below that floor is explicit, and original source/training/results are retained. T changes target entropy and objective scale, so loss values across different T do not rank generalization. The wording above narrows older mechanism claims without changing any recorded result: soft-vs-argmax and a single smoothing setting do not isolate causal components. Standard distillation and backpropagation are attributed to six sources in STEP.md, not claimed as a new method.
 
 
-## v0.3: keep the confidence, change the tail
+## Keep the confidence, change the tail
 
 [Target/rest workbench](https://midya8.github.io/distilllab/tail.html) · [Equations and replay contract](https://github.com/midya8/distilllab/blob/main/TAIL.md)
 
