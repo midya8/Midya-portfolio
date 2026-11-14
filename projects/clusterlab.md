@@ -1,10 +1,18 @@
-# ClusterLab: shapes first, labels later
+# ClusterLab: inspect k-means fits and matching certificates
 
 [Repository](https://github.com/midya8/clusterlab) · [Live clustering inspector](https://midya8.github.io/clusterlab/) · [Method and sources](https://github.com/midya8/clusterlab/blob/main/METHOD.md)
 
-## Why build it
+ClusterLab fits k-means to handwritten-digit vectors with manual NumPy code. Inspect all forty restarts, edit an input and compare the resulting distances, then check exact centroid-matching certificates in a separate Python implementation. Digit labels are used only after fitting for the external audit, never to fit a model or choose a restart.
 
-A k-means demo can mistake arbitrary group IDs for digit recognition and monotone descent for a globally optimal fit. ClusterLab makes both errors hard to miss: forty optimization histories remain visible, learned centroids show mixed true-digit membership, and the browser runs actual editable inference rather than replaying saved predictions.
+## Where to start
+
+| Question | Open | What it shows |
+| --- | --- | --- |
+| How does an edited input change the nearest center? | [Clustering inspector](https://midya8.github.io/clusterlab/) | All ten distances, learned means, held-out composition and objective histories |
+| How much do two saved starts differ? | [Restart inspector](https://midya8.github.io/clusterlab/stability.html) | Actual inference for all forty models, fitting-partition ARI and exact centroid matching |
+| Is the center matching unique? | Matching ambiguity in the restart inspector | Optimum counts, cheapest different permutations, all selected-edge exclusions and a sufficient cost-entry bound |
+
+Cluster IDs are arbitrary groups, not digit predictions. A descending fitting objective is not a global-optimality proof. The browser recomputes inference from edited inputs rather than replaying saved predictions.
 
 ## Implementation
 
@@ -12,17 +20,17 @@ Manual NumPy Lloyd assignment/mean updates, D² k-means++ initialization, unifor
 
 The browser projects edited 8x8 inputs and computes distances to all ten learned centers locally, with keyboard controls, a centroid atlas, held-out composition, all restart curves and JSON copy/download. The first twenty original test rows are included by index, not success. Cluster IDs are groups, not digit labels; distances are not probabilities. No API, uploads, analytics or remote inference.
 
-## v0.2: every restart, not only the winner
+## Compare every restart
 
-The v0.2 restart inspector exposes all forty saved models, 180 distinct within-arm restart comparisons and forty self-pairs. A manual integer Hungarian solver supplies optimal center permutations and primal/dual witnesses, independently checked against subset-DP optima for all 220 matrices. Browser BigInt checks those exact saved rounded-cost certificates; 800 native/scalar-JavaScript inference pairs and all 400 directed pair controls are tested. Same-data initialization sensitivity is not sampling stability or useful-class discovery; matching centers need not align the actual assignment for an input. Original fits and holdout scores remain unchanged. [Open the live restart inspector](https://midya8.github.io/clusterlab/stability.html). [Restart matching method](https://github.com/midya8/clusterlab/blob/main/STABILITY.md).
+The restart inspector exposes all forty saved models, 180 distinct within-arm restart comparisons and forty self-pairs. A manual integer Hungarian solver supplies optimal center permutations and primal/dual witnesses, independently checked against subset-DP optima for all 220 matrices. Browser BigInt checks those exact saved rounded-cost certificates; 800 native/scalar-JavaScript inference pairs and all 400 directed pair controls are tested. Same-data initialization sensitivity is not sampling stability or useful-class discovery; matching centers need not align the actual assignment for an input. Original fits and holdout scores remain unchanged. [Open the live restart inspector](https://midya8.github.io/clusterlab/stability.html). [Restart matching method](https://github.com/midya8/clusterlab/blob/main/STABILITY.md).
 
 The independent assignment audit solves 220 rounded-cost matching problems with unbounded integers. All optima agree with a separate column-subset dynamic program; tiny signed/huge-integer instances are also checked exhaustively. The browser transposes costs and inverts permutations for reversed views without changing the original witness. An accessible matrix, aligned centroid pairs, actual inference on arbitrary pixel edits and exact JSON copy/download make the differences inspectable. In raw k-means++, seeds 106 and 107 disagree most on fitting partitions (ARI .556972), while seed 107 remains the original lowest-inertia choice. Geometric matching can visibly disagree with pointwise assignments.
 
 This adds no new fits, test-score tuning, sampling-stability estimate or correct-k claim. Equal-weight center matching ignores populations. Exactness covers saved binary64 cost matrices, not ideal real-number distances or the global k-means optimum. The two browser tests cover the original 80 pairs/640 pixels plus the new all-40-model view, 800 numerical reference pairs, 400 directed controls and 1,280 two-atlas pixels.
 
-## v0.3: uniqueness needs its own proof
+## Check whether the matching is unique
 
-The v0.3 ambiguity audit adds 2,200 exact selected-edge exclusion witnesses, best-distinct permutations and optimal-matching counts. Independent full-cost dynamic programs check all 220 gaps and counts; browser BigInt verifies all 4,000 oriented exclusions. The matching is unique in every saved real matrix, while tied and unused-tight-edge controls expose why an optimum alone proves neither uniqueness nor a large margin. A strict sufficient cost-entry perturbation bound is not a sharp radius, pixel robustness or statistical uncertainty. All original fits, scores and earlier matching witnesses remain unchanged. [Uniqueness and gap proof](https://github.com/midya8/clusterlab/blob/main/AMBIGUITY.md).
+The ambiguity audit includes 2,200 exact selected-edge exclusion witnesses, best-distinct permutations and optimal-matching counts. Independent full-cost dynamic programs check all 220 gaps and counts; browser BigInt verifies all 4,000 oriented exclusions. The matching is unique in every saved real matrix, while tied and unused-tight-edge controls expose why an optimum alone proves neither uniqueness nor a large margin. A strict sufficient cost-entry perturbation bound is not a sharp radius, pixel robustness or statistical uncertainty. All original fits, scores and earlier matching witnesses remain unchanged. [Uniqueness and gap proof](https://github.com/midya8/clusterlab/blob/main/AMBIGUITY.md).
 
 The live inspector now shows exact optimal-permutation counts, the cheapest distinct permutation, every selected-edge exclusion and a smallest-gap control. All ten exclusion certificates together cover every possible replacement, without adding their overlapping solution counts. The strict entrywise-cost radius is conservative and geometry-specific, not a bound on digit pixels.
 
@@ -37,13 +45,13 @@ The live inspector now shows exact optimal-permutation counts, the cheapest dist
 
 Careful seeding has slightly lower raw fitting inertia (9682.7571 vs 9683.1241), but uniform has slightly higher test ARI. No general seeding win is claimed. PCA and whitening change the distance metric, so cross-geometry inertia/silhouette differences are descriptive and cannot be ranked as one unchanged objective. NMI is not adjusted for chance. No confidence interval, causal isolation or classifier accuracy is inferred.
 
-## Evidence, not a screenshot alone
+## Reproduce the checks
 
-48 Python tests and thirteen Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
+The combined project has 48 Python tests and thirteen Node/real-Chrome tests. Independent scalar objective and D² sampling references, pair/null-permutation ARI, joint-entropy NMI, all-pair silhouette, PCA eigenspectrum and whitening checks. A full 40-fit reproduction forbids test-loader access and gives training code unusable labels. Frozen model/protocol hashes are verified before evaluation opens the test file; every held-out distance, silhouette and composition is reproduced.
 
 The Python and independent scalar JavaScript implementations agree on all 80 public model/example pairs and all ten distances. Real Chrome checks all 640 displayed centroid pixels, custom edits, keyboard, copy denial/success, download and expanded 320/390/1280 layouts. The audit SVG checks all 640 raw-mean values, sixteen score cells and the full report metadata. The installed wheel imports all ten modules and exercises all six CLIs outside the checkout, including a full refit and evaluation. CI covers Python 3.10-3.13, packaging and the browser.
 
-## A deliberate failure case
+## A fit that stops above the global optimum
 
 For `[0,1,4,5,9,10]` with k=2, initialization `[0,1]` converges to inertia 26.5. Exhaustive exact-rational enumeration of all 31 nonempty binary partitions yields global optimum 17.5. Stable descent is not a global certificate. No such global certificate is claimed for the real-data fits.
 
