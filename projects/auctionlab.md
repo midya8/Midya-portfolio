@@ -1,10 +1,19 @@
-# AuctionLab: truthful alone, not protected together
+# AuctionLab
 
-**Individual honesty and coalition stability answer different questions.** AuctionLab is an exact finite multiagent allocation workbench: inspect every feasible ownership vector, efficient tie, VCG externality price, report-independent bundle menu and seller-coalition deficit. Values are supplied, not learned. No actual auctions or payments.
+AuctionLab enumerates combinatorial allocations, Vickrey-Clarke-Groves (VCG) prices, report-independent bundle menus and seller-coalition core deficits. Synthetic private values, no actual auctions or money.
 
-[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab) · [Reviewed change](https://github.com/midya8/auctionlab/pull/1)
+[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab)
 
-## A coalition can be short even when no individual report helps
+## Questions the report separates
+
+- Which allocations maximize reported welfare, including every tie?
+- What externality does each winner pay, and what utility does truthful reporting attain?
+- Can a seller-inclusive coalition generate more value than its current combined payoff?
+- What happens under each explicitly supplied unilateral report?
+
+A coalition deficit is a transferable-utility witness, not a collusion plan. Checking selected reports is not a proof over every possible valuation.
+
+## Bundle-versus-singletons control
 
 The developed default has two items and three complete value rows, indexed by empty, A, B, AB:
 
@@ -24,17 +33,17 @@ Changing only B1's row to `[0,5,5,10]` leaves welfare at 12, raises revenue to 1
 
 For every bidder and every bundle, reserve that bundle and optimize everyone else on the remaining goods. Subtract that remaining-goods optimum from the optimum without the bidder. This defines a bundle-price menu using only the other reports.
 
-The explorer retains every remaining-goods optimum witness, each true bundle value, price, utility and maximizing bundle. At the default, B3 can get bundle B for price 4 and utility 2; bundle AB costs 10 and yields utility-4. Every efficient truthful allocation chooses a best menu bundle.
+The explorer retains every remaining-goods optimum witness, each true bundle value, price, utility and maximizing bundle. At the default, B3 can get bundle B for price 4 and utility 2; bundle AB costs 10 and yields utility -4. Every efficient truthful allocation chooses a best menu bundle.
 
 The complete finite menu makes the externality visible. The general truthfulness result remains classical VCG theory, not a theorem proved by trying a few reports.
 
-## Every tie stays in the evidence
+## Efficient ties and supplied reports
 
 Generation enumerates every item owner, including seller-retained items, in lexicographic order. Every welfare-maximizing allocation is retained. On the tied single-good control, both winning allocations survive: payment vectors are `[7,0]` and `[0,7]`, while utilities remain `[0,0]` and revenue 7.
 
-For supplied alternative reports, change one bidder's reported values while keeping its true values and all other reports fixed. Retain every reported-optimal tie and evaluate true utility after payment. The zero-report one-bidder control includes every tie, with true utility gains spanning-9 to 0. It is not prefiltered to show only favorable outcomes.
+For supplied alternative reports, change one bidder's reported values while keeping its true values and all other reports fixed. Retain every reported-optimal tie and evaluate true utility after payment. The zero-report one-bidder control includes every tie, with true utility gains spanning -9 to 0. It is not prefiltered to show only favorable outcomes.
 
-## An independently replayable certificate
+## Certificate replay
 
 Python generation uses ownership vectors; the separate certificate verifier enumerates disjoint bundle products, derives ownership IDs and independently reconstructs the entire report. It never imports the generator. Strict recursive comparison rejects missing, duplicated, reordered, extra and mistyped evidence.
 
@@ -60,9 +69,9 @@ The HiGHS reference is constructed from input bidder/bundle variables and bidder
 
 The 16 controls are developed teaching fixtures, not held out. The 52-profile corpus includes 36 seeded profiles across 1..4 items and 1..3 bidders. The 196-profile report-type exhaustion covers an explicitly bounded universe, not all possible valuations. No performance, learned-generalization or real-market claim follows from these counts.
 
-## Publication evidence
+## Earlier release checks
 
-Source PR1 merged after all six latest feature/PR jobs passed. Merged main `16ab4f8efa912f118b87323027170d8167ee9a39` retains the initial commit and feature history. All 47 public files match the checked local source. [Merged-main checks](https://github.com/midya8/auctionlab/actions/runs/42897526338) and [Pages deployment](https://github.com/midya8/auctionlab/actions/runs/42897526146) passed. Every one of the five deployed assets matches merged source byte for byte. The full real-Chrome workflow passes against the deployed site, including native download replay; all 30 unmasked deployed captures exactly match the inspected local pixels. Desktop live hero and mobile allocation pixels were also inspected directly. These checks identify this implementation, not the truth of supplied values or suitability for a real market.
+The earlier source PR1 merged after all six latest feature/PR jobs passed. Merged main `16ab4f8efa912f118b87323027170d8167ee9a39` retains the initial commit and feature history. All 47 public files matched the checked local source. [Merged-main checks](https://github.com/midya8/auctionlab/actions/runs/42897526338) and [Pages deployment](https://github.com/midya8/auctionlab/actions/runs/42897526146) passed. At that release, every one of the five deployed assets matched merged source byte for byte. The full real-Chrome workflow passed against the deployed site, including native download replay; all 30 unmasked deployed captures exactly match the inspected local pixels. Desktop live hero and mobile allocation pixels were also inspected directly. These are commit-specific earlier release checks, not a claim that an unchecked later deployment passed. They do not establish the truth of supplied values or suitability for a real market.
 
 ## Scope and prior work
 
