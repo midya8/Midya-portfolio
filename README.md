@@ -14,7 +14,7 @@ The projects below share an approach, written up in [approach.md](approach.md): 
 
 ## Projects
 
-Most of these are small, self-contained projects with their own README, tests, and CI. Everything runs offline with no API keys or model downloads. Longer writeups live in the [projects](projects) folder and release history in [CONTINUED.md](CONTINUED.md).
+Most of these are small, self-contained projects with their own README, tests, and CI. Everything runs offline with no API keys or model downloads. Longer writeups live in the [projects](projects) folder and release history in [CONTINUED.md](projects/CONTINUED.md).
 
 ### Trained from scratch
 
@@ -66,6 +66,7 @@ Most of these are small, self-contained projects with their own README, tests, a
 - [treelab](https://github.com/midya8/treelab): From-scratch CART regression and weakest-link pruning on licensed UCI data: exact-copy-group splits, validation-only selection, full pruning paths and stronger same-fit controls. ([case study](projects/treelab.md))
 - [varilab](https://github.com/midya8/varilab): Mean-field variational inference from scratch: exact finite Ising references, sequential coordinate histories, independent ELBO/reverse-KL audits and a higher-objective/worse-marginal counterexample. Dependency-free Python. ([case study](projects/varilab.md))
 - [vectorlite](https://github.com/midya8/vectorlite): Exact and approximate (LSH) kNN vector search from scratch, with recall@k measured against the exact baseline. Dependency-free Python. ([case study](projects/vectorlite.md))
+- [visionlab](https://github.com/midya8/ai-lab/tree/main/visionlab): Pure-NumPy CNN with hand-written backprop: 97.3% on synthetic shapes, attribution maps ranked by deletion faithfulness, and interval-bound certificates proving 56.1% safe at eps 0.03 where the FGSM-trained model certifies 0% despite keeping 86% under a 20-step PGD attack — an attack is not a certificate. ([case study](projects/visionlab.md))
 
 ### Exact and symbolic
 
@@ -107,7 +108,7 @@ Most of these are small, self-contained projects with their own README, tests, a
 - [risklab](https://github.com/midya8/risklab): Exact scenario-tree static and nested CVaR, split-atom tail certificates, full policy replay and a BigInt browser inspector. ([case study](projects/risklab.md))
 - [robustlab](https://github.com/midya8/robustlab): Binary linear adversarial robustness from scratch: exact L1/L2/L-infinity norm-ball margins, attainable attacks, audited robust logistic subgradients and a visible clean/robust trade-off. Dependency-free Python. ([case study](projects/robustlab.md))
 - [scorelab](https://github.com/midya8/scorelab): Exact finite-policy gradient distributions, baseline variance counterexamples, covariance audits and independent derivative references. Dependency-free Python. ([case study](projects/scorelab.md))
-- [shieldlab](https://github.com/midya8/shieldlab): Finite safety games for agent protocols: every fixed-point obligation, winning controller move, unsafe-attractor rank and strategy proof graph. Independent Python/JavaScript and positional-policy checks. No model or API. ([case study](projects/shieldlab.md))
+- [shieldlab](https://github.com/midya8/shieldlab): Three small protocol-game objectives for agent protocols — stay safe forever, reach a safe goal for the first time, or stay safe while visiting a target infinitely often — each a separate inspector with different stopping rules. Every fixed-point obligation, winning controller move, unsafe-attractor rank and strategy proof graph is visible. Independent Python/JavaScript and positional-policy checks. No model or API. ([case study](projects/shieldlab.md))
 - [spectrallab](https://github.com/midya8/spectrallab): Inspectable normalized spectral clustering: manual graph/Laplacian/k-means code, NumPy eigensolves, full eigenpair/cut witnesses, graph-choice and rounding failures, and an interactive scalar-JavaScript inspector. Original synthetic fixtures, not predictive validation. ([case study](projects/spectrallab.md))
 - [stablelab](https://github.com/midya8/stablelab): Finite normal-program evidence: every candidate, Gelfond-Lifschitz reduct, grounding round, support and unfounded subset. Independent Python checker, browser inspector and optional clingo reference checks. No model or API. ([case study](projects/stablelab.md))
 - [stnlab](https://github.com/midya8/stnlab): Exact temporal constraint reasoning for AI plans: attainable bounds, unbounded rays, negative-cycle witnesses and redundant-edge audits. Python + independently verified browser inspector. ([case study](projects/stnlab.md))
@@ -139,7 +140,7 @@ Most of these are small, self-contained projects with their own README, tests, a
 
 ### Web platforms
 
-- [kurdistansociology-website](https://github.com/midya8/kurdistansociology-website): Kurdistan International Sociological Association ,  trilingual website (Next.js, static export) ([case study](projects/kurdistansociology-website.md))
+- [kurdistansociology-website](https://github.com/midya8/kurdistansociology-website): Kurdistan International Sociological Association, trilingual website (Next.js, static export) ([case study](projects/kurdistansociology-website.md))
 - [midya.ca](https://github.com/midya8/midya.ca): Personal site at midya.ca: a procedurally generated Three.js galaxy built with React, TypeScript and Vite
 
 ## Find me
