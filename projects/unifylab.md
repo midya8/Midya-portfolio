@@ -1,10 +1,10 @@
-# UnifyLab: equations, conflicts and ground-term generalization
+# Unification: equations, conflicts and ground-term generalization
 
-[Source](https://github.com/midya8/unifylab) · [Live unifier](https://midya8.github.io/unifylab/) · [Method and sources](https://github.com/midya8/unifylab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/unification) · [Live unifier](https://midya8.github.io/unification/) · [Method and sources](https://github.com/midya8/unification/blob/main/METHOD.md)
 
 ## Finite first-order unification
 
-UnifyLab solves small equation systems over finite constructor trees. Each step retains the pending equations, earlier bindings and the change made by deleting, orienting, decomposing or eliminating an equation. Constructor clashes and occurs-check failures keep their witnesses. A successful result applies one normalized simultaneous substitution to every original equation.
+Unification solves small equation systems over finite constructor trees. Each step retains the pending equations, earlier bindings and the change made by deleting, orienting, decomposing or eliminating an equation. Constructor clashes and occurs-check failures keep their witnesses. A successful result applies one normalized simultaneous substitution to every original equation.
 
 Composition matters. If a variable already bound inside another term later gets a value, earlier bindings must change too. Reversing an alias is not automatically a cycle. The native engine eagerly composes replacements; a separate test oracle uses lazy bindings and symmetric dereferencing. A native certificate checker reconstructs local rewrites, resource limits and terminal claims without calling the solver. The separately written JavaScript engine reproduces complete reports. Browser equality/idempotence checks are narrower result checks, not this independent verifier.
 
@@ -14,7 +14,7 @@ Input allows six variables, eight equations, 96 term nodes, depth six and arity 
 
 ## Equation conflicts and deletion repairs
 
-[Subset inspector](https://midya8.github.io/unifylab/cores.html) · [Subset method and sources](https://github.com/midya8/unifylab/blob/main/SUBSETS.md)
+[Subset inspector](https://midya8.github.io/unification/cores.html) · [Subset method and sources](https://github.com/midya8/unification/blob/main/SUBSETS.md)
 
 Every indexed equation subset is solved independently. Duplicate equations keep separate identities. A confirmed inclusion-minimal conflict fails while each single deletion succeeds. A confirmed deletion repair lists indices to remove; restoring any removed equation must fail. Minimal does not mean smallest: the default control has conflicts and repairs of different sizes.
 
@@ -24,7 +24,7 @@ Eight controls cover 371 subsets, including all 256 masks at the equation bound,
 
 ## Ground-term generalization
 
-[Generalization inspector](https://midya8.github.io/unifylab/generalize.html) · [Generalization method and sources](https://github.com/midya8/unifylab/blob/main/GENERALIZATION.md)
+[Generalization inspector](https://midya8.github.io/unification/generalize.html) · [Generalization method and sources](https://github.com/midya8/unification/blob/main/GENERALIZATION.md)
 
 Unification finds a common instance. Anti-unification finds a common generalizer. This interface accepts two ground finite trees only, not variable-bearing equation inputs. It keeps common constructors and assigns the same variable to each repeated ordered disagreement pair. Reversed pairs remain distinct. Fresh/reuse records, both reconstruction maps and every postorder node are inspectable.
 
@@ -51,4 +51,4 @@ Native parsing rejects duplicate keys, nonfinite constants and invalid UTF-8; ou
 
 ## Boundaries and prior work
 
-Finite-tree syntactic unification, minimal conflict/correction sets and Plotkin/Reynolds anti-unification are established work. Martelli/Montanari's rewrite theory, Norvig's correction to faulty binding-list implementations and the cited constraint-diagnosis/generalization literature inform the scope. UnifyLab is an original bounded implementation, not a new theorem, optimized multiequation solver, resolution prover, semantic clone detector or code-repair model. No rational trees, higher-order/AC unification, semantic similarity, benchmark win, scalability or proof-assistant guarantee is claimed.
+Finite-tree syntactic unification, minimal conflict/correction sets and Plotkin/Reynolds anti-unification are established work. Martelli/Montanari's rewrite theory, Norvig's correction to faulty binding-list implementations and the cited constraint-diagnosis/generalization literature inform the scope. Unification is an original bounded implementation, not a new theorem, optimized multiequation solver, resolution prover, semantic clone detector or code-repair model. No rational trees, higher-order/AC unification, semantic similarity, benchmark win, scalability or proof-assistant guarantee is claimed.
