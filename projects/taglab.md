@@ -1,10 +1,10 @@
-# TagLab: fit a sequence model, then inspect its paths
+# Linear chain crf: fit a sequence model, then inspect its paths
 
-[Source](https://github.com/midya8/taglab) · [Live inspector](https://midya8.github.io/taglab/) · [Method and sources](https://github.com/midya8/taglab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/linear-chain-crf) · [Live inspector](https://midya8.github.io/linear-chain-crf/) · [Method and sources](https://github.com/midya8/linear-chain-crf/blob/main/METHOD.md)
 
 ## Fit and compare
 
-TagLab trains linear-chain conditional random fields from scratch, with no tensor library, autodiff, model API or external dataset. A 39-parameter sequence score combines fixed observed features, FROM/TO label transitions and separate start/end scores. Manual log-space forward/backward produces the global partition, node and adjacent-label marginals. Expected-minus-observed feature counts give the supervised conditional-likelihood gradient. Viterbi and token marginal decisions remain separate.
+Linear chain crf trains linear-chain conditional random fields from scratch, with no tensor library, autodiff, model API or external dataset. A 39-parameter sequence score combines fixed observed features, FROM/TO label transitions and separate start/end scores. Manual log-space forward/backward produces the global partition, node and adjacent-label marginals. Expected-minus-observed feature counts give the supervised conditional-likelihood gradient. Viterbi and token marginal decisions remain separate.
 
 The trained independent-label control uses exactly the same eight observed features, including left/right context. Its 15 sequence scores are fixed at zero; its remaining 24 weights are fitted, not left as a weak untrained baseline. Both families fit three positive L2 penalties and select by validation conditional NLL per token.
 
@@ -27,7 +27,7 @@ The editable inspector accepts custom symbol sequences and explicitly marked tra
 
 ## Condition on allowed labels
 
-The [label-event inspector](https://midya8.github.io/taglab/evidence.html) takes an allowed label subset at each position. Fixed fitted scores define both the original distribution and the restricted partition. Its ratio gives event probability; a new forward/backward pass gives conditional node and pair probabilities, entropy and best path. All 39 log-event derivatives are conditional expected features minus unrestricted expected features. The independent control fixes 15 sequence coordinates; their displayed derivatives are ambient-chain coordinates, not trainable control weights.
+The [label-event inspector](https://midya8.github.io/linear-chain-crf/evidence.html) takes an allowed label subset at each position. Fixed fitted scores define both the original distribution and the restricted partition. Its ratio gives event probability; a new forward/backward pass gives conditional node and pair probabilities, entropy and best path. All 39 log-event derivatives are conditional expected features minus unrestricted expected features. The independent control fixes 15 sequence coordinates; their displayed derivatives are ambient-chain coordinates, not trainable control weights.
 
 An empty allowed set is exactly impossible: no conditional distribution or gradient is invented. A possible rare event can instead have finite log probability while its floating-point probability underflows to zero. JSON uses null for exact forbidden log entries, with no fake finite sentinel or NaNs. Conditioning can increase entropy; it is not automatically confidence improvement.
 
@@ -45,7 +45,7 @@ Fixed fitted scores and original metrics are unchanged. This is an established s
 
 ## Condition on an occurrence count
 
-The [count inspector](https://midya8.github.io/taglab/counts.html) conditions on exactly r occurrences of a chosen label. Unlike Cartesian position subsets, this is a nonlocal event: locations must agree on the total. An augmented (count, label) forward/suffix recursion exposes the full original count distribution and reconstructs conditional node/pair probabilities, entropy, a complete best path and all 39 event derivatives. Counts refer to positions, not runs or segments.
+The [count inspector](https://midya8.github.io/linear-chain-crf/counts.html) conditions on exactly r occurrences of a chosen label. Unlike Cartesian position subsets, this is a nonlocal event: locations must agree on the total. An augmented (count, label) forward/suffix recursion exposes the full original count distribution and reconstructs conditional node/pair probabilities, entropy, a complete best path and all 39 event derivatives. Counts refer to positions, not runs or segments.
 
 An independent fair two-position control conditioned on exactly one A permits only AB and BA, each with mass 1/2. Node marginals remain halves, but independent draws from them leave the event half the time. The inspector separately computes this independent-node Poisson-binomial count law. Conditioning can create dependence without transition scores, and a correct expected count does not guarantee a valid complete path.
 
