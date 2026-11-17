@@ -1,10 +1,10 @@
-# DFALab: active learning, bounded conformance and finite faults
+# DFA learning: active learning, bounded conformance and finite faults
 
-[Live inspector](https://midya8.github.io/dfalab/) | [Repository](https://github.com/midya8/dfalab) | [Contract and sources](https://github.com/midya8/dfalab/blob/main/CONTRACT.md)
+[Live inspector](https://midya8.github.io/dfa-learning/) | [Repository](https://github.com/midya8/dfa-learning) | [Contract and sources](https://github.com/midya8/dfa-learning/blob/main/CONTRACT.md)
 
 ## Three questions
 
-DFALab learns a minimal deterministic finite automaton from a supplied finite teacher using Dana Angluin's L* algorithm. Replay each membership query, observation-table repair, conjecture and shortest counterexample. Separate inspectors build a bounded W-method conformance suite and find its best test subsets within a tiny, fully enumerated fault domain.
+DFA learning learns a minimal deterministic finite automaton from a supplied finite teacher using Dana Angluin's L* algorithm. Replay each membership query, observation-table repair, conjecture and shortest counterexample. Separate inspectors build a bounded W-method conformance suite and find its best test subsets within a tiny, fully enumerated fault domain.
 
 A closed and consistent table can still propose the wrong language. Passing a finite suite can still hide a fault outside its state bound. Removing redundant tests does not by itself prove a minimum suite. Each inspector keeps the evidence for its own claim separate.
 
@@ -30,7 +30,7 @@ MIT licensed. Full references, certificate semantics and reproduction commands a
 
 ## Bounded conformance
 
-[Live W-method inspector](https://midya8.github.io/dfalab/conformance.html) | [Construction, assumptions and sources](https://github.com/midya8/dfalab/blob/main/CONFORMANCE.md) | [Source](https://github.com/midya8/dfalab)
+[Live W-method inspector](https://midya8.github.io/dfa-learning/conformance.html) | [Construction, assumptions and sources](https://github.com/midya8/dfa-learning/blob/main/CONFORMANCE.md) | [Source](https://github.com/midya8/dfa-learning)
 
 The classic DFA W-method inspector shows every state-cover word, middle word, distinguishing suffix, canonical factor and acceptance path. It separates four claims: finite suite agreement, the supplied candidate's reachable-state bound, a bounded equivalence certificate and a separate exact graph audit. A faulty extra-state candidate passes when its bound is understated; increasing the bound exposes the fault. Tests do not infer a hidden service's state count.
 
@@ -38,7 +38,7 @@ An independent verifier reconstructs all factor combinations and checks every ou
 
 ## Finite fault atlas
 
-[Live fault atlas](https://midya8.github.io/dfalab/fault-atlas.html) | [Exact domain, cost and sources](https://github.com/midya8/dfalab/blob/main/FAULT_ATLAS.md) | [Source](https://github.com/midya8/dfalab)
+[Live fault atlas](https://midya8.github.io/dfa-learning/fault-atlas.html) | [Exact domain, cost and sources](https://github.com/midya8/dfa-learning/blob/main/FAULT_ATLAS.md) | [Source](https://github.com/midya8/dfa-learning)
 
 Enumerate every complete labeled implementation in a tiny unary/binary state domain, distinguish equivalent survivors from real faults, and inspect every acceptance-matrix row. Every subset of the constructed W-suite is checked under test-count then letter-count cost. All minima, escaping faults and chosen-test deletion witnesses are retained. Irredundancy is not confused with minimum cardinality; label/unreachable-state duplicates are not counted as unique languages or bug frequencies.
 
