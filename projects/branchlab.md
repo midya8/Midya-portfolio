@@ -1,10 +1,10 @@
-# BranchLab
+# Branching time
 
 Inspect small supplied graphs under ordinary and explicit fair-path CTL. The path convention is visible, and every answer has replayable finite-model evidence. The current suite has 29 Python and seven Node/actual-Chrome tests.
 
-## BranchLab: always possible is not inevitable
+## Branching time: always possible is not inevitable
 
-[Live workbench](https://midya8.github.io/branchlab/) | [Source](https://github.com/midya8/branchlab) | [Method and limits](https://github.com/midya8/branchlab/blob/main/METHOD.md)
+[Live workbench](https://midya8.github.io/branching-time/) | [Source](https://github.com/midya8/branching-time) | [Method and limits](https://github.com/midya8/branching-time/blob/main/METHOD.md)
 
 Check a CTL formula on a supplied state graph, then inspect the evidence. In the opening model, `AG EF p` holds while `AF p` fails: a goal remains reachable everywhere, but an infinite wait is still allowed. This original mode uses ordinary infinite paths. The separate fair-path mode below uses explicit justice sets instead.
 
@@ -14,9 +14,9 @@ The original 15 Python tests remain in the current 29-test suite. They cover all
 
 Bounds are one to six total states, four atomic propositions and eight formula roots. Strong until includes time zero. No fairness, probability, action or controller is inferred in this mode. This is classical bounded CTL, not symbolic scale, LTL/CTL*, verified AI agents or new theory. Runtime needs no paid API or external package. The optional GPL test reference is separate and is not vendored; the method credits established theory and inspected sources.
 
-## BranchLab 0.2: a fair path must meet them all
+## Branching time 0.2: a fair path must meet them all
 
-[Fair-path inspector](https://midya8.github.io/branchlab/fair.html) | [Source](https://github.com/midya8/branchlab) | [Exact convention and sources](https://github.com/midya8/branchlab/blob/main/FAIRNESS.md)
+[Fair-path inspector](https://midya8.github.io/branching-time/fair.html) | [Source](https://github.com/midya8/branching-time) | [Exact convention and sources](https://github.com/midya8/branching-time/blob/main/FAIRNESS.md)
 
 A path must meet every supplied justice set infinitely often on the same execution. The fair-CTL inspector compares ordinary and fair truth at every subformula. Inspect each induced region, recurrent component, justice intersection, backward round and replayable finite-prefix/closed-walk witness. The four-state opening control needs the repeated walk `s0 → s1 → s0 → s2 → s0` to meet both justice sets. Neither first simple cycle is enough. A trap can retain a local atom while having no fair continuation.
 
