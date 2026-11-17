@@ -1,8 +1,8 @@
-# AlignLab: what the comparisons leave open
+# Preference optimization: what the comparisons leave open
 
-A reward optimizer can do its job while the preference data leaves its target open. AlignLab makes those two questions visible. The new inspector shows which reward ratios a comparison graph fixes, which policies still fit it, and when the supplied probabilities contradict a scalar reward model.
+A reward optimizer can do its job while the preference data leaves its target open. Preference optimization makes those two questions visible. The new inspector shows which reward ratios a comparison graph fixes, which policies still fit it, and when the supplied probabilities contradict a scalar reward model.
 
-[Preference inspector](https://midya8.github.io/alignlab/identification.html) · [Original optimizer inspector](https://midya8.github.io/alignlab/) · [Source](https://github.com/midya8/alignlab) · [PR #3](https://github.com/midya8/alignlab/pull/3)
+[Preference inspector](https://midya8.github.io/preference-optimization/identification.html) · [Original optimizer inspector](https://midya8.github.io/preference-optimization/) · [Source](https://github.com/midya8/preference-optimization) · [PR #3](https://github.com/midya8/preference-optimization/pull/3)
 
 ## Same preferences, different policies
 
@@ -20,7 +20,7 @@ For consistent inputs, the beta-1 Gibbs policy is proportional to reference prob
 
 The inspector enumerates every corner of the supplied scale box. It shows all action and component mass ranges, every item-pair probability range, supplied-utility extremes, and the complete policies that attain them. Duplicate policies and all ties are kept. With at most six components, there are at most 64 corners.
 
-This enumeration is enough for the reported objectives. Hold all but one scale fixed and the objective has the form (a*s+b)/(c*s+d), with a positive denominator. Its derivative cannot change sign, so moving that scale to an endpoint cannot worsen an extremum. Repeat for each coordinate. The proof and full schema are in [IDENTIFICATION.md](https://github.com/midya8/alignlab/blob/main/IDENTIFICATION.md).
+This enumeration is enough for the reported objectives. Hold all but one scale fixed and the objective has the form (a*s+b)/(c*s+d), with a positive denominator. Its derivative cannot change sign, so moving that scale to an endpoint cannot worsen an extremum. Repeat for each coordinate. The proof and full schema are in [IDENTIFICATION.md](https://github.com/midya8/preference-optimization/blob/main/IDENTIFICATION.md).
 
 ## Checks that do not just trust the producer
 
@@ -45,7 +45,7 @@ The older optimizer inspector shows every action's reference, current and optima
 
 ## Corrected prose, unchanged training
 
-Earlier README numbers were stale. The original code gives learned reward 3.4641183 to 6.2462098, utility 2.0375 to 4.5704247, noise-control utility 1.8548647, KL 1.0750099 and entropy .7167496. Without KL, the final KL is 1.7510340 and entropy .0407255. The older prose had utility 4.6154, control utility 2.5800 and KL 1.0216. The [old/current table](https://github.com/midya8/alignlab/blob/main/FRONTIER.md) keeps the discrepancy visible. Training was not tuned to match the prose.
+Earlier README numbers were stale. The original code gives learned reward 3.4641183 to 6.2462098, utility 2.0375 to 4.5704247, noise-control utility 1.8548647, KL 1.0750099 and entropy .7167496. Without KL, the final KL is 1.7510340 and entropy .0407255. The older prose had utility 4.6154, control utility 2.5800 and KL 1.0216. The [old/current table](https://github.com/midya8/preference-optimization/blob/main/FRONTIER.md) keeps the discrepancy visible. Training was not tuned to match the prose.
 
 The earlier 47 Python tests and four Node/Chrome tests remain in the current suite. They cover 35 full floating reports, all 1,005 trajectory audits, independent 80/100-digit controls, ties, underflow, reference support and unresolved near ties. Installed retraining uses 1e-11 abs/rel tolerance for runtime/libm differences; frozen report and audit checks use 1e-12. The original tolerances and gates are unchanged.
 
@@ -53,4 +53,4 @@ The earlier 47 Python tests and four Node/Chrome tests remain in the current sui
 
 This is a finite synthetic lab, not DPO training, PPO, a language model or a safety certificate. Exact preference geometry is separate from the floating optimizer calculations. Numerical brackets and dual values in the older inspector are not outward-rounded certificates. Sampled curves are not the whole continuum.
 
-Bradley-Terry identification and the Gibbs mapping are standard results, not new methods. Six primary papers and official documentation are cited with the derivations in [IDENTIFICATION.md](https://github.com/midya8/alignlab/blob/main/IDENTIFICATION.md). The older [FRONTIER.md](https://github.com/midya8/alignlab/blob/main/FRONTIER.md) also links the DPO mapping, reference-weighted tie limit and softmax numerical analysis. A solved reward objective alone says nothing about safety or preferences beyond the supplied comparisons.
+Bradley-Terry identification and the Gibbs mapping are standard results, not new methods. Six primary papers and official documentation are cited with the derivations in [IDENTIFICATION.md](https://github.com/midya8/preference-optimization/blob/main/IDENTIFICATION.md). The older [FRONTIER.md](https://github.com/midya8/preference-optimization/blob/main/FRONTIER.md) also links the DPO mapping, reference-weighted tie limit and softmax numerical analysis. A solved reward objective alone says nothing about safety or preferences beyond the supplied comparisons.
