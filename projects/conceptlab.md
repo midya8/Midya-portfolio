@@ -51,7 +51,7 @@ npm test
 sh tools/wheel_smoke.sh
 ```
 
-The Node tests need Node 22+ and Chrome/Chromium. The wheel script also needs uv. It installs into a temporary environment and runs outside the checkout, checks all six module origins, reproduces the complete/partial/exploration controls through both entry points and rejects altered exploration reports through both verifier entry points.
+The Node tests need Node 22+ and Chrome/Chromium. The wheel script also needs uv. It installs into a temporary environment and runs outside the checkout, checks all six module origins, reproduces the complete/partial/exploration controls through both entry points and rejects 24 altered exploration reports through both verifier entry points.
 
 The documentation review reran all 24 Python tests and eleven Node/actual-Chrome tests on fresh baseline, revised, published and merged source. Hosted CI checks Python 3.10 through 3.13. Deployed Chrome tests exercise all three inspectors at 320/390/1280, compare displayed records with native reports, replay exploration downloads through the independent verifier and check that invalid edits clear stale results and disable export.
 

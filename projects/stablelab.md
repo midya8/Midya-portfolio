@@ -29,7 +29,7 @@ reduct model and proper candidate subset to test stability, intersects models of
 the definite reduct for its least closure, reconstructs rounds by bounded proof
 heights, and independently checks every unfounded subset. Shared strict input
 validation is disclosed. Browser exports become independently checked only
-when `stablelab verify evidence.json` accepts them.
+when `stablelab verify evidence.json` accepts them. Running it locally is the same setup: serve the docs directory with `python -m http.server --directory docs 8000` and open `http://localhost:8000` for editable models and complete evidence export — the page computes locally after its static assets load, with no model or API used.
 
 Original base release evidence: nine Python tests on 3.10/3.11/3.12/3.13; four Node/actual-Chrome
 tests; all 1,177 two-atom programs through two signed-body rules/constraints;

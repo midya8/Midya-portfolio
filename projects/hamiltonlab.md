@@ -15,7 +15,7 @@ Dependency-free Hamiltonian Monte Carlo with explicit leapfrog energy errors, re
 
 High acceptance, low position correlation and plausible pooled moments can each
 hide failed exploration. The later analytic references do not certify the
-sampler or estimate its ESS/MCSE. The current suite has 82 tests.
+sampler or estimate its ESS/MCSE. The current suite has 86 tests.
 
 ## Run offline
 
@@ -80,6 +80,14 @@ The demo asserts both a reasonable correlated-Gaussian mean check and the separa
 Fixed 2D vectors; finite energies/gradients; diagonal mass in(0,1e4]; positive sampler step size<=10; integrator also accepts negative nonzero step size for reversal; leapfrog steps1..1000; draws2..10000; discarded transitions0..10000; seed0..2³²−1. Planned target work `(draws+warmup)*(L+1)` for HMC or `(draws+warmup)` for random walk must be<=1million, plus the single initial callback. Actual callback calls are counted, including aborted trajectories. Full traces are retained, so memory use grows with transition count. No thinning or hidden independent-sample resampling.
 
 The sampler and diagnostic tests cover analytic target gradients vs central differences, closed one-step leapfrog, reversibility with nonunit masses, finite-difference 4D Jacobian determinant≈1, energy error at decreasing step sizes on a fixed-time quadratic trajectory, log acceptance extremes/ties, deterministic seeds/no mutation, repeated rejection states, counted failed trajectories, random-walk work, seeded Gaussian reference moments, exact small R-hat arithmetic, undefined constant chains and CLI/bound errors. CI tests Python 3.10 through 3.13 and regenerates the offline SVG byte-for-byte.
+
+## Finite energies can still have an overflowed difference
+
+A standalone leapfrog transition can start at Hamiltonian -1e308 and end at +1e308 while both endpoints are finite. Subtracting them overflows binary64. Previously that infinite energy error could escape the integrator; in either sampler, an overflowed difference could then abort the run in the acceptance helper instead of becoming a recorded invalid rejection.
+
+The integrator now checks the difference itself. Random walk checks its potential difference inside the existing invalid-proposal boundary. These transitions are conservatively rejected, the previous state is repeated and unavailable energy error is null. Even a mathematically downhill difference that overflows is treated as numerically invalid, not automatically accepted. This does not recover arbitrary-precision dynamics or fix a bad target callback.
+
+Four added tests exercise finite opposite-sign endpoints, both valid large acceptance directions, actual seeded HMC and a smooth random-walk callback. The retained full demo JSON, complete observable-curve JSON and both SVGs are unchanged. `bash examples/verify_wheel.sh` repeats the full suite, demo, figures, module-origin checks and all seven documented input commands from an isolated installed wheel. CI requires that reproduction as well.
 
 ## Source and scope
 

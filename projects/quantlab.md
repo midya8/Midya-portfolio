@@ -8,7 +8,7 @@ integer-only inference or a hardware benchmark.
 
 ## Activation integer dot products
 
-The current suite has 47 Python tests, including all 39 earlier tests, and
+The current suite has 52 Python tests, including all 47 earlier tests, and
 seven Node/actual-Chrome tests. Independent floor/remainder rounding checks 240 seeded reports and all 519 signed half-unit controls. Python Fraction and independent browser BigInt dyadics agree on 72 complete reports with 6,848 products and all exact error strings. Actual NumPy 2.2.6 int32 matmul and cumsum check every accumulator and prefix. Seven Node/actual-Chrome tests cover 168 row selections, 20 responsive views, two trusted downloads replayed natively and stale-result rejection. A fresh isolated eight-module package reproduces original training, all 52 old reports and all 72 new reports, with both new CLI entrypoints. Original QLB1 bytes and 59/60 weight-only synthetic results remain unchanged.
 
 The feature-stage publication checked all 53 merged files and ten deployed
@@ -30,6 +30,24 @@ Every accepted input has 2..8 rows and 1..128 features, finite nonboolean magnit
 The independent editable page has complete activation/product/prefix/error tables, exact report export and input export. Edits invalidate all prior output and disable downloads; duplicate keys and nonfinite input are rejected. Nine controls retain clipping, signed half-way ties, zeros, maximum shape, scale precision and three original trained examples. Neither original data nor candidates are filtered.
 
 [Live activation audit](https://midya8.github.io/quantlab/integer.html) · [Source PR3](https://github.com/midya8/quantlab/pull/3) · [Method and seven-source ledger](https://github.com/midya8/quantlab/blob/main/INTEGER.md)
+
+## Selected-class stability on a supplied box
+
+`box_audit` checks the source linear map and the fixed packed-weight linear map separately over a closed, user-supplied input box. Every rival gets an exact worst selected-minus-rival margin, its attaining corner, signed coordinate contributions, all corner scores and the first-index prediction there. A lower-index rival needs a strictly positive margin; a higher-index rival allows zero. These conditions are necessary and sufficient for the chosen class to win throughout this box in each represented-real linear map. A failed pair always supplies a point where the chosen class loses, though a third class may beat that pair's rival.
+
+```python
+from quantlab.box import box_audit
+
+from quantlab.packed import decode
+
+decoded = decode(payload)  # bytes from quantlab.packed.encode or a QLB1 file
+report = box_audit(weights, decoded["packed"], lower, upper, selected=0)
+print(report["both_maps_keep_selected_everywhere"])
+```
+
+This is exact rational arithmetic on the represented coefficients and supplied endpoints, not a floating-point accumulation guarantee. It does not quantize activations, fit an uncertainty set, retrain, or claim unseen accuracy. The source and packed maps may fail for different reasons; the result does not assert that their predictions agree everywhere when the selected class fails. Existing input/QLB1 shape and magnitude bounds apply. There is no new CLI or browser control. The earlier fixed-input inspector and integer-product reports keep their existing schemas and bytes.
+
+Five tests check every corner and class for 80 generated matrices under both modes and scale precisions (956 reports), first-index ties, singleton boxes, subnormal scales, extreme finite endpoints, source/packed disagreement and input validation. The installed module also checks 156 boxes from all 52 original weight-report inputs.
 
 The earlier weight-only evidence follows. Its 39-test/four-browser-test counts describe the retained release, not the combined suite.
 

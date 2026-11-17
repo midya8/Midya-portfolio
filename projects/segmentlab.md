@@ -19,17 +19,19 @@ The project makes these distinctions inspectable: model assumptions, prior norma
 - Exact requested-pair cut inclusion queries that allow other cuts, finite log probabilities and distinct impossible-event/undefined-conditional flags.
 - Full discrete partition entropy, conditioned-prior KL and dependence of the entire cut vector, rather than an independent-cut entropy shortcut.
 - Constrained minimum expected false/missed boundary-loss decisions, with MAP and infeasible-threshold comparisons kept separate.
-- Strict JSON commands,104 tests, independent exhaustive tiny references and two regenerable SVGs with all plotted values retained.
+- Strict JSON commands,122 tests, independent exhaustive tiny references and two regenerable SVGs with all plotted values retained.
 
 ## Selected results, and what they mean
 
 | Development example | Result | Interpretation |
 |---|---|---|
-| Same isolated outlier, two supplied noise scales | sigma.15: MAP `[12,13]`, probability.960218; sigma2: MAP `[]`, probability.648223 | Model confidence can isolate contamination; this is not a noise-model quality ranking |
+| Same isolated outlier (24 observations, zeros except 4 at index 12), two supplied noise scales | sigma.15: MAP `[12,13]`, probability.960218; sigma2: MAP `[]`, probability.648223 | Model confidence can isolate contamination; this is not a noise-model quality ranking |
 | Six zeros, count cap2 | cuts2/4 each have marginal mass.011658220257; joint mass0 | Multiplying marginals invents a structurally forbidden event |
 | Selected seven-point decision fixture | no-cut boundary-risk optimum.680000591; MAP `[3]` risk.869071786 | MAP and additive-boundary loss answer different questions; neither number is observed accuracy |
 | Four-point uncertainty fixture | posterior entropy1.029013408 > prior entropy.836308115; KL.166962288 | KL is not prior entropy minus posterior entropy |
 |10,000 joint draws, seed19 | K4 has exact mass.000115427 and zero sampled visits | Zero visits do not imply zero posterior mass |
+| Four zeros, one segment, bounds [-.5,.5] | joint probability .955243142; product of the four marginals .832637014 | Multiplying marginals understates the joint event |
+| Two zeros, disjoint intervals [-1,-.1] and [.1,1] | event probability .003123780; conditional segment count two with probability one | The intervals require a cut; forcing one segment makes the event impossible |
 
 Every input, setting, fixture-selection provenance, conditional direction and raw numerical qualification is preserved in the [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md) and runnable audit JSON. These are selected development cases, not untouched-test performance, causal effects or real-data calibration.
 
@@ -37,7 +39,7 @@ Every input, setting, fixture-selection provenance, conditional direction and ra
 
 ## Same-design replicate mixtures
 
-New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at 2 by 1.54 nats. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
+New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at 2 by 1.54 nats. `predictive` also returns CDF/survival and 5/50/95% quantiles for the same-design replicate mixture. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
 
 ## Run it locally
 
@@ -50,6 +52,8 @@ python -m segmentlab joint examples/sequence.json --pairs '[[1,3],[2,4]]'
 python -m segmentlab information examples/sequence.json
 python -m segmentlab decide examples/sequence.json --false-cut-cost 1 --missed-cut-cost 1
 python -m segmentlab predictive examples/sequence.json --queries '[[2,0.0],[3,1.0]]'
+python -m segmentlab envelope examples/sequence.json --lower '[-2,-2,-2,-2,-2,-2]' --upper '[2,2,2,2,2,2]'
+python -m segmentlab covariance examples/sequence.json --pairs '[[0,0],[0,3],[3,3]]'
 ```
 
 The repo README has the complete seven-field example payload and reproducible audit commands. Model commands share a strict schema; Python APIs also offer defaults. CLI options and errors are tested. CI uses Python3.10..3.13 and byte-checks both generated figures.
@@ -58,7 +62,7 @@ The repo README has the complete seven-field example payload and reproducible au
 
 All observations in a segment are conditionally independent Normal(mean,sigma²), with supplied known sigma and independent Normal mean priors. The Bernoulli interior-gap prior is conditioned on minimum segment length and count cap; its normalizer is included in evidence. Means are integrated out for the discrete partition law. No prior or noise hyperparameter is learned.
 
-Inference is offline: future observations inform earlier cuts and means. Full marginals use `O(N²*K²)` work, bounded to120 observations and12 requested segments; feature-specific work and output bounds are documented. Results are finite sums in floating point, not symbolic arithmetic or formal numerical certificates. Tiny masses can underflow and finite arithmetic can affect near ties.
+Inference is offline: future observations inform earlier cuts and means. Full marginals use `O(N²*K²)` work, bounded to 120 observations and 12 requested segments, with prior mean in [-1e6,1e6], noise and prior std in [1e-4,1e4] and cut probability in [1e-6,1-1e-6]; feature-specific work and output bounds are documented. Results are finite sums in floating point, not symbolic arithmetic or formal numerical certificates. Tiny masses can underflow and finite arithmetic can affect near ties.
 
 No online alert, forecast, credible-band coverage, robust-outlier model, event attribution, causality or model-misspecification guarantee is claimed. Relative decision costs are supplied loss units, not money. Lower entropy, higher KL and lower chosen-loss risk do not establish real-world correctness.
 
