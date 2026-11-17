@@ -1,12 +1,12 @@
-# BetLab: sequential evidence and confidence bounds
+# Sequential betting: sequential evidence and confidence bounds
 
 Compare bounded paired model scores with exact statistical bets. Audit why free restarts fail, allocate capital across fixed starts, or invert a separate mean-test family into a conservative confidence sequence.
 
-Repo: [midya8/betlab](https://github.com/midya8/betlab)
+Repo: [midya8/Sequential betting](https://github.com/midya8/sequential-betting)
 
-![Exact evidence and restart audit](https://github.com/midya8/betlab/raw/main/assets/evidence-audit.svg)
+![Exact evidence and restart audit](https://github.com/midya8/sequential-betting/raw/main/assets/evidence-audit.svg)
 
-BetLab is a dependency-free Python 3.10+ implementation of standard nonnegative betting processes. It reports every rational wealth update, mixture component, past-only bet, first threshold crossing and running-maximum p-value bound. A separate finite-law auditor enumerates all branches and checks conditional expectations, stopped wealth and the exact probability of ever crossing.
+Sequential betting is a dependency-free Python 3.10+ implementation of standard nonnegative betting processes. It reports every rational wealth update, mixture component, past-only bet, first threshold crossing and running-maximum p-value bound. A separate finite-law auditor enumerates all branches and checks conditional expectations, stopped wealth and the exact probability of ever crossing.
 
 This is an offline statistics project for AI evaluation. It does not train a model or claim a new inference theorem. The paired-score examples and null trees are developed fixtures, not untouched benchmarks or deployed monitoring evidence.
 
@@ -46,7 +46,7 @@ Let `D_t = candidate_score_t - baseline_score_t`, with both scores in `[0,1]`. T
 
 For any past-measurable `b_t` in `[0,1]`, start at one and multiply by `1+b_t*D_t`. Factors are nonnegative. Under the conditional null, their conditional expectations are at most one, so wealth is a nonnegative supermartingale. A fixed convex mixture of such wealth processes is another. Ville's inequality bounds the probability of **ever** reaching `1/alpha` by alpha. An arbitrary stopping time is allowed within this fixed test. Selecting the winning test after running several is not covered.
 
-BetLab exposes two valid constructions separately:
+Sequential betting exposes two valid constructions separately:
 
 - `mixture`: fixed bets `[0,1/4,1/2,3/4,1]`, equal positive weights by default. Caller-supplied distinct bets and exact positive normalized weights are supported. Components retain their own capital, including permanent ruin at zero. Their maximum is not substituted for their average.
 - `predictable`: the past-only heuristic `clip(sum_previous_D / (1 + sum_previous_D_squared), 0, 1)`. The current observation is excluded. It has the same validity argument, not a power-optimality claim. It is a separate test, not an extra component chosen after seeing results.
@@ -71,7 +71,7 @@ The six-round negative-drift tree has positive-sign probability `1/3` and condit
 
 A reversal sequence has eight `+1` differences followed by twelve `-1`. Both valid processes first cross threshold four at round four, then end below four. The history is not erased. A separate 32-round paired fixture with baseline `1/2` and candidate `3/4` crosses threshold twenty at round 19 for the mixture and 17 for the past-only heuristic. These are descriptive fixture results, not a ranking of general test power.
 
-Full reproducible summary: [examples/demo.json](https://github.com/midya8/betlab/blob/main/examples/demo.json). Full fair-null node/leaf audit: run `tree examples/tree-input.json`. [Proof, schema and boundaries](https://github.com/midya8/betlab/blob/main/DESIGN.md).
+Full reproducible summary: [examples/demo.json](https://github.com/midya8/sequential-betting/blob/main/examples/demo.json). Full fair-null node/leaf audit: run `tree examples/tree-input.json`. [Proof, schema and boundaries](https://github.com/midya8/sequential-betting/blob/main/DESIGN.md).
 
 ## Tests and reproduction
 
@@ -90,7 +90,7 @@ The tree audit proves arithmetic for a supplied bounded finite law only. The ori
 
 Version 0.2 adds a valid alternative to free refills: allocate one initial unit across deterministic start times before observing the stream. Each start retains every fixed-bet capital; unstarted components stay at one internally and contribute their reserved weight. Ruined components stay zero. The complete statistic is a fixed convex mixture, not the largest start-specific result.
 
-![Budgeted start mixture](https://github.com/midya8/betlab/raw/main/assets/start-allocation.svg)
+![Budgeted start mixture](https://github.com/midya8/sequential-betting/raw/main/assets/start-allocation.svg)
 
 ```bash
 python -m betlab starts-demo
@@ -105,14 +105,14 @@ The fair eight-round null audit uses starts 1, 3, 5, 9, each weight 1/4, with th
 
 `start_mixture(differences, starts, ...)` and `audit_starts(tree, starts, ...)` require a fixed schedule of at most 16 starts in 1..256; optional positive start weights sum exactly to one. Future starts remain part of the allocation. Canonical ordering preserves each start/weight pair. The original four CLI fixture outputs remain byte-identical. Both figures regenerate exactly, and this extension's six-module wheel matched all seven full CLI JSON outputs outside checkout. The current release retains those checks. That release had 51 tests, including direct suffix-product references, all 256 fair paths, every conditional expectation and full 256-observation/16-start/16-bet capacity.
 
-[Start-mixture proof, contract and attribution](https://github.com/midya8/betlab/blob/main/STARTS.md) and [full developed report](https://github.com/midya8/betlab/blob/main/examples/starts-demo.json). This is one prespecified conditional-mean-null test, not an uncorrected union with the original tests. No adaptive/post-hoc starts, infinite restart service, ARL detector, model-selection correction or new theorem is claimed.
+[Start-mixture proof, contract and attribution](https://github.com/midya8/sequential-betting/blob/main/STARTS.md) and [full developed report](https://github.com/midya8/sequential-betting/blob/main/examples/starts-demo.json). This is one prespecified conditional-mean-null test, not an uncorrected union with the original tests. No adaptive/post-hoc starts, infinite restart service, ARL detector, model-selection correction or new theorem is claimed.
 
 ## Invert the tests into a confidence sequence
 
 
 Version 0.3 adds a deliberately conservative bounded-mean bet family and certified rational inversion. For each candidate m in [-1,1], factors are `1+b*(D-m)/2`, with fixed normalized mixtures. Monotone wealth makes the accepted mean set an interval. Exact rational bisection retains component-level crossing/noncrossing witnesses and every midpoint comparison, without claiming that generally algebraic roots are rational. Running intersections retain earlier exclusions after reversal.
 
-![Certified confidence inversion](https://github.com/midya8/betlab/raw/main/assets/confidence-inversion.svg)
+![Certified confidence inversion](https://github.com/midya8/sequential-betting/raw/main/assets/confidence-inversion.svg)
 
 ```bash
 python -m betlab confidence-demo
@@ -127,4 +127,4 @@ With bet one and alpha 1/4, 24 repeated differences of 1/2 give boundary bracket
 
 The new modes allow up to 64 observations, 16 fixed bets and 1..32 bisections; older limits remain unchanged. All seven older CLI fixture outputs remain byte-identical. The seven-module wheel matches all ten complete CLI outputs outside checkout. The 67-test suite includes exhaustive independent products/brackets/trials on 81 ternary streams, exact endpoint/midpoint ties, refinement, reversal, prefix-only behavior, all 256 coverage paths and full capacity. All three figures regenerate exactly; the new figure checks 92 coordinates, seven cells, full metadata and hidden-leaf tampering.
 
-[Proof, boundary conventions, exact API/schema and attribution](https://github.com/midya8/betlab/blob/main/CONFIDENCE.md) and [full developed report](https://github.com/midya8/betlab/blob/main/examples/confidence-demo.json). No new theorem, optimized/variance-adaptive bet, model-selection correction, unknown-law validation or production service is claimed.
+[Proof, boundary conventions, exact API/schema and attribution](https://github.com/midya8/sequential-betting/blob/main/CONFIDENCE.md) and [full developed report](https://github.com/midya8/sequential-betting/blob/main/examples/confidence-demo.json). No new theorem, optimized/variance-adaptive bet, model-selection correction, unknown-law validation or production service is claimed.
