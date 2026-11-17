@@ -1,10 +1,10 @@
-# RectLab
+# Rectangle cover
 
-RectLab covers the ones in a small binary matrix with all-one rectangles. It computes minimum overlapping covers, disjoint partitions, maximal-only covers and fooling-set lower bounds, with exact counts and selectable optimal factor sets.
+Rectangle cover covers the ones in a small binary matrix with all-one rectangles. It computes minimum overlapping covers, disjoint partitions, maximal-only covers and fooling-set lower bounds, with exact counts and selectable optimal factor sets.
 
 The current suite has 18 Python and 6 Node/Chrome tests. Python checks complete reports for every 3×3 binary matrix; separate browser code checks the finite corpus. Installed commands and a numerical SciPy reference are checked separately. These are bounded synthetic examples, not learned data or a scale benchmark.
 
-[Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Reviewed implementation](https://github.com/midya8/rectlab/pull/1) · [Exact method](https://github.com/midya8/rectlab/blob/main/docs/method.md)
+[Live inspector](https://midya8.github.io/rectangle-cover/) · [Source](https://github.com/midya8/rectangle-cover) · [Reviewed implementation](https://github.com/midya8/rectangle-cover/pull/1) · [Exact method](https://github.com/midya8/rectangle-cover/blob/main/docs/method.md)
 
 ## Indexed optimal sets and factor membership
 
@@ -36,7 +36,7 @@ B and C are binary factors. Their Boolean product uses OR over componentwise AND
 
 Any legal rectangle can be enlarged to a maximal one. Enlarging every rectangle of a minimum cover cannot increase its size. If fewer factors survived, the original cover was not minimum. This proves that an optimum exists using maximal factors. It does not preserve all optimum factorizations or their count.
 
-RectLab lists every legal rectangle, marks maximal ones and computes the unrestricted and maximal-only counts separately. Concepts and closures are established adjacent mathematics, not renamed as a new discovery. ConceptLab owns the portfolio's concept-lattice and implication exploration; this project instead studies the exact cover/partition/counting distinction.
+Rectangle cover lists every legal rectangle, marks maximal ones and computes the unrestricted and maximal-only counts separately. Concepts and closures are established adjacent mathematics, not renamed as a new discovery. ConceptLab owns the portfolio's concept-lattice and implication exploration; this project instead studies the exact cover/partition/counting distinction.
 
 ## Complete fooling-set evidence
 
