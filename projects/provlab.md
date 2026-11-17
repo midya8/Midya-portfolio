@@ -1,10 +1,10 @@
-# ProvLab
+# Query provenance
 
 Compare provenance on one supplied database, set containment over all databases and containment under supplied full rules and keys. The current suite has 44 Python and 11 Node/actual-Chrome tests; earlier counts below describe their release stages.
 
-## ProvLab: one fact is not two chances
+## Query provenance: one fact is not two chances
 
-[Live workbench](https://midya8.github.io/provlab/) | [Source](https://github.com/midya8/provlab) | [Method and sources](https://github.com/midya8/provlab/blob/main/METHOD.md)
+[Live workbench](https://midya8.github.io/query-provenance/) | [Source](https://github.com/midya8/query-provenance) | [Method and sources](https://github.com/midya8/query-provenance/blob/main/METHOD.md)
 
 A self-join can use one fact twice without giving it two independent chances to exist. Shared query variables enforce joins; projection and union-all collect derivations into natural-coefficient polynomials. The default `p² + pq` has bag multiplicity `10` and exact answer-presence probability `1/2`. Substituting probabilities into the ordinary polynomial gives `3/8`, an intentionally invalid contrast. Reusing a token is one event, not a fresh draw.
 
@@ -12,9 +12,9 @@ Inspect fourteen original controls, partial join bindings, every derivation, wit
 
 The core uses exact rational arithmetic and has no runtime dependencies. It implements classical provenance semirings and tuple-independent base-event semantics, not new theory, arbitrary SQL, scalable database inference, calibrated probabilities, causal effects or a guarantee about an AI agent. Established theory and inspected sources are credited in the method.
 
-## ProvLab 0.2: same answers on every database
+## Query provenance 0.2: same answers on every database
 
-[Containment lab](https://midya8.github.io/provlab/containment.html) | [Source](https://github.com/midya8/provlab) | [Exact contract and sources](https://github.com/midya8/provlab/blob/main/CONTAINMENT.md)
+[Containment lab](https://midya8.github.io/query-provenance/containment.html) | [Source](https://github.com/midya8/query-provenance) | [Exact contract and sources](https://github.com/midya8/query-provenance/blob/main/CONTAINMENT.md)
 
 A rewrite can agree on one database and fail on another. This mode compares safe positive conjunctive queries over every finite database under set semantics. A head-preserving reverse homomorphism proves containment; a failed direction produces a frozen canonical database and a missing output tuple. Inspect every variable-map candidate, atom image, ordered head constraint, canonical evaluation and safe atom-subset minimum. Constants stay fixed, Boolean heads and ternary relations are explicit, and repeated atom occurrences remain visible.
 
@@ -24,9 +24,9 @@ Fresh installed checks replay twelve containment controls through both entry poi
 
 The method credits Chandra-Merlin query-containment/core theory. This is bounded single-CQ syntax, not a bag-equivalence decision procedure, arbitrary SQL optimization, new theory, a language model or a verified-agent guarantee. The original provenance mode remains separate.
 
-## ProvLab 0.3: containment under supplied constraints
+## Query provenance 0.3: containment under supplied constraints
 
-[Chase workbench](https://midya8.github.io/provlab/chase.html) | [Source](https://github.com/midya8/provlab) | [Exact contract and sources](https://github.com/midya8/provlab/blob/main/CHASE.md)
+[Chase workbench](https://midya8.github.io/query-provenance/chase.html) | [Source](https://github.com/midya8/query-provenance) | [Exact contract and sources](https://github.com/midya8/query-provenance/blob/main/CHASE.md)
 
 A rewrite that fails in general can hold under a supplied key and rule. Full rules add facts; keys merge query symbols in both the database and ordered output tuple. Inspect both containment directions, every chase step, terminal dependency check, source derivation and legal saturated counterexample. A clash between distinct literals is labeled target-query unsatisfiability and vacuous containment, not a successful nonempty rewrite.
 
