@@ -1,8 +1,8 @@
-# BuchiLab: a winning state is not a winning policy
+# Buchi games: a winning state is not a winning policy
 
-[Repeated-goal inspector](https://midya8.github.io/buchilab/) | [Action-lasso inspector](https://midya8.github.io/buchilab/lassos.html) | [Max-parity inspector](https://midya8.github.io/buchilab/parity.html) | [Source](https://github.com/midya8/buchilab)
+[Repeated-goal inspector](https://midya8.github.io/buchi-games/) | [Action-lasso inspector](https://midya8.github.io/buchi-games/lassos.html) | [Max-parity inspector](https://midya8.github.io/buchi-games/parity.html) | [Source](https://github.com/midya8/buchi-games)
 
-An idle action can stay inside a winning region forever and still lose. BuchiLab shows why: reaching a goal once, returning to it forever and winning by the highest recurring priority are different objectives. Three separate inspectors expose the policies and counterexamples in small finite adversarial games. They implement established game theory, not a new solver or a real-agent safety guarantee.
+An idle action can stay inside a winning region forever and still lose. Buchi games shows why: reaching a goal once, returning to it forever and winning by the highest recurring priority are different objectives. Three separate inspectors expose the policies and counterexamples in small finite adversarial games. They implement established game theory, not a new solver or a real-agent safety guarantee.
 
 ## Returning to the goal
 
@@ -46,7 +46,7 @@ The optional build uses isolated CMake 3.31.10. A pinned bundled cxxopts header 
 
 ## Contracts, credit and limits
 
-[Original method and seven-source ledger](https://github.com/midya8/buchilab/blob/main/METHOD.md) | [Action-lasso contract](https://github.com/midya8/buchilab/blob/main/LASSOS.md) | [Parity method and inspected sources](https://github.com/midya8/buchilab/blob/main/PARITY.md)
+[Original method and seven-source ledger](https://github.com/midya8/buchi-games/blob/main/METHOD.md) | [Action-lasso contract](https://github.com/midya8/buchi-games/blob/main/LASSOS.md) | [Parity method and inspected sources](https://github.com/midya8/buchi-games/blob/main/PARITY.md)
 
 The source records exact synchronous update rules, rank resets, policy ordering, strict input bounds, atomic output behavior and source conventions. Standard fixed-point, positional-game, Zielonka and component arguments are credited to their primary papers, academic notes and official tool documentation. Attribution is not endorsement.
 
