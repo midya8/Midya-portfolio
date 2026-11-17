@@ -1,14 +1,14 @@
-# DistillLab: compare student training, then inspect the gradients
+# Knowledge distillation: compare student training, then inspect the gradients
 
-DistillLab trains a teacher and smaller students in dependency-free Python, then opens up their gradients in two browser inspectors. On its synthetic fixture, the distilled student scores 0.7469 test accuracy, versus 0.6813 for direct labels and 0.7094 for teacher argmax labels. These are matched-arm results, not proof of what caused the difference.
+Knowledge distillation trains a teacher and smaller students in dependency-free Python, then opens up their gradients in two browser inspectors. On its synthetic fixture, the distilled student scores 0.7469 test accuracy, versus 0.6813 for direct labels and 0.7094 for teacher argmax labels. These are matched-arm results, not proof of what caused the difference.
 
 ## Where to start
 
 | Question | Open or run | What to keep in mind |
 | --- | --- | --- |
 | How do the original training arms compare? | `evaluate`, `gates` | One synthetic fixture; the comparisons do not identify a causal mechanism |
-| What happens in one student update? | [Step inspector](https://midya8.github.io/distilllab/) | Every parameter moves simultaneously from the same selected model |
-| Can the same teacher confidence give different gradients? | [Target/rest inspector](https://midya8.github.io/distilllab/tail.html) | Four fixed-mass tail variants, not DKD training or a new trained arm |
+| What happens in one student update? | [Step inspector](https://midya8.github.io/knowledge-distillation/) | Every parameter moves simultaneously from the same selected model |
+| Can the same teacher confidence give different gradients? | [Target/rest inspector](https://midya8.github.io/knowledge-distillation/tail.html) | Four fixed-mass tail variants, not DKD training or a new trained arm |
 | Can I replay a report outside the checkout? | `step-audit`, `distilllab-tail` | Native report checks and isolated-wheel reproduction |
 
 The current suite has 36 Python tests and seven substantive Node/real-Chrome tests (eight runner entries including a helper). Counts below label the earlier retained release stages.
@@ -69,11 +69,11 @@ The gates are deterministic regression checks on the primary arms (teacher stren
 
 Small synthetic classification, not language-model logit distillation; capacity gaps in production are larger and the hard-label term is often dropped. The gain here is a few accuracy points - a descriptive comparison under controlled synthetic conditions, not a production-scale result. The earlier step-inspector release had 24 Python tests and four Node/actual-Chrome tests, fully offline, with CI across Python 3.10-3.13.
 
-- Repo: [midya8/distilllab](https://github.com/midya8/distilllab)
+- Repo: [midya8/Knowledge distillation](https://github.com/midya8/knowledge-distillation)
 
 ## Follow one student update
 
-[Live student-update inspector](https://midya8.github.io/distilllab/) · [Equations, schema and numerical limits](https://github.com/midya8/distilllab/blob/main/STEP.md)
+[Live student-update inspector](https://midya8.github.io/knowledge-distillation/) · [Equations, schema and numerical limits](https://github.com/midya8/knowledge-distillation/blob/main/STEP.md)
 
 Select any original trained student arm or its original initialization, one of the 80 student-training rows, temperature, soft weight and step size. Independent Python and browser evaluators expose hard/soft class derivatives, every simultaneous parameter update, hidden activations, stable CE/entropy/KL terms and all original 80 training/320 test predictions. Full input/report JSON is available. Each entered state starts from its chosen frozen model; test labels never enter the gradient.
 
@@ -86,7 +86,7 @@ The new inspector uses stable, unclipped logit-space objectives. Original helper
 
 ## Keep the confidence, change the tail
 
-[Target/rest workbench](https://midya8.github.io/distilllab/tail.html) · [Equations and replay contract](https://github.com/midya8/distilllab/blob/main/TAIL.md)
+[Target/rest workbench](https://midya8.github.io/knowledge-distillation/tail.html) · [Equations and replay contract](https://github.com/midya8/knowledge-distillation/blob/main/TAIL.md)
 
 The same supplied-label teacher target probability can produce different student gradients. The new workbench audits the established KL chain rule: binary target/rest KL plus teacher rest mass times conditional-tail KL. Four independent one-step variants keep target/rest mass at the selected temperature: original tail, uniform tail, a one-class cyclic rotation and a configured rotation/uniform mix. All begin from the same original student. Rotation preserves entropy in exact arithmetic, not class meaning or temperature-1 confidence. The target is the supplied training label, not necessarily the teacher's argmax.
 
