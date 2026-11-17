@@ -1,6 +1,6 @@
-# ParetoLab: exact two-cost path planning
+# Pareto paths: exact two-cost path planning
 
-ParetoLab compares every path through a small forward graph with two supplied
+Pareto paths compares every path through a small forward graph with two supplied
 additive costs. It separates the nondominated paths, the choices a weighted sum
 can select, and the paths selected by a hard cost limit. Expected-cost lotteries
 answer a different question and can violate the limit on a realized path.
@@ -8,7 +8,7 @@ answer a different question and can violate the limit on a realized path.
 The browser shows exact weight intervals, optimizer ties, epsilon thresholds and
 Pareto-label pruning. Export a report and replay it with the Python checker.
 
-[Live inspector](https://midya8.github.io/paretolab/) · [Source](https://github.com/midya8/paretolab) · [Reviewed change](https://github.com/midya8/paretolab/pull/2)
+[Live inspector](https://midya8.github.io/pareto-paths/) · [Source](https://github.com/midya8/pareto-paths) · [Reviewed change](https://github.com/midya8/pareto-paths/pull/2)
 
 ## Three paths, one missing compromise
 
@@ -59,7 +59,7 @@ The graph reference builds binary arc-flow constraints from original input, not 
 
 ## Publication status
 
-The documentation review is published in [PR #2](https://github.com/midya8/paretolab/pull/2), main `3f0c8c45d8c8f79ef9cf83a89bac41beb2e5dde2`. Fresh checkouts of the head and merged main matched all 31 reviewed files and passed 20 Python tests, 4 Node/Chrome tests, installed-wheel reproduction and generated-asset checks. Both [head CI runs](https://github.com/midya8/paretolab/actions/runs/43352068342), [main checks](https://github.com/midya8/paretolab/actions/runs/43352218546) and [Pages deployment](https://github.com/midya8/paretolab/actions/runs/43352218579) passed. Five live assets match main. The full deployed Chrome workflow passed 48 views and 24 downloads with native certificate replay. Of 40 live screenshots, 39 match local pixels exactly; one 768px hero differs at 25 pixels, with no content or layout difference on inspection. Desktop/mobile review also covers the budget comparison and label-pruning table. These checks identify the implementation, not the validity of supplied costs.
+The documentation review is published in [PR #2](https://github.com/midya8/pareto-paths/pull/2), main `3f0c8c45d8c8f79ef9cf83a89bac41beb2e5dde2`. Fresh checkouts of the head and merged main matched all 31 reviewed files and passed 20 Python tests, 4 Node/Chrome tests, installed-wheel reproduction and generated-asset checks. Both [head CI runs](https://github.com/midya8/pareto-paths/actions/runs/43352068342), [main checks](https://github.com/midya8/pareto-paths/actions/runs/43352218546) and [Pages deployment](https://github.com/midya8/pareto-paths/actions/runs/43352218579) passed. Five live assets match main. The full deployed Chrome workflow passed 48 views and 24 downloads with native certificate replay. Of 40 live screenshots, 39 match local pixels exactly; one 768px hero differs at 25 pixels, with no content or layout difference on inspection. Desktop/mobile review also covers the budget comparison and label-pruning table. These checks identify the implementation, not the validity of supplied costs.
 
 ## Scope and established work
 
