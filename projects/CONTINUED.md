@@ -116,7 +116,7 @@ QuantLab now traces activation × weight integer dot products, not only packed w
 
 Source PR3 passed all 16 latest feature/PR jobs and merged with previous history intact. All 53 merged files and ten deployed assets match the tested public source. Merged-main eight-job CI and Pages passed. The complete deployed browser workflow passes; all 20 unmasked local/deployed captures are pixel-identical. Desktop and phone controls, values and tables were inspected. Integer products and prefixes are exact under the checked shape bound of 2,064,512. Final output rescaling uses binary64, not integer-only end-to-end inference. Fixed activation range is supplied, not calibrated. Exact fractions describe represented-real maps, not runtime summation or unseen accuracy. Error decomposition is order-dependent arithmetic, not causal attribution. No hardware speed, RAM, learned improvement, new algorithm or ONNX/TFLite compatibility claim. Established quantization literature is credited.
 
-[Live integer audit](https://midya8.github.io/quantlab/integer.html) · [Source](https://github.com/midya8/quantlab) · [Full evidence](quantlab.md)
+[Live integer audit](https://midya8.github.io/int8-quantization/integer.html) · [Source](https://github.com/midya8/int8-quantization) · [Full evidence](quantlab.md)
 
 ## GraphLab: one edge at a time can miss the change
 
@@ -126,7 +126,7 @@ GraphLab now enumerates every original-edge deletion set up to a declared budget
 
 Source PR1 passed all 16 latest feature/PR jobs and merged with prior history intact. All 44 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed after enabling the repository's Pages source. Full deployed Chrome workflow passes. Twenty of 24 unmasked captures are byte-identical in pixels; the other four differ only on one 150-pixel table-border line, with identical layout/content. The four differences were inspected, not masked. Actual desktop and phone graphs, values and complete tables were inspected. This is a bounded binary64 fixed-model sensitivity census, not a causal effect, learned robustness improvement, new algorithm, formal real-arithmetic certificate or scale claim. Original edges only, with self loops retained. Chosen two-class margins stay separate from all-class predictions. Established GCN and formal graph-verification literature are credited.
 
-[Live joint inspector](https://midya8.github.io/graphlab/) · [Source](https://github.com/midya8/graphlab) · [Full evidence](graphlab.md)
+[Live joint inspector](https://midya8.github.io/graph-convnets/) · [Source](https://github.com/midya8/graph-convnets) · [Full evidence](graphlab.md)
 
 ## RectLab0.2: every optimum, not only the first
 
@@ -136,7 +136,7 @@ RectLab0.2 makes every optimal factor set accessible by exact lexicographic inde
 
 Source PR2 passed all 10 latest feature/PR jobs and merged with previous history intact. All 30 merged files and five deployed assets match the tested source. Merged-main CI and Pages passed; deployed native Chrome passes, and all 40 unmasked local/live captures are pixel-identical. Schema 2 adds the complete census and rejects old schema 1 certificates until regenerated from input. Certificates retain canonical index 0 regardless of the inspected view; indices reproduce selections without exporting a different report. Counts concern distinct unordered optimal factor sets, not learned likelihoods. Established counting/ranking theory is credited; no random sampler, new mathematics or scale claim.
 
-[Live inspector](https://midya8.github.io/rectlab/) · [Source](https://github.com/midya8/rectlab) · [Case study](rectlab.md)
+[Live inspector](https://midya8.github.io/rectangle-cover/) · [Source](https://github.com/midya8/rectangle-cover) · [Case study](rectlab.md)
 
 ## SubgameLab: a threat is not a credible plan
 
@@ -146,7 +146,7 @@ Exact finite sequential multiagent analysis separates a root-stable outcome from
 
 Source PR1 passed all 12 feature/PR jobs and merged with history intact. Pages deployment passed; all 27 merged source files and five deployed assets match the tested source. All 48 unmasked deployed captures match local pixels. Merged-main CI passed. Deployed desktop/mobile pixels were inspected. Classical theory and existing game-theory software are credited; no mixed-equilibrium, formal-proof, new-algorithm or real-agent-strength claim.
 
-[Live inspector](https://midya8.github.io/subgamelab/) · [Source](https://github.com/midya8/subgamelab) · [Case study](subgamelab.md)
+[Live inspector](https://midya8.github.io/subgame-perfection/) · [Source](https://github.com/midya8/subgame-perfection) · [Case study](subgamelab.md)
 
 ## CompileLab: one function, many shapes
 
@@ -156,7 +156,7 @@ Exact finite Boolean knowledge compilation makes every reduced ordered decision 
 
 Feature/PR, merged-main and Pages checks passed. All 30 public files and six deployed assets match tested source. The complete deployed Chrome workflow passes; all 64 unmasked captures match local pixels. Actual desktop hero, phone zero-mass verdicts and narrow boundary graph were inspected. Classical ROBDD theory and existing certified projected-compilation work are credited. No new algorithm, formal-proof or scalable-compiler claim.
 
-[Workbench](https://midya8.github.io/compilelab/) · [Source](https://github.com/midya8/compilelab) · [Case study](compilelab.md)
+[Workbench](https://midya8.github.io/bdd-compilation/) · [Source](https://github.com/midya8/bdd-compilation) · [Case study](compilelab.md)
 
 ## FireLab: balance is not an execution
 
@@ -166,7 +166,7 @@ Exact finite Petri-net planning separates token balance, executing a supplied fi
 
 Feature/PR, merged-main and Pages checks passed. All 32 public files and five deployed assets match checked source. Deployed Chrome passes; 31/32 unmasked captures are pixel-identical. The remaining phone state-table capture differs only in 165 pixels within one header label (maximum channel difference 56/255); both actual images were inspected with no content/layout difference. Established Petri-net theory, original bounded controls, no new algorithm, unrestricted marking-equation solver, benchmark or real-agent guarantee.
 
-[Live inspector](https://midya8.github.io/firelab/) · [Source](https://github.com/midya8/firelab) · [Case study](firelab.md)
+[Live inspector](https://midya8.github.io/petri-nets/) · [Source](https://github.com/midya8/petri-nets) · [Case study](firelab.md)
 
 ## ParetoLab: the compromise a weighted sum misses
 
@@ -176,7 +176,7 @@ Exact finite biobjective DAG planning retains all paths and nondominated tradeof
 
 Feature/PR, merged-main and Pages checks passed. All31 public files and five deployed assets match checked source. Deployed Chrome passes;39/40 unmasked captures are pixel-identical, with only18 border-antialias pixels differing by at most2/255 in the remaining hero. Actual desktop/phone layouts inspected.
 
-[Live inspector](https://midya8.github.io/paretolab/) · [Source](https://github.com/midya8/paretolab) · [Case study](paretolab.md)
+[Live inspector](https://midya8.github.io/pareto-paths/) · [Source](https://github.com/midya8/pareto-paths) · [Case study](paretolab.md)
 
 ## AuctionLab: truthful alone, not protected together
 
@@ -186,17 +186,17 @@ Exact finite VCG allocation separates individual truthful reporting from seller-
 
 Feature/PR, merged-main and Pages checks passed. All 47 public files and five deployed assets match checked source; all 30 deployed captures match inspected local pixels.
 
-[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab) · [Case study](auctionlab.md)
+[Live inspector](https://midya8.github.io/vcg-auctions/) · [Source](https://github.com/midya8/vcg-auctions) · [Case study](auctionlab.md)
 
 ## MatchLab: stable is not cost-optimal
 
 Exact finite two-sided matching separates an unconstrained assignment cost of **3**, cheapest stable cost of **13** and both proposer-optimal stable extremes. The unique cheapest stable assignment is neither extreme. Inspect every blocking pair, both full proposal traces, all attainable stable partners, stable-lattice operations/covers and cost/blocker-cap frontier. A separate original control has an incomparable diamond lattice. Costs are supplied separately from ordinal preferences; no implied fairness, real allocation advice or new algorithm.
 
-20 Python tests, 76 complete cross-engine reports, 1,372 primitive forgery rejections, 152 independent input-built HiGHS integer solves and installed-wheel reproduction pass. Deployed Chrome checks 48 responsive views, 1,149 selected assignments, 453 proposal states, 243 lattice selections, 450 cap selections and 16 natively replayed downloads. Feature/PR, main and Pages checks passed; all 44 source files, five deployed assets and 31 captures match checked evidence. [Live inspector](https://midya8.github.io/matchlab/) · [Case study](matchlab.md).
+20 Python tests, 76 complete cross-engine reports, 1,372 primitive forgery rejections, 152 independent input-built HiGHS integer solves and installed-wheel reproduction pass. Deployed Chrome checks 48 responsive views, 1,149 selected assignments, 453 proposal states, 243 lattice selections, 450 cap selections and 16 natively replayed downloads. Feature/PR, main and Pages checks passed; all 44 source files, five deployed assets and 31 captures match checked evidence. [Live inspector](https://midya8.github.io/stable-matching/) · [Case study](matchlab.md).
 
 ## OrderLab: no improving swap, still not the best order
 
-[Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Case study](orderlab.md)
+[Live inspector](https://midya8.github.io/kemeny-ranking/) · [Source](https://github.com/midya8/kemeny-ranking) · [Case study](orderlab.md)
 
 Exact finite weighted Kemeny rank aggregation separates a pairwise lower bound of 7, a global optimum of 8 and a strict adjacent-local endpoint of 10. Every tied optimum, ballot inversion, pair cost, neighbor delta, majority cycle and subset transition is visible and independently replayable. The all-tie six-candidate control keeps all 720 optima. Classical theory is credited; no learned reliability, input ties, real election advice or new theorem.
 
@@ -206,7 +206,7 @@ Exact finite weighted Kemeny rank aggregation separates a pairwise lower bound o
 
 ## ConceptLab: exact concepts and implication witnesses
 
-[Live inspector](https://midya8.github.io/conceptlab/) | [Source](https://github.com/midya8/conceptlab) | [Method and prior work](https://github.com/midya8/conceptlab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/formal-concepts/) | [Source](https://github.com/midya8/formal-concepts) | [Method and prior work](https://github.com/midya8/formal-concepts/blob/main/METHOD.md)
 
 A bounded knowledge-representation workbench for formal concept analysis. Independent Python and JavaScript enumerate every formal concept, cover, meet/join, attribute closure and object derivation. Inspect canonical implications, pseudo-intent decisions, NextClosure pivots, forward rule traces and rule-removal countermodels. Every implication query retains supporting and counterexample rows; an empty premise extent means vacuous validity and null confidence, not evidence.
 
@@ -219,7 +219,7 @@ Finite exact teaching/audit tool: at most six attributes and eight objects. Not 
 
 ### ConceptLab incomplete-context completions
 
-[Live completion inspector](https://midya8.github.io/conceptlab/partial.html) | [Semantics and sources](https://github.com/midya8/conceptlab/blob/main/PARTIAL.md)
+[Live completion inspector](https://midya8.github.io/formal-concepts/partial.html) | [Semantics and sources](https://github.com/midya8/formal-concepts/blob/main/PARTIAL.md)
 
 Unknown is not false. Enumerate every compatible binary completion of a three-valued table. Inspect certain, contingent and impossible implications, all object counterexamples, exact defined row-confidence bounds and endpoint ties, with zero-support completions kept separate. Intersect goals in one shared completion and retain every inclusion-minimal impossible goal set with deletion witnesses.
 
@@ -230,7 +230,7 @@ Independent Python and JavaScript engines, 17 native tests on four Python versio
 
 ### STRIPSLab exact planning and relaxation witnesses
 
-[Live inspector](https://midya8.github.io/stripslab/) · [Source](https://github.com/midya8/stripslab) · [Method and prior work](https://github.com/midya8/stripslab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/strips-planning/) · [Source](https://github.com/midya8/strips-planning) · [Method and prior work](https://github.com/midya8/strips-planning/blob/main/METHOD.md)
 
 An original bounded classical-AI planning lab: audit every state and every blocked/applicable action, compare exact real and delete-relaxed shortest-plan families, and inspect h-max/h-add fixed-point rounds and tied fact achievers. Strict controls expose shared-effect double counting, relaxed solvability hiding real dead ends, restoration costs, all shortest-order ties and unreachable cyclic prerequisites. Python bitsets/reverse BFS and independent JavaScript sets/Bellman sweeps reproduce the same complete reports.
 
@@ -241,25 +241,25 @@ Six facts, eight grounded positive-precondition unit-cost actions. No PDDL parse
 
 ### STRIPSLab search witnesses: an actual suboptimal h-add plan
 
-[Inspect four complete search runs](https://midya8.github.io/stripslab/search.html) · [Search policy and reproducible evidence](https://github.com/midya8/stripslab/blob/main/SEARCH.md)
+[Inspect four complete search runs](https://midya8.github.io/strips-planning/search.html) · [Search policy and reproducible evidence](https://github.com/midya8/strips-planning/blob/main/SEARCH.md)
 
 The new A*/best-first inspector exposes every selected frontier, strict cost improvement, applicable action decision and returned plan. A controlled task returns cost 3 with h-add versus exact cost 2 under the disclosed tie and goal-pop policy. Zero, h-max and exact h-plus return cost 2. Includes admissibility/consistency diagnostics, unsolvable exhaustion, strict CLI certificates, an independently implemented browser engine, and a separate synthetic reopening test. Full-state precomputation is explicit: this is a bounded audit, not a planner speedup or new algorithm claim.
 
 
 ### STRIPSLab availability: used does not mean necessary
 
-[Live action-availability inspector](https://midya8.github.io/stripslab/sensitivity.html) | [Exact source and policy](https://github.com/midya8/stripslab/blob/main/SENSITIVITY.md)
+[Live action-availability inspector](https://midya8.github.io/strips-planning/sensitivity.html) | [Exact source and policy](https://github.com/midya8/strips-planning/blob/main/SENSITIVITY.md)
 
 Disable every static action subset. Keep every exact counterfactual distance, shortest-plan count, original action ID, representative and optimal edge. Separate an action used by one representative from one required by every optimal plan or every valid plan. Retain all inclusion-minimal sufficient sets and all solvability/optimality cuts, with independently checked minimal-hitting-set duals.
 
 The original duplicate-shortcut control leaves a longer detour when both shortcuts are removed: optimality fails before solvability does. Eighteen controls retain 466 scenarios, 21,731 state rows and 408 optimal edges. Python BFS and independent JavaScript distance sweeps agree on 118 complete reports covering 2,515 scenarios; independent native set-transition and all-proper-subset oracles cover another 80 seeded tasks. Seventeen native tests, nine Node/Chrome tests and 47 isolated installed reports preserve all earlier modes. Browser checks every retained scenario at 320/390/1280.
 
-Six facts/eight unit-cost grounded actions maximum. Static deterministic re-planning, not failure probabilities, timed outages, a scalable landmark extractor, real-world reliability or a new algorithm. [Implementation, boundaries and inspected sources](https://github.com/midya8/stripslab/blob/main/SENSITIVITY.md).
+Six facts/eight unit-cost grounded actions maximum. Static deterministic re-planning, not failure probabilities, timed outages, a scalable landmark extractor, real-world reliability or a new algorithm. [Implementation, boundaries and inspected sources](https://github.com/midya8/strips-planning/blob/main/SENSITIVITY.md).
 
 
 ## UnifyLab: a binding is not a solution
 
-[Live finite-term inspector](https://midya8.github.io/unifylab/) | [Source](https://github.com/midya8/unifylab) | [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/METHOD.md)
+[Live finite-term inspector](https://midya8.github.io/unification/) | [Source](https://github.com/midya8/unification) | [Method and inspected sources](https://github.com/midya8/unification/blob/main/METHOD.md)
 
 An original bounded classical-AI unification lab. Keep every equation rewrite, composed earlier binding, exact constructor clash and zero-based occurs-check cycle path. A normalized simultaneous substitution is applied to every original equation. Alias reversal is not automatically a cycle, and a resource limit never means non-unifiability.
 
@@ -270,7 +270,7 @@ Established finite-tree unification, not new theory. Six variables/eight equatio
 
 ## UnifyLab: minimal equation conflicts and deletion repairs
 
-[Live subset inspector](https://midya8.github.io/unifylab/cores.html) · [Source](https://github.com/midya8/unifylab) · [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/SUBSETS.md)
+[Live subset inspector](https://midya8.github.io/unification/cores.html) · [Source](https://github.com/midya8/unification) · [Method and inspected sources](https://github.com/midya8/unification/blob/main/SUBSETS.md)
 
 Test every indexed subset, keep duplicate equation identities, and distinguish an inclusion-minimal conflict from a smallest conflict. Confirmed deletion repairs list indices to REMOVE and failing single restorations. The default control has independent duplicate/cycle conflicts and repairs of different sizes. A resource limit stays unresolved: no inferred status, false inconsistency, complete-frontier or minimum-size claim. Any selected subsystem opens its detailed rewrite trace.
 
@@ -281,7 +281,7 @@ Established finite-tree and constraint-diagnosis concepts, not a new scalable MU
 
 ## UnifyLab: repeated differences, shared variables
 
-[Ground generalization inspector](https://midya8.github.io/unifylab/generalize.html) · [Method and inspected sources](https://github.com/midya8/unifylab/blob/main/GENERALIZATION.md) · [Source](https://github.com/midya8/unifylab)
+[Ground generalization inspector](https://midya8.github.io/unification/generalize.html) · [Method and inspected sources](https://github.com/midya8/unification/blob/main/GENERALIZATION.md) · [Source](https://github.com/midya8/unification)
 
 Finite ground-term anti-unification: keep common constructors and give the same ordered disagreement pair the same variable. Inspect fresh/reuse records, two substitution maps and exact reconstructions. The independent native checker rejects coherent overgeneralization even when both inputs reconstruct. Python and independently written JavaScript agree on 209 reports; nine synthetic controls expose 43 node records. Original solver and subset inspectors retained.
 
@@ -290,7 +290,7 @@ Finite ground-term anti-unification: keep common constructors and give the same 
 
 ## HornLab: a circle is not a proof
 
-[Live inspector](https://midya8.github.io/hornlab/) · [Source and tests](https://github.com/midya8/hornlab) · [Method and sources](https://github.com/midya8/hornlab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/horn-inference/) · [Source and tests](https://github.com/midya8/horn-inference) · [Method and sources](https://github.com/midya8/horn-inference/blob/main/METHOD.md)
 
 Bounded positive propositional Horn inference with synchronous derivation rounds and every indexed rule decision. Compare the least model with every classical and supported model: a supported circular assignment need not have a derivation. Inspect an atomic countermodel for each non-entailed query and every inclusion-minimal initial-fact support, including its deletion failures and all seed subsets. Not entailed does not mean classically false.
 
@@ -299,7 +299,7 @@ Independent Python bitsets and JavaScript sets match 210 full reports; a separat
 
 ## HornLab: every route, every break
 
-[Rule-deletion inspector](https://midya8.github.io/hornlab/rules.html) · [Method and primary sources](https://github.com/midya8/hornlab/blob/main/RULES.md) · [Source](https://github.com/midya8/hornlab)
+[Rule-deletion inspector](https://midya8.github.io/horn-inference/rules.html) · [Method and primary sources](https://github.com/midya8/horn-inference/blob/main/RULES.md) · [Source](https://github.com/midya8/horn-inference)
 
 Keep initial facts fixed and inspect all indexed-rule subsets, synchronous closures, every minimal rule support and every minimal deletion set. One broken route need not break the goal. Each support retains one-rule removal failures; each deletion retains restoration successes. Both minimal-hitting-set dualities and every support/deletion intersection are explicit, including empty-support and already-absent boundary cases.
 
@@ -308,14 +308,14 @@ Eighteen native tests retain all originals, with all 1,024 two-atom programs and
 
 ### BisimLab: same traces, different choices
 
-[Source](https://github.com/midya8/bisimlab) · [Interactive inspector](https://midya8.github.io/bisimlab/) · [Method](https://github.com/midya8/bisimlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/bisimulation) · [Interactive inspector](https://midya8.github.io/bisimulation/) · [Method](https://github.com/midya8/bisimulation/blob/main/METHOD.md)
 
 Finite agent-protocol equivalence from scratch: every strong-bisimulation refinement, every failed left/right step match, executable Hennessy-Milner witness DAGs, truth sets and a quotient graph. The default original control has equal finite trace languages but loses a choice after the same action; exact paired-subset BFS checks trace equality separately from branching equivalence. A native partition-signature checker never calls the generator, and independent JavaScript matches full reports. Nine native tests include all 512 three-state/one-action graphs against relation enumeration and 100 seeded graphs; three Node/actual-Chrome tests include 593 complete cross-engine reports and every control record at 320/390/1280. Installed-wheel checks cover both CLI entry points outside checkout. One to six states, all labels visible: no silent abstraction, probabilities, policy guarantee, source extraction, new algorithm or formal-proof claim. Established theory and seven inspected sources are attributed in the method.
 
 
 ### BisimLab: complete trace-product replay
 
-[Interactive trace product](https://midya8.github.io/bisimlab/traces.html) | [Source and exact semantics](https://github.com/midya8/bisimlab/blob/main/TRACES.md)
+[Interactive trace product](https://midya8.github.io/bisimulation/traces.html) | [Source and exact semantics](https://github.com/midya8/bisimulation/blob/main/TRACES.md)
 
 The second inspector retains the entire reachable product of two states' possible successor sets, including every action edge after a mismatch and the both-empty sink. Inspect canonical BFS discovery words, layers, all possibility-mismatch nodes and a shortest distinguishing path. Equal finite traces still do not imply branching equivalence.
 
@@ -324,7 +324,7 @@ Python bitmasks, independent JavaScript sets and a separate native checker based
 
 ### ShieldLab: a safe next step can still lose
 
-[Source](https://github.com/midya8/shieldlab) | [Interactive inspector](https://midya8.github.io/shieldlab/) | [Exact method and seven-source ledger](https://github.com/midya8/shieldlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/safety-games) | [Interactive inspector](https://midya8.github.io/safety-games/) | [Exact method and seven-source ledger](https://github.com/midya8/safety-games/blob/main/METHOD.md)
 
 An exact tiny safety-game inspector for hand-written agent protocols. Every synchronous fixed-point obligation, winning controller move, losing rank and branching invariant/counterstrategy graph is visible. Changing only who controls a state flips the result: one-step-safe actions need not preserve safety forever. Independent bitmask Python and explicit-set JavaScript, plus a separate dual-attractor and exhaustive positional-policy checker.
 
@@ -332,19 +332,19 @@ Eight native tests include all 21,952 three-state graph/ownership/safety combina
 
 ### BuchiLab: a winning state is not a winning policy
 
-[Interactive inspector](https://midya8.github.io/buchilab/) | [Source](https://github.com/midya8/buchilab) | [Method and seven-source ledger](https://github.com/midya8/buchilab/blob/main/METHOD.md)
+[Interactive inspector](https://midya8.github.io/buchi-games/) | [Source](https://github.com/midya8/buchi-games) | [Method and seven-source ledger](https://github.com/midya8/buchi-games/blob/main/METHOD.md)
 
 Tiny finite adversarial repeated-goal games with every nested greatest/least fixed-point obligation, progress rank, complete positional controller policy and reachable cyclic non-goal SCC visible. Idle can stay inside the winning region forever and still lose: rank-guided progress and per-policy audits show why. A separate checker replays with sets/Floyd reachability and every joint-policy eventual lasso, without calling the generator. Nine native tests include 21,952 exhaustive three-state games; three Node/actual-Chrome tests compare 331 complete Python/JavaScript reports and every control record at 320/390/1280. Installed wheels replay seven original controls through both CLIs outside checkout. No fairness assumption, learned abstraction, deployed shield, general LTL compiler, formal proof or real-agent guarantee. Rank-permitted actions are sufficient, not all winning policies.
 
 ### BuchiLab: repeat the actual failure
 
-[Action-level lasso inspector](https://midya8.github.io/buchilab/lassos.html) | [Exact witness contract](https://github.com/midya8/buchilab/blob/main/LASSOS.md)
+[Action-level lasso inspector](https://midya8.github.io/buchi-games/lassos.html) | [Exact witness contract](https://github.com/midya8/buchi-games/blob/main/LASSOS.md)
 
 A reachable bad component now becomes an exact action-labelled prefix once and nonempty non-goal cycle forever, for every failing fixed controller policy/root. Empty prefixes, self-loops, multiedge cycles, unreachable bad components and duplicate-target action choices are explicit. BFS generation is independently checked with bounded simple walks and the joint-policy lasso oracle. Original v1 reports and original tests stay intact: 16 native tests across four Python versions and five Node/actual-Chrome tests, including 314 complete witness-report comparisons and every record in ten controls at 320/390/1280. Installed wheels replay both report families outside checkout. Input-order anchor, shortest prefix/cycle individually, not globally shortest lasso. These are per-policy counterexamples, not one environment strategy defeating every controller policy or a real-agent guarantee.
 
 ## HallLab: distinct is a global promise
 
-[Live inspector](https://midya8.github.io/halllab/) · [Source](https://github.com/midya8/halllab) · [Method and six-source ledger](https://github.com/midya8/halllab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/all-different/) · [Source](https://github.com/midya8/all-different) · [Method and six-source ledger](https://github.com/midya8/all-different/blob/main/METHOD.md)
 
 Tiny constraint-based AI assignment, with every supported variable/value backed by a complete injective assignment and every rejected edge explained by a forced-residual Hall obstruction. A full synchronous pairwise-AC baseline makes the global bottleneck visible. Exact matching/counting, independent exhaustive native checker, separate JavaScript assignment engine, editable graphs, all tight/deficient subsets and every propagation round.
 
@@ -353,7 +353,7 @@ The original 12 native tests, retained in the current 36-test suite, cover 8,777
 
 ### HallLab: local support is not a shared solution
 
-[Overlapping-scope inspector](https://midya8.github.io/halllab/overlaps.html) · [Exact overlap contract and sources](https://github.com/midya8/halllab/blob/main/OVERLAPS.md) · [Source](https://github.com/midya8/halllab)
+[Overlapping-scope inspector](https://midya8.github.io/all-different/overlaps.html) · [Exact overlap contract and sources](https://github.com/midya8/all-different/blob/main/OVERLAPS.md) · [Source](https://github.com/midya8/all-different)
 
 Repeat full local all-different propagation to a synchronous fixed point, then compare it with exact common-assignment support across overlapping scopes. A two-color triangle keeps every local value but has no joint assignment. A satisfiable triangle keeps local values that never occur in a common solution. Inspect each round, original-variable mappings, scope-only witnesses, full common witnesses and exhaustive rejection bins.
 
@@ -362,7 +362,7 @@ Separate native API/module CLI, independent report checker and JavaScript engine
 
 ### HallLab: every minimal conflict, every minimal removal
 
-[Live conflict inspector](https://midya8.github.io/halllab/conflicts.html) · [Exact contract and seven-source ledger](https://github.com/midya8/halllab/blob/main/CONFLICTS.md) · [Source](https://github.com/midya8/halllab)
+[Live conflict inspector](https://midya8.github.io/all-different/conflicts.html) · [Exact contract and seven-source ledger](https://github.com/midya8/all-different/blob/main/CONFLICTS.md) · [Source](https://github.com/midya8/all-different)
 
 All inclusion-minimal conflicting all-different scope sets and all inclusion-minimal scope-removal repairs, with complete single-deletion witnesses, common kept-network assignments and contained conflicts for every restoration. The default diamond has a size-one and four size-two minimal removals: minimal is not minimum. Inspect every active subset and the hitting-set intersections that explain why a repair must break every conflict. Domains stay fixed; an empty-domain background has no scope-removal repair.
 
@@ -371,7 +371,7 @@ Independent native histogram generation, per-subset product verification and rec
 
 ## STNLab - temporal bounds with attainable schedules
 
-[Live inspector](https://midya8.github.io/stnlab/) · [Source](https://github.com/midya8/stnlab) · [Method and source ledger](https://github.com/midya8/stnlab/blob/main/METHOD.md) · [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/stnlab.md)
+[Live inspector](https://midya8.github.io/simple-temporal/) · [Source](https://github.com/midya8/simple-temporal) · [Method and source ledger](https://github.com/midya8/simple-temporal/blob/main/METHOD.md) · [Case study](https://github.com/midya8/Midya-portfolio/blob/main/projects/stnlab.md)
 
 For tiny hand-written AI plans, inspect every implied time difference: a tight path plus a complete schedule attaining the bound, or an explicit ray proving it unbounded. Negative cycles show exactly why no schedule exists, even away from the anchor. Removing one edge returns an alternate implication path or a complete separating schedule. Eleven editable controls include duplicate edges, zero cycles, free components and a chain with bound 100.
 
@@ -380,7 +380,7 @@ Native Floyd-Warshall/Bellman-Ford generation, independent permutation/edge-prod
 
 ## STNLab insertion sensitivity
 
-One proposed temporal constraint, an exact consistency threshold and every changed implied bound. [Source](https://github.com/midya8/stnlab) · [Insertion inspector](https://midya8.github.io/stnlab/insertions.html) · [Contract and source ledger](https://github.com/midya8/stnlab/blob/main/INSERTIONS.md).
+One proposed temporal constraint, an exact consistency threshold and every changed implied bound. [Source](https://github.com/midya8/simple-temporal) · [Insertion inspector](https://midya8.github.io/simple-temporal/insertions.html) · [Contract and source ledger](https://github.com/midya8/simple-temporal/blob/main/INSERTIONS.md).
 
 Native old-matrix one-edge closure is checked against independent full recomputation. Inspect the old return path, a complete schedule at the feasibility boundary, a candidate-first negative cycle, or a still-unbounded anchored ray. All finite post-insertion bounds include attaining schedules; 41 integer weights are separate alternatives, not accumulated changes.
 
@@ -389,7 +389,7 @@ Ten new synthetic controls include exact-boundary feasibility, a missing return 
 
 ### STNLab existential projection
 
-[Interactive projection lab](https://midya8.github.io/stnlab/projection.html) | [Source](https://github.com/midya8/stnlab) | [Exact contract](https://github.com/midya8/stnlab/blob/main/PROJECTION.md)
+[Interactive projection lab](https://midya8.github.io/simple-temporal/projection.html) | [Source](https://github.com/midya8/simple-temporal) | [Exact contract](https://github.com/midya8/simple-temporal/blob/main/PROJECTION.md)
 
 Hide time points without losing the bounds their paths imply. STNLab restricts the closed network to retained original IDs, lifts jointly feasible retained assignments into full original schedules, and exposes retained assignments that naive edge deletion wrongly permits. Each finite projected bound has an original path and a full attaining schedule; unbounded pairs have anchored rays. Hidden negative cycles remain impossible.
 
@@ -398,7 +398,7 @@ Independent Fourier-Motzkin elimination, path enumeration and pinned-cycle check
 
 ## STNLab complete conflicts and repairs
 
-[Live conflict/repair inspector](https://midya8.github.io/stnlab/conflicts.html) | [Source](https://github.com/midya8/stnlab) | [Exact contract and sources](https://github.com/midya8/stnlab/blob/main/CONFLICTS.md)
+[Live conflict/repair inspector](https://midya8.github.io/simple-temporal/conflicts.html) | [Source](https://github.com/midya8/simple-temporal) | [Exact contract and sources](https://github.com/midya8/simple-temporal/blob/main/CONFLICTS.md)
 
 Enumerate every inclusion-minimal temporal conflict and every inclusion-minimal correction set. Replay negative cycles, conflict-deletion schedules, repaired schedules and restoration contradictions. An independent native verifier checks complete hitting-set duality; a separate JavaScript engine powers the inspector. Minimal is explicitly distinct from minimum-cardinality.
 
@@ -407,7 +407,7 @@ Validation: 31 native tests on Python 3.10-3.13, 12 Node/Chrome tests, 316 cross
 
 ## EUFLab: ground equality with evidence
 
-[Live proof and countermodel inspector](https://midya8.github.io/euflab/) | [Source and reproduction](https://github.com/midya8/euflab) | [Semantics and six-source ledger](https://github.com/midya8/euflab/blob/main/METHOD.md)
+[Live proof and countermodel inspector](https://midya8.github.io/congruence-closure/) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Semantics and six-source ledger](https://github.com/midya8/congruence-closure/blob/main/METHOD.md)
 
 Functions preserve equality, not difference. EUFLab exposes ground congruence proof DAGs, every contradicted disequality and a total finite interpretation for consistent inputs. Inspect non-injectivity, cyclic values, duplicate syntax, ordered arguments and inconsistent-premise boundaries. Native union-find/proof forests, separate browser relation saturation, independent proof/model verification and exhaustive set-partition references make the claims inspectable.
 
@@ -416,7 +416,7 @@ Validation: 9 native tests on Python 3.10-3.13; 156 cross-engine reports; 251 qu
 
 ## EUFLab finite-model atlas
 
-[Live finite-model atlas](https://midya8.github.io/euflab/atlas.html) | [Source and reproduction](https://github.com/midya8/euflab) | [Exact atlas contract](https://github.com/midya8/euflab/blob/main/ATLAS.md)
+[Live finite-model atlas](https://midya8.github.io/congruence-closure/atlas.html) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Exact atlas contract](https://github.com/midya8/congruence-closure/blob/main/ATLAS.md)
 
 The most separated quotient is not necessarily the smallest model. EUFLab now enumerates every compatible term-equality pattern, finds minimum domain size, and classifies each pair as forced equal, forced different or flexible. Explore total model witnesses, unary backward difference, binary disjunctions, odd-cycle coloring and all 4,140 eight-name patterns. Counts are equality patterns, not full interpretations; extra unnamed domain elements remain possible.
 
@@ -425,7 +425,7 @@ Independent restricted-growth, explicit-block and subset-cover enumerators. Vali
 
 ## EUFLab domain-cap debugger
 
-[Live bounded-domain debugger](https://midya8.github.io/euflab/cardinality.html) | [Source and reproduction](https://github.com/midya8/euflab) | [Exact diagnosis contract](https://github.com/midya8/euflab/blob/main/CARDINALITY.md)
+[Live bounded-domain debugger](https://midya8.github.io/congruence-closure/cardinality.html) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Exact diagnosis contract](https://github.com/midya8/congruence-closure/blob/main/CARDINALITY.md)
 
 Too few values? Find every cause. With the domain cap held fixed, enumerate every inclusion-minimal assertion conflict and deletion repair. Separate intrinsic inconsistency from cap-only conflicts, inspect every assertion subset, and replay total models for repairs or one-literal core relaxations. Duplicate occurrences retain their identities; minimal repairs need not have minimum size. A three-cycle shows why explicit difference-edge coloring alone misses functional constraints.
 
@@ -434,7 +434,7 @@ Validation: 23 native tests on Python 3.10-3.13, nine Node/Chrome tests, 269 com
 
 ## EUFLab costed repair planner
 
-[Live planner](https://midya8.github.io/euflab/planner.html) · [Source and exact contract](https://github.com/midya8/euflab/blob/main/PLANNER.md)
+[Live planner](https://midya8.github.io/congruence-closure/planner.html) · [Source and exact contract](https://github.com/midya8/congruence-closure/blob/main/PLANNER.md)
 
 Protect what cannot change, price what can. The fourth EUFLab inspector enumerates every permitted deletion set, every cost-only optimum and a separate cost/count Pareto frontier. Protected intrinsic or cap-only cores explain infeasibility. Each plan includes a total minimum-domain model with kept, protected and omitted assertion truth rows.
 
@@ -445,20 +445,20 @@ Native and browser engines agree on 358 complete reports. Independent labeled-do
 
 ### EUFLab exact repair-cost sensitivity
 
-[Live sensitivity inspector](https://midya8.github.io/euflab/sensitivity.html) | [Source and certificate contract](https://github.com/midya8/euflab/blob/main/SENSITIVITY.md)
+[Live sensitivity inspector](https://midya8.github.io/congruence-closure/sensitivity.html) | [Source and certificate contract](https://github.com/midya8/congruence-closure/blob/main/SENSITIVITY.md)
 
 Vary one assertion deletion cost over every integer from 0 to 1,000,000. The certificate gives exact keep/delete intervals, breakpoint ties and every optimum mask, including zero-cost nonminimal repairs. An independent native verifier rebuilds all affine plan-cost lines; the browser inspector audits replacement costs, regret and total models without treating omitted assertions as negated. Hard protections and blocked policies remain explicit. This is bounded exhaustive analysis, not an industrial-scale solver or simultaneous multi-cost robustness guarantee.
 
 
 ### DFALab: active learning with exact counterexamples
 
-[Live inspector](https://midya8.github.io/dfalab/) | [Source and contract](https://github.com/midya8/dfalab/blob/main/CONTRACT.md) | [Case study](dfalab.md)
+[Live inspector](https://midya8.github.io/dfa-learning/) | [Source and contract](https://github.com/midya8/dfa-learning/blob/main/CONTRACT.md) | [Case study](dfalab.md)
 
 Ask membership questions, repair an observation table, then break a wrong conjecture with a shortest counterexample. Classic Angluin L* is replayed with every experiment, closure/consistency witness and complete reachable-product equivalence check. The final DFA has access words and pair-separating suffixes proving minimality. Independent Python/JavaScript reports and a separate certificate checker are tested against exhaustive tiny teachers and a pair-marking oracle. Exact equivalence relies on the supplied finite synthetic teacher, not random tests of a real service; no new algorithm or query-efficiency claim.
 
 ### DFALab: bounded conformance, not an unrestricted test-pass claim
 
-[Live W-method inspector](https://midya8.github.io/dfalab/conformance.html) | [Construction, assumptions and sources](https://github.com/midya8/dfalab/blob/main/CONFORMANCE.md) | [Source](https://github.com/midya8/dfalab)
+[Live W-method inspector](https://midya8.github.io/dfa-learning/conformance.html) | [Construction, assumptions and sources](https://github.com/midya8/dfa-learning/blob/main/CONFORMANCE.md) | [Source](https://github.com/midya8/dfa-learning)
 
 The classic DFA W-method now has a complete experiment inspector: every state-cover word, middle word, distinguishing suffix, canonical factor and acceptance path. It separates four claims: finite suite agreement, the supplied candidate's reachable-state bound, a bounded equivalence certificate and a separate exact graph audit. A faulty extra-state candidate passes when its bound is understated; increasing the bound exposes the fault. Tests do not infer a hidden service's state count.
 
@@ -466,7 +466,7 @@ An independent verifier reconstructs all factor combinations and checks every ou
 
 ### DFALab: exhaustive finite fault atlas and exact test-subset selection
 
-[Live fault atlas](https://midya8.github.io/dfalab/fault-atlas.html) | [Exact domain, cost and sources](https://github.com/midya8/dfalab/blob/main/FAULT_ATLAS.md) | [Source](https://github.com/midya8/dfalab)
+[Live fault atlas](https://midya8.github.io/dfa-learning/fault-atlas.html) | [Exact domain, cost and sources](https://github.com/midya8/dfa-learning/blob/main/FAULT_ATLAS.md) | [Source](https://github.com/midya8/dfa-learning)
 
 Enumerate every complete labeled implementation in a tiny unary/binary state domain, distinguish equivalent survivors from real faults, and inspect every acceptance-matrix row. Every subset of the constructed W-suite is checked under test-count then letter-count cost. All minima, escaping faults and chosen-test deletion witnesses are retained. Irredundancy is not confused with minimum cardinality; label/unreachable-state duplicates are not counted as unique languages or bug frequencies.
 
@@ -480,7 +480,7 @@ An independent native verifier reconstructs the complete machine domain and ever
 
 Ten synthetic controls separate example agreement, exact finite correctness and minimum AST-node cost inside the explicit grammar. Eight native tests run on Python3.10-3.13, including512 Boolean target/grammar pairs and2764 raw trees at each of three widths; four Node/actual-Chrome tests audit30 reports,90 iterations,903 candidate signatures and3420 expression probes. Installed module+console reproduction runs outside the checkout. Classical CEGIS/enumeration credited. No novel algorithm, unbounded synthesis, cvc5 integration or production-code benchmark claim.
 
-[Live inspector](https://midya8.github.io/synthlab/) · [Source](https://github.com/midya8/synthlab) · [Grammar, proof boundary and sources](https://github.com/midya8/synthlab/blob/main/CONTRACT.md)
+[Live inspector](https://midya8.github.io/program-synthesis/) · [Source](https://github.com/midya8/program-synthesis) · [Grammar, proof boundary and sources](https://github.com/midya8/program-synthesis/blob/main/CONTRACT.md)
 
 #### Exact finite teaching-set atlas
 
@@ -488,7 +488,7 @@ Ten synthetic controls separate example agreement, exact finite correctness and 
 
 The two-bit XOR control has 132 distinct rival functions and 65,536 input subsets. CEGIS stops correctly with four examples but leaves three rivals; the atlas finds 182 four-row teaching sets. Same number of examples does not mean the same identifying power. Five teaching controls add seven native tests and three Node/Chrome checks, bringing the project to 15 native tests on Python 3.10-3.13 and seven Node/Chrome checks. Chrome audits 15 teaching reports, 1,203 subset selections and 597 rival truth selections; installed module and console reproduction runs outside the checkout.
 
-[Teaching inspector](https://midya8.github.io/synthlab/teaching.html) · [Teaching contract and sources](https://github.com/midya8/synthlab/blob/main/TEACHING.md) · [Reviewed implementation](https://github.com/midya8/synthlab/pull/2)
+[Teaching inspector](https://midya8.github.io/program-synthesis/teaching.html) · [Teaching contract and sources](https://github.com/midya8/program-synthesis/blob/main/TEACHING.md) · [Reviewed implementation](https://github.com/midya8/program-synthesis/pull/2)
 
 Finite target-specific identification, not class-wide teaching dimension or PAC learning. Classical teaching-set/minimum-cover ideas credited to Goldman and Kearns; word-valued labels use explicit equality. No new teaching algorithm claim.
 
@@ -500,7 +500,7 @@ A full seeded two-bit grammar leaves ten functions after two known observations.
 
 Seven additional native tests bring the project to 22 on Python 3.10-3.13; five additional Node/Chrome checks bring it to 12. The adaptive tests compare 541 complete native/JavaScript reports with independent verification. Actual Chrome audits 15 adaptive reports, 1,583 version-space selections, 111 query partitions, 306 answer branches, 84 target traces and 105 passive mask selections. Installed module+console reproduction includes all three certificate families outside the checkout.
 
-[Adaptive inspector](https://midya8.github.io/synthlab/adaptive.html) · [Exact adaptive contract and sources](https://github.com/midya8/synthlab/blob/main/ADAPTIVE.md) · [Reviewed implementation](https://github.com/midya8/synthlab/pull/3)
+[Adaptive inspector](https://midya8.github.io/program-synthesis/adaptive.html) · [Exact adaptive contract and sources](https://github.com/midya8/program-synthesis/blob/main/ADAPTIVE.md) · [Reviewed implementation](https://github.com/midya8/program-synthesis/pull/3)
 
 At most ten functions after separately counted initial observations, exact noiseless labels and unit query cost. Future answers are simulated from supplied tables, not a live oracle. Classical decision-tree dynamic programming and generalized binary search credited. No expected-cost, PAC or novel-algorithm claim.
 
@@ -512,13 +512,13 @@ Soft-DTW without the black box: scalar Python and browser JavaScript expose ever
 - Eight synthetic controls include negative self-scores, a single legal path, low-temperature underflow and a 7 by 7 grid where all 8,989 paths tie. Hard ties compare exact rational sums of binary64 local costs, not a fuzzy tolerance.
 - Strict JSON certificates, atomic CLI output and fresh installed module/console reproduction. Python 3.10-3.13 CI; 168 complete cross-language reports; real Chrome checks at 320/390/1280 pixels, including cell/edge inspection, complete paths, accessible row/column controls, export and error clearing.
 
-[Live alignment inspector](https://midya8.github.io/warplab/) · [Source and reproduction](https://github.com/midya8/warplab) · [Mathematical contract](https://github.com/midya8/warplab/blob/main/CONTRACT.md) · [Reviewed implementation](https://github.com/midya8/warplab/pull/1)
+[Live alignment inspector](https://midya8.github.io/soft-dtw/) · [Source and reproduction](https://github.com/midya8/soft-dtw) · [Mathematical contract](https://github.com/midya8/soft-dtw/blob/main/CONTRACT.md) · [Reviewed implementation](https://github.com/midya8/soft-dtw/pull/1)
 
 Raw soft-DTW is not a metric and can be negative. Occupancy sums to expected path length, not one; it is not a transport coupling. Hessian products are in independent cost coordinates. Lengths are bounded to 1..7; synthetic controls are not accuracy or speed benchmarks. Established soft-DTW and differentiable-DP mathematics credited to Cuturi/Blondel and Blondel/Mensch/Vert. No novel-algorithm or ground-cost-independent divergence theorem claim.
 
 ### Path-length atlas
 
-[Live length atlas](https://midya8.github.io/warplab/lengths.html) · [Length contract](https://github.com/midya8/warplab/blob/main/LENGTHS.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/2)
+[Live length atlas](https://midya8.github.io/soft-dtw/lengths.html) · [Length contract](https://github.com/midya8/soft-dtw/blob/main/LENGTHS.md) · [Reviewed extension](https://github.com/midya8/soft-dtw/pull/2)
 
 Separate every legal visited-cell count before mixing paths. Length-resolved log messages expose exact path counts, conditional occupancies and joint edge flows, hard minima/ties, and conditional coordinate/temperature gradients. An explicit per-visited-cell penalty changes the mixture, not the conditional laws. Inspect the entropy decomposition, expected-length gradient and negative length-variance curvature.
 
@@ -528,7 +528,7 @@ Length includes both endpoints. Positive penalty favors shorter paths, negative 
 
 ### Inverse expected-length response
 
-[Live inverse inspector](https://midya8.github.io/warplab/inverse.html) · [Inverse contract](https://github.com/midya8/warplab/blob/main/INVERSE.md) · [Reviewed extension](https://github.com/midya8/warplab/pull/3)
+[Live inverse inspector](https://midya8.github.io/soft-dtw/inverse.html) · [Inverse contract](https://github.com/midya8/soft-dtw/blob/main/INVERSE.md) · [Reviewed extension](https://github.com/midya8/soft-dtw/pull/3)
 
 Choose a target expected visited-cell count and inspect whether penalty -4..4 can reach it. The full numerical bisection witness exposes every bracket, response, centered length variance and probability law. Finite-range failures, single-length unidentifiability and numerical flattening stay distinct. A narrow-bracket control deliberately misses the mean-residual tolerance, making the difference between stopping rules visible.
 
@@ -538,7 +538,7 @@ This is bounded numerical evidence, not interval arithmetic or a unique-paramete
 
 ## HingeLab: a boundary is not always an adversary
 
-[Live inspector](https://midya8.github.io/hingelab/) · [Source](https://github.com/midya8/hingelab) · [Reviewed implementation](https://github.com/midya8/hingelab/pull/1) · [Case study](hingelab.md)
+[Live inspector](https://midya8.github.io/relu-regions/) · [Source](https://github.com/midya8/relu-regions) · [Reviewed implementation](https://github.com/midya8/relu-regions/pull/1) · [Case study](hingelab.md)
 
 Follow every rational affine region of a small ReLU network. Inspect hidden activation masks, exact decision roots and the full opposite-class set, including open endpoints and isolated ties. The report separates an attained nearest adversary from an unattained distance infimum and checks the actual closed-ball radius. A paired control keeps margin(x) = x fixed and changes only the reference side: the class-1 tie makes radius one robust on one side and nonrobust on the other.
 
@@ -548,7 +548,7 @@ This is exact only for the declared small rational, one-dimensional contract, wi
 
 ## HingeLab: every reference, one exact radius
 
-[Live reference atlas](https://midya8.github.io/hingelab/reference.html) · [Source](https://github.com/midya8/hingelab) · [Reviewed implementation](https://github.com/midya8/hingelab/pull/2)
+[Live reference atlas](https://midya8.github.io/relu-regions/reference.html) · [Source](https://github.com/midya8/relu-regions) · [Reviewed implementation](https://github.com/midya8/relu-regions/pull/2)
 
 Compute the entire robust-reference set, not one sampled point. Exact class-component erosion keeps strict versus closed endpoints, isolated ties and domain-edge clipping. A nested tent's class-1 interval [-1/2, 1/2] at radius 1/2 shrinks to the robust singleton {0}; at 513/1024 it disappears. Its zero interval length never erases its existence. The exact robust-length fraction is not accuracy or a data probability.
 
@@ -558,7 +558,7 @@ The original bounded rational one-dimensional contract and class-1 ties are unch
 
 ## HingeLab: every radius, exact
 
-[Live all-radius profile](https://midya8.github.io/hingelab/radius.html) · [Source](https://github.com/midya8/hingelab) · [Radius-profile case study](hingelab.md#radius-profile-extension)
+[Live all-radius profile](https://midya8.github.io/relu-regions/radius.html) · [Source](https://github.com/midya8/relu-regions) · [Radius-profile case study](hingelab.md#radius-profile-extension)
 
 Exact piecewise-linear robust interval length for every radius in [0,32],
 class-wise and total existence sets with strict/closed extinction endpoints,
@@ -575,18 +575,18 @@ installed reproduction for eight controls in each report family. Live Chrome
 checks 28 radius, 28 reference and 24 base reports. All 13 deployed assets are
 source-exact; all 80 native/feature/main/deployed screenshots match without
 masks and final phone/desktop/conditional pixels were inspected. Feature, PR,
-main CI and Pages all green. [Merged PR](https://github.com/midya8/hingelab/pull/3).
+main CI and Pages all green. [Merged PR](https://github.com/midya8/relu-regions/pull/3).
 
 Deliberately bounded scalar rational ReLU networks, closed balls clipped to the
 declared domain and class-1 ties. Established set erosion, not a new algorithm,
 training/import, high-dimensional certificate, accuracy/probability estimate,
 benchmark or scaling claim. Browser evidence requires independent Python
-acceptance. [Exact contract and finite-partition proof](https://github.com/midya8/hingelab/blob/main/RADIUS.md).
+acceptance. [Exact contract and finite-partition proof](https://github.com/midya8/relu-regions/blob/main/RADIUS.md).
 
 
 ## RewriteLab: a shortcut can need a larger detour
 
-[Live inspector](https://midya8.github.io/rewritelab/) · [Source and reproduction](https://github.com/midya8/rewritelab) · [Merged PR](https://github.com/midya8/rewritelab/pull/1)
+[Live inspector](https://midya8.github.io/term-rewriting/) · [Source and reproduction](https://github.com/midya8/term-rewriting) · [Merged PR](https://github.com/midya8/term-rewriting/pull/1)
 
 An exact, deliberately small arithmetic-optimization lab for inspecting the boundary between rewrite reachability and algebraic equivalence. Enumerate the whole bounded rewrite graph, inspect a shortest proof for every reachable tree, then compare it with every polynomial-equivalent tree in the same finite grammar.
 
@@ -599,12 +599,12 @@ Finite ordered binary trees over `0,1,x,y,+,*`, bounded to 3, 5 or 7 nodes: 36, 
 
 This is an explicit bounded rewrite graph, not an e-graph, tensor engine, floating-point compiler proof, learned policy, runtime-speedup result or novel optimization algorithm. Exact rational algebra need not preserve IEEE floating-point behavior. The seven-node cap is a real exponential-enumeration limit; no claim applies beyond the stated grammar, rules and budget.
 
-Verified release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. All five deployed assets match main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/rewritelab/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/rewritelab/blob/main/SOURCES.md) state what was checked and what was not.
+Verified release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. All five deployed assets match main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/term-rewriting/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/term-rewriting/blob/main/SOURCES.md) state what was checked and what was not.
 
 
 ## RewriteLab budget barriers: when fitting is not reaching
 
-[Live budget-barrier atlas](https://midya8.github.io/rewritelab/barriers.html) · [Source](https://github.com/midya8/rewritelab) · [Exact filtration contract](https://github.com/midya8/rewritelab/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/2)
+[Live budget-barrier atlas](https://midya8.github.io/term-rewriting/barriers.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact filtration contract](https://github.com/midya8/term-rewriting/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/2)
 
 The atlas retains every 3/5/7-node closure through the chosen cap and every
 polynomial-equivalent candidate. It separates the first budget that fits both
@@ -648,7 +648,7 @@ No result above the cap or IEEE floating-point equivalence is claimed.
 
 ## RewriteLab cost atlas: one graph, every cost tradeoff
 
-[Live cost-weight atlas](https://midya8.github.io/rewritelab/weights.html) · [Source](https://github.com/midya8/rewritelab) · [Exact weight-box contract](https://github.com/midya8/rewritelab/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/3)
+[Live cost-weight atlas](https://midya8.github.io/term-rewriting/weights.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact weight-box contract](https://github.com/midya8/term-rewriting/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/3)
 
 A fixed rewrite graph can have different cheapest answers under different
 operator costs. This atlas keeps all 512 positive integral (+, multiplication,
@@ -694,7 +694,7 @@ rational identities are not IEEE floating-point transformation licenses.
 Browser evidence is independently checked only after Python accepts its JSON.
 ## RewriteLab continuous regions: beyond a sampled cost grid
 
-[Live explorer](https://midya8.github.io/rewritelab/regions.html) · [Source](https://github.com/midya8/rewritelab) · [Exact region contract](https://github.com/midya8/rewritelab/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/4)
+[Live explorer](https://midya8.github.io/term-rewriting/regions.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact region contract](https://github.com/midya8/term-rewriting/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/4)
 
 A finite cost grid cannot prove that an expression never wins elsewhere.
 This extension computes complete optimum regions over every strictly positive
@@ -744,7 +744,7 @@ exponential. Browser evidence is independently checked only after the Python
 region checker accepts its complete JSON.
 ## CPNetLab: a ranking is not an entailed preference
 
-[Live workbench](https://midya8.github.io/cpnetlab/) · [Source and reproduction](https://github.com/midya8/cpnetlab) · [Contract and limits](https://github.com/midya8/cpnetlab/blob/main/CONTRACT.md) · [Prior-work ledger](https://github.com/midya8/cpnetlab/blob/main/SOURCES.md)
+[Live workbench](https://midya8.github.io/cp-nets/) · [Source and reproduction](https://github.com/midya8/cp-nets) · [Contract and limits](https://github.com/midya8/cp-nets/blob/main/CONTRACT.md) · [Prior-work ledger](https://github.com/midya8/cp-nets/blob/main/SOURCES.md)
 
 Complete, supplied binary CP-nets define legal single-variable improvements, not a universal score. CPNetLab enumerates every outcome and improving flip, finds shortest paths or closed no-path cuts, counts every compatible strict ranking, and supplies two actual opposite rankings when a pair is incomparable. Incomparable does not mean indifferent.
 
@@ -761,7 +761,7 @@ Reproduction covers all 36 two-variable networks and 576 ordered queries against
 
 ## CPNetLab row subsets: minimal is not minimum
 
-[Live whole-row atlas](https://midya8.github.io/cpnetlab/scopes.html) · [Source](https://github.com/midya8/cpnetlab) · [Contract](https://github.com/midya8/cpnetlab/blob/main/ROW-SUBSETS.md)
+[Live whole-row atlas](https://midya8.github.io/cp-nets/scopes.html) · [Source](https://github.com/midya8/cp-nets) · [Contract](https://github.com/midya8/cp-nets/blob/main/ROW-SUBSETS.md)
 
 Enumerate every whole conditional-row subset, not one convenient explanation.
 Eight developed controls cover 865 subset graphs with actual improving paths,
@@ -795,7 +795,7 @@ main/feature and 28 main/deployed unmasked pixel matches.
 
 ## EpistemLab: true when said, false after heard
 
-[Live workbench](https://midya8.github.io/epistemlab/) · [Source](https://github.com/midya8/epistemlab) · [Evidence contract](https://github.com/midya8/epistemlab/blob/main/CONTRACT.md) · [Prior work](https://github.com/midya8/epistemlab/blob/main/SOURCES.md)
+[Live workbench](https://midya8.github.io/common-knowledge/) · [Source](https://github.com/midya8/common-knowledge) · [Evidence contract](https://github.com/midya8/common-knowledge/blob/main/CONTRACT.md) · [Prior work](https://github.com/midya8/common-knowledge/blob/main/SOURCES.md)
 
 A public announcement can be truthful and make its own content false. EpistemLab
 shows every world removed, every surviving information block, and the newly
@@ -841,7 +841,7 @@ announcement-validity questions.
 
 ## EpistemLab disclosures: a restriction is not an announcement
 
-[Live disclosure atlas](https://midya8.github.io/epistemlab/disclosures.html) · [Source](https://github.com/midya8/epistemlab) · [Exact contract](https://github.com/midya8/epistemlab/blob/main/DISCLOSURES.md)
+[Live disclosure atlas](https://midya8.github.io/common-knowledge/disclosures.html) · [Source](https://github.com/midya8/common-knowledge) · [Exact contract](https://github.com/midya8/common-knowledge/blob/main/DISCLOSURES.md)
 
 Enumerate every retained-world subset, but count only actual Boolean-definable
 announcements over the supplied atoms as solutions. An arbitrary what-if
@@ -893,7 +893,7 @@ algorithm or a claim about real people's knowledge.
 
 ## StableLab: support is not grounding
 
-[Live workbench](https://midya8.github.io/stablelab/) · [Source](https://github.com/midya8/stablelab) · [Exact contract](https://github.com/midya8/stablelab/blob/main/CONTRACT.md) · [Prior-work ledger](https://github.com/midya8/stablelab/blob/main/SOURCES.md)
+[Live workbench](https://midya8.github.io/answer-sets/) · [Source](https://github.com/midya8/answer-sets) · [Exact contract](https://github.com/midya8/answer-sets/blob/main/CONTRACT.md) · [Prior-work ledger](https://github.com/midya8/answer-sets/blob/main/SOURCES.md)
 
 A model can be supported and minimal, yet still not stable. StableLab makes the
 missing foundation visible. Enumerate every candidate interpretation of a tiny
@@ -949,21 +949,21 @@ beliefs. Model counts are not probabilities.
 
 Equal stable models today does not make a rule module safe to swap. StableLab 0.2.0 now checks every SE pair and produces an actual rule context when two finite modules differ, including controls with equal classical **and** stable families but unequal SE sets.
 
-[Live safe-replacement inspector](https://midya8.github.io/stablelab/equivalence.html) · [Source](https://github.com/midya8/stablelab) · [Contract and reproduction](https://github.com/midya8/stablelab/blob/main/EQUIVALENCE.md) · [Merged PR #2](https://github.com/midya8/stablelab/pull/2)
+[Live safe-replacement inspector](https://midya8.github.io/answer-sets/equivalence.html) · [Source](https://github.com/midya8/answer-sets) · [Contract and reproduction](https://github.com/midya8/answer-sets/blob/main/EQUIVALENCE.md) · [Merged PR #2](https://github.com/midya8/answer-sets/pull/2)
 
 - Complete `X ⊆ Y` atlas: up to five atoms, 243 pairs, 24 normal rules per side. Every original/reduct obligation is visible; every difference supplies a concrete facts/cycle context with both augmented stable families and full candidate evidence.
 - Independent three-valued Python reconstruction and proper-subset context model checks, not another call to the generator. Shared strict parsers and the base evidence verifier are disclosed. Eleven controls include an actual two-edge positive cycle gadget, safe transitive-edge removal, redundant rules, contextual inconsistency and empty vocabulary.
 - Reproduced from final feature and main: 16 Python tests on 3.10–3.13; eight Node/Chrome tests; installed 0.2.0 wheel, both CLI entry points, all 11 comparison controls and forged-verdict rejection. Optional clingo 5.8.3 agrees on 5,184 base and 3,514 augmented families across 2,592 comparisons.
 - Actual deployed Chrome checks 33 comparison reports at desktop/390/320 widths, all 993 displayed pairs and 9,012 rule obligations, 24 context displays and 11 downloaded reports independently verified in Python. Final feature/main and main/live each match on 65 unmasked screenshots across the base and comparison inspectors. All 11 deployed assets plus root match final main exactly. Feature/PR/main CI and Pages are green.
 
-The strong-equivalence claim is restricted to finite normal-rule contexts over the same declared vocabulary. No arbitrary ASP syntax, fresh-atom context UI, update-semantics preservation, scalable-solver or new-theory claim. Published SE-model foundations and the cycle specialization are credited in [SOURCES.md](https://github.com/midya8/stablelab/blob/main/SOURCES.md). The original eight-atom reduct inspector remains available.
+The strong-equivalence claim is restricted to finite normal-rule contexts over the same declared vocabulary. No arbitrary ASP syntax, fresh-atom context UI, update-semantics preservation, scalable-solver or new-theory claim. Published SE-model foundations and the cycle specialization are credited in [SOURCES.md](https://github.com/midya8/answer-sets/blob/main/SOURCES.md). The original eight-atom reduct inspector remains available.
 
 
 ## StableLab: every input, not every rule
 
 A rule module can agree under every added set of facts and still fail under a new rule. StableLab 0.3.0 makes that distinction inspectable: ordinary, uniform and strong equivalence are separate promises, not interchangeable labels.
 
-[Live fact-input inspector](https://midya8.github.io/stablelab/uniform.html) · [Source](https://github.com/midya8/stablelab) · [Contract and reproduction](https://github.com/midya8/stablelab/blob/main/UNIFORM.md) · [Feature PR #3](https://github.com/midya8/stablelab/pull/3) · [Download-readiness regression #4](https://github.com/midya8/stablelab/pull/4)
+[Live fact-input inspector](https://midya8.github.io/answer-sets/uniform.html) · [Source](https://github.com/midya8/answer-sets) · [Contract and reproduction](https://github.com/midya8/answer-sets/blob/main/UNIFORM.md) · [Feature PR #3](https://github.com/midya8/answer-sets/pull/3) · [Download-readiness regression #4](https://github.com/midya8/answer-sets/pull/4)
 
 - Every positive fact subset over the declared vocabulary, with both augmented stable families and every candidate's original rules, reduct and closure. The smallest separator is minimum-cardinality only after **all** smaller inputs agree; equal-size ties use the lowest bitmask. Ten controls reach minimum fact counts 0/1/2/3/4, empty vocabulary and the complete 32-input table.
 - The complete UE-pair atlas retains diagonal and maximal proper SE pairs, exposes every disqualifying proper extension and checks that UE equality agrees with the full input table. The credited Eiter/Fink Example 2 agrees under all eight fact inputs but fails under the displayed rule context.
@@ -973,14 +973,14 @@ A rule module can agree under every added set of facts and still fail under a ne
 
 A main-only CI failure exposed a test-harness race: a download path could exist before its bytes finished writing. The preserved failure led to a delayed/partial-write regression and transport-readiness checks across all three inspectors. Parsing, full evidence equality and independent verification still run once; semantic failures are not retried.
 
-**Exact scope:** at most five declared propositional atoms and 24 normal rules per side, including constraints. Added inputs are positive facts over that same vocabulary. Established finite semantics, not new theory, an update-semantics guarantee or a scalable solver. No disjunction, variables, aggregates, classical negation, fresh-atom context UI or broader ASP syntax. [Published foundations and credit](https://github.com/midya8/stablelab/blob/main/SOURCES.md). The original reduct and strong-equivalence inspectors remain available.
+**Exact scope:** at most five declared propositional atoms and 24 normal rules per side, including constraints. Added inputs are positive facts over that same vocabulary. Established finite semantics, not new theory, an update-semantics guarantee or a scalable solver. No disjunction, variables, aggregates, classical negation, fresh-atom context UI or broader ASP syntax. [Published foundations and credit](https://github.com/midya8/answer-sets/blob/main/SOURCES.md). The original reduct and strong-equivalence inspectors remain available.
 
 
 ## HornLab: deletion has a derivation debt
 
 Removing a fact can leave a cycle with positive local support and no finite derivation. HornLab 0.3.0 now maintains explicit fact transactions with a complete delete/rederive trace, then shows exactly where a deliberately weaker local-support pruning check goes wrong.
 
-[Live fact-maintenance inspector](https://midya8.github.io/hornlab/updates.html) · [Source](https://github.com/midya8/hornlab) · [Exact contract and credited foundations](https://github.com/midya8/hornlab/blob/main/UPDATES.md) · [Merged PR #3](https://github.com/midya8/hornlab/pull/3)
+[Live fact-maintenance inspector](https://midya8.github.io/horn-inference/updates.html) · [Source](https://github.com/midya8/horn-inference) · [Exact contract and credited foundations](https://github.com/midya8/horn-inference/blob/main/UPDATES.md) · [Merged PR #3](https://github.com/midya8/horn-inference/pull/3)
 
 - Conservative overdeletion, surviving one-step derivations and restored/new delta insertion, with every transaction, round, indexed rule obligation and lost/gained/restored atom. Explicit facts can also be inferred; deleting their explicit status does not necessarily delete their consequence. Twelve developed controls include alternate routes, conjunction, cycles, empty-body rules, duplicates, mixed updates, no-ops and empty vocabulary.
 - A separate set-based checker reconstructs the full trace and checks each resulting least model by intersecting all definite-Horn models, without calling the generator. Shared strict validation is disclosed. Python/JavaScript parity covers 212 complete requests and 1,627 transactions; it is not substituted for the independent checker.
@@ -993,7 +993,7 @@ The local contrast counts explicit membership plus currently firing indexed rule
 
 ### ConceptLab: a table is not an expert
 
-[Live exact-expert exploration](https://midya8.github.io/conceptlab/exploration.html) | [Source](https://github.com/midya8/conceptlab) | [Protocol and inspected foundations](https://github.com/midya8/conceptlab/blob/main/EXPLORATION.md) | [Merged PR #3](https://github.com/midya8/conceptlab/pull/3)
+[Live exact-expert exploration](https://midya8.github.io/formal-concepts/exploration.html) | [Source](https://github.com/midya8/formal-concepts) | [Protocol and inspected foundations](https://github.com/midya8/formal-concepts/blob/main/EXPLORATION.md) | [Merged PR #3](https://github.com/midya8/formal-concepts/pull/3)
 
 An implication can fit every observed row and still fail in the supplied domain. This finite attribute-exploration simulator asks the strongest observed implication for a premise, retains every expert-table counterexample, reveals the lowest-ID refutation and retries the same premise. Accepted implications change the next lectic pivot; every seed, earlier-coordinate disagreement and derivation round remains inspectable. The expert is an explicitly supplied complete table, not a human or language model. Vacuous validity is not evidence about the world.
 
@@ -1006,7 +1006,7 @@ Five attributes, eight supplied objects. Twelve original synthetic controls incl
 
 ## ArgumentLab: a cycle can split after a choice
 
-[Live SCC inspector](https://midya8.github.io/argumentlab/scc.html) · [Source and exact method](https://github.com/midya8/argumentlab/blob/main/SCC.md) · [Verified PR3](https://github.com/midya8/argumentlab/pull/3)
+[Live SCC inspector](https://midya8.github.io/abstract-argumentation/scc.html) · [Source and exact method](https://github.com/midya8/abstract-argumentation/blob/main/SCC.md) · [Verified PR3](https://github.com/midya8/abstract-argumentation/pull/3)
 
 Version0.3 makes established SCC-recursive CF2/stage2 semantics inspectable, beside the original defense and attack-switch inspectors. Every reached induced graph retains every candidate, external component-defeat edge, restricted child and recursive membership obligation. The child drill preserves selected arguments; SCCs are recomputed after deletion. The default cascade splits one component into several and then deletes again. A six-cycle separates maximal conflict-free sets from maximal ranges; global stage and stage2 are kept distinct.
 
@@ -1017,7 +1017,7 @@ Fresh public feature/main source is exact; feature/PR/main CI and Pages are gree
 
 ## BisimLab: silence can hide a choice
 
-[Live silent-action inspector](https://midya8.github.io/bisimlab/silent.html) · [Source and exact contract](https://github.com/midya8/bisimlab/blob/main/SILENT.md) · [Reviewed change](https://github.com/midya8/bisimlab/pull/3)
+[Live silent-action inspector](https://midya8.github.io/bisimulation/silent.html) · [Source and exact contract](https://github.com/midya8/bisimulation/blob/main/SILENT.md) · [Reviewed change](https://github.com/midya8/bisimulation/pull/3)
 
 Explicit hiding exposes three different answers: strong, branching and weak bisimilarity. This bounded inspector records every fixed-point round, removed pair, attack and canonical finite response skeleton, including the before-step requirement that weak matching can lose. Silent reachability and possible-divergence cycle witnesses are separate: no rooted or divergence-preserving semantics, fairness, liveness or deployed-agent guarantee is claimed. The default contrast reconstructs Bisping Example6.3 and is credited, not claimed as new.
 
@@ -1025,7 +1025,7 @@ Independent BFS generation, DFS/set replay and candidate-relation test oracles; 
 
 ## CausalLab: a mediator can identify an effect
 
-CausalLab now checks the established sufficient frontdoor criterion, keeping all three conditions visible even when several fail. Directed bypass witnesses and two full ancestral-moral certificates explain the result. A caller-declared candidate search distinguishes all passing, inclusion-minimal and minimum-size sets. A separate exact-rational functional retains every conditional, weight and contribution from a supplied positive joint. [Source and reproduction](https://github.com/midya8/causallab), [contract and credited sources](https://github.com/midya8/causallab/blob/main/FRONTDOOR.md), [reviewed change](https://github.com/midya8/causallab/pull/1).
+CausalLab now checks the established sufficient frontdoor criterion, keeping all three conditions visible even when several fail. Directed bypass witnesses and two full ancestral-moral certificates explain the result. A caller-declared candidate search distinguishes all passing, inclusion-minimal and minimum-size sets. A separate exact-rational functional retains every conditional, weight and contribution from a supplied positive joint. [Source and reproduction](https://github.com/midya8/counterfactuals), [contract and credited sources](https://github.com/midya8/counterfactuals/blob/main/FRONTDOOR.md), [reviewed change](https://github.com/midya8/counterfactuals/pull/1).
 
 All 164 tests pass on Python 3.10-3.13, including independent original-DAG path oracles on 3,792 cases, 81 prescribed SCM parameter settings checked against separate exact intervention-world sums, nonbinary and joint-mediator controls, and the full 4,096-cell boundary. An optional external ciflypy 0.1.3 check agrees on another 3,792 fixed-set comparisons. Fresh installed wheels on all four Python versions verify 11 module origins and reproduce seven complete reports through two entrypoints plus two exact functional queries. Feature/PR and main CI are green; all 57 native files match fresh public checkouts. The sixth fixed figure has byte-identical regeneration and unmasked feature/main/live pixels; the original five figures are unchanged.
 
@@ -1033,7 +1033,7 @@ The credited latent-confounding motif and an original fixed synthetic XOR fixtur
 
 ## ShieldLab: safe waiting is not arrival
 
-ShieldLab now separates safe waiting from forced arrival. A finite reach-before-unsafe inspector exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/shieldlab/reachavoid.html), [source and reproduction](https://github.com/midya8/shieldlab), [contract and eight-source ledger](https://github.com/midya8/shieldlab/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/shieldlab/pull/2).
+ShieldLab now separates safe waiting from forced arrival. A finite reach-before-unsafe inspector exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/safety-games/reachavoid.html), [source and reproduction](https://github.com/midya8/safety-games), [contract and eight-source ledger](https://github.com/midya8/safety-games/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/safety-games/pull/2).
 
 All 24 native tests pass on Python 3.10-3.13, preserving all 8 original tests. Independent deterministic strategy-pair simulation checks 324 two-state and 32,928 three-state cases; 120 seeded larger cases and the 729-policy boundary have full replay. All six Node/Chrome tests pass, including 457 complete native/JavaScript reports, 1,329 policies and 6,291 root outcomes. Actual Chrome drills every policy/root across 12 controls at 320/390/1280 and verifies 12 event-confirmed downloaded reports through the native CLI. Fresh installed wheels on each Python version reproduce 6 original and 12 new reports through two entrypoints, check 8 module origins and reject 20 forged CLI records. Feature/PR, main and Pages checks are green; all 38 native files match fresh public source and deployed assets/behavior/pixels are verified.
 
@@ -1041,7 +1041,7 @@ Terminal safe goals stop the play on first hit; empty targets lose and unsafe ro
 
 ## AbsorbLab: success changes the path
 
-AbsorbLab separates eventual success from the paths selected by success. A finite Markov first-hit inspector exposes exact success, failure and never-terminal probabilities; conditional timing moments; closed-cycle support evidence; every Doob-conditioned transition; and replayable finite-horizon mass. In the default original control, equal direct/risky branches become 4/5 direct and 1/5 risky given eventual success, while mean time given success is 6/5 and unconditional time to stopped success is infinite. Local failure-edge removal cannot explain that global selection. [Live conditioning inspector](https://midya8.github.io/absorblab/), [source and reproduction](https://github.com/midya8/absorblab), [derivation and eight-source ledger](https://github.com/midya8/absorblab/blob/main/METHOD.md), [reviewed change](https://github.com/midya8/absorblab/pull/1).
+AbsorbLab separates eventual success from the paths selected by success. A finite Markov first-hit inspector exposes exact success, failure and never-terminal probabilities; conditional timing moments; closed-cycle support evidence; every Doob-conditioned transition; and replayable finite-horizon mass. In the default original control, equal direct/risky branches become 4/5 direct and 1/5 risky given eventual success, while mean time given success is 6/5 and unconditional time to stopped success is infinite. Local failure-edge removal cannot explain that global selection. [Live conditioning inspector](https://midya8.github.io/absorbing-chains/), [source and reproduction](https://github.com/midya8/absorbing-chains), [derivation and eight-source ledger](https://github.com/midya8/absorbing-chains/blob/main/METHOD.md), [reviewed change](https://github.com/midya8/absorbing-chains/pull/1).
 
 All 16 native tests pass on Python 3.10-3.13, including 9,261 three-state uniform-support/status cases, 729 deterministic cases, 81 two-state cases, 120 seeded chains and 120 separate acyclic path-moment checks. An independent checker uses simple paths, permutation determinants/cofactors and stopped-chain powers rather than the generator's support rounds, elimination and active-flow propagation. Four Node/Chrome tests include 213 complete native/BigInt reports, 4,284 forecast rows and 191 elimination stages. Actual Chrome checks 36 control/width reports and verifies twelve event-confirmed downloaded certificates natively. Fresh installed wheels on every Python version check six module origins, twelve reports through two entrypoints and twenty forged CLI rejections. A genuine optional SymPy 1.14.0 reference checks 682 probability pairs and 351 conditional moment triplets over 213 inputs. All 28 native files match fresh public checkouts; feature/PR, main and Pages checks are green, with deployed assets, controls, downloads and all 53 unmasked full-screen pixel comparisons verified.
 
@@ -1049,7 +1049,7 @@ Supplied probabilities are not learned, calibrated or adversarial choices. First
 
 ## BranchLab: always possible is not inevitable
 
-[Live workbench](https://midya8.github.io/branchlab/) | [Source](https://github.com/midya8/branchlab) | [Method and proof limits](https://github.com/midya8/branchlab/blob/main/METHOD.md) | [Implementation PR](https://github.com/midya8/branchlab/pull/1)
+[Live workbench](https://midya8.github.io/branching-time/) | [Source](https://github.com/midya8/branching-time) | [Method and proof limits](https://github.com/midya8/branching-time/blob/main/METHOD.md) | [Implementation PR](https://github.com/midya8/branching-time/pull/1)
 
 An explicit finite CTL inspector for branching-time reasoning about supplied models. In the default, AG EF p holds while AF p fails: a goal remains reachable everywhere, but an infinite wait is still allowed. Twelve original controls separate nested path quantifiers, different existential witnesses, strong-until failure, time-zero success and finite versus lasso counterexamples. No fairness assumption silently removes an inconvenient branch.
 
@@ -1065,7 +1065,7 @@ Inspect fourteen controls, partial join bindings, every derivation, all witness 
 
 Classical provenance semirings and tuple-independent base-event semantics, not new theory, arbitrary SQL, scalable database inference, calibrated probabilities, causal effects or a guarantee about an AI agent. Feature/PR/main CI, Pages deployment, exact deployed assets and live behavior/pixels were verified before this showcase was added.
 
-[Live workbench](https://midya8.github.io/provlab/) · [Source](https://github.com/midya8/provlab) · [Method & sources](https://github.com/midya8/provlab/blob/main/METHOD.md) · [Implementation PR](https://github.com/midya8/provlab/pull/1)
+[Live workbench](https://midya8.github.io/query-provenance/) · [Source](https://github.com/midya8/query-provenance) · [Method & sources](https://github.com/midya8/query-provenance/blob/main/METHOD.md) · [Implementation PR](https://github.com/midya8/query-provenance/pull/1)
 
 
 ## ProvLab0.2: same answers on every database
@@ -1076,7 +1076,7 @@ Set-equivalent is not bag-equivalent. The default repeated-fact rewrite preserve
 
 The exact public source, clean installed-wheel reproduction, four hosted Python versions, Chrome controls and trusted report downloads, deployed assets/behavior/pixels, and both bidirectional set decisions were checked before this note was finalized. The lab implements classical Chandra-Merlin query-containment/core theory, with primary and academic sources credited. It is bounded single-CQ syntax, not new theory, a bag-equivalence decision procedure, arbitrary SQL optimization, a language model, or a verified-AI-agent guarantee. The earlier data-provenance lab remains available.
 
-[Live containment lab](https://midya8.github.io/provlab/containment.html) · [Source](https://github.com/midya8/provlab) · [Method and reproduction](https://github.com/midya8/provlab/blob/main/CONTAINMENT.md) · [Pull request2](https://github.com/midya8/provlab/pull/2)
+[Live containment lab](https://midya8.github.io/query-provenance/containment.html) · [Source](https://github.com/midya8/query-provenance) · [Method and reproduction](https://github.com/midya8/query-provenance/blob/main/CONTAINMENT.md) · [Pull request2](https://github.com/midya8/query-provenance/pull/2)
 
 ## ProvLab0.3: the assumptions change the answer
 
@@ -1086,7 +1086,7 @@ Every dependency subset is tested. The default needs a key plus a diagonal rule;
 
 This is bounded classical database theory with full single-head rules and relational keys, not existential chasing, arbitrary EGDs, SQL NULL, bag-preserving optimization or global query minimization. The original provenance and unconstrained-containment labs remain available. The deployed demo and exact source were verified after the normal merge and hosted checks.
 
-[Live chase workbench](https://midya8.github.io/provlab/chase.html) · [Source](https://github.com/midya8/provlab) · [Method and checks](https://github.com/midya8/provlab/blob/main/CHASE.md) · [Pull request3](https://github.com/midya8/provlab/pull/3)
+[Live chase workbench](https://midya8.github.io/query-provenance/chase.html) · [Source](https://github.com/midya8/query-provenance) · [Method and checks](https://github.com/midya8/query-provenance/blob/main/CHASE.md) · [Pull request3](https://github.com/midya8/query-provenance/pull/3)
 
 ## ArgumentLab0.4: everyone includes it. Who defends it?
 
@@ -1096,12 +1096,12 @@ Native bitsets, an independent complete-ternary-labelling/set checker and JavaSc
 
 Explore parent positions, original-graph defense responses, every simultaneous pruning round, every candidate subset and each argument's removal reason. Established finite ideal/eager semantics for0..8 supplied arguments, not truth scoring, persuasion, a scalable solver or arbitrary infinite-framework eager uniqueness. Exact-feature/PR/main CI and Pages passed; earlier core, attack-switch and SCC workflows remain intact.
 
-[Live inspector](https://midya8.github.io/argumentlab/ideal.html) · [Source](https://github.com/midya8/argumentlab) · [Method and inspected foundations](https://github.com/midya8/argumentlab/blob/main/IDEAL.md) · [Merged PR4](https://github.com/midya8/argumentlab/pull/4)
+[Live inspector](https://midya8.github.io/abstract-argumentation/ideal.html) · [Source](https://github.com/midya8/abstract-argumentation) · [Method and inspected foundations](https://github.com/midya8/abstract-argumentation/blob/main/IDEAL.md) · [Merged PR4](https://github.com/midya8/abstract-argumentation/pull/4)
 
 
 ## AbsorbLab0.2: same now, different next
 
-AbsorbLab0.2 asks when two states may really become one. The exact labeled strong-lumpability inspector refines original Markov transition rows by their mass into every current block, exposes every same-block obligation and split witness, and compares the complete set-partition atlas including noncontiguous blocks and both extremes. In the original six-state control, equal immediate goal mass hides a second-round split: s0 and s1 separate after their successors do, while noncontiguous s0 and s5 remain merged. Every representative of a final block agrees, so the quotient needs no averaging. [Live aggregation inspector](https://midya8.github.io/absorblab/lumping.html), [source and reproduction](https://github.com/midya8/absorblab), [derivation and inspected sources](https://github.com/midya8/absorblab/blob/main/LUMPING.md), [reviewed change](https://github.com/midya8/absorblab/pull/2).
+AbsorbLab0.2 asks when two states may really become one. The exact labeled strong-lumpability inspector refines original Markov transition rows by their mass into every current block, exposes every same-block obligation and split witness, and compares the complete set-partition atlas including noncontiguous blocks and both extremes. In the original six-state control, equal immediate goal mass hides a second-round split: s0 and s1 separate after their successors do, while noncontiguous s0 and s5 remain merged. Every representative of a final block agrees, so the quotient needs no averaging. [Live aggregation inspector](https://midya8.github.io/absorbing-chains/lumping.html), [source and reproduction](https://github.com/midya8/absorbing-chains), [derivation and inspected sources](https://github.com/midya8/absorbing-chains/blob/main/LUMPING.md), [reviewed change](https://github.com/midya8/absorbing-chains/pull/2).
 
 All 30 Python tests and seven Node tests pass, retaining the original first-hit workflows. The new native, independent all-partition checker and BigInt browser agree on 527 full reports, 6,448 partition records, 637 refinement states and 4,038 quotient obligations; 255 separately changed noninput primitive leaves are rejected. A genuinely invoked optional SymPy 1.14.0 reference checks all 527 requests, every partition mass matrix and 2,038 matrix-power identities. Actual Chrome exercises 36 lumping reports at 1280/390/320 pixels, 48 refinement states, 138 pair selections, 816 partition selections, 618 forecast selections, 345 graph edges and twelve trusted completed downloads replayed natively. Fresh installed wheels confirm ten module origins, twelve new controls through both entrypoints and 24 forged CLI rejections with atomic output preservation, retaining prior first-hit installation checks. All 45 exact public files, feature/PR and main CI, Pages, deployed assets, behavior and 46 unmasked full-screen comparisons were verified.
 
@@ -1110,7 +1110,7 @@ Observation tags and success/failure/nonterminal status are part of the contract
 
 ## BranchLab0.2: a fair path must meet them all
 
-BranchLab0.2 asks which infinite paths an assumption really leaves. The separate state-justice fair-CTL inspector compares ordinary and fair truth at every subformula, exposes every induced region and its recurrent components, and shows all justice hits, backward rounds and a replayable finite-prefix/closed-walk witness. Its original four-state hub needs the repeated walk s0 → s1 → s0 → s2 → s0 to meet both justice constraints; neither first simple cycle is enough. A trap can still satisfy a local atom while having no fair infinite continuation. [Live fairness inspector](https://midya8.github.io/branchlab/fair.html), [source and reproduction](https://github.com/midya8/branchlab), [semantics, proof and inspected sources](https://github.com/midya8/branchlab/blob/main/FAIRNESS.md), [reviewed change](https://github.com/midya8/branchlab/pull/2).
+BranchLab0.2 asks which infinite paths an assumption really leaves. The separate state-justice fair-CTL inspector compares ordinary and fair truth at every subformula, exposes every induced region and its recurrent components, and shows all justice hits, backward rounds and a replayable finite-prefix/closed-walk witness. Its original four-state hub needs the repeated walk s0 → s1 → s0 → s2 → s0 to meet both justice constraints; neither first simple cycle is enough. A trap can still satisfy a local atom while having no fair infinite continuation. [Live fairness inspector](https://midya8.github.io/branching-time/fair.html), [source and reproduction](https://github.com/midya8/branching-time), [semantics, proof and inspected sources](https://github.com/midya8/branching-time/blob/main/FAIRNESS.md), [reviewed change](https://github.com/midya8/branching-time/pull/2).
 
 All 29 Python tests and seven Node tests pass, retaining the original ordinary-CTL workflows. Native Tarjan generation, an independent Boolean-closure/recurrent-subset checker and a separately written browser Kosaraju engine agree on 278 full reports, 2,808 region records, 4,135 subformulas and 2,643 fair lassos; 519 changed noninput primitive leaves are rejected. Actual NetworkX 3.4.2 checks all regions, 4,632 components and all lassos as a graph reference, not a full fair-CTL oracle. The existing actual pyModelChecking 1.3.4 ordinary reference still matches 212 requests and 3,630 subformula sets; its fairness route is explicitly excluded after three reproducible disagreements. Real Chrome exercises 36 fair reports at 1280/390/320 pixels, 216 regions, 612 region/start selections, 465 subformula selections, 390 witness rows and 2,628 graph edges, with twelve trusted downloads independently replayed. Fresh installed wheels confirm nine module origins, twelve fair controls through both entrypoints, 24 forged CLI atomic-preservation checks and 24 direct forgeries, retaining ordinary installation checks. All 46 exact public files, feature/PR and main CI, Pages, deployed assets, behavior and 43 unmasked screenshot comparisons were verified.
 
@@ -1119,7 +1119,7 @@ This is bounded explicit checking for supplied total graphs of at most six state
 
 ## EpistemLab0.3: the fact stays, who saw it changes
 
-EpistemLab0.3 separates uncertainty about a world from uncertainty about an event. The S5 informational-action inspector keeps every world/event candidate, precondition result, inherited fact, product partition and both component conditions for every possible arrow. In the original read-p/read-not-p/idle control, the receiver learns p but the observer still does not know whether the receiver learned; removing idle changes that nested knowledge without making p common knowledge. A separately labeled public-announcement counterfactual would make all three queries true. Every subformula, modal obligation, path and before/after pair-level change is inspectable. [Live event inspector](https://midya8.github.io/epistemlab/events.html), [source and reproduction](https://github.com/midya8/epistemlab), [product derivation and inspected sources](https://github.com/midya8/epistemlab/blob/main/EVENTS.md), [reviewed change](https://github.com/midya8/epistemlab/pull/3).
+EpistemLab0.3 separates uncertainty about a world from uncertainty about an event. The S5 informational-action inspector keeps every world/event candidate, precondition result, inherited fact, product partition and both component conditions for every possible arrow. In the original read-p/read-not-p/idle control, the receiver learns p but the observer still does not know whether the receiver learned; removing idle changes that nested knowledge without making p common knowledge. A separately labeled public-announcement counterfactual would make all three queries true. Every subformula, modal obligation, path and before/after pair-level change is inspectable. [Live event inspector](https://midya8.github.io/common-knowledge/events.html), [source and reproduction](https://github.com/midya8/common-knowledge), [product derivation and inspected sources](https://github.com/midya8/common-knowledge/blob/main/EVENTS.md), [reviewed change](https://github.com/midya8/common-knowledge/pull/3).
 
 All 30 Python tests and thirteen Node/Chrome tests pass, retaining the original public-announcement and Boolean-disclosure workflows. Complete native, independent relation-row and browser reports agree on 648 requests, 2,552 Cartesian candidates, 5,984 product-arrow obligations and 9,208 before/after subformula sets; 1,072 separately altered noninput primitive leaves are rejected. Actual pyModelChecking 1.3.4 independently reconstructs products and checks 1,944 snapshots and 13,812 sets through 8,961 ordinary CTL calls. Real Chrome exercises 36 control/width reports at 1280/390/320, 129 retained-cell interactions, 255 source rows, 1,743 selected relation obligations, 783 subformula selections, 963 modal obligations, 3,219 path rows and twelve trusted completed downloads replayed natively. Fresh installed wheels verify eleven module origins, twelve event controls through two entrypoints and 24 forged CLI atomic-output checks plus 24 direct forgeries, retaining both prior eight-control families. All 57 exact public files, feature/PR and main CI, Pages, deployed assets/behavior and 39 complete unmasked screenshot comparisons were verified.
 
@@ -1134,7 +1134,7 @@ Every complete policy retains every opponent move. Threshold-induced SCCs expose
 
 660 complete native/checker/browser reports cover 576 exhaustive two-state arenas, 72 seeded arenas and 12 original controls; 207 primitive-leaf mutations are rejected. Actual pinned Oink runs three solver families 1,980 times, checks 3,960 regions and verifies all 660 supplied canonical strategies plus good/bad calibrations. Fresh wheels check two entrypoints and nine installed module origins; actual Chrome checks every displayed recursive call, round, policy root and joint lasso at 1280/390/320, with 12 trusted completed downloads and 45 full-state pixel comparisons. This is a six-state, fully visible, total, turn-based max-parity game inspector, not a new scalable solver, learning system or real-agent guarantee. Existing repeated-goal and action-lasso workflows remain separate.
 
-[Live max-parity inspector](https://midya8.github.io/buchilab/parity.html) | [Source](https://github.com/midya8/buchilab) | [Exact method and inspected source ledger](https://github.com/midya8/buchilab/blob/main/PARITY.md) | [Change and checks](https://github.com/midya8/buchilab/pull/3)
+[Live max-parity inspector](https://midya8.github.io/buchi-games/parity.html) | [Source](https://github.com/midya8/buchi-games) | [Exact method and inspected source ledger](https://github.com/midya8/buchi-games/blob/main/PARITY.md) | [Change and checks](https://github.com/midya8/buchi-games/pull/3)
 
 
 ## HallLab0.4: a spare value is not a cycle
@@ -1145,7 +1145,7 @@ The native generator uses augmenting matching, Tarjan SCCs and free-root reachab
 
 The deployed inspector replays all 12 controls at 1280/390/320, every edge certificate, reach layer, SCC and flip step, with trusted completed JSON downloads and narrow-screen rightmost-scroll checks. Native source, clean public reproduction, feature/PR/main CI, Pages assets, complete screenshots and all four showcase sections were checked. This is classical bounded all-different theory on at most six variables and eight values, not a new algorithm, production incremental solver, learned model, scale benchmark or whole-CSP guarantee. The earlier matching/Hall, overlapping-scope and conflict/removal workflows remain separate.
 
-[Live alternating inspector](https://midya8.github.io/halllab/alternating.html) · [Source](https://github.com/midya8/halllab) · [Exact contract and eight-source ledger](https://github.com/midya8/halllab/blob/main/ALTERNATING.md) · [Pull request](https://github.com/midya8/halllab/pull/4)
+[Live alternating inspector](https://midya8.github.io/all-different/alternating.html) · [Source](https://github.com/midya8/all-different) · [Exact contract and eight-source ledger](https://github.com/midya8/all-different/blob/main/ALTERNATING.md) · [Pull request](https://github.com/midya8/all-different/pull/4)
 
 
 ## BellmanLab0.4: a policy between policies
@@ -1156,12 +1156,12 @@ The new dependency-free Python API and CLI use exact fractions; a separate check
 
 The deployed five assets and root are byte-exact to merged source. Real Chrome checks 36 reports at 1280, 390 and 320 pixels, every policy/vertex selection in those controls, 12 completed JSON downloads verified by the native checker and 42 unmasked pixel states. This is classical normalized discounted occupancy-measure planning for one supplied expected-cost constraint, limited to four states and eight total actions. It is not a new algorithm, learned model, scale benchmark, per-trajectory safety guarantee or combination with the separate rectangular-robust planner. Shared theory/schema/tie conventions mean agreement is evidence, not a formal proof.
 
-[Live occupancy inspector](https://midya8.github.io/bellmanlab/) · [Source](https://github.com/midya8/bellmanlab) · [Exact contract and source ledger](https://github.com/midya8/bellmanlab/blob/main/OCCUPANCY.md) · [Pull request](https://github.com/midya8/bellmanlab/pull/1)
+[Live occupancy inspector](https://midya8.github.io/mdp-planning/) · [Source](https://github.com/midya8/mdp-planning) · [Exact contract and source ledger](https://github.com/midya8/mdp-planning/blob/main/OCCUPANCY.md) · [Pull request](https://github.com/midya8/mdp-planning/pull/1)
 
 
 ## BisimLab0.4: the loop must stay inside
 
-Two protocol states can both loop forever and still disagree about *where* that loop is possible. The new [explicit-divergence inspector](https://midya8.github.io/bisimlab/divergence.html) compares ordinary branching equivalence with unrooted divergence-preserving branching equivalence. It enumerates every set partition of a supplied finite protocol, retains every state's internal reachability, complete exit signatures, canonical nonempty-cycle lassos and every failed same-block obligation, then checks the coarsest valid partition explicitly. Earlier strong/modal, trace-product and divergence-insensitive workflows remain separate and unchanged.
+Two protocol states can both loop forever and still disagree about *where* that loop is possible. The new [explicit-divergence inspector](https://midya8.github.io/bisimulation/divergence.html) compares ordinary branching equivalence with unrooted divergence-preserving branching equivalence. It enumerates every set partition of a supplied finite protocol, retains every state's internal reachability, complete exit signatures, canonical nonempty-cycle lassos and every failed same-block obligation, then checks the coarsest valid partition explicitly. Earlier strong/modal, trace-product and divergence-insensitive workflows remain separate and unchanged.
 
 The opening six-state example reconstructs and credits Luttik2020 Example3/Figure1. Both states are globally divergent, yet only one can diverge while staying in the class where the visible action remains available. A global cycle flag would miss the distinction. This is established theory, not a newly invented counterexample.
 
@@ -1171,14 +1171,14 @@ Actual Chrome checks 39 control-width reports at 1280/390/320, all 843 candidate
 
 Bounds: 1..6 states, 0..3 labels and 18 unique edges, at most 203 partitions. This is exact bounded educational model checking, not a scalable verification engine, learned model, benchmark, formal proof or agent safety/liveness guarantee. A report certifies only the supplied finite model, not its correspondence to a program. Shared theory/schema/canonicalization remain common assumptions.
 
-[Live inspector](https://midya8.github.io/bisimlab/divergence.html) · [Source](https://github.com/midya8/bisimlab) · [Exact contract and inspected foundations](https://github.com/midya8/bisimlab/blob/main/DIVERGENCE.md) · [Pull request](https://github.com/midya8/bisimlab/pull/4)
+[Live inspector](https://midya8.github.io/bisimulation/divergence.html) · [Source](https://github.com/midya8/bisimulation) · [Exact contract and inspected foundations](https://github.com/midya8/bisimulation/blob/main/DIVERGENCE.md) · [Pull request](https://github.com/midya8/bisimulation/pull/4)
 
 
 ## ShieldLab0.3: again is a different promise
 
 An acknowledgement can arrive once without ever arriving again. The separate **safe recurrence inspector** checks that a supplied finite game stays safe forever and visits a target infinitely often, against every environment choice. Targets are live, not terminal: their outgoing moves still count. The old safety and first-goal inspectors retain their meanings.
 
-[Inspect safe recurrence](https://midya8.github.io/shieldlab/recurrence.html) | [Source](https://github.com/midya8/shieldlab) | [Exact method and inspected sources](https://github.com/midya8/shieldlab/blob/main/RECURRENCE.md)
+[Inspect safe recurrence](https://midya8.github.io/safety-games/recurrence.html) | [Source](https://github.com/midya8/safety-games) | [Exact method and inspected sources](https://github.com/midya8/safety-games/blob/main/RECURRENCE.md)
 
 - Every nested greatest/least fixed-point round and successor obligation, including unchanged rounds and outer restarts.
 - Both players' complete positional-policy atlases, every root outcome, all winning policy IDs and canonical labeled unsafe or nonempty-cycle failure witnesses.
@@ -1196,7 +1196,7 @@ The same three-way product can assign `[1/3, 1/3, 1/3]` to individual features, 
 
 The two-level Owen mode keeps every background-replacement evaluation, member coefficient, quotient-group marginal and complete admissible ordering. Its native checker imports no generator and independently replays the declared synthetic score and full allocation report. The independent browser computes permutation-count weights, lets you edit the supplied model and partition, and downloads evidence that the native CLI can verify.
 
-[Live editable inspector](https://midya8.github.io/shapleylab/owen.html) · [Source and installed reproduction](https://github.com/midya8/shapleylab) · [Method, sources and boundaries](https://github.com/midya8/shapleylab/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapleylab/pull/2)
+[Live editable inspector](https://midya8.github.io/shapley-values/owen.html) · [Source and installed reproduction](https://github.com/midya8/shapley-values) · [Method, sources and boundaries](https://github.com/midya8/shapley-values/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapley-values/pull/2)
 
 72 Python tests include 556 signed game/partition cases checked across 50,362 independent Fraction orderings, 14,668 unanimity-support/partition cases and separate primitive-mutation checks. 132 complete native/JavaScript reports agree, plus 206 broad-magnitude, half-even, subnormal and cancellation reports independently native-verify. An original BigInt binary64-unit summation helper fixes a pre-release double-rounding failure without widening tolerance. Actual Chrome checks all 12 original controls at 320/390/1280, 12 trusted completed native-verified downloads, and raw/sigmoid six-feature/32-background requests with 2017 evaluations and 720 paths each. Fresh installed-wheel checks preserve all 95 prior edit archives and original modes. All 24 feature/PR checks, 12 main checks and three Pages jobs passed. All ten deployed assets and the original root match public source; all 45 deployed browser states match the tested unmasked pixels.
 
@@ -1218,7 +1218,7 @@ This implements established finite randomization/minimum-p ideas, not a new test
 
 ## CTCLab 0.2 - what the beam forgot
 
-[Repository](https://github.com/midya8/ctclab) · [Exact prefix inspector](https://midya8.github.io/ctclab/prefix.html) · [Method and limits](https://github.com/midya8/ctclab/blob/main/PREFIX.md)
+[Repository](https://github.com/midya8/ctc-alignment) · [Exact prefix inspector](https://midya8.github.io/ctc-alignment/prefix.html) · [Method and limits](https://github.com/midya8/ctc-alignment/blob/main/PREFIX.md)
 
 Exact supplied rational CTC frame laws make prefix pruning inspectable: every positive blank/nonblank transition, surviving prefix, first-cut loss and final transcript. A separate path-enumeration checker reconstructs the entire evidence report, and an independent browser BigInt engine agrees on 155 complete reports. The original floating-point target atlas remains intact.
 
@@ -1231,7 +1231,7 @@ These are synthetic controls selected during development, not held-out speech ev
 
 ## AbsorbLab 0.3: the last exit changes everything
 
-Move probability mass between two destinations of one nonterminal row and inspect an entire exact rational response, not only a sensitivity estimate. The default original control keeps success at one as its last exit becomes arbitrarily unlikely, then drops to zero when that exit disappears. The inspector separates the interior limit from each endpoint's actual support and direct solve. A retry control has success `(1/4+t)/(1/2+t)`, with first derivative one and second derivative minus four at zero. Success-conditioned traffic includes visits, every directed edge count and timing, showing where successful paths go. [Live row-response inspector](https://midya8.github.io/absorblab/response.html), [source and reproduction](https://github.com/midya8/absorblab), [derivation and seven-source ledger](https://github.com/midya8/absorblab/blob/main/RESPONSE.md), [reviewed change](https://github.com/midya8/absorblab/pull/3).
+Move probability mass between two destinations of one nonterminal row and inspect an entire exact rational response, not only a sensitivity estimate. The default original control keeps success at one as its last exit becomes arbitrarily unlikely, then drops to zero when that exit disappears. The inspector separates the interior limit from each endpoint's actual support and direct solve. A retry control has success `(1/4+t)/(1/2+t)`, with first derivative one and second derivative minus four at zero. Success-conditioned traffic includes visits, every directed edge count and timing, showing where successful paths go. [Live row-response inspector](https://midya8.github.io/absorbing-chains/response.html), [source and reproduction](https://github.com/midya8/absorbing-chains), [derivation and seven-source ledger](https://github.com/midya8/absorbing-chains/blob/main/RESPONSE.md), [reviewed change](https://github.com/midya8/absorbing-chains/pull/3).
 
 All 42 Python and eleven Node tests retain both previous workflows. Native rank-one generation, independent Cramer/cofactor replay and BigInt recomputation agree on 146 full reports, 1,909 samples, 61,255 conditional edge cells and 15,435 derivative pairs; 24 CLI and 24 direct-checker forgeries are rejected. Actual Chrome checks 1,293 root/sample views at 1280/390/320 pixels, twelve trusted completed downloads with native replay and twelve extra dense six-state views with long fractions and terminal roots. Fresh installed wheels check fourteen module origins, both response entrypoints and 24 direct plus 24 CLI forgeries with atomic preservation. The invoked SymPy 1.14.0 reference checks 928 symbolic success/failure curves and 10,290 derivative pairs, with support verified separately. Exact public source, feature/PR/main CI, Pages, deployed assets, behavior and desktop/phone layouts were verified.
 
@@ -1248,7 +1248,7 @@ Reproduction retains the original and one-budget workflows: 103 Python tests, ei
 
 This is exact classical occupancy-measure planning for a supplied discounted MDP, limited to one-to-four states, eight total actions and exactly two expected-cost ceilings. Budgets are expectations under the supplied initial distribution, not trajectory caps or real-world safety guarantees. It is not learned, scalable, combined with the separate robust planner, or a new algorithm. Shared mathematical assumptions mean cross-checks are evidence rather than formal proof.
 
-[Two-budget inspector](https://midya8.github.io/bellmanlab/coupled.html) · [Source](https://github.com/midya8/bellmanlab) · [Derivation, limits and source ledger](https://github.com/midya8/bellmanlab/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/bellmanlab/pull/2)
+[Two-budget inspector](https://midya8.github.io/mdp-planning/coupled.html) · [Source](https://github.com/midya8/mdp-planning) · [Derivation, limits and source ledger](https://github.com/midya8/mdp-planning/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/mdp-planning/pull/2)
 
 
 ## RiskLab: the plan you would change
@@ -1257,7 +1257,7 @@ Exact finite scenario-tree decisions under static and nested CVaR. Inspect every
 
 Supplied teaching trees with at most 15 nodes, eight leaves and four decisions. Classical risk-sensitive planning, not a learned agent, held-out benchmark, financial advice, new CVaR algorithm or real-world safety guarantee. Exact arithmetic does not validate the supplied model.
 
-[Live inspector](https://midya8.github.io/risklab/) · [Source](https://github.com/midya8/risklab) · [Case study](risklab.md)
+[Live inspector](https://midya8.github.io/scenario-risk/) · [Source](https://github.com/midya8/scenario-risk) · [Case study](risklab.md)
 
 
 ## ChannelLab: same accuracy, different information
@@ -1266,16 +1266,16 @@ Exact finite binary experiment comparison with a constructive state-independent 
 
 Version 0.2.0: 30 Python tests, six Node/actual-Chrome tests and isolated installed-wheel reproduction pass. All five deployed assets match merged source; all 53 complete and atlas-focused deployed captures match inspected local pixels. Feature, PR, merged-main and Pages checks are green. These are developed finite controls, not held-out evaluation, learned sensor quality, privacy, finance or real-world safety evidence.
 
-[Live inspector](https://midya8.github.io/channellab/) · [Source](https://github.com/midya8/channellab) · [Case study](channellab.md)
+[Live inspector](https://midya8.github.io/channel-comparison/) · [Source](https://github.com/midya8/channel-comparison) · [Case study](channellab.md)
 
 
 ## CredalLab: do these probabilities share a world?
 
-[Source](https://github.com/midya8/credallab) · [Case study](credallab.md)
+[Source](https://github.com/midya8/credal-reasoning) · [Case study](credallab.md)
 
 Exact finite-world probability compatibility and attainable event/positive-mass conditional bounds. The incompatible triangle requires common relaxation 1/3; matching half-probability marginals leave intersection 0..1/2, not an independence answer. A separate native checker replays primal/dual equations and accepts alternate witnesses. Python/BigInt agree on 120 developed reports; 690 independent HiGHS LPs, 505 certificate mutations, installed-wheel reproduction and 48 actual-Chrome control-width views accompany 16 original controls.
 
-At most six explicit worlds and six assessments, further bounded by 20,000 phase-I candidate bases. Classical probability/LP methods, not learned beliefs, null-event conditional coherence, a held-out benchmark or scalable inference. Feature/PR, merged-main and Pages checks passed. Five deployed assets and all 35 deployed captures match checked source/local pixels. [Live inspector](https://midya8.github.io/credallab/).
+At most six explicit worlds and six assessments, further bounded by 20,000 phase-I candidate bases. Classical probability/LP methods, not learned beliefs, null-event conditional coherence, a held-out benchmark or scalable inference. Feature/PR, merged-main and Pages checks passed. Five deployed assets and all 35 deployed captures match checked source/local pixels. [Live inspector](https://midya8.github.io/credal-reasoning/).
 ### CredalLab 0.2: one shared belief, five decision rules
 
 The menu `(3,0), (0,3), (1,1)` makes pairwise defenses and common-belief optimality disagree. The third action is pairwise maximal and pure maximin, yet never best against the whole menu. A dual-derived fixed half/half rival mixture excludes it everywhere by exactly `1/2`. An interior-only tie control catches a vertices-only E-admissibility shortcut.
@@ -1284,7 +1284,7 @@ Exact E-admissible, strict maximal, interval-undominated and pure maximin/maxima
 
 31 total Python tests and six combined Node/Chrome tests pass. Decision checks add 96 complete Python/BigInt reports, 824 primitive forgeries, 1,420 independent HiGHS LPs, both installed CLI entry points, and actual-Chrome 48 views/129 action selections/855 certificates/16 native-verified downloads. Original probability checks remain intact. These are bounded teaching controls, not held-out evaluation, a new theorem or learned preferences.
 
-Version 0.2 feature/PR, merged-main and Pages checks passed. All ten deployed assets and 79 combined decision/probability captures match checked source/local pixels. [Decision inspector](https://midya8.github.io/credallab/decisions.html) · [Full case study](credallab.md) · [Exact conventions and limits](https://github.com/midya8/credallab/blob/main/DECISIONS.md)
+Version 0.2 feature/PR, merged-main and Pages checks passed. All ten deployed assets and 79 combined decision/probability captures match checked source/local pixels. [Decision inspector](https://midya8.github.io/credal-reasoning/decisions.html) · [Full case study](credallab.md) · [Exact conventions and limits](https://github.com/midya8/credal-reasoning/blob/main/DECISIONS.md)
 
 ## AttnLens: actual online causal inference
 
