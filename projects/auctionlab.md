@@ -1,8 +1,8 @@
-# AuctionLab
+# Vcg auctions
 
-AuctionLab enumerates combinatorial allocations, Vickrey-Clarke-Groves (VCG) prices, report-independent bundle menus and seller-coalition core deficits. Synthetic private values, no actual auctions or money.
+VCG auctions enumerates combinatorial allocations, Vickrey-Clarke-Groves (VCG) prices, report-independent bundle menus and seller-coalition core deficits. Synthetic private values, no actual auctions or money.
 
-[Live inspector](https://midya8.github.io/auctionlab/) · [Source](https://github.com/midya8/auctionlab)
+[Live inspector](https://midya8.github.io/vcg-auctions/) · [Source](https://github.com/midya8/vcg-auctions)
 
 ## Questions the report separates
 
@@ -71,7 +71,7 @@ The 16 controls are developed teaching fixtures, not held out. The 52-profile co
 
 ## Earlier release checks
 
-The earlier source PR1 merged after all six latest feature/PR jobs passed. Merged main `16ab4f8efa912f118b87323027170d8167ee9a39` retains the initial commit and feature history. All 47 public files matched the checked local source. [Merged-main checks](https://github.com/midya8/auctionlab/actions/runs/42897526338) and [Pages deployment](https://github.com/midya8/auctionlab/actions/runs/42897526146) passed. At that release, every one of the five deployed assets matched merged source byte for byte. The full real-Chrome workflow passed against the deployed site, including native download replay; all 30 unmasked deployed captures exactly match the inspected local pixels. Desktop live hero and mobile allocation pixels were also inspected directly. These are commit-specific earlier release checks, not a claim that an unchecked later deployment passed. They do not establish the truth of supplied values or suitability for a real market.
+The earlier source PR1 merged after all six latest feature/PR jobs passed. Merged main `16ab4f8efa912f118b87323027170d8167ee9a39` retains the initial commit and feature history. All 47 public files matched the checked local source. [Merged-main checks](https://github.com/midya8/vcg-auctions/actions/runs/42897526338) and [Pages deployment](https://github.com/midya8/vcg-auctions/actions/runs/42897526146) passed. At that release, every one of the five deployed assets matched merged source byte for byte. The full real-Chrome workflow passed against the deployed site, including native download replay; all 30 unmasked deployed captures exactly match the inspected local pixels. Desktop live hero and mobile allocation pixels were also inspected directly. These are commit-specific earlier release checks, not a claim that an unchecked later deployment passed. They do not establish the truth of supplied values or suitability for a real market.
 
 ## Scope and prior work
 
