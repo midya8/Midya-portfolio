@@ -1,8 +1,8 @@
-# MoeLab: one table, worst regret
+# Mixture of experts: one table, worst regret
 
 A pure-Python mixture-of-experts model with exact gate-table regret, finite capacity dispatch and routing-boundary inspectors. The original sparse trainer, dense baseline, frozen models, 340 data rows and measured results stay intact.
 
-[Gate regret inspector](https://midya8.github.io/moelab/gate.html) · [Capacity inspector](https://midya8.github.io/moelab/capacity.html) · [Route inspector](https://midya8.github.io/moelab/) · [Source](https://github.com/midya8/moelab)
+[Gate regret inspector](https://midya8.github.io/mixture-of-experts/gate.html) · [Capacity inspector](https://midya8.github.io/mixture-of-experts/capacity.html) · [Route inspector](https://midya8.github.io/mixture-of-experts/) · [Source](https://github.com/midya8/mixture-of-experts)
 
 ## Worst regret on one gate table
 
@@ -14,7 +14,7 @@ The native producer uses exact bounded-simplex sorted fill and a capacity-state 
 
 Ten declared controls include ties, zero-width bounds, zero capacity, eligibility, skipped updates, stable references, tiny fractions and four experts. These are assumed gate bounds, not calibrated confidence, learned uncertainty, router jitter or an input/weight attack. There are no expert predictions or targets here, so retained-mass regret says nothing about task quality.
 
-[Objective, row proof, complete schema, sources and limits](https://github.com/midya8/moelab/blob/main/GATE-REGRET.md)
+[Objective, row proof, complete schema, sources and limits](https://github.com/midya8/mixture-of-experts/blob/main/GATE-REGRET.md)
 
 ## Exact capacity dispatch
 
@@ -32,7 +32,7 @@ Two routing optima can have the same dispatched count and retained gate mass but
 
 Fourteen controls include three bridges from the original aux/no-aux/initialization models and the first six training rows. Captured binary64 gate/output bytes carry provenance and reproduce numerically at `1e-12`. Gates then undergo explicitly labeled exact rational row normalization; the dispatch calculation is not claimed to reproduce the original rounded inference exactly.
 
-[Capacity objective, proof, complete schema, sources and limits](https://github.com/midya8/moelab/blob/main/CAPACITY.md)
+[Capacity objective, proof, complete schema, sources and limits](https://github.com/midya8/mixture-of-experts/blob/main/CAPACITY.md)
 
 ## Sparse training and measured results
 
@@ -59,7 +59,7 @@ These ordinary branch derivatives are checked by finite differences away from ro
 
 Soft evaluation is worse here, but this comparison does not isolate a cause. The symmetric fixture balances itself with or without the auxiliary penalty, and no-aux fits better. It does not test the penalty under imbalanced traffic. The frozen no-aux value is 0.0014970307791088836; an earlier 0.0010 was a prose error, not a changed training result. Gates pin the mixture's own fit, purity and usage, not a requirement that a baseline lose.
 
-[Implemented training equations](https://github.com/midya8/moelab/blob/main/DESIGN.md)
+[Implemented training equations](https://github.com/midya8/mixture-of-experts/blob/main/DESIGN.md)
 
 ## Follow the routing seam
 
@@ -69,7 +69,7 @@ The selected gate probability stays in the output. Both one-sided limits and the
 
 The mean per-example `E sum p^2`, squared batch-mean gates `E sum(mean p)^2` and Switch's `E sum fP` are different statistics. All three can equal one while every tied row chooses expert 0. A low penalty is not a traffic guarantee.
 
-[Route equations, schema, sources and limits](https://github.com/midya8/moelab/blob/main/ROUTES.md)
+[Route equations, schema, sources and limits](https://github.com/midya8/mixture-of-experts/blob/main/ROUTES.md)
 
 ## Reproduction and limits
 
