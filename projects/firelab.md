@@ -1,8 +1,8 @@
-# FireLab: balance is not an execution
+# Petri nets: balance is not an execution
 
-FireLab checks three different questions in a small ordinary weighted Petri net: whether supplied transition counts balance the tokens, whether those exact counts can execute in some order, and whether any sequence can reach the goal. A balanced count vector can fail to execute even when the goal is reachable with different counts. These are synthetic teaching controls, not a deployed agent or a new Petri-net algorithm.
+Petri nets checks three different questions in a small ordinary weighted Petri net: whether supplied transition counts balance the tokens, whether those exact counts can execute in some order, and whether any sequence can reach the goal. A balanced count vector can fail to execute even when the goal is reachable with different counts. These are synthetic teaching controls, not a deployed agent or a new Petri-net algorithm.
 
-[Live inspector](https://midya8.github.io/firelab/) · [Source](https://github.com/midya8/firelab) · [Reviewed implementation](https://github.com/midya8/firelab/pull/1)
+[Live inspector](https://midya8.github.io/petri-nets/) · [Source](https://github.com/midya8/petri-nets) · [Reviewed implementation](https://github.com/midya8/petri-nets/pull/1)
 
 ## A catalyst can disappear from the equation, not the guard
 
@@ -56,7 +56,7 @@ The exhaustive class uses all 14 conservative two-place transitions whose pre/po
 
 ## Publication and pixels
 
-PR1 merged only after all six latest feature/PR jobs passed. Main `97fb7a1cea00cbdfea79bf7458234120c2550d6c` retains initial `45dbb4c1e34f838bd381476926a9d4a2b6361d26` and full feature `077fc5739d0e3e8436cc9fa92424eed5f4897e21` history. All 32 public files byte-match tested source. [Merged-main checks](https://github.com/midya8/firelab/actions/runs/42923424730) and [Pages](https://github.com/midya8/firelab/actions/runs/42923424869) passed. All five deployed assets are byte-exact. The full 56-view/14-download Chrome workflow passes against the live site. Of 32 unmasked captures, 31 match exactly. The remaining 390px boundary-control state table differs in 165 pixels inside a header label, maximum channel difference 56/255; both actual images were inspected with no content or layout change. Live desktop hero, mobile verdicts, narrow-phone lattice guards and boundary-state evidence were inspected directly. This verifies this published implementation, not a real resource protocol.
+PR1 merged only after all six latest feature/PR jobs passed. Main `97fb7a1cea00cbdfea79bf7458234120c2550d6c` retains initial `45dbb4c1e34f838bd381476926a9d4a2b6361d26` and full feature `077fc5739d0e3e8436cc9fa92424eed5f4897e21` history. All 32 public files byte-match tested source. [Merged-main checks](https://github.com/midya8/petri-nets/actions/runs/42923424730) and [Pages](https://github.com/midya8/petri-nets/actions/runs/42923424869) passed. All five deployed assets are byte-exact. The full 56-view/14-download Chrome workflow passes against the live site. Of 32 unmasked captures, 31 match exactly. The remaining 390px boundary-control state table differs in 165 pixels inside a header label, maximum channel difference 56/255; both actual images were inspected with no content or layout change. Live desktop hero, mobile verdicts, narrow-phone lattice guards and boundary-state evidence were inspected directly. This verifies this published implementation, not a real resource protocol.
 
 ## Scope and prior work
 
@@ -64,4 +64,4 @@ PR1 merged only after all six latest feature/PR jobs passed. Main `97fb7a1cea00c
 
 [Bonet's Petri Nets for Planners](https://bonetblai.github.io/tutorials/icaps11-petri.pdf), [Cabasino/Giua/Seatzu's structural analysis](http://wpage.unina.it/detommas/dssc/cap11_12control.pdf) and [linear algebraic techniques](https://www.cse.iitb.ac.in/~akshayss/courses/cs735/desel-alg.pdf) ground the enabling/equation/invariant distinctions. [TINA](https://projects.laas.fr/tina/manuals/tina.html), its [primary tool paper](https://projects.laas.fr/tina/papers/ijpr_04.pdf), [PM4Py](https://processintelligence.solutions/pm4py/api/api.html) and the [Hamburg tool catalog](https://www.informatik.uni-hamburg.de/TGI/PetriNets/tools/db/tina.html) establish broad prior tooling. No older complexity summary, reduced-graph convention or license discrepancy is silently blended into a new claim. Full source coverage is in the repository's SOURCES.md.
 
-Existing STRIPSLab studies Boolean delete relaxation and action availability; BranchLab/ShieldLab check supplied graphs. FireLab instead starts from integer-token guards and distinguishes net-effect counts from executable order and arbitrary goal reachability. It does not claim Petri nets or finite exhaustive planning are new portfolio ideas.
+Existing STRIPSLab studies Boolean delete relaxation and action availability; BranchLab/ShieldLab check supplied graphs. Petri nets instead starts from integer-token guards and distinguishes net-effect counts from executable order and arbitrary goal reachability. It does not claim Petri nets or finite exhaustive planning are new portfolio ideas.
