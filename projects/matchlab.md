@@ -1,8 +1,8 @@
-# MatchLab: stable matching and supplied costs
+# Stable matching: stable matching and supplied costs
 
-MatchLab enumerates strict complete two-sided stable matchings on small synthetic profiles. It shows every pairing, blocking-pair test, deferred-acceptance proposal state and stable-lattice operation. Supplied assignment costs are separate from preference rankings: inspect what each side can attain and which assignment minimizes the chosen costs.
+Stable matching enumerates strict complete two-sided stable matchings on small synthetic profiles. It shows every pairing, blocking-pair test, deferred-acceptance proposal state and stable-lattice operation. Supplied assignment costs are separate from preference rankings: inspect what each side can attain and which assignment minimizes the chosen costs.
 
-[Live inspector](https://midya8.github.io/matchlab/) · [Source](https://github.com/midya8/matchlab) · [Method and attributed theory](https://github.com/midya8/matchlab/blob/main/METHOD.md) · [Reviewed change](https://github.com/midya8/matchlab/pull/1)
+[Live inspector](https://midya8.github.io/stable-matching/) · [Source](https://github.com/midya8/stable-matching) · [Method and attributed theory](https://github.com/midya8/stable-matching/blob/main/METHOD.md) · [Reviewed change](https://github.com/midya8/stable-matching/pull/1)
 
 ## Optimal for which side?
 
@@ -66,12 +66,12 @@ python tools/check_milp.py
 
 The test output reports the finite corpus and numerical tolerance. These checks
 do not establish the truth of supplied preferences or the social suitability of
-an assignment. [README review](https://github.com/midya8/matchlab/pull/2) ·
-[Main checks](https://github.com/midya8/matchlab/actions/runs/43236650962) ·
-[Pages deployment](https://github.com/midya8/matchlab/actions/runs/43236649201).
+an assignment. [README review](https://github.com/midya8/stable-matching/pull/2) ·
+[Main checks](https://github.com/midya8/stable-matching/actions/runs/43236650962) ·
+[Pages deployment](https://github.com/midya8/stable-matching/actions/runs/43236649201).
 
 ## Scope and prior work
 
 Equal sides of size one to five; strict complete rankings; all pairs acceptable; one partner per participant. Input costs are signed integers -1000..1000. No ties, unacceptable partners, capacities, unmatched participants or learned preferences. Enumeration and exhaustive replay add factorial/output-size work. No scalable market-allocation service is claimed.
 
-Gale-Shapley deferred acceptance, proposer optimality and the stable lattice are classical and attributed in [SOURCES.md](https://github.com/midya8/matchlab/blob/main/SOURCES.md). Existing matching software is acknowledged. The original contribution is the implementation, synthetic controls, evidence format, independent replay and inspectable UI, not a new algorithm, fairness result or strategy-proofness claim for both sides. Developed profiles are not held-out evaluation. There is no backend, paid API, analytics or external font dependency. A self-consistent report certifies its included arithmetic, not the intended provenance of the input.
+Gale-Shapley deferred acceptance, proposer optimality and the stable lattice are classical and attributed in [SOURCES.md](https://github.com/midya8/stable-matching/blob/main/SOURCES.md). Existing matching software is acknowledged. The original contribution is the implementation, synthetic controls, evidence format, independent replay and inspectable UI, not a new algorithm, fairness result or strategy-proofness claim for both sides. Developed profiles are not held-out evaluation. There is no backend, paid API, analytics or external font dependency. A self-consistent report certifies its included arithmetic, not the intended provenance of the input.
