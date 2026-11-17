@@ -1,10 +1,10 @@
-# SpectralLab
+# Spectral clustering
 
-[Source](https://github.com/midya8/spectrallab) · [Live graph inspector](https://midya8.github.io/spectrallab/) · [Equations and limits](https://github.com/midya8/spectrallab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/spectral-clustering) · [Live graph inspector](https://midya8.github.io/spectral-clustering/) · [Equations and limits](https://github.com/midya8/spectral-clustering/blob/main/METHOD.md)
 
 ## The graph changes the answer
 
-Normalized spectral clustering exposes a choice that a scatter plot can hide: which points are neighbors, and what their connection means. SpectralLab builds the affinity and normalized Laplacian explicitly, retains the eigenspace, normalizes every row and runs manual k-means. NumPy supplies the symmetric eigenvalue solve through LAPACK. No clustering library or model API supplies the result.
+Normalized spectral clustering exposes a choice that a scatter plot can hide: which points are neighbors, and what their connection means. Spectral clustering builds the affinity and normalized Laplacian explicitly, retains the eigenspace, normalizes every row and runs manual k-means. NumPy supplies the symmetric eigenvalue solve through LAPACK. No clustering library or model API supplies the result.
 
 The browser reconstructs all graph weights and every selected point's degree, neighbors, cut contributions and three eigenpair equations. Original coordinates and row-normalized embedding sit side by side. Select any actual archived graph or point; change colors or a display-only edge threshold; export the full point witness as JSON. A threshold that hides an edge never changes the fit.
 
@@ -24,7 +24,7 @@ An original seven-vertex weighted graph has only 63 distinct nonempty binary cut
 
 ## v0.2: smooth geometry, discrete labels
 
-[Live graph-weight sensitivity](https://midya8.github.io/spectrallab/sensitivity.html) · [Full derivation and controls](https://github.com/midya8/spectrallab/blob/main/SENSITIVITY.md)
+[Live graph-weight sensitivity](https://midya8.github.io/spectral-clustering/sensitivity.html) · [Full derivation and controls](https://github.com/midya8/spectral-clustering/blob/main/SENSITIVITY.md)
 
 A fixed undirected edge edit changes both endpoint degrees and every normalized incident edge. Manual differentiation retains those terms. The bottom-two spectral projector P = U Uᵀ has a basis-invariant derivative using only retained-to-excluded denominators: internal repeated eigenvalues are allowed; repeated eigenvalues crossing the retained boundary are refused without an epsilon repair.
 
