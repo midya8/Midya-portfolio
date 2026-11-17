@@ -1,10 +1,10 @@
-# FactorLab: sum is not max
+# Variable elimination: sum is not max
 
-[Source](https://github.com/midya8/factorlab) · [Live inspector](https://midya8.github.io/factorlab/) · [Method and sources](https://github.com/midya8/factorlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/variable-elimination) · [Live inspector](https://midya8.github.io/variable-elimination/) · [Method and sources](https://github.com/midya8/variable-elimination/blob/main/METHOD.md)
 
 ## The inference question
 
-FactorLab shows how three queries on the same supplied factors can give different answers: a sum over hidden variables, a joint maximum and a marginal-MAP decision. When sum and max are mixed, changing the elimination order can produce an upper bound instead of the requested answer. In an all-sum query, the order can change the allocated table size without changing the answer.
+Variable elimination shows how three queries on the same supplied factors can give different answers: a sum over hidden variables, a joint maximum and a marginal-MAP decision. When sum and max are mixed, changing the elimination order can produce an upper bound instead of the requested answer. In an all-sum query, the order can change the allocated table size without changing the answer.
 
 ## What you can inspect
 
