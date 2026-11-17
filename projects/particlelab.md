@@ -1,8 +1,8 @@
-# ParticleLab: particle filtering and missing uncertainty
+# Particle filtering: particle filtering and missing uncertainty
 
-ParticleLab estimates hidden scalar states from noisy observations. It retains the full particle histories so weight concentration, current-state diversity and early ancestry can be checked separately. Exact Kalman and RTS references show approximation errors under the supplied linear model.
+Particle filtering estimates hidden scalar states from noisy observations. It retains the full particle histories so weight concentration, current-state diversity and early ancestry can be checked separately. Exact Kalman and RTS references show approximation errors under the supplied linear model.
 
-[Repository](https://github.com/midya8/particlelab) · [Model and timing](https://github.com/midya8/particlelab#model-and-timing) · [Reviewed documentation](https://github.com/midya8/particlelab/pull/1)
+[Repository](https://github.com/midya8/particle-filtering) · [Model and timing](https://github.com/midya8/particle-filtering#model-and-timing) · [Reviewed documentation](https://github.com/midya8/particle-filtering/pull/1)
 
 ## Equal weights can hide missing states
 
@@ -32,27 +32,27 @@ A second fixture uses twenty zeros, a=1, process std=0, observation std=.1, init
 
 Full ESS after resampling does not recover missing support. Keeping all labels without resampling is not enough either: almost all weight sits on one. With zero process noise neither method can create a missing state value. This is not a causal claim that resampling alone causes the failure, or a verdict about other proposals or particle budgets.
 
-![Filtering, variance, ESS and ancestry](https://github.com/midya8/particlelab/raw/refs/heads/main/assets/particle-audit.svg)
+![Filtering, variance, ESS and ancestry](https://github.com/midya8/particle-filtering/raw/refs/heads/main/assets/particle-audit.svg)
 
-[Reproducible figure source](https://github.com/midya8/particlelab/blob/main/assets/particle-audit.svg). All plotted means/variances, settings, seed errors and domains are retained in numeric SVG metadata; the polygons retain every moment-band vertex. Shading is mean +/- one SD, not calibrated coverage. Both success and failure checks run in the demo.
+[Reproducible figure source](https://github.com/midya8/particle-filtering/blob/main/assets/particle-audit.svg). All plotted means/variances, settings, seed errors and domains are retained in numeric SVG metadata; the polygons retain every moment-band vertex. Shading is mean +/- one SD, not calibrated coverage. Both success and failure checks run in the demo.
 
 ## Static square symmetry and sign loss
 
-A restricted static square-observation reference has exact mean 0 and sign probability 1/2, but its modes can be near +/-2 with the mean deep in a density valley. A selected eight-particle run loses one sign while carried ESS is 8/8; the no-resampling comparison also has poor effective support. The analytic reference returns symmetry/modes/density ratios, not variance or evidence. [Derivation, assumptions and complete fixed-seed comparison](https://github.com/midya8/particlelab/blob/main/SYMMETRY.md).
+A restricted static square-observation reference has exact mean 0 and sign probability 1/2, but its modes can be near +/-2 with the mean deep in a density valley. A selected eight-particle run loses one sign while carried ESS is 8/8; the no-resampling comparison also has poor effective support. The analytic reference returns symmetry/modes/density ratios, not variance or evidence. [Derivation, assumptions and complete fixed-seed comparison](https://github.com/midya8/particle-filtering/blob/main/SYMMETRY.md).
 
 ## Retrospective paths and missing early uncertainty
 
 A separate terminal-weighted genealogy smoother traces the retained parent maps, without drawing new paths or using the final resampled weights. The scalar linear RTS reference conditions on the complete observation sequence. A fixed 64-step dynamic fixture ends with 32 distinct current states but only one retained initial path: time-0 particle variance is 0 while exact smoothed variance is .009521314. Current process noise cannot recreate a discarded past path.
 
-All sixteen inherited linear seeds 0..15 are retained; mean-of-seed smoothing mean/variance RMSEs versus RTS are .0299202464/.0137440904. These are development approximation errors, not a smoothing-versus-filtering ranking, independent posterior paths or calibrated coverage. [Index/weight derivation, figure, complete fixed results and limits](https://github.com/midya8/particlelab/blob/main/SMOOTHING.md).
+All sixteen inherited linear seeds 0..15 are retained; mean-of-seed smoothing mean/variance RMSEs versus RTS are .0299202464/.0137440904. These are development approximation errors, not a smoothing-versus-filtering ranking, independent posterior paths or calibrated coverage. [Index/weight derivation, figure, complete fixed results and limits](https://github.com/midya8/particle-filtering/blob/main/SMOOTHING.md).
 
 ## Backward simulation still depends on finite support
 
-An optional sampler connects retained filtering states outside the parent maps, with separate seeded backward draws and a strict candidate-work cap. On the same fixed fixture, 512 draws reach two initial indices instead of one genealogical path. Their time-0 variance .022290238 is still over twice the exact .009521314. More path diversity is not calibrated uncertainty or recovered state support. Process std below 1e-4 is rejected; the deterministic-transition density is not fabricated. [Algorithm, comparison figure, numerical guards and limits](https://github.com/midya8/particlelab/blob/main/BACKWARD.md).
+An optional sampler connects retained filtering states outside the parent maps, with separate seeded backward draws and a strict candidate-work cap. On the same fixed fixture, 512 draws reach two initial indices instead of one genealogical path. Their time-0 variance .022290238 is still over twice the exact .009521314. More path diversity is not calibrated uncertainty or recovered state support. Process std below 1e-4 is rejected; the deterministic-transition density is not fabricated. [Algorithm, comparison figure, numerical guards and limits](https://github.com/midya8/particle-filtering/blob/main/BACKWARD.md).
 
 ## Observation-conditioned proposals
 
-An optional linear observation-conditioned Gaussian proposal exposes per-particle proposal moments and predictive importance weights, with exact initial predictive evidence and deterministic q=0 moves. Across all sixteen fixed seeds at N=32 on the inherited sequence, mean RMSE is similar (.082871/.081548 bootstrap/conditional), but conditional variance RMSE is worse (.037895 versus .035944). A more informative observation fixture has smaller conditional errors, not a general or causal ranking. Seed labels do not ensure paired identical random streams. [Derivation, all-seed figure, complete metrics and limits](https://github.com/midya8/particlelab/blob/main/PROPOSAL.md).
+An optional linear observation-conditioned Gaussian proposal exposes per-particle proposal moments and predictive importance weights, with exact initial predictive evidence and deterministic q=0 moves. Across all sixteen fixed seeds at N=32 on the inherited sequence, mean RMSE is similar (.082871/.081548 bootstrap/conditional), but conditional variance RMSE is worse (.037895 versus .035944). A more informative observation fixture has smaller conditional errors, not a general or causal ranking. Seed labels do not ensure paired identical random streams. [Derivation, all-seed figure, complete metrics and limits](https://github.com/midya8/particle-filtering/blob/main/PROPOSAL.md).
 
 ## Run it locally
 
@@ -73,9 +73,9 @@ The repository has the complete six-field payload, strict input/resource bounds,
 
 ## Reproduction and publication
 
-The documentation review is merged in [PR #1](https://github.com/midya8/particlelab/pull/1), main `06832dbab58fa99e1e0573e904ea645ab07b8e20`. Fresh current, revised, published-head and merged-main checkouts each passed 114 Python tests and five byte-identical SVG regeneration checks. Installed-wheel checks verified seven module origins and ten complete CLI reports outside the checkout, using the same interpreter for the source and installed comparisons. All 43 published and main files matched the reviewed checkout; 41 tracked files were unchanged.
+The documentation review is merged in [PR #1](https://github.com/midya8/particle-filtering/pull/1), main `06832dbab58fa99e1e0573e904ea645ab07b8e20`. Fresh current, revised, published-head and merged-main checkouts each passed 114 Python tests and five byte-identical SVG regeneration checks. Installed-wheel checks verified seven module origins and ten complete CLI reports outside the checkout, using the same interpreter for the source and installed comparisons. All 43 published and main files matched the reviewed checkout; 41 tracked files were unchanged.
 
-Both [head push checks](https://github.com/midya8/particlelab/actions/runs/43354899826) and [head PR checks](https://github.com/midya8/particlelab/actions/runs/43354953939) passed all five jobs. [Merged-main checks](https://github.com/midya8/particlelab/actions/runs/43355107329) passed five jobs. The main README and proposal derivation were inspected at full height, including figures and result tables. These checks verify implementation consistency, not real-world accuracy or calibrated uncertainty.
+Both [head push checks](https://github.com/midya8/particle-filtering/actions/runs/43354899826) and [head PR checks](https://github.com/midya8/particle-filtering/actions/runs/43354953939) passed all five jobs. [Merged-main checks](https://github.com/midya8/particle-filtering/actions/runs/43355107329) passed five jobs. The main README and proposal derivation were inspected at full height, including figures and result tables. These checks verify implementation consistency, not real-world accuracy or calibrated uncertainty.
 
 ## Limits and attribution
 
