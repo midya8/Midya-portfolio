@@ -1,14 +1,14 @@
-# ScoreLab
+# Policy gradient variance
 
-[Repository](https://github.com/midya8/scorelab)
+[Repository](https://github.com/midya8/policy-gradient-variance)
 
-ScoreLab enumerates the complete policy-gradient distribution of a supplied finite model at a softmax anchor. It compares full-return and reward-to-go estimators, state-value baselines, and optimal scalar and matrix score controls using exact rational means and covariances.
+Policy gradient variance enumerates the complete policy-gradient distribution of a supplied finite model at a softmax anchor. It compares full-return and reward-to-go estimators, state-value baselines, and optimal scalar and matrix score controls using exact rational means and covariances.
 
 It does not train a policy or fit a critic. The calculations show what each estimator does on the supplied model, not how quickly an agent would learn. Python 3.10+, no dependencies, network access or model downloads.
 
 ## Commands
 
-Run these from the [source repository](https://github.com/midya8/scorelab).
+Run these from the [source repository](https://github.com/midya8/policy-gradient-variance).
 
 | Command | What it returns |
 |---|---|
@@ -17,11 +17,11 @@ Run these from the [source repository](https://github.com/midya8/scorelab).
 | `python -m scorelab linear-demo` | Saved three-action and sequential matrix-control comparisons. |
 | `python -m scorelab linear examples/two-state.json` | Matrix controls, singular normal equations and full covariance-gap certificates for the supplied model. |
 
-![Exact gradient variance: a one-step value-baseline counterexample and a separate shared-parameter sequential model](https://raw.githubusercontent.com/midya8/scorelab/main/assets/score-audit.svg)
+![Exact gradient variance: a one-step value-baseline counterexample and a separate shared-parameter sequential model](https://raw.githubusercontent.com/midya8/policy-gradient-variance/main/assets/score-audit.svg)
 
 ## Matrix score controls and covariance gaps
 
-![Exact matrix score-control audit: a three-action zero-covariance example and singular sequential normal equations](https://raw.githubusercontent.com/midya8/scorelab/main/assets/linear-audit.svg)
+![Exact matrix score-control audit: a three-action zero-covariance example and singular sequential normal equations](https://raw.githubusercontent.com/midya8/policy-gradient-variance/main/assets/linear-audit.svg)
 
 A scalar baseline subtracts `b Z` from a gradient vector. `audit_linear` allows a **fixed matrix** `B Z` at each time/state, so each output coordinate can use every score coordinate. This is a larger class, not a better fitted critic. It minimizes the **whole covariance matrix in positive-semidefinite order** within that class, instead of just a scalar trace.
 
@@ -60,7 +60,7 @@ For each supported scalar estimator and optional custom matrix control, the audi
 Cov(G_B) - Cov(G_B*) = sum_j (B_j-B_j*) S_j (B_j-B_j*)^T
 ```
 
-and returns both the covariance gap and its positive-semidefinite node terms. A singular coefficient matrix is not unique, but its correction on every supported path is. See [MATRIX.md](https://github.com/midya8/scorelab/blob/main/MATRIX.md) for the finite-model proof and limits.
+and returns both the covariance gap and its positive-semidefinite node terms. A singular coefficient matrix is not unique, but its correction on every supported path is. See [MATRIX.md](https://github.com/midya8/policy-gradient-variance/blob/main/MATRIX.md) for the finite-model proof and limits.
 
 Optional `control` has shape `[horizon][states][output_coordinate][score_coordinate]` of bounded rational pairs, using the same numerator/denominator bounds as the model. The `linear` CLI input accepts `version: 1`, `model`, `horizon`, and optional `control`, not `baseline`. The original `audit`/`demo` interfaces and their output remain unchanged. Matrix controls are deterministic and held fixed in the score estimator; learned/action-dependent controls and full-return optimization are outside this contract.
 
@@ -98,7 +98,7 @@ scorelab demo
 
 ## Exact rational gradients at a softmax anchor
 
-For known state/action weights `w` and integer feature vectors `phi`, ScoreLab audits the parameterized policy
+For known state/action weights `w` and integer feature vectors `phi`, Policy gradient variance audits the parameterized policy
 
 ```text
 p_theta(a|s) = w(s,a) * exp(phi(s,a) dot theta)
@@ -138,7 +138,7 @@ trace_cov(G_b) - trace_cov(G_b*) =
     sum_j E[||Z_j||^2] * (b_j - b_j*)^2
 ```
 
-The numerator uses the **entire** gradient vector G0, including other times. It is not generally a local reward-weighted average or the exact state value. ScoreLab returns both sides of the exact excess-variance identity. A supplied custom baseline is also audited:
+The numerator uses the **entire** gradient vector G0, including other times. It is not generally a local reward-weighted average or the exact state value. Policy gradient variance returns both sides of the exact excess-variance identity. A supplied custom baseline is also audited:
 
 ```python
 custom = audit(sequential(), horizon=3,
@@ -150,7 +150,7 @@ assert custom["estimators"]["custom_baseline"]["mean"] == custom["exact_gradient
 
 ## Strict model and budget contract
 
-The input has exactly `version: 1`, `model`, `horizon`, and optional `baseline`. The model has exactly `weights`, `features`, `transitions`, `rewards` and `initial_state`; see [examples/two-state.json](https://github.com/midya8/scorelab/blob/main/examples/two-state.json).
+The input has exactly `version: 1`, `model`, `horizon`, and optional `baseline`. The model has exactly `weights`, `features`, `transitions`, `rewards` and `initial_state`; see [examples/two-state.json](https://github.com/midya8/policy-gradient-variance/blob/main/examples/two-state.json).
 
 - 1..3 states, 1..3 actions per state, 1..3 shared feature coordinates; rectangular shapes required. Positive integer weights are 1..16 and integer features -8..8.
 - Transition/reward arrays have shape `[states][actions][next_states]` of rational pairs. Numerators are -32..32, denominators 1..16; transition probabilities must be nonnegative and sum exactly to one per state/action row. Rewards may be negative.
@@ -176,6 +176,6 @@ Matrix-control verification adds 15 independently enumerated model/horizon setti
 
 ## Attribution and limits
 
-Score-function/control-variate reasoning and the warning that familiar baselines can be suboptimal are standard. [Greensmith, Bartlett and Baxter, *Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning*, JMLR 5 (2004), Sections 4-6](https://jmlr.org/papers/volume5/greensmith04a/greensmith04a.pdf) studies these ideas in its GPOMDP/average-reward setting. ScoreLab does **not** implement GPOMDP or reproduce that paper's experiments/theorems. Its finite-horizon anchor model, exact full-path covariance audit, scalar time/state baseline derivation, code, fixtures, independent oracles and figure are original implementations. No external code or dataset is copied. [DESIGN.md](https://github.com/midya8/scorelab/blob/main/DESIGN.md) supplies the finite-horizon derivation. MIT licensed.
+Score-function/control-variate reasoning and the warning that familiar baselines can be suboptimal are standard. [Greensmith, Bartlett and Baxter, *Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning*, JMLR 5 (2004), Sections 4-6](https://jmlr.org/papers/volume5/greensmith04a/greensmith04a.pdf) studies these ideas in its GPOMDP/average-reward setting. Policy gradient variance does **not** implement GPOMDP or reproduce that paper's experiments/theorems. Its finite-horizon anchor model, exact full-path covariance audit, scalar time/state baseline derivation, code, fixtures, independent oracles and figure are original implementations. No external code or dataset is copied. [DESIGN.md](https://github.com/midya8/policy-gradient-variance/blob/main/DESIGN.md) supplies the finite-horizon derivation. MIT licensed.
 
 Everything depends on the supplied finite model. There is no environment fitting, actor-critic training, continuous state/action method, learned baseline, correlated data, infinite horizon, causal explanation of training or large-scale policy-gradient performance claim. Exact arithmetic validates the calculation, not the realism of a model.
