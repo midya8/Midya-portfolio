@@ -1,10 +1,10 @@
-# BisimLab
+# Bisimulation
 
 Compare small protocol models under strong bisimulation, exact finite traces, hidden-action semantics and divergence-preserving branching. Inspect the evidence for each answer. The current suite has 32 Python and 12 Node/actual-Chrome tests; earlier counts below describe their release stages, not separate current totals.
 
-### BisimLab: same traces, different choices
+### Bisimulation: same traces, different choices
 
-[Source](https://github.com/midya8/bisimlab) · [Interactive inspector](https://midya8.github.io/bisimlab/) · [Method](https://github.com/midya8/bisimlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/bisimulation) · [Interactive inspector](https://midya8.github.io/bisimulation/) · [Method](https://github.com/midya8/bisimulation/blob/main/METHOD.md)
 
 Two states can allow the same finite action sequences but disagree about when a choice remains available. The original inspector shows every strong-bisimulation refinement, failed left/right step match, distinguishing Hennessy-Milner formula, truth set and quotient edge. A separate paired-subset search checks finite trace equality, rather than sampling paths.
 
@@ -12,9 +12,9 @@ The original nine Python tests remain in the current suite. They include all 512
 
 All labels are visible in this original mode, even a label named `tau`. Hidden-action modes have separate contracts below. The supplied model has one to six states; state names are not observations. No probabilities, source extraction, policy guarantee, new algorithm or formal proof. Established theory and inspected sources are credited in the method.
 
-### BisimLab: complete trace-product replay
+### Bisimulation: complete trace-product replay
 
-[Interactive trace product](https://midya8.github.io/bisimlab/traces.html) · [Source and exact semantics](https://github.com/midya8/bisimlab/blob/main/TRACES.md)
+[Interactive trace product](https://midya8.github.io/bisimulation/traces.html) · [Source and exact semantics](https://github.com/midya8/bisimulation/blob/main/TRACES.md)
 
 For a pair of states, inspect the entire reachable product of their possible successor sets. The graph keeps every action edge after a mismatch, including the both-empty sink. BFS discovery words, layers, mismatch nodes and a shortest distinguishing path remain visible. Equal finite traces still do not imply branching equivalence.
 
@@ -22,9 +22,9 @@ The v0.2 checks compare 4,715 complete reports across Python bitmasks, independe
 
 This mode uses one to six states with all actions visible. Exact subset exploration is exponential within that cap, not a scalable solver. The contract credits subset determinisation and product language equivalence; it makes no new-algorithm claim.
 
-## BisimLab: silence can hide a choice
+## Bisimulation: silence can hide a choice
 
-[Silent-action inspector](https://midya8.github.io/bisimlab/silent.html) · [Exact contract](https://github.com/midya8/bisimlab/blob/main/SILENT.md) · [Reviewed change](https://github.com/midya8/bisimlab/pull/3)
+[Silent-action inspector](https://midya8.github.io/bisimulation/silent.html) · [Exact contract](https://github.com/midya8/bisimulation/blob/main/SILENT.md) · [Reviewed change](https://github.com/midya8/bisimulation/pull/3)
 
 Explicitly hiding labels can produce different answers under strong, branching and weak bisimilarity. Inspect each fixed-point round, removed pair, attack and finite response path. Branching matching preserves the choice at the matched step; weak matching may lose it. The default contrast reconstructs and credits Bisping Example 6.3.
 
@@ -34,9 +34,9 @@ Historical v0.3 coverage includes 23 Python and nine Node/Chrome tests, retainin
 
 Actual Chrome checks 30 silent reports at 320/390/1280 pixels, 294 rounds, 498 removed-pair selections, 960 attacks, 414 responses and ten native-verified downloads, plus 18-loop graph geometry. These are fixture coverage counts, not a proof or speed benchmark.
 
-## BisimLab 0.4: the loop must stay inside
+## Bisimulation 0.4: the loop must stay inside
 
-[Explicit-divergence inspector](https://midya8.github.io/bisimlab/divergence.html) · [Source](https://github.com/midya8/bisimlab) · [Exact contract and sources](https://github.com/midya8/bisimlab/blob/main/DIVERGENCE.md) · [Reviewed change](https://github.com/midya8/bisimlab/pull/4)
+[Explicit-divergence inspector](https://midya8.github.io/bisimulation/divergence.html) · [Source](https://github.com/midya8/bisimulation) · [Exact contract and sources](https://github.com/midya8/bisimulation/blob/main/DIVERGENCE.md) · [Reviewed change](https://github.com/midya8/bisimulation/pull/4)
 
 Both states can loop forever and still disagree about where the loop is possible. This mode compares ordinary branching equivalence with unrooted divergence-preserving branching equivalence. It enumerates every set partition and retains each state's internal reachability, exit signatures, nonempty-cycle lassos and failed same-block obligations. These are exhaustive candidates, not fixed-point rounds.
 
