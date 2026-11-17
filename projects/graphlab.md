@@ -1,10 +1,10 @@
-# GraphLab: graph convolution and fixed-model audits
+# Graph convnets: graph convolution and fixed-model audits
 
-GraphLab trains a two-layer graph convolutional network on a small synthetic graph, with masked training labels, validation-only checkpoint selection and matched feature-only and scrambled-graph controls. For a fixed model, it audits input gradients, single-edge deletions and complete joint-edge deletion sets. The joint audit recomputes normalization for every set and shows where adding singleton effects gives the wrong class prediction.
+Graph convnets trains a two-layer graph convolutional network on a small synthetic graph, with masked training labels, validation-only checkpoint selection and matched feature-only and scrambled-graph controls. For a fixed model, it audits input gradients, single-edge deletions and complete joint-edge deletion sets. The joint audit recomputes normalization for every set and shows where adding singleton effects gives the wrong class prediction.
 
-[Source repository](https://github.com/midya8/graphlab) · [Design contracts](https://github.com/midya8/graphlab/blob/main/DESIGN.md)
+[Source repository](https://github.com/midya8/graph-convnets) · [Design contracts](https://github.com/midya8/graph-convnets/blob/main/DESIGN.md)
 
-![Synthetic graph and expressivity audit](https://raw.githubusercontent.com/midya8/graphlab/main/assets/graph-audit.svg)
+![Synthetic graph and expressivity audit](https://raw.githubusercontent.com/midya8/graph-convnets/main/assets/graph-audit.svg)
 
 ## Joint-edge deletion
 
@@ -22,7 +22,7 @@ Every report records all target logits, selected margin, signed change, singleto
 
 The browser invalidates all old outputs and disables downloads on edits. Six trusted JSON downloads are independently replayed by native sparse Python. Reports are unsigned and attest only to consistency with their embedded input, not source authenticity or real-world truth. The ordinary CLI/page JSON parsers do not reject duplicate keys. No cross-language exact tie guarantee, runtime comparison, edge-addition/rewiring, causal importance or robustness-accuracy score is claimed.
 
-[Live inspector](https://midya8.github.io/graphlab/) · [Full contract, commands and seven-source ledger](https://github.com/midya8/graphlab/blob/main/JOINT.md)
+[Live inspector](https://midya8.github.io/graph-convnets/) · [Full contract, commands and seven-source ledger](https://github.com/midya8/graph-convnets/blob/main/JOINT.md)
 
 The single-edge and input-gradient sections below describe the original 42 tests, retained within the current 51-test suite.
 
@@ -44,7 +44,7 @@ Sparse neighbor lists apply the symmetric normalized operator. It is **not row n
 
 Cross-entropy gradients use training nodes only. Validation labels can select a checkpoint, including initialization, but never enter the training gradient. Test labels are passed as `None` during fitting. Test **features and graph edges remain visible**: this is transductive node evaluation on one graph, not unseen-graph, unseen-node or temporal generalization. Prediction accepts only features/edges, never labels.
 
-[DESIGN.md](https://github.com/midya8/graphlab/blob/main/DESIGN.md) records equations, masks, selection, bounds and strict artifacts.
+[DESIGN.md](https://github.com/midya8/graph-convnets/blob/main/DESIGN.md) records equations, masks, selection, bounds and strict artifacts.
 
 ## Measured development fixture
 
@@ -70,7 +70,7 @@ A six-cycle and two disconnected triangles are different graphs, but with identi
 
 ## Fixed-model input gradients
 
-![Input-gradient locality and sum audit](https://raw.githubusercontent.com/midya8/graphlab/main/assets/input-audit.svg)
+![Input-gradient locality and sum audit](https://raw.githubusercontent.com/midya8/graph-convnets/main/assets/input-audit.svg)
 
 `margin_attribution` / `explain` differentiates an explicit target node's chosen class-logit margin with respect to **all supplied input coordinates**, holding weights and graph fixed. It returns full signed gradient and gradient-times-input matrices, per-node sums, the margin, sum residual and the two-hop propagation receptive field. This is not a probability derivative or graph-edge attribution.
 
