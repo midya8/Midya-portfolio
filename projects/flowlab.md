@@ -1,12 +1,12 @@
-# FlowLab: two-dimensional density and conditional-grid audits
+# Density flows: two-dimensional density and conditional-grid audits
 
-FlowLab fits an affine-coupling density model to two-dimensional points. It implements the inverse, model log density and likelihood gradients without runtime dependencies, then compares the fitted model with an untrained flow and a train-fitted full-covariance Gaussian.
+Density flows fits an affine-coupling density model to two-dimensional points. It implements the inverse, model log density and likelihood gradients without runtime dependencies, then compares the fitted model with an untrained flow and a train-fitted full-covariance Gaussian.
 
 The same model supports input-score gradients, finite-interval conditional slices and aligned-window sensitivity checks. The sections below separate model density from fit quality and conditional-grid agreement from accuracy.
 
-[Source repository](https://github.com/midya8/flowlab) · [Design contracts](https://github.com/midya8/flowlab/blob/main/DESIGN.md)
+[Source repository](https://github.com/midya8/density-flows) · [Design contracts](https://github.com/midya8/density-flows/blob/main/DESIGN.md)
 
-![Shared-axis density and sample audit](https://raw.githubusercontent.com/midya8/flowlab/main/assets/flow-audit.svg)
+![Shared-axis density and sample audit](https://raw.githubusercontent.com/midya8/density-flows/main/assets/flow-audit.svg)
 
 ## What the model checks
 
@@ -26,7 +26,7 @@ log p_X(x) = log p_Z(f(x)) + sum(log_abs_det)
 
 A shared 1 -> tanh(12) -> 2 conditioner produces raw scale and shift. Scale is bounded as `tanh(raw_scale)` by default; translations and data are not clipped. Masks alternate which coordinate is held fixed. The demo has 200 learned parameters, manual backpropagation and minibatch Adam. Sampling draws standard-normal latents and applies inverse layers in reverse order, returning samples from the **fitted model**, not guaranteed samples from the true distribution.
 
-The log density is the analytic change-of-variables density of this invertible model, evaluated with ordinary floating-point arithmetic. "Exact" does not mean an exact fit, exact arithmetic, globally optimized training or certified numerical accuracy for arbitrary extreme inputs. Nonfinite states/densities fail rather than being clipped. [DESIGN.md](https://github.com/midya8/flowlab/blob/main/DESIGN.md) spells out gradients, schema, bounds and limitations.
+The log density is the analytic change-of-variables density of this invertible model, evaluated with ordinary floating-point arithmetic. "Exact" does not mean an exact fit, exact arithmetic, globally optimized training or certified numerical accuracy for arbitrary extreme inputs. Nonfinite states/densities fail rather than being clipped. [DESIGN.md](https://github.com/midya8/density-flows/blob/main/DESIGN.md) spells out gradients, schema, bounds and limitations.
 
 ## Measured development fixture
 
@@ -76,7 +76,7 @@ The train/score/gradient/sample CLI accepts bounded continuous 2-D data. No exte
 
 ## Score vectors: the base term is not enough
 
-![Shared-scale input gradient decomposition](https://raw.githubusercontent.com/midya8/flowlab/main/assets/score-audit.svg)
+![Shared-scale input gradient decomposition](https://raw.githubusercontent.com/midya8/density-flows/main/assets/score-audit.svg)
 
 The `gradient` CLI and `Flow.input_score` API return fitted log density, the full input score, normal-base pullback and log-Jacobian gradient. For `log p_X=log p_Z(f(x))+L(x)`, the full score is `J_f^T(-f(x))+grad L`. With fixed trained weights on a fixed 9x9 grid (x=-2..2,y=-1..3,spacing.5), central differences at epsilon 1e-5 give max coordinate error **1.1904095487125232e-9**. Omitting the volume term raises the max coordinate discrepancy to **0.6605454933292365**. Both gates run in the demo; all original training, likelihood and sample outputs are unchanged.
 
@@ -86,7 +86,7 @@ These are implementation audits, not global error bounds, feature importance, ca
 
 ## Conditional slices: a grid is not an exact conditional
 
-![Finite-interval conditional density slices](https://raw.githubusercontent.com/midya8/flowlab/main/assets/conditional-audit.svg)
+![Finite-interval conditional density slices](https://raw.githubusercontent.com/midya8/density-flows/main/assets/conditional-audit.svg)
 
 `conditional_slice(flow, fixed_axis, fixed_value, low, high, grid_size)` and the `conditional` CLI evaluate the joint log density along one free coordinate. Log-max subtraction avoids underflow from a large shared log-density offset. The trapezoid rule normalizes a **piecewise-linear density on the supplied finite interval**; moments integrate that interpolation analytically, CDF integrates each segment, and quantiles invert it by bounded bisection. JSON retains every grid point, original joint log density, normalized density, CDF, requested quantiles, moments and actual model-call count. Both fixed-axis choices work. No unreported adaptive search.
 
@@ -106,7 +106,7 @@ All bounds are validated before model evaluation: fixed axis 0/1, fixed value [-
 
 ## Window sensitivity and a grid-agreement counterexample
 
-![Aligned finite-window conditional audit](https://raw.githubusercontent.com/midya8/flowlab/main/assets/window-audit.svg)
+![Aligned finite-window conditional audit](https://raw.githubusercontent.com/midya8/density-flows/main/assets/window-audit.svg)
 
 `window_audit` and the `windows` CLI evaluate one outer grid, then reuse a contiguous, index-aligned subgrid for an inner window. They return both full interpolated distributions, the inner/outer segment-area ratio, the removed fraction **within the finite outer window**, and inner-minus-outer median shift. No second round of model evaluations and no adaptive choice of bounds. Shared sampled heights make these mass ratios internally consistent for this interpolant; they do not make the interpolant accurate.
 
