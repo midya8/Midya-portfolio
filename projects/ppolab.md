@@ -1,11 +1,11 @@
-# PPOlab: training boundaries and exact policy audits
+# PPO numpy: training boundaries and exact policy audits
 
 A NumPy PPO trainer and separate inspectors cover CartPole episode boundaries and exact clipped-objective policy faces. The rational optimizer exposes every optimal policy for a supplied single-state problem, without selecting one preferred update. Constructive dual bounds, independent global replay and a BigInt browser distinguish objective clipping from a hard probability-ratio box. The original trainer, checkpoint, boundary fix and numerical replay audit remain intact.
 
-- Repository: [midya8/ppolab](https://github.com/midya8/ppolab)
-- Live: [Boundary and policy inspector](https://midya8.github.io/ppolab/)
-- Method: [BOUNDARIES.md](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md)
-- Reviewed change: [Fix timeout credit leakage and add independent audits](https://github.com/midya8/ppolab/pull/1)
+- Repository: [midya8/PPO numpy](https://github.com/midya8/ppo-numpy)
+- Live: [Boundary and policy inspector](https://midya8.github.io/ppo-numpy/)
+- Method: [BOUNDARIES.md](https://github.com/midya8/ppo-numpy/blob/main/BOUNDARIES.md)
+- Reviewed change: [Fix timeout credit leakage and add independent audits](https://github.com/midya8/ppo-numpy/pull/1)
 
 ## Exact clipped-objective policy faces
 
@@ -17,7 +17,7 @@ The current suite has 64 Python tests (all 50 earlier tests unchanged) and seven
 
 This is a full old-policy expectation at one supplied state with 2–6 actions. It does not model empirical minibatches, shared neural parameters, entropy/value losses, dynamics, optimizer trajectories or new training performance. Closed-simplex optima can have zeros; finite softmax logits cannot. The clipping limitation is established PPO mathematics, not a new algorithm or a new failure benchmark.
 
-[Exact policy-face inspector](https://midya8.github.io/ppolab/clip.html) · [Proof, schema, sources and reproduction](https://github.com/midya8/ppolab/blob/main/CLIP_FACE.md). The standard objective and caveats are attributed to Schulman et al., OpenAI Spinning Up and prior PPO analyses. Earlier boundary and policy inspector retained below.
+[Exact policy-face inspector](https://midya8.github.io/ppo-numpy/clip.html) · [Proof, schema, sources and reproduction](https://github.com/midya8/ppo-numpy/blob/main/CLIP_FACE.md). The standard objective and caveats are attributed to Schulman et al., OpenAI Spinning Up and prior PPO analyses. Earlier boundary and policy inspector retained below.
 
 The counts below describe the retained boundary-audit stage. The current
 64-Python/seven-Node suite includes those tests.
@@ -50,4 +50,4 @@ Sixteen PPO fixtures cover advantage signs and ratios, including a complete tiny
 
 PPO, GAE and CartPole are standard methods, not new algorithms. A 500-step replay is not a universal solve or safety guarantee, and PPO clipping is not a hard KL constraint. Time-limit bootstrap assumes an external cutoff of a continuing task; a genuine finite-horizon ending needs different semantics and a time-aware state. Value estimates can be wrong even when the estimator arithmetic is correct. Finite differences across kinks are not ordinary derivatives. All inputs, bounds, branch conventions and cross-runtime tolerances are documented.
 
-[BOUNDARIES.md](https://github.com/midya8/ppolab/blob/main/BOUNDARIES.md) attributes the GAE paper, Time Limits in Reinforcement Learning, Gymnasium documentation, OpenAI Spinning Up, Costa Huang's implementation checklist and the clarified Stable Baselines3 terminal-observation discussion. The SB3 issue was a caller misunderstanding, not evidence SB3 has this repository's bug.
+[BOUNDARIES.md](https://github.com/midya8/ppo-numpy/blob/main/BOUNDARIES.md) attributes the GAE paper, Time Limits in Reinforcement Learning, Gymnasium documentation, OpenAI Spinning Up, Costa Huang's implementation checklist and the clarified Stable Baselines3 terminal-observation discussion. The SB3 issue was a caller misunderstanding, not evidence SB3 has this repository's bug.
