@@ -1,10 +1,10 @@
-# ForestLab: tree votes, bootstrap membership and leaf collisions
+# Random forests: tree votes, bootstrap membership and leaf collisions
 
-[Repository](https://github.com/midya8/forestlab) | [Live inspector](https://midya8.github.io/forestlab/) | [Method, sources and limits](https://github.com/midya8/forestlab/blob/main/METHOD.md)
+[Repository](https://github.com/midya8/random-forests) | [Live inspector](https://midya8.github.io/random-forests/) | [Method, sources and limits](https://github.com/midya8/random-forests/blob/main/METHOD.md)
 
 ## What the inspectors show
 
-ForestLab fits binary CART forests to the UCI Banknote Authentication numeric descriptors. It orders Gini split candidates using exact integer comparisons and retains every bootstrap count. An editable browser separates all-tree predictions from votes made only by trees that did not train on a given group.
+Random forests fits binary CART forests to the UCI Banknote Authentication numeric descriptors. It orders Gini split candidates using exact integer comparisons and retains every bootstrap count. An editable browser separates all-tree predictions from votes made only by trees that did not train on a given group.
 
 The original inspector shows predictions, paths and membership. The joint-permutation inspector moves feature blocks through frozen models; the leaf-collision inspector compares all-tree geometry with separately normalized jointly-OOB pairs. No estimator library or model API does the fitting.
 
@@ -22,7 +22,7 @@ Each model family selects by validation errors, then Brier score, then ID before
 
 ## Joint permutation with frozen models
 
-[Joint permutation inspector](https://midya8.github.io/forestlab/permutation.html) | [Method and sources](https://github.com/midya8/forestlab/blob/main/PERMUTATION.md)
+[Joint permutation inspector](https://midya8.github.io/random-forests/permutation.html) | [Method and sources](https://github.com/midya8/random-forests/blob/main/PERMUTATION.md)
 
 All 15 nonempty feature blocks move through the same 16 fixed row bijections. Selected columns come from the same donor; recipient labels and remaining features stay in place. Both frozen models, the selected forest and stronger selected 5NN, retain all 240 cases and 129,600 model-row prediction counts. Every repeat, including negative error changes, remains visible. The browser recomputes the selected hybrid row independently and exposes all tree paths, neighbor votes, donor mapping and model binding.
 
@@ -44,7 +44,7 @@ Original data: Lohweg, V. (2012), UCI Banknote Authentication, DOI 10.24432/C55P
 
 ## Leaf-collision geometry
 
-The [leaf-collision inspector](https://midya8.github.io/forestlab/proximity.html) exposes all-tree similarity as an explicit Gram matrix, with exact integer/BigInt sum-of-squares witnesses. A separate jointly-OOB view keeps pair-specific tree counts and undefined comparisons. A constructed negative quadratic form (-2) and triangle failure show why OOB normalization is not a universal kernel guarantee. All 512 small partition controls, 5,760 native/scalar-JS matrix entries, 1,152 actual pair states and 13,824 heatmap colors are checked. Frozen supervised model geometry, not semantic similarity, causal influence, uncertainty or a new score. [Geometry derivation and limits](https://github.com/midya8/forestlab/blob/main/PROXIMITY.md).
+The [leaf-collision inspector](https://midya8.github.io/random-forests/proximity.html) exposes all-tree similarity as an explicit Gram matrix, with exact integer/BigInt sum-of-squares witnesses. A separate jointly-OOB view keeps pair-specific tree counts and undefined comparisons. A constructed negative quadratic form (-2) and triangle failure show why OOB normalization is not a universal kernel guarantee. All 512 small partition controls, 5,760 native/scalar-JS matrix entries, 1,152 actual pair states and 13,824 heatmap colors are checked. Frozen supervised model geometry, not semantic similarity, causal influence, uncertainty or a new score. [Geometry derivation and limits](https://github.com/midya8/random-forests/blob/main/PROXIMITY.md).
 
 The all-tree proximity is the mean of per-tree leaf collisions. Keeping tree identity in each leaf-indicator column makes P=ZZᵀ/T, including singular matrices. Exact Python integer and browser BigInt witnesses evaluate the full quadratic expression and every leaf-bucket square. Squared feature-space distance is 2(1-P); distinct raw inputs can have zero distance. This is not a semantic identity proof.
 
