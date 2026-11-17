@@ -1,8 +1,8 @@
-# HornLab
+# Horn inference
 
-HornLab computes what follows from supplied positive definite-Horn rules and facts. Its three inspectors vary initial seeds, indexed rules or explicit fact transactions, and expose the complete bounded records. Circular local support is not a finite derivation.
+Horn inference computes what follows from supplied positive definite-Horn rules and facts. Its three inspectors vary initial seeds, indexed rules or explicit fact transactions, and expose the complete bounded records. Circular local support is not a finite derivation.
 
-[Inference inspector](https://midya8.github.io/hornlab/) · [Rule-deletion inspector](https://midya8.github.io/hornlab/rules.html) · [Fact-maintenance inspector](https://midya8.github.io/hornlab/updates.html) · [Source and tests](https://github.com/midya8/hornlab)
+[Inference inspector](https://midya8.github.io/horn-inference/) · [Rule-deletion inspector](https://midya8.github.io/horn-inference/rules.html) · [Fact-maintenance inspector](https://midya8.github.io/horn-inference/updates.html) · [Source and tests](https://github.com/midya8/horn-inference)
 
 ## Inference and initial-fact supports
 
@@ -44,4 +44,4 @@ At most six atoms and eight indexed positive propositional rules; fact maintenan
 
 Counts are exact finite enumeration, not probabilities or scalability evidence. Native checking is not a formal proof or signed certificate; JSON is unsigned, and the browser generator is not an independent verifier. Established semantics and algorithms, not new theory.
 
-See the repository [inference contract](https://github.com/midya8/hornlab/blob/main/METHOD.md), [rule-audit contract](https://github.com/midya8/hornlab/blob/main/RULES.md) and [update contract](https://github.com/midya8/hornlab/blob/main/UPDATES.md) for schemas, validation limits, credited foundations and historical source notes. Those historical external citations were preserved, not freshly revalidated in this prose review.
+See the repository [inference contract](https://github.com/midya8/horn-inference/blob/main/METHOD.md), [rule-audit contract](https://github.com/midya8/horn-inference/blob/main/RULES.md) and [update contract](https://github.com/midya8/horn-inference/blob/main/UPDATES.md) for schemas, validation limits, credited foundations and historical source notes. Those historical external citations were preserved, not freshly revalidated in this prose review.
