@@ -1,16 +1,16 @@
-# WarpLab: soft-DTW paths, lengths and inverse response
+# Soft dtw: soft-DTW paths, lengths and inverse response
 
-[Alignment inspector](https://midya8.github.io/warplab/) · [Length atlas](https://midya8.github.io/warplab/lengths.html) · [Inverse response](https://midya8.github.io/warplab/inverse.html) · [Source](https://github.com/midya8/warplab)
+[Alignment inspector](https://midya8.github.io/soft-dtw/) · [Length atlas](https://midya8.github.io/soft-dtw/lengths.html) · [Inverse response](https://midya8.github.io/soft-dtw/inverse.html) · [Source](https://github.com/midya8/soft-dtw)
 
-WarpLab makes a small soft-DTW calculation inspectable down to individual cells, edges and complete paths. Dependency-free scalar Python and browser JavaScript compute the same reports. Separate exhaustive oracles check them without calling the dynamic program or inverse solver. The mathematics is established; the work here is the implementation, experiment interface and independent checks.
+Soft dtw makes a small soft-DTW calculation inspectable down to individual cells, edges and complete paths. Dependency-free scalar Python and browser JavaScript compute the same reports. Separate exhaustive oracles check them without calling the dynamic program or inverse solver. The mathematics is established; the work here is the implementation, experiment interface and independent checks.
 
 ## Choose the question
 
 | Question | Calculation | Contract |
 | --- | --- | --- |
-| Which alignments carry probability, and how does the score change? | Gibbs cell occupancies, joint edge flows, sequence/temperature gradients and signed cost Hessian-vector products | [Alignment](https://github.com/midya8/warplab/blob/main/CONTRACT.md) |
-| What changes when each visited cell pays a penalty? | Every legal length's conditional law, exact path counts and hard minima, then the penalized mixture | [Length atlas](https://github.com/midya8/warplab/blob/main/LENGTHS.md) |
-| Can a penalty in [-4,4] attain a target expected length? | Finite endpoint reachability, bisection trace, sampled length laws and actual residual | [Inverse response](https://github.com/midya8/warplab/blob/main/INVERSE.md) |
+| Which alignments carry probability, and how does the score change? | Gibbs cell occupancies, joint edge flows, sequence/temperature gradients and signed cost Hessian-vector products | [Alignment](https://github.com/midya8/soft-dtw/blob/main/CONTRACT.md) |
+| What changes when each visited cell pays a penalty? | Every legal length's conditional law, exact path counts and hard minima, then the penalized mixture | [Length atlas](https://github.com/midya8/soft-dtw/blob/main/LENGTHS.md) |
+| Can a penalty in [-4,4] attain a target expected length? | Finite endpoint reachability, bisection trace, sampled length laws and actual residual | [Inverse response](https://github.com/midya8/soft-dtw/blob/main/INVERSE.md) |
 
 Positive penalty favors shorter paths; negative penalty rewards longer paths. This changes the objective, not alignment quality. A width stop and a small mean residual are different outcomes. Neither is an interval-arithmetic certificate or proof of a unique parameter.
 
@@ -56,7 +56,7 @@ The current source passes 37 Python tests and 12 Node tests including actual Chr
 
 Local and deployed Chrome checks at 320, 390 and 1280 pixels cover 396 cell selections, 576 complete-path selections and 72 layer changes for alignment; 81 length selections, 1,740 cell inspections and 72 penalty changes for the atlas; and 438 inverse witness selections. Row/column controls, export and stale/error clearing are checked. All 15 deployed assets match verified source bytes; all 75 unmasked control screenshots match locally rendered pages pixel for pixel. A separate trusted-download check retrieves all 25 control reports locally and live, matches each to browser runtime and independently verifies every report.
 
-[Alignment implementation](https://github.com/midya8/warplab/pull/1) · [Length extension](https://github.com/midya8/warplab/pull/2) · [Inverse extension](https://github.com/midya8/warplab/pull/3) · [Calculation guide review](https://github.com/midya8/warplab/pull/4)
+[Alignment implementation](https://github.com/midya8/soft-dtw/pull/1) · [Length extension](https://github.com/midya8/soft-dtw/pull/2) · [Inverse extension](https://github.com/midya8/soft-dtw/pull/3) · [Calculation guide review](https://github.com/midya8/soft-dtw/pull/4)
 
 ## Mathematical boundaries
 
@@ -64,10 +64,10 @@ Inputs are scalar synthetic sequences of length 1..7 with values -8..8, temperat
 
 Raw soft-DTW can be negative and is not a metric. Occupancy sums to expected path length, not one, and is not a normalized transport coupling. Edge probabilities are joint traversal probabilities, not conditional transitions. Hessian products use independent cost coordinates, not sequence coordinates. Binary64 rounding and probability underflow remain; numerical verification is not a formal proof.
 
-The self-corrected divergence is absent. The 2021 primary paper proves nonnegativity under ground-cost-specific assumptions; for plain squared Euclidean cost it proves stationarity at equality and describes nonnegativity as conjectural. WarpLab does not broaden that theorem from teaching/library summaries or claim a later resolution.
+The self-corrected divergence is absent. The 2021 primary paper proves nonnegativity under ground-cost-specific assumptions; for plain squared Euclidean cost it proves stationarity at equality and describes nonnegativity as conjectural. Soft dtw does not broaden that theorem from teaching/library summaries or claim a later resolution.
 
 This is not a learned model, dataset benchmark, speed claim, accuracy comparison or new alignment algorithm. Unlike CTC, there is no blank/label emission model; unlike optimal transport, there are no coupling marginal constraints. No private data or paid APIs are involved.
 
 ## Credit
 
-[Cuturi & Blondel, ICML 2017](https://proceedings.mlr.press/v70/cuturi17a.html) introduced soft-DTW and differentiable alignment. [Blondel, Mensch & Vert, AISTATS 2021](https://proceedings.mlr.press/v130/blondel21a.html) develops expected-alignment derivatives, Hessian products and cost-dependent divergence results. WarpLab's scalar implementation, verifier, experiment interface and reproduction tests are original; the underlying mathematics is credited, not presented as new.
+[Cuturi & Blondel, ICML 2017](https://proceedings.mlr.press/v70/cuturi17a.html) introduced soft-DTW and differentiable alignment. [Blondel, Mensch & Vert, AISTATS 2021](https://proceedings.mlr.press/v130/blondel21a.html) develops expected-alignment derivatives, Hessian products and cost-dependent divergence results. Soft dtw's scalar implementation, verifier, experiment interface and reproduction tests are original; the underlying mathematics is credited, not presented as new.
