@@ -1,8 +1,8 @@
-# CutLab
+# Graph cuts
 
-CutLab minimizes a supplied binary energy over at most six variables. Two inspectors show why a fixed-cost answer is optimal and how the complete optimum family changes when unary costs vary. Python uses exact rational arithmetic; the browser has an independent BigInt implementation.
+Graph cuts minimizes a supplied binary energy over at most six variables. Two inspectors show why a fixed-cost answer is optimal and how the complete optimum family changes when unary costs vary. Python uses exact rational arithmetic; the browser has an independent BigInt implementation.
 
-[Flow/cut inspector](https://midya8.github.io/cutlab/) · [Response-path inspector](https://midya8.github.io/cutlab/path.html) · [Source and reproduction](https://github.com/midya8/cutlab) · [Fixed-cost method](https://github.com/midya8/cutlab/blob/main/METHOD.md) · [Path method](https://github.com/midya8/cutlab/blob/main/PATH.md)
+[Flow/cut inspector](https://midya8.github.io/graph-cuts/) · [Response-path inspector](https://midya8.github.io/graph-cuts/path.html) · [Source and reproduction](https://github.com/midya8/graph-cuts) · [Fixed-cost method](https://github.com/midya8/graph-cuts/blob/main/METHOD.md) · [Path method](https://github.com/midya8/graph-cuts/blob/main/PATH.md)
 
 ## Fixed costs: retain the reduction and the certificate
 
