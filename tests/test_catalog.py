@@ -39,6 +39,16 @@ class CatalogTests(unittest.TestCase):
         parser.feed(builder.render(data))
         self.assertEqual(parser.articles, [p['id'] for p in data['projects']])
         self.assertEqual(parser.sources, [p['source_url'] for p in data['projects']])
+    def test_repository_display_preserves_case_id(self):
+        text = '# Absorbing chains\n\n[Source](https://github.com/midya8/absorbing-chains)\n\nA supplied finite Markov chain with enough opening prose for the catalog.\n'
+        p = builder.extract(Path('projects/absorblab.md'), text.encode())
+        self.assertEqual(p['id'], 'absorblab')
+        self.assertEqual(p['repository'], 'absorbing-chains')
+        rendered = builder.render({'projects': [p]})
+        self.assertIn('data-id="absorblab"', rendered)
+        self.assertIn('<p class="slug">absorbing-chains</p>', rendered)
+        self.assertNotIn('<p class="slug">absorblab</p>', rendered)
+
     def test_fenced_comments_not_headings(self):
         text = '# Real\n\n```sh\n# False title\n```\n\nActual description has enough words to count as meaningful source prose.\n\n## Feature\n'
         p = builder.extract(Path('projects/a.md'), text.encode())
