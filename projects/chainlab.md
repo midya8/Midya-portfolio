@@ -1,8 +1,8 @@
-# ChainLab
+# Hidden markov
 
-Separate what an observation prefix supports, which hidden-state path to choose and how much uncertainty remains over whole paths. ChainLab includes a floating-point HMM trainer, a prefix-evidence inspector and a separate exact-rational path workbench.
+Separate what an observation prefix supports, which hidden-state path to choose and how much uncertainty remains over whole paths. Hidden markov includes a floating-point HMM trainer, a prefix-evidence inspector and a separate exact-rational path workbench.
 
-[Prefix-evidence inspector](https://midya8.github.io/chainlab/) · [Path workbench](https://midya8.github.io/chainlab/paths.html) · [Source and reproduction](https://github.com/midya8/chainlab)
+[Prefix-evidence inspector](https://midya8.github.io/hidden-markov/) · [Path workbench](https://midya8.github.io/hidden-markov/paths.html) · [Source and reproduction](https://github.com/midya8/hidden-markov)
 
 ## Choose the loss before the path
 
@@ -61,6 +61,6 @@ Actual Chrome checks 296 state cells, 1,532 edge cells, 867 reachable decision s
 - Three rounded original-model controls round probabilities to millionths, then normalize rows exactly. They are different rational models, not unchanged original fits or new trained arms.
 - The work assumes a supplied model and labels. Low entropy can mean a misspecified model is confidently wrong. No calibrated uncertainty, true-state recovery, causal interpretation, external quality result, streaming service, production readiness, speed promise or algorithm novelty is claimed.
 
-[Prefix conditioning and numerical limits](https://github.com/midya8/chainlab/blob/main/EVIDENCE.md) · [Path equations, schemas, verifier and sources](https://github.com/midya8/chainlab/blob/main/PATHS.md) · [Original design](https://github.com/midya8/chainlab/blob/main/DESIGN.md)
+[Prefix conditioning and numerical limits](https://github.com/midya8/hidden-markov/blob/main/EVIDENCE.md) · [Path equations, schemas, verifier and sources](https://github.com/midya8/hidden-markov/blob/main/PATHS.md) · [Original design](https://github.com/midya8/hidden-markov/blob/main/DESIGN.md)
 
 Standard HMM, EM and decoding-risk methods are credited to their published sources, including Rabiner and Lember/Koloydenko. Code, controls and UI are an independent educational implementation under MIT, not copied HMM library code or a new sequence-model theorem.
