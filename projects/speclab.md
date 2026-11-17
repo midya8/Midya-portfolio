@@ -1,10 +1,10 @@
-# SpecLab
+# Speculative decoding
 
 Exact within-proposal stopping for speculative sampling: a stopped proposal tree, full sequence/count laws, independent full-path replay and an editable BigInt inspector. Keeping a low-confidence stop token preserves the target law; a deliberately wrong censor-and-forget control gives full-sequence TV 1/8. No library accusation, trained LLM or speedup claim.
 
 ## v0.4: stopping is not censoring
 
-[Open the exact stopping inspector](https://midya8.github.io/speclab/) · [Derivation and six primary sources](https://github.com/midya8/speclab/blob/main/STOPPING.md)
+[Open the exact stopping inspector](https://midya8.github.io/speculative-decoding/) · [Derivation and six primary sources](https://github.com/midya8/speculative-decoding/blob/main/STOPPING.md)
 
 This extension makes decisions **while drafting**, rather than choosing a complete block length before the round. The safe before-next max(q) rule and sampled-token keep-and-verify rule preserve the full target law. The deliberately wrong sample-censoring control gives `(5/8,3/8)` instead of target `(1/2,1/2)`, with complete two-position sequence TV `1/8`. That negative control is defined here, not attributed to a production library.
 
@@ -18,7 +18,7 @@ Speculative decoding built from scratch in pure Python: output verified identica
 
 ## v0.3: exact oracle lookahead planning
 
-![Exact oracle policy and baseline costs](https://raw.githubusercontent.com/midya8/speclab/main/assets/lookahead-policy.svg)
+![Exact oracle policy and baseline costs](https://raw.githubusercontent.com/midya8/speculative-decoding/main/assets/lookahead-policy.svg)
 
 The planner chooses a block length from each emitted prefix **before drafting**,
 using fully known finite target/draft tables. It retains every Bellman action's
@@ -39,7 +39,7 @@ size/horizon/gamma-limit cases. The 115-cell SVG embeds the complete report;
 CI checks seven modes from a 12-module installed wheel outside checkout and
 preserves the original greedy and v0.2 stochastic demos.
 
-[State/action contract, Bellman proof and related work](https://github.com/midya8/speclab/blob/main/LOOKAHEAD.md).
+[State/action contract, Bellman proof and related work](https://github.com/midya8/speculative-decoding/blob/main/LOOKAHEAD.md).
 This oracle is not an online confidence/entropy stopping rule, a trained
 acceptance head, a measured latency predictor or a new adaptive-decoding
 algorithm. The comparison is descriptive under declared costs, not a real-model
@@ -47,7 +47,7 @@ throughput result or causal component isolation.
 
 ## v0.2: exact stochastic probability laws
 
-![Exact finite sampling audit](https://raw.githubusercontent.com/midya8/speclab/main/assets/stochastic-audit.svg)
+![Exact finite sampling audit](https://raw.githubusercontent.com/midya8/speculative-decoding/main/assets/stochastic-audit.svg)
 
 A new independent finite-table engine samples draft tokens, accepts with
 `min(1,p/q)`, and replaces the first rejected token with the normalized positive
@@ -73,13 +73,13 @@ and all five CLI modes from an installed ten-module wheel outside checkout.
 Supplied finite tables only: vocabulary 1..3, horizon 1..4, gamma 1..3. No EOS,
 real model, GPU kernel or throughput benchmark. Same probability law does not
 mean identical output under a shared seed. [Proof, schema, source distinctions
-and counting contract](https://github.com/midya8/speclab/blob/main/STOCHASTIC.md).
+and counting contract](https://github.com/midya8/speculative-decoding/blob/main/STOCHASTIC.md).
 
 ## Original greedy n-gram implementation
 
 ## Problem
 
-Speculative decoding is usually sold with a speedup number and an equivalence footnote. SpecLab builds the mechanism itself - draft proposes, target verifies - and treats both halves carefully: equivalence is an algorithm invariant of the greedy construction plus finite tests of this implementation, and the savings are a clearly-labeled modeled count, not a benchmark.
+Speculative decoding is usually sold with a speedup number and an equivalence footnote. Speculative decoding builds the mechanism itself - draft proposes, target verifies - and treats both halves carefully: equivalence is an algorithm invariant of the greedy construction plus finite tests of this implementation, and the savings are a clearly-labeled modeled count, not a benchmark.
 
 ## Approach
 
@@ -98,4 +98,4 @@ Bounds of this original path: greedy decoding only. The separate v0.2 finite-tab
 
 ## Links
 
-- Repository: [midya8/speclab](https://github.com/midya8/speclab)
+- Repository: [midya8/Speculative decoding](https://github.com/midya8/speculative-decoding)
