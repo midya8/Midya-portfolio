@@ -1,8 +1,8 @@
-# AbsorbLab
+# Absorbing chains
 
 Inspect a small supplied Markov chain in three ways: where it ends, which states can be grouped and what changes when probability moves within one row.
 
-[First-hit inspector](https://midya8.github.io/absorblab/) · [Strong-lumping inspector](https://midya8.github.io/absorblab/lumping.html) · [Row-response inspector](https://midya8.github.io/absorblab/response.html) · [Source and reproduction](https://github.com/midya8/absorblab)
+[First-hit inspector](https://midya8.github.io/absorbing-chains/) · [Strong-lumping inspector](https://midya8.github.io/absorbing-chains/lumping.html) · [Row-response inspector](https://midya8.github.io/absorbing-chains/response.html) · [Source and reproduction](https://github.com/midya8/absorbing-chains)
 
 ## A vanishing exit is not its limit
 
@@ -42,4 +42,4 @@ The input is a supplied chain with one to six states, up to six positive rationa
 
 This is an educational implementation, checker and set of controls built on established finite Markov, Doob-transform, strong-lumpability and rank-one inverse methods. It does not learn probabilities, estimate a real model, optimize policies, perform causal interventions, synthesize general parameters or guarantee real-agent behavior. The math is credited rather than claimed as new theory. The engines share a written specification; none is a theorem prover.
 
-[First-hit method and sources](https://github.com/midya8/absorblab/blob/main/METHOD.md) · [Lumping method and sources](https://github.com/midya8/absorblab/blob/main/LUMPING.md) · [Response method and sources](https://github.com/midya8/absorblab/blob/main/RESPONSE.md)
+[First-hit method and sources](https://github.com/midya8/absorbing-chains/blob/main/METHOD.md) · [Lumping method and sources](https://github.com/midya8/absorbing-chains/blob/main/LUMPING.md) · [Response method and sources](https://github.com/midya8/absorbing-chains/blob/main/RESPONSE.md)
