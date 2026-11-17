@@ -1,10 +1,10 @@
-# RewriteLab
+# Term rewriting
 
 ## A shortcut can need a larger detour
 
-[Live inspector](https://midya8.github.io/rewritelab/) · [Source and reproduction](https://github.com/midya8/rewritelab) · [Merged PR](https://github.com/midya8/rewritelab/pull/1)
+[Live inspector](https://midya8.github.io/term-rewriting/) · [Source and reproduction](https://github.com/midya8/term-rewriting) · [Merged PR](https://github.com/midya8/term-rewriting/pull/1)
 
-RewriteLab compares reachable rewrites with every equivalent expression in a small grammar. It keeps the complete bounded graph and a shortest proof for every reachable tree. A cheaper expression can fit the size limit but need a larger intermediate tree to reach it.
+Term rewriting compares reachable rewrites with every equivalent expression in a small grammar. It keeps the complete bounded graph and a shortest proof for every reachable tree. A cheaper expression can fit the size limit but need a larger intermediate tree to reach it.
 
 - **A blocked shortcut:** `x*(1+1)` has two reachable five-node-budget terms costing 5, while `x+x` costs 3. Seven nodes unlock a three-rewrite distributive bridge to the cheaper term.
 - **A limit that remains:** `(1+1)*(1+1)` with multiplication cost 8 has one reachable term costing 14 at seven nodes. The separate complete semantic census contains six terms and an addition-only optimum costing 7.
@@ -15,7 +15,7 @@ Finite ordered binary trees over `0,1,x,y,+,*`, bounded to 3, 5 or 7 nodes: 36, 
 
 This is an explicit bounded rewrite graph, not an e-graph, tensor engine, floating-point compiler proof, learned policy, runtime-speedup result or novel optimization algorithm. Exact rational algebra need not preserve IEEE floating-point behavior. The seven-node cap is a real exponential-enumeration limit; no claim applies beyond the stated grammar, rules and budget.
 
-Original base release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. The original five deployed assets matched main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/rewritelab/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/rewritelab/blob/main/SOURCES.md) state what was checked and what was not.
+Original base release: 25 exact public source files; 11 Python tests on 3.10-3.13; three Node/actual-Chrome tests; 72 complete cross-language reports with 111,316 proof rows and 111,342 semantic rows; a fresh installed wheel with eight complete module/console controls and forged-report rejection. Live Chrome checks 26 reports, all 3,612 proof and 3,630 semantic selections, eight controls at 320/390/1280 widths, blocked/detour/weighted/three-node states, export and errors. The original five deployed assets matched main. Feature, PR, main and Pages checks pass. [Exact contract](https://github.com/midya8/term-rewriting/blob/main/CONTRACT.md) and [primary sources and distinctions](https://github.com/midya8/term-rewriting/blob/main/SOURCES.md) state what was checked and what was not.
 
 ## AI compiler context
 
@@ -24,7 +24,7 @@ Algebraic rewrites and cost-guided extraction are part of AI compiler and tensor
 
 ## Budget barriers: fitting is not reaching
 
-[Live budget-barrier atlas](https://midya8.github.io/rewritelab/barriers.html) · [Source](https://github.com/midya8/rewritelab) · [Exact filtration contract](https://github.com/midya8/rewritelab/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/2)
+[Live budget-barrier atlas](https://midya8.github.io/term-rewriting/barriers.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact filtration contract](https://github.com/midya8/term-rewriting/blob/main/BARRIERS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/2)
 
 The atlas retains every 3/5/7-node closure through the chosen cap and every
 polynomial-equivalent candidate. It separates the first budget that fits both
@@ -68,7 +68,7 @@ No result above the cap or IEEE floating-point equivalence is claimed.
 
 ## Integer cost weights over one graph
 
-[Live cost-weight atlas](https://midya8.github.io/rewritelab/weights.html) · [Source](https://github.com/midya8/rewritelab) · [Exact weight-box contract](https://github.com/midya8/rewritelab/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/3)
+[Live cost-weight atlas](https://midya8.github.io/term-rewriting/weights.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact weight-box contract](https://github.com/midya8/term-rewriting/blob/main/WEIGHTS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/3)
 
 A fixed rewrite graph can have different cheapest answers under different
 operator costs. This atlas keeps all 512 positive integral (+, multiplication,
@@ -114,7 +114,7 @@ rational identities are not IEEE floating-point transformation licenses.
 Browser evidence is independently checked only after Python accepts its JSON.
 ## Continuous cost regions
 
-[Live explorer](https://midya8.github.io/rewritelab/regions.html) · [Source](https://github.com/midya8/rewritelab) · [Exact region contract](https://github.com/midya8/rewritelab/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/rewritelab/pull/4)
+[Live explorer](https://midya8.github.io/term-rewriting/regions.html) · [Source](https://github.com/midya8/term-rewriting) · [Exact region contract](https://github.com/midya8/term-rewriting/blob/main/REGIONS.md) · [Merged change](https://github.com/midya8/term-rewriting/pull/4)
 
 A finite cost grid cannot prove that an expression never wins elsewhere.
 The region atlas computes complete optimum regions over every strictly positive
