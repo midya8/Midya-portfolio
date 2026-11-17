@@ -1,6 +1,6 @@
-# DenoiseLab: reconstruct pixels, then inspect the edits
+# Digit denoising: reconstruct pixels, then inspect the edits
 
-DenoiseLab reconstructs hidden pixels in small UCI digit images with manual NumPy backpropagation. It compares the network with PCA and nearest-neighbor controls that use only visible values. Independent scalar JavaScript runs the same models in the browser, without an API or pretrained weights.
+Digit denoising reconstructs hidden pixels in small UCI digit images with manual NumPy backpropagation. It compares the network with PCA and nearest-neighbor controls that use only visible values. Independent scalar JavaScript runs the same models in the browser, without an API or pretrained weights.
 
 The controls matter. At 16 scattered missing pixels, PCA and nearest neighbor both beat the network on the original test set. At 32 missing pixels, the network has lower measured error. At 48, the three are close. The table below keeps every result visible rather than presenting one mask as a general ranking.
 
@@ -8,12 +8,12 @@ The controls matter. At 16 scattered missing pixels, PCA and nearest neighbor bo
 
 | Question | Live page | What it checks |
 | --- | --- | --- |
-| What is reconstructed from this mask? | [Reconstruction](https://midya8.github.io/denoiselab/) | Neural, PCA, neighbor and mean predictions |
-| Does a local derivative predict a finite edit? | [Input response](https://midya8.github.io/denoiselab/response.html) | Actual edits, neural/PCA Jacobians and residuals |
-| Where does the nearest neighbor switch? | [One-pixel path](https://midya8.github.io/denoiselab/path.html) | Exact rational intervals and endpoint ties |
-| Which neighbor wins when two values move? | [Two-pixel cells](https://midya8.github.io/denoiselab/plane.html) | Exact area, segment, point and empty cells |
+| What is reconstructed from this mask? | [Reconstruction](https://midya8.github.io/digit-denoising/) | Neural, PCA, neighbor and mean predictions |
+| Does a local derivative predict a finite edit? | [Input response](https://midya8.github.io/digit-denoising/response.html) | Actual edits, neural/PCA Jacobians and residuals |
+| Where does the nearest neighbor switch? | [One-pixel path](https://midya8.github.io/digit-denoising/path.html) | Exact rational intervals and endpoint ties |
+| Which neighbor wins when two values move? | [Two-pixel cells](https://midya8.github.io/digit-denoising/plane.html) | Exact area, segment, point and empty cells |
 
-The edit inspectors use the original fits. They do not improve test scores or make a fixed coordinate slice a general robustness guarantee. The two-pixel map retains all 3,062 original fitting-row coefficients. A separate source-matched verifier checks supporting halfplanes, maximal lower-dimensional cells and empty-cell infeasibility proofs without rerunning clipping. Boundary queries check every original row and retain complete ties. [Geometry, proof and limits](https://github.com/midya8/denoiselab/blob/main/PLANE.md).
+The edit inspectors use the original fits. They do not improve test scores or make a fixed coordinate slice a general robustness guarantee. The two-pixel map retains all 3,062 original fitting-row coefficients. A separate source-matched verifier checks supporting halfplanes, maximal lower-dimensional cells and empty-cell infeasibility proofs without rerunning clipping. Boundary queries check every original row and retain complete ties. [Geometry, proof and limits](https://github.com/midya8/digit-denoising/blob/main/PLANE.md).
 
 The current checks pass 52 Python and fourteen Node/real-Chrome tests. Geometry checks include independent boundary-pair enumeration of 238 small-source cells and 2,110 rational queries, forty cross-language maps, 160 browser queries and 30,720 actual canvas colors. Installed reproduction covers ten modules, nine commands and the full refit/evaluation. Exact rational ties and binary64 inference have different numerical contracts.
 
@@ -58,7 +58,7 @@ confidence interval, robust recovery certificate or causal geometry claim.
   original source hashes, every per-image test score and first-ten predictions
   are saved as finite JSON. No pickle.
 
-[Protocol, equations and sources](https://github.com/midya8/denoiselab/blob/main/METHOD.md) gives equations, derivatives, seeds, provenance,
+[Protocol, equations and sources](https://github.com/midya8/digit-denoising/blob/main/METHOD.md) gives equations, derivatives, seeds, provenance,
 floating-point scope and limits. The denoising objective follows established
 Vincent et al. work, not a new algorithm. No source experiment is claimed as
 reproduced.
@@ -113,7 +113,7 @@ UCI, DOI [10.24432/C50P49](https://doi.org/10.24432/C50P49), CC BY 4.0.
 Original numeric files and manifest are retained from the same verified source
 archive used by DigitLab. Rendered inputs and reconstructions are adaptations;
 no endorsement is implied. Code is MIT; data terms are separate in
-[the data notice](https://github.com/midya8/denoiselab/blob/main/denoiselab/data/LICENSE.md).
+[the data notice](https://github.com/midya8/digit-denoising/blob/main/denoiselab/data/LICENSE.md).
 
 One historical dataset, small images, one model/seed/budget, fixed artificial
 missingness, no individual writer IDs. Masked reconstruction error does not
@@ -126,4 +126,4 @@ or LatentLab's synthetic variational density model.
 
 The original manual-gradient training and strong observed-pixel controls are retained. Input response is separately derived from fixed parameters: full chain-rule matrices through three tanh layers and sigmoid, and an observed-only linear-system derivative for PCA. Actual edited reconstructions remain separate from local tangent predictions. Saturated PCA rows have zero local response; nonconstant clipping-boundary rows are null rather than an invented derivative. Nearest-neighbor response retains old/new retrieved indices and a frozen-original-neighbor image, with a scalar switch control.
 
-Complete unbounded tangents and residuals can be copied or downloaded; only the rendered image clamps them. Missingness flags remain discrete. No hidden accuracy score or refit is performed. [Equations, independent checks and source ledger](https://github.com/midya8/denoiselab/blob/main/RESPONSE.md).
+Complete unbounded tangents and residuals can be copied or downloaded; only the rendered image clamps them. Missingness flags remain discrete. No hidden accuracy score or refit is performed. [Equations, independent checks and source ledger](https://github.com/midya8/digit-denoising/blob/main/RESPONSE.md).
