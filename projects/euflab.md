@@ -1,18 +1,18 @@
-# EUFLab
+# Congruence closure
 
 A small ground-equality workbench with checkable proofs, contradictions, finite models and hypothetical repair plans. Start with an asserted equality, inspect what follows, then check the downloaded report with the separate Python verifier.
 
-[Live inspector](https://midya8.github.io/euflab/) · [Exact contract and six-source ledger](https://github.com/midya8/euflab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/congruence-closure/) · [Exact contract and six-source ledger](https://github.com/midya8/congruence-closure/blob/main/METHOD.md)
 
 ## Choose an inspector
 
 | Question | Inspector | What to inspect |
 | --- | --- | --- |
-| Does an equality follow? | [Proofs and countermodels](https://midya8.github.io/euflab/) | A proof DAG, every contradicted disequality, or a separating total model |
-| Which equality patterns are possible? | [Finite-model atlas](https://midya8.github.io/euflab/atlas.html) | Every compatible term partition, minimum domain size and pair classifications |
-| Which assertions conflict under a domain cap? | [Domain-cap debugger](https://midya8.github.io/euflab/cardinality.html) | Every minimal conflict and deletion repair |
-| Which permitted deletion sets cost least? | [Repair planner](https://midya8.github.io/euflab/planner.html) | All cost optima, a separate cost/count frontier and protected-core obstructions |
-| When does one changed cost alter the optima? | [Cost sensitivity](https://midya8.github.io/euflab/sensitivity.html) | Exact integer intervals, ties, regret and total-model replay |
+| Does an equality follow? | [Proofs and countermodels](https://midya8.github.io/congruence-closure/) | A proof DAG, every contradicted disequality, or a separating total model |
+| Which equality patterns are possible? | [Finite-model atlas](https://midya8.github.io/congruence-closure/atlas.html) | Every compatible term partition, minimum domain size and pair classifications |
+| Which assertions conflict under a domain cap? | [Domain-cap debugger](https://midya8.github.io/congruence-closure/cardinality.html) | Every minimal conflict and deletion repair |
+| Which permitted deletion sets cost least? | [Repair planner](https://midya8.github.io/congruence-closure/planner.html) | All cost optima, a separate cost/count frontier and protected-core obstructions |
+| When does one changed cost alter the optima? | [Cost sensitivity](https://midya8.github.io/congruence-closure/sensitivity.html) | Exact integer intervals, ties, regret and total-model replay |
 
 The native engine uses union-find and proof forests. The browser uses a separate relation engine. Independent certificate/model replay and partition references check their answers. Controls cover non-injectivity, cyclic values, duplicate syntax, ordered arguments, redundant assumptions, multiple conflicts and inconsistent inputs.
 
@@ -23,7 +23,7 @@ All five pages run locally without a model API or runtime dependencies. Deletion
 Python 3.10+:
 
 ```sh
-git clone https://github.com/midya8/euflab.git
+git clone https://github.com/midya8/congruence-closure.git
 cd euflab
 python -m euflab docs/example.json --output report.json
 python -m euflab report.json --verify
@@ -45,21 +45,21 @@ This asserts f(a)=f(b). It does not imply a=b. The displayed total model assigns
 
 Nine native tests include partition-enumeration references, 27 exhaustive constant conjunctions, 64 four-term assertion subsets plus all added disequality probes, 80 seeded DAGs, proof tampering and atomic CLI rejection. Two Node tests compare 156 semantic reports and native-check every browser proof DAG. Chrome tests all 251 ordered queries and every displayed proof/model row at 320/390/1280. Wheel reproduction runs 12 controls through both entry points outside checkout.
 
-At most eight terms, arity at most two, eight equalities and eight disequalities. One uninterpreted sort; ground conjunctions only. Proofs are valid explanations, not shortest proofs or minimal cores. A separating model does not prove a universal inequality. Inconsistent inputs have no countermodel and entail everything classically, even if a pair is absent from positive closure. Classical congruence closure, not new theory, a scalable solver or a real-code verifier. See [METHOD.md](https://github.com/midya8/euflab/blob/main/METHOD.md).
+At most eight terms, arity at most two, eight equalities and eight disequalities. One uninterpreted sort; ground conjunctions only. Proofs are valid explanations, not shortest proofs or minimal cores. A separating model does not prove a universal inequality. Inconsistent inputs have no countermodel and entail everything classically, even if a pair is absent from positive closure. Classical congruence closure, not new theory, a scalable solver or a real-code verifier. See [METHOD.md](https://github.com/midya8/congruence-closure/blob/main/METHOD.md).
 
 
 ## Why a proof or countermodel matters
 
-[Live proof and countermodel inspector](https://midya8.github.io/euflab/) | [Source and reproduction](https://github.com/midya8/euflab) | [Semantics and six-source ledger](https://github.com/midya8/euflab/blob/main/METHOD.md)
+[Live proof and countermodel inspector](https://midya8.github.io/congruence-closure/) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Semantics and six-source ledger](https://github.com/midya8/congruence-closure/blob/main/METHOD.md)
 
-Equal inputs have equal outputs; equal outputs need not have equal inputs. EUFLab shows ground congruence proof DAGs, every contradicted disequality and a total finite interpretation for consistent inputs. Inspect non-injectivity, cyclic values, duplicate syntax, ordered arguments and inconsistent-premise boundaries. Native union-find/proof forests, separate browser relation saturation, independent proof/model verification and exhaustive set-partition references let you check the result rather than trust a status label.
+Equal inputs have equal outputs; equal outputs need not have equal inputs. Congruence closure shows ground congruence proof DAGs, every contradicted disequality and a total finite interpretation for consistent inputs. Inspect non-injectivity, cyclic values, duplicate syntax, ordered arguments and inconsistent-premise boundaries. Native union-find/proof forests, separate browser relation saturation, independent proof/model verification and exhaustive set-partition references let you check the result rather than trust a status label.
 
 Validation: 9 native tests on Python 3.10-3.13; 156 cross-engine reports; 251 query selections at each of 320, 390 and 1280 pixels; installed-wheel generation and verification through both entry points. Bounded ground conjunctions only, not quantified logic, arithmetic, SMT-LIB parsing or a production SMT solver. No model service or paid API.
 
 
 ## Finite-model atlas
 
-[Live finite-model atlas](https://midya8.github.io/euflab/atlas.html) | [Source and reproduction](https://github.com/midya8/euflab) | [Exact atlas contract](https://github.com/midya8/euflab/blob/main/ATLAS.md)
+[Live finite-model atlas](https://midya8.github.io/congruence-closure/atlas.html) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Exact atlas contract](https://github.com/midya8/congruence-closure/blob/main/ATLAS.md)
 
 The most separated quotient is not necessarily the smallest model. The atlas enumerates every compatible term-equality pattern, finds minimum domain size, and classifies each pair as forced equal, forced different or flexible. Explore total model witnesses, unary backward difference, binary disjunctions, odd-cycle coloring and all 4,140 eight-name patterns. Counts are equality patterns, not full interpretations; extra unnamed domain elements remain possible.
 
@@ -68,7 +68,7 @@ Independent restricted-growth, explicit-block and subset-cover enumerators. Vali
 
 ## Domain-cap debugger
 
-[Live bounded-domain debugger](https://midya8.github.io/euflab/cardinality.html) | [Source and reproduction](https://github.com/midya8/euflab) | [Exact diagnosis contract](https://github.com/midya8/euflab/blob/main/CARDINALITY.md)
+[Live bounded-domain debugger](https://midya8.github.io/congruence-closure/cardinality.html) | [Source and reproduction](https://github.com/midya8/congruence-closure) | [Exact diagnosis contract](https://github.com/midya8/congruence-closure/blob/main/CARDINALITY.md)
 
 With the domain cap held fixed, enumerate every inclusion-minimal assertion conflict and deletion repair. Separate intrinsic inconsistency from cap-only conflicts, inspect every assertion subset, and replay total models for repairs or one-literal core relaxations. Duplicate occurrences retain their identities; minimal repairs need not have minimum size. A three-cycle shows why explicit difference-edge coloring alone misses functional constraints.
 
@@ -77,7 +77,7 @@ Validation: 23 native tests on Python 3.10-3.13, nine Node/Chrome tests, 269 com
 
 ## Costed repair planner
 
-[Live planner](https://midya8.github.io/euflab/planner.html) · [Source and exact contract](https://github.com/midya8/euflab/blob/main/PLANNER.md)
+[Live planner](https://midya8.github.io/congruence-closure/planner.html) · [Source and exact contract](https://github.com/midya8/congruence-closure/blob/main/PLANNER.md)
 
 Set protected occurrence IDs and explicit deletion costs. The planner enumerates every permitted deletion set, every cost-only optimum and a separate cost/count Pareto frontier. Protected intrinsic or cap-only cores explain infeasibility. Each plan includes a total minimum-domain model with kept, protected and omitted assertion truth rows.
 
@@ -88,6 +88,6 @@ Native and browser engines agree on 358 complete reports. Independent labeled-do
 
 ## Exact repair-cost sensitivity
 
-[Live sensitivity inspector](https://midya8.github.io/euflab/sensitivity.html) | [Source and certificate contract](https://github.com/midya8/euflab/blob/main/SENSITIVITY.md)
+[Live sensitivity inspector](https://midya8.github.io/congruence-closure/sensitivity.html) | [Source and certificate contract](https://github.com/midya8/congruence-closure/blob/main/SENSITIVITY.md)
 
 Vary one assertion deletion cost over every integer from 0 to 1,000,000. The certificate gives exact keep/delete intervals, breakpoint ties and every optimum mask, including zero-cost nonminimal repairs. An independent native verifier rebuilds all affine plan-cost lines; the browser inspector audits replacement costs, regret and total models without treating omitted assertions as negated. Hard protections and blocked policies remain explicit. This is bounded exhaustive analysis, not an industrial-scale solver or simultaneous multi-cost robustness guarantee.
