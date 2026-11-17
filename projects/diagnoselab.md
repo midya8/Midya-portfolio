@@ -1,8 +1,8 @@
-# Diagnoselab: consistency repairs and their consequences
+# CNF diagnosis: consistency repairs and their consequences
 
-[Live inspector](https://midya8.github.io/diagnoselab/) · [Source](https://github.com/midya8/diagnoselab) · [Full method and attributed sources](https://github.com/midya8/diagnoselab/blob/main/METHOD.md)
+[Live inspector](https://midya8.github.io/cnf-diagnosis/) · [Source](https://github.com/midya8/cnf-diagnosis) · [Full method and attributed sources](https://github.com/midya8/cnf-diagnosis/blob/main/METHOD.md)
 
-Diagnoselab checks which removable clauses restore consistency to a small propositional formula, then asks what follows under the selected repairs. The consistency and query inspectors answer different questions. Both use exact arithmetic and retain the counterexamples and search traces behind the result.
+CNF diagnosis checks which removable clauses restore consistency to a small propositional formula, then asks what follows under the selected repairs. The consistency and query inspectors answer different questions. Both use exact arithmetic and retain the counterexamples and search traces behind the result.
 
 ## Finding every minimal repair
 
@@ -31,7 +31,7 @@ Original implementation, independent checks and synthetic controls: Midya Rahman
 
 ## Consequences under each repair policy
 
-[Live query inspector](https://midya8.github.io/diagnoselab/consequences.html) · [Method/sources](https://github.com/midya8/diagnoselab/blob/main/CONSEQUENCES.md)
+[Live query inspector](https://midya8.github.io/cnf-diagnosis/consequences.html) · [Method/sources](https://github.com/midya8/cnf-diagnosis/blob/main/CONSEQUENCES.md)
 
 The query inspector distinguishes every/some repair from every/some surviving model, with all tied minimum-cost/cardinality policies, complete countermodels and negated-query DPLL traces. Shared-clause intersection is a separate baseline with strict counterexamples. No-repair families are inapplicable, not vacuous certainty. 26 consequence reports (16,165 scalar leaves), 67 repairs, 78 policy records and 151 full DPLL nodes including intersection baselines; 24 Python/eight Node-Chrome tests preserve all originals. Installed-wheel reproduction and mobile/table/export checks. Finite propositional reasoning, not a database/DL engine or probability claim.
 
