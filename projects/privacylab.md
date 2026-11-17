@@ -1,12 +1,12 @@
-# PrivacyLab
+# Privacy channels
 
-[Repository](https://github.com/midya8/privacylab) · [Equations and limits](https://github.com/midya8/privacylab/blob/main/DESIGN.md) · [Complete exact report](https://github.com/midya8/privacylab/blob/main/examples/demo.json)
+[Repository](https://github.com/midya8/privacy-channels) · [Equations and limits](https://github.com/midya8/privacy-channels/blob/main/DESIGN.md) · [Complete exact report](https://github.com/midya8/privacy-channels/blob/main/examples/demo.json)
 
 ## What it does
 
-PrivacyLab audits supplied finite probability tables against explicit neighboring-secret edges. It computes the smallest delta at an exact multiplicative factor t=exp(epsilon), with every directed-pair event witness and full rational arithmetic. Factor 3 means epsilon ln(3), not epsilon 3. The code does not learn a mechanism from private data or infer which datasets are neighbors.
+Privacy channels audits supplied finite probability tables against explicit neighboring-secret edges. It computes the smallest delta at an exact multiplicative factor t=exp(epsilon), with every directed-pair event witness and full rational arithmetic. Factor 3 means epsilon ln(3), not epsilon 3. The code does not learn a mechanism from private data or infer which datasets are neighbors.
 
-![Exact finite-channel privacy audits and shared-coin joint-release failure](https://raw.githubusercontent.com/midya8/privacylab/main/assets/privacy-audit.svg)
+![Exact finite-channel privacy audits and shared-coin joint-release failure](https://raw.githubusercontent.com/midya8/privacy-channels/main/assets/privacy-audit.svg)
 
 ## When marginal privacy is not enough
 
@@ -49,7 +49,7 @@ Established DP and hockey-stick arithmetic, not a new privacy theorem. Sources i
 
 Version 0.2 adds full finite history-conditioned mechanism trees. At every node the caller supplies the next-output distribution given the secret and the entire transcript. All histories are required, including impossible ones. Fixed round factors multiply to T; they are not adaptively selected epsilon parameters. The code unfolds the exact joint channel and compares its actual hockey-stick delta with three auditable upper bounds.
 
-![Exact adaptive transcript bounds and branch-weighted killed mass](https://raw.githubusercontent.com/midya8/privacylab/main/assets/adaptive-transcripts.svg)
+![Exact adaptive transcript bounds and branch-weighted killed mass](https://raw.githubusercontent.com/midya8/privacy-channels/main/assets/adaptive-transcripts.svg)
 
 For each directed neighbor pair, a substochastic kernel clips each local probability to `min(K_P, t_i*K_Q)`. Good mass flows down the tree without normalization. Every incoming mass, local delta, removed mass, child mass and leaf domination slack is retained. Leaf mass g is below both P and TQ; the telescoping deficit `1-sum(g)` therefore bounds the actual joint delta. The maximum directional deficit is at most `1-product_i(1-d_i)`, where each d_i is the worst conditional delta across all histories and listed directions, which is at most the clamped additive sum.
 
@@ -75,7 +75,7 @@ python -m unittest discover -s tests -v
 python examples/render_adaptive.py --check
 ```
 
-[Full adaptive proof and contract](https://github.com/midya8/privacylab/blob/main/ADAPTIVE.md) · [Complete adaptive report](https://github.com/midya8/privacylab/blob/main/examples/adaptive-demo.json)
+[Full adaptive proof and contract](https://github.com/midya8/privacy-channels/blob/main/ADAPTIVE.md) · [Complete adaptive report](https://github.com/midya8/privacy-channels/blob/main/examples/adaptive-demo.json)
 
 Limits are six rounds, eight outcomes per round, 64 transcripts, 128 conditional nodes and 512-bit constructed probability/flow components. The supplied kernels must really be the intended conditional laws; the code cannot verify an external sampler, randomness or real-data adjacency. Long canonical output fractions may require API Fraction values to resubmit under the 160-character input-string cap. The CLI has a separate 100000-byte input cap. This is established DP composition/subdistribution reasoning, not a new theorem, privacy filter, odometer, unbounded interaction, adaptive-parameter accountant, advanced/optimal composition implementation or training guarantee. Sources: [Dwork and Roth, section 3.5](https://homepage.divms.uiowa.edu/~sriram/5980/spring17/privacybook.pdf) and [fully adaptive composition context](https://arxiv.org/html/2203.05481v3); no filters or odometers from that paper are implemented.
 
@@ -83,7 +83,7 @@ Limits are six rounds, eight outcomes per round, 64 transcripts, 128 conditional
 
 Version 0.3 computes the complete worst-directed-neighbor delta profile for every finite multiplicative factor t>=1, for supplied tables of up to four secrets and eight outputs. It adds inverse target-delta queries with exact minimum-factor witnesses or explicit singular-support obstructions. The original larger-domain point audit and adaptive-tree certificates keep their own limits.
 
-![Exact worst-neighbor envelope and inverse delta budgets](https://raw.githubusercontent.com/midya8/privacylab/main/assets/factor-frontier.svg)
+![Exact worst-neighbor envelope and inverse delta budgets](https://raw.githubusercontent.com/midya8/privacy-channels/main/assets/factor-frontier.svg)
 
 A local hockey-stick profile is affine between its likelihood-ratio knots. A worst-neighbor envelope can change maximizer between those knots, so simply connecting values on the ratio grid is insufficient. The code enumerates every line intersection within each ratio cell and then certifies each complete global interval against every overlapping local piece using finite endpoint slacks or an infinite-tail slope check. Local/global coefficients, active events, knot events/ties, singular plateau, omitted edges and whole-interval dominance witnesses stay in the report.
 
@@ -110,6 +110,6 @@ python -m unittest discover -s tests -v
 python examples/render_frontier.py --check
 ```
 
-[Full frontier proof and contract](https://github.com/midya8/privacylab/blob/main/FRONTIER.md) · [Complete frontier report](https://github.com/midya8/privacylab/blob/main/examples/frontier-demo.json)
+[Full frontier proof and contract](https://github.com/midya8/privacy-channels/blob/main/FRONTIER.md) · [Complete frontier report](https://github.com/midya8/privacy-channels/blob/main/examples/frontier-demo.json)
 
 This is exact small supplied-table analysis, not a production accountant, sampler/model guarantee, private training, advanced/optimal composition across unspecified mechanisms, PLD convolution or an adaptive privacy filter. The 512-bit input probability and 160-character input-string rules remain, while exact internal coefficients/intersections are not rounded back into those input caps. CLI input stays limited to 100000 bytes. Long canonical probabilities can be resubmitted as API Fraction values. Sources: [Dwork and Roth](https://homepage.divms.uiowa.edu/~sriram/5980/spring17/privacybook.pdf), [modern accounting notes](https://arxiv.org/pdf/2210.00597) and [Google Research's piecewise-linear accounting overview](https://research.google/blog/differential-privacy-accounting-by-connecting-the-dots/). Established mathematics is credited; no new privacy theorem or Connect-the-Dots implementation is claimed.
