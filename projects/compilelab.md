@@ -1,8 +1,8 @@
-# CompileLab
+# Bdd compilation
 
-CompileLab builds small reduced ordered binary decision diagrams and shows how variable order changes their shape. A separate projection view lists the hidden completions behind each retained assignment, keeping logical existence distinct from summed mass.
+BDD compilation builds small reduced ordered binary decision diagrams and shows how variable order changes their shape. A separate projection view lists the hidden completions behind each retained assignment, keeping logical existence distinct from summed mass.
 
-[Workbench](https://midya8.github.io/compilelab/) · [Source](https://github.com/midya8/compilelab) · [Reviewed implementation](https://github.com/midya8/compilelab/pull/1) · [Exact contract](https://github.com/midya8/compilelab/blob/main/CONTRACT.md)
+[Workbench](https://midya8.github.io/bdd-compilation/) · [Source](https://github.com/midya8/bdd-compilation) · [Reviewed implementation](https://github.com/midya8/bdd-compilation/pull/1) · [Exact contract](https://github.com/midya8/bdd-compilation/blob/main/CONTRACT.md)
 
 ## One Boolean function, every order
 
@@ -35,7 +35,7 @@ The optional actual BSD-licensed dd 0.6.0 library builds formulas from the input
 From a source checkout, using Python 3.10+:
 
 ```sh
-git clone https://github.com/midya8/compilelab.git
+git clone https://github.com/midya8/bdd-compilation.git
 cd compilelab
 python -m venv .venv
 . .venv/bin/activate
@@ -66,7 +66,7 @@ extensions and order atlases with native reports at four widths. They select all
 120 orders of the five-variable control and replay completed downloads through
 native Python. Invalid edits must clear stale results and disable export.
 
-The original [evidence ledger](https://github.com/midya8/compilelab/blob/main/EVIDENCE.md)
+The original [evidence ledger](https://github.com/midya8/bdd-compilation/blob/main/EVIDENCE.md)
 retains the individual test counts and optional historical reference results.
 The documentation batch reran the core, browser, installed and deployed checks;
 it did not rerun the optional dd comparison. No empirical learning, timing or
@@ -78,4 +78,4 @@ At most five variables, ten clauses, ten signed literals per clause, exact nonne
 
 [Bryant 1986](https://www.cs.cmu.edu/~bryant/pubdir/ieeetc86.pdf) grounds ordered reduction, fixed-order canonicity and order sensitivity. [Darwiche/Marquis 2002](https://www.cs.cmu.edu/afs/cs/project/jair/pub/volume17/darwiche02a.pdf) places Boolean decision diagrams within AI knowledge compilation and its query/size tradeoffs. [Bryant/Tan/Heule 2025](https://www.cs.cmu.edu/~bryant/pubdir/sat25.pdf) already certifies projected compilation with formally verified checkers; this bounded replay does not claim those guarantees. Official [dd documentation](https://github.com/tulip-control/dd/blob/main/doc.md), [implementation](https://github.com/tulip-control/dd/blob/main/dd/autoref.py) and [README](https://github.com/tulip-control/dd/blob/main/README.md) establish actual library semantics. [Northeastern weighted-inference material](https://www.khoury.northeastern.edu/home/sholtzen/assets/teaching/CS7480-23-slides/lec-7.pdf), [Berkeley Boolean-function lectures](https://people.eecs.berkeley.edu/~keutzer/classes/244fa2005/lectures/12-1-BooleanFunctions.pdf) and [TU Graz BDD notes](https://www.isec.tugraz.at/wp-content/uploads/2020/07/mc08-bdds.pdf) support literal-product sums, cofactors and existential OR abstraction. Full dated/source-type ledger in source SOURCES.md.
 
-Existing FactorLab studies dense-factor elimination order and mixed sum/max inference; ProvLab studies relational provenance. CompileLab instead audits reduced Boolean graph structure, skipped-variable counting universes and existential-extension fibers. Classical theory, original bounded implementation and controls, not a claim to invent knowledge compilation.
+Existing FactorLab studies dense-factor elimination order and mixed sum/max inference; ProvLab studies relational provenance. BDD compilation instead audits reduced Boolean graph structure, skipped-variable counting universes and existential-extension fibers. Classical theory, original bounded implementation and controls, not a claim to invent knowledge compilation.
