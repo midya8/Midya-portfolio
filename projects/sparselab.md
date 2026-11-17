@@ -1,10 +1,10 @@
-# SparseLab: check the fit, not just the coefficients
+# Lasso solver: check the fit, not just the coefficients
 
-[Public repository](https://github.com/midya8/sparselab) · [Equations and limits](https://github.com/midya8/sparselab/blob/main/DESIGN.md) · [Full numerical report](https://github.com/midya8/sparselab/blob/main/examples/demo.json)
+[Public repository](https://github.com/midya8/lasso-solver) · [Equations and limits](https://github.com/midya8/lasso-solver/blob/main/DESIGN.md) · [Full numerical report](https://github.com/midya8/lasso-solver/blob/main/examples/demo.json)
 
 ## The question
 
-SparseLab fits small LASSO regressions and records every solver sweep. Check the primal objective, dual gap and KKT residuals, then compare with exact-rational active/sign enumeration. The Python runtime has no dependencies. A sparse coefficient vector can be one of many equally good fits, not an identified feature ranking.
+Lasso solver fits small LASSO regressions and records every solver sweep. Check the primal objective, dual gap and KKT residuals, then compare with exact-rational active/sign enumeration. The Python runtime has no dependencies. A sparse coefficient vector can be one of many equally good fits, not an identified feature ranking.
 
 ## Choose a check
 
@@ -23,7 +23,7 @@ Every sweep reports primal loss/penalty, an interior scaled-residual feasible du
 
 A separate exact-rational active/sign enumerator tests all `3^p` patterns for up to five columns. It solves nonsingular active normal equations with rational elimination and checks every KKT condition exactly. It counts skipped singular patterns and returns valid nonsingular-support optima, not every point in a continuum. Fractions represent the validated binary64 inputs exactly.
 
-![Orthogonal coefficient path, duplicate ambiguity and convergence controls](https://raw.githubusercontent.com/midya8/sparselab/main/assets/sparsity-audit.svg)
+![Orthogonal coefficient path, duplicate ambiguity and convergence controls](https://raw.githubusercontent.com/midya8/lasso-solver/main/assets/sparsity-audit.svg)
 
 ## What the developed controls show
 
@@ -56,11 +56,11 @@ Standard coordinate descent/soft thresholding and warm paths follow [Friedman, H
 
 ## Exact Gap Safe screening
 
-[Derivation and six controls](https://github.com/midya8/sparselab/blob/main/SCREENING.md) · [Full exact screening report](https://github.com/midya8/sparselab/blob/main/examples/screen-demo.json)
+[Derivation and six controls](https://github.com/midya8/lasso-solver/blob/main/SCREENING.md) · [Full exact screening report](https://github.com/midya8/lasso-solver/blob/main/examples/screen-demo.json)
 
 The original float solver and controls remain unchanged. `screen(X,y,coefficients,penalty)` audits an arbitrary supplied iterate using exact rational arithmetic over the stored binary64 inputs. It constructs an exactly feasible residual-scaled dual vector, exact primal-dual gap G and sphere radius squared `2G/N`. For feature j, a positive exact margin `lambda-|X_j^T u|` and strict inequality `||X_j||^2*R_squared < margin^2` prove coefficient j zero in every optimizer. No rounded square root, tolerance decision or coordinate dropping is used.
 
-![Exact Gap Safe certificates and limits](https://raw.githubusercontent.com/midya8/sparselab/main/assets/safe-screening.svg)
+![Exact Gap Safe certificates and limits](https://raw.githubusercontent.com/midya8/lasso-solver/main/assets/safe-screening.svg)
 
 | Control | Exact gap | Exact outcome |
 |---|---:|---|
@@ -86,11 +86,11 @@ Standard Gap Safe rules are due to Fercoq, Gramfort and Salmon, [Mind the dualit
 
 ## Exact affine branches
 
-[Exact branch derivation and API](https://github.com/midya8/sparselab/blob/main/BRANCHES.md) · [complete report](https://github.com/midya8/sparselab/blob/main/examples/branch-demo.json)
+[Exact branch derivation and API](https://github.com/midya8/lasso-solver/blob/main/BRANCHES.md) · [complete report](https://github.com/midya8/lasso-solver/blob/main/examples/branch-demo.json)
 
 A feature can leave the nonzero support as regularization falls, then return with the opposite sign. This extension verifies that behavior with exact affine KKT branches, not a dense grid of approximate fits. The caller supplies one weak sign pattern. Rational Gram solves give beta(lambda), and the complete selected-sign/inactive-correlation inequalities give its maximal closed nonnegative-lambda interval. Reports keep every half-line and tie, all affine coefficients/correlations, and exact endpoint/interior dual vectors with primal=dual. The entire interval claim comes from affine inequalities, not endpoint sampling alone.
 
-![Five exact branches and a feature drop/re-entry](https://raw.githubusercontent.com/midya8/sparselab/main/assets/regularization-branches.svg)
+![Five exact branches and a feature drop/re-entry](https://raw.githubusercontent.com/midya8/lasso-solver/main/assets/regularization-branches.svg)
 
 The developed centered four-row fixture has columns a and 2a+b, response 2a-b, Gram [[1,2],[2,5]] and cross [2,3]. Its five supplied branches cover [3,infinity),[4/3,3],[1,4/3],[1/3,1],[0,1/3]. Feature 1 enters positive at 3, feature 0 enters at 4/3, feature 1 leaves at 1 and re-enters negative at 1/3. Adjacent knots agree exactly in coefficients, predictions, objectives and dual vectors; the zero-penalty endpoint is [4,-1]. The positive-definite Gram makes this fixture's coefficient path unique, not a general uniqueness claim.
 
