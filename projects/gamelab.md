@@ -1,12 +1,12 @@
-# GameLab: exact zero-sum payoff audits
+# Minimax: exact zero-sum payoff audits
 
-[Public source](https://github.com/midya8/gamelab) · Python 3.10+ · standard library only · MIT
+[Public source](https://github.com/midya8/minimax) · Python 3.10+ · standard library only · MIT
 
-![Exact minimax and degeneracy audit](https://raw.githubusercontent.com/midya8/gamelab/refs/heads/main/assets/minimax-audit.svg)
+![Exact minimax and degeneracy audit](https://raw.githubusercontent.com/midya8/minimax/refs/heads/main/assets/minimax-audit.svg)
 
 ## Problem
 
-GameLab solves supplied zero-sum payoff tables with at most four actions per player. It reports exact security witnesses, every optimal strategy vertex and the exploitability of a chosen policy pair. A fixed matrix and a full Cartesian payoff box use separate audits.
+Minimax solves supplied zero-sum payoff tables with at most four actions per player. It reports exact security witnesses, every optimal strategy vertex and the exploitability of a chosen policy pair. A fixed matrix and a full Cartesian payoff box use separate audits.
 
 A score table can be cyclic. A single average payoff can look balanced even when both policies are exploitable, and an exact game value need not identify one optimal randomized policy. These audits expose those differences; they do not infer payoff tables from agent behavior.
 
@@ -38,7 +38,7 @@ The project implements established minimax, LP duality and polytope geometry. Si
 
 ## Shared-table interval support extension
 
-![Shared-table interval audit](https://raw.githubusercontent.com/midya8/gamelab/refs/heads/main/assets/interval-audit.svg)
+![Shared-table interval audit](https://raw.githubusercontent.com/midya8/minimax/refs/heads/main/assets/interval-audit.svg)
 
 A fixed policy pair faces one unknown payoff table, not two independently selected adverse tables. `interval_audit` computes the exact worst joint deviation gap over a supplied full Cartesian entrywise interval box. For every pure reply pair, it constructs the signed coefficient of every entry before maximizing, retains endpoint choices and contributions, and returns an attaining matrix with a direct best-reply audit. It also reports each player's separately maximized unilateral gain and the conservatism of their sum.
 
