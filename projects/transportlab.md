@@ -1,23 +1,23 @@
-# TransportLab
+# Optimal transport
 
-[Repository](https://github.com/midya8/transportlab)
+[Repository](https://github.com/midya8/optimal-transport)
 
-TransportLab keeps the plan, its marginal errors and the computation that produced it visible. It solves small entropic transport problems, audits a separate rounded plan and dual objective, and traces derivatives through a fixed number of updates. Python uses only the standard library. The browser workbench runs locally without a server.
+Optimal transport keeps the plan, its marginal errors and the computation that produced it visible. It solves small entropic transport problems, audits a separate rounded plan and dual objective, and traces derivatives through a fixed number of updates. Python uses only the standard library. The browser workbench runs locally without a server.
 
 | Question | Start here | What the result does not establish |
 | --- | --- | --- |
-| How does a raw weight edit change a finite solve? | [Normalized-weight workbench](https://midya8.github.io/transportlab/) | A finite-update derivative is not an optimum derivative. Requested and actual marginal tangents can differ. |
+| How does a raw weight edit change a finite solve? | [Normalized-weight workbench](https://midya8.github.io/optimal-transport/) | A finite-update derivative is not an optimum derivative. Requested and actual marginal tangents can differ. |
 | Did a low-cost plan meet its marginals? | [Solver contract](#mathematical-contract) and [separate audit](#separate-primal-and-dual-numerical-audit) | A small objective does not imply feasibility. Floating primal/dual numbers are not certified bounds. |
 | Does a conditional mean preserve transported mass? | [Full atoms and conditional means](#mass-pushforward-versus-mean-map-collapse) | A barycentric mean is not a sample or a mass-preserving replacement for the full coupling. |
 | How do costs and epsilon change a fixed computation? | [Fixed-weight directions](#differentiate-the-computation-not-a-stopping-rule) | No stopping rule, rounding operation or support change is differentiated. |
 
 The current suite has **62 Python tests and six Node/actual-Chrome tests**. All earlier solver, pushforward, rounding and fixed-weight sensitivity outputs remain unchanged. The controls below are bounded arithmetic examples, not an algorithm benchmark or a claim of certified optimality.
 
-![Entropic plan, objectives and feasibility audit](https://raw.githubusercontent.com/midya8/transportlab/main/assets/transport-audit.svg)
+![Entropic plan, objectives and feasibility audit](https://raw.githubusercontent.com/midya8/optimal-transport/main/assets/transport-audit.svg)
 
 ## Normalized weight directions
 
-[Open the browser workbench](https://midya8.github.io/transportlab/) or read [MARGINALS.md](https://github.com/midya8/transportlab/blob/main/MARGINALS.md) for the input schema, derivation and limits. The browser normalizes raw source and target weights separately, differentiates that normalization, then follows exactly N row/column updates. Cost and epsilon may move at the same time. Every plan, tangent, marginal, potential and history row remains available, with editable input and a complete JSON download.
+[Open the browser workbench](https://midya8.github.io/optimal-transport/) or read [MARGINALS.md](https://github.com/midya8/optimal-transport/blob/main/MARGINALS.md) for the input schema, derivation and limits. The browser normalizes raw source and target weights separately, differentiates that normalization, then follows exactly N row/column updates. Cost and epsilon may move at the same time. Every plan, tangent, marginal, potential and history row remains available, with editable input and a complete JSON download.
 
 One update of the early-weight control has full objective tangent `0.010665526`, while a requested-marginal envelope candidate gives `-0.019162331`. Their difference is accounted for by the actual marginal-tangent residual terms. The candidate is not an optimum derivative merely because it uses potentials. A normalization-only control has nonzero raw directions but zero normalized and plan tangents; null sensitivity does not establish feasibility.
 
@@ -86,7 +86,7 @@ Self-transport at epsilon2 costs1.249807 despite identical supports. A separate 
 
 ## Mass pushforward versus mean-map collapse
 
-![Full weighted interpolation atoms and barycentric means](https://raw.githubusercontent.com/midya8/transportlab/main/assets/pushforward-audit.svg)
+![Full weighted interpolation atoms and barycentric means](https://raw.githubusercontent.com/midya8/optimal-transport/main/assets/pushforward-audit.svg)
 
 `pushforward(plan, source_points, target_points, time)` retains **every pair atom**, even zero-mass cells, at `(1-t)*x_i + t*y_j` with unchanged mass `P_ij`. It also returns one conditional mean per source, actual endpoint marginals, full and mean-map moments, and the within-source covariance. Moments normalize by the plan's actual positive total, not a requested marginal. At t=0 the full atoms reproduce the supplied row masses; at t=1 they reproduce the supplied column masses. Coincident atoms remain separate in JSON and are aggregated only for area-correct plotting.
 
@@ -110,7 +110,7 @@ Eight new tests check endpoint masses, interpolated means, deterministic zero co
 
 The earlier 46-test suite checks the closed-form symmetric2x2 solution, direct non-log scaling reference, zero-cost independence, zero weights, underflowed kernels, shared cost shifts and simultaneous cost/epsilon scaling, rectangular/permuted marginals, explicit nonconvergence, positive self-cost, exhaustive assignment/endpoints, barycentric means, no mutation, strict bounds and CLI rejection. CI runs Python 3.10-3.13 plus the full fixture and both reproduced SVGs on 3.11.
 
-Probability sums must be within1e-12 of1, then are explicitly normalized by their supplied sums; original sums and normalized weights are returned.1-64 rows per side, finite nonnegative costs<=1e6, epsilon[1e-4,1e4], iterations1-5000, tolerance[1e-12,1e-3], active_cells*max_iterations<=10,000,000. Point coordinates[-100,100]; two coordinates only. Assignment size1-8. Booleans/nonfinite values fail. Bounds are resource limits, not convergence guarantees. Costs depend on coordinate units and must scale with epsilon to preserve a plan. [DESIGN.md](https://github.com/midya8/transportlab/blob/main/DESIGN.md) gives implementation details and limits.
+Probability sums must be within1e-12 of1, then are explicitly normalized by their supplied sums; original sums and normalized weights are returned.1-64 rows per side, finite nonnegative costs<=1e6, epsilon[1e-4,1e4], iterations1-5000, tolerance[1e-12,1e-3], active_cells*max_iterations<=10,000,000. Point coordinates[-100,100]; two coordinates only. Assignment size1-8. Booleans/nonfinite values fail. Bounds are resource limits, not convergence guarantees. Costs depend on coordinate units and must scale with epsilon to preserve a plan. [DESIGN.md](https://github.com/midya8/optimal-transport/blob/main/DESIGN.md) gives implementation details and limits.
 
 ## Source credit
 
