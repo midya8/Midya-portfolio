@@ -1,8 +1,8 @@
-# LoRALab
+# Lora finetuning
 
-[Interactive inspector](https://midya8.github.io/loralab/) · [Source and reproduction](https://github.com/midya8/loralab)
+[Interactive inspector](https://midya8.github.io/lora-finetuning/) · [Source and reproduction](https://github.com/midya8/lora-finetuning)
 
-LoRALab separates factor width, matrix rank, all-input softmax-equivalent rank and finite-probe agreement with exact rational factors, nonzero minors and independent verification. The original factor-coordinate SGD inspector and all 124 archived states remain intact. This is a linear-classifier audit, not a new algorithm, rounded-runtime certificate or LLM benchmark.
+Lora finetuning separates factor width, matrix rank, all-input softmax-equivalent rank and finite-probe agreement with exact rational factors, nonzero minors and independent verification. The original factor-coordinate SGD inspector and all 124 archived states remain intact. This is a linear-classifier audit, not a new algorithm, rounded-runtime certificate or LLM benchmark.
 
 ## Exact predictive rank, with witnesses
 
@@ -14,7 +14,7 @@ Finite-probe minimum rank is rank(D X^T), with an attaining extension, an explic
 
 Python, Node and actual-Chrome tests compare full native/browser reports at every archived boundary, reject altered factors and minors, and replay downloaded certificates through the independent native verifier. Exact controls include finite-probe blind directions and exhaustive small-matrix/minor checks. Both installed-wheel checks reproduce outside the source checkout. Exact arithmetic certifies a real probability function only; rounded probabilities, argmax, loss, future factor training and hidden layers are outside scope. Exact rank is not tolerance-based numerical rank.
 
-[Exact inspector](https://midya8.github.io/loralab/rank.html) · [Proof, schema and reproduction](https://github.com/midya8/loralab/blob/main/PREDICTIVE_RANK.md). Standard softmax equivalence and rank facts are attributed to [Yang et al.](https://arxiv.org/abs/1711.03953), [LoRA](https://arxiv.org/abs/2106.09685) and [Nick Higham](https://nhigham.com/2021/02/23/matrix-rank-relations/), not presented as a new algorithm.
+[Exact inspector](https://midya8.github.io/lora-finetuning/rank.html) · [Proof, schema and reproduction](https://github.com/midya8/lora-finetuning/blob/main/PREDICTIVE_RANK.md). Standard softmax equivalence and rank facts are attributed to [Yang et al.](https://arxiv.org/abs/1711.03953), [LoRA](https://arxiv.org/abs/2106.09685) and [Nick Higham](https://nhigham.com/2021/02/23/matrix-rank-relations/), not presented as a new algorithm.
 
 ## Factor-coordinate updates
 
