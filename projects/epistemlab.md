@@ -1,14 +1,14 @@
-# EpistemLab
+# Common knowledge
 
 Three small tools for inspecting knowledge in a supplied mathematical model.
 They distinguish a public announcement, a Boolean disclosure and an event that
 not everyone can observe. Python builds and checks the evidence; each browser
 tool runs locally after its static files load, without a model service or API.
 
-[Announcement workbench](https://midya8.github.io/epistemlab/) ·
-[Disclosure atlas](https://midya8.github.io/epistemlab/disclosures.html) ·
-[Event inspector](https://midya8.github.io/epistemlab/events.html) ·
-[Source and reproduction](https://github.com/midya8/epistemlab)
+[Announcement workbench](https://midya8.github.io/common-knowledge/) ·
+[Disclosure atlas](https://midya8.github.io/common-knowledge/disclosures.html) ·
+[Event inspector](https://midya8.github.io/common-knowledge/events.html) ·
+[Source and reproduction](https://github.com/midya8/common-knowledge)
 
 ## A truthful announcement can undo its own truth
 
@@ -92,7 +92,7 @@ scalability claim. Counting retained worlds is not a privacy guarantee. The
 semantics and graph methods are established; the contribution here is the
 bounded implementation, controls, inspectable reports and separate checks.
 
-[Announcement contract](https://github.com/midya8/epistemlab/blob/main/CONTRACT.md) ·
-[Disclosure contract](https://github.com/midya8/epistemlab/blob/main/DISCLOSURES.md) ·
-[Event contract](https://github.com/midya8/epistemlab/blob/main/EVENTS.md) ·
-[Sources and attribution](https://github.com/midya8/epistemlab/blob/main/SOURCES.md)
+[Announcement contract](https://github.com/midya8/common-knowledge/blob/main/CONTRACT.md) ·
+[Disclosure contract](https://github.com/midya8/common-knowledge/blob/main/DISCLOSURES.md) ·
+[Event contract](https://github.com/midya8/common-knowledge/blob/main/EVENTS.md) ·
+[Sources and attribution](https://github.com/midya8/common-knowledge/blob/main/SOURCES.md)
