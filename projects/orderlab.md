@@ -1,8 +1,8 @@
-# OrderLab: exact rank aggregation
+# Kemeny ranking: exact rank aggregation
 
-OrderLab combines weighted complete rankings into a total order with the least pairwise disagreement. Compare every exact Kemeny optimum with an adjacent-swap local search, which can stop at a worse order. The browser shows each majority comparison, cycle, descent step and subset recurrence. Export the report and replay it independently from ballot inversions.
+Kemeny ranking combines weighted complete rankings into a total order with the least pairwise disagreement. Compare every exact Kemeny optimum with an adjacent-swap local search, which can stop at a worse order. The browser shows each majority comparison, cycle, descent step and subset recurrence. Export the report and replay it independently from ballot inversions.
 
-[Live inspector](https://midya8.github.io/orderlab/) · [Source](https://github.com/midya8/orderlab) · [Method and attributed theory](https://github.com/midya8/orderlab/blob/main/METHOD.md) · [Documentation review](https://github.com/midya8/orderlab/pull/2)
+[Live inspector](https://midya8.github.io/kemeny-ranking/) · [Source](https://github.com/midya8/kemeny-ranking) · [Method and attributed theory](https://github.com/midya8/kemeny-ranking/blob/main/METHOD.md) · [Documentation review](https://github.com/midya8/kemeny-ranking/pull/2)
 
 ## Local cost, global cost and the pair bound
 
@@ -58,12 +58,12 @@ python tools/check_installed.py
 python tools/check_milp.py
 ```
 
-The documentation review is published at main `4c9de871db767949470d4217265b4c58f1c48f6c` in [PR #2](https://github.com/midya8/orderlab/pull/2). Fresh checkouts of its head and merged main matched all 46 intended files and passed the Python, Node, actual-Chrome, installed-wheel and generated-asset checks. Both [head CI runs](https://github.com/midya8/orderlab/actions/runs/43349613439), [main CI](https://github.com/midya8/orderlab/actions/runs/43349781930) and [Pages deployment](https://github.com/midya8/orderlab/actions/runs/43349781506) passed. The five deployed assets match main, and the full deployed Chrome workflow passes, including independent download replay. All 35 deployed screenshots match the local captures; desktop and mobile review covers the local-gap, global-optimum, empty-subset, all-tie, invalid-input and horizontally scrolled table states. These checks cover the released implementation, not the truth or fairness of supplied preferences.
+The documentation review is published at main `4c9de871db767949470d4217265b4c58f1c48f6c` in [PR #2](https://github.com/midya8/kemeny-ranking/pull/2). Fresh checkouts of its head and merged main matched all 46 intended files and passed the Python, Node, actual-Chrome, installed-wheel and generated-asset checks. Both [head CI runs](https://github.com/midya8/kemeny-ranking/actions/runs/43349613439), [main CI](https://github.com/midya8/kemeny-ranking/actions/runs/43349781930) and [Pages deployment](https://github.com/midya8/kemeny-ranking/actions/runs/43349781506) passed. The five deployed assets match main, and the full deployed Chrome workflow passes, including independent download replay. All 35 deployed screenshots match the local captures; desktop and mobile review covers the local-gap, global-optimum, empty-subset, all-tie, invalid-input and horizontally scrolled table states. These checks cover the released implementation, not the truth or fairness of supplied preferences.
 
 ## Scope and prior work
 
 One to six candidates, one to sixteen complete strict ballot rows, positive integer weights up to 1,000 and total weight up to 10,000. No tied or partial input rankings. Cost is bounded by 150,000 and order counts by 720, so the browser uses exact safe-integer arithmetic without a floating optimizer. Python has no runtime dependencies; the static inspector has no service, paid API, external font or analytics.
 
-This is classical Kemeny aggregation, not Borda, a learned ranker, fairness model, real election recommendation, held-out evaluation or new theorem. The candidate-subset recurrence is credited to Betzler et al., Theorem 4; Dwork et al. establish the local/global distinction, and existing all-optimum/software work is acknowledged in [SOURCES.md](https://github.com/midya8/orderlab/blob/main/SOURCES.md). The implementation, controls, UI and evidence schema are original.
+This is classical Kemeny aggregation, not Borda, a learned ranker, fairness model, real election recommendation, held-out evaluation or new theorem. The candidate-subset recurrence is credited to Betzler et al., Theorem 4; Dwork et al. establish the local/global distinction, and existing all-optimum/software work is acknowledged in [SOURCES.md](https://github.com/midya8/kemeny-ranking/blob/main/SOURCES.md). The implementation, controls, UI and evidence schema are original.
 
 Subset values have `2^n` states, but full-order/cycle families and exhaustive replay add factorial/output-size work. No end-to-end scalability claim is made. A self-consistent report authenticates arithmetic for its included input, not the intended provenance of those ballots.
