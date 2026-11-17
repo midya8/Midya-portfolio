@@ -1,4 +1,4 @@
-# QuantLab: packed weights and integer-product audits
+# INT8 quantization: packed weights and integer-product audits
 
 Two independent browser inspectors follow quantized weights through packed
 files and fixed-input decision bounds, then add activation integer products
@@ -29,7 +29,7 @@ Every accepted input has 2..8 rows and 1..128 features, finite nonboolean magnit
 
 The independent editable page has complete activation/product/prefix/error tables, exact report export and input export. Edits invalidate all prior output and disable downloads; duplicate keys and nonfinite input are rejected. Nine controls retain clipping, signed half-way ties, zeros, maximum shape, scale precision and three original trained examples. Neither original data nor candidates are filtered.
 
-[Live activation audit](https://midya8.github.io/quantlab/integer.html) · [Source PR3](https://github.com/midya8/quantlab/pull/3) · [Method and seven-source ledger](https://github.com/midya8/quantlab/blob/main/INTEGER.md)
+[Live activation audit](https://midya8.github.io/int8-quantization/integer.html) · [Source PR3](https://github.com/midya8/int8-quantization/pull/3) · [Method and seven-source ledger](https://github.com/midya8/int8-quantization/blob/main/INTEGER.md)
 
 ## Selected-class stability on a supplied box
 
@@ -53,7 +53,7 @@ The earlier weight-only evidence follows. Its 39-test/four-browser-test counts d
 
 ## Problem
 
-An analytic byte count is not a file, and a small coefficient error does not guarantee an unchanged decision. QuantLab follows the complete path: source weight, integer code, stored IEEE scale, reconstructed weight, signed logit-error contribution and fixed-input decision margin.
+An analytic byte count is not a file, and a small coefficient error does not guarantee an unchanged decision. INT8 quantization follows the complete path: source weight, integer code, stored IEEE scale, reconstructed weight, signed logit-error contribution and fixed-input decision margin.
 
 ## Implementation
 
@@ -90,6 +90,6 @@ products and floating-point rescale. No speedup, RAM reduction, complete checkpo
 
 ## Links
 
-- Repository: [midya8/quantlab](https://github.com/midya8/quantlab)
-- Reviewed implementation: [PR #2](https://github.com/midya8/quantlab/pull/2)
-- Live inspector: [QuantLab](https://midya8.github.io/quantlab/)
+- Repository: [midya8/INT8 quantization](https://github.com/midya8/int8-quantization)
+- Reviewed implementation: [PR #2](https://github.com/midya8/int8-quantization/pull/2)
+- Live inspector: [INT8 quantization](https://midya8.github.io/int8-quantization/)
