@@ -1,12 +1,12 @@
-# FisherLab
+# Policy geometry
 
-[Source repository](https://github.com/midya8/fisherlab) | [Technical derivation](https://github.com/midya8/fisherlab/blob/main/DESIGN.md)
+[Source repository](https://github.com/midya8/policy-geometry) | [Technical derivation](https://github.com/midya8/policy-geometry/blob/main/DESIGN.md)
 
-FisherLab computes natural-gradient directions for supplied categorical action probabilities, rewards and coordinate matrices. It returns every Fisher matrix, singular-system solve and nullspace direction using exact rational arithmetic. It runs offline in Python 3.10+ without runtime dependencies.
+Policy geometry computes natural-gradient directions for supplied categorical action probabilities, rewards and coordinate matrices. It returns every Fisher matrix, singular-system solve and nullspace direction using exact rational arithmetic. It runs offline in Python 3.10+ without runtime dependencies.
 
 Natural gradients are often described as "parameterization invariant." This project makes the qualifiers executable: full categorical Fisher solves agree in probability space, diagonal approximations and coordinate damping need not, restricted models have fewer reachable tangents, and nonlinear finite Euler steps need not agree even when their initial tangents do.
 
-![Exact categorical geometry, coordinate counterexamples and finite-step limits](https://raw.githubusercontent.com/midya8/fisherlab/main/assets/fisher-audit.svg)
+![Exact categorical geometry, coordinate counterexamples and finite-step limits](https://raw.githubusercontent.com/midya8/policy-geometry/main/assets/fisher-audit.svg)
 
 ## Run
 
@@ -19,7 +19,7 @@ pip install .
 fisherlab demo
 ```
 
-The demo asserts both agreement and counterexamples. The committed [full report](https://github.com/midya8/fisherlab/blob/main/examples/demo.json), [strict input](https://github.com/midya8/fisherlab/blob/main/examples/input.json), [proof and scope](https://github.com/midya8/fisherlab/blob/main/DESIGN.md) and byte-reproducible SVG make the numbers inspectable. 45 tests pass. CI runs Python 3.10-3.13, both CLI paths, SVG regeneration and installed-wheel comparisons outside the source checkout.
+The demo asserts both agreement and counterexamples. The committed [full report](https://github.com/midya8/policy-geometry/blob/main/examples/demo.json), [strict input](https://github.com/midya8/policy-geometry/blob/main/examples/input.json), [proof and scope](https://github.com/midya8/policy-geometry/blob/main/DESIGN.md) and byte-reproducible SVG make the numbers inspectable. 45 tests pass. CI runs Python 3.10-3.13, both CLI paths, SVG regeneration and installed-wheel comparisons outside the source checkout.
 
 ## Exact fixture, not a training benchmark
 
@@ -74,9 +74,9 @@ Inputs: 2-8 strictly positive rational probabilities summing exactly to 1, align
 
 ## Shared-context extension
 
-![Shared parameters and exact context tradeoffs](https://raw.githubusercontent.com/midya8/fisherlab/main/assets/context-audit.svg)
+![Shared parameters and exact context tradeoffs](https://raw.githubusercontent.com/midya8/policy-geometry/main/assets/context-audit.svg)
 
-`audit_contexts` and the `context-demo` / `contexts INPUT.json` CLI paths aggregate exact Fisher and reward-gradient systems across 1-6 fixed contexts sharing parameters. [Derivation, model and witness](https://github.com/midya8/fisherlab/blob/main/CONTEXTS.md), [full report](https://github.com/midya8/fisherlab/blob/main/examples/context-demo.json) and [caller input](https://github.com/midya8/fisherlab/blob/main/examples/contexts-input.json).
+`audit_contexts` and the `context-demo` / `contexts INPUT.json` CLI paths aggregate exact Fisher and reward-gradient systems across 1-6 fixed contexts sharing parameters. [Derivation, model and witness](https://github.com/midya8/policy-geometry/blob/main/CONTEXTS.md), [full report](https://github.com/midya8/policy-geometry/blob/main/examples/context-demo.json) and [caller input](https://github.com/midya8/policy-geometry/blob/main/examples/contexts-input.json).
 
 With context frequencies `(3/4,1/4)`, equal binary action probabilities and rewards `(0,1)` / `(0,-2)`, a shared parameter has natural direction `1/4`. Total reward derivative is positive `1/64`, but the second context's derivative is negative `-1/8`. The full-conditional target has exact squared length `7/16 = 1/64 + 27/64` (reachable plus metric-orthogonal residual). Independent context parameters reach both targets and have zero residual; they are a larger model, not a training benchmark.
 
