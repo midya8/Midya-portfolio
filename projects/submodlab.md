@@ -1,10 +1,10 @@
-# SubmodLab: greedy selection and cardinality rounding
+# Submodular greedy: greedy selection and cardinality rounding
 
-[Source](https://github.com/midya8/submodlab) · [Live inspector](https://midya8.github.io/submodlab/) · [Method and sources](https://github.com/midya8/submodlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/submodular-greedy) · [Live inspector](https://midya8.github.io/submodular-greedy/) · [Method and sources](https://github.com/midya8/submodular-greedy/blob/main/METHOD.md)
 
 ## Subset-selection checks
 
-Subset selection is often described as picking the most useful or diverse data. Those descriptions can hide the objective, overlap, theorem assumptions and the gap between a greedy solution and an exact optimum. SubmodLab compares greedy selection with exhaustive optima on small supplied objectives. The supplied similarities are inputs, not learned meanings.
+Subset selection is often described as picking the most useful or diverse data. Those descriptions can hide the objective, overlap, theorem assumptions and the gap between a greedy solution and an exact optimum. Submodular greedy compares greedy selection with exhaustive optima on small supplied objectives. The supplied similarities are inputs, not learned meanings.
 
 ## Discrete inspector
 
@@ -46,4 +46,4 @@ Established theory is credited to Nemhauser, Wolsey and Fisher; definitions and 
 
 The separate rounding inspector shows the exact multilinear extension, every excluded-item gradient and excluded-pair Hessian context, independent-product count probabilities and both endpoints of every deterministic cardinality swap. A two-item half-probability control has expected count 1 yet exceeds budget 1 with probability 1/4; its duplicate-coverage expectation 3/4 rounds to a singleton worth 1. Nonmonotone submodular controls are accepted, while synergy and wrong total probability mass refuse rounding. The extension adds nine Python tests (33 total), 21 reports matching 10,682 exact native/BigInt leaves, independent product/derivative/path oracles, full-record Chrome checks and installed reproduction. This is bounded deterministic rounding, not continuous optimization, randomized marginal preservation, a general matroid method or a learned-quality claim.
 
-[Live rounding inspector](https://midya8.github.io/submodlab/rounding.html) · [Rounding method and sources](https://github.com/midya8/submodlab/blob/main/ROUNDING.md)
+[Live rounding inspector](https://midya8.github.io/submodular-greedy/rounding.html) · [Rounding method and sources](https://github.com/midya8/submodular-greedy/blob/main/ROUNDING.md)
