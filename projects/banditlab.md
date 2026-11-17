@@ -1,10 +1,10 @@
-# BanditLab
+# Bayesian bandits
 
-[Repository](https://github.com/midya8/banditlab)
+[Repository](https://github.com/midya8/bayesian-bandits)
 
 Exact finite-budget Bayesian bandit planning from scratch. Independent Beta-Bernoulli arms, posterior-state Bellman backups, complete action values and ties, a fully updating greedy baseline, and an exact clairvoyant prior upper bound. Dependency-free Python 3.10+, strict JSON CLI and rational results.
 
-![Exact expected reward over equal pull budgets, with a three-pull exploration witness](https://raw.githubusercontent.com/midya8/banditlab/main/assets/bandit-audit.svg)
+![Exact expected reward over equal pull budgets, with a three-pull exploration witness](https://raw.githubusercontent.com/midya8/bayesian-bandits/main/assets/bandit-audit.svg)
 
 ## A lower current mean can be the better first choice
 
@@ -34,7 +34,7 @@ banditlab demo
 
 ## Follow a policy forward and account for every lost reward
 
-![Exact arm-choice probability and occupancy-weighted Bellman-gap decomposition](https://raw.githubusercontent.com/midya8/banditlab/main/assets/policy-audit.svg)
+![Exact arm-choice probability and occupancy-weighted Bellman-gap decomposition](https://raw.githubusercontent.com/midya8/bayesian-bandits/main/assets/policy-audit.svg)
 
 `audit_policy` evaluates `optimal`, `greedy`, `fixed`, or a complete randomized policy kernel on the solver's information-state IDs. It propagates exact probability mass forward, separately from the backward conditional policy values. Every state reports occupancy, action probabilities, reward contribution, all action/outcome flows, the optimal Bellman gap, and its occupancy-weighted contribution. Every pull reports arm-choice probabilities, success/failure masses and expected reward. Terminal mass is one, including at horizon zero.
 
@@ -98,7 +98,7 @@ root = result['states'][result['root_state_id']]
 
 ## An exact information-advantaged upper bound
 
-For independent latent arm rates with CDFs `F_i`, the maximum rate has CDF `product_i F_i(x)`. Integer Beta shapes make each CDF a finite rational polynomial. BanditLab integrates it exactly:
+For independent latent arm rates with CDFs `F_i`, the maximum rate has CDF `product_i F_i(x)`. Integer Beta shapes make each CDF a finite rational polynomial. Bayesian bandits integrates it exactly:
 
 ```text
 E[max_i theta_i] = integral_0^1 (1 - product_i F_i(x)) dx
@@ -131,6 +131,6 @@ These counts do not bound Fraction bit lengths, serialized bytes, arithmetic ope
 
 ## Attribution and limits
 
-The Bayesian information-state formulation, Beta-Bernoulli predictive mean, Bellman objective and parameter-informed comparison follow [Min, Maglaras and Moallemi, *Thompson Sampling with Information Relaxation Penalties*, Sections 2 and 3](https://ar5iv.labs.arxiv.org/html/1902.04251v1). BanditLab implements the small full finite-state Bellman problem, **not that paper's IRS algorithms**, Thompson sampling, Gittins indices or a large-scale bandit method. The exact state enumerator, schema, CDF integration, code, independent oracles, fixtures and figure are original; no external code or dataset is copied. [DESIGN.md](https://github.com/midya8/banditlab/blob/main/DESIGN.md) gives the derivations. MIT licensed.
+The Bayesian information-state formulation, Beta-Bernoulli predictive mean, Bellman objective and parameter-informed comparison follow [Min, Maglaras and Moallemi, *Thompson Sampling with Information Relaxation Penalties*, Sections 2 and 3](https://ar5iv.labs.arxiv.org/html/1902.04251v1). Bayesian bandits implements the small full finite-state Bellman problem, **not that paper's IRS algorithms**, Thompson sampling, Gittins indices or a large-scale bandit method. The exact state enumerator, schema, CDF integration, code, independent oracles, fixtures and figure are original; no external code or dataset is copied. [DESIGN.md](https://github.com/midya8/bayesian-bandits/blob/main/DESIGN.md) gives the derivations. MIT licensed.
 
 The guarantee depends on correct independent stationary Beta priors and conditionally IID unit Bernoulli rewards. No correlated arms, changing rates, contextual features, costs, delayed feedback, continuous rewards, infinite horizon, empirical confidence/coverage or real-world decision-safety claim is made. Exact arithmetic does not make an assumed prior true.
