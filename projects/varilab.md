@@ -1,8 +1,8 @@
-# VariLab: inference objectives, curvature and compatible decisions
+# Variational inference: inference objectives, curvature and compatible decisions
 
-[Source repository](https://github.com/midya8/varilab)
+[Source repository](https://github.com/midya8/variational-inference)
 
-VariLab compares inference questions on supplied Ising models: approximate a joint distribution, inspect curvature, condition on evidence or choose a compatible joint MAP assignment. Each calculation exposes its arithmetic and work limits. Fields and couplings are inputs, not learned parameters.
+Variational inference compares inference questions on supplied Ising models: approximate a joint distribution, inspect curvature, condition on evidence or choose a compatible joint MAP assignment. Each calculation exposes its arithmetic and work limits. Fields and couplings are inputs, not learned parameters.
 
 ## A better objective can give worse marginal means
 
@@ -64,7 +64,7 @@ For the finite-state reference, "exact" means every finite state is enumerated u
 
 Enumeration, mean-field and curvature models have 1..12 spins (forest allows 1..128), finite fields/weights with magnitude at most 100 and strictly indexed nonduplicate edges. JSON files are capped at 256 KiB. Reference work `2**n*(n+edges+n*n)` is capped at 786,432; requested fitting work `sweeps*n*(n+edges)` is capped at 500,000, with at most 1,000 sweeps. Errors do not return partial results. These counts are operational limits, not timing promises.
 
-There is no arbitrary-dimensional exact inference, likelihood fitting, parameter learning, richer variational family, stochastic optimizer, convergence proof or calibrated uncertainty claim. Standard ELBO/KL and coordinate-ascent principles follow [Blei, Kucukelbir and McAuliffe (2017), sections 2.2-2.4](https://www.cs.columbia.edu/~blei/papers/BleiKucukelbirMcAuliffe2017.pdf). The Ising reduction, code, supplied synthetic examples, independent test references and figures are original implementations. [Derivation and accounting](https://github.com/midya8/varilab/blob/main/DESIGN.md).
+There is no arbitrary-dimensional exact inference, likelihood fitting, parameter learning, richer variational family, stochastic optimizer, convergence proof or calibrated uncertainty claim. Standard ELBO/KL and coordinate-ascent principles follow [Blei, Kucukelbir and McAuliffe (2017), sections 2.2-2.4](https://www.cs.columbia.edu/~blei/papers/BleiKucukelbirMcAuliffe2017.pdf). The Ising reduction, code, supplied synthetic examples, independent test references and figures are original implementations. [Derivation and accounting](https://github.com/midya8/variational-inference/blob/main/DESIGN.md).
 
 The congruence/inertia principle follows [Nick Higham (2022)](https://nhigham.com/2022/12/06/what-is-the-inertia-of-a-matrix/); implementation, exact certificates and boundary fixtures are independent.
 
@@ -126,7 +126,7 @@ PYTHONPATH=. python examples/render_elimination.py --check
 
 ## Cyclic decisions need compatible separator choices
 
-![Triangle local-choice failure and exact odd-ring MAP certificate](https://raw.githubusercontent.com/midya8/varilab/main/assets/cyclic-map-audit.svg)
+![Triangle local-choice failure and exact odd-ring MAP certificate](https://raw.githubusercontent.com/midya8/variational-inference/main/assets/cyclic-map-audit.svg)
 
 ```sh
 python -m varilab cyclic-map-demo
