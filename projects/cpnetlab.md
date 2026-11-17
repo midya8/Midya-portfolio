@@ -1,8 +1,8 @@
-# CPNetLab: what follows from the preference rows?
+# Cp nets: what follows from the preference rows?
 
-CPNetLab takes a small supplied binary CP-net and lists its legal single-variable improving flips. It computes reachability paths, inconsistency cycles, compatible strict rankings and witnesses for incomparable outcomes. A separate whole-row analysis asks which conditional statements support a path or conflict, and which withdrawals restore consistency. These are supplied qualitative preferences, not learned human tastes or cardinal scores.
+Cp nets takes a small supplied binary CP-net and lists its legal single-variable improving flips. It computes reachability paths, inconsistency cycles, compatible strict rankings and witnesses for incomparable outcomes. A separate whole-row analysis asks which conditional statements support a path or conflict, and which withdrawals restore consistency. These are supplied qualitative preferences, not learned human tastes or cardinal scores.
 
-[Complete-model inspector](https://midya8.github.io/cpnetlab/) · [Whole-row inspector](https://midya8.github.io/cpnetlab/scopes.html) · [Public source](https://github.com/midya8/cpnetlab)
+[Complete-model inspector](https://midya8.github.io/cp-nets/) · [Whole-row inspector](https://midya8.github.io/cp-nets/scopes.html) · [Public source](https://github.com/midya8/cp-nets)
 
 ## Two questions, two reports
 
@@ -34,7 +34,7 @@ These are counterfactual constraint graphs, not automatic preference revision or
 Python 3.10+ has no runtime dependencies. Node 22+ and Chrome are needed for browser tests.
 
 ```sh
-git clone https://github.com/midya8/cpnetlab.git
+git clone https://github.com/midya8/cp-nets.git
 cd cpnetlab
 python -m pip install .
 python -m cpnetlab analyze docs/example.json > evidence.json
@@ -57,4 +57,4 @@ The complete-model checks include all 36 two-variable networks and 576 ordered q
 
 Complete models have zero to four binary variables, complete strict local tables, no self parents and at most 16 outcomes. The row atlas additionally allows at most eight complete conditional rows and 256 subsets. No local ties, missing rows, learned preferences, cardinal utility, constraints, uncertainty, recommendation-quality or scalable-solver claim. Inconsistent complete models have no compatible strict ranking; the tool does not turn that into a vacuous preference verdict.
 
-CP-net theory, graph search, linear-extension counting and minimal-conflict/correction-set concepts are established prior work. The controls are developed synthetic examples, not measured human choices or a new algorithm. The [complete-model contract](https://github.com/midya8/cpnetlab/blob/main/CONTRACT.md), [row-subset contract](https://github.com/midya8/cpnetlab/blob/main/ROW-SUBSETS.md) and [source ledger](https://github.com/midya8/cpnetlab/blob/main/SOURCES.md) record the definitions, attribution and limits.
+CP-net theory, graph search, linear-extension counting and minimal-conflict/correction-set concepts are established prior work. The controls are developed synthetic examples, not measured human choices or a new algorithm. The [complete-model contract](https://github.com/midya8/cp-nets/blob/main/CONTRACT.md), [row-subset contract](https://github.com/midya8/cp-nets/blob/main/ROW-SUBSETS.md) and [source ledger](https://github.com/midya8/cp-nets/blob/main/SOURCES.md) record the definitions, attribution and limits.
