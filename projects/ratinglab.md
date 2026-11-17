@@ -1,14 +1,14 @@
-# RatingLab
+# Rating factors
 
-RatingLab fits explicit ratings using NumPy alternating ridge solves. Only observed pairs enter the objective; zero is a real rating, not a missing value. The browser shows score terms, normal equations, objective histories and coordinate rotations for all eleven saved fits.
+Rating factors fits explicit ratings using NumPy alternating ridge solves. Only observed pairs enter the objective; zero is a real rating, not a missing value. The browser shows score terms, normal equations, objective histories and coordinate rotations for all eleven saved fits.
 
 On the fixed test split, a separately validation-selected bias-only control has slightly lower RMSE than the selected factor model: .656176 versus .656457. All eight factor fits exhaust their numerical stationarity budget. Neither result is a claim about ranking quality, causal preferences or missing-pair accuracy.
 
 The current suite has 37 Python and 14 Node/actual-Chrome tests. Checks include independent exact rational ridge references, eleven fresh fits, test-label poisoning, 12,771 scalar/native predictions and complete conditional-edit witnesses. The installed wheel imports ten modules and runs eight main CLI commands plus two single-row module commands outside checkout. The historical UCI ratings are CC BY 4.0; code is MIT.
 
-The v0.2 conditional-response extension separates saved scores, a freshly re-solved unmodified ridge block and its finite rating edit or row deletion. It exposes leverage, the positive deletion denominator, query derivatives and all-opposite-index response curves. Sixty additional exact rational design systems, 2,784 direct deleted-block refits and 576 native/scalar-JavaScript witnesses check the formulas. Original factors and scores are unchanged. The mean and opposite factors remain frozen and retain information from the row: this is not full-model leave-one-out validation, causal influence, data unlearning or an uncertainty bound. [Conditional edit/deletion inspector](https://midya8.github.io/ratinglab/influence.html). [Derivation and limits](https://github.com/midya8/ratinglab/blob/main/INFLUENCE.md).
+The v0.2 conditional-response extension separates saved scores, a freshly re-solved unmodified ridge block and its finite rating edit or row deletion. It exposes leverage, the positive deletion denominator, query derivatives and all-opposite-index response curves. Sixty additional exact rational design systems, 2,784 direct deleted-block refits and 576 native/scalar-JavaScript witnesses check the formulas. Original factors and scores are unchanged. The mean and opposite factors remain frozen and retain information from the row: this is not full-model leave-one-out validation, causal influence, data unlearning or an uncertainty bound. [Conditional edit/deletion inspector](https://midya8.github.io/rating-factors/influence.html). [Derivation and limits](https://github.com/midya8/rating-factors/blob/main/INFLUENCE.md).
 
-The v0.3 joint-batch inspector changes or removes multiple original training rows within one frozen block. Target edits add; joint deletions solve a coupled Schur system and generally differ from a sum of separate-original-baseline deletions. It shows the full source-bound problem, conservative positive-ridge bound, numerical condition/refusal checks and all-query joint/separate curves. Independent checks add 320 rational direct-system cases, 128 real augmented-least-squares cases and 320 complete native/browser Cholesky responses plus 4 controls. The current 37 Python/14 Node suite and installed-wheel checks include this extension. Original fits, scores and stronger bias control stay unchanged. This remains a conditional calculation, not full ALS retraining, cross-validation, causal attribution, uncertainty or data unlearning. [Joint batch inspector](https://midya8.github.io/ratinglab/batch.html). [Derivation and limits](https://github.com/midya8/ratinglab/blob/main/BATCH.md).
+The v0.3 joint-batch inspector changes or removes multiple original training rows within one frozen block. Target edits add; joint deletions solve a coupled Schur system and generally differ from a sum of separate-original-baseline deletions. It shows the full source-bound problem, conservative positive-ridge bound, numerical condition/refusal checks and all-query joint/separate curves. Independent checks add 320 rational direct-system cases, 128 real augmented-least-squares cases and 320 complete native/browser Cholesky responses plus 4 controls. The current 37 Python/14 Node suite and installed-wheel checks include this extension. Original fits, scores and stronger bias control stay unchanged. This remains a conditional calculation, not full ALS retraining, cross-validation, causal attribution, uncertainty or data unlearning. [Joint batch inspector](https://midya8.github.io/rating-factors/batch.html). [Derivation and limits](https://github.com/midya8/rating-factors/blob/main/BATCH.md).
 
 ## Observed-only objective
 
@@ -30,9 +30,9 @@ A shared orthogonal rotation preserves predictions and regularization while chan
 
 The installed wheel reproduces all ten modules including the package root, eight main CLI commands, two single-row module commands, eleven fits and both full audits outside the source checkout. Only the licensed rating CSV is bundled; consumer profiles, restaurant locations, names and demographics are not used. Source identifiers become stable indices, not features. MovieLens was considered but not redistributed because of its license terms.
 
-- [Repository](https://github.com/midya8/ratinglab)
-- [Live inspector](https://midya8.github.io/ratinglab/)
-- [Objective, equations, protocol and limits](https://github.com/midya8/ratinglab/blob/main/METHOD.md)
+- [Repository](https://github.com/midya8/rating-factors)
+- [Live inspector](https://midya8.github.io/rating-factors/)
+- [Objective, equations, protocol and limits](https://github.com/midya8/rating-factors/blob/main/METHOD.md)
 - [Original UCI dataset](https://archive.ics.uci.edu/dataset/232/restaurant+consumer+data)
 
 
