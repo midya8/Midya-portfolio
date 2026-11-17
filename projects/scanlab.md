@@ -1,6 +1,6 @@
-# ScanLab
+# Prefix scans
 
-ScanLab compares sequential state updates with associative prefix scans. It
+Prefix scans compares sequential state updates with associative prefix scans. It
 returns exact rational states, dependency graphs, arithmetic counts and
 derivative checks for diagonal and small full-matrix recurrences. A separate
 floating-point model shows input gating, streaming and rounding failures.
@@ -8,7 +8,7 @@ Every operation runs serially in Python; dependency span is not a speed result.
 
 ## Commands
 
-Run these from the [source repository](https://github.com/midya8/scanlab).
+Run these from the [source repository](https://github.com/midya8/prefix-scans).
 
 | Command | What it returns |
 |---|---|
@@ -21,7 +21,7 @@ Run these from the [source repository](https://github.com/midya8/scanlab).
 
 ## Coupled dense-state scans
 
-![Coupled dense states, full matrix VJP and actual arithmetic](https://raw.githubusercontent.com/midya8/scanlab/1e6f1f4edc06d38b6babd203281c1efb836965b7/assets/dense-audit.svg)
+![Coupled dense states, full matrix VJP and actual arithmetic](https://raw.githubusercontent.com/midya8/prefix-scans/1e6f1f4edc06d38b6babd203281c1efb836965b7/assets/dense-audit.svg)
 
 Full rational transition matrices mix state coordinates. Matrix-affine
 composition preserves temporal multiplication order; reverse propagation
@@ -51,11 +51,11 @@ wheel parity. Dense path: width 1..4, length 0..32, exact rational supplied
 coefficients. No dense HVP, general AD engine, trained-model quality,
 hardware-speed or new-algorithm claim. Six sources are attributed.
 
-[Dense equations, counters, independent tests and sources](https://github.com/midya8/scanlab/blob/main/DENSE.md)
+[Dense equations, counters, independent tests and sources](https://github.com/midya8/prefix-scans/blob/main/DENSE.md)
 
 ## Exact derivatives and curvature
 
-![Exact reverse scan, transposition and Hessian-vector certificate](https://raw.githubusercontent.com/midya8/scanlab/f30336e029fc595a9c2b6b2b60de44c85c48bc18/assets/adjoint-audit.svg)
+![Exact reverse scan, transposition and Hessian-vector certificate](https://raw.githubusercontent.com/midya8/prefix-scans/f30336e029fc595a9c2b6b2b60de44c85c48bc18/assets/adjoint-audit.svg)
 
 The exact diagonal path records forward/tangent/reverse/loss-reverse/
 HVP-reverse scan DAGs, every parameter VJP and every state JVP. The exact
@@ -80,11 +80,11 @@ gradient products and loss reductions, and are not end-to-end derivative latency
 No general AD engine, symbolic compiler, new algorithm, global convexity or
 trained-model/hardware claim. Six sources are attributed in the derivative notes.
 
-[Exact equations, independent tests and attribution](https://github.com/midya8/scanlab/blob/main/ADJOINT.md)
+[Exact equations, independent tests and attribution](https://github.com/midya8/prefix-scans/blob/main/ADJOINT.md)
 
 ## Diagonal and floating-point comparisons
 
-![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/scanlab/42355326cba179c5af1e8225192162918eac532c/assets/scan-audit.svg)
+![Affine/scan/convolution/gradient audit](https://raw.githubusercontent.com/midya8/prefix-scans/42355326cba179c5af1e8225192162918eac532c/assets/scan-audit.svg)
 
 ## Mechanism
 
@@ -126,5 +126,5 @@ trace/output memory still grows with length. No learned-task quality, general
 long-context memory, GPU speed, FFT, HiPPO or Mamba/S4 implementation claim.
 Seven prior sources are attributed; this is not a new scan algorithm.
 
-- [Repository](https://github.com/midya8/scanlab)
-- [Equations, counters, sources and limitations](https://github.com/midya8/scanlab/blob/main/NOTES.md)
+- [Repository](https://github.com/midya8/prefix-scans)
+- [Equations, counters, sources and limitations](https://github.com/midya8/prefix-scans/blob/main/NOTES.md)
