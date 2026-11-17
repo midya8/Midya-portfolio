@@ -1,19 +1,19 @@
-# CredalLab: one probability model, different questions
+# Credal reasoning: one probability model, different questions
 
-CredalLab checks finite probability assumptions and compares decisions under those assumptions. Both inspectors use one shared joint distribution. The probability inspector asks whether the supplied bounds can hold together. The decision inspector asks which actions survive several classical rules, and why those rules can disagree.
+Credal reasoning checks finite probability assumptions and compares decisions under those assumptions. Both inspectors use one shared joint distribution. The probability inspector asks whether the supplied bounds can hold together. The decision inspector asks which actions survive several classical rules, and why those rules can disagree.
 
 Every result includes exact primal/dual evidence that a separate native checker can replay without loading the solver. The inspectors run locally in the browser; the Python package has no runtime dependencies.
 
 | Start with | Inspector | What to inspect |
 |---|---|---|
-| Probability assessments | [Probability inspector](https://midya8.github.io/credallab/) | Joint compatibility, sharp event bounds and positive-mass conditional bounds |
-| Actions and utilities | [Decision inspector](https://midya8.github.io/credallab/decisions.html) | Five choice rules, shared-belief witnesses and exclusion mixtures |
+| Probability assessments | [Probability inspector](https://midya8.github.io/credal-reasoning/) | Joint compatibility, sharp event bounds and positive-mass conditional bounds |
+| Actions and utilities | [Decision inspector](https://midya8.github.io/credal-reasoning/decisions.html) | Five choice rules, shared-belief witnesses and exclusion mixtures |
 
 It is an original implementation of classical finite probabilistic satisfiability and linear optimization, not a new inference theorem, learned probability model, credal network, calibration benchmark or production safety system.
 
 ## Why pairwise defenses do not settle a decision
 
-[Decision definitions, derivation and sources](https://github.com/midya8/credallab/blob/main/DECISIONS.md) · [Implementation review](https://github.com/midya8/credallab/pull/2)
+[Decision definitions, derivation and sources](https://github.com/midya8/credal-reasoning/blob/main/DECISIONS.md) · [Implementation review](https://github.com/midya8/credal-reasoning/pull/2)
 
 The exact menu `(3,0), (0,3), (1,1)` separates five classical criteria. The third action can defend against each pure rival at a different belief, yet no one common belief makes it best. It remains strict pairwise maximal and interval-undominated, and is the unique pure-action maximin choice. Its best shared-belief margin is exactly `-1/2` at belief `(1/2,1/2)`. A fixed 50/50 mixture of its rivals has utility `3/2` in both worlds and excludes it by `1/2` everywhere.
 
@@ -59,7 +59,7 @@ The teaching control uses the three event sets `{1,2}`, `{1,3}`, `{2,3}`. These 
 
 Lower each required probability to `2/3` and the unique grouped distribution becomes `(0, 1/3, 1/3, 1/3)`. The logical world universe matters as much as the numerical bounds. Grouping preserves these supplied event memberships, not arbitrary queries about A, B or C.
 
-[Live inspector](https://midya8.github.io/credallab/) · [Source](https://github.com/midya8/credallab) · [Reviewed change](https://github.com/midya8/credallab/pull/1)
+[Live inspector](https://midya8.github.io/credal-reasoning/) · [Source](https://github.com/midya8/credal-reasoning) · [Reviewed change](https://github.com/midya8/credal-reasoning/pull/1)
 
 ## Run it
 
@@ -128,7 +128,7 @@ These counts describe a finite development grid. They do not establish correctne
 
 ## Limits and sources
 
-Inputs allow 1-6 explicit worlds and at most six interval assessments, with a further 20,000 phase-I candidate-basis limit. Rational input components and denominator LCM are bounded. This is deliberately an inspectable exponential enumerator, not a scalable LP engine. All constraints are unconditional; only the query can be conditional. See [METHOD.md](https://github.com/midya8/credallab/blob/main/METHOD.md) for exact signs, schema, endpoints, failure modes and sources.
+Inputs allow 1-6 explicit worlds and at most six interval assessments, with a further 20,000 phase-I candidate-basis limit. Rational input components and denominator LCM are bounded. This is deliberately an inspectable exponential enumerator, not a scalable LP engine. All constraints are unconditional; only the query can be conditional. See [METHOD.md](https://github.com/midya8/credal-reasoning/blob/main/METHOD.md) for exact signs, schema, endpoints, failure modes and sources.
 
 Classical foundations: [probabilistic satisfiability and coherence survey](https://isipta99.sipta.org/proc/041.pdf), [overlapping marginal compatibility](https://ar5iv.labs.arxiv.org/html/1112.4788), [LP duality notes](https://web.stanford.edu/class/ee364a/lectures/duality.pdf), [linear-fractional programming notes](http://www.seas.ucla.edu/~vandenbe/ee236a/lectures/lfp.pdf), [Python Fraction](https://docs.python.org/3/library/fractions.html), and [SciPy HiGHS](https://docs.scipy.org/doc/scipy/reference/optimize.linprog-highs.html).
 
@@ -136,6 +136,6 @@ MIT license. Teaching controls and code are original to this project. The classi
 
 ## Publication checked
 
-The current source is `a826fe8ae9976fe88dd988158da05d0124250b94`, published through [README review #3](https://github.com/midya8/credallab/pull/3). [Main CI](https://github.com/midya8/credallab/actions/runs/43265586734) and [Pages](https://github.com/midya8/credallab/actions/runs/43265585588) passed. All 76 public files match the checked source; the review changed only the README.
+The current source is `a826fe8ae9976fe88dd988158da05d0124250b94`, published through [README review #3](https://github.com/midya8/credal-reasoning/pull/3). [Main CI](https://github.com/midya8/credal-reasoning/actions/runs/43265586734) and [Pages](https://github.com/midya8/credal-reasoning/actions/runs/43265585588) passed. All 76 public files match the checked source; the review changed only the README.
 
 Fresh baseline, revised, published and merged trees each passed 31 Python tests, six Node/Chrome tests, both isolated wheel checks and both independent HiGHS checks. All ten deployed assets match merged source, and the same six tests pass against both deployed inspectors. The complete main README and both deployed inspectors were visually checked through their evidence and limits sections. These checks establish the published version, not the truth of supplied beliefs or utilities.
