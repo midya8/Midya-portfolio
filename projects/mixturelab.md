@@ -1,10 +1,10 @@
-# MixtureLab
+# Gmm em
 
 Gaussian-mixture EM on UCI Wine measurements, with editable browser inference and numerical checks.
 
-- [Repository and reproduction](https://github.com/midya8/mixturelab)
-- [Live 13-feature density inspector](https://midya8.github.io/mixturelab/)
-- [Derivation, frozen protocol and source ledger](https://github.com/midya8/mixturelab/blob/main/METHOD.md)
+- [Repository and reproduction](https://github.com/midya8/gmm-em)
+- [Live 13-feature density inspector](https://midya8.github.io/gmm-em/)
+- [Derivation, frozen protocol and source ledger](https://github.com/midya8/gmm-em/blob/main/METHOD.md)
 
 ## Implementation
 
@@ -52,7 +52,7 @@ No cultivar prediction, wine-quality score, calibrated uncertainty, identified l
 
 ## Fixed-model geometry
 
-[Live gradient, curvature and ascent inspector](https://midya8.github.io/mixturelab/geometry.html) · [Derivative and search derivation](https://github.com/midya8/mixturelab/blob/main/GEOMETRY.md)
+[Live gradient, curvature and ascent inspector](https://midya8.github.io/gmm-em/geometry.html) · [Derivative and search derivation](https://github.com/midya8/gmm-em/blob/main/GEOMETRY.md)
 
 The geometry page computes all 13 input-score coordinates, the complete 13x13 Hessian, the kx13 component-posterior Jacobian and original-unit transforms. These are fixed-model input derivatives, not parameter training or causal feature importance. A chosen finite coordinate change is compared with first- and second-order predictions.
 
@@ -66,7 +66,7 @@ All original models, experiment report, source data, split, scales, browser refe
 
 ## Fixed-model conditional inference
 
-[Conditional inspector](https://midya8.github.io/mixturelab/conditional.html) · [Algebra and sources](https://github.com/midya8/mixturelab/blob/main/CONDITIONAL.md)
+[Conditional inspector](https://midya8.github.io/gmm-em/conditional.html) · [Algebra and sources](https://github.com/midya8/gmm-em/blob/main/CONDITIONAL.md)
 
 Condition any observed-coordinate subset under the same frozen model. Each component uses observed marginal evidence, a Schur-complement conditional mean/covariance and log-space posterior weights. Complete within/between covariance, raw-unit Jacobians and zero-dimensional limits remain in the numerical witness. Native Cholesky solves and scalar browser loops add no ridge or conditional covariance clipping. Numerical breakdown is refused.
 
