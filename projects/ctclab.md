@@ -1,8 +1,8 @@
-# CTCLab
+# Ctc alignment
 
-CTCLab makes two parts of CTC inspectable: summing paths for a target, and losing paths during prefix search. The target atlas computes likelihood, posteriors and logit gradients from synthetic logits. The prefix inspector uses exact rational frame probabilities to track surviving and discarded mass. Neither runs a speech model.
+CTC alignment makes two parts of CTC inspectable: summing paths for a target, and losing paths during prefix search. The target atlas computes likelihood, posteriors and logit gradients from synthetic logits. The prefix inspector uses exact rational frame probabilities to track surviving and discarded mass. Neither runs a speech model.
 
-[Target atlas](https://midya8.github.io/ctclab/) · [Prefix inspector](https://midya8.github.io/ctclab/prefix.html) · [Source and CLI](https://github.com/midya8/ctclab)
+[Target atlas](https://midya8.github.io/ctc-alignment/) · [Prefix inspector](https://midya8.github.io/ctc-alignment/prefix.html) · [Source and CLI](https://github.com/midya8/ctc-alignment)
 
 ## A path is not a transcript
 
@@ -39,13 +39,13 @@ bash tools/wheel_smoke.sh
 bash tools/prefix_wheel_smoke.sh
 ```
 
-Both generated evidence sets rebuild without changing tracked files. Fresh baseline, revised, published and merged trees passed these checks for the [README review](https://github.com/midya8/ctclab/pull/3). The deployed inspectors match the merged assets and pass the full six-test Node suite.
+Both generated evidence sets rebuild without changing tracked files. Fresh baseline, revised, published and merged trees passed these checks for the [README review](https://github.com/midya8/ctc-alignment/pull/3). The deployed inspectors match the merged assets and pass the full six-test Node suite.
 
 ## Two contracts, separate limits
 
-The target atlas accepts at most six frames, four classes and 1,024 complete paths. It uses floating-point log-space calculations and disclosed 1e-8-nat ranking buckets, with raw scores retained. Target-conditioned alignments are latent model quantities, not observed timestamps or causal explanations. [Target method and conventions](https://github.com/midya8/ctclab/blob/main/METHOD.md) explains reductions, backward messages and impossible targets.
+The target atlas accepts at most six frames, four classes and 1,024 complete paths. It uses floating-point log-space calculations and disclosed 1e-8-nat ranking buckets, with raw scores retained. Target-conditioned alignments are latent model quantities, not observed timestamps or causal explanations. [Target method and conventions](https://github.com/midya8/ctc-alignment/blob/main/METHOD.md) explains reductions, backward messages and impossible targets.
 
-The prefix inspector accepts at most 4,096 complete paths and beam widths 1-64. Its serialized entrypoints reject duplicate keys, float/exponent tokens and noncanonical fractions. Exact arithmetic removes rounding error for the supplied law, not search approximation. Replay verifies internal consistency, not authenticity or model calibration. [Prefix method and variant boundaries](https://github.com/midya8/ctclab/blob/main/PREFIX.md) gives the recurrence, proof and source differences.
+The prefix inspector accepts at most 4,096 complete paths and beam widths 1-64. Its serialized entrypoints reject duplicate keys, float/exponent tokens and noncanonical fractions. Exact arithmetic removes rounding error for the supplied law, not search approximation. Replay verifies internal consistency, not authenticity or model calibration. [Prefix method and variant boundaries](https://github.com/midya8/ctc-alignment/blob/main/PREFIX.md) gives the recurrence, proof and source differences.
 
 Both are bounded audits of synthetic development controls. There is no trained recognizer, held-out speech evaluation, new CTC algorithm, production-scale result, speed claim, paid API or private dataset.
 
