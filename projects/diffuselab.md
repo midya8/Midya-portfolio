@@ -1,12 +1,12 @@
-# DiffuseLab: training and comparing 2-D samplers
+# Diffusion in 2d: training and comparing 2-D samplers
 
-DiffuseLab trains a small diffusion model on two-dimensional points, then compares DDPM and selected-grid DDIM sampling with the same saved noise predictor. The implementation uses explicit Gaussian arithmetic and handwritten gradients, with untrained and Gaussian-prior controls.
+Diffusion in 2d trains a small diffusion model on two-dimensional points, then compares DDPM and selected-grid DDIM sampling with the same saved noise predictor. The implementation uses explicit Gaussian arithmetic and handwritten gradients, with untrained and Gaussian-prior controls.
 
 The same 482-parameter model uses 8/16/64 DDIM steps without retraining. Eight steps saves 87.5% of predictor calls but has worse symmetric reference distance here (0.210661 vs DDPM 0.037103), despite a slightly higher near-center fraction. All 8 neighborhoods are reached, with uneven frequencies and outliers retained. Full-grid eta=1 matches DDPM arithmetic with matched draws. 33 tests, strict artifacts and offline train/sample/DDIM CLI. Development fixture only, no walltime speedup, image-generation or general ranking claim.
 
-[Source repository](https://github.com/midya8/diffuselab) · [Numerical choices](https://github.com/midya8/diffuselab/blob/main/DESIGN.md)
+[Source repository](https://github.com/midya8/diffusion-in-2d) · [Numerical choices](https://github.com/midya8/diffusion-in-2d/blob/main/DESIGN.md)
 
-![Shared-axis sample audit](https://raw.githubusercontent.com/midya8/diffuselab/main/assets/diffusion-audit.svg)
+![Shared-axis sample audit](https://raw.githubusercontent.com/midya8/diffusion-in-2d/main/assets/diffusion-audit.svg)
 
 ## Learning the noise predictor
 
@@ -21,7 +21,7 @@ The central learning problem is to estimate added noise at many timesteps, then 
 - Separate reference data, a same-initialization untrained reverse-process control, and a standard Gaussian-prior control using the same initial sample seed.
 - Distance, near-center fraction, per-mode counts, nearby-mode coverage and symmetric empirical nearest-neighbor squared distance. A deliberately collapsed generator passes center-distance metrics but fails coverage and the symmetric metric in a test.
 
-See [DESIGN.md](https://github.com/midya8/diffuselab/blob/main/DESIGN.md) for equations, data boundaries and the artifact contract.
+See [DESIGN.md](https://github.com/midya8/diffusion-in-2d/blob/main/DESIGN.md) for equations, data boundaries and the artifact contract.
 
 ## Measured development fixture
 
@@ -39,7 +39,7 @@ The learned model reaches all eight neighborhoods but is imperfect: 39.45% of sa
 
 ## Same model, fewer denoiser calls
 
-![Sampler quality and call audit](https://raw.githubusercontent.com/midya8/diffuselab/main/assets/sampler-audit.svg)
+![Sampler quality and call audit](https://raw.githubusercontent.com/midya8/diffusion-in-2d/main/assets/sampler-audit.svg)
 
 `sample_ddim` reuses the trained model with an explicit selected timestep grid and eta in [0,1]. Eta=0 adds no step noise and is deterministic **given the initial latent**, not one fixed output for every seed. Full-grid eta=1 agrees with the DDPM sampler up to floating-point arithmetic using matched random draws; sparse-grid eta=1 is a different discretization. No retraining or checkpoint change.
 
