@@ -1,14 +1,14 @@
-# ConceptLab
+# Formal concepts
 
-ConceptLab inspects the concepts and implication rules of small object-attribute tables. Python integer masks and browser JavaScript sets compute independent reports. Three modes separate a complete table, explicit unknown cells and observations checked against a supplied expert table. No model, API or private data is used.
+Formal concepts inspects the concepts and implication rules of small object-attribute tables. Python integer masks and browser JavaScript sets compute independent reports. Three modes separate a complete table, explicit unknown cells and observations checked against a supplied expert table. No model, API or private data is used.
 
 | Question | Inspector | Method |
 | --- | --- | --- |
-| Which concepts and implications hold in a complete table? | [Binary context](https://midya8.github.io/conceptlab/) | [Definitions and sources](https://github.com/midya8/conceptlab/blob/main/METHOD.md) |
-| What can change when unknown cells are filled in? | [Completions](https://midya8.github.io/conceptlab/partial.html) | [Completion semantics](https://github.com/midya8/conceptlab/blob/main/PARTIAL.md) |
-| Which observed rules survive counterexamples from the supplied domain? | [Attribute exploration](https://midya8.github.io/conceptlab/exploration.html) | [Exploration protocol](https://github.com/midya8/conceptlab/blob/main/EXPLORATION.md) |
+| Which concepts and implications hold in a complete table? | [Binary context](https://midya8.github.io/formal-concepts/) | [Definitions and sources](https://github.com/midya8/formal-concepts/blob/main/METHOD.md) |
+| What can change when unknown cells are filled in? | [Completions](https://midya8.github.io/formal-concepts/partial.html) | [Completion semantics](https://github.com/midya8/formal-concepts/blob/main/PARTIAL.md) |
+| Which observed rules survive counterexamples from the supplied domain? | [Attribute exploration](https://midya8.github.io/formal-concepts/exploration.html) | [Exploration protocol](https://github.com/midya8/formal-concepts/blob/main/EXPLORATION.md) |
 
-[Source](https://github.com/midya8/conceptlab)
+[Source](https://github.com/midya8/formal-concepts)
 
 ## Complete contexts
 
@@ -37,7 +37,7 @@ Twelve controls include repeated rejection, implication chains, unsupported prem
 From a checkout, using Python 3.10+:
 
 ```sh
-git clone https://github.com/midya8/conceptlab.git
+git clone https://github.com/midya8/formal-concepts.git
 cd conceptlab
 python -m venv .venv
 . .venv/bin/activate
