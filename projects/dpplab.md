@@ -1,8 +1,8 @@
-# DPPLab: inspecting finite subset laws
+# DPP subsets: inspecting finite subset laws
 
-[Source](https://github.com/midya8/dpplab) · [Live inspector](https://midya8.github.io/dpplab/) · [Method and sources](https://github.com/midya8/dpplab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/dpp-subsets) · [Live inspector](https://midya8.github.io/dpp-subsets/) · [Method and sources](https://github.com/midya8/dpp-subsets/blob/main/METHOD.md)
 
-DPPLab computes the complete subset law for a supplied determinantal point process likelihood kernel. Inspect every determinant, inclusion probability, include/exclude condition and fixed-total-size selection using exact rational arithmetic. Duplicate-item controls separate zero co-occurrence from equal-marginal independence.
+DPP subsets computes the complete subset law for a supplied determinantal point process likelihood kernel. Inspect every determinant, inclusion probability, include/exclude condition and fixed-total-size selection using exact rational arithmetic. Duplicate-item controls separate zero co-occurrence from equal-marginal independence.
 
 Python and independent BigInt JavaScript agree on 24 complete reports and 4,050 exact leaves. The checks include 24 Python tests on 3.10-3.13 and actual-Chrome records and bar geometry. This is a bounded L-ensemble inspector, not learned relevance, a scalable sampler or a downstream quality result.
 
