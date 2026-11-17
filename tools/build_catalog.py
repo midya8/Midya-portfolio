@@ -70,7 +70,9 @@ def extract(path, data):
         stops = list(re.finditer(r'[.!?](?:\s|$)', excerpt[:361]))
         end = stops[-1].start() + 1 if stops and stops[-1].start() >= 60 else 0
         excerpt = excerpt[:end] if end else excerpt[:360].rsplit(' ', 1)[0] + '...'
-    return {'id': path.stem, 'title': headings[0], 'excerpt': excerpt,
+    repository = re.search(r'https://github\.com/midya8/([A-Za-z0-9_.-]+)(?=[/\s)#?]|$)', text)
+    return {'id': path.stem, 'repository': repository[1] if repository else path.stem,
+            'title': headings[0], 'excerpt': excerpt,
             'headings': headings, 'terms': sorted(set(re.findall(r'[a-z0-9]+', ''.join(c for c in unicodedata.normalize('NFKD', plain(' '.join(units))) if not unicodedata.combining(c)).lower()))), 'path': path.as_posix(),
             'source_url': 'https://github.com/midya8/Midya-portfolio/blob/main/' + path.as_posix(),
             'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
@@ -91,7 +93,7 @@ def render(data):
     esc = html.escape
     cards = []
     for p in data['projects']:
-        cards.append(f'<article class="project" data-id="{esc(p["id"], quote=True)}"><p class="slug">{esc(p["id"])}</p><h2>{esc(p["title"])}</h2><p>{esc(p["excerpt"])}</p><a class="source" href="{esc(p["source_url"], quote=True)}">Read case study <span aria-hidden="true">↗</span><span class="sr">: {esc(p["id"])}</span></a></article>')
+        cards.append(f'<article class="project" data-id="{esc(p["id"], quote=True)}"><p class="slug">{esc(p["repository"])}</p><h2>{esc(p["title"])}</h2><p>{esc(p["excerpt"])}</p><a class="source" href="{esc(p["source_url"], quote=True)}">Read case study <span aria-hidden="true">↗</span><span class="sr">: {esc(p["id"])}</span></a></article>')
     script_tags = ''.join(f'<script defer src="catalog-data-{i}.js"></script>' for i in range((len(data['projects']) + 19) // 20))
     return '''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Search Midya Rahmani's public AI and software case studies, with source-linked excerpts and a reproducible catalog."><title>Midya Rahmani | Project index</title><link rel="stylesheet" href="catalog.css"><script defer src="catalog-engine.js"></script>''' + script_tags + '''<script defer src="catalog-app.js"></script></head>
