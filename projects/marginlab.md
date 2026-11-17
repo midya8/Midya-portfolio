@@ -1,12 +1,12 @@
-# MarginLab: keep the constraints visible
+# SVM from scratch: keep the constraints visible
 
 Linear and RBF soft-margin SVMs trained from scratch, with every pair update saved for replay. The browser lets you edit all 30 features and inspect each signed score. Separate exact-rational readers check training-objective bounds and finite input boxes for the fixed linear models.
 
 The checks include 36 Python tests and 15 Node/Chrome tests, 4,552 original inference scores, eight fresh fits and 128 complete native/browser box responses. Installed reproduction checks 11 module origins, nine main commands and the box exporter. The original fits, holdout scores, split and training-objective proofs are unchanged. These are historical-data and mathematical exercises, not clinical validation or a guarantee about rounded production inference.
 
-- [Repository](https://github.com/midya8/marginlab)
-- [Live 30-feature inspector](https://midya8.github.io/marginlab/)
-- [Equations, source attribution and limits](https://github.com/midya8/marginlab/blob/main/METHOD.md)
+- [Repository](https://github.com/midya8/svm-from-scratch)
+- [Live 30-feature inspector](https://midya8.github.io/svm-from-scratch/)
+- [Equations, source attribution and limits](https://github.com/midya8/svm-from-scratch/blob/main/METHOD.md)
 
 ## Pair updates and checks
 
@@ -33,8 +33,8 @@ Two independently implemented readers, Python Fraction and browser BigInt, check
 
 This is a bound for the represented standardized linear problem, not exact real-number standardization, RBF kernels, generalization error, clinical reliability or a claim that an exact optimum was attained. The original numerical inspector stays numerical; no prediction, score, split, pair history or original figure changes.
 
-- [Live exact linear proof inspector](https://midya8.github.io/marginlab/certificate.html)
-- [Derivation, repair algorithm and limits](https://github.com/midya8/marginlab/blob/main/CERTIFICATE.md)
+- [Live exact linear proof inspector](https://midya8.github.io/svm-from-scratch/certificate.html)
+- [Derivation, repair algorithm and limits](https://github.com/midya8/svm-from-scratch/blob/main/CERTIFICATE.md)
 
 ## Exact finite original-unit input boxes
 
@@ -46,5 +46,5 @@ The box tests cover 120 exhaustive 1-5D corner problems, all 256 extremal scores
 
 The exact rational affine function is not a bound on rounded production inference or exact real-number standardization. No RBF, clinical, probability, causal, generalization, domain-validity or authenticity claim.
 
-- [Live exact input-box inspector](https://midya8.github.io/marginlab/box.html)
-- [Support-function derivation, reproduction and limits](https://github.com/midya8/marginlab/blob/main/BOX.md)
+- [Live exact input-box inspector](https://midya8.github.io/svm-from-scratch/box.html)
+- [Support-function derivation, reproduction and limits](https://github.com/midya8/svm-from-scratch/blob/main/BOX.md)
