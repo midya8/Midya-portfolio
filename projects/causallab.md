@@ -1,8 +1,8 @@
-# CausalLab
+# Counterfactuals
 
-[Repository](https://github.com/midya8/causallab) · [Model and algorithm](https://github.com/midya8/causallab/blob/main/DESIGN.md)
+[Repository](https://github.com/midya8/counterfactuals) · [Model and algorithm](https://github.com/midya8/counterfactuals/blob/main/DESIGN.md)
 
-A positive association can hide a negative intervention effect. Two models can agree on every observation and still disagree about an action. CausalLab makes those differences inspectable in small supplied models, with each noise-world contribution visible.
+A positive association can hide a negative intervention effect. Two models can agree on every observation and still disagree about an action. Counterfactuals makes those differences inspectable in small supplied models, with each noise-world contribution visible.
 
 Python 3.10+, standard-library runtime only. It implements established causal-model semantics, not a new causal criterion or a method that learns causes from data.
 
@@ -101,9 +101,9 @@ The graph tests remove outgoing arrows to check proper backdoor paths. They are 
 
 The credited latent-confounding motif and an original fixed XOR fixture separate observed conditionals 41/112 and 37/80 from the frontdoor functional 7/16 and 9/16. Independent intervention-world sums match the latter. These are synthetic arithmetic examples, not estimated effects.
 
-![Sufficient frontdoor conditions and exact positive-joint functional](https://raw.githubusercontent.com/midya8/causallab/refs/heads/main/assets/frontdoor-audit.svg)
+![Sufficient frontdoor conditions and exact positive-joint functional](https://raw.githubusercontent.com/midya8/counterfactuals/refs/heads/main/assets/frontdoor-audit.svg)
 
-[Exact frontdoor contract and credited sources](https://github.com/midya8/causallab/blob/main/FRONTDOOR.md)
+[Exact frontdoor contract and credited sources](https://github.com/midya8/counterfactuals/blob/main/FRONTDOOR.md)
 
 ## What the checks cover
 
