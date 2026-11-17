@@ -1,10 +1,10 @@
-# PartsLab
+# Nonnegative matrix
 
-PartsLab fits nonnegative basis images to UCI digits with NumPy. Edit an 8x8 image to inspect the reconstruction, each basis contribution and the stronger signed controls.
+Nonnegative matrix fits nonnegative basis images to UCI digits with NumPy. Edit an 8x8 image to inspect the reconstruction, each basis contribution and the stronger signed controls.
 
-- Live: [editable nonnegative parts inspector](https://midya8.github.io/partslab/)
-- Source: [midya8/partslab](https://github.com/midya8/partslab)
-- Method: [equations, fixed protocol and primary sources](https://github.com/midya8/partslab/blob/main/METHOD.md)
+- Live: [editable nonnegative parts inspector](https://midya8.github.io/nonnegative-matrix/)
+- Source: [midya8/Nonnegative matrix](https://github.com/midya8/nonnegative-matrix)
+- Method: [equations, fixed protocol and primary sources](https://github.com/midya8/nonnegative-matrix/blob/main/METHOD.md)
 
 ## Factorization and browser inference
 
@@ -43,10 +43,10 @@ Original data: Alpaydin & Kaynak (1998), [UCI Optical Recognition of Handwritten
 
 ## Exact fixed-basis objective bounds
 
-The fixed-basis certificate uses exact binary64 primal/dual arithmetic, outward-rounded objective intervals and portable JSON proofs with an independent Python Fraction verifier. Eighty exact rational active-set optima and all 120 cross-language witness references are checked. The live browser verifies its own candidates, including zero-sweep unfinished solves, and accepts valid pasted proofs while rejecting tampered ones. A residual-shift bound can be loose; even zero gap does not imply unique coefficients. Original fits, scores and selection remain unchanged. [Certificate proof and limits](https://github.com/midya8/partslab/blob/main/CERTIFICATE.md).
+The fixed-basis certificate uses exact binary64 primal/dual arithmetic, outward-rounded objective intervals and portable JSON proofs with an independent Python Fraction verifier. Eighty exact rational active-set optima and all 120 cross-language witness references are checked. The live browser verifies its own candidates, including zero-sweep unfinished solves, and accepts valid pasted proofs while rejecting tampered ones. A residual-shift bound can be loose; even zero gap does not imply unique coefficients. Original fits, scores and selection remain unchanged. [Certificate proof and limits](https://github.com/midya8/nonnegative-matrix/blob/main/CERTIFICATE.md).
 
 The certificate exports the actual represented pixels, basis and candidate coefficients together with a rational dual vector and primal/dual/gap values. The checker certifies the embedded problem, not its origin or model quality. The displayed bounds are half squared error rather than per-pixel MSE. No joint NMF global optimum or semantic interpretation follows. The 120 witness references cover only the twenty already-public examples for six models, not all holdout rows. All six original joint fits still exhaust their fixed stationarity budget.
 
 ## Exact fixed-face response
 
-The [exact fixed-face pixel inspector](https://midya8.github.io/partslab/face.html) lets you nominate a face from the numeric NNLS result, re-solve it exactly, and intersect every affine KKT inequality with the pixel domain. All endpoint ties, singular refusals, singleton faces and duplicate-basis nonuniqueness stay explicit. 38 Python and eleven Node/Chrome tests cover 200 independently enumerated tiny face candidates, all 120 stored nominations, 54 complete native/BigInt/Worker witnesses and 10,368 endpoint pixel colors. Ten modules/ten commands with all six fresh fits reproduced. Original data, models and scores remain unchanged. One candidate interval, not a full path, unique support, robustness or joint-NMF optimum. [Math and limits](https://github.com/midya8/partslab/blob/main/FACE.md).
+The [exact fixed-face pixel inspector](https://midya8.github.io/nonnegative-matrix/face.html) lets you nominate a face from the numeric NNLS result, re-solve it exactly, and intersect every affine KKT inequality with the pixel domain. All endpoint ties, singular refusals, singleton faces and duplicate-basis nonuniqueness stay explicit. 38 Python and eleven Node/Chrome tests cover 200 independently enumerated tiny face candidates, all 120 stored nominations, 54 complete native/BigInt/Worker witnesses and 10,368 endpoint pixel colors. Ten modules/ten commands with all six fresh fits reproduced. Original data, models and scores remain unchanged. One candidate interval, not a full path, unique support, robustness or joint-NMF optimum. [Math and limits](https://github.com/midya8/nonnegative-matrix/blob/main/FACE.md).
