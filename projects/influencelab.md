@@ -1,15 +1,15 @@
-# InfluenceLab: local influence and deletion refits
+# Influence functions: local influence and deletion refits
 
-[Source repository](https://github.com/midya8/influencelab) · [Model and solver](https://github.com/midya8/influencelab/blob/main/DESIGN.md) · [Full report](https://github.com/midya8/influencelab/blob/main/examples/demo.json)
+[Source repository](https://github.com/midya8/influence-functions) · [Model and solver](https://github.com/midya8/influence-functions/blob/main/DESIGN.md) · [Full report](https://github.com/midya8/influence-functions/blob/main/examples/demo.json)
 
-![Influence and actual deletion audit](https://raw.githubusercontent.com/midya8/influencelab/main/assets/influence-audit.svg)
+![Influence and actual deletion audit](https://raw.githubusercontent.com/midya8/influence-functions/main/assets/influence-audit.svg)
 
-InfluenceLab fits a small regularized logistic model and compares local sample-weight derivatives with converged deletion refits. Its deletion paths refit at every grid node, so the numerical integral can be checked against the endpoint loss change. The seven-row development fixture shows where a frozen first-order prediction fails, including a sign reversal when all rows are deleted.
+Influence functions fits a small regularized logistic model and compares local sample-weight derivatives with converged deletion refits. Its deletion paths refit at every grid node, so the numerical integral can be checked against the endpoint loss change. The seven-row development fixture shows where a frozen first-order prediction fails, including a sign reversal when all rows are deleted.
 ## What the derivative measures
 
 A sample-weight derivative answers a local question at a fitted model. Deleting a whole row is a finite perturbation; renormalizing the remaining rows changes how ridge competes with data loss. Those distinctions should be visible, not lost behind one influence ranking.
 
-InfluenceLab fits small fully regularized binary logistic models with Newton steps, unjittered Cholesky solves, Armijo backtracking and an explicit numerical convergence requirement. It reports the full Hessian, Cholesky factors, parameter directions, query-loss derivatives, adjoint agreement, solve residuals and all refit histories. There is no implicit intercept: a supplied constant column is regularized too.
+Influence functions fits small fully regularized binary logistic models with Newton steps, unjittered Cholesky solves, Armijo backtracking and an explicit numerical convergence requirement. It reports the full Hessian, Cholesky factors, parameter directions, query-loss derivatives, adjoint agreement, solve residuals and all refit histories. There is no implicit intercept: a supplied constant column is regularized too.
 
 ## Development fixture results
 
@@ -34,9 +34,9 @@ Three of those tests inspect every chart cell/position and the complete compress
 
 ## Finite-deletion path extension
 
-![Refitted finite deletion paths](https://raw.githubusercontent.com/midya8/influencelab/main/assets/deletion-paths.svg)
+![Refitted finite deletion paths](https://raw.githubusercontent.com/midya8/influence-functions/main/assets/deletion-paths.svg)
 
-`trace_deletion` continuously lowers selected weights from 1 to 0 while holding original N and ridge fixed. At each of 17 grid nodes it refits from zero, solves the current implicit parameter derivative and evaluates the query-loss derivative. Coarse Simpson/trapezoid levels reuse the fine-grid fits. [Derivation and input contract](https://github.com/midya8/influencelab/blob/main/PATHS.md) and [complete path reports](https://github.com/midya8/influencelab/blob/main/examples/path-demo.json) keep all 51 fits across the three groups, full Hessians/Cholesky/history, every derivative and every solve residual.
+`trace_deletion` continuously lowers selected weights from 1 to 0 while holding original N and ridge fixed. At each of 17 grid nodes it refits from zero, solves the current implicit parameter derivative and evaluates the query-loss derivative. Coarse Simpson/trapezoid levels reuse the fine-grid fits. [Derivation and input contract](https://github.com/midya8/influence-functions/blob/main/PATHS.md) and [complete path reports](https://github.com/midya8/influence-functions/blob/main/examples/path-demo.json) keep all 51 fits across the three groups, full Hessians/Cholesky/history, every derivative and every solve residual.
 
 | Selected rows | First-order loss delta | Actual endpoint delta | Simpson 16 delta | Integral minus endpoint |
 |---|---:|---:|---:|---:|
