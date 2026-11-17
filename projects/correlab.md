@@ -1,8 +1,8 @@
-# Correlab: what does the player know?
+# Joint play: what does the player know?
 
-Correlab audits a supplied joint play distribution in a small two-player general-sum game. It computes exact rational gains for fixed-action, recommendation-conditioned and full-swap deviations. A separate private-signal model lets a player pass or override through a trusted executor. No model is trained, and no equilibrium is searched for.
+Joint play audits a supplied joint play distribution in a small two-player general-sum game. It computes exact rational gains for fixed-action, recommendation-conditioned and full-swap deviations. A separate private-signal model lets a player pass or override through a trusted executor. No model is trained, and no equilibrium is searched for.
 
-[Public source](https://github.com/midya8/correlab) · Python 3.10+ · standard library only · MIT
+[Public source](https://github.com/midya8/joint-play) · Python 3.10+ · standard library only · MIT
 
 | Question | Command | Information model |
 | --- | --- | --- |
@@ -14,7 +14,7 @@ Correlab audits a supplied joint play distribution in a small two-player general
 
 ## Own-recommendation audits
 
-![Exact joint-play obedience controls](https://raw.githubusercontent.com/midya8/correlab/refs/heads/main/assets/obedience-audit.svg)
+![Exact joint-play obedience controls](https://raw.githubusercontent.com/midya8/joint-play/refs/heads/main/assets/obedience-audit.svg)
 
 Both players maximize their own payoff table. Each recommendation/action deviation retains every opponent-action probability, payoff difference and exact contribution. Full-swap optimization separates by recommendation: choose an action maximizing each row of weighted gains, then add the maxima. Reports keep every optimal choice, the number of optimal maps, the lexicographically first attaining map and all its joint-cell contributions.
 
@@ -27,11 +27,11 @@ The controls separate claims that a single regret number can hide:
 - A recommendation with mass 1/1000 has weighted gain 1/1000 and conditional gain one.
 - Three equally likely recommendations with row payoffs [0,0,1] have largest one-pair gain 1/3 and full-swap gain 2/3. An attaining map sends every recommendation to action 2.
 
-[Definitions, proof, schema and source notes](https://github.com/midya8/correlab/blob/main/DESIGN.md)
+[Definitions, proof, schema and source notes](https://github.com/midya8/joint-play/blob/main/DESIGN.md)
 
 ## Private pass-or-override signals
 
-![Exact private override-signal controls](https://raw.githubusercontent.com/midya8/correlab/refs/heads/main/assets/private-signals.svg)
+![Exact private override-signal controls](https://raw.githubusercontent.com/midya8/joint-play/refs/heads/main/assets/private-signals.svg)
 
 A trusted executor keeps the baseline action hidden. The player sees only a supplied private signal, then passes or overrides; the opponent stays at its baseline action. This is a unilateral decision problem, not CE of a changed game or a simultaneous-override model.
 
@@ -39,7 +39,7 @@ Every signal/action retains exact joint-cell contributions, conditional gains, z
 
 The deterministic own-action partition counts are 1, 2, 5 and 15 for one through four actions. All partitions are audited independently for each player, including every strict refinement relation. A developed cyclic control gives gains `0, 4/3, 5/3, 1, 2` for partitions `000, 001, 010, 011, 012`: the three two-signal partitions have different values. The Roth control gives gains `0, 11/120, 11/60, 11/30` as C's reveal probability rises `0, 1/4, 1/2, 1`.
 
-[Private-signal model, proofs and sources](https://github.com/midya8/correlab/blob/main/SIGNALS.md)
+[Private-signal model, proofs and sources](https://github.com/midya8/joint-play/blob/main/SIGNALS.md)
 
 ## Histories are not learning guarantees
 
@@ -52,7 +52,7 @@ A developed six-round history finishes with an empirical CCE while its last join
 From a checkout, using Python 3.10+:
 
 ```sh
-git clone https://github.com/midya8/correlab.git
+git clone https://github.com/midya8/joint-play.git
 cd correlab
 python -m correlab demo
 python -m correlab audit examples/audit-input.json
