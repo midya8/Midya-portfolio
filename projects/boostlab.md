@@ -1,8 +1,8 @@
-# BoostLab: fitted is not selected
+# Logit boosting: fitted is not selected
 
-[Training-path inspector](https://midya8.github.io/boostlab/) | [Source](https://github.com/midya8/boostlab) | [Method](https://github.com/midya8/boostlab/blob/main/DESIGN.md) | [Path derivation and reproduction](https://github.com/midya8/boostlab/blob/main/PATH.md)
+[Training-path inspector](https://midya8.github.io/logit-boosting/) | [Source](https://github.com/midya8/logit-boosting) | [Method](https://github.com/midya8/logit-boosting/blob/main/DESIGN.md) | [Path derivation and reproduction](https://github.com/midya8/logit-boosting/blob/main/PATH.md)
 
-The stump model fits 80 trees, but validation keeps the zero-tree constant. Its last checkpoint has better test accuracy and worse test logloss. BoostLab keeps both results visible, along with every intermediate prefix. It is a dependency-free Python implementation of binary gradient boosting, with mean-residual leaves by default and optional capped, L2-regularized Newton leaves. It implements established methods, not new boosting theory.
+The stump model fits 80 trees, but validation keeps the zero-tree constant. Its last checkpoint has better test accuracy and worse test logloss. Logit boosting keeps both results visible, along with every intermediate prefix. It is a dependency-free Python implementation of binary gradient boosting, with mean-residual leaves by default and optional capped, L2-regularized Newton leaves. It implements established methods, not new boosting theory.
 
 ## How fitting and selection differ
 
