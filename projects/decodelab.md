@@ -1,6 +1,6 @@
-# DecodeLab
+# Lm decoding
 
-DecodeLab makes decoding decisions visible: each temperature/filter stage, every bounded continuation and each beam-pruning step. It uses a small offline model so probability, model score and stopping rules can be checked separately, without a model API.
+LM decoding makes decoding decisions visible: each temperature/filter stage, every bounded continuation and each beam-pruning step. It uses a small offline model so probability, model score and stopping rules can be checked separately, without a model API.
 
 ## Normalize before choosing a nucleus
 
@@ -34,8 +34,8 @@ Exhaustive enumeration is exponential and bounded. Tiny tails can underflow; nea
 
 ## Links
 
-- [Interactive probability inspector](https://midya8.github.io/decodelab/)
-- [Source and tests](https://github.com/midya8/decodelab)
-- [Numerical and stopping contract](https://github.com/midya8/decodelab/blob/main/AUDIT.md)
-- [Implementation PR](https://github.com/midya8/decodelab/pull/2)
-- [Plain-language documentation review](https://github.com/midya8/decodelab/pull/4)
+- [Interactive probability inspector](https://midya8.github.io/lm-decoding/)
+- [Source and tests](https://github.com/midya8/lm-decoding)
+- [Numerical and stopping contract](https://github.com/midya8/lm-decoding/blob/main/AUDIT.md)
+- [Implementation PR](https://github.com/midya8/lm-decoding/pull/2)
+- [Plain-language documentation review](https://github.com/midya8/lm-decoding/pull/4)
