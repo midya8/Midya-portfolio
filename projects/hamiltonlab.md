@@ -1,8 +1,8 @@
-# HamiltonLab: sampler traces and exact-flow references
+# Hamiltonian monte carlo: sampler traces and exact-flow references
 
 Dependency-free Hamiltonian Monte Carlo with explicit leapfrog energy errors, reversible integrator checks, log-domain Metropolis decisions and complete transition histories. Analytic synthetic targets let finite-chain behavior be compared with known moments, without pretending the moments prove convergence.
 
-![Gaussian exploration and separated-mode failure](https://raw.githubusercontent.com/midya8/hamiltonlab/main/assets/chain-audit.svg)
+![Gaussian exploration and separated-mode failure](https://raw.githubusercontent.com/midya8/hamiltonian-monte-carlo/main/assets/chain-audit.svg)
 
 ## Choose an analysis
 
@@ -307,7 +307,7 @@ This extension independently derives marginal observable covariances from [Neal'
 
 ## Observable-window figure
 
-[Figure and reproducible renderer in HamiltonLab](https://github.com/midya8/hamiltonlab)
+[Figure and reproducible renderer in Hamiltonian monte carlo](https://github.com/midya8/hamiltonian-monte-carlo)
 
 ```sh
 python examples/render_windows.py --check --json /tmp/window-curves.json
@@ -319,4 +319,4 @@ Each line joins window-length summaries, not a sampled trajectory. All40 integer
 
 Renderer tests check all source N values/counterexamples, every rendered vertex against its data, shared-axis bounds, complete15x40 vertices, malformed/reordered/nonfinite inputs, XML label escaping, no mutation, deterministic committed SVG and JSON/check CLI. CI regenerates and byte-checks the figure. Renderer and SVG are standard-library outputs with no plotting dependency.
 
-Repository: [midya8/hamiltonlab](https://github.com/midya8/hamiltonlab).
+Repository: [midya8/Hamiltonian monte carlo](https://github.com/midya8/hamiltonian-monte-carlo).
