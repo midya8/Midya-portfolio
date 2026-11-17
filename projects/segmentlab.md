@@ -1,8 +1,8 @@
-# SegmentLab
+# Change points
 
-**A confident segmentation is not evidence that an event occurred.** SegmentLab is a dependency-free Python implementation of exact offline Bayesian Gaussian changepoint inference. It retains the full finite-partition evidence and marginals, not only one best cut list.
+**A confident segmentation is not evidence that an event occurred.** Change points is a dependency-free Python implementation of exact offline Bayesian Gaussian changepoint inference. It retains the full finite-partition evidence and marginals, not only one best cut list.
 
-[Repository and runnable examples](https://github.com/midya8/segmentlab) · [Technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md)
+[Repository and runnable examples](https://github.com/midya8/change-points) · [Technical reference](https://github.com/midya8/change-points/blob/main/DESIGN.md)
 
 ## The problem
 
@@ -33,13 +33,13 @@ The project makes these distinctions inspectable: model assumptions, prior norma
 | Four zeros, one segment, bounds [-.5,.5] | joint probability .955243142; product of the four marginals .832637014 | Multiplying marginals understates the joint event |
 | Two zeros, disjoint intervals [-1,-.1] and [.1,1] | event probability .003123780; conditional segment count two with probability one | The intervals require a cut; forcing one segment makes the event impossible |
 
-Every input, setting, fixture-selection provenance, conditional direction and raw numerical qualification is preserved in the [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md) and runnable audit JSON. These are selected development cases, not untouched-test performance, causal effects or real-data calibration.
+Every input, setting, fixture-selection provenance, conditional direction and raw numerical qualification is preserved in the [technical reference](https://github.com/midya8/change-points/blob/main/DESIGN.md) and runnable audit JSON. These are selected development cases, not untouched-test performance, causal effects or real-data calibration.
 
-[Known-shift and noise-assumption figure](https://github.com/midya8/segmentlab/blob/main/assets/partition-audit.svg) · [Complete-path versus marginal-average figure](https://github.com/midya8/segmentlab/blob/main/assets/joint-draw-audit.svg)
+[Known-shift and noise-assumption figure](https://github.com/midya8/change-points/blob/main/assets/partition-audit.svg) · [Complete-path versus marginal-average figure](https://github.com/midya8/change-points/blob/main/assets/joint-draw-audit.svg)
 
 ## Same-design replicate mixtures
 
-New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at 2 by 1.54 nats. `predictive` also returns CDF/survival and 5/50/95% quantiles for the same-design replicate mixture. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/segmentlab/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
+New replicate observations integrate partition and segment-mean uncertainty, then add fresh noise. In a selected five-point outlier fixture, a moment-matched Gaussian overstates density at 2 by 1.54 nats. `predictive` also returns CDF/survival and 5/50/95% quantiles for the same-design replicate mixture. This is a shape comparison using all fitted observations, not forecasting, leave-one-out evaluation, anomaly p-values or calibrated coverage. The [technical reference](https://github.com/midya8/change-points/blob/main/DESIGN.md#same-design-replicate-predictive-mixtures) preserves inputs, two-prior results and quantile residuals.
 
 ## Run it locally
 
