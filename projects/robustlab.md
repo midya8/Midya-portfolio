@@ -1,8 +1,8 @@
-# RobustLab: exact linear threat-set audits
+# Adversarial margins: exact linear threat-set audits
 
-[Source repository](https://github.com/midya8/robustlab)
+[Source repository](https://github.com/midya8/adversarial-margins)
 
-RobustLab computes worst-case margins and attacks for binary linear classifiers. It compares ordinary and robust logistic training, checks exact rational boundaries, and solves attacks inside explicit coordinate bounds. Each audit names its threat set and returns an attack that attains its minimum margin. It uses only Python's standard library.
+Adversarial margins computes worst-case margins and attacks for binary linear classifiers. It compares ordinary and robust logistic training, checks exact rational boundaries, and solves attacks inside explicit coordinate bounds. Each audit names its threat set and returns an attack that attains its minimum margin. It uses only Python's standard library.
 
 These reports concern the supplied linear score and threat set. They do not certify a neural network, an image preprocessing pipeline or an unspecified real-world attack.
 
@@ -94,4 +94,4 @@ python -m robustlab box-audit examples/model.json examples/data.json examples/bo
 PYTHONPATH=. python examples/render_box.py --check
 ```
 
-Bounds and inputs mean exact stored binary floats. The cap is 4,096 row-coordinate products, checked before rational conversion; each bounds JSON file uses the existing strict 1 MiB parser. No box-constrained training or separately rounded execution guarantee is claimed. See the [full derivation and dual inequalities](https://github.com/midya8/robustlab/blob/main/DESIGN.md) and [Duke's standard fractional-knapsack formulation](https://courses.cs.duke.edu/spring20/compsci330/lecture15scribe.pdf). All new code, synthetic data, test references and figures are independent implementations.
+Bounds and inputs mean exact stored binary floats. The cap is 4,096 row-coordinate products, checked before rational conversion; each bounds JSON file uses the existing strict 1 MiB parser. No box-constrained training or separately rounded execution guarantee is claimed. See the [full derivation and dual inequalities](https://github.com/midya8/adversarial-margins/blob/main/DESIGN.md) and [Duke's standard fractional-knapsack formulation](https://courses.cs.duke.edu/spring20/compsci330/lecture15scribe.pdf). All new code, synthetic data, test references and figures are independent implementations.
