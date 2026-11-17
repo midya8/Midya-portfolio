@@ -1,10 +1,10 @@
-# RiskLab: static and nested CVaR
+# Scenario risk: static and nested CVaR
 
-RiskLab compares static CVaR and nested conditional CVaR on a supplied finite scenario tree. It enumerates every full deterministic policy on that tree and shows terminal probabilities, tail weights and independently replayable certificates. The two objectives can select different policies.
+Scenario risk compares static CVaR and nested conditional CVaR on a supplied finite scenario tree. It enumerates every full deterministic policy on that tree and shows terminal probabilities, tail weights and independently replayable certificates. The two objectives can select different policies.
 
 Python 3.10+, no runtime dependencies, with a separate BigInt browser inspector.
 
-[Source](https://github.com/midya8/risklab) · [Review](https://github.com/midya8/risklab/pull/1)
+[Source](https://github.com/midya8/scenario-risk) · [Review](https://github.com/midya8/scenario-risk/pull/1)
 
 ## Static and nested policy choices
 
@@ -25,7 +25,7 @@ This example was selected at candidate 15 (zero-based) by the disclosed seed-170
 
 The `ignored_branch` tree reaches a decision on a low-loss branch with probability 1/2 and a loss-10 branch with probability 1/2. At confidence 1/2, the root tail ignores the low-loss branch. Both complete policies have nested root value 10, even though one chooses loss 2 where loss 1 is available. The full root-optimal tie set contains both. Backward Bellman selection chooses the locally optimal continuation.
 
-Nested CVaR is not strictly monotone. RiskLab does **not** claim that every nested-root-optimal policy has optimal continuations. It separately exposes the root-optimal set, a first-index Bellman-selected policy and reached-decision continuation regrets. Off-path choices remain distinct full policies, and zero nominal reach does not invent a conditional posterior.
+Nested CVaR is not strictly monotone. Scenario risk does **not** claim that every nested-root-optimal policy has optimal continuations. It separately exposes the root-optimal set, a first-index Bellman-selected policy and reached-decision continuation regrets. Off-path choices remain distinct full policies, and zero nominal reach does not invent a conditional posterior.
 
 ## Static and nested tail calculations
 
@@ -58,7 +58,7 @@ python tools/check_highs.py
 # Serve docs/ with any static server for the browser inspector.
 ```
 
-[Browser inspector](https://midya8.github.io/risklab/) · [Derivation, contract and source ledger](https://github.com/midya8/risklab/blob/main/METHOD.md)
+[Browser inspector](https://midya8.github.io/scenario-risk/) · [Derivation, contract and source ledger](https://github.com/midya8/scenario-risk/blob/main/METHOD.md)
 
 The browser lets you edit the complete exact input, select every full policy, inspect all leaf/node/continuation rows and nested chance-node certificates, and download the full report for native replay. Editing invalidates the old report and disables download until a successful run. All calculations stay local. No API, network model, paid service, private data or dataset is used.
 
@@ -76,4 +76,4 @@ Input is exactly `version`, `alpha` and `nodes`. Nodes are terminal losses, chan
 
 Bounds: 15 nodes, eight terminal leaves, four decision nodes, depth six and 64 full deterministic policies. Loss magnitude <=100. Rationals are exact non-boolean integers or integer pairs, raw components bounded by 1,000,000, positive denominators and combined normalized input-denominator LCM <=1,000,000. CLI run input is capped at 64 KiB, report verification at 8 MiB. Unknown/duplicate keys, floats, exponent numbers, nonfinite values and malformed trees fail without partial stdout. Representation counts do not bound integer bit complexity, bytes of output, wall time or RAM.
 
-The policy family is complete deterministic contingent choices on this supplied tree, not unrestricted randomized policies or a general risk-sensitive MDP. Cross-language/reference agreement shares mathematical assumptions and schema; it is evidence, not a formal proof. Exact arithmetic does not make a supplied tree true, calibrated or safe. No financial advice, financial performance, new CVaR algorithm, empirical ranking or real-world decision guarantee is claimed. MIT licensed. Original code, schema, controls and inspector; classical methods are attributed in [METHOD.md](https://github.com/midya8/risklab/blob/main/METHOD.md).
+The policy family is complete deterministic contingent choices on this supplied tree, not unrestricted randomized policies or a general risk-sensitive MDP. Cross-language/reference agreement shares mathematical assumptions and schema; it is evidence, not a formal proof. Exact arithmetic does not make a supplied tree true, calibrated or safe. No financial advice, financial performance, new CVaR algorithm, empirical ranking or real-world decision guarantee is claimed. MIT licensed. Original code, schema, controls and inspector; classical methods are attributed in [METHOD.md](https://github.com/midya8/scenario-risk/blob/main/METHOD.md).
