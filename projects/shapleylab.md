@@ -1,8 +1,8 @@
-# ShapleyLab: inspect the game behind feature credit
+# Shapley values: inspect the game behind feature credit
 
-[Public repository](https://github.com/midya8/shapleylab)
+[Public repository](https://github.com/midya8/shapley-values)
 
-ShapleyLab computes feature credit from small, declared background-replacement games. Inspect every coalition, hybrid input and marginal contribution in Python or the browser. The Python runtime has no dependencies and needs Python 3.10+; it provides a scalar callback API and a strict JSON CLI. No model training or paid APIs.
+Shapley values computes feature credit from small, declared background-replacement games. Inspect every coalition, hybrid input and marginal contribution in Python or the browser. The Python runtime has no dependencies and needs Python 3.10+; it provides a scalar callback API and a strict JSON CLI. No model training or paid APIs.
 
 ## Choose an allocation
 
@@ -16,7 +16,7 @@ All four use the declared reference background. They answer different allocation
 ## Boundary
 
 A local explanation is a choice of score function, point and reference game.
-ShapleyLab enumerates the empirical-background replacement game. It does not
+Shapley values enumerates the empirical-background replacement game. It does not
 learn a model or infer feature causality. The CLI evaluates only an explicitly
 serialized polynomial scorer; the Python API can wrap any deterministic finite
 scalar predictor. No network requests, dynamic imports or model downloads.
@@ -120,7 +120,7 @@ receives prediction minus baseline. Group ordering changes output order only.
 
 Source for the grouping concept and distinction from post-grouped sums:
 [Jullum, Redelmeier and Aas, groupShapley (2021)](https://ar5iv.labs.arxiv.org/html/2106.12228).
-ShapleyLab retains its declared empirical replacement contribution function;
+Shapley values retains its declared empirical replacement contribution function;
 it does not implement that paper's conditional-distribution estimation or claim
 new grouping theory.
 
@@ -202,7 +202,7 @@ SHAP, TreeSHAP, causal identification or efficiency advantage is claimed.
 
 ### Live replacement and permutation ledger (v0.2)
 
-[Live inspector](https://midya8.github.io/shapleylab/) exposes every background
+[Live inspector](https://midya8.github.io/shapley-values/) exposes every background
 replacement row, coalition value, weighted predecessor term and complete small
 player ordering. Native audits log actual calls to the original exact engine;
 cached paths add no score evaluations. The independent browser recomputes seven
@@ -221,7 +221,7 @@ credits through unrealistic singleton hybrids. The P=2 sample still assigns
 zero estimated error to a wrong dummy-looking credit. Efficiency alone validates
 neither. No new model, training, causal attribution, representative-background,
 confidence or explanation-quality claim.
-[Derivation, six sources and limits](https://github.com/midya8/shapleylab/blob/main/LEDGER.md).
+[Derivation, six sources and limits](https://github.com/midya8/shapley-values/blob/main/LEDGER.md).
 
 ## Two-level Owen allocation (0.3)
 
@@ -229,7 +229,7 @@ The same three-way product can assign `[1/3, 1/3, 1/3]` to individual features, 
 
 The two-level Owen mode keeps every background-replacement evaluation, member coefficient, quotient-group marginal and complete admissible ordering. Its native checker imports no generator and independently replays the declared synthetic score and full allocation report. The independent browser computes permutation-count weights, lets you edit the supplied model and partition, and downloads evidence that the native CLI can verify.
 
-[Live editable inspector](https://midya8.github.io/shapleylab/owen.html) · [Source and installed reproduction](https://github.com/midya8/shapleylab) · [Method, sources and boundaries](https://github.com/midya8/shapleylab/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapleylab/pull/2)
+[Live editable inspector](https://midya8.github.io/shapley-values/owen.html) · [Source and installed reproduction](https://github.com/midya8/shapley-values) · [Method, sources and boundaries](https://github.com/midya8/shapley-values/blob/main/OWEN.md) · [Reviewed change](https://github.com/midya8/shapley-values/pull/2)
 
 72 Python tests include 556 signed game/partition cases checked across 50,362 independent Fraction orderings, 14,668 unanimity-support/partition cases and separate primitive-mutation checks. 132 complete native/JavaScript reports agree, plus 206 broad-magnitude, half-even, subnormal and cancellation reports independently native-verify. An original BigInt binary64-unit summation helper fixes a pre-release double-rounding failure without widening tolerance. Actual Chrome checks all 12 original controls at 320/390/1280, 12 trusted completed native-verified downloads, and raw/sigmoid six-feature/32-background requests with 2017 evaluations and 720 paths each. Fresh installed-wheel checks preserve all 95 prior edit archives and original modes. All 24 feature/PR checks, 12 main checks and three Pages jobs passed. All ten deployed assets and the original root match public source; all 45 deployed browser states match the tested unmasked pixels.
 
