@@ -1,8 +1,8 @@
-# CalibrLab
+# Confidence calibration
 
 Fit a temperature on validation logits, then inspect the result on a separate test split. The Python CLI and library report accuracy, ECE, MCE, Brier score, logit-space NLL, reliability bins and optional paired bootstrap intervals. Python uses only the standard library.
 
-[Source and commands](https://github.com/midya8/calibrlab) | [Live score ledger](https://midya8.github.io/calibrlab/) | [Equations and input limits](https://github.com/midya8/calibrlab/blob/main/LEDGER.md)
+[Source and commands](https://github.com/midya8/confidence-calibration) | [Live score ledger](https://midya8.github.io/confidence-calibration/) | [Equations and input limits](https://github.com/midya8/confidence-calibration/blob/main/LEDGER.md)
 
 ## Two outcomes, not a promise of improvement
 
