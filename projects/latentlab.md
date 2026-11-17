@@ -1,12 +1,12 @@
-# LatentLab
+# Variational autoencoder
 
 A small Gaussian variational autoencoder in scalar Python. Compare held-out reconstruction with noisy prior samples, then inspect a separate importance-evidence report.
 
-- Repository: [midya8/latentlab](https://github.com/midya8/latentlab)
-- Derivations: [DESIGN.md](https://github.com/midya8/latentlab/blob/main/DESIGN.md)
-- Complete measured report and checkpoints: [examples/demo.json](https://github.com/midya8/latentlab/blob/main/examples/demo.json)
+- Repository: [midya8/Variational autoencoder](https://github.com/midya8/variational-autoencoder)
+- Derivations: [DESIGN.md](https://github.com/midya8/variational-autoencoder/blob/main/DESIGN.md)
+- Complete measured report and checkpoints: [examples/demo.json](https://github.com/midya8/variational-autoencoder/blob/main/examples/demo.json)
 
-![Six measured equal-axis scatter panels: prior samples and mean reconstructions](https://raw.githubusercontent.com/midya8/latentlab/main/assets/latent-audit.svg)
+![Six measured equal-axis scatter panels: prior samples and mean reconstructions](https://raw.githubusercontent.com/midya8/variational-autoencoder/main/assets/latent-audit.svg)
 
 ## The question
 
@@ -36,7 +36,7 @@ The no-KL arm has slightly lower deterministic reconstruction error yet worse pr
 
 The VAE is unchanged. A separate inference audit computes complete importance witnesses, with latent draws, joint/proposal log densities, normalized weights, log mean weight, mean log weight and ESS. Analytic-KL MC negative ELBO is returned separately because it is not the same finite-sample quantity as negative mean log weight. Only expectation bounds have the IWAE monotonic hierarchy; one random prefix need not improve.
 
-![Importance prefix estimates, exact Gaussian evidence and rare-atom failure control](https://raw.githubusercontent.com/midya8/latentlab/main/assets/importance-audit.svg)
+![Importance prefix estimates, exact Gaussian evidence and rare-atom failure control](https://raw.githubusercontent.com/midya8/variational-autoencoder/main/assets/importance-audit.svg)
 
 For the trained beta 1 anchor x=(1,0), shared Gaussian-noise prefixes of size 1,4,16,64 give log-evidence estimates -2.0464,0.7106,-0.2701,-0.9271. The true nonlinear evidence is not known. A positive log density is legal, but no finite random row is guaranteed to bound the true log evidence.
 
@@ -48,7 +48,7 @@ Finite binomial enumeration uses exact rational event probabilities, probability
 
 The importance audit has 15 tests and three figure tests, bringing the suite to 43 tests. Tests include exhaustive binary IID sequences through K=8, independent normal-density products, extreme-log underflow reports, exact-posterior constants, expected ELBO/posterior-KL identities, nonmutating inference, strict CLI validation and the real neural prefix fixture. The importance figure checks all 48 numeric cells/positions, complete witness metadata and an undisplayed log-joint change. The five-module v0.2 wheel reproduces both demos outside checkout; original demo output and original SVG are byte-identical.
 
-See [IMPORTANCE.md](https://github.com/midya8/latentlab/blob/main/IMPORTANCE.md). Standard importance/IWAE formulas credit Burda, Grosse & Salakhutdinov, [Importance Weighted Autoencoders](https://arxiv.org/abs/1509.00519), Section 3 and Theorem 1. This is inference auditing, not IWAE training, a confidence interval, a new estimator, an ESS accuracy certificate or exact neural evidence.
+See [IMPORTANCE.md](https://github.com/midya8/variational-autoencoder/blob/main/IMPORTANCE.md). Standard importance/IWAE formulas credit Burda, Grosse & Salakhutdinov, [Importance Weighted Autoencoders](https://arxiv.org/abs/1509.00519), Section 3 and Theorem 1. This is inference auditing, not IWAE training, a confidence interval, a new estimator, an ESS accuracy certificate or exact neural evidence.
 
 ## Verification
 
