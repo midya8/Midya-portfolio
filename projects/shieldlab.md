@@ -1,10 +1,10 @@
-# ShieldLab
+# Safety games
 
-ShieldLab solves three small protocol-game objectives: stay safe forever, reach a safe goal for the first time, or stay safe while visiting a target infinitely often. These are separate inspectors with different stopping rules.
+Safety games solves three small protocol-game objectives: stay safe forever, reach a safe goal for the first time, or stay safe while visiting a target infinitely often. These are separate inspectors with different stopping rules.
 
 ## Safety: a safe next step can still lose
 
-[Source](https://github.com/midya8/shieldlab) | [Interactive inspector](https://midya8.github.io/shieldlab/) | [Exact method and seven-source ledger](https://github.com/midya8/shieldlab/blob/main/METHOD.md)
+[Source](https://github.com/midya8/safety-games) | [Interactive inspector](https://midya8.github.io/safety-games/) | [Exact method and seven-source ledger](https://github.com/midya8/safety-games/blob/main/METHOD.md)
 
 The safety inspector works on small, hand-written agent protocols. Every synchronous fixed-point obligation, winning controller move, losing rank and branching invariant/counterstrategy graph is visible. Changing only who controls a state flips the result: one-step-safe actions need not preserve safety forever. Independent bitmask Python and explicit-set JavaScript, plus a separate dual-attractor and exhaustive positional-policy checker.
 
@@ -16,11 +16,11 @@ The fast action reaches a currently safe pending state, but the environment can 
 
 Winning proof graphs fix a controller policy and retain every environment move. Losing proof graphs fix a rank-decreasing environment counterpolicy and retain every controller move, stopping at unsafe states. Ranks bound forced failure; canonical first choices are not promised optimal. A five-step forced chain, safe environment cycle, indefinite waiting and already-unsafe root make the boundaries explicit.
 
-[PR and complete implementation history](https://github.com/midya8/shieldlab/pull/1). Original code and controls, dependency-free native runtime, no model API or private dataset. The method records standard safety-game theory, a conflicting dead-end convention, shielding abstraction requirements and the limits of this small model. Tests are evidence rather than proof.
+[PR and complete implementation history](https://github.com/midya8/safety-games/pull/1). Original code and controls, dependency-free native runtime, no model API or private dataset. The method records standard safety-game theory, a conflicting dead-end convention, shielding abstraction requirements and the limits of this small model. Tests are evidence rather than proof.
 
 ## Reach-avoid: safe waiting is not arrival
 
-The reach-before-unsafe inspector separates safe waiting from forced arrival. It exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/shieldlab/reachavoid.html), [source and reproduction](https://github.com/midya8/shieldlab), [contract and eight-source ledger](https://github.com/midya8/shieldlab/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/shieldlab/pull/2).
+The reach-before-unsafe inspector separates safe waiting from forced arrival. It exposes every synchronous attractor obligation, exact minimum worst-case first-goal bound and complete ranked strategy or target-avoiding counterstrategy. Every original move and every positional controller assignment remains inspectable: a winning successor can still stall, while a slower fixed policy can still win. [Live first-goal inspector](https://midya8.github.io/safety-games/reachavoid.html), [source and reproduction](https://github.com/midya8/safety-games), [contract and eight-source ledger](https://github.com/midya8/safety-games/blob/main/REACHAVOID.md), [reviewed change](https://github.com/midya8/safety-games/pull/2).
 
 The reach-avoid release checked 24 native tests on Python 3.10-3.13, preserving all 8 original tests. Independent deterministic strategy-pair simulation checks 324 two-state and 32,928 three-state cases; 120 seeded larger cases and the 729-policy boundary have full replay. That release checked six Node/Chrome tests, including 457 complete native/JavaScript reports, 1,329 policies and 6,291 root outcomes. Actual Chrome drills every policy/root across 12 controls at 320/390/1280 and verifies 12 event-confirmed downloaded reports through the native CLI. Fresh installed wheels on each Python version reproduce 6 original and 12 new reports through two entrypoints, check 8 module origins and reject 20 forged CLI records. These are bounded release checks, not a proof or scaling benchmark.
 
@@ -31,7 +31,7 @@ Terminal safe goals stop the play on first hit; empty targets lose and unsafe ro
 
 One acknowledgement is not a promise of repeated acknowledgements. The separate **safe recurrence inspector** checks that a supplied finite game stays safe forever and visits a target infinitely often, against every environment choice. Targets are live, not terminal: their outgoing moves still count. The old safety and first-goal inspectors retain their meanings.
 
-[Inspect safe recurrence](https://midya8.github.io/shieldlab/recurrence.html) | [Source](https://github.com/midya8/shieldlab) | [Exact method and inspected sources](https://github.com/midya8/shieldlab/blob/main/RECURRENCE.md)
+[Inspect safe recurrence](https://midya8.github.io/safety-games/recurrence.html) | [Source](https://github.com/midya8/safety-games) | [Exact method and inspected sources](https://github.com/midya8/safety-games/blob/main/RECURRENCE.md)
 
 - Every nested greatest/least fixed-point round and successor obligation, including unchanged rounds and outer restarts.
 - Both players' complete positional-policy atlases, every root outcome, all winning policy IDs and canonical labeled unsafe or nonempty-cycle failure witnesses.
