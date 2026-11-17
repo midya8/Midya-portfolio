@@ -6,7 +6,7 @@ test('literal conjunctive matching agrees with independent per-field oracle',()=
  for(const q of ['component scales','cycle certificates'])assert.ok(search.select(data.projects,q).some(p=>p.id==='alignlab'));
  for(const query of queries){
   const words=query.normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().trim().split(/\s+/).filter(Boolean);
-  const expected=data.projects.filter(p=>{const text=[p.id,p.title,p.excerpt,...p.headings,...(p.terms||[])].join(' ').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase();return words.every(w=>text.indexOf(w)!==-1);}).map(p=>p.id);
+  const expected=data.projects.filter(p=>{const text=[p.id,p.repository||'',p.title,p.excerpt,...p.headings,...(p.terms||[])].join(' ').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase();return words.every(w=>text.indexOf(w)!==-1);}).map(p=>p.id);
   assert.deepEqual(search.select(data.projects,query).map(p=>p.id),expected,query);
  }
  for(const q of['rank fusion','source prefixes'])assert.ok(search.select(data.projects,q).some(p=>p.id==='retrievalbench'));
@@ -21,6 +21,12 @@ test('literal conjunctive matching agrees with independent per-field oracle',()=
  for(const q of['occurrence quotas','finite suppression'])assert.ok(search.select(data.projects,q).some(p=>p.id==='promptguard'));
  assert.ok(search.select(data.projects,'ctc').some(p=>p.id==='ctclab'));
  assert.ok(search.select(data.projects,'fairness').some(p=>p.id==='branchlab'));
+});
+test('current repository labels and historical IDs both remain searchable',()=>{
+ const p=data.projects.find(p=>p.id==='absorblab');
+ assert.equal(p.repository,'absorbing-chains');
+ assert.ok(search.select(data.projects,'absorbing-chains').includes(p));
+ assert.ok(search.select(data.projects,'absorblab').includes(p));
 });
 test('accent normalization, empty query and exact source order',()=>{
  assert.equal(search.fold('CAFÉ'),'cafe');assert.equal(search.fold('Cafe\u0301'),'cafe');
