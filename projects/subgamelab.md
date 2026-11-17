@@ -1,8 +1,8 @@
-# SubgameLab: complete plans and subgame checks
+# Subgame perfection: complete plans and subgame checks
 
-SubgameLab checks small, supplied two-player sequential games with exact rational arithmetic. It compares root one-node stability, full-player pure Nash equilibrium and subgame perfection, retaining off-path choices and tied contingent plans.
+Subgame perfection checks small, supplied two-player sequential games with exact rational arithmetic. It compares root one-node stability, full-player pure Nash equilibrium and subgame perfection, retaining off-path choices and tied contingent plans.
 
-[Live inspector](https://midya8.github.io/subgamelab/) · [Source](https://github.com/midya8/subgamelab) · [Reviewed implementation](https://github.com/midya8/subgamelab/pull/1) · [Exact contract](https://github.com/midya8/subgamelab/blob/main/CONTRACT.md)
+[Live inspector](https://midya8.github.io/subgame-perfection/) · [Source](https://github.com/midya8/subgame-perfection) · [Reviewed implementation](https://github.com/midya8/subgame-perfection/pull/1) · [Exact contract](https://github.com/midya8/subgame-perfection/blob/main/CONTRACT.md)
 
 ## Empty threats and root Nash
 
@@ -54,7 +54,7 @@ The exhaustive class fixes a particular two-decision chain topology, not all fin
 
 ## Original implementation
 
-The original [PR1](https://github.com/midya8/subgamelab/pull/1) merged after all 12 latest feature/PR jobs passed. Its merge `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgamelab/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgamelab/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320 px boundary witness tables were inspected.
+The original [PR1](https://github.com/midya8/subgame-perfection/pull/1) merged after all 12 latest feature/PR jobs passed. Its merge `63cea0d5493f98c88a8cd9eedc38fe29110b5784` retains initial commit `e476b84101157f0917e6f1c1f3524e53ca75b3a1` and feature `0585e52f79b161645830f05dd0fd963530b1db96`. All 27 public files match the tested source. [Merged-main checks](https://github.com/midya8/subgame-perfection/actions/runs/42934221670) and [Pages deployment](https://github.com/midya8/subgame-perfection/actions/runs/42934221719) passed. Five live assets match merged source, the complete deployed Chrome workflow passes, and all 48 unmasked deployed captures match local pixels. Actual desktop hero, phone chance-zero verdicts and 320 px boundary witness tables were inspected.
 
 ## Scope and credited theory
 
@@ -62,4 +62,4 @@ Two players, at most six binary player decisions, two binary chance nodes and 17
 
 [Osborne's textbook chapter](https://www.economics.utoronto.ca/osborne/igt/igtChapter5.pdf), [Tamuz's notes](https://tamuz.caltech.edu/teaching/ps172/lectures.pdf), [MIT refinement lectures](https://ocw.mit.edu/courses/14.126-game-theory-spring-2024/mit14_126_s24_lecture_2_refinements.pdf) and [Maryland's game-tree lecture](https://www.cs.umd.edu/~hajiagha/474GT15/Lecture12122013.pdf) ground the finite model and continuation requirements. [Knight's educational chapter](https://vknight.org/gtb/chapters/subgame-perfection/), [Gambit's algorithms](https://gambitproject.readthedocs.io/en/stable/algorithms.html) and [Nashpy's best-response API](https://nashpy.readthedocs.io/en/stable/how-to/check-best-responses.html) acknowledge existing teaching and software. Subgame perfection is classical Selten theory, not our invention. Full source ledger and API distinctions are in SOURCES.md.
 
-GameLab studies zero-sum matrices; Correlab studies one-shot advice/obedience; AuctionLab studies allocation incentives. SubgameLab instead audits sequential contingent plans, full-player versus root-local deviations and credibility in every finite perfect-information subtree. Original bounded implementation and developed controls by Midya Rahmani; no external code, figures, datasets or weights copied.
+GameLab studies zero-sum matrices; Correlab studies one-shot advice/obedience; AuctionLab studies allocation incentives. Subgame perfection instead audits sequential contingent plans, full-player versus root-local deviations and credibility in every finite perfect-information subtree. Original bounded implementation and developed controls by Midya Rahmani; no external code, figures, datasets or weights copied.
