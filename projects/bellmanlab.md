@@ -1,16 +1,16 @@
-# BellmanLab
+# Mdp planning
 
-[Repository](https://github.com/midya8/bellmanlab)
+[Repository](https://github.com/midya8/mdp-planning)
 
-BellmanLab plans in small supplied discounted Markov decision processes. Inspect exact values and stopping certificates, rectangular scenario uncertainty, or stationary randomized policies under one or two expected-cost budgets. Python 3.10+, standard library only. The dynamics are supplied, not learned from samples.
+MDP planning plans in small supplied discounted Markov decision processes. Inspect exact values and stopping certificates, rectangular scenario uncertainty, or stationary randomized policies under one or two expected-cost budgets. Python 3.10+, standard library only. The dynamics are supplied, not learned from samples.
 
 | Question | Start here | Limit |
 | --- | --- | --- |
 | Is the value accurate enough to stop? | [Residual example](#a-small-residual-can-hide-a-large-value-error) | A raw residual is not a value-error tolerance. |
 | What changes under scenario uncertainty? | [Rectangular planning](#finite-scenario-rectangular-robust-planning) | Nature may choose a different scenario row at each state/action. |
 | Has each proposed policy actually been evaluated? | [Nested policy iteration](#exact-nested-controller-and-adversary-policy-iteration) | Inner and outer caps have different meanings. |
-| How does one budget change the policy? | [One-budget inspector](https://midya8.github.io/bellmanlab/) | Episode mixtures are not local-row averages. |
-| Can one policy meet two budgets at once? | [Two-budget inspector](https://midya8.github.io/bellmanlab/coupled.html) | Expected-cost bounds are not per-trajectory guarantees. |
+| How does one budget change the policy? | [One-budget inspector](https://midya8.github.io/mdp-planning/) | Episode mixtures are not local-row averages. |
+| Can one policy meet two budgets at once? | [Two-budget inspector](https://midya8.github.io/mdp-planning/coupled.html) | Expected-cost bounds are not per-trajectory guarantees. |
 
 ## One expected-cost budget
 
@@ -20,7 +20,7 @@ The new dependency-free Python API and CLI use exact fractions; a separate check
 
 The deployed five assets and root are byte-exact to merged source. Real Chrome checks 36 reports at 1280, 390 and 320 pixels, every policy/vertex selection in those controls, 12 completed JSON downloads verified by the native checker with selected unmasked visual checks. This is classical normalized discounted occupancy-measure planning for one supplied expected-cost constraint, limited to four states and eight total actions. It is not a new algorithm, learned model, scale benchmark, per-trajectory safety guarantee or combination with the separate rectangular-robust planner. Shared theory/schema/tie conventions mean agreement is evidence, not a formal proof.
 
-[Live occupancy inspector](https://midya8.github.io/bellmanlab/) · [Source](https://github.com/midya8/bellmanlab) · [Exact contract and source ledger](https://github.com/midya8/bellmanlab/blob/main/OCCUPANCY.md) · [Pull request](https://github.com/midya8/bellmanlab/pull/1)
+[Live occupancy inspector](https://midya8.github.io/mdp-planning/) · [Source](https://github.com/midya8/mdp-planning) · [Exact contract and source ledger](https://github.com/midya8/mdp-planning/blob/main/OCCUPANCY.md) · [Pull request](https://github.com/midya8/mdp-planning/pull/1)
 
 
 
@@ -34,9 +34,9 @@ Reproduction retains the original and one-budget workflows: 103 Python tests, ei
 
 This is exact classical occupancy-measure planning for a supplied discounted MDP, limited to one-to-four states, eight total actions and exactly two expected-cost ceilings. Budgets are expectations under the supplied initial distribution, not trajectory caps or real-world safety guarantees. It is not learned, scalable, combined with the separate robust planner, or a new algorithm. Shared mathematical assumptions mean cross-checks are evidence rather than formal proof.
 
-[Two-budget inspector](https://midya8.github.io/bellmanlab/coupled.html) · [Source](https://github.com/midya8/bellmanlab) · [Derivation, limits and source ledger](https://github.com/midya8/bellmanlab/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/bellmanlab/pull/2)
+[Two-budget inspector](https://midya8.github.io/mdp-planning/coupled.html) · [Source](https://github.com/midya8/mdp-planning) · [Derivation, limits and source ledger](https://github.com/midya8/mdp-planning/blob/main/COUPLED.md) · [Reviewed change](https://github.com/midya8/mdp-planning/pull/2)
 
-![Bellman residual versus certified and actual value error](https://raw.githubusercontent.com/midya8/bellmanlab/main/assets/bellman-audit.svg)
+![Bellman residual versus certified and actual value error](https://raw.githubusercontent.com/midya8/mdp-planning/main/assets/bellman-audit.svg)
 
 ## A small residual can hide a large value error
 
@@ -74,7 +74,7 @@ Only finite, fully observed, discounted supplied models are supported. The certi
 
 ## Finite-scenario rectangular robust planning
 
-![Nominal and robust values, plus the difference between global and rectangular scenario uncertainty](https://raw.githubusercontent.com/midya8/bellmanlab/main/assets/robust-audit.svg)
+![Nominal and robust values, plus the difference between global and rectangular scenario uncertainty](https://raw.githubusercontent.com/midya8/mdp-planning/main/assets/robust-audit.svg)
 
 `robust_audit` and `robust_value_iteration` accept `{"version":1,"scenarios":[model0,model1,...]}`. Each scenario is a complete ordinary model in the schema above. Scenarios must share the discount and the number of states/actions at every state. The set contains 1..8 scenarios and at most 2,048 stored transition entries across all scenarios; the combined normalized model-denominator LCM, including initial values when supplied, is capped at 1,000,000. Each scenario still obeys all ordinary limits. The existing 256 KiB JSON-file and 256-sweep caps apply.
 
@@ -114,7 +114,7 @@ The rectangular robust-DP formulation is attributed to [Iyengar, Robust Dynamic 
 
 ## Exact nested controller and adversary policy iteration
 
-![Evaluated versus proposed controller and nature policies under separate caps](https://raw.githubusercontent.com/midya8/bellmanlab/main/assets/robust-policy-audit.svg)
+![Evaluated versus proposed controller and nature policies under separate caps](https://raw.githubusercontent.com/midya8/mdp-planning/main/assets/robust-policy-audit.svg)
 
 `robust_evaluate_policy(problem, policy, initial_nature=None, iterations=64)` solves the supplied controller's worst-case value by exact adversary policy iteration. Each nature policy selects one scenario row per state for the controller's action. The solver uses the existing rational Gauss-Jordan evaluator, checks every linear equation, audits all scenario values, and changes nature only for a strict minimizing improvement. It retains the current scenario on every exact tie. A stable nature policy has zero fixed-controller robust residual and gives the exact robust value.
 
@@ -148,7 +148,7 @@ This is exact supplied rectangular-model planning when stability is reached, not
 
 ## Current source and live checks
 
-The later source review checked commit `f0e753e0eb803d12a8017695f59f435dcd73b2c1`: all 62 public source files matched the reviewed bytes, all 103 Python and eight prescribed Node/Chrome tests passed, installed-wheel checks passed, and the three SVGs reproduced. [Merged-main checks](https://github.com/midya8/bellmanlab/actions/runs/43532936456) and [Pages deployment](https://github.com/midya8/bellmanlab/actions/runs/43532935735) completed successfully, including every job and step. These are source-release checks, not a claim that this later showcase edit has deployed.
+The later source review checked commit `f0e753e0eb803d12a8017695f59f435dcd73b2c1`: all 62 public source files matched the reviewed bytes, all 103 Python and eight prescribed Node/Chrome tests passed, installed-wheel checks passed, and the three SVGs reproduced. [Merged-main checks](https://github.com/midya8/mdp-planning/actions/runs/43532936456) and [Pages deployment](https://github.com/midya8/mdp-planning/actions/runs/43532935735) completed successfully, including every job and step. These are source-release checks, not a claim that this later showcase edit has deployed.
 
 All ten live assets matched that source. The one-budget browser checks covered 36 reports, 126 policy selections and 75 vertex selections. The two-budget checks covered 36 control reports, three dense reports, 108 policy selections and 117 vertex selections. Each inspector produced twelve trusted completed downloads, checked byte-for-byte and replayed by its native checker. Complete browser/native reports agreed on 861 one-budget and 822 two-budget inputs.
 
