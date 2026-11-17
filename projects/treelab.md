@@ -1,8 +1,8 @@
-# TreeLab: inspectable trees and bounded ensemble search
+# Decision trees: inspectable trees and bounded ensemble search
 
-TreeLab fits regression trees in NumPy, saves their pruning paths and keeps stronger same-fit controls in the report. Its browser pages let you inspect frozen one-feature responses, find the closest allowed input for a single tree, and examine the bounds of an unfinished ensemble search. The model counterfactuals describe the predictor, not how to improve wine.
+Decision trees fits regression trees in NumPy, saves their pruning paths and keeps stronger same-fit controls in the report. Its browser pages let you inspect frozen one-feature responses, find the closest allowed input for a single tree, and examine the bounds of an unfinished ensemble search. The model counterfactuals describe the predictor, not how to improve wine.
 
-[Response explorer](https://midya8.github.io/treelab/) · [Single-tree counterfactuals](https://midya8.github.io/treelab/counterfactual.html) · [Ensemble search inspector](https://midya8.github.io/treelab/forest.html)
+[Response explorer](https://midya8.github.io/decision-trees/) · [Single-tree counterfactuals](https://midya8.github.io/decision-trees/counterfactual.html) · [Ensemble search inspector](https://midya8.github.io/decision-trees/forest.html)
 
 ## Whole-ensemble search with a visible objective gap
 
@@ -14,7 +14,7 @@ All 36 requests cross original CSV rows 1, 8 and 11, output bands [6,7]/[7,8], a
 
 The ensemble inspector shows every status, exact rational bounds, full input, all 32 member outputs/leaf IDs, budget comparisons and source hashes. Exact objective bounds apply to stored binary64 costs and the single-input NumPy ensemble prediction route. They do not make training arithmetic exact or establish causal actionability, plausible chemistry, uncertainty coverage or scalability.
 
-[Search method, proof scope and sources](https://github.com/midya8/treelab/blob/main/FOREST_SEARCH.md)
+[Search method, proof scope and sources](https://github.com/midya8/decision-trees/blob/main/FOREST_SEARCH.md)
 
 ## Closest allowed input for one tree
 
@@ -24,11 +24,11 @@ Strict right branches use `nextafter`, not an arbitrary epsilon. Exact rational 
 
 The fixed 36 requests combine rows 1, 8 and 11, bands [6,7]/[7,8]/[9,9], and four policies: all features, alcohol only, alcohol immutable, and all features immutable. Domains and reciprocal-range weights come only from fitting rows. For row 1, reaching [7,8] changes fixed acidity, volatile acidity and alcohol, with output 7.647058823529412 and cost about 0.27508758. Alcohol alone cannot reach that band; no leaf outputs 9. These are properties of the predictor, not winemaking instructions or an ensemble optimum.
 
-[Counterfactual method, CLI and limits](https://github.com/midya8/treelab/blob/main/COUNTERFACTUALS.md)
+[Counterfactual method, CLI and limits](https://github.com/midya8/decision-trees/blob/main/COUNTERFACTUALS.md)
 
 ## One-feature response partitions
 
-![Full alcohol response slices and all-feature attainable outputs](https://github.com/midya8/treelab/raw/refs/heads/main/assets/sweep-audit.svg)
+![Full alcohol response slices and all-feature attainable outputs](https://github.com/midya8/decision-trees/raw/refs/heads/main/assets/sweep-audit.svg)
 
 The first three historical test rows, CSV indices 1, 8 and 11, all eleven features and both frozen models give 66 slices and 1,028 leaf segments. Domains use fitting-only min/max. Rows 1 and 8 are exact copies and retain identical curves. There is no refit or new accuracy result.
 
@@ -40,11 +40,11 @@ An opposite-stump control checks why separate member extrema are insufficient: e
 
 The response explorer displays every interval, member output/leaf, min/max witness and full input. Keyboard arrows, Previous/Next and the interval list offer alternate controls. Copy denial has an explicit fallback. All three browser pages display complete stored reports, with local JSON downloads and source hashes. No accounts, analytics, remote inference or uploads.
 
-[Response method and finite-domain semantics](https://github.com/midya8/treelab/blob/main/SWEEPS.md) · [Explorer mechanics](https://github.com/midya8/treelab/blob/main/EXPLORER.md)
+[Response method and finite-domain semantics](https://github.com/midya8/decision-trees/blob/main/SWEEPS.md) · [Explorer mechanics](https://github.com/midya8/decision-trees/blob/main/EXPLORER.md)
 
 ## Group-bootstrap bagging and OOB support
 
-![Fixed prefix selection, OOB coverage and same-fit controls](https://github.com/midya8/treelab/raw/refs/heads/main/assets/bagging-audit.svg)
+![Fixed prefix selection, OOB coverage and same-fit controls](https://github.com/midya8/decision-trees/raw/refs/heads/main/assets/bagging-audit.svg)
 
 For each tree, draw 2,376 fitting-feature groups 2,376 times with replacement, then expand each drawn group with multiplicity. Grown members use minimum leaf size 5, depth limit 20 and all feature columns. Seed 20261108 and prefixes [1,4,16,32] are fixed before the run. Validation MSE selects 32 trees, without validation refitting. Expanded row counts range from 2,856 to 2,951; leaf size counts multiplicity.
 
@@ -52,11 +52,11 @@ OOB excludes an entire exact-feature group. Zero votes mean null. Prefixes 1/4/1
 
 All group draws, complete trees, fitting/validation/test member predictions and OOB vote counts are saved. The ensemble is deterministic gzip JSON with zero timestamp; compression changes storage, not predictions.
 
-[Bagging implementation and assumptions](https://github.com/midya8/treelab/blob/main/BAGGING.md)
+[Bagging implementation and assumptions](https://github.com/midya8/decision-trees/blob/main/BAGGING.md)
 
 ## Data, split and pruning
 
-![Real-data controls, the full pruning path and one complete prediction route](https://github.com/midya8/treelab/raw/e9a7aed4d140d15233324045089f58d8152bf943/assets/tree-audit.svg)
+![Real-data controls, the full pruning path and one complete prediction route](https://github.com/midya8/decision-trees/raw/e9a7aed4d140d15233324045089f58d8152bf943/assets/tree-audit.svg)
 
 The unmodified UCI white-wine CSV contains 4,898 rows, eleven physicochemical features and an ordinal expert score. The original names file, SHA-256 and data attribution are bundled. Quality is not a price, safety or causal target. There is no official train/test split.
 
@@ -87,7 +87,7 @@ Response and counterfactual tests use independent leaf-box intersections or Cart
 
 The installed wheel exercises nine modules and nineteen CLI modes outside the checkout, including real-data refits and complete saved-report comparisons. NumPy 2.2.6 is pinned. Runtime fitting and analysis need no network service.
 
-[Source, setup and CLI commands](https://github.com/midya8/treelab) · [Pruning method and sources](https://github.com/midya8/treelab/blob/main/METHOD.md)
+[Source, setup and CLI commands](https://github.com/midya8/decision-trees) · [Pruning method and sources](https://github.com/midya8/decision-trees/blob/main/METHOD.md)
 
 ## Scope and attribution
 
