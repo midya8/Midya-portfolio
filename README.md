@@ -14,6 +14,7 @@ I learn by building things myself. Most of the repos below are small, self-conta
 - [preference-optimization](https://github.com/midya8/preference-optimization): a tiny RLHF loop with a Bradley-Terry reward model and a KL-regularised policy.
 - [ppo-numpy](https://github.com/midya8/ppo-numpy): PPO for CartPole in NumPy.
 - [mamba-lite](https://github.com/midya8/mamba-lite): A Mamba-style selective SSM with a hand-written NumPy autograd engine, trained on a selective copy task where the fixed-rate ablation never completes a single sequence. ([case study](projects/mamba-lite.md))
+- [ddpm-mini](https://github.com/midya8/ddpm-mini): A diffusion model trained from scratch in NumPy, scored with 1-NN separability, where the stochastic samplers pass and deterministic DDIM visibly does not. ([case study](projects/ddpm-mini.md))
 - [evalforge](https://github.com/midya8/evalforge): local evaluation for LLM and agent outputs, with regression gates for CI.
 - [agenttrace](https://github.com/midya8/agenttrace): validation, analysis and HTML reports for agent execution traces.
 
