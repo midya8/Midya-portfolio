@@ -16,6 +16,7 @@ I learn by building things myself. Most of the repos below are small, self-conta
 - [mamba-lite](https://github.com/midya8/mamba-lite): A Mamba-style selective SSM with a hand-written NumPy autograd engine, trained on a selective copy task where the fixed-rate ablation never completes a single sequence. ([case study](projects/mamba-lite.md))
 - [ddpm-mini](https://github.com/midya8/ddpm-mini): A diffusion model trained from scratch in NumPy, scored with 1-NN separability, where the stochastic samplers pass and deterministic DDIM visibly does not. ([case study](projects/ddpm-mini.md))
 [realnvp-numpy](https://github.com/midya8/realnvp-numpy): A normalizing flow trained from scratch in NumPy, with exact likelihood, hand-written backprop, and the same 1-NN check as ddpm-mini.
+[lstm-numpy](https://github.com/midya8/lstm-numpy): A character-level LSTM trained from scratch in NumPy with hand-written BPTT, which closes 195 of 200 sampled brackets where an n-gram closes 57.
 - [evalforge](https://github.com/midya8/evalforge): local evaluation for LLM and agent outputs, with regression gates for CI.
 - [agenttrace](https://github.com/midya8/agenttrace): validation, analysis and HTML reports for agent execution traces.
 
