@@ -17,6 +17,7 @@ I learn by building things myself. Most of the repos below are small, self-conta
 - [ddpm-mini](https://github.com/midya8/ddpm-mini): A diffusion model trained from scratch in NumPy, scored with 1-NN separability, where the stochastic samplers pass and deterministic DDIM visibly does not. ([case study](projects/ddpm-mini.md))
 [realnvp-numpy](https://github.com/midya8/realnvp-numpy): A normalizing flow trained from scratch in NumPy, with exact likelihood, hand-written backprop, and the same 1-NN check as ddpm-mini.
 [lstm-numpy](https://github.com/midya8/lstm-numpy): A character-level LSTM trained from scratch in NumPy with hand-written BPTT, which closes 195 of 200 sampled brackets where an n-gram closes 57.
+[tsne-numpy](https://github.com/midya8/tsne-numpy): t-SNE written from scratch in NumPy with hand-written gradients, keeping 0.55 of each point's ten nearest neighbors where PCA-2 keeps 0.12.
 - [evalforge](https://github.com/midya8/evalforge): local evaluation for LLM and agent outputs, with regression gates for CI.
 - [agenttrace](https://github.com/midya8/agenttrace): validation, analysis and HTML reports for agent execution traces.
 
