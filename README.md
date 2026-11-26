@@ -19,6 +19,7 @@ I learn by building things myself. Most of the repos below are small, self-conta
 [lstm-numpy](https://github.com/midya8/lstm-numpy): A character-level LSTM trained from scratch in NumPy with hand-written BPTT, which closes 195 of 200 sampled brackets where an n-gram closes 57.
 [tsne-numpy](https://github.com/midya8/tsne-numpy): t-SNE written from scratch in NumPy with hand-written gradients, keeping 0.55 of each point's ten nearest neighbors where PCA-2 keeps 0.12.
 [ica-numpy](https://github.com/midya8/ica-numpy): FastICA written from scratch in NumPy, unmixing four sources from four random mixtures at 0.9997 mean correlation where PCA keeps 0.53.
+[kalman-numpy](https://github.com/midya8/kalman-numpy): A constant-velocity Kalman filter, RTS smoother and EM noise fit written from scratch in NumPy, with the log-likelihood checked against an exact joint-Gaussian evaluation. ([case study](projects/kalman-numpy.md))
 - [evalforge](https://github.com/midya8/evalforge): local evaluation for LLM and agent outputs, with regression gates for CI.
 - [agenttrace](https://github.com/midya8/agenttrace): validation, analysis and HTML reports for agent execution traces.
 
